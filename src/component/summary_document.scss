@@ -1,0 +1,53 @@
+#summary .container {
+    position: relative;;
+    max-height: 401px;
+
+    background: #FFFFFF;
+    //border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    padding-right: 0px;
+    //@extend: 8px;
+}
+
+#summary img {
+    max-width: 100%;
+    max-height: 180px;
+    height: auto;
+    object-fit: cover;
+    background-repeat: no-repeat;
+}
+#summary .row {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+.card-body {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.card-title {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.card-category, .card-date, .card-author {
+    margin-left: 10px;
+    margin-top: 5px;
+
+}
+
+.card-time {
+    margin-left: 10px;
+    margin-top: 5px;
+    justify-content: right;
+}
+
+@media (max-width: 767px) { 
+    #summary .container {
+     
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Nav, Navbar, Container, Image } from 'react-bootstrap';
+import { Nav, Navbar, Button, Image } from 'react-bootstrap';
 import logo from "../../img/logo.png"
-import icon_upload from "../../img/icon_upload.png";
-import icon_write from "../../img/icon_write.png";
+import { faFileSignature, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import "./header.scss";
 import SearchBar from "../search_bar";
 import PropTypes from 'prop-types';
@@ -11,47 +12,48 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <Container className="header">
-                    <Navbar className="navbar" bg="white" expand="lg">
-                        {/* Logo */}
-                        <Navbar.Brand className="py-0" href="#home">
-                            <img
-                                src={logo}
-                                width="144"
-                                height="60"
-                                className="d-inline-block align-top"
-                                alt="logo"
-                            />
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar className="navbar" bg="white" expand="lg">
+                    {/* Logo */}
 
-                            {/* Search bar */}
-                            <SearchBar className="search-bar" noBorder placeholder='Tìm kiếm' paramName='keyword' action='/search' className='d-none flex-grow-1 d-md-flex mx-lg-5' />
+                    <Navbar.Brand className="py-0" href="#home">
+                        <img
+                            src={logo}
+                            width="144"
+                            height="60"
+                            className="d-inline-block align-top"
+                            alt="logo"
+                        />
+                    </Navbar.Brand>
+                    
+                    <FontAwesomeIcon id="write-icon" onClick={console.log(2)} icon={faFileSignature} />
+                    <FontAwesomeIcon id="upload-icon"icon={faCloudUploadAlt} />
 
-                            <Nav>
-                                {/* Menu */}
-                                <Nav.Link className="menu-item" href="#home">Bài viết</Nav.Link>
-                                <Nav.Link className="menu-item" href="#">Tài liệu</Nav.Link>
-                                <Nav.Link className="menu-item" href="#">Sự kiện</Nav.Link>
-                                <Nav.Link className="menu-item" href="#">Hạng</Nav.Link>
-                                <Nav.Item>
-                                    <Image id="write" className="write" onClick={console.log(2)} src={icon_write} fluid />
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Image className="upload" href="#" src={icon_upload} fluid />
-                                </Nav.Item>
-                                <Nav.Item><LoginStatus /></Nav.Item>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
 
-                            </Nav>
+                        {/* Search bar */}
+                        <div id="search" >
+                            <SearchBar noBorder placeholder='Tìm kiếm' paramName='keyword' action='/search' />
+                        </div>
+                        <Nav className="justify-content-center">
+                            {/* Menu */}
+                            <Nav.Link className="menu-item" href="#home">Bài viết</Nav.Link>
+                            <Nav.Link className="menu-item" href="#">Tài liệu</Nav.Link>
+                            <Nav.Link className="menu-item" href="#">Sự kiện</Nav.Link>
+                            <Nav.Link className="menu-item" href="#">Hạng</Nav.Link>
+                          
+                            <LoginStatus id="login" className="float-right" />
+                          
+                        </Nav>
+
+                       
+
+                    </Navbar.Collapse>
+                  
+
+                </Navbar>
 
 
-
-                        </Navbar.Collapse>
-
-                    </Navbar>
-
-                </Container>
                 <hr></hr>
             </div>
 

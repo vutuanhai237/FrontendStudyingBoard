@@ -1,28 +1,84 @@
-.header {
-    width: 100%;
-    max-width: 1366;
-
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-}
-
 div hr {
-    margin-top: 0px;
-    border: 3px solid #5279DB;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: 3px solid #5279db;
 }
 
-.header .menu-item {
-    font-size: large;
-    font-weight: bolder;
-    padding-left: 10px;
-
+.navbar .menu-item {
+  font-size: large;
+  font-weight: bolder;
+  margin-left: 20px;
 }
 div .navbar {
-    width: 100%;
-    max-width: 1366px;
-}
-div #write {
-    padding-left: 20px;
+  width: 100%;
+  max-width: 1366px;
 }
 
+#login {
+  margin-left: 500px;
+}
+#header {
+  width: 100%;
+  max-width: 1366;
 
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+#search {
+  max-width: 400px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#write-icon,
+#upload-icon {
+  color: #5279db;
+  margin-left: 30px;
+}
+
+@media (max-width: 767px) {
+  #search {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .navbar .menu-item {
+    padding-top: 0px;
+    padding-bottom: 15px;
+    padding-right: 0px;
+    margin-left: 0px;
+  }
+
+  #write,
+  #upload,
+  #login {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+  }
+}
+
+@media only screen and (device-width: 768px) {
+  #search {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .navbar .menu-item {
+    padding-top: 0px;
+    padding-bottom: 15px;
+    padding-right: 0px;
+    margin-left: 0px;
+  }
+
+  #write,
+  #upload,
+  #login {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+  }
+}
