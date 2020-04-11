@@ -1,32 +1,49 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button, Container, Row, Col } from 'react-bootstrap';
-
+import { Carousel } from 'react-bootstrap';
+import anh from "../../img/board.png"
 import "./wallpage.scss";
-import SummaryDocument from "../summary_document"
 class WallPaper extends Component {
     render() {
         return (
+            <div>
 
-            <Container >
-                <Row>
-                    <Col  id="jumbo" md={4}>
-                        <Jumbotron>
-                            <h1>Hello, world!</h1>
-                            <p>
-                                This is a simple hero unit, calling
-                              
-                        </p>
-                            <p>
-                                <Button variant="primary">Learn more</Button>
-                            </p>
-                        </Jumbotron>
-                    </Col>
-                    <Col id="top-post" md={8}>
-                        <SummaryDocument id="wallpaper" />
-                    </Col>
-                </Row>
-            </Container>
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100 h-50"
+                            src={anh}
+                            alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>First slide label</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100 h-50"
+                            src={anh}
+                            alt="First slide"
+                        />
 
+                        <Carousel.Caption>
+                            <h3>Second slide label</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100 h-50"
+                            src={anh}
+                            alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Third slide label</h3>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
+            </div>
         );
     }
 }

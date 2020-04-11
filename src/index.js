@@ -13,6 +13,7 @@ render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+     
         <Route component={App} />
       </BrowserRouter>
     </Provider>

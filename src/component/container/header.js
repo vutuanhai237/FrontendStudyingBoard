@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Navbar, Button, Image } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import logo from "../../img/logo.png"
 import { faFileSignature, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,7 +25,7 @@ class Header extends Component {
                         />
                     </Navbar.Brand>
                     
-                    <FontAwesomeIcon id="write-icon" onClick={console.log(2)} icon={faFileSignature} />
+                    <FontAwesomeIcon id="write-icon" icon={faFileSignature} />
                     <FontAwesomeIcon id="upload-icon"icon={faCloudUploadAlt} />
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -40,20 +40,11 @@ class Header extends Component {
                             <Nav.Link className="menu-item" href="#home">Bài viết</Nav.Link>
                             <Nav.Link className="menu-item" href="#">Tài liệu</Nav.Link>
                             <Nav.Link className="menu-item" href="#">Sự kiện</Nav.Link>
-                            <Nav.Link className="menu-item" href="#">Hạng</Nav.Link>
-                          
-                            <LoginStatus id="login" className="float-right" />
-                          
+                            <Nav.Link className="menu-item" href="#">Hạng</Nav.Link>        
+                            <LoginStatus id="login" className="float-right" />                     
                         </Nav>
-
-                       
-
                     </Navbar.Collapse>
-                  
-
                 </Navbar>
-
-
                 <hr></hr>
             </div>
 

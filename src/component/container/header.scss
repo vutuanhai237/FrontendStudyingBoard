@@ -15,7 +15,7 @@ div .navbar {
 }
 
 #login {
-  margin-left: 500px;
+  margin-left: 50px;
 }
 #header {
   width: 100%;
@@ -26,7 +26,7 @@ div .navbar {
 }
 
 #search {
-  max-width: 400px;
+  //max-width: 400px;
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -60,7 +60,7 @@ div .navbar {
   }
 }
 
-@media only screen and (device-width: 768px) {
+@media (max-width: 1200px) {
   #search {
     padding-top: 15px;
     padding-bottom: 15px;

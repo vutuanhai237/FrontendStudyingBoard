@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Container, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import logo from "../../img/logo.png"
 import "./footer.scss"
 
@@ -50,7 +50,11 @@ class Footer extends Component {
 
                     </Col>
                 </Row>
+                <Row>
+                <Col id="copyright">@2020 Website Ban học tập Đoàn khoa Công nghệ phần mềm - UIT. All rights reserved</Col>
 
+                </Row>
+                <hr></hr>
             </div>
 
         );

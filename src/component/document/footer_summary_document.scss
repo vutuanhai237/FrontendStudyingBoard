@@ -1,0 +1,23 @@
+#info_title {
+    height: 30px;
+    flex-wrap: initial;
+}
+
+
+#head, #author, #caegory {
+    height: 30px;
+    position: relative;
+}
+
+
+#info_title col {
+    width: 100%;
+    max-width: 200px;
+}
+
+
+
+#download {
+    color: #5279db;
+    margin-left: 30px;
+}

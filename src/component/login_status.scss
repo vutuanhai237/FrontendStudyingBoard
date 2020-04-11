@@ -1,0 +1,79 @@
+#login-button {
+    margin-left: 28px;
+    padding: 0px 0px 0px 0px;
+    width: 100px;
+}
+#avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+.dropdown-toggle {
+    background: white;
+    border: transparent;
+}
+
+.dropdown-toggle:hover {
+    background: white;
+    border: transparent;
+}
+
+// .dropdown-content a:hover {
+//     background-color: transparent;
+// }
+
+.dropdown-toggle:focus  {
+    background-color: transparent;
+}
+
+
+// .dropdown-menu .dropdown-item > li > a:hover {
+//     background-image: none;
+    
+//     background-color: #000!important;
+//   }
+
+//   .dropdown-menu{
+//     background-color: transparent;
+//     border: transparent;
+//     border: none;
+//   }
+
+primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: white;
+    border-color: white;
+}
+
+
+.dropdown-toggle::after {
+    color: black;
+    background: white;;
+}
+
+@media (max-width: 767px) {
+    #login-button {
+      //padding-top: 15px;
+      //padding-bottom: 15px;
+      padding-left: 0px;
+      padding-right: 0px;
+      margin-left: 0px;
+        width: 100px;
+        height: 43px;
+        vertical-align: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    #login-button {
+        //padding-top: 15px;
+        //padding-bottom: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+          width: 100px;
+          height: 43px;
+          vertical-align: center;
+      }
+}
