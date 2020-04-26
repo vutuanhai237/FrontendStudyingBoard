@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
+
+.Admin {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Header Area */
+.Admin .Admin_Header {
+    top: 0px;
+    width: 100%;
+    height: 10%;
+    bottom: 0px;
+    left: 0px;
+}
+
+/* Body Port*/
+.Admin .Admin_Main_Port {
+    top: 100px;
+    position: relative;
+    left: 6%;
+    width: 88%;
+    height: fit-content;
+    background-repeat: no-repeat;
+    padding-top: 0px;
+    border: 1px #c4c4c4 solid;
+    min-width: 1000px;
+    display: flex;
+}
+
+/*This port contain Admin info and vertical menu below Admin info*/
+.Admin_Info_Menu_Port {
+    position: relative;
+}
+
+/* User Info Port: contain: avatar, display name, gmail and logout button */
+.Admin .Admin_Info_Port {
+    display: flex;
+    width: 300px;
+    border-left: 1px;
+    border-top: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-color: #c4c4c4;
+    border-style: solid;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px;
+}
+
+.Admin .Admin_Info_Port .Logout_Btn:hover {
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Admin .Admin_Info_Port .Avatar_Port {
+    position: relative;
+    padding-bottom: 80px;
+    overflow: hidden;
+    width: 80px;
+    background: #000;
+    background-origin: border-box;
+}
+
+.Admin .Admin_Info_Port .Avatar {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.Admin .Admin_Info_Port .Display_Name {
+    position: relative;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    align-items: center;
+    color: #5279db;
+}
+
+.Admin .Admin_Info_Port .User_Name_Gmail_Port {
+    margin-left: 10px;
+    position: relative;
+    width: fit-content;
+}
+
+.Admin .Admin_Info_Port .Gmail {
+    width: 190px;
+    position: relative;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+    align-items: center;
+    color: #363636;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.Admin .Admin_Info_Port .Logout_Btn {
+    box-sizing: border-box;
+    width: 80px;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: #5279db;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    border: #ffffff;
+}
+
+/*Admin Vertical Menu Port: contain these menu option: Tên hiển thị, đối mật khấu, Bài đăng */
+// .Admin_Vertical_Menu_Port {
+//     box-sizing: border-box;
+//     padding: 10px;
+//     margin: 10px;
+// }
+
+/* Menu Main Port: contain menu bar and all items that admin can manage*/
+.Admin_Horizontal_Menu_Port {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+/* Menu bar */
+
+.Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar {
+    display: flex;
+    border-bottom: 5px #5279db solid;
+}
+
+.Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .Menu_Item {
+    width: fit-content;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-family: "Barlow Condensed", "san-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+}
+
+.Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .First_Menu_Item {
+    width: fit-content;
+    padding-right: 20px;
+    font-family: "Barlow Condensed", "san-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+}
+
+.Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .First_Menu_Item:hover {
+    color: white;
+    background: #5279db;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .Menu_Item:hover {
+    color: white;
+    background: #5279db;
+    cursor: pointer;
+}
+
+/* Menu Main Show Port */
+.Admin_Horizontal_Menu_Port .Admin_Main_Show_Port {
+    height: fit-content;
+    border: #c4c4c4 solid 1px;
+    border-top: 0px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/* User Menu: contain menu items, a menu item contain one button element and text*/
+.Admin .Admin_Vertical_Menu_Port {
+    height: fit-content;
+    margin-top: 10px;
+    padding: 10px;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    border-left: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-color: #c4c4c4;
+    border-top: 5px #5279db;
+    border-style: solid;
+    font-family: "Barlow Condensed", "san-serif";
+    font-weight: 500;
+    font-size: 20px;
+    color: #363636;
+}
+
+.Admin_GrammarManagement .User_Menu_Port .Menu_Item {
+    display: flex;
+    flex-direction: row;
+    line-height: 30px;
+}
+
+.Admin_GrammarManagement .User_Menu_Port .Btn_Element {
+    align-self: center;
+    width: 8px;
+    height: 8px;
+    padding-right: 5px;
+}
+
+/* Duyệt bài */
+/* Duyệt tài liệu*/
+/* Quản lý thông báo*/
+/* Quản lý người dùng*/
+/* Quản lý bộ lọc bài viết*/
+
+/* Footer */
