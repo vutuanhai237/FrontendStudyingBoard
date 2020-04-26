@@ -1,0 +1,30 @@
+.Root_Simple_White_Button {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: white;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #363636;
+    border: #c4c4c4 1px solid;
+    user-select: none;
+}
+
+.Root_Simple_White_Button:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.Root_Simple_White_Button:active {
+    background: #c4c4c4;
+    cursor: pointer;
+    margin: 1px;
+    opacity: 90%;
+}

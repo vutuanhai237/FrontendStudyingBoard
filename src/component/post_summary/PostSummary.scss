@@ -54,6 +54,11 @@
     margin: 10px;
 }
 
+.Admin .Admin_Info_Port .Logout_Btn:hover {
+    cursor: pointer;
+    opacity: 90%;
+}
+
 .Admin .Admin_Info_Port .Avatar_Port {
     position: relative;
     padding-bottom: 80px;
@@ -103,6 +108,24 @@
     display: inline-block;
 }
 
+.Admin .Admin_Info_Port .Logout_Btn {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: #5279db;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ffffff;
+    border: #ffffff;
+}
+
 /* Menu Main Port: contain menu bar and all items that admin can manage*/
 .Admin_Horizontal_Menu_Port {
     position: relative;
@@ -130,11 +153,9 @@
     display: flex;
     align-items: center;
     color: #363636;
-    user-select: none;
 }
 
 .Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .First_Horizontal_Menu_Item {
-    user-select: none;
     width: fit-content;
     padding-right: 20px;
     font-family: "Barlow Condensed", "san-serif";
@@ -156,11 +177,6 @@
 .Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .Horizontal_Menu_Item:hover {
     color: white;
     background: #5279db;
-    cursor: pointer;
-}
-
-.Admin_Horizontal_Menu_Port .Horizontal_Menu_Bar .Horizontal_Menu_Item:active {
-    background: #c4c4c4;
     cursor: pointer;
 }
 
@@ -193,19 +209,14 @@
 }
 
 .Admin .Vertical_Menu_Item {
-    user-select: none;
     display: flex;
 }
 
-.Admin .Vertical_Menu_Item:active {
+.Admin .Vertical_Menu_Item:hover {
     background: #c4c4c4;
     cursor: pointer;
 }
 
-.Admin .Vertical_Menu_Item:hover {
-    outline: 1px solid #c4c4c4;
-    cursor: pointer;
-}
 .Admin .Admin_Vertical_Menu_Port .Btn_Element {
     width: 8px;
     height: 8px;

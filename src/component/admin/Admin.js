@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 // import Footer from "../../components/Footer/Footer.js";
 import './Admin.scss'
 import btn_element from "../../img/btn_element.png"
+import SimpleBlueButton from "../shared_components/SimpleBlueButton/SimpleBlueButton.js";
 
 class Admin extends Component {
     constructor(props) {
@@ -50,49 +51,68 @@ class Admin extends Component {
                                     {this.state.info.gmail}
                                 </div>
                                 <div className="Logout_Btn_Port">
-                                    <button className="Logout_Btn">Đăng xuất</button>
+                                    {/* <button className="Logout_Btn">Đăng xuất</button> */}
+                                    <SimpleBlueButton text = "Đăng xuất"></SimpleBlueButton>
                                 </div>
                             </div>
                         </div>
                         {/* Admin Menu Port */}
-                        <div className="Admin_Vertical_Menu_Port">AAA</div>
-                    </div>
+                        <div className="Admin_Vertical_Menu_Port">
+                            <div className="Vertical_Menu_Item">
+                                <img className="Btn_Element" src={btn_element}></img>
+                                <div className="Vertical_Menu_Item_Text">
+                                    Tên hiển thị
+                                </div>
+                            </div>
+                            <div className="Vertical_Menu_Item">
+                                <img className="Btn_Element" src={btn_element}></img>
+                                <div className="Vertical_Menu_Item_Text">
+                                    Đổi mật khẩu
+                                </div>
+                            </div>
 
+                            <div className="Vertical_Menu_Item">
+                                <img className="Btn_Element" src={btn_element}></img>
+                                <div className="Vertical_Menu_Item_Text">
+                                    Bài đăng
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     {/* Menu Main Port to show what will be manage*/}
                     <div className="Admin_Horizontal_Menu_Port">
 
                         {/* Menu bar */}
                         <div className="Horizontal_Menu_Bar">
-                            <div className="First_Menu_Item">
+                            <div className="First_Horizontal_Menu_Item">
                                 Duyệt bài
                             </div>
-                            <div className="Menu_Item">
+                            <div className="Horizontal_Menu_Item">
                                 Duyệt tài liệu
                             </div>
-                            <div className="Menu_Item">
+                            <div className="Horizontal_Menu_Item">
                                 Quản lý thông báo
                             </div>
-                            <div className="Menu_Item">
+                            <div className="Horizontal_Menu_Item">
                                 Quản lý người dùng
                             </div>
-                            <div className="Menu_Item">
+                            <div className="Horizontal_Menu_Item">
                                 Quản lý bộ lọc bài viết
                             </div>
                         </div>
 
                         {/* Menu_Main_Show_Port */}
                         <div className="Admin_Main_Show_Port">
-                            {/* show current menu action */}
+                            {/* show current menu option*/}
                         </div>
                     </div>
-                </div>
+                </div >
                 <div className="Admin_GrammarManagement_Footer">
                     {/* <Footer></Footer> */}
                 </div>
             </div>
         );
     }
-
 }
 
 export default Admin;
