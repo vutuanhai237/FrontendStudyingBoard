@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import './Admin.scss'
 import btn_element from "../../img/btn_element.png"
 import SimpleBlueButton from "../shared_components/SimpleBlueButton/SimpleBlueButton.js";
-
+import AdminBrowsePostComponent from "./AdminBrowsePostComponent"
 class Admin extends Component {
     constructor(props) {
         super();
@@ -17,13 +17,20 @@ class Admin extends Component {
                 "userName": "tesla",
                 "gmail": "dongnv.since1999@gmail.com",
                 "password_length": 10
-            }
+            },
+            isBrowserPost: true,
+            isBrowserDocument: false,
+            isAnnouncementManagement: false,
+            isUserAccountsManagement: false,
+            isPostFilterManagement: false
         }
     }
 
     render() {
-        let mainMenuShow;
-        // Condition to choose what will be rendered
+        let mainMenuShow = <div></div>;
+        if (this.state.isBrowserPost) {
+            mainMenuShow = <AdminBrowsePostComponent></AdminBrowsePostComponent>;
+        }
 
         return (
             <div className="Admin">
@@ -52,7 +59,7 @@ class Admin extends Component {
                                 </div>
                                 <div className="Logout_Btn_Port">
                                     {/* <button className="Logout_Btn">Đăng xuất</button> */}
-                                    <SimpleBlueButton text = "Đăng xuất"></SimpleBlueButton>
+                                    <SimpleBlueButton text="Đăng xuất"></SimpleBlueButton>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +111,7 @@ class Admin extends Component {
                         {/* Menu_Main_Show_Port */}
                         <div className="Admin_Main_Show_Port">
                             {/* show current menu option*/}
+                            {mainMenuShow}
                         </div>
                     </div>
                 </div >

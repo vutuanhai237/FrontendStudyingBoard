@@ -1,0 +1,30 @@
+.Root_Post_Summary_Category_Link {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: #5279db;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ffffff;
+    border: #ffffff;
+    user-select: none;
+}
+
+.Root_Post_Summary_Category_Link:hover {
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Root_Post_Summary_Category_Link:active {
+    background: #c4c4c4;
+    cursor: pointer;
+    margin: 1px;
+    opacity: 90%;
+}
