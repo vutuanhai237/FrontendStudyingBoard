@@ -8,36 +8,45 @@ import PostSummaryCategoryLink from '../shared_components/PostSummaryCategoryLin
 import SimpleBlueButton from '../shared_components/SimpleBlueButton/SimpleBlueButton'
 import SimpleRedButton from '../shared_components/SimpleRedButton/SimpleRedButton'
 import BlueRedButtonGroup from '../shared_components/BlueRedButtonGroup/BlueRedButtonGroup'
-
+import Tag from '../shared_components/Tag/Tag'
 //to call this component: 
 //isAdmin, token Admin, ...
 //authorName, authorLink or authorID
 //requestedDate
 //title of post
 class PostSummary extends Component {
-    constructor(props) {
-        super();
-    }
+    getFirstImage() {
 
+    }
 
     render() {
         // Condition to choose what will be rendered
 
-        let isAdmin = true;
         let groupBtn = <div></div>;
-        if(isAdmin)
-        {
+
+        //Render tag from tags list
+        let tagsList = this.props.tags.map((tag) => {
+            return (
+                <div>
+                    <Tag text={tag}></Tag>                
+                </div>
+            )
+        }
+        );
+
+        //for User
+        if (this.props.isAdmin) {
             groupBtn = <BlueRedButtonGroup></BlueRedButtonGroup>;
-        }   
+        }
+
         return (
-            <div className="Post_Summary">
+            <div className="Post_Summary" >
                 <div className="Post_Summary_Author_Requested_Date_Port">
                     <div className="Author_Port">
-                        {/* <PostSummaryAuthorLink authorName={this.props.authorName} authorLink={this.props.authorLink}></PostSummaryAuthorLink> */}
                         <PostSummaryAuthorLink authorName={this.props.authorName}></PostSummaryAuthorLink>
                     </div>
-                    <div className="Requested_Date_Port">
-                        {this.props.requestedDate}
+                    <div className="Requested_Published_Date_Port">
+                        {this.props.isAdmin ? this.props.requestedDate : this.props.publishedDate}
                     </div>
                 </div>
                 <div className="Post_Summary_Requested_Time_Requested_Category_Port">
@@ -49,10 +58,16 @@ class PostSummary extends Component {
                 <div className="Post_Summary_Content_Port">
                     {this.props.content}
                 </div>
-                <div className = "groupBtn">
+                <div className="Post_Summary_Image_Port">
+                    <img className="Post_Summary_Image" src={this.props.image}></img>
+                </div>
+                <div className="Post_Summary_Requested_Tags_Port">
+                    {tagsList}
+                </div>
+                <div className="Post_Summary_GroupBtn_Port">
                     {groupBtn}
                 </div>
-            </div>
+            </div >
         );
     }
 }

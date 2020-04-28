@@ -15,6 +15,7 @@
     color: #ffffff;
     border: #ffffff;
     user-select: none;
+    min-width: 80px;
 }
 
 .Root_Simple_Red_Button:hover {
@@ -25,6 +26,5 @@
 .Root_Simple_Red_Button:active {
     background: #c4c4c4;
     cursor: pointer;
-    margin: 1px;
     opacity: 90%;
 }

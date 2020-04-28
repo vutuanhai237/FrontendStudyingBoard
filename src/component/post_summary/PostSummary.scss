@@ -2,28 +2,115 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
 .Post_Summary {
     position: relative;
     width: 100%;
     height: 100%;
     margin-bottom: 10px;
     padding: 10px;
+    padding-top: 5px;
     background-repeat: no-repeat;
     border: 1px #c4c4c4 solid;
 }
 
-/* Body Port*/
+.Post_Summary:hover {
+    box-shadow: 0px 0px 5px 1px #c4c4c4;
+}
+
+.Post_Summary:active {
+    box-shadow: 0px 0px 5px 1px #c4c4c4;
+    // opacity: 80%;
+}
+//This port contain Author and Date
 .Post_Summary .Post_Summary_Author_Requested_Date_Port {
     display: flex;
-    background: #363636;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
 }
 
-.Post_Summary .Author_Port {
-    background: green;
+.Post_Summary .Requested_Published_Date_Port {
+    position: relative;
+    height: fit-content;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    display: flex;
+    color: #5279db;
+    user-select: none;
 }
 
-.Post_Summary .Requested_Date_Port {
-    align-self: flex-end;
+.Post_Summary .Requested_Published_Date_Port:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.Post_Summary .Requested_Published_Date_Port:active {
+    cursor: pointer;
+    opacity: 60%;
+}
+
+.Post_Summary_Requested_Time_Requested_Category_Port {
+    position: relative;
+    height: fit-content;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    color: #363636;
+    user-select: none;
+}
+
+.Post_Summary .Post_Summary_Title {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    font-family: "Roboto Slab";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #202020;
+}
+.Post_Summary .Post_Summary_Content_Port {
+    padding-left: 5px;
+    font-family: Sarabun;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+}
+
+.Post_Summary_Image_Port {
+    display: flex;
+    width: 100%;
+    object-fit: cover;
+    max-height: 200px;
+}
+
+.Post_Summary_Image {
+    max-width: 100%;
+    max-height: 200px;
+    margin: auto;
+}
+
+.Post_Summary_Requested_Tags_Port {
+    margin-left: 5px;
+    margin-top: 5px;
+    display: flex;
+}
+
+.Post_Summary_GroupBtn_Port {
+    margin-top: 5px;
 }

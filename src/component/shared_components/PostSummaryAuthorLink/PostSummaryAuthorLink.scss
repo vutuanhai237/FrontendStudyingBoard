@@ -1,30 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+
 .Root_Post_Summary_Author_Link {
-    box-sizing: border-box;
-    width: fit-content;
-    height: 25px;
-    vertical-align: auto;
-    text-align: center;
-    border-radius: 5px;
-    background: #5279db;
+    position: relative;
+    height: fit-content;
     font-family: "Barlow Condensed", sans-serif;
-    font-weight: 600;
+    font-style: normal;
+    font-weight: 500;
     font-size: 18px;
-    line-height: 22px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #ffffff;
-    border: #ffffff;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #5279db;
     user-select: none;
 }
 
 .Root_Post_Summary_Author_Link:hover {
     cursor: pointer;
-    opacity: 90%;
+    opacity: 80%;
 }
 
 .Root_Post_Summary_Author_Link:active {
-    background: #c4c4c4;
     cursor: pointer;
-    margin: 1px;
-    opacity: 90%;
+    opacity: 60%;
 }
