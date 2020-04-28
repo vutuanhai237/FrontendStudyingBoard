@@ -9,9 +9,9 @@ class BlueRedButtonGroup extends Component {
     render() {
         return (
             <div className="Root_Blue_Red_Button_Group">
-                <SimpleBlueButton text="Preview"></SimpleBlueButton>
-                <div className = "Root_Blue_Red_Button_Group_Distance"></div>
-                <SimpleRedButton text="Reject"></SimpleRedButton>
+                <SimpleBlueButton text={this.props.blueText}></SimpleBlueButton>
+                <div className="Root_Blue_Red_Button_Group_Distance"></div>
+                <SimpleRedButton text={this.props.redText}></SimpleRedButton>
             </div>
         )
     }

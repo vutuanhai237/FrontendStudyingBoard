@@ -6,6 +6,7 @@ class AdminBrowsePostComponent extends Component {
     constructor(props) {
         super();
         this.maxPostNumber = 10;
+        this.isAdminBrower = true;
         this.state = {
             requestedPosts:
                 [
@@ -21,6 +22,8 @@ class AdminBrowsePostComponent extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "12:30:40",
                         "contentURL": "contentURL",
+                        "likeCount":30,
+                        "commentCount": 50,
                         "firstImageURL": "https://imgur.com/inBsikg.png",
                         "tags": [
                             "some tag",
@@ -39,6 +42,8 @@ class AdminBrowsePostComponent extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
+                        "likeCount":40,
+                        "commentCount": 0,
                         "firstImageURL": "https://imgur.com/inBsikg.png",
                         "tags": [
                             "tag1",
@@ -55,7 +60,7 @@ class AdminBrowsePostComponent extends Component {
         let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) => {
             return (
                 <PostSummary
-                    isAdmin="true"
+                    isAdminBrowser = {this.isAdminBrower}
                     authorName={requestedPost.authorName}
                     requestedDate={requestedPost.requestedDate}
                     requestedTime={requestedPost.requestedTime}
@@ -64,6 +69,8 @@ class AdminBrowsePostComponent extends Component {
                     content={requestedPost.Summary}
                     image={requestedPost.firstImageURL}
                     tags = {requestedPost.tags}
+                    likeCount = {requestedPost.likeCount}
+                    commentCount = {requestedPost.commentCount}
                 ></PostSummary>
             );
         })
