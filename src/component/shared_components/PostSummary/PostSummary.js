@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 // import Header from "../../components/Header/Header.js";
 // import Footer from "../../components/Footer/Footer.js";
 import './PostSummary.scss'
-import PostSummaryAuthorLink from '../shared_components/PostSummaryAuthorLink/PostSummaryAuthorLink'
-import PostSummaryCategoryLink from '../shared_components/PostSummaryCategoryLink/PostSummaryCategoryLink'
-import SimpleBlueButton from '../shared_components/SimpleBlueButton/SimpleBlueButton'
-import SimpleRedButton from '../shared_components/SimpleRedButton/SimpleRedButton'
-import BlueRedButtonGroup from '../shared_components/BlueRedButtonGroup/BlueRedButtonGroup'
-import Tag from '../shared_components/Tag/Tag'
+import PostSummaryAuthorLink from '../PostSummaryAuthorLink/PostSummaryAuthorLink'
+import PostSummaryCategoryLink from '../PostSummaryCategoryLink/PostSummaryCategoryLink'
+import SimpleBlueButton from '../SimpleBlueButton/SimpleBlueButton'
+import SimpleRedButton from '../SimpleRedButton/SimpleRedButton'
+import BlueRedButtonGroup from '../BlueRedButtonGroup/BlueRedButtonGroup'
+import Tag from '../Tag/Tag'
 //to call this component: 
 //isAdmin, token Admin, ...
 //authorName, authorLink or authorID
@@ -28,7 +28,7 @@ class PostSummary extends Component {
         let tagsList = this.props.tags.map((tag) => {
             return (
                 <div>
-                    <Tag text={tag}></Tag>                
+                    <Tag text={tag}></Tag>
                 </div>
             )
         }

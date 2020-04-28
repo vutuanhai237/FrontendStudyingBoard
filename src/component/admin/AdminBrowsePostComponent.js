@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './AdminBrowsePostComponent.scss'
-import PostSummary from '../post_summary/PostSummary'
+import PostSummary from '../shared_components/PostSummary/PostSummary'
 
 class AdminBrowsePostComponent extends Component {
     constructor(props) {
