@@ -8,24 +8,71 @@ import PostSummaryCategoryLink from '../PostSummaryCategoryLink/PostSummaryCateg
 import SimpleBlueButton from '../SimpleBlueButton/SimpleBlueButton'
 import SimpleRedButton from '../SimpleRedButton/SimpleRedButton'
 import BlueRedButtonGroup from '../BlueRedButtonGroup/BlueRedButtonGroup'
+import PostReactionBar from '../PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
+
 //to call this component: 
-//isAdmin, token Admin, ...
+//isAdminBrowser
+//isOwnerManagement
+//isNormal
+
 //authorName, authorLink or authorID
 //requestedDate
-//title of post
+//title of post 
+//...
+
+//Thanh tác giả và thời gian có hai cách hiển thị: admin duyệt bài (tác giả, thời gian yêu cầu, ngày yêu cầu, danh mục) 
+//                                        (undone) và view bình thường (tác giả, ngày publish, thời gian đọc ước tính, danh mục)
+//Reaction bar lúc admin view chờ duyệt thì không xuất hiện, còn lại hiện hết.
+//Đối với các nút thao tác:
+// + Khi admin view chờ duyệt: preview và reject.
+// + Khi trong màn hình quản lý của mình: Đọc tiếp và Xoá.
+// + Còn lại: Đọc tiếp.
+
 class PostSummary extends Component {
     getFirstImage() {
 
     }
 
     render() {
-        // Condition to choose what will be rendered
 
-        let groupBtn = <div></div>;
+        //Init dynamic components
+        let headBar = <div></div>; //
+        let tagsGroup = <div></div>; //
+        let reactionBar = <div></div>; //
+        let managementBar = <div></div>; //
+
+        // Condition to choose what will be rendered
+        if (this.props.isAdminBrowser) {
+            //render headbar: author, time, category ...
+            headBar = <div className="Post_Summary_Head_Bar">
+                <div className="Post_Summary_Head_Bar_Author_Requested_Date_Post">
+                    <div className="Post_Summary_Head_Bar_Author_Port">
+                        <PostSummaryAuthorLink authorName={this.props.authorName}></PostSummaryAuthorLink>
+                    </div>
+                    <div className="Post_Summary_Head_Bar_Requested_Date_Port">
+                        {this.props.requestedDate}
+                    </div>
+                </div>
+                <div className="Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port">
+                    vào lúc {this.props.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục  {this.props.requestedCategory}
+                </div>
+            </div>;
+            //render reaction bar
+            reactionBar = <div className = "Post_Summary_Reaction_Bar">
+                <PostReactionBar likeCount = {this.props.likeCount} commentCount = {this.props.commentCount}></PostReactionBar>
+            </div>
+            //render manager bar
+            managementBar = <BlueRedButtonGroup blueText="Preview" redText="Reject"></BlueRedButtonGroup>;
+        }
+
+
+        //render reaction bar via user's role
+
+
 
         //Render tag from tags list
-        let tagsList = this.props.tags.map((tag) => {
+        tagsGroup = this.props.tags.map((tag) => {
             return (
                 <div>
                     <Tag text={tag}></Tag>
@@ -34,24 +81,12 @@ class PostSummary extends Component {
         }
         );
 
-        //for User
-        if (this.props.isAdmin) {
-            groupBtn = <BlueRedButtonGroup></BlueRedButtonGroup>;
-        }
-
         return (
             <div className="Post_Summary" >
-                <div className="Post_Summary_Author_Requested_Date_Port">
-                    <div className="Author_Port">
-                        <PostSummaryAuthorLink authorName={this.props.authorName}></PostSummaryAuthorLink>
-                    </div>
-                    <div className="Requested_Published_Date_Port">
-                        {this.props.isAdmin ? this.props.requestedDate : this.props.publishedDate}
-                    </div>
+                <div className="Post_Summary_Head_Bar_Port">
+                    {headBar}
                 </div>
-                <div className="Post_Summary_Requested_Time_Requested_Category_Port">
-                    vào lúc {this.props.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục  {this.props.requestedCategory}
-                </div>
+
                 <div className="Post_Summary_Title">
                     {this.props.title}
                 </div>
@@ -62,10 +97,13 @@ class PostSummary extends Component {
                     <img className="Post_Summary_Image" src={this.props.image}></img>
                 </div>
                 <div className="Post_Summary_Requested_Tags_Port">
-                    {tagsList}
+                    {tagsGroup}
                 </div>
-                <div className="Post_Summary_GroupBtn_Port">
-                    {groupBtn}
+                <div className="Post_Summary_Reaction_Bar_Port">
+                    {reactionBar}
+                </div>
+                <div className="Post_Summary_Management_Bar_Bar_Port">
+                    {managementBar}
                 </div>
             </div >
         );
