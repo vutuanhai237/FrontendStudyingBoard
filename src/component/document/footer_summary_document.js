@@ -6,16 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class FooterSummaryDocument extends Component {
     render() {
+        const {item} = this.props;
         return (
             <Col className="border justify-content-end d-flex">
             <div id="footer" >
                 <Nav>
-                    <Nav.Link >Lượt xem:</Nav.Link>
-                    <Nav.Link>1000</Nav.Link>
-                    <Nav.Link>
-                        <FontAwesomeIcon id="download-icon" icon={faDownload} />
+                    <Nav.Link>Lượt xem:</Nav.Link>
+                    <Nav.Link>{item.viewCount}</Nav.Link>
+                    <Nav.Link href="/download">
+                        <FontAwesomeIcon  id="download-icon" icon={faDownload} />
                     </Nav.Link>
-                    <Nav.Link>30</Nav.Link>
+                    <Nav.Link>{item.downloadCount}</Nav.Link>
 
                 </Nav>
             </div>

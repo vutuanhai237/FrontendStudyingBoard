@@ -1,5 +1,7 @@
 import React from "react";
 import Home from "./layout/home";
+
+import CreatePost from "./layout/create_post";
 import Admin from "./admin/Admin.js"
 import {
   BrowserRouter as Router,
@@ -16,6 +18,9 @@ function App() {
         </Route>
         <Route exact path="/admin">
           <Admin/>
+        </Route>
+        <Route exact path="/create_post">
+          <CreatePost/>
         </Route>
       </Switch>
       <div className="App">

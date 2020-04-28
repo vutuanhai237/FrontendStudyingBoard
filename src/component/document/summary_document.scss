@@ -1,54 +1,111 @@
-#summary .container {
-    position: relative;;
-    max-height: 401px;
+#summary {
+  transition: all 0.5s;
+  opacity: 1;
+}
 
-    background: #FFFFFF;
-    //border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    padding-right: 0px;
-    //@extend: 8px;
+#summary:hover {
+  transition: all 0.5s;
+  opacity: 0.8;
+  box-shadow: 1px 1px 1px 1px #c4c4c4;
 }
 
 #summary img {
-    max-width: 100%;
-    max-height: 180px;
-    height: auto;
-    object-fit: cover;
-    background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 180px;
+  height: auto;
+  object-fit: cover;
+  background-repeat: no-repeat;
 }
 #summary .row {
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 .card-body {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .card-title {
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 0px;
+  transition: all 0.5s;
+
+  font-style: bold;
+  font-size: 28px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: black;
+}
+.card-title:hover {
+  transition: all 0.5s;
+}
+.card-summary {
+  overflow: hidden;
+  white-space: normal;
+  height: 2.8em; /* exactly 2 lines */
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 2; /* Write the number of 
+                              lines you want to be 
+                              displayed */
+  -webkit-box-orient: vertical;
+  transition: all 0.5s;
+  margin-bottom: 5px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.card-summary:hover {
+  transition: all 0.5s;
+  color: black;
+}
+.inline {
+  display: inline;
+}
+// .card-category, .card-date, .card-author {
+//     margin-left: 10px;
+//     margin-top: 5px;
+
+// }
+#card-subject {
+  transition: all 0.5s;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 0px;
+  color: red;
+}
+#card-category {
+  transition: all 0.5s;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-right: 0px;
+}
+#card-date {
+  transition: all 0.5s;
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  justify-content: right;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
 }
 
-.card-category, .card-date, .card-author {
-    margin-left: 10px;
-    margin-top: 5px;
-
+.card-date:hover {
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 1);
 }
 
-.card-time {
+@media (max-width: 767px) {
+  #summary .container {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+
+  .card-title,
+  .card-summary {
     margin-left: 10px;
-    margin-top: 5px;
-    justify-content: right;
-}
-
-
-@media (max-width: 767px) { 
-    #summary .container {
-     
-        padding-right: 0px;
-        padding-left: 0px;
-        margin-left: 0px;
-    }
+    margin-right: 10px;
+  }
+  #card-category,
+  #card-date {
+    margin-left: 10px;
+  }
 }
