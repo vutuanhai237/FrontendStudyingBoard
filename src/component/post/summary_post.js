@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Col, Row, Container } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import anh from "../../img/anh.jpg"
 import "./summary_post.scss"
-import PropTypes from 'prop-types';
 import FooterSummaryPost from "../post/footer_summary_post"
 class SummaryPost extends Component {
     render() {

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Row, Col, Accordion, Card } from "react-bootstrap";
-import SummaryDocument from "../document/summary_document";
-import "./group_document.scss";
-
-class GroupDocument extends Component {
+import { Row, Accordion, Card, Col } from "react-bootstrap";
+import SummaryPost from "../post/summary_post";
+import "./group_post.scss";
+class GroupEvent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,29 +23,30 @@ class GroupDocument extends Component {
         }
       
     }
+    
     render() {
-        const { topDocs } = this.props;
+        const { topEvents } = this.props;
         const style = {
             display: this.state.isExpand
         }
         return (
             <div id="group-post">
                 <div onClick={this.changeStatePost.bind(this)}>
-                <p id="title">TÀI LIỆU MỚI</p>
+                <p id="title">HOẠT ĐỘNG MỚI</p>
                 </div>
                 
                 <Card.Body style={style} id="card-body">
                     <Row>
                         {
-                            topDocs.map(item => {
+                            topEvents.map(item => {
                                 return <Col sm={4}>
-                                    <SummaryDocument item={item}></SummaryDocument>
+                                    <SummaryPost item={item}></SummaryPost>
                                 </Col>
                             })
                         }
+
                     </Row>
                 </Card.Body>
-
             </div>
         );
     }
@@ -55,7 +55,7 @@ class GroupDocument extends Component {
 const mapStateToProps = state => {
     return {
 
-        topDocs: state.home.topDocs,
+        topEvents: state.home.topEvents,
 
     };
 
@@ -68,4 +68,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupDocument));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupEvent));

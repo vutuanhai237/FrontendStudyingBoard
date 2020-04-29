@@ -1,47 +1,64 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Dropdown } from "react-bootstrap";
+import { Button, Nav,Dropdown, OverlayTrigger, Popover, Badge } from "react-bootstrap";
 import "./login_status.scss"
 import avatar from "../img/anh.jpg"
 class LoginStatus extends Component {
     constructor(props) {
         super(props);
-        this.state = { isLogin: false };
+        this.state = { 
+            isLogin: false 
+        };
     }
-    handleLogin = () => {
+    handleLogin() {
         this.setState({ isLogin: true });
+        console.log(this.state.isLogin);
     }
-    handleLogout = () => {
-        this.setState({ isLogin: false });
+    handleLogout() {
+        
+       // console.log(this.state.isLogin);
+        this.setState({ 
+            isLogin: false
+        });
+        
+       
     }
     render() {
-        let myButton = null;
+        
         if (!this.state.isLogin) {
-            myButton = <Button id="login-button" variant="primary" onClick={this.handleLogout.bind(this)}>Login</Button>
+            return <Nav.Link onClick={this.handleLogin.bind(this)} className="menu-item" href="">Đăng nhập</Nav.Link> 
         }
         else {
-            myButton = <div onClick={this.handleLogin.bind(this)}>
-                <Dropdown id="login-button" as={ButtonGroup}>
+            return <div>               
+                <OverlayTrigger
+                    
+                    trigger="click"
+                    key={"bottom"}
+                    placement={"bottom"}
+                    overlay={
+                        <Popover id={`popover-positioned-${"bottom"}`}>
+                           
+                            <Popover.Content>
+                                <Dropdown.Item>Xin chào</Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item href="#/action-1">Trang cá nhân</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">
+
+                                    <p style={{display: "inline"}}>Thông báo  </p>
+                                    <Badge variant="success">9</Badge>
+                                </Dropdown.Item>
+                                <Dropdown.Item href="#/action-3">Bài viết của tôi</Dropdown.Item>
+                                <Dropdown.Item href="#/action-4">Tài liệu của tôi</Dropdown.Item>
+                                <Dropdown.Item onClick={this.handleLogout.bind(this)}>Đăng xuất</Dropdown.Item>
+                            </Popover.Content>
+                        </Popover>
+                    }
+                >
                     <img src={avatar} alt="Avatar" id="avatar" />
-                    <Dropdown.Toggle variant="primary" id=" dropdown-split-basic" />
-
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Trang cá nhân</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-
-                            Thông báo
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Bài viết của tôi</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Tài liệu của tôi</Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">Đăng xuất</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
-
+                </OverlayTrigger>{' '}
 
             </div>
 
         }
-
-        return myButton;
     }
 }
 

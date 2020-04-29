@@ -4,17 +4,22 @@ import Footer from "../container/footer"
 import WallPage from "../container/wallpage"
 import GroupPost from "../container/group_post"
 import GroupDocument from '../container/group_document';
+
+import GroupEvent from '../container/group_event';
+import "./home.scss"
 class Home extends Component {
     render() {
         return (
-            <div>
+            <div >
+                
+               
                 <Header/>
                 <WallPage/>
                 <GroupPost/>
               
                 <GroupDocument/>
+                <GroupEvent/>
                 <Footer/>
-
             </div>
 
         );

@@ -9,7 +9,27 @@
     margin-left: 120px;
     margin-right: 120px;
     margin-top: 10px;
+    cursor: pointer;
+    
 }
+#group-post #title {
+    transition: all 0.5s;
+    color: black;
+    font-style: bold; 
+    font-size: 20px;
+    font-weight: 900;
+    border-bottom: 0px solid black; 
+}
+#group-post #title:hover {
+    transition: all 0.5s;
+    color: #5279DB;
+    font-size: 22px;
+    
+    border-bottom: 5px solid #5279DB; 
+}
+
+
+
 
 #group-post.col {
     
@@ -45,7 +65,9 @@
         margin-right: 0px;
         
     }
-
+    #group-post #title {
+        margin-left: 10px;
+    }
     #group-post col {
         margin-left: 0px;
         margin-right: 0px;

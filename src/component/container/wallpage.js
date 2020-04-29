@@ -1,52 +1,72 @@
 import React, { Component } from 'react';
-import { Carousel } from 'react-bootstrap';
 import anh from "../../img/board.png"
+import { Carousel, Row, Col, Card } from "react-bootstrap"
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import "./wallpage.scss";
 class WallPaper extends Component {
     render() {
+        const { topWallPaper } = this.props;
         return (
+
             <div>
+                <Carousel className="carousel">
+                    <Carousel.Item>
+                        <img
+                            id="image"
+                            className="d-block w-100 h-50"
+                            src={anh}
+                            alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Training Cuối học kì I</h3>
+                            <p>Buổi training đã thành công tốt đẹp tại giảng đường 1</p>
+                            <Row>
+                                <Col />
+                                <Col>
+                                    <p style={{ display: "inline" }}>21.01.2020</p>
+                                   
+                                </Col>
+                                <Col />
 
-                <Carousel>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100 h-50"
-                            src={anh}
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100 h-50"
-                            src={anh}
-                            alt="First slide"
-                        />
+                            </Row>
 
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100 h-50"
-                            src={anh}
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+
                 </Carousel>
+                <div className="animation-area">
+
+                    <ul className="box-area">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
             </div>
+
+
+
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
 
-export default WallPaper;
+        topWallPaper: state.home.topWallPaper,
+
+    };
+
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WallPaper));

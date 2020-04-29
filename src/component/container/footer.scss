@@ -1,10 +1,20 @@
 
-#footer col {
+#footer {
+    margin-top: 20px;
+}
+#footer col h4 {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
-
+    transition: all 0.5s;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-left: 20px;
 }
-
+#footer col h4:hover {
+    transition: all 0.5s;
+    transform: scale(1.1);
+  
+}
 #footer #logo {
     margin-top: 10px;
     padding-left: 30px;

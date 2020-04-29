@@ -1,23 +1,9 @@
-#info_title {
-    height: 30px;
-    flex-wrap: initial;
+#footer .sub-info {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
 }
 
-
-#head, #author, #caegory {
-    height: 30px;
-    position: relative;
-}
-
-
-#info_title col {
-    width: 100%;
-    max-width: 200px;
-}
-
-
-
-#download {
-    color: #5279db;
-    margin-left: 30px;
+#view-icon, #download-icon {
+    
+    color: rgb(142,142,147);
 }

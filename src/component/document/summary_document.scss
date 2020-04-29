@@ -1,12 +1,14 @@
 #summary {
   transition: all 0.5s;
   opacity: 1;
+  transform: scale(1);
 }
 
 #summary:hover {
   transition: all 0.5s;
   opacity: 0.8;
-  box-shadow: 1px 1px 1px 1px #c4c4c4;
+  transform: scale(1.05);
+  box-shadow: 5px 0 5px -5px #c4c4c4;
 }
 
 #summary img {
@@ -68,7 +70,6 @@
   margin-top: 0px;
   margin-bottom: 5px;
   margin-right: 0px;
-  color: red;
 }
 #card-category {
   transition: all 0.5s;

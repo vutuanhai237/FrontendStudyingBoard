@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import logo from "../../img/logo.png"
 import "./footer.scss"
-
+import HeadAnimation from "../animation/head"
 class Footer extends Component {
     render() {
         return (
@@ -22,14 +22,6 @@ class Footer extends Component {
                         Kênh thông tin Sinh viên của BHT khoa CNPM - Trường ĐH CNTT - ĐHQG-HCM. Website do Ban học tập CNPM thực hiện và quản lý.
                         </Col>
                     <Col sm={2}>
-                        {/* <Button className="button-social" >
-                            T
-                        </Button>
-                        <Button className="button-social">
-                            Đ
-                        </Button> */}
-
-
                     </Col>
                 </Row>
                 <Row>
@@ -51,8 +43,11 @@ class Footer extends Component {
                     </Col>
                 </Row>
                 <Row>
-                <Col id="copyright">@2020 Website Ban học tập Đoàn khoa Công nghệ phần mềm - UIT. All rights reserved</Col>
+                    <Col id="copyright">@2020 Website Ban học tập Đoàn khoa Công nghệ phần mềm - UIT. All rights reserved</Col>
 
+                </Row>
+                <Row>
+                    {/* <HeadAnimation /> */}
                 </Row>
                 <hr></hr>
             </div>

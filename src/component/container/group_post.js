@@ -5,37 +5,48 @@ import { Row, Accordion, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/summary_post";
 import "./group_post.scss";
 class GroupPost extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            isExpand: "block",
+        }
+    }
+    changeStatePost() {
+        if (this.state.isExpand == "block") {
+            this.setState({
+                isExpand: "none",
+            })
+        } else {
+            this.setState({
+                isExpand: "block",
+            })
+        }
+      
+    }
+    
     render() {
         const { topPosts } = this.props;
+        const style = {
+            display: this.state.isExpand
+        }
         return (
             <div id="group-post">
+                <div onClick={this.changeStatePost.bind(this)}>
+                <p id="title">BÀI VIẾT HAY</p>
+                </div>
+                
+                <Card.Body style={style} id="card-body">
+                    <Row>
+                        {
+                            topPosts.map(item => {
+                                return <Col sm={4}>
+                                    <SummaryPost item={item}></SummaryPost>
+                                </Col>
+                            })
+                        }
 
-                <Accordion defaultActiveKey="0">
-
-                    <Card.Header id="card-header">
-
-                        <Accordion.Toggle id="toggle-button" as={Card.Header} variant="link" eventKey="0">
-                            <span id="title"><i>BÀI VIẾT MỚI NHẤT</i></span>
-                        </Accordion.Toggle>
-                    </Card.Header>
-                    <hr></hr>
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body id="card-body">
-                            <Row>
-                                {
-                                    topPosts.map(item => {
-                                        return <Col sm={4}>
-                                            <SummaryPost item={item}></SummaryPost>
-                                        </Col>
-                                    })
-                                }
-
-                            </Row>
-                        </Card.Body>
-                    </Accordion.Collapse>
-
-                </Accordion>
+                    </Row>
+                </Card.Body>
             </div>
         );
     }

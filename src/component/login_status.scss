@@ -8,7 +8,18 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-  }
+    margin-left: 30px;
+}
+
+@media (max-width: 767px) {
+    #avatar {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+}
+#avatar:hover {
+    cursor: pointer;
+}
 
 .dropdown-toggle {
     background: white;

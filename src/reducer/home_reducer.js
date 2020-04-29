@@ -122,12 +122,26 @@ const fakeTopPost = [
 ]
 
 
-
+const fakeWallPaper = [
+    {
+        title: "WallPage 1",
+        caption: "ABCDDDDÂDDDDDDDDDDDDDDDDDDDĐ",
+        img: "../../img/board.png"
+    },
+    {
+        title: "WallPage 2",
+        caption: "2222222222222222",
+        img: "../../img/board.png"
+    }
+    
+]
 
 
 const initialState = {
     topPosts: fakeTopPost,
     topDocs: fakeTopDoc,
+    topEvents: fakeTopPost,
+    wallPapers: fakeWallPaper,
 }
 
 function HomeReducer(state = initialState, action) {

@@ -15,7 +15,7 @@ class Header extends Component {
                 <Navbar className="navbar" bg="white" expand="lg">
                     {/* Logo */}
 
-                    <Navbar.Brand className="py-0" href="#home">
+                    <Navbar.Brand className="py-0" href="/">
                         <img
                             src={logo}
                             width="144"
@@ -37,10 +37,10 @@ class Header extends Component {
                         </div>
                         <Nav className="justify-content-center">
                             {/* Menu */}
-                            <Nav.Link className="menu-item" href="#home">Bài viết</Nav.Link>
-                            <Nav.Link className="menu-item" href="#">Tài liệu</Nav.Link>
-                            <Nav.Link className="menu-item" href="#">Sự kiện</Nav.Link>
-                            <Nav.Link className="menu-item" href="#">Hạng</Nav.Link>        
+                            <Nav.Link className="menu-item" href="/posts">Bài viết</Nav.Link>
+                            <Nav.Link className="menu-item" href="/docs">Tài liệu</Nav.Link>
+                            <Nav.Link className="menu-item" href="/events">Sự kiện</Nav.Link>
+                            <Nav.Link className="menu-item" href="/rank">Hạng</Nav.Link>        
                             <LoginStatus id="login" className="float-right" />                     
                         </Nav>
                     </Navbar.Collapse>

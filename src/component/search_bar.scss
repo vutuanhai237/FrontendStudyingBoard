@@ -3,6 +3,7 @@ $top-search-bar-radius: 8px;
 .search-bar {
     border-radius: $top-search-bar-radius;
     background-color: #DDDDDD;
+    transition: all 1s;
 }
 
 .search-bar input {
@@ -24,24 +25,28 @@ $top-search-bar-radius: 8px;
     //border: none !important;
     transition: none;
     background-color: #DDDDDD;
+    
 }
 
 .search-bar:focus-within {
     border-radius: $top-search-bar-radius;
     box-shadow: 0 0 0 0.1rem #5279DB;
-   
+    
 }
 
 .search-bar:focus-within button {
     //border: none;
     transition: none;
     box-shadow: none;
+    transition: all 1s;
+
 }
 
 .search-bar:focus-within input {
     //border: none;
     transition: none;
     box-shadow: none;
+    
 }
 
 .search-bar button {

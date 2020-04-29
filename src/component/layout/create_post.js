@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, DropdownButton, Dropdown } from "react-bootstrap";
 import { Editor } from '@tinymce/tinymce-react';
 import Header from "../container/header"
 import Footer from "../container/footer"
@@ -13,12 +13,14 @@ class CreatePost extends Component {
     }
     render() {
         return (
-            <div>
+            <div id="create_post">
                 <Header />
                 <Form>
+                <Form.Control md={4} id="tieu_de" type="text" placeholder="Nhập tiêu đề" />
+
                     <Editor
-                        apiKey="pgsfnb617zvx79gf1fo6sauiik6bg2icroka7q4f1lelxesr"
-                        initialValue="<p>Initial content</p>"
+
+                        initialValue="<p>Hãy viết gì đó</p>"
                         init={{
                             height: 500,
                             menubar: 'file edit view insert format tools table help',
@@ -32,6 +34,12 @@ class CreatePost extends Component {
                         }}
                         onChange={this.handleEditorChange}
                     />
+                    <Form.Control type="text" placeholder="Nhập tag" />
+                    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    </DropdownButton>
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
