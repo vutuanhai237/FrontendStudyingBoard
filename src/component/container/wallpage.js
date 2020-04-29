@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import anh from "../../img/board.png"
-import { Carousel, Row, Col, Card } from "react-bootstrap"
+import { Carousel, Row, Col } from "react-bootstrap"
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import "./wallpage.scss";
 class WallPaper extends Component {
     render() {
-        const { topWallPaper } = this.props;
+        // const { topWallPaper } = this.props;
         return (
 
             <div>

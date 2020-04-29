@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Row, Col, Accordion, Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import SummaryDocument from "../document/summary_document";
 import "./group_document.scss";
 

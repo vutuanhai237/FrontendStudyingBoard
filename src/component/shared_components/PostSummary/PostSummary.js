@@ -4,9 +4,9 @@ import React, { Component } from 'react'
 // import Footer from "../../components/Footer/Footer.js";
 import './PostSummary.scss'
 import PostSummaryAuthorLink from '../PostSummaryAuthorLink/PostSummaryAuthorLink'
-import PostSummaryCategoryLink from '../PostSummaryCategoryLink/PostSummaryCategoryLink'
-import SimpleBlueButton from '../SimpleBlueButton/SimpleBlueButton'
-import SimpleRedButton from '../SimpleRedButton/SimpleRedButton'
+// import PostSummaryCategoryLink from '../PostSummaryCategoryLink/PostSummaryCategoryLink'
+// import SimpleBlueButton from '../SimpleBlueButton/SimpleBlueButton'
+// import SimpleRedButton from '../SimpleRedButton/SimpleRedButton'
 import BlueRedButtonGroup from '../BlueRedButtonGroup/BlueRedButtonGroup'
 import PostReactionBar from '../PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
@@ -94,7 +94,7 @@ class PostSummary extends Component {
                     {this.props.content}
                 </div>
                 <div className="Post_Summary_Image_Port">
-                    <img className="Post_Summary_Image" src={this.props.image}></img>
+                    <img alt="post" className="Post_Summary_Image" src={this.props.image}></img>
                 </div>
                 <div className="Post_Summary_Requested_Tags_Port">
                     {tagsGroup}

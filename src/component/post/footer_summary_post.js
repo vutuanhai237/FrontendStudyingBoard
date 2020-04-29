@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Nav, Col } from 'react-bootstrap';
 import "./footer_summary_post.scss"
 import { faHeart, faBookmark, faComment } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

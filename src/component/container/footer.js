@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import logo from "../../img/logo.png"
 import "./footer.scss"
-import HeadAnimation from "../animation/head"
+// import HeadAnimation from "../animation/head"
 class Footer extends Component {
     render() {
         return (

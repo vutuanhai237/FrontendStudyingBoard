@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Row, Accordion, Card, Col } from "react-bootstrap";
+import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/summary_post";
 import "./group_post.scss";
 class GroupEvent extends Component {

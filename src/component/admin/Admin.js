@@ -48,7 +48,7 @@ class Admin extends Component {
                         {/* Admin Infor Port */}
                         <div className="Admin_Info_Port">
                             <div className="Avatar_Port">
-                                <img className="Avatar" src={this.state.info.avatarUrl} />
+                                <img alt="avatar" className="Avatar" src={this.state.info.avatarUrl} />
                             </div>
                             <div className="User_Name_Gmail_Port">
                                 <div className="Display_Name">
@@ -66,20 +66,20 @@ class Admin extends Component {
                         {/* Admin Menu Port */}
                         <div className="Admin_Vertical_Menu_Port">
                             <div className="Vertical_Menu_Item">
-                                <img className="Btn_Element" src={btn_element}></img>
+                                <img alt="button" className="Btn_Element" src={btn_element}></img>
                                 <div className="Vertical_Menu_Item_Text">
                                     Tên hiển thị
                                 </div>
                             </div>
                             <div className="Vertical_Menu_Item">
-                                <img className="Btn_Element" src={btn_element}></img>
+                                <img alt="button" className="Btn_Element" src={btn_element}></img>
                                 <div className="Vertical_Menu_Item_Text">
                                     Đổi mật khẩu
                                 </div>
                             </div>
 
                             <div className="Vertical_Menu_Item">
-                                <img className="Btn_Element" src={btn_element}></img>
+                                <img alt="button" className="Btn_Element" src={btn_element}></img>
                                 <div className="Vertical_Menu_Item_Text">
                                     Bài đăng
                             </div>

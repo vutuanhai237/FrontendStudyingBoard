@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Nav,Dropdown, OverlayTrigger, Popover, Badge } from "react-bootstrap";
+import { Nav,Dropdown, OverlayTrigger, Popover, Badge } from "react-bootstrap";
 import "./login_status.scss"
 import avatar from "../img/anh.jpg"
 class LoginStatus extends Component {
