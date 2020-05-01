@@ -1,9 +1,13 @@
-#footer .sub-info {
+$unhover_color: rgba(0, 0, 0, 0.54);
+$hover_color: rgba(0, 0, 0, 1);
+
+#footer .info-view,
+.info-downcount {
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.54);
+    color: $unhover_color;
 }
 
-#view-icon, #download-icon {
-    
-    color: rgb(142,142,147);
+#icon-view,
+#icon-downcount {
+    color: $unhover_color;
 }

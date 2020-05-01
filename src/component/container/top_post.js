@@ -1,50 +1,53 @@
+// Document by VTH
+// function: shows the top of posts in home page.
+// props from parent: none
+// state: expand or not
+// dependency component: summary post
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/summary_post";
-import "./group_post.scss";
-class GroupPost extends Component {
+import "./top_post.scss";
+class TopPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isExpand: "block",
-        }
+        };
     }
     changeStatePost() {
         if (this.state.isExpand == "block") {
             this.setState({
                 isExpand: "none",
-            })
+            });
         } else {
             this.setState({
                 isExpand: "block",
-            })
+            });
         }
-      
     }
-    
+
     render() {
         const { topPosts } = this.props;
         const style = {
-            display: this.state.isExpand
-        }
+            display: this.state.isExpand,
+        };
         return (
             <div id="group-post">
                 <div onClick={this.changeStatePost.bind(this)}>
-                <p id="title">BÀI VIẾT HAY</p>
+                    <p className="title">BÀI VIẾT HAY</p>
                 </div>
-                
-                <Card.Body style={style} id="card-body">
+
+                <Card.Body style={style} className="card-body">
                     <Row>
-                        {
-                            topPosts.map(item => {
-                                return <Col sm={4}>
+                        {topPosts.map((item) => {
+                            return (
+                                <Col sm={12} md={4}>
                                     <SummaryPost item={item}></SummaryPost>
                                 </Col>
-                            })
-                        }
-
+                            );
+                        })}
                     </Row>
                 </Card.Body>
             </div>
@@ -52,20 +55,16 @@ class GroupPost extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
-
         topPosts: state.home.topPosts,
-
     };
+};
 
-}
+const mapDispatchToProps = (dispatch) => {
+    return {};
+};
 
-const mapDispatchToProps = dispatch => {
-    return {
-
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GroupPost));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(TopPost)
+);

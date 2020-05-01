@@ -1,19 +1,4 @@
-#info_title {
-    height: 30px;
-    flex-wrap: initial;
-}
 
-
-#head, #author, #caegory {
-    height: 30px;
-    position: relative;
-}
-
-
-#info_title col {
-    width: 100%;
-    max-width: 200px;
-}
 
 #footer .nav-link {
     padding-left: 15px;
@@ -23,5 +8,15 @@
 
 #heart-icon, #bookmark-icon {
     color: #5279db;
+}
+
+$unhover_color: rgba(0, 0, 0, 0.54);
+$hover_color: rgba(0, 0, 0, 1);
+
+#footer .info-save,
+.info-likecount,
+.info-commentcount {
+    font-size: 14px;
+    color: $unhover_color;
 }
 

@@ -1,19 +1,24 @@
 .animation-area {
     width: 100%;
-    min-height: 0px;
+    max-height: 300px;
     //background: linear-gradient(to left, #514A9D, #5279DB);
     //background: url("../../img/board.png");
-    //filter: brightness(90%); 
+    //filter: brightness(90%);
 }
 
 .carousel {
     width: 100%;
-
-    max-height: 600px;
+    min-height: 200px;
+    max-height: 400px;
 }
 
 .carousel #image {
-    filter: brightness(70%); 
+    filter: brightness(70%);
+    width: 100%;
+    min-height: 200px;
+    max-height: 400px;
+    object-fit: cover;
+    background-repeat: no-repeat;
 }
 
 .carousel h3 p {
@@ -33,7 +38,6 @@
     overflow: hidden;
 }
 
-
 .animation-area .box-area li {
     position: absolute;
     display: block;
@@ -43,7 +47,7 @@
     background: rgba(255, 255, 255, 0.5);
     animation: animate 10s linear infinite;
     bottom: -150px;
-    filter: brightness(100%); 
+    filter: brightness(100%);
 }
 
 .animation-area .box-area li:nth-child(1) {
@@ -68,7 +72,6 @@
     animation-delay: 0s;
     animation-duration: 10s;
 }
-
 
 .animation-area .box-area li:nth-child(4) {
     left: 42%;
@@ -103,14 +106,17 @@
     }
 }
 
-
 @media (max-width: 768px) {
     .animation-area .box-area {
-      
-        height: 325px;
-       
+        max-height: 278px;
     }
     .carousel .slide {
         height: 325px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .animation-area .box-area {
+        max-height: 325px;
     }
 }

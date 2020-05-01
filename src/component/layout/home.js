@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import Header from "../container/header"
 import Footer from "../container/footer"
 import WallPage from "../container/wallpage"
-import GroupPost from "../container/group_post"
-import GroupDocument from '../container/group_document';
+import TopPost from "../container/top_post"
+import TopDocument from '../container/top_document';
 
-import GroupEvent from '../container/group_event';
+import TopEvent from '../container/top_event';
 import "./home.scss"
 class Home extends Component {
     render() {
         return (
-            <div >
-                
-               
+            <div >            
                 <Header/>
                 <WallPage/>
-                <GroupPost/>
+                <TopPost/>
               
-                <GroupDocument/>
-                <GroupEvent/>
+                <TopDocument/>
+                <TopEvent/>
                 <Footer/>
             </div>
 
