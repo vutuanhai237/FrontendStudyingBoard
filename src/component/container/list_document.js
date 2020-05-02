@@ -1,14 +1,14 @@
 // Document by VTH
-// function: shows the list of posts in post page.
+// function: shows the list of document in ducment page.
 // props from parent: none
 // state: none
-// dependency component: summary post, paging, filter
+// dependency component: summary document, paging, filter
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "../post/summary_post";
-import FilterPost from "../post/filter_post";
+import SummaryDocument from "../document/summary_document";
+import FilterDocument from "../document/filter_document";
 import Paging from "../paging"
 import "./top_post.scss"
 import "./list_post.scss"
@@ -22,20 +22,20 @@ class ListPost extends Component {
 
 
     render() {
-        const { topPosts } = this.props;
+        const { topDocs } = this.props;
 
         return (
             <div id="group-post">
                 <div>
-                    <p className="title">DANH SÁCH BÀI VIẾT</p>
+                    <p className="title">DANH SÁCH TÀI LIỆU</p>
                 </div>
-                <FilterPost/>
+                <FilterDocument/>
                 <Card.Body id="card-body">
                     <Row>
                         {
-                            topPosts.map(item => {
+                            topDocs.map(item => {
                                 return <Col sm={12} md={6}>
-                                    <SummaryPost item={item}></SummaryPost>
+                                    <SummaryDocument item={item}></SummaryDocument>
                                 </Col>
                             })
                         }
@@ -51,7 +51,7 @@ class ListPost extends Component {
 const mapStateToProps = state => {
     return {
 
-        topPosts: state.home.topPosts,
+        topDocs: state.home.topDocs,
 
     };
 

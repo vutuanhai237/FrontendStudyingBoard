@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import Header from "../container/header";
 import Footer from "../container/footer";
-import ListPost from "../container/list_post";
-class Posts extends Component {
+import ListDocument from "../container/list_document";
+class Documents extends Component {
     render() {
         return (
             <div>
                 <Header />
-                <ListPost />
+                <ListDocument />
                 <Footer />
             </div>
         );
     }
 }
 
-export default Posts;
+export default Documents;

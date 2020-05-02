@@ -28,7 +28,7 @@ class LoginStatus extends Component {
             return <Nav.Link onClick={this.handleLogin.bind(this)} className="menu-item" href="">Đăng nhập</Nav.Link> 
         }
         else {
-            return <div>               
+            return <div id="login-status">               
                 <OverlayTrigger
                     
                     trigger="click"
