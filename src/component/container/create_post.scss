@@ -1,13 +1,4 @@
-.a {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-}
 
-.a {
-    min-width: 100px;
-    min-height: 100px;
-}
 
 #create-post {
     margin-left: 120px;
@@ -31,28 +22,21 @@
     border-bottom: 5px solid #5279db;
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-#enter-title,
+#create-post #enter-title,
 #enter-summary {
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
-#create-post .tag, .enter-tag, .dropdown{
+#create-post .tag, .enter-tag {
 	margin-bottom: 10px;
     margin-top: 10px;
 }
+#create-post .dropdown {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 
 #create_post .btn-submit {
 	margin-bottom: 20px;

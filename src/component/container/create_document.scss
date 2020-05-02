@@ -1,22 +1,8 @@
-.a {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-}
-
-.a {
-    min-width: 100px;
-    min-height: 100px;
-}
-
 #create-document {
     margin-left: 120px;
     margin-right: 120px;
     margin-top: 20px;
 }
-
-
-
 
 #create-document .title {
     transition: all 0.5s;
@@ -30,38 +16,21 @@
     transition: all 0.5s;
     color: #5279db;
     font-size: 22px;
-
     border-bottom: 5px solid #5279db;
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
-#enter-title,
-#enter-summary {
-    margin-bottom: 10px;
+
+#create-document .dropdown-year {
+    margin-bottom: 30px;
     margin-top: 10px;
 }
 
-#create-document .tag, .enter-tag, .dropdown{
-	margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-#create_document .btn-submit {
-    margin-top: 10px;
-	margin-bottom: 20px;
-}
-#create-document .browser-upload {
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
+// #create_document .btn-submit {
+//     margin-top: 20px;
+//     margin-bottom: 20px;
+// }
+// #create-document .browser-upload {
+//     margin-top: 10px;
+//     margin-bottom: 10px;
+// }
