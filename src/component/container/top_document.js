@@ -28,7 +28,7 @@ class TopDocument extends Component {
         }
     }
     render() {
-        const { topDocs } = this.props;
+        const { documents } = this.props;
         const style = {
             display: this.state.isExpand,
         };
@@ -40,7 +40,7 @@ class TopDocument extends Component {
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {topDocs.map((item) => {
+                        {documents.slice(0,3).map((item) => {
                             return (
                                 <Col sm={12} md={4}>
                                     <SummaryDocument
@@ -58,7 +58,7 @@ class TopDocument extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        topDocs: state.home.topDocs,
+        documents: state.document.documents,
     };
 };
 

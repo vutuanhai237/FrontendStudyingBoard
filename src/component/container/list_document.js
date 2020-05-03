@@ -4,42 +4,42 @@
 // state: none
 // dependency component: summary document, paging, filter
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryDocument from "../document/summary_document";
 import FilterDocument from "../document/filter_document";
-import Paging from "../paging"
-import "./top_post.scss"
-import "./list_post.scss"
+import Paging from "../paging";
+import "./top_post.scss";
+import "./list_post.scss";
 class ListPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             current_page: 1,
-        }
+        };
     }
 
-
     render() {
-        const { topDocs } = this.props;
+        const { document } = this.props;
 
         return (
             <div id="group-post">
                 <div>
                     <p className="title">DANH SÁCH TÀI LIỆU</p>
                 </div>
-                <FilterDocument/>
+                <FilterDocument />
                 <Card.Body id="card-body">
                     <Row>
-                        {
-                            topDocs.map(item => {
-                                return <Col sm={12} md={6}>
-                                    <SummaryDocument item={item}></SummaryDocument>
+                        {document.map((item) => {
+                            return (
+                                <Col sm={12} md={6}>
+                                    <SummaryDocument
+                                        item={item}
+                                    ></SummaryDocument>
                                 </Col>
-                            })
-                        }
-
+                            );
+                        })}
                     </Row>
                 </Card.Body>
                 <Paging></Paging>
@@ -50,18 +50,14 @@ class ListPost extends Component {
 
 const mapStateToProps = state => {
     return {
-
-        topDocs: state.home.topDocs,
-
+        document: state.document.documents,
     };
+};
 
-}
+const mapDispatchToProps = (dispatch) => {
+    return {};
+};
 
-const mapDispatchToProps = dispatch => {
-    return {
-
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListPost));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(ListPost)
+);

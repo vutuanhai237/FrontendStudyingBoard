@@ -22,18 +22,17 @@ class ListPost extends Component {
 
 
     render() {
-        const { posts } = this.props;
+        const { events } = this.props;
 
         return (
             <div id="group-post">
                 <div>
-                    <p className="title">DANH SÁCH BÀI VIẾT</p>
+                    <p className="title">DANH SÁCH SỰ KIỆN</p>
                 </div>
-                <FilterPost/>
                 <Card.Body id="card-body">
                     <Row>
                         {
-                            posts.map(item => {
+                            events.map(item => {
                                 return <Col sm={12} md={6}>
                                     <SummaryPost item={item}></SummaryPost>
                                 </Col>
@@ -51,7 +50,7 @@ class ListPost extends Component {
 const mapStateToProps = state => {
     return {
 
-        posts: state.post.posts,
+        events: state.post.events,
 
     };
 

@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./layout/home";
 import Posts from "./layout/posts";
 import Documents from "./layout/documents";
+import Events from "./layout/events";
 import CrPost from "./layout/create_post";
 import CrDocument from "./layout/create_document";
 import Admin from "./admin/Admin.js";
@@ -37,6 +38,9 @@ function App() {
                 </Route>
                 <Route exact path="/documents">
                     <Documents />
+                </Route>
+                <Route exact path="/events">
+                    <Events />
                 </Route>
             </Switch>
             <div className="App"></div>

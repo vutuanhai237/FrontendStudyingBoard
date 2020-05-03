@@ -17,7 +17,7 @@ class TopPost extends Component {
         };
     }
     changeStatePost() {
-        if (this.state.isExpand == "block") {
+        if (this.state.isExpand === "block") {
             this.setState({
                 isExpand: "none",
             });
@@ -29,7 +29,7 @@ class TopPost extends Component {
     }
 
     render() {
-        const { topPosts } = this.props;
+        const { posts } = this.props;
         const style = {
             display: this.state.isExpand,
         };
@@ -41,7 +41,7 @@ class TopPost extends Component {
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {topPosts.map((item) => {
+                        {posts.slice(0,3).map((item) => {
                             return (
                                 <Col sm={12} md={4}>
                                     <SummaryPost item={item}></SummaryPost>
@@ -57,7 +57,7 @@ class TopPost extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        topPosts: state.home.topPosts,
+        posts: state.post.posts,
     };
 };
 

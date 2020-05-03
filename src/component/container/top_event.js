@@ -29,7 +29,8 @@ class TopEvent extends Component {
     }
 
     render() {
-        const { topEvents } = this.props;
+        const { events } = this.props;
+        console.log(events);
         const style = {
             display: this.state.isExpand,
         };
@@ -41,7 +42,7 @@ class TopEvent extends Component {
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {topEvents.map((item) => {
+                        {events.slice(0,3).map((item) => {
                             return (
                                 <Col sm={12} md={4}>
                                     <SummaryPost item={item}></SummaryPost>
@@ -57,7 +58,7 @@ class TopEvent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        topEvents: state.home.topEvents,
+        events: state.post.events,
     };
 };
 

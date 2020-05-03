@@ -4,8 +4,11 @@
 // state: none
 // dependency component: none
 import React, { Component } from "react";
-import { Nav, Col } from "react-bootstrap";
+import { Nav, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./footer_summary_post.scss";
+
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
     faHeart,
     faBookmark,
@@ -22,18 +25,18 @@ class FooterSummaryDocument extends Component {
             isSaved: item.saved,
         };
     }
-    switchLike() {
-        this.setState({
-            isLiked: !this.state.isLiked,
-        });
+    switchLike(id) {
+        this.props.switchLike(id);
+        this.forceUpdate();
     }
-    switchSave() {
-        this.setState({
-            isSaved: !this.state.isSaved,
-        });
-        console.log(this.state.isSaved);
+    switchSave(id) {
+        this.props.switchSave(id);
+        this.forceUpdate();
     }
 
+    renderTooltip(message) {
+        return <Tooltip id="button-tooltip">{message}</Tooltip>;
+    }
     render() {
         const { item } = this.props;
         return (
@@ -42,10 +45,12 @@ class FooterSummaryDocument extends Component {
                     <Nav>
                         <Nav.Link>
                             {(() => {
-                                if (this.state.isLiked) {
+                                if (item.liked) {
                                     return (
                                         <div
-                                            onClick={this.switchLike.bind(this)}
+                                            onClick={() => {
+                                                this.switchLike(item.id);
+                                            }}
                                         >
                                             <FontAwesomeIcon
                                                 style={{
@@ -59,15 +64,25 @@ class FooterSummaryDocument extends Component {
                                 } else {
                                     return (
                                         <div
-                                            onClick={this.switchLike.bind(this)}
+                                            onClick={() => {
+                                                this.switchLike(item.id);
+                                            }}
                                         >
-                                            <FontAwesomeIcon
-                                                style={{
-                                                    color: "#5279db",
-                                                    transition: "all 0.5s",
-                                                }}
-                                                icon={faHeart}
-                                            />
+                                            <OverlayTrigger
+                                                placement="right"
+                                                delay={{ show: 100, hide: 200 }}
+                                                overlay={this.renderTooltip(
+                                                    "Đã like"
+                                                )}
+                                            >
+                                                <FontAwesomeIcon
+                                                    style={{
+                                                        color: "#5279db",
+                                                        transition: "all 0.5s",
+                                                    }}
+                                                    icon={faHeart}
+                                                />
+                                            </OverlayTrigger>
                                         </div>
                                     );
                                 }
@@ -78,10 +93,12 @@ class FooterSummaryDocument extends Component {
                         </Nav.Link>
                         <Nav.Link>
                             {(() => {
-                                if (this.state.isSaved) {
+                                if (item.saved) {
                                     return (
                                         <div
-                                            onClick={this.switchSave.bind(this)}
+                                            onClick={() => {
+                                                this.switchSave(item.id);
+                                            }}
                                         >
                                             <FontAwesomeIcon
                                                 style={{
@@ -95,15 +112,25 @@ class FooterSummaryDocument extends Component {
                                 } else {
                                     return (
                                         <div
-                                            onClick={this.switchSave.bind(this)}
+                                            onClick={() => {
+                                                this.switchSave(item.id);
+                                            }}
                                         >
-                                            <FontAwesomeIcon
-                                                style={{
-                                                    color: "#5279db",
-                                                    transition: "all 0.5s",
-                                                }}
-                                                icon={faBookmark}
-                                            />
+                                            <OverlayTrigger
+                                                placement="right"
+                                                delay={{ show: 100, hide: 200 }}
+                                                overlay={this.renderTooltip(
+                                                    "Đã lưu"
+                                                )}
+                                            >
+                                                <FontAwesomeIcon
+                                                    style={{
+                                                        color: "#5279db",
+                                                        transition: "all 0.5s",
+                                                    }}
+                                                    icon={faBookmark}
+                                                />
+                                            </OverlayTrigger>
                                         </div>
                                     );
                                 }
@@ -127,4 +154,17 @@ class FooterSummaryDocument extends Component {
     }
 }
 
-export default FooterSummaryDocument;
+const mapStateToProps = (state) => {
+    return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        switchLike: (id) => dispatch({ type: "post/like_changed", id: id }),
+        switchSave: (id) => dispatch({ type: "post/save_changed", id: id }),
+    };
+};
+
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(FooterSummaryDocument)
+);

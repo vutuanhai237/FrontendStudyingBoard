@@ -18,8 +18,8 @@ const initialState = {
 
 function LoginRegisterReducer(state = initialState, action) {
     switch (action.type) {
-        case "REGISTER_ADD_ACCOUNT":
-            let new_account = {username: action.username, password: action.password};
+        case "register/add_account":
+            let new_account = {username: action.payload.username, password: action.payload.password};
             state.accounts.push(new_account);
             return {...state, accounts: state.accounts};
         default:

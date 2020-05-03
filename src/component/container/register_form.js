@@ -224,7 +224,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: (username, password) => dispatch({type: "REGISTER_ADD_ACCOUNT", username: username, password: password}),
+        register: (username, password) => dispatch({type: "register/add_account", username: username, password: password}),
     };
 };
 
