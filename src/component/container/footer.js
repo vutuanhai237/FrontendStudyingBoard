@@ -9,7 +9,7 @@ class Footer extends Component {
             <div id="footer">
                 <hr></hr>
                 <Row>
-                    <Col id="logo" sm={2}>
+                    <Col id="logo" sm={4} md={2}>
                         <img
                             src={logo}
                             width="144"
@@ -18,7 +18,7 @@ class Footer extends Component {
                             alt="logo"
                         />
                     </Col>
-                    <Col id="caption" sm={7}>
+                    <Col id="caption" sm={5} md={7}>
                         Kênh thông tin Sinh viên của BHT khoa CNPM - Trường ĐH CNTT - ĐHQG-HCM. Website do Ban học tập CNPM thực hiện và quản lý.
                         </Col>
                     <Col sm={2}>
@@ -43,7 +43,7 @@ class Footer extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col id="copyright">@2020 Website Ban học tập Đoàn khoa Công nghệ phần mềm - UIT. All rights reserved</Col>
+                    <Col id="copyright">&copy;{(new Date()).getFullYear()} Website Ban học tập Đoàn khoa Công nghệ phần mềm - UIT. All rights reserved</Col>
 
                 </Row>
                 <Row>

@@ -41,7 +41,7 @@ class ListPost extends Component {
 
                     </Row>
                 </Card.Body>
-                <Paging></Paging>
+                <Paging type="events"></Paging>
             </div>
         );
     }

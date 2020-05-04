@@ -42,7 +42,7 @@ class ListPost extends Component {
 
                     </Row>
                 </Card.Body>
-                <Paging></Paging>
+                <Paging type="posts"></Paging>
             </div>
         );
     }
