@@ -7,6 +7,8 @@ import {
     Row,
     Col,
     Modal,
+    OverlayTrigger,
+    Tooltip,
 } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
 import "./create_post.scss";
@@ -14,10 +16,18 @@ class CreatePost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tag: ["A", "B"],
+            tag: [],
             modalShow: false,
-            isLoginSuccess: true,
+            modalWaringAddTagOver: false,
+            messageModal: "",
+            content: "",
+            category: "",
         };
+    }
+    setCategory(item) {
+        this.setState({
+            category: item,
+        });
     }
     handleUpload() {
         this.setState({
@@ -31,17 +41,51 @@ class CreatePost extends Component {
             modalShow: false,
         });
     }
-    addTag(item) {
+
+    addTag(e) {
+        let oldLength = this.state.tag.length;
         let tags = this.state.tag;
-        tags.push(item);
-        this.setState({
-            tag: tags,
-        });
+
+        if (e.keyCode === 13 && e.target.value.length > 0) {
+            if (tags.length < 5) {
+                tags.push(e.target.value);
+                this.setState({
+                    tag: tags,
+                    modalShow: false,
+                });
+            } else {
+                this.setState({
+                    modalShow: true,
+                    modelMessage: "Số lượng tag không được vượt quá 5",
+                });
+            }
+        }
+        if (e.keyCode === 13 && e.target.value.length === 0) {
+            this.setState({
+                modalShow: true,
+                modelMessage: "Hãy nhập tag có nghĩa !",
+            });
+        }
+        if (this.state.tag.length - oldLength === 1) this.refs.inputTag.value = "";
+        this.forceUpdate();
     }
-    delete(item) {}
+    deleteTag(item) {
+        let temptTag = this.state.tag;
+
+        temptTag = temptTag.filter((e) => e !== item);
+
+        this.setState({
+            tag: temptTag,
+        });
+
+        this.forceUpdate();
+    }
 
     handleEditorChange = (e) => {
         console.log("Content was updated:", e.target.getContent());
+        this.setState({
+            content: e.target.getContent(),
+        });
     };
     render() {
         const category = ["A", "B", "C", "D", "E", "F"];
@@ -58,44 +102,22 @@ class CreatePost extends Component {
                             Thông báo
                         </Modal.Title>
                     </Modal.Header>
-                    {(() => {
-                        if (this.state.isLoginSuccess) {
-                            return (
-                                <div>
-                                    <Modal.Body>Tải lên thành công</Modal.Body>
-                                    <Modal.Footer>
-                                        <Button
-                                            variant="success"
-                                            href="/"
-                                            onClick={this.handleClose.bind(
-                                                this
-                                            )}
-                                        >
-                                            Đồng ý
-                                        </Button>
-                                    </Modal.Footer>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div>
-                                    <Modal.Body>Tải lên thất bại</Modal.Body>
-                                    <Modal.Footer>
-                                        <Button
-                                            variant="danger"
-                                            onClick={this.handleClose.bind(
-                                                this
-                                            )}
-                                        >
-                                            Đồng ý
-                                        </Button>
-                                    </Modal.Footer>
-                                </div>
-                            );
-                        }
-                    })()}
+                    <div>
+                        <Modal.Body>{this.state.modelMessage}</Modal.Body>
+                        <Modal.Footer>
+                            <Button
+                                variant="success"
+                                href=""
+                                onClick={this.handleClose.bind(this)}
+                            >
+                                Đồng ý
+                            </Button>
+                        </Modal.Footer>
+                    </div>
                 </Modal>
-
+                <div
+                    dangerouslySetInnerHTML={{ __html: this.state.content }}
+                ></div>
                 <p className="title">VIẾT BÀI</p>
                 <Form>
                     <Form.Control
@@ -127,15 +149,21 @@ class CreatePost extends Component {
                     <Row>
                         <Col>
                             <Form.Control
+                                onKeyDown={this.addTag.bind(this)}
                                 className="enter-tag"
                                 type="text"
                                 placeholder="Nhập tag"
+                                ref="inputTag"
                             />
                         </Col>
                         <Col>
                             {this.state.tag.map((item) => {
                                 return (
-                                    <Button className="tag" variant="warning">
+                                    <Button
+                                        onClick={() => this.deleteTag(item)}
+                                        className="tag"
+                                        variant="secondary"
+                                    >
                                         {item}
                                     </Button>
                                 );
@@ -146,10 +174,11 @@ class CreatePost extends Component {
                                 id="dropdown-basic-button"
                                 title="Chọn danh mục"
                                 className="dropdown"
+                                onSelect={(evt) => this.setCategory(evt)}
                             >
                                 {category.map((item) => {
                                     return (
-                                        <Dropdown.Item href="#/action-1">
+                                        <Dropdown.Item eventKey={item}>
                                             {item}
                                         </Dropdown.Item>
                                     );
@@ -162,10 +191,12 @@ class CreatePost extends Component {
                         block
                         className="btn-submit"
                         variant="success"
-                        type="submit"
                         onClick={this.handleUpload.bind(this)}
                     >
-                        Đăng bài
+                        Đăng bài{" "}
+                        {this.state.category.length > 0
+                            ? "trong danh mục " + this.state.category
+                            : ""}
                     </Button>
                 </Form>
             </div>
