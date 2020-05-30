@@ -16,16 +16,16 @@ class Admin_HorizontalMenubar extends Component {
 
                 {/* Menu bar */}
                 <div className="Horizontal_Menu_Bar">
-                    <div className="First_Horizontal_Menu_Item">
+                    <div className="First_Horizontal_Menu_Item" onClick = {() => window.location.href = "/admin/post_browser"}>
                         Duyệt bài
                     </div>
-                    <div className="Horizontal_Menu_Item">
+                    <div className="Horizontal_Menu_Item" onClick = {() => window.location.href = "/admin/doc_browser"}>
                         Duyệt tài liệu
                     </div>
                     <div className="Horizontal_Menu_Item">
                         Quản lý thông báo
                     </div>
-                    <div className="Horizontal_Menu_Item">
+                    <div className="Horizontal_Menu_Item" onClick = {() => window.location.href = "/admin/user_manager"}>
                         Quản lý người dùng
                     </div>
                     <div className="Horizontal_Menu_Item">

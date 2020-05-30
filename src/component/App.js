@@ -6,10 +6,11 @@ import Events from "./layout/events";
 import CrPost from "./layout/create_post";
 import CrDocument from "./layout/create_document";
 import Admin_PostBrowser from "./admin/Admin_PostBrowser/Admin_PostBrowser";
+import Admin_DocBrowser from "./admin/Admin_DocBrowser/Admin_DocBrowser";
 import Login from "./layout/login";
-import Register from "./layout/register";
+import Register from "./layout/register"; 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import Admin_UserManager from "./admin/Admin_UserManager/Admin_UserManager"
 function App() {
     return (
         <Router>
@@ -17,8 +18,15 @@ function App() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/admin/browse_post">
+                <Route exact path="/admin/post_browser">
                     <Admin_PostBrowser />
+                </Route>
+                <Route exact path="/admin/doc_browser">
+                    <Admin_DocBrowser />
+                </Route>
+
+                <Route exact path="/admin/user_manager">
+                    <Admin_UserManager />
                 </Route>
                 <Route exact path="/login">
                     <Login />
