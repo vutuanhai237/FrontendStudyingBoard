@@ -5,7 +5,7 @@ import Documents from "./layout/documents";
 import Events from "./layout/events";
 import CrPost from "./layout/create_post";
 import CrDocument from "./layout/create_document";
-import Admin from "./admin/Admin.js";
+import Admin_PostBrowser from "./admin/Admin_PostBrowser/Admin_PostBrowser";
 import Login from "./layout/login";
 import Register from "./layout/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -17,8 +17,8 @@ function App() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route exact path="/admin">
-                    <Admin />
+                <Route exact path="/admin/browse_post">
+                    <Admin_PostBrowser />
                 </Route>
                 <Route exact path="/login">
                     <Login />

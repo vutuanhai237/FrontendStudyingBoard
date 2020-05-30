@@ -55,12 +55,15 @@ class PostSummary extends Component {
                     </div>
                 </div>
                 <div className="Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port">
-                    vào lúc {this.props.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục  {this.props.requestedCategory}
+                    vào lúc {this.props.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục
+                    <div className="Post_Summary_Requested_Category">
+                        {this.props.requestedCategory}
+                    </div>
                 </div>
             </div>;
             //render reaction bar
-            reactionBar = <div className = "Post_Summary_Reaction_Bar">
-                <PostReactionBar likeCount = {this.props.likeCount} commentCount = {this.props.commentCount}></PostReactionBar>
+            reactionBar = <div className="Post_Summary_Reaction_Bar">
+                <PostReactionBar likeCount={this.props.likeCount} commentCount={this.props.commentCount}></PostReactionBar>
             </div>
             //render manager bar
             managementBar = <BlueRedButtonGroup blueText="Preview" redText="Reject"></BlueRedButtonGroup>;

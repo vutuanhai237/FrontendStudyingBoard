@@ -1,0 +1,75 @@
+/* Menu bar */
+.Horizontal_Menu_Bar {
+    margin-top: 10px;
+    display: flex;
+    border-bottom: 5px #5279db solid;
+}
+
+.Horizontal_Menu_Bar .Horizontal_Menu_Item {
+    width: fit-content;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-family: "Barlow Condensed", "san-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+    user-select: none;
+}
+
+.Horizontal_Menu_Item_Notification {
+    position: relative;
+    top: -15px;
+    right: 0px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #5279db;
+    color: white;
+    border: 2px solid white;
+}
+
+.Horizontal_Menu_Bar .First_Horizontal_Menu_Item {
+    user-select: none;
+    width: fit-content;
+    padding-right: 20px;
+    font-family: "Barlow Condensed", "san-serif";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+}
+
+.Horizontal_Menu_Bar .First_Horizontal_Menu_Item:hover {
+    color: white;
+    background: #5279db;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.Horizontal_Menu_Bar .Horizontal_Menu_Item:hover {
+    color: white;
+    background: #5279db;
+    cursor: pointer;
+}
+
+.Horizontal_Menu_Bar .Horizontal_Menu_Item:active {
+    background: #c4c4c4;
+    cursor: pointer;
+}
+
+// /* Menu Main Show Port */
+// .Admin_Main_Show_Port {
+//     height: fit-content;
+//     border: #c4c4c4 solid 1px;
+//     border-top: 0px;
+//     padding-bottom: 10px;
+//     padding-left: 20px;
+//     padding-right: 20px;
+//     padding-top: 10px;
+//     min-height: 600px;
+// }

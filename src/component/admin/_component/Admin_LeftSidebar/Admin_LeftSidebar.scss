@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
+
+/*This port contain Admin info and vertical menu below Admin info*/
+.Admin_Info_Menu_Port {
+    position: relative;
+    width: 320px;
+}
+
+/* User Info Port: contain: avatar, display name, gmail and logout button */
+.Admin_Info_Port {
+    display: flex;
+    width: 300px;
+    border-left: 1px;
+    border-top: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-color: #c4c4c4;
+    border-style: solid;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px;
+}
+
+.Admin_Info_Port .Avatar_Port {
+    position: relative;
+    padding-bottom: 80px;
+    overflow: hidden;
+    width: 80px;
+    background: #000;
+    background-origin: border-box;
+}
+
+.Admin_Info_Port .Avatar {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/*This port contain display and email*/
+.Admin_Info_Port .User_Name_Gmail_Port {
+    margin-left: 10px;
+    position: relative;
+    width: fit-content;
+}
+
+.Admin_Info_Port .Display_Name {
+    position: relative;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    font-family: "Roboto Slab", serif;
+    align-items: center;
+    color: #5279db;
+}
+
+.Admin_Info_Port .Gmail {
+    width: 190px;
+    position: relative;
+    font-family: "Rosario", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    color: #363636;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+/*Admin Vertical Menu Port: contain these menu options: Tên hiển thị, đối mật khấu, Bài đăng */
+.Admin_Vertical_Menu_Port {
+    height: fit-content;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+    box-sizing: border-box;
+    width: 300px;
+    border-left: 1px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-color: #c4c4c4;
+    border-top: 5px #5279db;
+    border-style: solid;
+}
+
+.Vertical_Menu_Item {
+    user-select: none;
+    display: flex;
+}
+
+.Vertical_Menu_Item:active {
+    background: #c4c4c4;
+    cursor: pointer;
+}
+
+.Vertical_Menu_Item:hover {
+    outline: 1px solid #c4c4c4;
+    cursor: pointer;
+}
+
+.Admin_Vertical_Menu_Port .Btn_Element {
+    width: 8px;
+    height: 8px;
+    vertical-align: auto;
+    margin-top: 10px;
+}
+
+.Vertical_Menu_Item_Text {
+    font-family: "Barlow Condensed", "san-serif";
+    font-weight: 500;
+    font-size: 20px;
+    color: #363636;
+    padding-left: 5px;
+}

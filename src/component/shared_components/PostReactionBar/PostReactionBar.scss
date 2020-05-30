@@ -23,6 +23,10 @@
     height: 20px;
 }
 
+.Root_Post_Reaction_Bar .Root_Post_Reaction_Bar_Like_Btn:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
 .Root_Post_Reaction_Bar .Root_Post_Reaction_Bar_Like_Btn_Port .Root_Post_Reaction_Bar_Like_Count {
     font-family: "Barlow Condensed", sans-serif;
     font-style: normal;

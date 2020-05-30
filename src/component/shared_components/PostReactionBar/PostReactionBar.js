@@ -24,14 +24,13 @@ class PostReactionBar extends Component {
     }
 
     toggleLikeImage = () => {
-        this.setState({ "isLiked": !this.state.isLiked });
-
+        this.state.isLiked = !this.state.isLiked;
+        this.setState(this.state);
     }
 
     toggleSaveImage = () => {
-        this.setState({
-            "isSaved": !this.state.isSaved
-        });
+        this.state.isSaved = !this.state.isSaved;
+        this.setState(this.state);
     }
 
     render() {

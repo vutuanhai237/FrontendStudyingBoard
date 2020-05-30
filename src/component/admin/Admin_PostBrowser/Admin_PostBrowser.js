@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import './AdminBrowsePostComponent.scss'
-import PostSummary from '../shared_components/PostSummary/PostSummary'
-
-class AdminBrowsePostComponent extends Component {
+import './Admin_PostBrowser.scss'
+import '../Admin_PageLayout.scss'
+import PostSummary from '../../shared_components/PostSummary/PostSummary'
+import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
+import Admin_HorizontalMenubar from '../_component/Admin_HorizontalMenubar/Admin_HorizontalMenubar'
+class Admin_PostBrowser extends Component {
     constructor(props) {
         super();
         this.maxPostNumber = 10;
@@ -22,7 +24,7 @@ class AdminBrowsePostComponent extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "12:30:40",
                         "contentURL": "contentURL",
-                        "likeCount":30,
+                        "likeCount": 30,
                         "commentCount": 50,
                         "firstImageURL": "https://imgur.com/inBsikg.png",
                         "tags": [
@@ -42,7 +44,7 @@ class AdminBrowsePostComponent extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount":40,
+                        "likeCount": 40,
                         "commentCount": 0,
                         "firstImageURL": "https://imgur.com/inBsikg.png",
                         "tags": [
@@ -55,31 +57,45 @@ class AdminBrowsePostComponent extends Component {
 
     }
 
-
     render() {
-        let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) => {
-            return (
-                <PostSummary
-                    isAdminBrowser = {this.isAdminBrower}
-                    authorName={requestedPost.authorName}
-                    requestedDate={requestedPost.requestedDate}
-                    requestedTime={requestedPost.requestedTime}
-                    requestedCategory={requestedPost.category}
-                    title={requestedPost.title}
-                    content={requestedPost.Summary}
-                    image={requestedPost.firstImageURL}
-                    tags = {requestedPost.tags}
-                    likeCount = {requestedPost.likeCount}
-                    commentCount = {requestedPost.commentCount}
-                ></PostSummary>
-            );
-        })
+
+        let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) =>
+            <PostSummary
+                role="ADMIN_ROLE"
+                isAdminBrowser={this.isAdminBrower}
+                authorName={requestedPost.authorName}
+                requestedDate={requestedPost.requestedDate}
+                requestedTime={requestedPost.requestedTime}
+                requestedCategory={requestedPost.category}
+                title={requestedPost.title}
+                content={requestedPost.Summary}
+                image={requestedPost.firstImageURL}
+                tags={requestedPost.tags}
+                likeCount={requestedPost.likeCount}
+                commentCount={requestedPost.commentCount}
+            ></PostSummary>
+        )
 
         return (
-            <div className="Root_Admin_Post_List_Component">
-                {summaryRequestedPostList}
+
+            <div className="Admin">
+                {/* Header Area */}
+                <div className="Admin_Header">
+                    {/* <Header></Header> */}
+                </div>
+
+                {/* Body Area */}
+                <div className="Admin_Main_Port">
+                    <Admin_LeftSidebar />
+                    <div className="Admin_Center_Port">
+                        <Admin_HorizontalMenubar />
+                        <div className="Admin_Show_Port">
+                            {summaryRequestedPostList}
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
-export default AdminBrowsePostComponent;
+export default Admin_PostBrowser;
