@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import './Admin_UserManager.scss'
 import '../Admin_PageLayout.scss'
-import PostSummary from '../../shared_components/PostSummary/PostSummary'
+import PostSummary from '../_component/Admin_UserItem/Admin_UserItem'
 import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_HorizontalMenubar from '../_component/Admin_HorizontalMenubar/Admin_HorizontalMenubar'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Admin_PostBrowser.scss'
+// import './Admin_PostBrowser.scss'
 import '../Admin_PageLayout.scss'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
 import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'

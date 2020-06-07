@@ -22,7 +22,7 @@ class Admin_LeftSidebar extends Component {
                 {/* Admin Infor Port */}
                 < div className="Admin_Info_Port" >
                     <div className="Avatar_Port">
-                        <img alt="avatar" className="Avatar" src={this.state.info.avatarUrl} />
+                        <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
                     </div>
                     <div className="User_Name_Gmail_Port">
                         <div className="Display_Name">

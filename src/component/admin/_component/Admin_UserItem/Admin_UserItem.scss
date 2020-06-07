@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
+
+.Admin_User_Item {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-repeat: no-repeat;
+    border: 1px #c4c4c4 solid;
+    max-width: 800px;
+    display: flex;
+}
+
+.Admin_User_Item:hover {
+    box-shadow: 0px 0px 5px 1px #c4c4c4;
+}
+
+.Admin_User_Item:active {
+    box-shadow: 0px 0px 5px 1px #c4c4c4;
+}
+
+.User_Item_Name {
+    width: fit-content;
+    height: 25px;
+    font-family: "Roboto Slab";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    display: flex;
+    color: #363636;
+    padding-right: 20px;
+}
+
+.User_Item_Nick_Name {
+    position: relative;
+    width: 120px;
+    height: 25px;
+    font-family: "Barlow Condensed";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    color: #363636;
+}
+
+.User_Item_Email {
+    height: 20px;
+    font-family: "Rosario";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.User_Item_Element {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+}
+
+.User_Item_Score {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    align-items: center;
+}
+
+.User_Item_Post_Count {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.User_Item_Doc_Count {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.User_Item_Roles_Combobox {
+    position: relative;
+    width: 110px;
+    height: 25px;
+    font-family: "Barlow Condensed";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    background: #5279db;
+    border-radius: 5px;
+    border: 0px;
+}
