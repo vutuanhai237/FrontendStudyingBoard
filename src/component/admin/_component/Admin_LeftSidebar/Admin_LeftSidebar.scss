@@ -71,11 +71,57 @@
     text-overflow: ellipsis;
     display: inline-block;
 }
+// Role and achivement port:
+.Role_Achivement_Port {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
+.Role_Port {
+    border-top: 5px #5279db solid;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #c4c4c4;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    color: #5279db;
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+}
+
+.Achivement_Port {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+    color: #363636;
+    width: 100%;
+}
+
+.Achivement_Post_Doc_Count_Port {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
 /*Admin Vertical Menu Port: contain these menu options: Tên hiển thị, đối mật khấu, Bài đăng */
 .Admin_Vertical_Menu_Port {
     height: fit-content;
     margin: 10px;
+    margin-top: 0px;
     padding: 10px;
     position: relative;
     box-sizing: border-box;
@@ -83,31 +129,26 @@
     border-left: 1px;
     border-right: 1px;
     border-bottom: 1px;
+    border-top: 1px;
     border-color: #c4c4c4;
-    border-top: 5px #5279db;
     border-style: solid;
 }
 
 .Vertical_Menu_Item {
-    user-select: none;
+    box-sizing: border-box;
     display: flex;
+    font-family: "Barlow Condensed", "san-serif";
+    font-weight: 500;
+    color: #363636;
+    border: 1px white solid;
+    user-select: none;
 }
 
-.Vertical_Menu_Item:active {
-    background: #c4c4c4;
-    cursor: pointer;
-}
-
-.Vertical_Menu_Item:hover {
-    outline: 1px solid #c4c4c4;
-    cursor: pointer;
-}
-
-.Admin_Vertical_Menu_Port .Btn_Element {
-    width: 8px;
-    height: 8px;
-    vertical-align: auto;
-    margin-top: 10px;
+.Vertical_Dropdown_Menu_Item_Container {
+    display: none;
+    user-select: none;
+    margin-left: 10%;
+    width: 90%;
 }
 
 .Vertical_Menu_Item_Text {
@@ -116,4 +157,61 @@
     font-size: 20px;
     color: #363636;
     padding-left: 5px;
+}
+
+.Dropdown_Btn_Element {
+    width: 8px;
+    height: 8px;
+    vertical-align: auto;
+    margin-top: 10px;
+}
+
+.Blue_Dropdown_Element {
+    width: 8px;
+    height: 8px;
+    margin-top: 11px;
+}
+
+.Parent_Dropdown_Menu_Item {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    border: 1px white solid;
+    padding-right: 10px;
+    color: white; 
+}
+
+.Btn_Element {
+    width: 8px;
+    height: 8px;
+    margin-top: 11px;
+}
+
+.Sub_Dropdown_Menu_Item {
+    box-sizing: border-box;
+    font-family: "Barlow Condensed", "san-serif";
+    font-weight: 500;
+    font-size: 18px;
+    color: #363636;
+    padding-left: 10%;
+    border: 1px white solid;
+    user-select: none;
+}
+
+.Parent_Dropdown_Menu_Item:hover,
+.Vertical_Menu_Item:hover,
+.Sub_Dropdown_Menu_Item:hover {
+    background: #d3d3d3 !important;
+    cursor: pointer;
+    border: 1px #d3d3d3 solid;
+    border-radius: 2px !important;
+}
+
+.Parent_Dropdown_Menu_Item:active,
+.Vertical_Menu_Item:active,
+.Sub_Dropdown_Menu_Item:active {
+    background: #c4c4c4 !important;
+    cursor: pointer;
+    border-radius: 5px !important;
+    border: 1px solid white;
 }

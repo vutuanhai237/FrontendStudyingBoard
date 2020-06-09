@@ -10,7 +10,6 @@
     height: fit-content;
     margin: 0px;
     padding: 0px;
-   
 }
 
 /* Header Area */
@@ -53,9 +52,49 @@
     margin-bottom: 10px;
 }
 
-.Show_Avatar{
+.Show_Avatar {
     width: 80px;
     height: 80px;
     overflow: hidden;
     object-fit: cover;
+}
+
+.display_flex {
+    display: flex;
+}
+
+.display_flex_end {
+    display: flex;
+    justify-content: end;
+}
+
+.margin_bottom_5px {
+    margin-bottom: 5px;
+}
+
+.decoration_underline {
+    height: 3px;
+    width: 90%;
+    background: #5279db;
+    margin-left: 10%;
+}
+
+.justify_content_space_between {
+    justify-content: space-between;
+}
+
+.padding_10px {
+    padding: 10px;
+}
+
+.margin_left_5px {
+    margin-left: 5px;
+}
+
+.margin_right_5px {
+    margin-left: 5px;
+}
+
+.width_50_percents{
+    width: 50%;
 }

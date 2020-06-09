@@ -4,7 +4,7 @@ import './Admin_UserManager.scss'
 import '../Admin_PageLayout.scss'
 import PostSummary from '../_component/Admin_UserItem/Admin_UserItem'
 import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
-import Admin_HorizontalMenubar from '../_component/Admin_HorizontalMenubar/Admin_HorizontalMenubar'
+import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
 
 
 class Admin_UserManager extends Component {
@@ -90,7 +90,7 @@ class Admin_UserManager extends Component {
                 <div className="Admin_Main_Port">
                     <Admin_LeftSidebar />
                     <div className="Admin_Center_Port">
-                        <Admin_HorizontalMenubar />
+                        <Admin_Titlebar title = "QUẢN LÝ NGƯỜI DÙNG"/>
                         <div className="Admin_Show_Port">
                             {summaryRequestedPostList}
                         </div>
