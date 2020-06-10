@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 // import './Admin_PostBrowser.scss'
-import '../Admin_PageLayout.scss'
+import '../AdminPage'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
 import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
 class Admin_PostBrowser extends Component {
-    constructor(props) {
+    constructor({ routeConfig }) {
         super();
         this.maxPostNumber = 10;
         this.isAdminBrower = true;
@@ -77,22 +77,10 @@ class Admin_PostBrowser extends Component {
         )
 
         return (
-
-            <div className="Admin">
-                {/* Header Area */}
-                <div className="Admin_Header">
-                    {/* <Header></Header> */}
-                </div>
-
-                {/* Body Area */}
-                <div className="Admin_Main_Port">
-                    <Admin_LeftSidebar />
-                    <div className="Admin_Center_Port">
-                        <Admin_Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
-                        <div className="Admin_Show_Port">
-                            {summaryRequestedPostList}
-                        </div>
-                    </div>
+            <div>
+                <Admin_Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
+                <div className="Admin_Show_Port">
+                    {summaryRequestedPostList}
                 </div>
             </div>
         );

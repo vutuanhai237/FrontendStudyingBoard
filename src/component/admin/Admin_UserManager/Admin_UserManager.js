@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import './Admin_UserManager.scss'
-import '../Admin_PageLayout.scss'
+import '../AdminPage'
 import PostSummary from '../_component/Admin_UserItem/Admin_UserItem'
 import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'

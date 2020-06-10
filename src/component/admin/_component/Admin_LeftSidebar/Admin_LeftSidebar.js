@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Admin_LeftSidebar.scss'
+// import './Admin_LeftSidebar.scss'
 import SimpleBlueButton from '../../../shared_components/SimpleBlueButton/SimpleBlueButton'
 import btn_element from '../../../../img/btn_element.png'
 import white_btn_element from '../../../../img/white_btn_element.png'
@@ -7,10 +7,14 @@ import white_dropdown_btn from '../../../../img/white_dropdown_icon.png'
 import dropdown_btn from '../../../../img/dropdown_icon.png'
 import gray_write_icon from '../../../../img/gray_write_icon.png'
 import gray_upload_icon from '../../../../img/gray_upload_icon.png'
+import { RouterOutlet } from '../../RouterOutlet';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Suspense, lazy } from 'react';
 
 class Admin_LeftSidebar extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             "info": {
                 "avatarUrl": "https://i.imgur.com/q54xYo3.png",
@@ -29,162 +33,169 @@ class Admin_LeftSidebar extends Component {
 
     render() {
         return (
-            < div className="Admin_Info_Menu_Port" >
+            <div>
+                {/* <RouterOutlet routeConfig={this.routeConfig} /> */}
 
-                {/* Admin Infor Port */}
-                < div className="Admin_Info_Port" >
-                    <div className="Avatar_Port">
-                        <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
-                    </div>
-                    <div className="User_Name_Gmail_Port">
-                        <div className="Display_Name">
-                            {this.state.info.displayName}
-                        </div>
-                        <div className="Gmail">
-                            {this.state.info.gmail}
-                        </div>
-                        <div className="Logout_Btn_Port">
-                            {/* <button className="Logout_Btn">Đăng xuất</button> */}
-                            <SimpleBlueButton text="Đăng xuất"></SimpleBlueButton>
-                        </div>
-                    </div>
-                </div >
+                < div className="Admin_Info_Menu_Port" >
 
-                {/* Role and achivement port */}
-                <div className="Role_Achivement_Port">
-                    <div className="Role_Port">
-                        Admin
-                    </div>
-                    <div className="Achivement_Port">
-                        <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
-                        <div className="Achivement_Post_Doc_Count_Port">
-                            <div className="display_flex width_50_percents">
-                                <img src={gray_write_icon} className="User_Item_Element" ></img>
-                                <div className="margin_left_5px">{this.state.info.post_count}</div>
+                    {/* Admin Infor Port */}
+                    < div className="Admin_Info_Port" >
+                        <div className="Avatar_Port">
+                            <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
+                        </div>
+                        <div className="User_Name_Gmail_Port">
+                            <div className="Display_Name">
+                                {this.state.info.displayName}
                             </div>
-                            <div className="display_flex width_50_percents">
-                                <img src={gray_upload_icon} className="User_Item_Element"></img>
-                                <div className="margin_left_5px"> {this.state.info.doc_count}</div>
+                            <div className="Gmail">
+                                {this.state.info.gmail}
+                            </div>
+                            <div className="Logout_Btn_Port">
+                                {/* <button className="Logout_Btn">Đăng xuất</button> */}
+                                <SimpleBlueButton text="Đăng xuất"></SimpleBlueButton>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div >
 
-                {/* Admin Menu Port */}
-                < div className="Admin_Vertical_Menu_Port" >
-                    {/* Quan ly tai khoan menu item*/}
-                    <div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
-                        onClick={(e) => this.handleDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-btn-element", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")}>
-                        <div className="display_flex">
-                            <img alt="*" className="Btn_Element" src={btn_element} id="account-managent-btn-element" />
-                            <div className="Vertical_Menu_Item_Text" id="account-managent-parent-menu-item-text">
-                                Quản lý tài khoản
+                    {/* Role and achivement port */}
+                    < div className="Role_Achivement_Port" >
+                        <div className="Role_Port">
+                            Admin
+                    </div>
+                        <div className="Achivement_Port">
+                            <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
+                            <div className="Achivement_Post_Doc_Count_Port">
+                                <div className="display_flex width_50_percents">
+                                    <img src={gray_write_icon} className="User_Item_Element" ></img>
+                                    <div className="margin_left_5px">{this.state.info.post_count}</div>
                                 </div>
-                        </div>
-                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="account-management-dropdown-btn-element" />
-                    </div>
-                    <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Trang cá nhân
-                            </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Thông tin tài khoản
-                            </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Thông báo
-                            </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Đổi avatar
-                            </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Danh sách bài viết
-                            </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Danh sách tài liệu
-                            </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Đổi mật khẩu
-                            </div>
-                        <div className="margin_bottom_5px" />
-                        <div className="decoration_underline " />
-                        <div className="margin_bottom_5px" />
-                        <div className="margin_bottom_5px" />
-                    </div>
-
-                    {/* Quản lý trang */}
-                    <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
-                        onClick={(e) => this.handleDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-btn-element", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
-                        <div className="display_flex">
-                            <img alt="*" className="Btn_Element" src={btn_element} id="page-managent-btn-element" />
-                            <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
-                                Quản lý nội dung
+                                <div className="display_flex width_50_percents">
+                                    <img src={gray_upload_icon} className="User_Item_Element"></img>
+                                    <div className="margin_left_5px"> {this.state.info.doc_count}</div>
                                 </div>
+                            </div>
                         </div>
-                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
-                    </div>
-                    <div className="Vertical_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
-                        <div className="Sub_Dropdown_Menu_Item">
+                    </div >
 
+                    {/* Admin Menu Port */}
+                    < div className="Admin_Vertical_Menu_Port" >
+                        {/* Quan ly tai khoan menu item*/}
+                        < div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
+                            onClick={(e) => this.handleDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-btn-element", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
+                            }>
+                            <div className="display_flex">
+                                <img alt="*" className="Btn_Element" src={btn_element} id="account-managent-btn-element" />
+                                <div className="Vertical_Menu_Item_Text" id="account-managent-parent-menu-item-text">
+                                    Quản lý tài khoản
+                                </div>
+                            </div>
+                            <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="account-management-dropdown-btn-element" />
+                        </div >
+                        <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Trang cá nhân
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Thông tin tài khoản
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Thông báo
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Đổi avatar
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Danh sách bài viết
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Danh sách tài liệu
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Đổi mật khẩu
+                            </div>
+                            <div className="margin_bottom_5px" />
+                            <div className="decoration_underline " />
+                            <div className="margin_bottom_5px" />
+                            <div className="margin_bottom_5px" />
                         </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Duyệt bài viết
-                            </div>
 
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Duyệt tài liệu
+                        {/* Quản lý trang */}
+                        <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
+                            onClick={(e) => this.handleDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-btn-element", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
+                            <div className="display_flex">
+                                <img alt="*" className="Btn_Element" src={btn_element} id="page-managent-btn-element" />
+                                <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
+                                    Quản lý nội dung
+                                </div>
                             </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Thông báo trang
+                            <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
+                        </div>
+                        <div className="Vertical_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
+                            {/* <div className="Sub_Dropdown_Menu_Item">
+                            </div> */}
+                            <div className="Sub_Dropdown_Menu_Item" >
+                                <Link to="/admin/post_browser">
+                                    Duyệt bài viết
+                                </Link>
                             </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Quản lý danh mục
+                            <div className="Sub_Dropdown_Menu_Item">
+                                <Link to="/admin/doc_browser">
+                                    Duyệt tài liệu
+                                </Link>
                             </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Danh sách tất cả bài viết
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Thông báo trang
                             </div>
-                        <div className="Sub_Dropdown_Menu_Item">
-                            Danh sách tất cả tài liệu
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Quản lý danh mục
                             </div>
-                        <div className="margin_bottom_5px" />
-                        <div className="decoration_underline " />
-                        <div className="margin_bottom_5px" />
-                        <div className="margin_bottom_5px" />
-                    </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Danh sách tất cả bài viết
+                            </div>
+                            <div className="Sub_Dropdown_Menu_Item">
+                                Danh sách tất cả tài liệu
+                            </div>
+                            <div className="margin_bottom_5px" />
+                            <div className="decoration_underline " />
+                            <div className="margin_bottom_5px" />
+                            <div className="margin_bottom_5px" />
+                        </div>
 
-                    {/* Quan ly nguoi dung */}
-                    <div className="Vertical_Menu_Item">
-                        <img alt="button" className="Btn_Element" src={btn_element}></img>
-                        <div className="Vertical_Menu_Item_Text">
-                            Quản lý người dùng
+                        {/* Quan ly nguoi dung */}
+                        <div className="Vertical_Menu_Item">
+                            <img alt="button" className="Btn_Element" src={btn_element}></img>
+                            <div className="Vertical_Menu_Item_Text">
+                                Quản lý người dùng
                       </div>
-                    </div>
-
-                    {/* Quan lý quyền truy cập: role */}
-                    <div className="Vertical_Menu_Item">
-                        <img alt="button" className="Btn_Element" src={btn_element}></img>
-                        <div className="Vertical_Menu_Item_Text">
-                            Quản lý quyền truy cập
                         </div>
-                    </div>
 
-                    {/* Quan ly hoat dong: các báo cáo người dùng  */}
-                    <div className="Vertical_Menu_Item">
-                        <img alt="button" className="Btn_Element" src={btn_element}></img>
-                        <div className="Vertical_Menu_Item_Text">
-                            Quản lý hoạt động
+                        {/* Quan lý quyền truy cập: role */}
+                        <div className="Vertical_Menu_Item">
+                            <img alt="button" className="Btn_Element" src={btn_element}></img>
+                            <div className="Vertical_Menu_Item_Text">
+                                Quản lý quyền truy cập
                         </div>
-                    </div>
-
-                    {/* Thong ke */}
-                    <div className="Vertical_Menu_Item">
-                        <img alt="button" className="Btn_Element" src={btn_element}></img>
-                        <div className="Vertical_Menu_Item_Text">
-                            Thống kê
                         </div>
-                    </div>
 
-                </div >
-            </ div>
+                        {/* Quan ly hoat dong: các báo cáo người dùng  */}
+                        <div className="Vertical_Menu_Item">
+                            <img alt="button" className="Btn_Element" src={btn_element}></img>
+                            <div className="Vertical_Menu_Item_Text">
+                                Quản lý hoạt động
+                        </div>
+                        </div>
+
+                        {/* Thong ke */}
+                        <div className="Vertical_Menu_Item">
+                            <img alt="button" className="Btn_Element" src={btn_element}></img>
+                            <div className="Vertical_Menu_Item_Text">
+                                Thống kê
+                        </div>
+                        </div>
+
+                    </div >
+                </ div >
+            </div>
         );
     }
 
@@ -215,6 +226,8 @@ class Admin_LeftSidebar extends Component {
             dropdown_element.src = white_dropdown_btn;
         }
     }
+
+
 
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Admin_DocBrowser.scss'
-import '../Admin_PageLayout.scss'
+import '../AdminPage'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
 import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
@@ -78,22 +78,10 @@ class Admin_DocBrowser extends Component {
         )
 
         return (
-
-            <div className="Admin">
-                {/* Header Area */}
-                <div className="Admin_Header">
-                    {/* <Header></Header> */}
-                </div>
-
-                {/* Body Area */}
-                <div className="Admin_Main_Port">
-                    <Admin_LeftSidebar />
-                    <div className="Admin_Center_Port">
-                        <Admin_Titlebar />
-                        <div className="Admin_Show_Port">
-                            {summaryRequestedPostList}
-                        </div>
-                    </div>
+            <div>
+                <Admin_Titlebar title="PHÊ DUYỆT TÀI LIỆU" />
+                <div className="Admin_Show_Port">
+                    {summaryRequestedPostList}
                 </div>
             </div>
         );
