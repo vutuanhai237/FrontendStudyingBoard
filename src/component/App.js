@@ -16,61 +16,7 @@ import { Suspense, lazy } from 'react';
 import AdminPage from './admin/AdminPage'
 function App() {
 
-    const admin_routeConfig = {
-        fallback: <div>Loading...</div>,
-        routes: [
-            {
-                path: '/',
-                exact: true,
-                component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser')),
-                data: {
-                    date: new Date()
-                }
-            },
-            {
-                path: '/admin/post_browser',
-                component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser')),
-                // canActivate: isAuthenticated,
-                canActivate: true,
-                routeConfig: {
-                    fallback: <div>Loading friends...</div>,
-                    routes: [{
-                        path: 'admin/post_browser',
-                        component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser')),
-                        routeConfig: {
-                            fallback: <div>Loading friend...</div>,
-                            routes: [{
-                                path: '/:id',
-                                component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser'))
-                            }]
-                        }
-                    }]
-                }
-            },
-            {
-                path: '/admin/doc_browser',
-                component: lazy(() => import('./admin/Admin_DocBrowser/Admin_DocBrowser')),
-                // canActivate: isAuthenticated,
-                canActivate: true,
-                routeConfig: {
-                    fallback: <div>Loading friends...</div>,
-                    routes: [{
-                        path: 'admin/post_browser',
-                        component: lazy(() => import('./admin/Admin_DocBrowser/Admin_DocBrowser')),
-                        routeConfig: {
-                            fallback: <div>Loading friend...</div>,
-                            routes: [{
-                                path: '/:id',
-                                component: lazy(() => import('./admin/Admin_DocBrowser/Admin_DocBrowser'))
-                            }]
-                        }
-                    }]
-                }
-            }
 
-
-        ]
-    }
 
     return (
         <Router>
@@ -114,10 +60,11 @@ function App() {
                     <Admin_UserManager />
                 </Route> */}
                 <Route exact path="/admin">
-                    <AdminPage routeConfig={admin_routeConfig} />
+                    <AdminPage />
                 </Route>
             </Switch>
             <div className="App"></div>
+
         </Router>
     );
 }

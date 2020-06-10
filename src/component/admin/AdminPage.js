@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './AdminPage.scss'
 // import Admin_LeftSidebar from './_component/Admin_LeftSidebar/Admin_LeftSidebar'
-import { RouterOutlet } from './RouterOutlet';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Suspense, lazy } from 'react';
+import { RouterOutlet } from 'react-router-outlet'
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
 import './Admin_LeftSidebar.scss'
 import SimpleBlueButton from '../shared_components/SimpleBlueButton/SimpleBlueButton'
 import btn_element from '../../img/btn_element.png'
@@ -13,10 +13,13 @@ import dropdown_btn from '../../img/dropdown_icon.png'
 import gray_write_icon from '../../img/gray_write_icon.png'
 import gray_upload_icon from '../../img/gray_upload_icon.png'
 
+import Admin_DocBrowser from './Admin_DocBrowser/Admin_DocBrowser'
+import Admin_PostBrowser from './Admin_PostBrowser/Admin_PostBrowser'
+
 class AdminPage extends Component {
-    constructor({ routeConfig }) {
-        super();
-        this.routeConfig = routeConfig;
+    constructor(props) {
+        super(props);
+
 
         this.state = {
             "info": {
@@ -34,8 +37,35 @@ class AdminPage extends Component {
         }
 
     }
-    render() {
 
+
+    // isAuthenticated = async () => {
+    //     return new Promise((resolve) => {
+    //         setTimeout(() => {
+    //             resolve()
+    //         }, 200)
+    //     })
+    // }
+
+    render() {
+        const routes = [
+            {
+                path: '/',
+                component: Admin_PostBrowser
+            },
+            {
+                path: '/doc_browser',
+                component: Admin_DocBrowser
+            },
+            {
+                path: '/default',
+                component: Admin_DocBrowser
+            },
+            {
+                path: '/post_browser',
+                component: Admin_PostBrowser
+            }
+        ]
         return (
 
             <div className="Admin">
@@ -74,7 +104,7 @@ class AdminPage extends Component {
                             < div className="Role_Achivement_Port" >
                                 <div className="Role_Port">
                                     Admin
-                    </div>
+                                </div>
                                 <div className="Achivement_Port">
                                     <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
                                     <div className="Achivement_Post_Doc_Count_Port">
@@ -100,32 +130,32 @@ class AdminPage extends Component {
                                         <img alt="*" className="Btn_Element" src={btn_element} id="account-managent-btn-element" />
                                         <div className="Vertical_Menu_Item_Text" id="account-managent-parent-menu-item-text">
                                             Quản lý tài khoản
-                                </div>
+                                         </div>
                                     </div>
                                     <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="account-management-dropdown-btn-element" />
                                 </div >
                                 <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Trang cá nhân
-                            </div>
+                                     </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Thông tin tài khoản
-                            </div>
+                                     </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Thông báo
-                            </div>
+                                      </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Đổi avatar
-                            </div>
+                                   </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Danh sách bài viết
-                            </div>
+                                  </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Danh sách tài liệu
-                            </div>
+                                  </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Đổi mật khẩu
-                            </div>
+                                         </div>
                                     <div className="margin_bottom_5px" />
                                     <div className="decoration_underline " />
                                     <div className="margin_bottom_5px" />
@@ -145,29 +175,34 @@ class AdminPage extends Component {
                                 </div>
                                 <div className="Vertical_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
                                     {/* <div className="Sub_Dropdown_Menu_Item">
-                            </div> */}
-                                    <div className="Sub_Dropdown_Menu_Item" >
+                                    </div> */}
+                                    <div className="Sub_Dropdown_Menu_Item">
+
                                         <Link to="/admin/post_browser">
                                             Duyệt bài viết
-                                </Link>
+                                        </Link>
+
                                     </div>
-                                    <div className="Sub_Dropdown_Menu_Item">
+                                    <div className="Sub_Dropdown_Menu_Item" >
+
                                         <Link to="/admin/doc_browser">
                                             Duyệt tài liệu
-                                </Link>
+                                            </Link>
+
                                     </div>
+
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Thông báo trang
-                            </div>
+                                     </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Quản lý danh mục
-                            </div>
+                                     </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Danh sách tất cả bài viết
-                            </div>
+                                    </div>
                                     <div className="Sub_Dropdown_Menu_Item">
                                         Danh sách tất cả tài liệu
-                            </div>
+                                    </div>
                                     <div className="margin_bottom_5px" />
                                     <div className="decoration_underline " />
                                     <div className="margin_bottom_5px" />
@@ -179,7 +214,7 @@ class AdminPage extends Component {
                                     <img alt="button" className="Btn_Element" src={btn_element}></img>
                                     <div className="Vertical_Menu_Item_Text">
                                         Quản lý người dùng
-                      </div>
+                                     </div>
                                 </div>
 
                                 {/* Quan lý quyền truy cập: role */}
@@ -187,7 +222,7 @@ class AdminPage extends Component {
                                     <img alt="button" className="Btn_Element" src={btn_element}></img>
                                     <div className="Vertical_Menu_Item_Text">
                                         Quản lý quyền truy cập
-                        </div>
+                                    </div>
                                 </div>
 
                                 {/* Quan ly hoat dong: các báo cáo người dùng  */}
@@ -195,7 +230,7 @@ class AdminPage extends Component {
                                     <img alt="button" className="Btn_Element" src={btn_element}></img>
                                     <div className="Vertical_Menu_Item_Text">
                                         Quản lý hoạt động
-                        </div>
+                                    </div>
                                 </div>
 
                                 {/* Thong ke */}
@@ -203,7 +238,7 @@ class AdminPage extends Component {
                                     <img alt="button" className="Btn_Element" src={btn_element}></img>
                                     <div className="Vertical_Menu_Item_Text">
                                         Thống kê
-                        </div>
+                                    </div>
                                 </div>
 
                             </div >
@@ -212,12 +247,15 @@ class AdminPage extends Component {
 
                     {/* Router Outlet */}
                     <div className="padding_right_10px">
-                        <RouterOutlet routeConfig={this.routeConfig} />
+                        <RouterOutlet routes={routes} />
                     </div>
                 </div>
-            </div >
+            </div>
+
+
         );
     }
+
     //code style for dropdown menu
     handleDropDownMenuClick = (e, parent_id, btn_element_id, show_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
