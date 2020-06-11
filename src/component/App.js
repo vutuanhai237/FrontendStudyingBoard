@@ -14,9 +14,8 @@ import Admin_UserManager from "./admin/Admin_UserManager/Admin_UserManager"
 import { RouterOutlet } from './admin/RouterOutlet'
 import { Suspense, lazy } from 'react';
 import AdminPage from './admin/AdminPage'
-function App() {
 
-
+const App = () => {
 
     return (
         <Router>
@@ -24,15 +23,12 @@ function App() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-
-
                 <Route exact path="/login">
                     <Login />
                 </Route>
                 <Route exact path="/register">
                     <Register />
                 </Route>
-
                 <Route exact path="/create_post">
                     <CrPost />
                 </Route>
@@ -48,19 +44,14 @@ function App() {
                 <Route exact path="/events">
                     <Events />
                 </Route>
-
-                {/* <Route exact path="/admin/post_browser">
-                    <Admin_PostBrowser />
+                <Route exact path="/admin">
+                    <AdminPage></AdminPage>
+                </Route>
+                <Route exact path="/admin/post_browser">
+                    <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/doc_browser">
-                    <Admin_DocBrowser />
-                </Route>
-
-                <Route exact path="/admin/user_manager">
-                    <Admin_UserManager />
-                </Route> */}
-                <Route exact path="/admin">
-                    <AdminPage />
+                    <AdminPage></AdminPage>
                 </Route>
             </Switch>
             <div className="App"></div>
@@ -71,41 +62,5 @@ function App() {
 
 export default App;
 
-// const isAuthenticated = async () => {
-//     return new Promise((resolve) => {
-//         setTimeout(() => {
-//             resolve()
-//         }, 200)
-//     })
-// }
 
-// const routeConfig = {
-//     fallback: <div>Loading...</div>,
-//     routes: [{
-//         path: '/',
-//         exact: true,
-//         component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser')),
-//         data: {
-//             date: new Date()
-//         }
-//     }, {
-//         path: 'admin/home',
-//         component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser')),
-//         // canActivate: isAuthenticated,
-//         canActivate: true,
-//         routeConfig: {
-//             fallback: <div>Loading friends...</div>,
-//             routes: [{
-//                 path: 'admin/post_browser',
-//                 component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser')),
-//                 routeConfig: {
-//                     fallback: <div>Loading friend...</div>,
-//                     routes: [{
-//                         path: '/:id',
-//                         component: lazy(() => import('./admin/Admin_PostBrowser/Admin_PostBrowser'))
-//                     }]
-//                 }
-//             }]
-//         }
-//     }]
-// }
+
