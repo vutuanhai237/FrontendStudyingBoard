@@ -125,7 +125,14 @@
     opacity: 100%;
 }
 
-.Next_Page_Blue_Icon {
-    height: 20px;
-    width: auto;
+.First_Page:disabled,
+.Next_Page:disabled,
+.Prev_Page:disabled,
+.Last_Page:disabled {
+    background: #c4c4c4;
+    color: white;
+    box-shadow: 0px 0px 1px 1px white;
+    cursor: pointer;
+    border: 1px white solid;
+    opacity: 100%;
 }
