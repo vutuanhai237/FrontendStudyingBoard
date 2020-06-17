@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap");
+
+.Paginator {
+    user-select: none;
+    display: flex;
+    background: white;
+}
+
+.Deactivated_Page {
+    background: white;
+    width: 26px;
+    height: 26px;
+    border: 1px #5279db solid;
+    border-radius: 4px;
+    color: #5279db;
+    line-height: 22px;
+    text-align: center;
+    margin-right: 4px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 20;
+    font-weight: 700;
+}
+
+.Deactivated_Page:hover {
+    background: #5279db;
+    opacity: 60%;
+    color: white;
+    box-shadow: 0px 0px 1px 1px white;
+    cursor: pointer;
+}
+
+.Deactivated_Page:active {
+    border: 1px white solid;
+    background: #5279db;
+    opacity: 100%;
+}
+
+.Activated_Page {
+    background: #5279db;
+    width: 26px;
+    height: 26px;
+    border: 1px #5279db solid;
+    border-radius: 4px;
+    color: white;
+    line-height: 22px;
+    text-align: center;
+    margin-right: 4px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 20;
+    font-weight: 700;
+}
+
+.Activated_Page:hover {
+    background: #5279db;
+    opacity: 60%;
+    color: white;
+    box-shadow: 0px 0px 1px 1px white;
+    cursor: pointer;
+}
+
+.Activated_Page:active {
+    background: #5279db;
+    opacity: 60%;
+    color: white;
+    box-shadow: 0px 0px 1px 1px white;
+    cursor: pointer;
+    border: 1px white solid;
+}
+
+.First_Page,
+.Next_Page,
+.Prev_Page {
+    margin-right: 4px;
+    width: 40px;
+    height: 26px;
+    border: 1px #5279db solid;
+    border-radius: 4px;
+    background: white;
+    border: 1px #5279db solid;
+    color: #5279db;
+    line-height: 22px;
+    text-align: center;
+    margin-right: 4px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 20;
+    font-weight: 700;
+}
+
+.Last_Page {
+    width: 40px;
+    height: 26px;
+    border: 1px #5279db solid;
+    border-radius: 4px;
+    background: white;
+    border: 1px #5279db solid;
+    color: #5279db;
+    line-height: 22px;
+    text-align: center;
+    margin-right: 4px;
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: 20;
+    font-weight: 700;
+}
+
+.First_Page:hover,
+.Next_Page:hover,
+.Prev_Page:hover,
+.Last_Page:hover {
+    background: #5279db;
+    opacity: 60%;
+    color: white;
+    box-shadow: 0px 0px 1px 1px white;
+    cursor: pointer;
+}
+
+.First_Page:active,
+.Next_Page:active,
+.Prev_Page:active,
+.Last_Page:active {
+    background: #5279db;
+    color: white;
+    box-shadow: 0px 0px 1px 1px white;
+    cursor: pointer;
+    border: 1px white solid;
+    opacity: 100%;
+}
+
+.Next_Page_Blue_Icon {
+    height: 20px;
+    width: auto;
+}

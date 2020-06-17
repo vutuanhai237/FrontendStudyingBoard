@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 // import './Admin_PostBrowser.scss'
 import '../AdminPage'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
-import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
+import '../../shared_components/Paginator.scss'
+import next_page_blue from './../../../img/next_page_blue_icon.png'
+
 class Admin_PostBrowser extends Component {
     constructor({ routeConfig }) {
         super();
         this.maxPostNumber = 10;
-        this.isAdminBrower = true;
+        this.isAdminBrowser = true;
         this.state = {
             requestedPosts:
                 [
@@ -52,8 +54,37 @@ class Admin_PostBrowser extends Component {
                             "tag2"
                         ]
                     }
-                ]
+                ],
+            arrayShownPages: [1, 2, 3, 4, 5], //define which number will be output
+            currentPage: 1,
+            itemPerPage: 5,
+            pageCount: 0
+
         }
+    }
+
+    componentDidMount() {
+        this.setState({ pageCount: Math.floor(this.state.requestedPosts.length / this.state.itemPerPage) })
+    }
+
+    onClickPageNumber = (e, page_number) => {
+        console.log(this.state.pageCount)
+        switch (page_number) {
+            case 1:
+                console.log("1");
+                break;
+            case 2:
+                console.log("2");
+                break;
+            case this.state.pageCount:
+                console.log("last page");
+                break;
+            default:
+                console.log("default");
+        }
+        this.setState({
+            currentPage: page_number
+        })
 
     }
 
@@ -61,6 +92,7 @@ class Admin_PostBrowser extends Component {
 
         let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) =>
             <PostSummary
+                key={requestedPost.id}
                 role="ADMIN_ROLE"
                 isAdminBrowser={this.isAdminBrower}
                 authorName={requestedPost.authorName}
@@ -76,11 +108,42 @@ class Admin_PostBrowser extends Component {
             ></PostSummary>
         )
 
+        let shownPages = this.state.arrayShownPages.map(page_number =>
+            <div className="Page_Item" id={page_number} key={page_number} onClick={this.onClickPageNumber}>
+                {
+                    page_number !== this.state.currentPage
+                        ?
+                        <div className="Deactivated_Page" onClick={e => this.onClickPageNumber(e, page_number)}>
+                            {page_number}
+                        </div>
+                        :
+                        <div className="Activated_Page">
+                            {page_number}
+                        </div>
+                }
+            </div>
+        );
         return (
             <div>
                 <Admin_Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
                 <div className="Admin_Show_Port">
                     {summaryRequestedPostList}
+
+                    <div className="Paginator">
+                        <div className="First_Page" >
+                            first
+                        </div>
+                        <div className="Prev_Page">
+                            Prev
+                        </div>
+                        {shownPages}
+                        <div className="Next_Page">
+                            Next
+                        </div>
+                        <div className="Last_Page">
+                            last
+                        </div>
+                    </div>
                 </div>
             </div>
         );

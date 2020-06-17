@@ -77,9 +77,7 @@ class PostSummary extends Component {
         //Render tag from tags list
         tagsGroup = this.props.tags.map((tag) => {
             return (
-                <div>
-                    <Tag text={tag}></Tag>
-                </div>
+                <Tag text={tag}></Tag>
             )
         }
         );
