@@ -330,7 +330,8 @@ class Admin_PostBrowser extends Component {
                         changePage: (currentInteractList) => this.onPageChange(currentInteractList),
                         rawData: this.state.requestedPosts,
                         maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5
+                        numPagesShown: 5,
+                        bottom: "20px"
                     }}
                     />
                 </div>

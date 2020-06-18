@@ -7,9 +7,10 @@ class Paginator extends Component {
     constructor(props) {
         super(props);
 
-        this.maxItemPerPage = this.props.config.maxItemPerPage;
-        this.numPageShown = this.props.config.numPageShown;
-        this.rawData = this.props.config.rawData;
+        this.maxItemPerPage = this.props.config.maxItemPerPage; //item mỗi page
+        this.numPageShown = this.props.config.numPageShown; //số page được show trên thanh paginator
+        this.rawData = this.props.config.rawData; //array được truyền vào
+        // this.min_top = this.props.config.min_top; //khoảng cách top tối thiểu
 
         this.state = {
             currentInteractList: [],
@@ -163,7 +164,8 @@ class Paginator extends Component {
         );
 
         return (
-            <div className="Paginator">
+            <div className="Paginator" style={{ position: "absolute", bottom: this.props.config.bottom }}>
+                {/* {console.log(this.min_top)} */}
                 <div className="First_Page" onClick={() => { this.props.config.changePage(this.state.currentInteractList); this.onClickPaginationElement(this.state.currentPage, "first") }} > first</div>
                 <div className="Prev_Page" onClick={() => { this.props.config.changePage(this.state.currentInteractList); this.onClickPaginationElement(this.state.currentPage, "prev") }}>Prev </div>
                 {shownPages}
