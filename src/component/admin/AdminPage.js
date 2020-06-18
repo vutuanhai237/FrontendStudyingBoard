@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import './AdminPage.scss'
-// import Admin_LeftSidebar from './_component/Admin_LeftSidebar/Admin_LeftSidebar'
-import RouterOutlet from './RouterOutlet'
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 import './Admin_LeftSidebar.scss'
@@ -16,6 +14,7 @@ import gray_upload_icon from '../../img/gray_upload_icon.png'
 import { Suspense, lazy } from 'react';
 import Admin_DocBrowser from './Admin_DocBrowser/Admin_DocBrowser'
 import Admin_PostBrowser from './Admin_PostBrowser/Admin_PostBrowser'
+import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
 
 class AdminPage extends Component {
     constructor(props) {
@@ -193,8 +192,10 @@ class AdminPage extends Component {
                                     <div className="Vertical_Menu_Item">
                                         <img alt="button" className="Btn_Element" src={btn_element}></img>
                                         <div className="Vertical_Menu_Item_Text">
-                                            Quản lý người dùng
-                                     </div>
+                                            <Link to="/admin/user_management">
+                                                Quản lý người dùng
+                                            </Link>
+                                        </div>
                                     </div>
 
                                     {/* Quan lý quyền truy cập: role */}
@@ -226,13 +227,15 @@ class AdminPage extends Component {
 
                         {/* Router Outlet */}
                         <div className="padding_right_10px">
-                            {/* <RouterOutlet routeConfig={this.routeConfig} /> */}
                             <Switch>
                                 <Route path="/admin/post_browser">
                                     <Admin_PostBrowser></Admin_PostBrowser>
                                 </Route>
                                 <Route path="/admin/doc_browser">
                                     <Admin_DocBrowser></Admin_DocBrowser>
+                                </Route>
+                                <Route path="/admin/user_management">
+                                    <Admin_UserManagement></Admin_UserManagement>
                                 </Route>
                             </Switch>
                         </div>

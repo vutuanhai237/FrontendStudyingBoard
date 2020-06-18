@@ -10,8 +10,7 @@ import Admin_DocBrowser from "./admin/Admin_DocBrowser/Admin_DocBrowser";
 import Login from "./layout/login";
 import Register from "./layout/register";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Admin_UserManager from "./admin/Admin_UserManager/Admin_UserManager"
-import { RouterOutlet } from './admin/RouterOutlet'
+import Admin_UserManagement from "./admin/Admin_UserManagement/Admin_UserManagement"
 import { Suspense, lazy } from 'react';
 import AdminPage from './admin/AdminPage'
 
@@ -51,6 +50,9 @@ const App = () => {
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/doc_browser">
+                    <AdminPage></AdminPage>
+                </Route>
+                <Route exact path="/admin/user_management">
                     <AdminPage></AdminPage>
                 </Route>
             </Switch>

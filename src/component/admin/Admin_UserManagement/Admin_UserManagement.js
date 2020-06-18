@@ -1,13 +1,13 @@
 
 import React, { Component } from 'react'
-import './Admin_UserManager.scss'
+import './Admin_UserManagement.scss'
 import '../AdminPage'
 import PostSummary from '../_component/Admin_UserItem/Admin_UserItem'
-import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
+import Paginator from '../../shared_components/Paginator/Paginator'
 
 
-class Admin_UserManager extends Component {
+class Admin_UserManagement extends Component {
     constructor(props) {
         super();
         this.maxPostNumber = 10;
@@ -80,24 +80,29 @@ class Admin_UserManager extends Component {
 
         return (
 
-            <div className="Admin">
-                {/* Header Area */}
-                <div className="Admin_Header">
-                    {/* <Header></Header> */}
-                </div>
+            <div>
+                <Admin_Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
+                <div className="Admin_Show_Port">
 
-                {/* Body Area */}
-                <div className="Admin_Main_Port">
-                    <Admin_LeftSidebar />
-                    <div className="Admin_Center_Port">
-                        <Admin_Titlebar title = "QUẢN LÝ NGƯỜI DÙNG"/>
-                        <div className="Admin_Show_Port">
-                            {summaryRequestedPostList}
-                        </div>
+                    <div className="Number_Of_Item">
+                        Tổng số:
+                        <div style={{ width: "5px" }} />
+                        {this.state.requestedPosts.length}
                     </div>
+
+                    {summaryRequestedPostList}
+
+                    <Paginator config={{
+                        changePage: (currentInteractList) => this.onPageChange(currentInteractList),
+                        rawData: this.state.requestedPosts,
+                        maxItemPerPage: this.maxItemPerPage,
+                        numPagesShown: 5,
+                        bottom: "20px"
+                    }}
+                    />
                 </div>
             </div>
         );
     }
 }
-export default Admin_UserManager;
+export default Admin_UserManagement;

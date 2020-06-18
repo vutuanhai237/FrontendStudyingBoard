@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './Admin_DocBrowser.scss'
 import '../AdminPage'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
-import Admin_LeftSidebar from '../_component/Admin_LeftSidebar/Admin_LeftSidebar'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
 
 
