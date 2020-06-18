@@ -3,15 +3,15 @@ import React, { Component } from 'react'
 import '../AdminPage'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
-import '../../shared_components/Paginator.scss'
-import next_page_blue from './../../../img/next_page_blue_icon.png'
+// import '../../shared_components/Paginator/Paginator.scss'
+import '../../shared_components/Paginator/Paginator'
+import Paginator from '../../shared_components/Paginator/Paginator'
 
 class Admin_PostBrowser extends Component {
     constructor({ routeConfig }) {
         super();
-        this.maxItemPerPage = 2;
         this.isAdminBrowser = true;
-        this.pageShowns = 5;
+        this.maxItemPerPage = 2;
         this.state = {
             requestedPosts:
                 [
@@ -252,7 +252,7 @@ class Admin_PostBrowser extends Component {
                     }, {
                         "id": 110,
                         "url": "some text",
-                        "title": "Rảnh mà đi đặt tên, làm component đi",
+                        "title": "Rảnh mà đi đặt tên, làm component đi nhé!",
                         "Summary": "Chào các bạn sinh viên Phòng Kế hoạch Tài chính Thông báo về việc thu học phí học kỳ 2, năm học 2019-2020, hạn đóng 2040, miễn giảm 200% ...",
                         "authorName": "Vu Tuan Hai",
                         "authorID": 29,
@@ -271,121 +271,31 @@ class Admin_PostBrowser extends Component {
                     },
 
                 ],
-            arrayShownPages: [1, 2, 3, 4, 5], //define which number will be output
-            currentPage: 1,
-            pageCount: 0,
+            currentInteractList: []
         }
     }
 
     componentDidMount() {
 
-        //get true pageCount
-        if (this.state.requestedPosts.length % this.maxItemPerPage === 0) {
-            this.state.pageCount = Math.floor(this.state.requestedPosts.length / this.maxItemPerPage);
+        //init current interact list = những item đầu tiên trong danh sách với số lượng = this.maxItemPerPage
+        if (this.state.requestedPosts.length <= this.maxItemPerPage) {
+            this.setState({ currentInteractList: this.state.requestedPosts })
         }
         else {
-            this.state.pageCount = Math.floor(this.state.requestedPosts.length / this.maxItemPerPage) + 1;
-        }
-
-        //initial array you want to render
-        if (this.state.pageCount < this.pageShowns) {
-            this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-            for (let i = 1; i <= this.state.pageCount; i++) {
-                this.state.arrayShownPages.push(i);
+            this.state.currentInteractList.splice(0, this.state.currentInteractList.length);
+            for (let i = 0; i < this.maxItemPerPage; i++) {
+                this.state.currentInteractList.push(this.state.requestedPosts[i])
             }
-            for (let i = this.pageShowns; i > this.state.pageCount; i--) {
-                this.state.arrayShownPages.push("...");
-            }
+            this.setState(this.state);
         }
-
-
-        this.setState(this.state);
     }
 
-    onClickPaginationElement = (page_number, action) => {
-
-        //handler action
-        switch (action) {
-            case "first":
-                page_number = 1;
-                break;
-            case "prev":
-                if (page_number > 1)
-                    page_number--;
-                break;
-            case "next":
-                if (page_number < this.state.pageCount)
-                    page_number++;
-                break;
-            case "last":
-                page_number = this.state.pageCount;
-                break;
-            default:
-                break;
-        }
-
-        //handler page click
-        switch (page_number) {
-            //set number of page in the midde => update array shown pages
-            case 1:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number);
-                this.state.arrayShownPages.push(page_number + 1);
-                this.state.arrayShownPages.push(page_number + 2);
-                this.state.arrayShownPages.push(page_number + 3);
-                this.state.arrayShownPages.push(page_number + 4);
-                break;
-            case 2:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number - 1);
-                this.state.arrayShownPages.push(page_number);
-                this.state.arrayShownPages.push(page_number + 1);
-                this.state.arrayShownPages.push(page_number + 2);
-                this.state.arrayShownPages.push(page_number + 3);
-                break;
-            case this.state.pageCount:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number - 4);
-                this.state.arrayShownPages.push(page_number - 3);
-                this.state.arrayShownPages.push(page_number - 2);
-                this.state.arrayShownPages.push(page_number - 1);
-                this.state.arrayShownPages.push(page_number);
-                break;
-            case this.state.pageCount - 1:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number - 3);
-                this.state.arrayShownPages.push(page_number - 2);
-                this.state.arrayShownPages.push(page_number - 1);
-                this.state.arrayShownPages.push(page_number);
-                this.state.arrayShownPages.push(page_number + 1);
-                break;
-            default:
-                {
-                    if (this.state.pageCount <= 5) {
-                        break;
-                    }
-                    else {
-                        this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                        this.state.arrayShownPages.push(page_number - 2);
-                        this.state.arrayShownPages.push(page_number - 1);
-                        this.state.arrayShownPages.push(page_number);
-                        this.state.arrayShownPages.push(page_number + 1);
-                        this.state.arrayShownPages.push(page_number + 2);
-                    }
-                }
-        }
-        this.setState({
-            currentPage: page_number
-        })
-    }
-
-    getContentsListByPage = (page_number) => {
-
+    onPageChange = (currentInteractList) => {
+        this.setState({ currentInteractList: currentInteractList })
     }
 
     render() {
-
-        let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) =>
+        let summaryRequestedPostList = this.state.currentInteractList.map((requestedPost) =>
             <PostSummary
                 key={requestedPost.id}
                 role="ADMIN_ROLE"
@@ -403,21 +313,6 @@ class Admin_PostBrowser extends Component {
             ></PostSummary>
         )
 
-        let shownPages = this.state.arrayShownPages.map(page_number =>
-            <div className="Page_Item" id={page_number} key={page_number} >
-                {
-                    page_number !== this.state.currentPage
-                        ?
-                        <div className="Deactivated_Page" onClick={() => this.onClickPaginationElement(page_number, "")}>
-                            {page_number}
-                        </div>
-                        :
-                        <div className="Activated_Page" onClick={() => this.onClickPaginationElement(page_number, "")}>
-                            {page_number}
-                        </div>
-                }
-            </div>
-        );
         return (
             <div>
                 <Admin_Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
@@ -431,13 +326,13 @@ class Admin_PostBrowser extends Component {
 
                     {summaryRequestedPostList}
 
-                    <div className="Paginator">
-                        <div className="First_Page" onClick={() => this.onClickPaginationElement(this.state.currentPage, "first")} > first</div>
-                        <div className="Prev_Page" onClick={() => this.onClickPaginationElement(this.state.currentPage, "prev")}>Prev </div>
-                        {shownPages}
-                        <div className="Next_Page" onClick={() => this.onClickPaginationElement(this.state.currentPage, "next")}> Next</div>
-                        <div className="Last_Page" onClick={() => this.onClickPaginationElement(this.state.currentPage, "last")}>last </div>
-                    </div>
+                    <Paginator config={{
+                        changePage: (currentInteractList) => this.onPageChange(currentInteractList),
+                        rawData: this.state.requestedPosts,
+                        maxItemPerPage: this.maxItemPerPage,
+                        numPagesShown: 5
+                    }}
+                    />
                 </div>
             </div>
         );
