@@ -5,13 +5,9 @@ import Documents from "./layout/documents";
 import Events from "./layout/events";
 import CrPost from "./layout/create_post";
 import CrDocument from "./layout/create_document";
-import Admin_PostBrowser from "./admin/Admin_PostBrowser/Admin_PostBrowser";
-import Admin_DocBrowser from "./admin/Admin_DocBrowser/Admin_DocBrowser";
 import Login from "./layout/login";
 import Register from "./layout/register";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Admin_UserManagement from "./admin/Admin_UserManagement/Admin_UserManagement"
-import { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
 
 const App = () => {
@@ -57,7 +53,6 @@ const App = () => {
                 </Route>
             </Switch>
             <div className="App"></div>
-
         </Router>
     );
 }

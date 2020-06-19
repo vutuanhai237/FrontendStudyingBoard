@@ -191,11 +191,11 @@ class AdminPage extends Component {
                                     {/* Quan ly nguoi dung */}
                                     <div className="Vertical_Menu_Item">
                                         <img alt="button" className="Btn_Element" src={btn_element}></img>
-                                        <div className="Vertical_Menu_Item_Text">
-                                            <Link to="/admin/user_management">
+                                        <div className="Vertical_Menu_Item_Text" onClick={() => { window.location.href = "/admin/user_management" }}>
+                                            {/* <Link to="/admin/user_management" style={{ "text-decoration": "none", > */}
                                                 Quản lý người dùng
-                                            </Link>
-                                        </div>
+                                            </div>
+                                        {/* </div> */}
                                     </div>
 
                                     {/* Quan lý quyền truy cập: role */}

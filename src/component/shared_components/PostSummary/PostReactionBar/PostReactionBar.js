@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
 import './PostReactionBar.scss'
-import liked_btn from '../../../img/liked_btn.png'
-import unliked_btn from '../../../img/unliked_btn.png'
-import full_blue_bookmark_btn from '../../../img/full_blue_bookmark_btn.png'
-import gray_bookmark_btn from '../../../img/gray_bookmark_btn.png'
+import liked_btn from '../../../../img/liked_btn.png'
+import unliked_btn from '../../../../img/unliked_btn.png'
+import full_blue_bookmark_btn from '../../../../img/full_blue_bookmark_btn.png'
+import gray_bookmark_btn from '../../../../img/gray_bookmark_btn.png'
 //Set text props for this component
 
-
-//to call this component: isLiked, likeCount, isSaved, commentCount
-//onClick commentBtn => go to detailPage
-
-//done: saveBtn UI logic
-//undone: likeBtn UI logic, commentBtn UI logic
 class PostReactionBar extends Component {
 
     constructor(props) {

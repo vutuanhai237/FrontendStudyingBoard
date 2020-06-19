@@ -3,31 +3,10 @@ import React, { Component } from 'react'
 // import Header from "../../components/Header/Header.js";
 // import Footer from "../../components/Footer/Footer.js";
 import './PostSummary.scss'
-import PostSummaryAuthorLink from '../PostSummaryAuthorLink/PostSummaryAuthorLink'
-// import PostSummaryCategoryLink from '../PostSummaryCategoryLink/PostSummaryCategoryLink'
-// import SimpleBlueButton from '../SimpleBlueButton/SimpleBlueButton'
-// import SimpleRedButton from '../SimpleRedButton/SimpleRedButton'
+import PostSummaryAuthorLink from './PostSummaryAuthorLink/PostSummaryAuthorLink'
 import BlueRedButtonGroup from '../BlueRedButtonGroup/BlueRedButtonGroup'
-import PostReactionBar from '../PostReactionBar/PostReactionBar'
+import PostReactionBar from './PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
-
-//to call this component: 
-//isAdminBrowser
-//isOwnerManagement
-//isNormal
-
-//authorName, authorLink or authorID
-//requestedDate
-//title of post 
-//...
-
-//Thanh tác giả và thời gian có hai cách hiển thị: admin duyệt bài (tác giả, thời gian yêu cầu, ngày yêu cầu, danh mục) 
-//                                        (undone) và view bình thường (tác giả, ngày publish, thời gian đọc ước tính, danh mục)
-//Reaction bar lúc admin view chờ duyệt thì không xuất hiện, còn lại hiện hết.
-//Đối với các nút thao tác:
-// + Khi admin view chờ duyệt: preview và reject.
-// + Khi trong màn hình quản lý của mình: Đọc tiếp và Xoá.
-// + Còn lại: Đọc tiếp.
 
 class PostSummary extends Component {
     getFirstImage() {
@@ -68,11 +47,6 @@ class PostSummary extends Component {
             //render manager bar
             managementBar = <BlueRedButtonGroup blueText="Preview" redText="Reject"></BlueRedButtonGroup>;
         }
-
-
-        //render reaction bar via user's role
-
-
 
         //Render tag from tags list
         tagsGroup = this.props.tags.map((tag) => {

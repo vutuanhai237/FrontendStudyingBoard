@@ -12,40 +12,23 @@ import { findByLabelText } from '@testing-library/react';
 import gray_write_icon from '../../../../img/gray_write_icon.png'
 import gray_upload_icon from '../../../../img/gray_upload_icon.png'
 
-//to call this component: 
-//isAdminBrowser
-//isOwnerManagement
-//isNormal
-
-//authorName, authorLink or authorID
-//requestedDate
-//title of post 
-//...
-
-//Thanh tác giả và thời gian có hai cách hiển thị: admin duyệt bài (tác giả, thời gian yêu cầu, ngày yêu cầu, danh mục) 
-//                                        (undone) và view bình thường (tác giả, ngày publish, thời gian đọc ước tính, danh mục)
-//Reaction bar lúc admin view chờ duyệt thì không xuất hiện, còn lại hiện hết.
-//Đối với các nút thao tác:
-// + Khi admin view chờ duyệt: preview và reject.
-// + Khi trong màn hình quản lý của mình: Đọc tiếp và Xoá.
-// + Còn lại: Đọc tiếp.
-
 class Admin_UserItem extends Component {
 
     constructor(props) {
         super(props);
+
+        this.role = this.props.role;
+        this.roleID = this.props.roleID;
+        this.name = this.props.name;
+        this.userName = this.props.userName;
+        this.nickName = this.props.nickName;
+        this.avatarUrl = this.props.avatarUrl;
+        this.email = this.props.email;
+        this.postCount = this.props.postCount;
+        this.docCount = this.props.docCount;
+        this.score = this.props.score;
+
         this.state = {
-            user: {
-                "avatarUrl": "https://i.imgur.com/q54xYo3.png",
-                "name": "Nguyen Van Dong",
-                "nickName": "Tesla",
-                "email": "dongnv.since1999@gmail.com",
-                "score": "10^9",
-                "post_count": "300",
-                "doc_count": "0",
-                "role": "Admin",
-                "roleID": 1
-            },
             roles:
                 [
                     {
@@ -67,7 +50,7 @@ class Admin_UserItem extends Component {
     render() {
 
         let roles_Combobox = this.state.roles.map(role =>
-            this.state.user.roleID === role.id ?
+            this.roleID === role.id ?
                 <option className="User_Item_Roles_Combobox" value={role.role} key={role.id} selected="selected">{role.role}</option> :
                 <option className="User_Item_Roles_Combobox" value={role.role} key={role.id}>{role.role}</option>
         )
@@ -75,14 +58,15 @@ class Admin_UserItem extends Component {
         return (
             <div className="Admin_User_Item" >
 
-                <img src={this.state.user.avatarUrl} className="Show_Avatar"></img>
+                <img src={this.avatarUrl} className="Show_Avatar"></img>
+
                 <div style={{ "padding": "10px", "padding-top": "0" }}>
                     <div style={{ display: "flex" }}>
-                        <div className="User_Item_Name">{this.state.user.name}</div>
-                        <div className="User_Item_Nick_Name">({this.state.user.nickName})</div>
+                        <div className="User_Item_Name">{this.name}</div>
+                        <div className="User_Item_Nick_Name">({this.nickName})</div>
                     </div>
                     <div>
-                        <div className="User_Item_Email">{this.state.user.email}</div>
+                        <div className="User_Item_Email">{this.email}</div>
 
                         {/* record bar */}
                         <div style={{
@@ -93,11 +77,11 @@ class Admin_UserItem extends Component {
                             "line-height": "30px",
                             "margin-top": "5px",
                         }}>
-                            <div className="User_Item_Score">Scrore: {this.state.user.score}</div>
+                            <div className="User_Item_Score">Scrore: {this.score}</div>
                             <img src={gray_write_icon} className="User_Item_Element" ></img>
-                            <div className="User_Item_Post_Count">{this.state.user.post_count}</div>
+                            <div className="User_Item_Post_Count">{this.postCount}</div>
                             <img src={gray_upload_icon} className="User_Item_Element"></img>
-                            <div className="User_Item_Doc_Count"> {this.state.user.doc_count}</div>
+                            <div className="User_Item_Doc_Count"> {this.docCount}</div>
                         </div>
 
                         <select className="User_Item_Roles_Combobox">
