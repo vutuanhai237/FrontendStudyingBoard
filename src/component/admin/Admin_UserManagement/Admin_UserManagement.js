@@ -1,8 +1,7 @@
+/* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import './Admin_UserManagement.scss'
 import '../AdminPage'
-import PostSummary from '../_component/Admin_UserItem/Admin_UserItem'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
 import Paginator from '../../shared_components/Paginator/Paginator'
 import Admin_UserItem from '../_component/Admin_UserItem/Admin_UserItem'
@@ -38,6 +37,30 @@ class Admin_UserManagement extends Component {
                         "doc_count": "0",
                         "role": "User",
                         "roleID": 0
+                    },
+                    {
+                        "userID": 20,
+                        "avatarUrl": "https://i.imgur.com/q54xYo3.png",
+                        "name": "Phuc Nguyen Hong",
+                        "nickName": "Tesla",
+                        "email": "dongnv.since1999@gmail.com",
+                        "score": "10^9",
+                        "post_count": "300",
+                        "doc_count": "0",
+                        "role": "Admin",
+                        "roleID": 1
+                    },
+                    {
+                        "userID": 21,
+                        "avatarUrl": "https://i.imgur.com/q54xYo3.png",
+                        "name": "Luu Bieu Nghj",
+                        "nickName": "Veg nai",
+                        "email": "vutuanhai@gmail.com",
+                        "score": "10",
+                        "post_count": "200",
+                        "doc_count": "0",
+                        "role": "User",
+                        "roleID": 0
                     }
                 ]
         }
@@ -50,6 +73,7 @@ class Admin_UserManagement extends Component {
                 key={userItem.userID}
                 role={userItem.role}
                 roleID={userItem.roleID}
+                userID={userItem.userID}
                 name={userItem.name}
                 userName={userItem.userName}
                 nickName={userItem.nickName}

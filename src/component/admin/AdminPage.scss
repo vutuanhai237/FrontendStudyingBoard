@@ -40,6 +40,7 @@
 }
 
 .Admin_Show_Port {
+    width: 100%;
     height: fit-content;
     border: #c4c4c4 solid 1px;
     border-top: 0px;
@@ -47,7 +48,6 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
-    min-height: 600px;
     margin-bottom: 10px;
     min-height: 1000px;
 }
@@ -77,6 +77,12 @@
     width: 90%;
     background: #5279db;
     margin-left: 10%;
+}
+
+.gray_thin_decoration_underline {
+    height: 1px;
+    width: 100%;
+    background: #eeeeee;
 }
 
 .justify_content_space_between {
@@ -111,3 +117,10 @@
     font-weight: 600;
     color: #363636;
 }
+
+.Admin_Router_Outlet {
+    padding-right: 10px;
+    width: 100%;
+}
+
+

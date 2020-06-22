@@ -26,6 +26,7 @@ class Paginator extends Component {
             this.rawData.pageCount = Math.floor(this.rawData.length / this.maxItemPerPage);
         }
         else {
+            //ko sao dau
             this.state.pageCount = Math.floor(this.rawData.length / this.maxItemPerPage) + 1;
         }
 

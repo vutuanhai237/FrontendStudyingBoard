@@ -9,6 +9,7 @@ import Login from "./layout/login";
 import Register from "./layout/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
+import './App.css'
 
 const App = () => {
 
@@ -48,7 +49,7 @@ const App = () => {
                 <Route exact path="/admin/doc_browser">
                     <AdminPage></AdminPage>
                 </Route>
-                <Route exact path="/admin/user_management">
+                <Route exact path="/admin/users_management">
                     <AdminPage></AdminPage>
                 </Route>
             </Switch>
