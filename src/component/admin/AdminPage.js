@@ -125,9 +125,9 @@ class AdminPage extends Component {
 
                                             <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                         </div>
-                                        {/* <div className="gray_thin_decoration_underline" /> */}
-                                        <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
 
+                                        <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
+                                            {/* <div classname></div> */}
                                             <Link className="Sub_Dropdown_Menu_Item" to="/admin/post_browser" style={{ display: "flex", textDecoration: "none" }}>
                                                 <div className="Sub_Dropdown_Menu_Item_Text" >
                                                     Duyệt bài viết
@@ -192,6 +192,7 @@ class AdminPage extends Component {
                                     </div >
 
                                     <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
+                                        <div style={{ height: "5px" }}></div>
                                         <div className="Sub_Dropdown_Menu_Item">
                                             Trang cá nhân
                                         </div>

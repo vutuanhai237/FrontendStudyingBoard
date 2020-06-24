@@ -95,47 +95,73 @@
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    line-height: 30px;
+    line-height: 28px;
     margin-top: 5px;
     justify-content: space-between;
 }
 
-.User_Item_Roles_Combobox {
-    bottom: 0;
-    top: 10px;
-    position: relative;
-    width: 110px;
-    height: 20px;
-    font-family: "Barlow Condensed";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 18px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    color: #ffffff;
-    background: #5279db;
-    border-radius: 4px;
-    border: 0px;
-}
+// .Parent_Dropdown_Combobox {
+//     background: white;
+//     user-select: none;
+//     display: flex;
+//     justify-content: space-between;
+//     padding-right: 10px;
+//     color: white;
+//     box-shadow: 0px 1px 0px 0px #eeeeee;
+//     padding-top: 1px;
+//     padding-bottom: 1px;
+//     border-radius: 5px;
+// }
 
-.User_Item_Roles_Combobox_Item {
-    bottom: 0;
-    top: 10px;
-    position: relative;
-    width: 110px;
-    height: 20px;
-    font-family: "Barlow Condensed";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 18px;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    color: #ffffff;
-    background: #5279db;
-    border-radius: 4px;
-    border: 0px;
-}
+// .Sub_Dropdown_Combobox_Item {
+//     box-sizing: border-box;
+//     font-family: "Barlow Condensed", "san-serif";
+//     font-weight: 500;
+//     font-size: 18px;
+//     color: #363636;
+//     padding-left: 4px;
+//     user-select: none;
+//     border-right: 4px white solid;
+//     border-radius: 5px;
+// }
+
+// .Activated_Sub_Dropdown_Combobox_Item {
+//     box-sizing: border-box;
+//     font-family: "Barlow Condensed", "san-serif";
+//     font-weight: 500;
+//     font-size: 18px;
+//     color: #363636;
+//     padding-left: 4px;
+//     user-select: none;
+//     border-right: 4px white solid;
+//     border-radius: 5px;
+//     background: #dedede !important;
+//     cursor: pointer;
+//     border-right: 3px #5279db solid;
+// }
+
+// .Dropdown_Combobox_Container {
+//     margin-top: 5px;
+//     border: 1px #eeeeee solid;
+//     border-bottom: 3px #5279db solid;
+//     border-radius: 5px;
+//     box-shadow: 0px 0px 2px 0px #eeeeee;
+//     display: none;
+//     user-select: none;
+//     padding: 5px;
+//     width: 100%;
+//     background: white;
+// }
+
+// .Parent_Dropdown_Combobox:hover,
+// .Sub_Dropdown_Combobox_Item:hover {
+//     background: #eeeeee !important;
+//     cursor: pointer;
+//     border-right: 3px #5279db solid;
+// }
+
+// .Parent_Dropdown_Combobox:active,
+// .Sub_Dropdown_Combobox_Item:active {
+//     background: #dedede !important;
+//     cursor: pointer;
+// }
