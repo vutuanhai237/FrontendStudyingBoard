@@ -28,6 +28,7 @@
 
 .Custom_Modal_Wrapper {
     border-top: #5279db 3px solid;
+    border-bottom: #5279db 3px solid;
     z-index: 1000000001;
     background: white;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
@@ -75,9 +76,9 @@
     }
 }
 
-//custom
+//header
 .Custom_Modal_Header {
-    padding-left: 10px;
+    padding-left: 15px;
     padding-right: 10px;
     width: 100%;
     height: 2em;
@@ -95,72 +96,77 @@
     justify-content: space-between;
 }
 
+.Custom_Modal_Close_Button {
+    height: 1em;
+    width: auto;
+    opacity: 60%;
+}
+
+.Custom_Modal_Close_Button:hover {
+    opacity: 100%;
+}
+
+.Custom_Modal_Close_Button:active {
+    opacity: 80%;
+    border-radius: 5px;
+}
+
 //body area
 .Custom_Modal_Body {
     padding: 10px 15px;
     height: 70%;
     display: flex;
     justify-content: start;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px #c4c4c4 solid;
 }
 
 .Custom_Modal_Main_Icon {
-    height: 80%;
+    height: 100%;
     width: auto;
-    padding-right: 20px;
+    padding: 15px;
+    border: 3px solid #c4c4c4;
+    border-radius: 5px;
 }
 
-.Custom_Modal_Main_Text_Port {
-    width: 100%;
+.Custom_Modal_Main_Content_Port {
     display: flex;
-    position: relative;
-    padding-left: 20px;
+    // background: gray;
+    width: 100%;
 }
 
 .Custom_Modal_Main_Text {
     margin: auto;
-    width: 100%;
-    display: flex;
     position: relative;
     font-family: "Barlow Condensed";
     font-style: normal;
     font-weight: 500;
     line-height: 1em;
     color: #363636;
+    padding: 10px;
 }
 
 //Footer area
 .Custom_Modal_Footer {
     display: flex;
     background: white;
-    // height: 2em;
     font-size: 18px;
-    // top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 5px;   
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     justify-content: space-between;
+    border-radius: 4px;
+    width: 100%;
 }
 
-.Custom_Modal_Close_Button {
-    color: white;
-    cursor: pointer;
-    float: right;
-    font-size: 30px;
-    margin: 0;
+.Custom_Modal_Confirmation_Port {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #5279db;
+    border-radius: 4px;
 }
-
-.Custom_Modal_Close_Button:hover {
-    color: black;
-}
-
-// .Custom_Modal_Cancel_Button {
-//     background-color: #ee3a3a;
-//     float: left;
-// }
-
-// .Custom_Modal_OK_Button {
-//     background-color: #5279db;
-//     float: right;
-// }

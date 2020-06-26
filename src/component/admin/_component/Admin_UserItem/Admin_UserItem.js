@@ -135,22 +135,11 @@ class Admin_UserItem extends Component {
                     title={this.notifyHeader}
                     text={this.notifyContent}
                     type="confirmation"
-                    custom={false}
+                    closeModal={() => this.closeChangeRoleConfirmationPopup()}
                 >
+                    {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
                     <div className="Simple_Blue_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >OK</div>
                     <div className="Simple_White_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >Cancel</div>
-                </CustomModal>
-
-                {/* modal for notify change role success */}
-                <CustomModal
-                    open={this.state.isChangeRoleConfirmationPopupOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="alert"
-                    custom={false}
-                >
-                    <div className="Simple_Blue_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >OK</div>
                 </CustomModal>
 
             </div >
