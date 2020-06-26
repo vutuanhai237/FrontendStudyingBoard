@@ -1,4 +1,4 @@
-.Root_Simple_Red_Button {
+.Simple_Red_Button {
     box-sizing: border-box;
     width: fit-content;
     height: 25px;
@@ -18,12 +18,12 @@
     min-width: 80px;
 }
 
-.Root_Simple_Red_Button:hover {
+.Simple_Red_Button:hover {
     cursor: pointer;
     opacity: 90%;
 }
 
-.Root_Simple_Red_Button:active {
+.Simple_Red_Button:active {
     background: #c4c4c4;
     cursor: pointer;
     opacity: 90%;

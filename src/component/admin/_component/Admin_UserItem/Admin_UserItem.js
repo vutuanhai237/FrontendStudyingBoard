@@ -4,11 +4,19 @@ import gray_write_icon from '../../../../img/gray_write_icon.png'
 import gray_upload_icon from '../../../../img/gray_upload_icon.png'
 import white_dropdown_btn from '../../../../img/white_dropdown_icon.png'
 import dropdown_btn from '../../../../img/dropdown_icon.png'
+
+//combobox
 import '../../../shared_components/CustomCombobox.scss'
-import '../../../shared_components/CustomPopup.scss'
+
+//modal popup
+import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
+
+//delete icon
+// import gray_delete_icon from '../../../../img/gray_delete_icon.png'
+// import red_delete_icon from '../../../../img/red_delete_icon.png'
+// import confirmation_icon from '../../../../img/confirmation_management_icon.png'
 
 import { ClickAwayListener } from '@material-ui/core';
-import Popup from 'reactjs-popup'
 
 
 class Admin_UserItem extends Component {
@@ -27,30 +35,17 @@ class Admin_UserItem extends Component {
         this.docCount = this.props.docCount;
         this.score = this.props.score;
 
+        this.rolesList = this.props.rolesList;
+
         //for cancel change roleID
         this.recover_roleID = this.props.roleID;
 
-        //for click out of component
-        this.wrapperRef = React.createRef();
-
         this.isAnyChangeRoleDropdownComboboxOpen = false;
 
+        this.notifyContent = "";
+
         this.state = {
-            roles:
-                [
-                    {
-                        id: 0,
-                        role: "Admin"
-                    },
-                    {
-                        id: 1,
-                        role: "Collaborator"
-                    },
-                    {
-                        id: 2,
-                        role: "User"
-                    }
-                ],
+            roles: this.rolesList,
             role_PutDTO: {
                 id: this.roleID
             },
@@ -59,19 +54,7 @@ class Admin_UserItem extends Component {
         }
     }
 
-
-
     componentDidMount() {
-        // this.addEventListener('click', this.handleClick)
-        this.getAllRoles();
-    }
-
-    componentWillUnmount() {
-        // important
-        // this.removeEventListener('click', this.handleDropDownMenuClick)
-    }
-
-    getAllRoles = () => {
 
     }
 
@@ -89,7 +72,7 @@ class Admin_UserItem extends Component {
         )
 
         return (
-            <div className="Admin_User_Item" ref={this.wrapperRef} >
+            <div className="Admin_User_Item"  >
 
                 <img alt="avatar" src={this.avatarUrl} className="Show_Avatar"></img>
 
@@ -114,7 +97,7 @@ class Admin_UserItem extends Component {
                                 <div className="User_Item_Doc_Count"> {this.docCount}</div>
                             </div>
 
-                            <ClickAwayListener onClickAway={(e) => { this.closeAllChangeRoleDropdownCombobox(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID) }}>
+                            <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
                                 <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 - this.userID }}>
                                     <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
@@ -145,12 +128,30 @@ class Admin_UserItem extends Component {
                     </div>
                 </div >
 
-                <Popup
+                {/* modal for veritfy change role */}
+                <CustomModal
                     open={this.state.isChangeRoleConfirmationPopupOpen}
-                    onOpen={() => this.state.isChangeRoleConfirmationPopupOpen = true}
+                    shadow={true}
+                    title={this.notifyHeader}
+                    text={this.notifyContent}
+                    type="confirmation"
+                    custom={false}
                 >
+                    <div className="Simple_Blue_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >OK</div>
+                    <div className="Simple_White_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >Cancel</div>
+                </CustomModal>
 
-                </Popup>
+                {/* modal for notify change role success */}
+                <CustomModal
+                    open={this.state.isChangeRoleConfirmationPopupOpen}
+                    shadow={true}
+                    title={this.notifyHeader}
+                    text={this.notifyContent}
+                    type="alert"
+                    custom={false}
+                >
+                    <div className="Simple_Blue_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >OK</div>
+                </CustomModal>
 
             </div >
         );
@@ -192,28 +193,38 @@ class Admin_UserItem extends Component {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + i;
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";
-            // console.log(sub_dropdown_item_index_id);
         }
 
         sub_dropdown_item.className = "Activated_Dropdown_Combobox_Sub_Item";
         this.roleID = roleID;
 
-        this.setState({});
-
+        //open a confirmation popup
         this.openChangeRoleConfirmationPopup(roleID);
     }
 
-    handleCancelChangeRoleConfirmation = () => {
+    openChangeRoleConfirmationPopup = (roleID) => {
+        this.closeAllChangeRoleDropdownCombobox();
+        this.notifyHeader = "Xác nhận?";
+        this.notifyContent = "Xác nhận thay đổi quyền người dùng?";
+        this.setState({ isChangeRoleConfirmationPopupOpen: true });
+    }
+
+    closeChangeRoleConfirmationPopup = (roleID) => {
+        this.setState({ isChangeRoleConfirmationPopupOpen: false });
+    }
+
+
+    handleCancelChangeRoleConfirmation = () => { //phai co popup thi moi test duoc
         this.roleID = this.recover_roleID;
         this.setState({});
     }
 
-    openChangeRoleConfirmationPopup = (roleID) => {
-        
-    }
+    closeAllChangeRoleDropdownCombobox = () => {
 
-    closeAllChangeRoleDropdownCombobox = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
-        e.preventDefault();
+        let parent_id = "user-role-parent-dropdown-combobox-" + this.userID;
+        let show_text_id = "user-role-parent-dropdown-combobox-text-" + this.userID;
+        let dropdown_element_id = "user-role-dropdown-btn-element-" + this.userID;
+        let container_id = "user-role-dropdown-combobox-container-" + this.userID;
 
         let parent_menu_item = document.getElementById(parent_id);
         let dropdown_element = document.getElementById(dropdown_element_id);
@@ -227,11 +238,9 @@ class Admin_UserItem extends Component {
             show_text.style.color = "#363636";
             dropdown_element.src = dropdown_btn;
         }
-        this.isAnyChangeRoleDropdownComboboxOpen = false; this.setState({})
+        this.isAnyChangeRoleDropdownComboboxOpen = false;
+        this.setState({})
     }
-
-
-
 
 }
 export default Admin_UserItem;

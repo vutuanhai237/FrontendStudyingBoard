@@ -1,4 +1,4 @@
-.Root_Simple_Blue_Button {
+.Simple_Blue_Button {
     box-sizing: border-box;
     width: fit-content;
     height: 25px;
@@ -18,12 +18,12 @@
     min-width: 80px;
 }
 
-.Root_Simple_Blue_Button:hover {
+.Simple_Blue_Button:hover {
     cursor: pointer;
     opacity: 90%;
 }
 
-.Root_Simple_Blue_Button:active {
+.Simple_Blue_Button:active {
     background: #c4c4c4;
     cursor: pointer;
 }

@@ -6,6 +6,8 @@ import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
 import Paginator from '../../shared_components/Paginator/Paginator'
 import Admin_UserItem from '../_component/Admin_UserItem/Admin_UserItem'
 
+// import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
+
 class Admin_UserManagement extends Component {
     constructor(props) {
         super();
@@ -62,8 +64,41 @@ class Admin_UserManagement extends Component {
                         "role": "User",
                         "roleID": 0
                     }
-                ]
+                ],
+            rolesList: [
+                {
+                    id: 0,
+                    role: "Admin"
+                },
+                {
+                    id: 1,
+                    role: "Collaborator"
+                },
+                {
+                    id: 2,
+                    role: "User"
+                }
+            ],
+            isChangeRoleConfirmationPopupOpen: false,
+            
         }
+    }
+
+    componentDidMount() {
+        this.fetchAllUserInPageOne();
+        this.fetchAllRole();
+    }
+
+    fetchAllUserInPageOne = () => {
+        //feta
+    }
+
+    fetchAllRole = () => {
+
+    }
+
+    onPageChange = () => {
+
     }
 
     render() {
@@ -82,6 +117,8 @@ class Admin_UserManagement extends Component {
                 postCount={userItem.post_count}
                 docCount={userItem.doc_count}
                 score={userItem.score}
+
+                rolesList={this.state.rolesList}
             >
             </Admin_UserItem>
         )
@@ -98,6 +135,7 @@ class Admin_UserManagement extends Component {
                     </div>
 
                     {usersList}
+
 
                     <Paginator config={{
                         changePage: (currentInteractList) => this.onPageChange(currentInteractList),
