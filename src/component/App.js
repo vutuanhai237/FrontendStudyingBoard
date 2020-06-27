@@ -46,6 +46,13 @@ const App = () => {
                 <Route exact path="/admin/post_browser">
                     <AdminPage></AdminPage>
                 </Route>
+                {/* <Route exact path="/admin/post_browser">
+                    3
+                </Route> */}
+                <Route exact path="/admin/post_browser/:id">
+                    {/* Tới một bài viết cụ thể */}
+                    {/* <AdminPage></AdminPage> */}A
+                </Route>
                 <Route exact path="/admin/doc_browser">
                     <AdminPage></AdminPage>
                 </Route>

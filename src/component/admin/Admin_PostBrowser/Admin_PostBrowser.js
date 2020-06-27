@@ -1,17 +1,17 @@
+/* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-// import './Admin_PostBrowser.scss'
 import '../AdminPage'
 import PostSummary from '../../shared_components/PostSummary/PostSummary'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
-// import '../../shared_components/Paginator/Paginator.scss'
-import '../../shared_components/Paginator/Paginator'
-import Paginator from '../../shared_components/Paginator/Paginator'
+import Paginator from '../../shared_components/Paginator/ServerPaginator'
 
 class Admin_PostBrowser extends Component {
     constructor({ routeConfig }) {
         super();
         this.isAdminBrowser = true;
         this.maxItemPerPage = 2;
+        this.apiPrefix = "/api/v1/browser_post/";
+        // this.pageCount = 0;
         this.state = {
             requestedPosts:
                 [
@@ -271,27 +271,51 @@ class Admin_PostBrowser extends Component {
                     },
 
                 ],
-            currentInteractList: []
+            currentInteractList: [],
+            page_number: 1,
+            pageCount: 0
+
         }
     }
 
     componentDidMount() {
 
+        // this.pageCount = 4;
+
+        this.setState({ pageCount: 7 });
         //init current interact list = những item đầu tiên trong danh sách với số lượng = this.maxItemPerPage
-        if (this.state.requestedPosts.length <= this.maxItemPerPage) {
-            this.setState({ currentInteractList: this.state.requestedPosts })
-        }
-        else {
-            this.state.currentInteractList.splice(0, this.state.currentInteractList.length);
-            for (let i = 0; i < this.maxItemPerPage; i++) {
-                this.state.currentInteractList.push(this.state.requestedPosts[i])
-            }
-            this.setState(this.state);
-        }
+
+        //inject an array you want to render to paginator by data
+
+        //for client
+
+        //get all and some code behind
+
+        // if (this.state.requestedPosts.length <= this.maxItemPerPage) {
+        //     this.setState({ currentInteractList: this.state.requestedPosts })
+        // }
+        // else {
+        //     this.state.currentInteractList.splice(0, this.state.currentInteractList.length);
+        //     for (let i = 0; i < this.maxItemPerPage; i++) {
+        //         this.state.currentInteractList.push(this.state.requestedPosts[i])
+        //     }
+        //     this.setState(this.state);
+        // }
+
+        //server => cứ get với page = 1, rồi gán cho current interact list
     }
 
-    onPageChange = (currentInteractList) => {
+
+    //client
+    onPageChangeClient = (currentInteractList) => {
         this.setState({ currentInteractList: currentInteractList })
+    }
+
+    //client
+    onPageChangeServer = (page_number) => {
+        console.log(page_number)
+        this.setState({ page_number: page_number })
+
     }
 
     render() {
@@ -312,7 +336,7 @@ class Admin_PostBrowser extends Component {
                 commentCount={requestedPost.commentCount}
             ></PostSummary>
         )
-
+        // console.log(this.state.page_number)
         return (
             <div>
                 <Admin_Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
@@ -327,8 +351,10 @@ class Admin_PostBrowser extends Component {
                     {summaryRequestedPostList}
 
                     <Paginator config={{
-                        changePage: (currentInteractList) => this.onPageChange(currentInteractList),
-                        rawData: this.state.requestedPosts,
+                        // changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList), //client
+                        // rawData: this.state.requestedPosts, //client
+                        changePage: (page_number) => this.onPageChangeServer(page_number), //server   
+                        pageCount: this.state.pageCount, //server
                         maxItemPerPage: this.maxItemPerPage,
                         numPagesShown: 5,
                         bottom: "20px"

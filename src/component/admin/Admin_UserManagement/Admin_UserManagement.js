@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import '../AdminPage'
 import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
-import Paginator from '../../shared_components/Paginator/Paginator'
+import Paginator from '../../shared_components/Paginator/ClientPaginator'
 import Admin_UserItem from '../_component/Admin_UserItem/Admin_UserItem'
 
 // import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'

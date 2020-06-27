@@ -138,8 +138,8 @@ class Admin_UserItem extends Component {
                     closeModal={() => this.closeChangeRoleConfirmationPopup()}
                 >
                     {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <div className="Simple_Blue_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >OK</div>
-                    <div className="Simple_White_Button" onClick={() => this.closeChangeRoleConfirmationPopup()} >Cancel</div>
+                    <div className="Simple_Blue_Button" onClick={() => this.handlerVerifyChangeRoleConfirmation()} >OK</div>
+                    <div className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()} >Cancel</div>
                 </CustomModal>
 
             </div >
@@ -191,6 +191,7 @@ class Admin_UserItem extends Component {
         this.openChangeRoleConfirmationPopup(roleID);
     }
 
+    //handler change role
     openChangeRoleConfirmationPopup = (roleID) => {
         this.closeAllChangeRoleDropdownCombobox();
         this.notifyHeader = "Xác nhận?";
@@ -202,10 +203,18 @@ class Admin_UserItem extends Component {
         this.setState({ isChangeRoleConfirmationPopupOpen: false });
     }
 
+    handlerVerifyChangeRoleConfirmation = (roleID) => {
+        // send request to server   
+        //...
+
+        this.closeChangeRoleConfirmationPopup();
+    }
 
     handleCancelChangeRoleConfirmation = () => { //phai co popup thi moi test duoc
         this.roleID = this.recover_roleID;
-        this.setState({});
+        this.closeChangeRoleConfirmationPopup();
+       
+        // this.setState({});
     }
 
     closeAllChangeRoleDropdownCombobox = () => {

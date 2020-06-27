@@ -6,11 +6,10 @@ import '../../shared_components/Paginator/Paginator.scss'
 class Paginator extends Component {
     constructor(props) {
         super(props);
+        this.maxItemPerPage = this.props.config.maxItemPerPage; //số lượng tối đa item mỗi page
+        this.numPageShown = this.props.config.numPageShown; //số page được show trên thanh paginator, mặc định là 5, hiện tại chưa cho đổi.
 
-        this.maxItemPerPage = this.props.config.maxItemPerPage; //item mỗi page
-        this.numPageShown = this.props.config.numPageShown; //số page được show trên thanh paginator
-        this.rawData = this.props.config.rawData; //array được truyền vào
-        // this.min_top = this.props.config.min_top; //khoảng cách top tối thiểu
+        this.rawData = this.props.config.rawData; //dữ liệu được truyền vào từ component cha, áp dụng cho trường hợp type = "client"
 
         this.state = {
             currentInteractList: [],
@@ -21,6 +20,8 @@ class Paginator extends Component {
     }
 
     componentDidMount() {
+
+
         //get true pageCount
         if (this.rawData.length % this.maxItemPerPage === 0) {
             this.rawData.pageCount = Math.floor(this.rawData.length / this.maxItemPerPage);
@@ -31,15 +32,16 @@ class Paginator extends Component {
         }
 
         //initial array of page you want to render
-        if (this.state.pageCount < this.pageShowns) {
+        if (this.state.pageCount < this.props.config.numPagesShown) {
             this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
             for (let i = 1; i <= this.state.pageCount; i++) {
                 this.state.arrayShownPages.push(i);
             }
-            for (let i = this.pageShowns; i > this.state.pageCount; i--) {
-                this.state.arrayShownPages.push("...");
-            }
+            // for (let i = this.props.config.numPagesShown; i > this.state.pageCount; i--) {
+            //     this.state.arrayShownPages.push("...");
+            // }
         }
+
         this.state.currentInteractList.splice(0, this.state.currentInteractList.length);
 
         //get true shown page //clear current list then add what we need
@@ -51,9 +53,11 @@ class Paginator extends Component {
             for (let i = 0; i < this.maxItemPerPage; i++)
                 this.state.currentInteractList.push(this.rawData[i])
         }
+
         this.setState(this.state);
     }
 
+    // UI/UX when click on the pagination item
     onClickPaginationElement = (page_number, action) => {
 
         //handler action
@@ -77,54 +81,57 @@ class Paginator extends Component {
         }
 
         //handler page click
-        switch (page_number) {
-            //set number of page in the midde => update array shown pages
-            case 1:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number);
-                this.state.arrayShownPages.push(page_number + 1);
-                this.state.arrayShownPages.push(page_number + 2);
-                this.state.arrayShownPages.push(page_number + 3);
-                this.state.arrayShownPages.push(page_number + 4);
-                break;
-            case 2:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number - 1);
-                this.state.arrayShownPages.push(page_number);
-                this.state.arrayShownPages.push(page_number + 1);
-                this.state.arrayShownPages.push(page_number + 2);
-                this.state.arrayShownPages.push(page_number + 3);
-                break;
-            case this.state.pageCount:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number - 4);
-                this.state.arrayShownPages.push(page_number - 3);
-                this.state.arrayShownPages.push(page_number - 2);
-                this.state.arrayShownPages.push(page_number - 1);
-                this.state.arrayShownPages.push(page_number);
-                break;
-            case this.state.pageCount - 1:
-                this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                this.state.arrayShownPages.push(page_number - 3);
-                this.state.arrayShownPages.push(page_number - 2);
-                this.state.arrayShownPages.push(page_number - 1);
-                this.state.arrayShownPages.push(page_number);
-                this.state.arrayShownPages.push(page_number + 1);
-                break;
-            default:
-                {
-                    if (this.state.pageCount <= 5) {
-                        break;
+
+        if (!(this.state.pageCount < this.props.config.numPagesShown)) {
+            switch (page_number) {
+                //set number of page in the midde => update array shown pages
+                case 1:
+                    this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
+                    this.state.arrayShownPages.push(page_number);
+                    this.state.arrayShownPages.push(page_number + 1);
+                    this.state.arrayShownPages.push(page_number + 2);
+                    this.state.arrayShownPages.push(page_number + 3);
+                    this.state.arrayShownPages.push(page_number + 4);
+                    break;
+                case 2:
+                    this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
+                    this.state.arrayShownPages.push(page_number - 1);
+                    this.state.arrayShownPages.push(page_number);
+                    this.state.arrayShownPages.push(page_number + 1);
+                    this.state.arrayShownPages.push(page_number + 2);
+                    this.state.arrayShownPages.push(page_number + 3);
+                    break;
+                case this.state.pageCount:
+                    this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
+                    this.state.arrayShownPages.push(page_number - 4);
+                    this.state.arrayShownPages.push(page_number - 3);
+                    this.state.arrayShownPages.push(page_number - 2);
+                    this.state.arrayShownPages.push(page_number - 1);
+                    this.state.arrayShownPages.push(page_number);
+                    break;
+                case this.state.pageCount - 1:
+                    this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
+                    this.state.arrayShownPages.push(page_number - 3);
+                    this.state.arrayShownPages.push(page_number - 2);
+                    this.state.arrayShownPages.push(page_number - 1);
+                    this.state.arrayShownPages.push(page_number);
+                    this.state.arrayShownPages.push(page_number + 1);
+                    break;
+                default:
+                    {
+                        if (this.state.pageCount <= 5) {
+                            break;
+                        }
+                        else {
+                            this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
+                            this.state.arrayShownPages.push(page_number - 2);
+                            this.state.arrayShownPages.push(page_number - 1);
+                            this.state.arrayShownPages.push(page_number);
+                            this.state.arrayShownPages.push(page_number + 1);
+                            this.state.arrayShownPages.push(page_number + 2);
+                        }
                     }
-                    else {
-                        this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-                        this.state.arrayShownPages.push(page_number - 2);
-                        this.state.arrayShownPages.push(page_number - 1);
-                        this.state.arrayShownPages.push(page_number);
-                        this.state.arrayShownPages.push(page_number + 1);
-                        this.state.arrayShownPages.push(page_number + 2);
-                    }
-                }
+            }
         }
 
         //clear current list then add what we need
@@ -145,28 +152,33 @@ class Paginator extends Component {
     }
 
     render() {
-
-        // let passToParentData = this.state.currentInteractList;
-
         let shownPages = this.state.arrayShownPages.map(page_number =>
             <div className="Page_Item" id={page_number} key={page_number} >
                 {
                     page_number !== this.state.currentPage
                         ?
-                        <div className="Deactivated_Page" onClick={() => { this.props.config.changePage(this.state.currentInteractList); this.onClickPaginationElement(page_number, "") }}>
-                            {page_number}
+                        <div>
+                            {
+                                page_number !== "..." ?
+                                    < div className="Deactivated_Page" onClick={() => { this.props.config.changePage(this.state.currentInteractList); this.onClickPaginationElement(page_number, "") }}>
+                                        {page_number}
+                                    </div>
+                                    :
+                                    < div className="Deactivated_Page" >
+                                        {page_number}
+                                    </div>
+                            }
                         </div>
                         :
                         <div className="Activated_Page" onClick={() => this.onClickPaginationElement(page_number, "")}>
                             {page_number}
                         </div>
                 }
-            </div>
+            </div >
         );
 
         return (
             <div className="Paginator" style={{ position: "absolute", bottom: this.props.config.bottom }}>
-                {/* {console.log(this.min_top)} */}
                 <div className="First_Page" onClick={() => { this.props.config.changePage(this.state.currentInteractList); this.onClickPaginationElement(this.state.currentPage, "first") }} > first</div>
                 <div className="Prev_Page" onClick={() => { this.props.config.changePage(this.state.currentInteractList); this.onClickPaginationElement(this.state.currentPage, "prev") }}>Prev </div>
                 {shownPages}
