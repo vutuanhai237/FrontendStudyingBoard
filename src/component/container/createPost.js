@@ -11,7 +11,7 @@ import {
     Tooltip,
 } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
-import "./create_post.scss";
+import "./createPost.scss";
 class CreatePost extends Component {
     constructor(props) {
         super(props);

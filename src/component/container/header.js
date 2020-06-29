@@ -9,9 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Redirect } from "react-router-dom";
 import "./header.scss";
-import SearchBar from "../search_bar";
+import SearchBar from "../searchBar";
 import PropTypes from "prop-types";
-import LoginStatus from "../login_status";
+import LoginStatus from "../home/loginStatus";
 class Header extends Component {
     redirectToCreatePost(url) {
         const createHistory = require("history").createBrowserHistory;

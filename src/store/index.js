@@ -1,11 +1,11 @@
 import { createStore, compose, applyMiddleware } from "redux";
-import root_reducer from "../reducer/root_reducer"
+import rootReducer from "../reducer/"
 import thunk from 'redux-thunk';
 
 
 
 var store = createStore(
-    root_reducer,
+    rootReducer,
     compose(applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f)
 );

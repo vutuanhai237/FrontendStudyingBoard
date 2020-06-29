@@ -7,12 +7,12 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "../post/summary_post";
-import FilterPost from "../post/filter_post";
-import Paging from "../paging"
-import "./top_post.scss"
-import "./list_post.scss"
-class ListPost extends Component {
+import SummaryPost from "../post/summaryPost";
+import FilterPost from "../post/filterPost";
+import Paging from "../home/paging"
+import "./topPost.scss"
+import "./listPost.scss"
+class ListEvent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -63,4 +63,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListPost));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListEvent));

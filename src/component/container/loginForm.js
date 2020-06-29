@@ -3,7 +3,7 @@ import { Form, Button, Modal, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "./login_form.scss";
+import "./loginForm.scss";
 import logo from "../../img/logo-bht.png";
 class LoginForm extends React.Component {
     constructor(props) {

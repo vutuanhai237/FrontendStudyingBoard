@@ -10,7 +10,7 @@ import {
     FormControl,
     Modal,
 } from "react-bootstrap";
-import "./create_document.scss";
+import "./createDocument.scss";
 class CreateDocument extends Component {
     constructor(props) {
         super(props);

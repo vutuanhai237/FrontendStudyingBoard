@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button, Col, Modal, Image } from "react-bootstrap";
-import "./register_form.scss";
+import "./registerForm.scss";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import logo from "../../img/logo-bht.png";

@@ -1,15 +1,15 @@
 // Document by VTH
-// function: shows the top of events in home page.
+// function: shows the top of documents in home page.
 // props from parent: none
 // state: expand or not
-// dependency component: summary post
+// dependency component: summary document
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "../post/summary_post";
-import "./top_post.scss";
-class TopEvent extends Component {
+import { Row, Col, Card } from "react-bootstrap";
+import SummaryDocument from "../document/summaryDoc";
+import "./top_document.scss";
+class TopDocument extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,25 +27,25 @@ class TopEvent extends Component {
             });
         }
     }
-
     render() {
-        const { events } = this.props;
-        console.log(events);
+        const { documents } = this.props;
         const style = {
             display: this.state.isExpand,
         };
         return (
             <div id="group-post">
                 <div onClick={this.changeStatePost.bind(this)}>
-                    <p className="title">HOẠT ĐỘNG MỚI</p>
+                    <p className="title">TÀI LIỆU MỚI</p>
                 </div>
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {events.slice(0,3).map((item) => {
+                        {documents.slice(0,3).map((item) => {
                             return (
                                 <Col sm={12} md={4}>
-                                    <SummaryPost item={item}></SummaryPost>
+                                    <SummaryDocument
+                                        item={item}
+                                    ></SummaryDocument>
                                 </Col>
                             );
                         })}
@@ -58,7 +58,7 @@ class TopEvent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        events: state.post.events,
+        documents: state.document.documents,
     };
 };
 
@@ -67,5 +67,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(TopEvent)
+    connect(mapStateToProps, mapDispatchToProps)(TopDocument)
 );

@@ -1,15 +1,14 @@
 import React from "react";
 import Home from "./layout/home";
 import Posts from "./layout/posts";
-import Documents from "./layout/documents";
+import Documents from "./layout/doc";
 import Events from "./layout/events";
-import CrPost from "./layout/create_post";
-import CrDocument from "./layout/create_document";
+import CrPost from "./layout/createPost";
+import CrDocument from "./layout/createDoc";
 import Login from "./layout/login";
 import Register from "./layout/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
-import './App.css'
 
 const App = () => {
 
@@ -51,7 +50,7 @@ const App = () => {
                 </Route> */}
                 <Route exact path="/admin/post_browser/:id">
                     {/* Tới một bài viết cụ thể */}
-                    {/* <AdminPage></AdminPage> */}A
+                    {/* <AdminPage></AdminPage> */}
                 </Route>
                 <Route exact path="/admin/doc_browser">
                     <AdminPage></AdminPage>

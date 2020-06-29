@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../container/header";
-import CreateDocument from "../container/create_document";
+import CreateDocument from "../container/CreateDoc";
 class CrDocument extends Component {
     render() {
         return (

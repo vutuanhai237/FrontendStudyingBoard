@@ -7,11 +7,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryDocument from "../document/summary_document";
-import FilterDocument from "../document/filter_document";
-import Paging from "../paging";
-import "./top_post.scss";
-import "./list_post.scss";
+import SummaryDoc from "../document/summaryDoc";
+import FilterDoc from "../document/filterDoc";
+import Paging from "../home/paging";
+import "./topPost.scss";
+import "./listPost.scss";
 class ListPost extends Component {
     constructor(props) {
         super(props);
@@ -28,15 +28,15 @@ class ListPost extends Component {
                 <div>
                     <p className="title">DANH SÁCH TÀI LIỆU</p>
                 </div>
-                <FilterDocument />
+                <FilterDoc />
                 <Card.Body id="card-body">
                     <Row>
                         {document.map((item) => {
                             return (
                                 <Col sm={12} md={6}>
-                                    <SummaryDocument
+                                    <SummaryDoc
                                         item={item}
-                                    ></SummaryDocument>
+                                    ></SummaryDoc>
                                 </Col>
                             );
                         })}
