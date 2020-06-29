@@ -9,10 +9,38 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: "",
+            password: "",
             modalShow: false,
             isLoginSuccess: false,
         };
     }
+    handleClick = async (event) => {
+        event.preventDefault();
+        if (this.state.login) {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: this.refs.username.value, password: this.refs.password.value })
+            };
+            console.log(requestOptions);
+            let response = await fetch('api/v1/auth/login', requestOptions);
+            if(!response.ok) {
+                this.setState({
+                    isLoginSuccess: false
+                })
+                return;
+            }
+            else {
+                let data = await response.json();
+                sessionStorage.setItem("token", data.accessToken);
+                this.setState({
+                    isLoginSuccess: true
+                })
+            }
+        }
+    }
+
     login() {
         
         const { accounts } = this.props;
@@ -29,6 +57,7 @@ class LoginForm extends React.Component {
                     isLoginSuccess: true,
                     modalShow: true,
                 });
+                sessionStorage.setItem("token", "ok");
             }
             return 0;
         });
