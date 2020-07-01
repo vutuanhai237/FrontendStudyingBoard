@@ -3,8 +3,7 @@ import {
     DOC_GET_CATEGORIES_DOC,
     DOC_GET_SUBJECTS,
     DOC_GET_SEMESTERS,
-    DOC_POST_LIKE_DOC,
-    DOC_POST_COMMENT_DOC,
+    DOC_POST_UP_VIEW_DOC,
     DOC_GET_TOP_DOC,
     DOC_GET_DOC_BY_ID,
 } from "../constant/index.js"
@@ -37,12 +36,10 @@ export function docGetSubjects(subjects) {
     }
 }
 
-export function docPostLikeDoc(idPost, idUser, idWriter) {
+export function docPostUpViewDoc(idDoc) {
     return {
-        type: DOC_POST_LIKE_DOC,
-        payload: {
-            idPost, idUser, idWriter
-        }
+        type: DOC_POST_UP_VIEW_DOC,
+        payload: idDoc,
     }
 }
 

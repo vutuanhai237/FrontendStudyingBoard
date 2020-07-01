@@ -136,7 +136,8 @@ class Admin_UserItem extends Component {
                     text={this.notifyContent}
                     type="confirmation"
                     closeModal={() => this.closeChangeRoleConfirmationPopup()}
-                >
+                >`
+                
                     {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
                     <div className="Simple_Blue_Button" onClick={() => this.handlerVerifyChangeRoleConfirmation()} >OK</div>
                     <div className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()} >Cancel</div>
