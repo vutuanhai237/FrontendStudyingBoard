@@ -230,13 +230,6 @@ class AdminPage extends Component {
                                             </div>
                                     }
 
-                                    {/* <Link className="Vertical_Menu_Item" style={{ textDecoration: "none" }}>
-                                        <img alt="*" className="Primary_Menu_Item_Element" src={activity_management_menu_item_element} id="activity-managent-btn-element" />
-                                        <div className="Vertical_Menu_Item_Text">
-                                            Quản lý hoạt động
-                                        </div>
-                                    </Link> */}
-
                                     {/* Quan ly tai khoan menu item*/}
                                     < div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
                                         onClick={(e) => this.handleDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
@@ -248,32 +241,73 @@ class AdminPage extends Component {
                                             </div>
                                         </div>
                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="account-management-dropdown-btn-element" />
-                                        {/* <div className="gray_thin_decoration_underline" /> */}
                                     </div >
 
                                     <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
                                         <div style={{ height: "5px" }}></div>
-                                        <div className="Sub_Dropdown_Menu_Item">
-                                            Trang cá nhân
-                                        </div>
-                                        <div className="Sub_Dropdown_Menu_Item">
-                                            Thông tin tài khoản
-                                        </div>
-                                        <div className="Sub_Dropdown_Menu_Item">
-                                            Thông báo
-                                        </div>
-                                        <div className="Sub_Dropdown_Menu_Item">
+                                        {
+                                            window.location.pathname === "/admin/account_management" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Trang cá nhân
+                                                </div>
+                                                :
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Trang cá nhân
+                                                </div>
+                                        }
+                                        {
+                                            window.location.pathname === "/admin/account_information" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_information"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Thông tin tài khoản
+                                                </div>
+                                                :
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_information"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Thông tin tài khoản
+                                                </div>
+                                        }
+                                        {
+                                            window.location.pathname === "/admin/notification" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/notification"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Thông báo
+                                                </div>
+                                                :
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/notification"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Thông báo
+                                                </div>
+                                        }
+                                        {/* <div className="Sub_Dropdown_Menu_Item">
                                             Đổi avatar
-                                        </div>
-                                        <div className="Sub_Dropdown_Menu_Item">
-                                            Danh sách bài viết
-                                        </div>
-                                        <div className="Sub_Dropdown_Menu_Item">
-                                            Danh sách tài liệu
-                                        </div>
-                                        <div className="Sub_Dropdown_Menu_Item">
-                                            Đổi mật khẩu
-                                        </div>
+                                        </div> */}
+                                        {
+                                            window.location.pathname === "/admin/posts_list" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/posts_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Danh dách bài viết
+                                                </div>
+                                                :
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/posts_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Danh sách bài viết
+                                                </div>
+                                        }
+                                        {
+                                            window.location.pathname === "/admin/docs_list" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Danh dách tài liệu
+                                                </div>
+                                                :
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Danh sách tài liệu
+                                                </div>
+                                        }
+                                        {
+                                            window.location.pathname === "/admin/update_pass" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_pass"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Cập nhật mật khẩu
+                                                </div>
+                                                :
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_pass"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    Cập nhật mật khẩu
+                                                </div>
+                                        }
                                         <div className="margin_bottom_5px" />
                                         <div className="decoration_underline " />
                                         <div className="margin_bottom_5px" />
@@ -281,20 +315,40 @@ class AdminPage extends Component {
                                     </div>
 
                                     {/* Quan lý quyền truy cập: role */}
-                                    <div className="Vertical_Menu_Item">
-                                        <img alt="*" className="Primary_Menu_Item_Element" src={user_role_management_menu_item_element} id="role-managent-btn-element" />
-                                        <Link className="Vertical_Menu_Item_Text" to="/admin/user_role_management" style={{ textDecoration: "none" }}>
-                                            Quản lý quyền truy cập
-                                        </Link>
-                                    </div>
+                                    {
+                                        window.location.pathname === "/admin/user_role_management" ?
+                                            <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/user_role_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <img alt="*" className="Primary_Menu_Item_Element" src={user_role_management_menu_item_element} id="users-managent-btn-element" />
+                                                <div className="Vertical_Menu_Item_Text"  >
+                                                    Quản lý quyền truy cập
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/admin/user_role_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <img alt="*" className="Primary_Menu_Item_Element" src={user_role_management_menu_item_element} id="users-managent-btn-element" />
+                                                <div className="Vertical_Menu_Item_Text"  >
+                                                    Quản lý quyền truy cập
+                                                </div>
+                                            </div>
+                                    }
 
                                     {/* Thong ke */}
-                                    <div className="Vertical_Menu_Item">
-                                        <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="analysis-managent-btn-element" />
-                                        <div className="Vertical_Menu_Item_Text">
-                                            Thống kê
-                                    </div>
-                                    </div>
+                                    {
+                                        window.location.pathname === "/admin/analysis" ?
+                                            <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/analysis_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
+                                                <div className="Vertical_Menu_Item_Text"  >
+                                                    Thống kê
+                                                </div>
+                                            </div>
+                                            :
+                                            <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/admin/analysis_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
+                                                <div className="Vertical_Menu_Item_Text"  >
+                                                    Thống kê
+                                                </div>
+                                            </div>
+                                    }
                                 </div >
                             </ div >
                         </div>
@@ -334,17 +388,10 @@ class AdminPage extends Component {
             parent_menu_item.style.background = "white";
             parent_menu_item.style.paddingLeft = "0px";
             show_text.style.color = "#363636";
-            // menu_item_btn_element.src = btn_element;
             dropdown_element.src = dropdown_btn;
         }
         else {
-            // parent_menu_item.style.background = "#c4c4c4"
             dropdown_container.style.display = "block";
-            // parent_menu_item.style.paddingLeft = "10px";
-            // show_text.style.color = "white";
-            // parent_menu_item.style.borderRadius = "5px";
-            // menu_item_btn_element.src = white_btn_element;
-            // dropdown_element.src = white_dropdown_btn;
         }
     }
 }
