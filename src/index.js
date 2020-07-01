@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import App from "../src/component/App"
 import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
-import store from "./store/root_store";
+import store from "./store/index";
 import {
   BrowserRouter,
   Route
@@ -12,8 +12,7 @@ import {
 render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-     
+      <BrowserRouter>    
         <Route component={App} />
       </BrowserRouter>
     </Provider>

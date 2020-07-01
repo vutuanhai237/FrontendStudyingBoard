@@ -113,7 +113,7 @@ function PostReducer(state = initialState, action) {
         case "post/like_changed":
             var new_post = state.posts;
             new_post.map((item) => {
-                if (item.id == action.id) {
+                if (item.id === action.id) {
                     item.liked = !item.liked;
                 }
             });
@@ -121,7 +121,7 @@ function PostReducer(state = initialState, action) {
         case "post/save_changed":
             new_post = state.posts;
             new_post.map((item) => {
-                if (item.id == action.id) {
+                if (item.id === action.id) {
                     item.saved = !item.saved;
                 }
             });

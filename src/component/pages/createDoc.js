@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Header from "../container/header";
-import CreateDocument from "../container/CreateDoc";
-class CrDocument extends Component {
+import CreateDoc from "../container/createDoc";
+class CrDoc extends Component {
     render() {
         return (
             <div>
                 <Header />
-                <CreateDocument />
+                <CreateDoc />
                 <br></br>
             </div>
         );
     }
 }
 
-export default CrDocument;
+export default CrDoc;

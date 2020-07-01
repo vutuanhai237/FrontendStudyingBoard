@@ -1,4 +1,15 @@
+import {
 
+    DOC_GET_CATEGORIES_DOC,
+    DOC_GET_SUBJECTS,
+    DOC_GET_SEMESTERS,
+    DOC_GET_DOC_BY_ID,
+    DOC_GET_SEARCH,
+    DOC_GET_TOP_DOC,
+    DOC_POST_DOC,
+    DOC_POST_UP_VIEW_DOC,
+    DOC_POST_UP_DOWNLOAD_DOC,
+} from "../constant/index"
 const fakeDocuments = [
     {
         id: 0,
@@ -52,10 +63,31 @@ const fakeDocuments = [
 
 const initialState = {
     documents: fakeDocuments,
+    categories: [],
+    semesters: [],
+    subjects: [],
+    topDoc: [],
+    docs: [],
 }
 
 function DocumentReducer(state = initialState, action) {
     switch (action.type) {
+        case DOC_GET_CATEGORIES_DOC:
+            return { ...state, categories: action.payload };
+        case DOC_GET_SEMESTERS:
+            return { ...state, semesters: action.payload };
+        case DOC_GET_SUBJECTS:
+            return { ...state, subjects: action.payload };
+        case DOC_GET_TOP_DOC:
+            return { ...state, topDoc: action.payload };
+        case DOC_GET_SEARCH:
+            return { ...state, docs: action.payload };
+        case DOC_POST_DOC:
+            return { ...state };
+        case DOC_POST_UP_VIEW_DOC:
+            return { ...state };
+        case DOC_POST_UP_DOWNLOAD_DOC:
+            return { ...state };
         default:
             return initialState;
     }

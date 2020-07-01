@@ -5,7 +5,7 @@
 // dependency component: none
 import React, { Component } from "react";
 import { Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
-import "./filter_post.scss";
+import "./filterPost.scss";
 
 class FilterPost extends Component {
     render() {

@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/summaryPost";
-import "./top_post.scss";
+import "./topPost.scss";
 class TopEvent extends Component {
     constructor(props) {
         super(props);

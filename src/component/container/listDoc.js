@@ -9,7 +9,7 @@ import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryDoc from "../document/summaryDoc";
 import FilterDoc from "../document/filterDoc";
-import Paging from "../home/paging";
+import Paging from "../paging";
 import "./topPost.scss";
 import "./listPost.scss";
 class ListPost extends Component {

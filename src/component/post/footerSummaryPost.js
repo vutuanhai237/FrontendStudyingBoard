@@ -5,7 +5,7 @@
 // dependency component: none
 import React, { Component } from "react";
 import { Nav, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
-import "./footer_summary_post.scss";
+import "./footerSummaryPost.scss";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";

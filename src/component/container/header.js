@@ -6,7 +6,6 @@ import {
     faCloudUploadAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { Redirect } from "react-router-dom";
 import "./header.scss";
 import SearchBar from "../searchBar";

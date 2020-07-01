@@ -1,31 +1,39 @@
 import {
     DOC_POST_DOC,
-    DOC_GET_CATEGORY_DOC,
-    DOC_GET_SUBJECT,
+    DOC_GET_CATEGORIES_DOC,
+    DOC_GET_SUBJECTS,
+    DOC_GET_SEMESTERS,
     DOC_POST_LIKE_DOC,
     DOC_POST_COMMENT_DOC,
-    DOC_GET_TOP_DOC_BY_PAGE,
-    DOC_GET_TOP_DOC_BY_ID,
+    DOC_GET_TOP_DOC,
+    DOC_GET_DOC_BY_ID,
 } from "../constant/index.js"
 
 export function docPostDoc(doc) {
     return {
         type: DOC_POST_DOC,
-        payload: {
-            doc
-        }
+        payload: doc,
     }
 }
 
-export function docGetCategoryDoc() {
+export function docGetCategoriesDoc(categories) {
     return {
-        type: DOC_GET_CATEGORY_DOC,
+        type: DOC_GET_CATEGORIES_DOC,
+        payload: categories,
     }
 }
 
-export function docGetSubject() {
+export function docGetSemesters(semesters) {
     return {
-        type: DOC_GET_SUBJECT,
+        type: DOC_GET_SEMESTERS,
+        payload: semesters,
+    }
+}
+
+export function docGetSubjects(subjects) {
+    return {
+        type: DOC_GET_SUBJECTS,
+        payload: subjects,
     }
 }
 
@@ -38,25 +46,18 @@ export function docPostLikeDoc(idPost, idUser, idWriter) {
     }
 }
 
-export function docPostCommentPost(idPost, idUser, idParentComment, content) {
-    return {
-        type: DOC_POST_COMMENT_DOC,
-        payload: { 
-            idPost, idUser, idParentComment, content 
-        }
-    }
-}
 
-export function docGetTopDocByPage(page) {
+
+export function docGetTopDoc(page) {
     return {
-        type: DOC_GET_TOP_DOC_BY_PAGE,
+        type: DOC_GET_TOP_DOC,
         payload: page
     }
 }
 
-export function docGetTopDocByID(idPost) {
+export function docGetDocByID(idPost) {
     return {
-        type: DOC_GET_TOP_DOC_BY_ID,
+        type: DOC_GET_DOC_BY_ID,
         payload: idPost
     }
 }

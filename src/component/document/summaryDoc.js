@@ -5,7 +5,7 @@
 // dependency component: footer summary document
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
-import "./summary_document.scss";
+import "./summaryDoc.scss";
 import FooterSummaryDocument from "./footerSummaryDoc";
 class SummaryDocument extends Component {
     render() {

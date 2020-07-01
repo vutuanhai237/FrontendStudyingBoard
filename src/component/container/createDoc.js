@@ -8,16 +8,43 @@ import {
     Col,
     InputGroup,
     FormControl,
+    FormGroup,
     Modal,
 } from "react-bootstrap";
-import "./createDocument.scss";
-class CreateDocument extends Component {
+import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import {
+    getSemesters,
+    getSubjects,
+    getCategoriesDoc,
+    postDoc,
+} from "../../service/docAPI.js"
+import "./createDoc.scss";
+class CreateDoc extends Component {
     constructor(props) {
         super(props);
         this.state = {
             modalShow: false,
             isLoginSuccess: true,
+            uploadFileName: "Chọn file (ppt, pptx, txt, pdf)",
+            doc: {
+                fileName: "",
+                fileDescription: "",
+                file: "",
+                currentCategory: "Chọn danh mục",
+                currentSemester: "Chọn học kì",
+                currentSubject: "Chọn môn học",
+            }
+
         };
+
+    }
+
+    componentDidMount() {
+        this.props.getCategoriesDoc();
+        this.props.getSemesters();
+        this.props.getSubjects();
     }
     handleUpload() {
         this.setState({
@@ -31,8 +58,32 @@ class CreateDocument extends Component {
             modalShow: false,
         });
     }
+
+    changeCurrentCategory(evt) {
+        this.setState({
+            doc: {...this.state.doc, currentCategory: evt}
+        })
+    }
+
+    changeCurrentSemester(evt) {
+        this.setState({
+            doc: {...this.state.doc, currentSemester: evt}
+        })
+    }
+
+    changeCurrentSubject(evt) {
+        this.setState({
+            doc: {...this.state.doc, currentSubject: evt}
+        })
+    }
+
+    changeUploadFileName(evt) {
+        this.setState({
+            doc: {...this.state.doc, uploadFileName: evt.target.files[0].name, file: evt.target.files[0]}
+        })
+    }
     render() {
-        const category = ["A", "B", "C", "D", "E", "F"];
+        const { categories, semesters, subjects } = this.props;
         return (
             <div id="create-post">
                 <Modal
@@ -54,13 +105,7 @@ class CreateDocument extends Component {
                                         Tải lên thành công
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button
-                                            variant="success"
-                                            href="/"
-                                            onClick={this.handleClose.bind(
-                                                this
-                                            )}
-                                        >
+                                        <Button variant="success" href="/" onClick={this.handleClose.bind(this)}>
                                             Đồng ý
                                         </Button>
                                     </Modal.Footer>
@@ -71,12 +116,7 @@ class CreateDocument extends Component {
                                 <div>
                                     <Modal.Body>Tải lên thất bại</Modal.Body>
                                     <Modal.Footer>
-                                        <Button
-                                            variant="danger"
-                                            onClick={this.handleClose.bind(
-                                                this
-                                            )}
-                                        >
+                                        <Button variant="danger" onClick={this.handleClose.bind(this)}>
                                             Đồng ý
                                         </Button>
                                     </Modal.Footer>
@@ -112,27 +152,12 @@ class CreateDocument extends Component {
                         <Col>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title="Chọn danh mục"
+                                title={this.state.currentCategory}
                             >
-                                {category.map((item) => {
+                                {categories.map((item) => {
                                     return (
-                                        <Dropdown.Item href="#/action-1">
-                                            {item}
-                                        </Dropdown.Item>
-                                    );
-                                })}
-                            </DropdownButton>
-                        </Col>
-                        <Col>
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title="Chọn môn học"
-                                className="dropdown"
-                            >
-                                {category.map((item) => {
-                                    return (
-                                        <Dropdown.Item href="#/action-1">
-                                            {item}
+                                        <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.name}>
+                                            {item.name}
                                         </Dropdown.Item>
                                     );
                                 })}
@@ -143,56 +168,51 @@ class CreateDocument extends Component {
                         <Col>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title="Chọn học kỳ"
-                                className="dropdown"
+                                title={this.state.currentSubject}
                             >
-                                {category.map((item) => {
+                                {subjects.map((item) => {
                                     return (
-                                        <Dropdown.Item href="#/action-1">
-                                            {item}
-                                        </Dropdown.Item>
-                                    );
-                                })}
-                            </DropdownButton>
-                        </Col>
-                        <Col className="dropdown-year">
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title="Chọn năm học"
-                            >
-                                {category.map((item) => {
-                                    return (
-                                        <Dropdown.Item href="#/action-1">
-                                            {item}
+                                        <Dropdown.Item onSelect={(evt) => this.changeCurrentSubject(evt)} eventKey={item.subjectName}>
+                                            {item.subjectName}
                                         </Dropdown.Item>
                                     );
                                 })}
                             </DropdownButton>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                            <DropdownButton
+                                id="dropdown-basic-button"
+                                title={this.state.currentSemester}
+                            >
+                                {semesters.map((item) => {
+                                    return (
+                                        <Dropdown.Item onSelect={(evt) => this.changeCurrentSemester(evt)} eventKey={item.semesterNo + " . " + item.academicYear}>
+                                            {item.semesterNo + " . " + item.academicYear}
+                                        </Dropdown.Item>
+                                    );
+                                })}
+                            </DropdownButton>
+                        </Col>
+                    </Row>
+
                     <br className="mb-1"></br>
                     <Row className="browser-upload">
                         <Col>
-                            <Form.File id="formcheck-api-custom" custom>
-                                <Form.File.Input isValid />
+
+                            <Form.File id="formcheck-api-custom" onChange={this.changeUploadFileName.bind(this)} custom>
+                                <Form.File.Input onChange={this.changeUploadFileName.bind(this)} isValid />
                                 <Form.File.Label data-browse="Tải lên">
-                                    File của bạn
+                                    {this.state.uploadFileName}
                                 </Form.File.Label>
-                                {/* <Form.Control.Feedback type="valid">
-                            You did it!
-                        </Form.Control.Feedback> */}
                             </Form.File>
+
                         </Col>
                     </Row>
 
                     <br></br>
-                    <Button
-                        block
-                        className="btn-submit"
-                        variant="success"
-                        type="submit"
-                        onClick={this.handleUpload.bind(this)}
-                    >
+                    <Button block className="btn-submit" variant="success" type="submit" onClick={this.handleUpload.bind(this)}>
                         Tải lên
                     </Button>
                 </Form>
@@ -201,4 +221,20 @@ class CreateDocument extends Component {
     }
 }
 
-export default CreateDocument;
+
+const mapStatetoProps = (state) => {
+    return {
+        categories: state.doc.categories,
+        semesters: state.doc.semesters,
+        subjects: state.doc.subjects,
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getSemesters,
+    getSubjects,
+    postDoc,
+    getCategoriesDoc,
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CreateDoc));

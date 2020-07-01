@@ -8,13 +8,19 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
 import SummaryDocument from "../document/summaryDoc";
-import "./top_document.scss";
-class TopDocument extends Component {
+import { bindActionCreators } from 'redux';
+import { getTopDoc } from "../../service/docAPI"
+import "./topDoc.scss";
+class TopDoc extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isExpand: "block",
         };
+    }
+
+    componentDidMount() {
+        this.props.getTopDoc();
     }
     changeStatePost() {
         if (this.state.isExpand == "block") {
@@ -28,7 +34,7 @@ class TopDocument extends Component {
         }
     }
     render() {
-        const { documents } = this.props;
+        const { topDoc } = this.props;
         const style = {
             display: this.state.isExpand,
         };
@@ -40,7 +46,7 @@ class TopDocument extends Component {
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {documents.slice(0,3).map((item) => {
+                        {topDoc.slice(0,3).map((item) => {
                             return (
                                 <Col sm={12} md={4}>
                                     <SummaryDocument
@@ -56,16 +62,14 @@ class TopDocument extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStatetoProps = (state) => {
     return {
-        documents: state.document.documents,
+        topDoc: state.doc.topDoc,
     };
-};
+}
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getTopDoc
+}, dispatch);
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(TopDocument)
-);
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(TopDoc));

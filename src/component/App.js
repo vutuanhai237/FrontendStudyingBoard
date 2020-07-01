@@ -1,12 +1,12 @@
 import React from "react";
-import Home from "./layout/home";
-import Posts from "./layout/posts";
-import Documents from "./layout/doc";
-import Events from "./layout/events";
-import CrPost from "./layout/createPost";
-import CrDocument from "./layout/createDoc";
-import Login from "./layout/login";
-import Register from "./layout/register";
+import Home from "./pages/home";
+import Posts from "./pages/posts";
+import Documents from "./pages/doc";
+import Events from "./pages/events";
+import CrPost from "./pages/createPost";
+import CrDocument from "./pages/createDoc";
+import Login from "./pages/login";
+import Register from "./pages/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
 
