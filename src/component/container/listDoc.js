@@ -7,12 +7,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryDoc from "../document/summaryDoc";
-import FilterDoc from "../document/filterDoc";
+import SummaryDoc from "../doc/summaryDoc";
+import FilterDoc from "../doc/filterDoc";
 import Paging from "../paging";
 import "./topPost.scss";
 import "./listPost.scss";
-class ListPost extends Component {
+import { getSearchDoc } from "../../service/docAPI.js"
+import { bindActionCreators } from 'redux';
+class ListDoc extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,8 +23,7 @@ class ListPost extends Component {
     }
 
     render() {
-        const { document } = this.props;
-
+        const { searchDocs } = this.props;
         return (
             <div id="group-post">
                 <div>
@@ -31,7 +32,7 @@ class ListPost extends Component {
                 <FilterDoc />
                 <Card.Body id="card-body">
                     <Row>
-                        {document.map((item) => {
+                        {searchDocs.map((item) => {
                             return (
                                 <Col sm={12} md={6}>
                                     <SummaryDoc
@@ -48,16 +49,14 @@ class ListPost extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStatetoProps = (state) => {
     return {
-        document: state.document.documents,
+        searchDocs: state.doc.searchDocs
     };
-};
+}
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getSearchDoc
+}, dispatch);
 
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ListPost)
-);
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(ListDoc));

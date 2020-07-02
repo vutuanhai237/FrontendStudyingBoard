@@ -3,6 +3,7 @@ import {
     DOC_GET_CATEGORIES_DOC,
     DOC_GET_SUBJECTS,
     DOC_GET_SEMESTERS,
+    DOC_GET_SEARCH_DOC,
     DOC_POST_UP_VIEW_DOC,
     DOC_GET_TOP_DOC,
     DOC_GET_DOC_BY_ID,
@@ -52,6 +53,12 @@ export function docGetTopDoc(page) {
     }
 }
 
+export function docGetSearchDoc(docs) {
+    return {
+        type: DOC_GET_SEARCH_DOC,
+        payload: docs,
+    }
+}
 export function docGetDocByID(idPost) {
     return {
         type: DOC_GET_DOC_BY_ID,

@@ -70,7 +70,7 @@ class Header extends Component {
                             <Nav.Link className="menu-item" href="/posts">
                                 Bài viết
                             </Nav.Link>
-                            <Nav.Link className="menu-item" href="/documents">
+                            <Nav.Link className="menu-item" href="/docs">
                                 Tài liệu
                             </Nav.Link>
                             <Nav.Link className="menu-item" href="/events">

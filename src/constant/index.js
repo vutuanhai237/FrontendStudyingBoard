@@ -21,7 +21,7 @@ export const DOC_GET_SEMESTERS = "DOC_GET_SEMESTERS";
 export const DOC_POST_UP_VIEW_DOC = "DOC_POST_UP_VIEW_DOC";
 export const DOC_POST_UP_DOWNLOAD_DOC = "DOC_POST_UP_DOWNLOAD_DOC";
 export const DOC_GET_TOP_DOC = "DOC_GET_TOP_DOC";
-export const DOC_GET_SEARCH = "DOC_GET_SEARCH";
+export const DOC_GET_SEARCH_DOC = "DOC_GET_SEARCH_DOC";
 export const DOC_GET_DOC_BY_ID = "DOC_GET_DOC_BY_ID";
 // post
 //// 1. For writer
