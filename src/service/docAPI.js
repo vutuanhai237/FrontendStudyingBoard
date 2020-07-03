@@ -4,6 +4,7 @@ import {
     docGetSubjects,
     docGetSemesters,
     docGetTopDoc,
+    docGetSearchDoc,
     docGetDocByID,
 } from "../action/docAction.js";
 import { HOST, PORT } from '../constant/index';
@@ -69,12 +70,28 @@ export function getTopDoc() {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
-          };
-          
-          fetch(`http://${HOST}/docs/goodDoc?limit=3`, requestOptions)
+        };
+
+        fetch(`http://${HOST}/docs/goodDoc?limit=3`, requestOptions)
             .then(response => response.text())
-            .then(result =>{
+            .then(result => {
                 dispatch(docGetTopDoc(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
+    }
+}
+
+export function getSearchDoc(filter) {
+    return dispatch => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch(`https://${HOST}/docs/search?${filter}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                dispatch(docGetSearchDoc(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));
     }

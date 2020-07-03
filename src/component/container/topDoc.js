@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
-import SummaryDocument from "../document/summaryDoc";
+import SummaryDocument from "../doc/summaryDoc";
 import { bindActionCreators } from 'redux';
 import { getTopDoc } from "../../service/docAPI"
 import "./topDoc.scss";

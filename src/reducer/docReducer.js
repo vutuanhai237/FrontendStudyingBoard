@@ -4,7 +4,7 @@ import {
     DOC_GET_SUBJECTS,
     DOC_GET_SEMESTERS,
     DOC_GET_DOC_BY_ID,
-    DOC_GET_SEARCH,
+    DOC_GET_SEARCH_DOC,
     DOC_GET_TOP_DOC,
     DOC_POST_DOC,
     DOC_POST_UP_VIEW_DOC,
@@ -67,7 +67,8 @@ const initialState = {
     semesters: [],
     subjects: [],
     topDoc: [],
-    docs: [],
+    searchDocs: [],
+    currentFilterSemester: "",
 }
 
 function DocumentReducer(state = initialState, action) {
@@ -80,8 +81,8 @@ function DocumentReducer(state = initialState, action) {
             return { ...state, subjects: action.payload };
         case DOC_GET_TOP_DOC:
             return { ...state, topDoc: action.payload };
-        case DOC_GET_SEARCH:
-            return { ...state, docs: action.payload };
+        case DOC_GET_SEARCH_DOC:
+            return { ...state, searchDocs: action.payload };
         case DOC_POST_DOC:
             return { ...state };
         case DOC_POST_UP_VIEW_DOC:

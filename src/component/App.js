@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/home";
 import Posts from "./pages/posts";
-import Documents from "./pages/doc";
+import Docs from "./pages/docs";
 import Events from "./pages/events";
 import CrPost from "./pages/createPost";
 import CrDocument from "./pages/createDoc";
@@ -33,8 +33,8 @@ const App = () => {
                 <Route exact path="/posts">
                     <Posts />
                 </Route>
-                <Route exact path="/documents">
-                    <Documents />
+                <Route exact path="/docs">
+                    <Docs />
                 </Route>
                 <Route exact path="/events">
                     <Events />

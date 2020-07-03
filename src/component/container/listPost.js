@@ -10,7 +10,7 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/summaryPost";
 import FilterPost from "../post/filterPost";
 import Paging from "../paging"
-import "./topPost.scss"
+//import "./topPost.scss"
 import "./listPost.scss"
 class ListPost extends Component {
     constructor(props) {

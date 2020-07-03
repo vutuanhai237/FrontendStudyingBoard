@@ -152,7 +152,7 @@ class CreateDoc extends Component {
                         <Col>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={this.state.currentCategory}
+                                title={this.state.doc.currentCategory}
                             >
                                 {categories.map((item) => {
                                     return (
@@ -168,7 +168,7 @@ class CreateDoc extends Component {
                         <Col>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={this.state.currentSubject}
+                                title={this.state.doc.currentSubject}
                             >
                                 {subjects.map((item) => {
                                     return (
@@ -184,7 +184,7 @@ class CreateDoc extends Component {
                         <Col>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={this.state.currentSemester}
+                                title={this.state.doc.currentSemester}
                             >
                                 {semesters.map((item) => {
                                     return (

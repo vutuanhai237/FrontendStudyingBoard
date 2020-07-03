@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../container/header";
 import Footer from "../container/footer";
 import ListDocument from "../container/listDoc";
-class Documents extends Component {
+class Docs extends Component {
     render() {
         return (
             <div>
@@ -14,4 +14,4 @@ class Documents extends Component {
     }
 }
 
-export default Documents;
+export default Docs;
