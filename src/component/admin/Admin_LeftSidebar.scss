@@ -77,10 +77,9 @@
     padding-right: 10px;
 }
 
-.Role_Port {
+.Own_Role_Port {
     border-top: 5px #5279db solid;
     width: 100%;
-    text-align: center;
     border-bottom: 1px solid #c4c4c4;
     font-family: Barlow Condensed;
     font-style: normal;
@@ -228,7 +227,8 @@
 .Sub_Dropdown_Menu_Item:hover {
     background: #eeeeee !important;
     cursor: pointer;
-    border-right: 4px #5279db solid;
+    border-right: 4px #5279db solid ;
+    
 }
 
 .Parent_Dropdown_Menu_Item:active,
@@ -246,7 +246,7 @@
 }
 
 .Main_Interactive_Menu_Item_Active {
-    background: #eeeeee !important;
+    background: #e5eeee !important;
     cursor: pointer;
     border-right: 4px #5279db solid;
 }
