@@ -1,10 +1,12 @@
 import React from "react";
 import Home from "./pages/home";
 import Posts from "./pages/posts";
+import Post from "./pages/post";
 import Docs from "./pages/docs";
+import Doc from "./pages/doc";
 import Events from "./pages/events";
 import CrPost from "./pages/createPost";
-import CrDocument from "./pages/createDoc";
+import CrDoc from "./pages/createDoc";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -15,30 +17,20 @@ const App = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route exact path="/login">
-                    <Login />
-                </Route>
-                <Route exact path="/register">
-                    <Register />
-                </Route>
-                <Route exact path="/create_post">
-                    <CrPost />
-                </Route>
-                <Route exact path="/create_document">
-                    <CrDocument />
-                </Route>
-                <Route exact path="/posts">
-                    <Posts />
-                </Route>
-                <Route exact path="/docs">
-                    <Docs />
-                </Route>
-                <Route exact path="/events">
-                    <Events />
-                </Route>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/create_post" component={CrPost} />
+                <Route exact path="/create_doc" component={CrDoc} />
+                <Route exact path="/posts" component={Posts} />
+                <Route exact path="/posts/:id" component={Post} />
+                <Route exact path="/docs" component={Docs} />
+                <Route exact path="/docs/:id" component={Doc} />
+                <Route exact path="/events" component={Events} />
+
+
+
+                
                 <Route exact path="/admin">
                     <AdminPage></AdminPage>
                 </Route>

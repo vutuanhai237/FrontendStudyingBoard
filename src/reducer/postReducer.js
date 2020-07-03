@@ -17,7 +17,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: "string",
+        contentURL: "<p>H&atilde;y viết g&igrave; đ&oacute;Trong năm 1993, tạp ch&iacute; NY Time xuất bản bộ truyện tranh của Peter Steiner, nội dung l&agrave; về một con ch&oacute; ngồi trước m&aacute;y t&iacute;nh n&oacute;i chuyện với một con ch&oacute; kh&aacute;c, con đầu ti&ecirc;n n&oacute;i,&rdquo;Tr&ecirc;n Internet, kh&ocirc;ng ai biết m&agrave;y l&agrave; ch&oacute;&rdquo;. C&acirc;u truyện n&agrave;y lấy &yacute; tưởng từ sự thật l&agrave; bạn kh&ocirc;ng biết ai đang giao tiếp với m&igrave;nh th&ocirc;ng qua m&aacute;y t&iacute;nh! C&oacute; một con ch&oacute; đang g&otilde; email đầu b&ecirc;n kia, hay một m&aacute;y t&iacute;nh giả dạng con người trong Turing Test, những điều n&agrave;y ho&agrave;n to&agrave;n c&oacute; thể xảy ra.</p>",
         tags: [{ tag: "tag1" }, { tag: "tag1" }],
     },
     {
@@ -105,6 +105,7 @@ const fakePosts = [
 const initialState = {
     events: fakePosts.filter(item => item.categoryName === "Sự kiện"),
     posts: fakePosts.filter(item => item.categoryName !== "Sự kiện"),
+    currentPost: fakePosts[0],
 };
 
 function PostReducer(state = initialState, action) {

@@ -82,7 +82,7 @@ class CreatePost extends Component {
     }
 
     handleEditorChange = (e) => {
-        console.log("Content was updated:", e.target.getContent());
+        console.log(e.target.getContent());
         this.setState({
             content: e.target.getContent(),
         });
