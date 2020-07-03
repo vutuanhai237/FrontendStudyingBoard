@@ -1,0 +1,139 @@
+.Category_Component {
+    width: 96%;
+    user-select: none;
+    margin-left: 2%;
+}
+
+.Category_Component_Title {
+    margin-top: 10px;
+    width: 100%;
+    // border-bottom: 1px solid #c4c4c4;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #5279db;
+}
+
+.Category_List_Port {
+    width: 100%;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #5279db;
+}
+
+.Category_List_Header {
+    width: 100%;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: white;
+    display: flex;
+    background: #5279db;
+    user-select: none;
+}
+
+.Category_List_CODE_Header {
+    width: 20%;
+    text-align: center;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.Category_List_NAME_Header {
+    border-left: 1px white solid;
+    width: 80%;
+    text-align: center;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.Category_List_Item {
+    width: 100%;
+    display: flex;
+    border: 1px solid #c4c4c4;
+    border-top: none;
+    user-select: none;
+}
+
+.Category_List_Item_CODE {
+    width: 20%;
+    text-align: center;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #363636;
+}
+
+.Category_List_Item_NAME {
+    border-left: 1px #c4c4c4 solid;
+    width: 80%;
+    text-align: center;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #363636;
+    padding-left: 2%;
+}
+
+.Category_List_Item:hover,
+.Category_List_Item:hover {
+    background: #dddddd;
+    cursor: pointer;
+}
+
+.Category_Buttons_Port {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Category_Type_Dropdown {
+    width: 100%;
+    border-top: 1px #c4c4c4 solid;
+    border-bottom: 3px solid #5279db;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    height: 30px;
+    text-align: left;
+    color: #5279db;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.Category_Type_Dropdown:hover {
+    background: #dddddd;
+    cursor: pointer;
+}
+
+.Category_Type_Dropdown_Container{
+    display: block;
+}
+

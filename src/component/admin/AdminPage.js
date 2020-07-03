@@ -1,17 +1,15 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import './AdminPage.scss'
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import '../../constant/index.js'
 import './Admin_LeftSidebar.scss'
 
-// import btn_element from '../../img/btn_element.png'
-// import white_btn_element from '../../img/white_btn_element.png'
-// import white_dropdown_btn from '../../img/white_dropdown_icon.png'
+//resource image, icon
+
 import dropdown_btn from '../../img/dropdown_icon.png'
 import gray_write_icon from '../../img/gray_write_icon.png'
 import gray_upload_icon from '../../img/gray_upload_icon.png'
-
 import content_management_menu_item_element from '../../img/content_management_icon.png'
 import user_management_menu_item_element from '../../img/user_management_icon.png'
 import account_management_menu_item_element from '../../img/account_management_icon.png'
@@ -19,11 +17,16 @@ import activity_management_menu_item_element from '../../img/activity_management
 import user_role_management_menu_item_element from '../../img/user_role_management_icon.png'
 import analysis_management_menu_item_element from '../../img/analysis_icon.png'
 
-// import { Suspense, lazy } from 'react';
+//pages
 import Admin_DocBrowser from './Admin_DocBrowser/Admin_DocBrowser';
 import Admin_PostBrowser from './Admin_PostBrowser/Admin_PostBrowser';
 import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
-import SimpleBlueButton from '../shared_components/SimpleBlueButton/SimpleBlueButton';
+import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_CategoriesManagement'
+import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
+
+//resource string
+import { STR_LOGOUT_VN } from '../../constant/index.js';
+
 
 class AdminPage extends Component {
     constructor(props) {
@@ -89,14 +92,14 @@ class AdminPage extends Component {
                                         </div>
                                         <div className="Logout_Btn_Port">
                                             {/* <button className="Logout_Btn">Đăng xuất</button> */}
-                                            <SimpleBlueButton text="Đăng xuất"></SimpleBlueButton>
+                                            <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div>
                                         </div>
                                     </div>
                                 </div >
 
                                 {/* Role and achivement port */}
                                 < div className="Role_Achivement_Port" >
-                                    <div className="Role_Port">
+                                    <div className="Own_Role_Port">
                                         Admin
                                     </div>
                                     <div className="Achivement_Port">
@@ -119,7 +122,7 @@ class AdminPage extends Component {
                                     {/* Quản lý nội dung */}
                                     <div>
                                         <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
-                                            onClick={(e) => this.handleDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
+                                            onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
                                             <div className="display_flex">
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={content_management_menu_item_element} id="page-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
@@ -174,14 +177,14 @@ class AdminPage extends Component {
                                                     </div>
                                             }
                                             {
-                                                window.location.pathname === "/admin/category_management" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/category_management"} to="/admin/doc_browser" style={{ display: "flex", textDecoration: "none" }}>
+                                                window.location.pathname === "/admin/categories_management" ?
+                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/categories_management"} to="/admin/doc_browser" style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Quản lý danh mục
                                                     </div>
                                                     </div>
                                                     :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/category_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/categories_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Quản lý danh mục
                                                     </div>
@@ -232,7 +235,7 @@ class AdminPage extends Component {
 
                                     {/* Quan ly tai khoan menu item*/}
                                     < div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
-                                        onClick={(e) => this.handleDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
+                                        onClick={(e) => this.handleDisplayNoneDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
                                         }>
                                         <div className="display_flex">
                                             <img alt="*" className="Primary_Menu_Item_Element" src={account_management_menu_item_element} id="page-managent-btn-element" />
@@ -365,6 +368,9 @@ class AdminPage extends Component {
                                 <Route path="/admin/users_management">
                                     <Admin_UserManagement></Admin_UserManagement>
                                 </Route>
+                                <Route path="/admin/categories_management">
+                                    <Admin_CategoriesManagement></Admin_CategoriesManagement    >
+                                </Route>
                             </Switch>
                         </div>
                     </Router>
@@ -375,24 +381,24 @@ class AdminPage extends Component {
     }
 
     //code style for dropdown menu
-    handleDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
+    handleDisplayNoneDefaultDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
-        let parent_menu_item = document.getElementById(parent_id);
-        // let menu_item_btn_element = document.getElementById(btn_element_id);
-        let dropdown_element = document.getElementById(dropdown_element_id);
-        let show_text = document.getElementById(show_text_id);
         let dropdown_container = document.getElementById(container_id);
+        dropdown_container.style.display === "block"
+            ?
+            dropdown_container.style.display = "none"
+            :
+            dropdown_container.style.display = "block"
+    }
 
-        if (dropdown_container.style.display === "block") {
-            dropdown_container.style.display = "none";
-            parent_menu_item.style.background = "white";
-            parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "#363636";
-            dropdown_element.src = dropdown_btn;
-        }
-        else {
-            dropdown_container.style.display = "block";
-        }
+    handleDisplayBlockDefaultDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
+        e.preventDefault();
+        let dropdown_container = document.getElementById(container_id);
+        dropdown_container.style.display === "none"
+            ?
+            dropdown_container.style.display = "block"
+            :
+            dropdown_container.style.display = "none"
     }
 }
 export default AdminPage;
