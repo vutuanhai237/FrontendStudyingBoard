@@ -45,8 +45,8 @@ const App = () => {
                 <Route exact path="/admin/post_browser">
                     <AdminPage></AdminPage>
                 </Route>
-                <Route exact path="/admin/categories_management" component = {AdminPage}>
-                </Route>
+                <Route exact path="/admin/categories_management" component = {AdminPage}/>
+                
                 <Route exact path="/admin/post_browser/:id">
                     {/* Tới một bài viết cụ thể */}
                     {/* <AdminPage></AdminPage> */}

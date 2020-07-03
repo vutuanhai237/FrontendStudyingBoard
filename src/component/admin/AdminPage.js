@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import './AdminPage.scss'
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '../../constant/index.js'
 import './Admin_LeftSidebar.scss'
 
 //resource image, icon
+
 import dropdown_btn from '../../img/dropdown_icon.png'
 import gray_write_icon from '../../img/gray_write_icon.png'
 import gray_upload_icon from '../../img/gray_upload_icon.png'
@@ -24,7 +25,7 @@ import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_Categ
 import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 
 //resource string
-import { STR_LOGOUT_VN, STR_LOGOUT_EN } from '../../constant/index.js';
+import { STR_LOGOUT_VN } from '../../constant/index.js';
 
 
 class AdminPage extends Component {
@@ -121,7 +122,7 @@ class AdminPage extends Component {
                                     {/* Quản lý nội dung */}
                                     <div>
                                         <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
-                                            onClick={(e) => this.handleDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
+                                            onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
                                             <div className="display_flex">
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={content_management_menu_item_element} id="page-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
@@ -234,7 +235,7 @@ class AdminPage extends Component {
 
                                     {/* Quan ly tai khoan menu item*/}
                                     < div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
-                                        onClick={(e) => this.handleDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
+                                        onClick={(e) => this.handleDisplayNoneDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
                                         }>
                                         <div className="display_flex">
                                             <img alt="*" className="Primary_Menu_Item_Element" src={account_management_menu_item_element} id="page-managent-btn-element" />
@@ -380,23 +381,24 @@ class AdminPage extends Component {
     }
 
     //code style for dropdown menu
-    handleDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
+    handleDisplayNoneDefaultDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
-        let parent_menu_item = document.getElementById(parent_id);
-        let dropdown_element = document.getElementById(dropdown_element_id);
-        let show_text = document.getElementById(show_text_id);
         let dropdown_container = document.getElementById(container_id);
+        dropdown_container.style.display === "block"
+            ?
+            dropdown_container.style.display = "none"
+            :
+            dropdown_container.style.display = "block"
+    }
 
-        if (dropdown_container.style.display === "block") {
-            dropdown_container.style.display = "none";
-            parent_menu_item.style.background = "white";
-            parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "#363636";
-            dropdown_element.src = dropdown_btn;
-        }
-        else {
-            dropdown_container.style.display = "block";
-        }
+    handleDisplayBlockDefaultDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
+        e.preventDefault();
+        let dropdown_container = document.getElementById(container_id);
+        dropdown_container.style.display === "none"
+            ?
+            dropdown_container.style.display = "block"
+            :
+            dropdown_container.style.display = "none"
     }
 }
 export default AdminPage;
