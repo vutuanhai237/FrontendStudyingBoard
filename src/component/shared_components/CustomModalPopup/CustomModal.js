@@ -24,7 +24,7 @@ export default class CustomModal extends React.Component {
     //but, you must to code footer and handler event in your parent component
     //type = "alert" => not to code any more, only set title and text
     //type = "custom" if you want to custom yout modal by code in children
-
+        
     //tilte = "String": title of 
     //text = "String": main text
 

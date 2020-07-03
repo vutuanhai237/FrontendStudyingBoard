@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 // import Footer from "../../components/Footer/Footer.js";
 import './PostSummary.scss'
 import PostSummaryAuthorLink from './PostSummaryAuthorLink/PostSummaryAuthorLink'
-import BlueRedButtonGroup from '../BlueRedButtonGroup/BlueRedButtonGroup'
 import PostReactionBar from './PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
 
@@ -45,7 +44,7 @@ class PostSummary extends Component {
                 <PostReactionBar likeCount={this.props.likeCount} commentCount={this.props.commentCount}></PostReactionBar>
             </div>
             //render manager bar
-            managementBar = <BlueRedButtonGroup blueText="Preview" redText="Reject"></BlueRedButtonGroup>;
+            // managementBar = <BlueRedButtonGroup blueText="Preview" redText="Reject"></BlueRedButtonGroup>;
         }
 
         //Render tag from tags list

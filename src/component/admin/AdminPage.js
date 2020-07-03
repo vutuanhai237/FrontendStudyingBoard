@@ -369,7 +369,7 @@ class AdminPage extends Component {
                                     <Admin_UserManagement></Admin_UserManagement>
                                 </Route>
                                 <Route path="/admin/categories_management">
-                                    <Admin_CategoriesManagement></Admin_CategoriesManagement    >
+                                    <Admin_CategoriesManagement></Admin_CategoriesManagement>
                                 </Route>
                             </Switch>
                         </div>
@@ -384,10 +384,10 @@ class AdminPage extends Component {
     handleDisplayNoneDefaultDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
         let dropdown_container = document.getElementById(container_id);
-        dropdown_container.style.display === "block"
-            ?
-            dropdown_container.style.display = "none"
-            :
+        if (dropdown_container.style.display === "block") {
+            dropdown_container.style.display = "none";
+        }
+        else
             dropdown_container.style.display = "block"
     }
 

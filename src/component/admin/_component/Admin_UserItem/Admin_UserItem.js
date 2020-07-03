@@ -11,11 +11,6 @@ import '../../../shared_components/CustomCombobox.scss'
 //modal popup
 import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
 
-//delete icon
-// import gray_delete_icon from '../../../../img/gray_delete_icon.png'
-// import red_delete_icon from '../../../../img/red_delete_icon.png'
-// import confirmation_icon from '../../../../img/confirmation_management_icon.png'
-
 import { ClickAwayListener } from '@material-ui/core';
 
 
