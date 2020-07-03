@@ -28,17 +28,17 @@ const App = () => {
                 <Route exact path="/docs/:id" component={Docs} />
                 <Route exact path="/events" component={Events} />
 
+                {/* Admin */}
                 <Route exact path="/admin">
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/post_browser">
                     <AdminPage></AdminPage>
                 </Route>
-                <Route exact path="/admin/categories_management" component = {AdminPage}/>
-                
+                <Route exact path="/admin/categories_management" component={AdminPage} />
+
                 <Route exact path="/admin/post_browser/:id">
-                    {/* Tới một bài viết cụ thể */}
-                    {/* <AdminPage></AdminPage> */}
+                    {/* Tới một bài viết cụ thể và admin có quyền duyệt*/}
                 </Route>
                 <Route exact path="/admin/doc_browser">
                     <AdminPage></AdminPage>
@@ -46,6 +46,16 @@ const App = () => {
                 <Route exact path="/admin/users_management">
                     <AdminPage></AdminPage>
                 </Route>
+                <Route exact path="admin/user/:id">
+                    {/* Admin tới trang chi tiết của người dùng được chọn và toàn quyền thi triển võ công */}
+                </Route>
+
+
+                {/* User, himself các kiểu */}
+                <Route exact path="/user/:id">
+                    <AdminPage></AdminPage>
+                </Route>
+
             </Switch>
             <div className="App"></div>
         </Router>

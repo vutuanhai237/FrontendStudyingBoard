@@ -4,44 +4,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
-.Post_Summary {
+
+.Post_Summary_Item,
+.Requested_Post_Summary_Item {
     position: relative;
     width: 100%;
     height: fit-content;
     margin: auto;
     margin-bottom: 10px;
-    padding: 10px;
+
     padding-top: 5px;
     background-repeat: no-repeat;
     border: 1px #c4c4c4 solid;
     max-width: 1000px;
 }
 
-.Post_Summary:hover {
+.Post_Summary_Item:hover,
+.Requested_Post_Summary_Item:hover {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
 }
 
-.Post_Summary:active {
+.Post_Summary_Item:active,
+.Requested_Post_Summary_Item:active {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
 }
 
 //headBar
-.Post_Summary_Head_Bar {
-    height: fit-content;
-}
-
-.Post_Summary_Head_Bar .Post_Summary_Head_Bar_Author_Requested_Date_Post {
+.Post_Summary_Head_Bar,
+.Requested_Post_Summary_Item_Header_1 {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: fit-content;
-}
-
-.Post_Summary_Head_Bar .Post_Summary_Head_Bar_Author_Port {
-    //nothing
-}
-
-.Post_Summary_Head_Bar .Post_Summary_Head_Bar_Requested_Date_Port {
     position: relative;
     height: fit-content;
     font-family: "Barlow Condensed", sans-serif;
@@ -54,17 +48,11 @@
     user-select: none;
 }
 
-.Post_Summary_Head_Bar .Post_Summary_Head_Bar_Requested_Date_Port:hover {
-    cursor: pointer;
-    opacity: 80%;
-}
-
-.Post_Summary_Head_Bar .Post_Summary_Head_Bar_Requested_Date_Port:active {
-    cursor: pointer;
-    opacity: 60%;
-}
-
-.Post_Summary_Head_Bar .Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port {
+.Requested_Post_Summary_Item_Header_2 {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: fit-content;
     position: relative;
     height: fit-content;
     font-family: "Barlow Condensed", sans-serif;
@@ -77,17 +65,43 @@
     user-select: none;
 }
 
-.Post_Summary_Requested_Category {
+//Requested Post Header 1
+.Requested_Post_Summary_Item_Author_Link:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.Requested_Post_Summary_Item_Author_Link:active {
+    opacity: 60%;
+    cursor: pointer;
+}
+
+.Requested_Post_Summary_Item_Requested_Date {
+    font-size: 16px;
+}
+
+//Requested Post Header 2
+.Requested_Post_Summary_Item_Category {
     padding-left: 5px;
     color: #5279db;
 }
 
-.Post_Summary_Requested_Category:hover {
+.Requested_Post_Summary_Item_Category:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Post_Summary .Post_Summary_Title {
+.Requested_Post_Summary_Item_Category:active {
+    opacity: 60%;
+}
+
+//Content
+.Requested_Post_Summary_Item_Main_Port {
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.Post_Summary_Title {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -100,7 +114,8 @@
     align-items: center;
     color: #202020;
 }
-.Post_Summary .Post_Summary_Content_Port {
+
+.Post_Summary_Content {
     padding-left: 5px;
     font-family: Sarabun;
     font-style: normal;
@@ -115,22 +130,25 @@
 .Post_Summary_Image_Port {
     display: flex;
     width: 100%;
-    object-fit: cover;
     max-height: 200px;
 }
 
 .Post_Summary_Image {
-    max-width: 100%;
+    width: auto;
     max-height: 200px;
     margin: auto;
 }
 
-.Post_Summary_Requested_Tags_Port {
+.Post_Summary_Tags_Port {
     margin-left: 5px;
     margin-top: 5px;
     display: flex;
 }
 
-.Post_Summary_GroupBtn_Port {
-    margin-top: 5px;
+.Requested_Post_Summary_Item_Footer {
+    border-top: 1px #c4c4c4 solid;
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
 }
