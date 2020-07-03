@@ -133,7 +133,7 @@ class Admin_UserItem extends Component {
                 >
 
                     {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <button className="Simple_Blue_Button" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
                     <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                 </CustomModal>
 

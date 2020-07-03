@@ -113,11 +113,13 @@
 
 //body area
 .Custom_Modal_Body {
-    padding: 10px 15px;
-    height: 70%;
+    // padding: 10px 15px;
+    // height: 70%;
+    // display: flex;
+    // justify-content: start;
+    // border-bottom: 1px #c4c4c4 solid;
+    padding: 10px;
     display: flex;
-    justify-content: start;
-    border-bottom: 1px #c4c4c4 solid;
 }
 
 .Custom_Modal_Main_Icon {
@@ -147,15 +149,17 @@
 
 //Footer area
 .Custom_Modal_Footer {
+    border-top: 1px solid #c4c4c4;
     display: flex;
+    justify-content: flex-end;
     background: white;
     font-size: 18px;
-    padding-left: 10px;
+    // padding-top: 5px;
+    // padding-bottom: 5px;
+    // padding-right: 5px;
+    padding: 5px;
     padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    justify-content: space-between;
-    border-radius: 4px;
+    padding-left: 10px;
     width: 100%;
 }
 

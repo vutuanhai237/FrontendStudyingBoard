@@ -16,12 +16,22 @@ class Admin_CategoryManagement extends Component {
         //Post 
         this.isAddPostCategoryPopupOpen = false;
         this.isEditPostCategoryPopupOpen = false;
-        this.isDeletePostCategoryPopupOpen = false;
+        this.isVerifyDeletePostCategoryPopupOpen = false;
 
         //Doc
         this.isAddDocCategoryPopupOpen = false;
         this.isEditDocCategoryPopupOpen = false;
-        this.isDeleteDocCategoryPopupOpen = false;
+        this.isVerifyDeleteDocCategoryPopupOpen = false;
+
+        //Notify
+        this.notifyHeader = "";
+        this.notifyContent = "";
+        this.isNotifySuccessOpen = false;
+        this.isNotifyFailOpen = false;
+
+        //for Edit and Delete, only choose 1 item in all table
+        this.selected_category_id = "";
+        this.selected_category_name = "";
 
         this.state = {
             postCategoriesList:
@@ -57,6 +67,7 @@ class Admin_CategoryManagement extends Component {
             canClickDeletePostCategory: false,
             canClickEditDocCategory: false,
             canClickDeleteDocCategory: false,
+
         }
     }
 
@@ -79,40 +90,6 @@ class Admin_CategoryManagement extends Component {
     }
 
     render() {
-
-        // let postCategoriesList =
-
-
-        let docCategoriesList =
-            <div className="Category_Component_List">
-                <div className="Category_Component">
-                    <div className="Category_Component_Title">
-                        Danh sách môn học:
-                    </div>
-
-                    <div className="Category_List_Port">
-                        <div className="Category_List_Header">
-                            <div className="Category_List_CODE_Header">Mã môn học</div>
-                            <div className="Category_List_NAME_Header">Tên môn học</div>
-                        </div>
-                        <div className="Category_List_Port">
-                            {this.state.docCategoriesList.map(item =>
-                                <div className="Category_List_Item" key={item.id}>
-                                    <div className="Category_List_Item_CODE">{item.id}</div>
-                                    <div className="Category_List_Item_NAME">{item.title}</div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="Category_Buttons_Port" >
-                        <div className="Simple_Blue_Button margin_right_5px">Thêm</div>
-                        <div className="Simple_White_Button margin_right_5px">Sửa</div>
-                        <div className="Simple_Red_Button">Xóa</div>
-                    </div>
-                </div>
-            </div>;
-
         return (
             <div>
                 <Admin_Titlebar title="QUẢN LÝ DANH MỤC" />
@@ -140,7 +117,7 @@ class Admin_CategoryManagement extends Component {
                                         </div>
 
                                         {this.state.postCategoriesList.map(item =>
-                                            <div className="Category_List_Item" name="Post_Category_List_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, "admin-post-category-item-" + item.id)} >
+                                            <div className="Category_List_Item" name="Post_Category_List_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.title)} >
                                                 <div className="Category_List_Item_CODE">{item.id}</div>
                                                 <div className="Category_List_Item_NAME">{item.title}</div>
                                             </div>
@@ -168,20 +145,115 @@ class Admin_CategoryManagement extends Component {
                     </div>
 
                     <div className="Category_Type_Dropdown_Container" id="admin-doc-categories-container">
-                        {docCategoriesList}
+                        <div className="Category_Component_List">
+                            <div className="Category_Component">
+                                <div className="Category_Component_Title">
+                                    Danh sách môn học:
+                                </div>
+
+                                <div className="Category_List_Port">
+                                    <div className="Category_List_Header">
+                                        <div className="Category_List_CODE_Header">Mã môn học</div>
+                                        <div className="Category_List_NAME_Header">Tên môn học</div>
+                                    </div>
+                                    <div className="Category_List_Port">
+                                        {this.state.docCategoriesList.map(item =>
+                                            <div className="Category_List_Item" key={item.id}>
+                                                <div className="Category_List_Item_CODE">{item.id}</div>
+                                                <div className="Category_List_Item_NAME">{item.title}</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="Category_Buttons_Port" >
+                                    <div className="Simple_Blue_Button margin_right_5px">Thêm</div>
+                                    <div className="Simple_White_Button margin_right_5px">Sửa</div>
+                                    <div className="Simple_Red_Button">Xóa</div>
+                                </div>
+                            </div>
+                        </div>;
                     </div>
 
                 </div>
 
+                {/* Popup for add new post category */}
                 <CustomModal
                     shadow={true}
                     type="custom"
                     title="Thêm danh mục bài viết"
                     open={this.isAddPostCategoryPopupOpen}
-                    closeModal={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}); }}>
+                    closeModal={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}); }}
+                >
+                    <div className="Custom_Modal_Body">
+                        <div className="Simple_Gray_Label_18px"> Tên danh mục mới: </div>
+                        <input type="text" className="Simple_Text_Input" placeholder="Nhập tên danh mục ..." />
+                    </div>
 
-                            
+                    <div className="Custom_Modal_Footer">
+                        <div className="Simple_Gray_Label_18px">Xác nhận?</div>
+                        <div style={{ display: "flex" }}>
+                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
+                            <button className="Simple_White_Button" onClick={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
+                        </div>
+                    </div>
+                </CustomModal>
 
+                {/* Popup for update a new post category */}
+                <CustomModal
+                    shadow={true}
+                    type="custom"
+                    title="Cập nhật danh mục bài viết"
+                    open={this.isEditPostCategoryPopupOpen}
+                    closeModal={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}); }}
+                >
+                    <div className="Custom_Modal_Body">
+                        <div className="Simple_Gray_Label_18px"> Tên danh mục: </div>
+                        <input type="text" className="Simple_Text_Input" defaultValue={this.selected_category_name} />
+                    </div>
+
+                    <div className="Custom_Modal_Footer">
+                        <div className="Simple_Gray_Label_18px">Xác nhận?</div>
+                        <div style={{ display: "flex" }}>
+                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
+                            <button className="Simple_White_Button" onClick={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
+                        </div>
+                    </div>
+                </CustomModal>
+
+                {/* Popup for verifying delete post category */}
+                <CustomModal
+                    shadow={true}
+                    type="confirmation"
+                    title={this.notifyHeader}
+                    text={this.notifyContent}
+                    open={this.isVerifyDeletePostCategoryPopupOpen}
+                    closeModal={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}); }}
+                >
+                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
+                    <button className="Simple_White_Button" onClick={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
+                </CustomModal>
+
+                {/* Custom for notifing success */}
+                <CustomModal
+                    open={this.isNotifySuccessOpen}
+                    shadow={true}
+                    title={this.notifyHeader}
+                    text={this.notifyContent}
+                    type="alert_success"
+                    closeModal={() => { this.isNotifySuccessOpen = false; this.setState({}) }}
+                >
+                </CustomModal>
+
+                {/* Custom for notifing fail */}
+                <CustomModal
+                    open={this.isNotifyFailOpen}
+                    shadow={true}
+                    title={this.notifyHeader}
+                    text={this.notifyContent}
+                    type="alert_fail"
+                    closeModal={() => { this.isNotifyFailOpen = false; this.setState({}) }}
+                >
                 </CustomModal>
 
             </div >
@@ -202,15 +274,19 @@ class Admin_CategoryManagement extends Component {
         }
     }
 
-    handlerPostCategoryItemClick = (e, id) => {
+    //post category area:
+    handlerPostCategoryItemClick = (e, id, name) => {
         let all_item = document.getElementsByName("Post_Category_List_Item");
 
         for (let i = 0; i < all_item.length; i++) {
             all_item[i].className = "Category_List_Item";
         }
 
-        let category_item = document.getElementById(id);
+        let category_item = document.getElementById("admin-post-category-item-" + id);
         category_item.className = "Category_List_Item_Activated";
+
+        this.selected_category_id = id;
+        this.selected_category_name = name;
 
         this.setState({
             canClickDeletePostCategory: true,
@@ -230,12 +306,49 @@ class Admin_CategoryManagement extends Component {
         });
     }
 
-
+    //Add post category area:
     handlerClickAddPostCategory = () => {
         this.isAddPostCategoryPopupOpen = true;
         this.setState({});
     }
 
+    handlerVerifyAddNewPostCategoryConfirmation = () => {
+        this.notifyHeader = "Thành công";
+        this.notifyContent = "Thêm danh mục bài viết thành công!";
+        this.isAddPostCategoryPopupOpen = false;
+        this.isNotifySuccessOpen = true;
+        this.setState({});
+    }
+
+    //Edit post category item
+    handlerClickEditPostCategory = () => {
+        this.isEditPostCategoryPopupOpen = true;
+        this.setState({});
+    }
+
+    handlerVerifyEditPostCategoryConfirmation = () => {
+        this.notifyHeader = "Thành công";
+        this.notifyContent = "Cập nhật danh mục bài viết thành công!";
+        this.isEditPostCategoryPopupOpen = false;
+        this.isNotifySuccessOpen = true;
+        this.setState({});
+    }
+
+    //Delete post category item
+    handlerClickDeletePostCategory = () => {
+        this.notifyHeader = "Xác nhận?";
+        this.notifyContent = "Xác nhận xóa danh mục bài viết được chọn?";
+        this.isVerifyDeletePostCategoryPopupOpen = true;
+        this.setState({});
+    }
+
+    handlerVerifyDeletePostCategoryConfirmation = () => {
+        this.notifyHeader = "Thành công";
+        this.notifyContent = "Xóa danh mục bài viết thành công!";
+        this.isVerifyDeletePostCategoryPopupOpen = false;
+        this.isNotifySuccessOpen = true;
+        this.setState({});
+    }
 
 
 }
