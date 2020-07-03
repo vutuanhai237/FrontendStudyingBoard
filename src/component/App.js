@@ -25,12 +25,9 @@ const App = () => {
                 <Route exact path="/posts" component={Posts} />
                 <Route exact path="/posts/:id" component={Post} />
                 <Route exact path="/docs" component={Docs} />
-                <Route exact path="/docs/:id" component={Doc} />
+                <Route exact path="/docs/:id" component={Docs} />
                 <Route exact path="/events" component={Events} />
 
-
-
-                
                 <Route exact path="/admin">
                     <AdminPage></AdminPage>
                 </Route>

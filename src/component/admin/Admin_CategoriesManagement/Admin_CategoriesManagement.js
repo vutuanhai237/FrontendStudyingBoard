@@ -174,13 +174,13 @@ class Admin_CategoryManagement extends Component {
                 </div>
 
                 <CustomModal
-                    shadow={true} 
+                    shadow={true}
                     type="custom"
                     title="Thêm danh mục bài viết"
                     open={this.isAddPostCategoryPopupOpen}
                     closeModal={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}); }}>
 
-
+                            
 
                 </CustomModal>
 
@@ -228,8 +228,6 @@ class Admin_CategoryManagement extends Component {
             canClickDeletePostCategory: false,
             canClickEditPostCategory: false
         });
-
-
     }
 
 

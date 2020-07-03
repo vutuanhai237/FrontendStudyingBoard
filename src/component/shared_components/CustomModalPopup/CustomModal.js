@@ -15,6 +15,10 @@ import '../SimpleRedButton/SimpleRedButton.scss'
 import '../SimpleBlueButton/SimpleBlueButton.scss'
 import '../SimpleWhiteButton/SimpleWhiteButton.scss'
 
+import SimpleBlueButton from '../SimpleBlueButton/SimpleBlueButton'
+import SimpleRedButton from '../SimpleRedButton/SimpleRedButton'
+import SimplWhiteButton from '../SimpleWhiteButton/SimpleWhiteButton'
+
 export default class CustomModal extends React.Component {
 
     //to use this component:
@@ -24,7 +28,7 @@ export default class CustomModal extends React.Component {
     //but, you must to code footer and handler event in your parent component
     //type = "alert" => not to code any more, only set title and text
     //type = "custom" if you want to custom yout modal by code in children
-        
+
     //tilte = "String": title of 
     //text = "String": main text
 
@@ -74,15 +78,23 @@ export default class CustomModal extends React.Component {
                                     : <></>
                                 }
 
-                                {(this.props.type === "alert_success"||this.props.type === "alert_fail") ?
+                                {(this.props.type === "alert_success" || this.props.type === "alert_fail") ?
                                     <div className="Custom_Modal_Footer">
-                                        <div className="Simple_Blue_Button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div>
+                                        {/* <div className="Simple_Blue_Button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div> */}
+                                        <SimpleBlueButton text="OK" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} />
                                     </div>
                                     : <></>
                                 }
                             </>
                             :
-                            <></>}
+                            <>
+                                <div className="Custom_Modal_Header">
+                                    <div> {this.props.title} </div>
+                                    <img className="Custom_Modal_Close_Button" alt="header" src={red_delete_icon}
+                                        onClick={() => this.props.closeModal()} />
+                                </div>
+                                {this.props.children}
+                            </>}
                     </div>
                 </div>
             </div>

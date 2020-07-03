@@ -13,7 +13,6 @@ import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal
 
 import { ClickAwayListener } from '@material-ui/core';
 
-
 class Admin_UserItem extends Component {
 
     constructor(props) {
@@ -134,8 +133,8 @@ class Admin_UserItem extends Component {
                 >
 
                     {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <div className="Simple_Blue_Button" onClick={() => this.handlerVerifyChangeRoleConfirmation()} >OK</div>
-                    <div className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()} >Cancel</div>
+                    <button className="Simple_Blue_Button" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                 </CustomModal>
 
             </div >
