@@ -14,7 +14,8 @@ import fail_management_icon from '../../../img/fail_management_icon.png'
 import '../SimpleRedButton/SimpleRedButton.scss'
 import '../SimpleBlueButton/SimpleBlueButton.scss'
 import '../SimpleWhiteButton/SimpleWhiteButton.scss'
-
+import '../SimpleTextInput/SimpleTextInput.scss'
+import '../SimpleLabel/SimpleLabel.scss'
 export default class CustomModal extends React.Component {
 
     //to use this component:
@@ -68,13 +69,13 @@ export default class CustomModal extends React.Component {
                                 </div>
 
                                 {(this.props.type === "confirmation") ?
-                                    <div className="Custom_Modal_Confirmation_Port">
+                                    <div className="Custom_Modal_Footer">
                                         {this.props.children}
                                     </div>
                                     : <></>
                                 }
 
-                                {(this.props.type === "alert_success"||this.props.type === "alert_fail") ?
+                                {(this.props.type === "alert_success" || this.props.type === "alert_fail") ?
                                     <div className="Custom_Modal_Footer">
                                         <div className="Simple_Blue_Button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div>
                                     </div>
@@ -82,7 +83,14 @@ export default class CustomModal extends React.Component {
                                 }
                             </>
                             :
-                            <></>}
+                            <>
+                                <div className="Custom_Modal_Header">
+                                    <div> {this.props.title} </div>
+                                    <img className="Custom_Modal_Close_Button" alt="header" src={red_delete_icon}
+                                        onClick={() => this.props.closeModal()} />
+                                </div>
+                                    {this.props.children}                              
+                            </>}
                     </div>
                 </div>
             </div>

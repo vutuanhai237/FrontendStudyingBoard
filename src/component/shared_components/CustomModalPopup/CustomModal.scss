@@ -34,11 +34,11 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
     transition: all 0.5s;
     left: 30%;
-    top: 30%;
+    top: 5%;
     width: 40%;
-    height: 40%;
-    max-height: 400px;
-    min-height: 200px;
+    height: fit-content;
+    // max-height: 400px;
+    // min-height: 200px;
     border-radius: 4px;
     position: relative;
 }
@@ -67,9 +67,9 @@
 @media (min-width: 800px) {
     .Custom_Modal_Wrapper {
         left: 32%;
-        top: 30%;
+        top: 5%;
         width: 36%;
-        height: 30%;
+        // height: 30%;
     }
     .Custom_Modal_Main_Text {
         font-size: 19px;
@@ -113,15 +113,17 @@
 
 //body area
 .Custom_Modal_Body {
-    padding: 10px 15px;
-    height: 70%;
+    // padding: 10px 15px;
+    // height: 70%;
+    // display: flex;
+    // justify-content: start;
+    // border-bottom: 1px #c4c4c4 solid;
+    padding: 10px;
     display: flex;
-    justify-content: start;
-    border-bottom: 1px #c4c4c4 solid;
 }
 
 .Custom_Modal_Main_Icon {
-    height: 100%;
+    height: 100px;
     width: auto;
     padding: 15px;
     border: 3px solid #c4c4c4;
@@ -147,15 +149,17 @@
 
 //Footer area
 .Custom_Modal_Footer {
+    border-top: 1px solid #c4c4c4;
     display: flex;
+    justify-content: flex-end;
     background: white;
     font-size: 18px;
-    padding-left: 10px;
+    // padding-top: 5px;
+    // padding-bottom: 5px;
+    // padding-right: 5px;
+    padding: 5px;
     padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    justify-content: space-between;
-    border-radius: 4px;
+    padding-left: 10px;
     width: 100%;
 }
 
@@ -167,6 +171,5 @@
     padding-right: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
-    border-bottom: 3px solid #5279db;
     border-radius: 4px;
 }

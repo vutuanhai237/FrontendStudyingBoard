@@ -4,11 +4,37 @@ import React, { Component } from 'react'
 // import Footer from "../../components/Footer/Footer.js";
 import './PostSummary.scss'
 import PostSummaryAuthorLink from './PostSummaryAuthorLink/PostSummaryAuthorLink'
-import BlueRedButtonGroup from '../BlueRedButtonGroup/BlueRedButtonGroup'
 import PostReactionBar from './PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
 
-class PostSummary extends Component {
+class Admin_PostSummaryItem extends Component {
+
+    constructor(props) {
+        super(props);
+
+        //for conditionally render
+        // this.role = this.props.role; //"ADMIN_ROLE" or "USER_ROLE" or "CONTRIBUTOR_ROLE"
+        // this.action = this.props.action; //"VIEW_MY_SELF" or "BROWSE" (only Admin) or "VIEW_PUBLIC"
+        this.role = "USER";
+        this.action = "VIEW_MY_SELF";
+        //for show content
+        this.id = this.props.id;
+        this.authorName = this.props.authorName;
+        this.requestedDate = this.props.requestedDate;
+        this.requestedTime = this.props.requestedPost;
+        this.requestedCategory = this.props.requestedCategory;
+        this.title = this.props.title;
+        this.content = this.props.content;
+        this.image = this.props.image;
+        this.tags = this.props.tags;
+        this.likeCount = this.props.likeCount;
+        this.commentCount = this.props.commentCount;
+
+        this.state = {
+
+        }
+    }
+
     getFirstImage() {
 
     }
@@ -16,37 +42,50 @@ class PostSummary extends Component {
     render() {
 
         //Init dynamic components
-        let headBar = <div></div>; //
+        let headbar = (this.role === "ADMIN_ROLE" && this.action === "BROWSER") ?
+            <div className="Post_Summary_Head_Bar">
+                <div className="Post_Summary_Head_Bar_Author_Requested_Date_Post">
+                    <div className="Post_Summary_Head_Bar_Author_Port">
+                        <PostSummaryAuthorLink authorName={this.authorName}></PostSummaryAuthorLink>
+                    </div>
+                    <div className="Post_Summary_Head_Bar_Requested_Date_Port">
+                        {this.requestedDate}
+                    </div>
+                </div>
+                <div className="Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port">
+                    vào lúc {this.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục
+                    <div className="Post_Summary_Requested_Category">
+                        {this.requestedCategory}
+                    </div>
+                </div>
+            </div>
+            :
+            <div className="Post_Summary_Head_Bar">
+                <div className="Post_Summary_Category">
+                    {this.requestedCategory}
+                </div>
+            </div>;
+
         let tagsGroup = <div></div>; //
         let reactionBar = <div></div>; //
         let managementBar = <div></div>; //
 
-        // Condition to choose what will be rendered
-        if (this.props.isAdminBrowser) {
-            //render headbar: author, time, category ...
-            headBar = <div className="Post_Summary_Head_Bar">
-                <div className="Post_Summary_Head_Bar_Author_Requested_Date_Post">
-                    <div className="Post_Summary_Head_Bar_Author_Port">
-                        <PostSummaryAuthorLink authorName={this.props.authorName}></PostSummaryAuthorLink>
-                    </div>
-                    <div className="Post_Summary_Head_Bar_Requested_Date_Port">
-                        {this.props.requestedDate}
-                    </div>
+        // Condition to choose what will be rendered: 
+        // admin browser
+
+        if (this.role === "ADMIN_ROLE" && this.action === "BROWSER") {
+
+            managementBar =
+                <div className="Post_Summary_Button_Group_Port" >
+                    <div className="Simple_Blue_Button" style={{ marginRight: "10px", fontSize: "16px" }}>Xem trước</div>
+                    <div className="Simple_Red_Button" style={{ fontSize: "16px" }}>Từ chối</div>
                 </div>
-                <div className="Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port">
-                    vào lúc {this.props.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục
-                    <div className="Post_Summary_Requested_Category">
-                        {this.props.requestedCategory}
-                    </div>
-                </div>
-            </div>;
-            //render reaction bar
-            reactionBar = <div className="Post_Summary_Reaction_Bar">
-                <PostReactionBar likeCount={this.props.likeCount} commentCount={this.props.commentCount}></PostReactionBar>
-            </div>
-            //render manager bar
-            managementBar = <BlueRedButtonGroup blueText="Preview" redText="Reject"></BlueRedButtonGroup>;
         }
+        // if{}
+        //          //render reaction bar
+        //          reactionBar = <div className="Post_Summary_Reaction_Bar">
+        //          <PostReactionBar likeCount={this.props.likeCount} commentCount={this.props.commentCount}></PostReactionBar>
+        //      </div>
 
         //Render tag from tags list
         tagsGroup = this.props.tags.map((tag) => {
@@ -59,7 +98,13 @@ class PostSummary extends Component {
         return (
             <div className="Post_Summary" >
                 <div className="Post_Summary_Head_Bar_Port">
-                    {headBar}
+                    {/* {(this.role === "ADMIN_ROLE" && this.action === "BROWSER")
+                        ? */}
+                    {/*  */}
+                    {headbar}
+
+
+
                 </div>
 
                 <div className="Post_Summary_Title">
@@ -84,4 +129,4 @@ class PostSummary extends Component {
         );
     }
 }
-export default PostSummary;
+export default Admin_PostSummaryItem;

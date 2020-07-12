@@ -11,13 +11,7 @@ import '../../../shared_components/CustomCombobox.scss'
 //modal popup
 import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
 
-//delete icon
-// import gray_delete_icon from '../../../../img/gray_delete_icon.png'
-// import red_delete_icon from '../../../../img/red_delete_icon.png'
-// import confirmation_icon from '../../../../img/confirmation_management_icon.png'
-
 import { ClickAwayListener } from '@material-ui/core';
-
 
 class Admin_UserItem extends Component {
 
@@ -139,8 +133,8 @@ class Admin_UserItem extends Component {
                 >
 
                     {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <div className="Simple_Blue_Button" onClick={() => this.handlerVerifyChangeRoleConfirmation()} >OK</div>
-                    <div className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()} >Cancel</div>
+                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                 </CustomModal>
 
             </div >

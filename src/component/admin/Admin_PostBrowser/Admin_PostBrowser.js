@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import '../AdminPage'
-import PostSummary from '../../shared_components/PostSummary/PostSummary'
-import Admin_Titlebar from '../_component/Admin_Titlebar/Admin_Titlebar'
+import Admin_RequestedPostSummaryItem from '../admin_components/Admin_RequestedPostSummaryItem/Admin_RequestedPostSummaryItem'
+import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
 import Paginator from '../../shared_components/Paginator/ServerPaginator'
 
 class Admin_PostBrowser extends Component {
     constructor({ routeConfig }) {
         super();
-        this.isAdminBrowser = true;
+        this.isAdminBrowserPost = true;
         this.maxItemPerPage = 2;
         this.apiPrefix = "/api/v1/browser_post/";
         // this.pageCount = 0;
@@ -281,8 +281,11 @@ class Admin_PostBrowser extends Component {
     componentDidMount() {
 
         // this.pageCount = 4;
-
-        this.setState({ pageCount: 7 });
+        // this.state.currentInteractList = this.state.requestedPosts;
+        this.setState({
+            currentInteractList: this.state.requestedPosts
+        })
+        // this.setState({ pageCount: 7 });
         //init current interact list = những item đầu tiên trong danh sách với số lượng = this.maxItemPerPage
 
         //inject an array you want to render to paginator by data
@@ -308,7 +311,7 @@ class Admin_PostBrowser extends Component {
 
     //client
     onPageChangeClient = (currentInteractList) => {
-        this.setState({ currentInteractList: currentInteractList })
+        // this.setState({ currentInteractList: currentInteractList })
     }
 
     //client
@@ -320,21 +323,24 @@ class Admin_PostBrowser extends Component {
 
     render() {
         let summaryRequestedPostList = this.state.currentInteractList.map((requestedPost) =>
-            <PostSummary
+            <Admin_RequestedPostSummaryItem
                 key={requestedPost.id}
                 role="ADMIN_ROLE"
-                isAdminBrowser={this.isAdminBrower}
+                action="BROWSER"
+                id={requestedPost.id}
                 authorName={requestedPost.authorName}
+                authorID = {requestedPost.authorID}
                 requestedDate={requestedPost.requestedDate}
                 requestedTime={requestedPost.requestedTime}
                 requestedCategory={requestedPost.category}
+                requestedCategoryID = {requestedPost.categoryID}
                 title={requestedPost.title}
                 content={requestedPost.Summary}
                 image={requestedPost.firstImageURL}
                 tags={requestedPost.tags}
                 likeCount={requestedPost.likeCount}
                 commentCount={requestedPost.commentCount}
-            ></PostSummary>
+            ></Admin_RequestedPostSummaryItem>
         )
         // console.log(this.state.page_number)
         return (

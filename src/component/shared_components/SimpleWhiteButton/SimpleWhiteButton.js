@@ -6,9 +6,9 @@ class SimpleWhiteButton extends Component {
     
     render() {
         return (
-            <div className="Root_Simple_White_Button">
+            <button className="Simple_White_Button">
                 {this.props.text}
-            </div>
+            </button>
         )
     }
 }
