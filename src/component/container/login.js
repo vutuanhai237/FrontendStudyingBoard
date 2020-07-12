@@ -3,7 +3,7 @@ import { Form, Button, Modal, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "./loginForm.scss";
+import "./login.scss";
 import logo from "../../img/logo-bht.png";
 class LoginForm extends React.Component {
     constructor(props) {
@@ -203,7 +203,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        accounts: state.login_register.accounts,
+       // accounts: state.login_register.accounts,
     };
 };
 

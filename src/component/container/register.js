@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button, Col, Modal, Image } from "react-bootstrap";
-import "./registerForm.scss";
+import "./register.scss";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import logo from "../../img/logo-bht.png";
@@ -218,7 +218,7 @@ class RegisterForm extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
-        accounts: state.login_register.accounts,
+        //accounts: state.login_register.accounts,
     };
 };
 
