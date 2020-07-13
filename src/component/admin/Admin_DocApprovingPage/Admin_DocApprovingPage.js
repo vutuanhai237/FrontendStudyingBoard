@@ -1,12 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import './Admin_DocBrowser.scss'
 import '../AdminPage'
-import PostSummary from '../../shared_components/PostSummary/PostSummary'
 import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
+import Admin_RequestedDocSummaryItem from '../admin_components/Admin_RequestedDocSummaryItem'
 
 
-class Admin_DocBrowser extends Component {
+class Admin_DocApprovingPage extends Component {
     constructor(props) {
         super();
         this.maxPostNumber = 10;
@@ -26,8 +25,9 @@ class Admin_DocBrowser extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "12:30:40",
                         "contentURL": "contentURL",
-                        "likeCount": 30,
-                        "commentCount": 50,
+                        "downCount": 30,
+                        "viewCount": 50,
+                        "subject":"Cấu trúc rời rạc",
 
                         "tags": [
                             "some tag",
@@ -46,8 +46,9 @@ class Admin_DocBrowser extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
-                        "commentCount": 0,
+                        "downCount": 40,
+                        "viewCount": 0,
+                        "subject":"Nhập môn mạch số",
 
                         "tags": [
                             "tag1",
@@ -62,7 +63,7 @@ class Admin_DocBrowser extends Component {
     render() {
 
         let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) =>
-            <PostSummary
+            <Admin_RequestedDocSummaryItem
                 role="ADMIN_ROLE"
                 isAdminBrowser={this.isAdminBrower}
                 authorName={requestedPost.authorName}
@@ -74,7 +75,8 @@ class Admin_DocBrowser extends Component {
                 tags={requestedPost.tags}
                 likeCount={requestedPost.likeCount}
                 commentCount={requestedPost.commentCount}
-            ></PostSummary>
+                subject = {requestedPost.subject}
+            ></Admin_RequestedDocSummaryItem>
         )
 
         return (
@@ -87,4 +89,4 @@ class Admin_DocBrowser extends Component {
         );
     }
 }
-export default Admin_DocBrowser;
+export default Admin_DocApprovingPage;

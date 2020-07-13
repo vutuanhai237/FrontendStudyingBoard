@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 // import Header from "../../components/Header/Header.js";
 // import Footer from "../../components/Footer/Footer.js";
-import './PostSummary.scss'
-import PostSummaryAuthorLink from './PostSummaryAuthorLink/PostSummaryAuthorLink'
+import '../DocPostSummary.scss'
+// import PostSummaryAuthorLink from './PostSummaryAuthorLink/PostSummaryAuthorLink'
 import PostReactionBar from './PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
 
@@ -42,45 +42,45 @@ class Admin_PostSummaryItem extends Component {
     render() {
 
         //Init dynamic components
-        let headbar = (this.role === "ADMIN_ROLE" && this.action === "BROWSER") ?
-            <div className="Post_Summary_Head_Bar">
-                <div className="Post_Summary_Head_Bar_Author_Requested_Date_Post">
-                    <div className="Post_Summary_Head_Bar_Author_Port">
-                        <PostSummaryAuthorLink authorName={this.authorName}></PostSummaryAuthorLink>
-                    </div>
-                    <div className="Post_Summary_Head_Bar_Requested_Date_Port">
-                        {this.requestedDate}
-                    </div>
-                </div>
-                <div className="Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port">
-                    vào lúc {this.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục
-                    <div className="Post_Summary_Requested_Category">
-                        {this.requestedCategory}
-                    </div>
-                </div>
-            </div>
-            :
-            <div className="Post_Summary_Head_Bar">
-                <div className="Post_Summary_Category">
-                    {this.requestedCategory}
-                </div>
-            </div>;
+        // let headbar = (this.role === "ADMIN_ROLE" && this.action === "BROWSER") ?
+        //     <div className="Post_Summary_Head_Bar">
+        //         <div className="Post_Summary_Head_Bar_Author_Requested_Date_Post">
+        //             <div className="Post_Summary_Head_Bar_Author_Port">
+        //                 <PostSummaryAuthorLink authorName={this.authorName}></PostSummaryAuthorLink>
+        //             </div>
+        //             <div className="Post_Summary_Head_Bar_Requested_Date_Port">
+        //                 {this.requestedDate}
+        //             </div>
+        //         </div>
+        //         <div className="Post_Summary_Head_Bar_Requested_Time_Requested_Category_Port">
+        //             vào lúc {this.requestedTime} đã yêu cầu phê duyệt một bài viết trong danh mục
+        //             <div className="Post_Summary_Requested_Category">
+        //                 {this.requestedCategory}
+        //             </div>
+        //         </div>
+        //     </div>
+        //     :
+        //     <div className="Post_Summary_Head_Bar">
+        //         <div className="Post_Summary_Category">
+        //             {this.requestedCategory}
+        //         </div>
+        //     </div>;
 
-        let tagsGroup = <div></div>; //
-        let reactionBar = <div></div>; //
-        let managementBar = <div></div>; //
+        // let tagsGroup = <div></div>; //
+        // let reactionBar = <div></div>; //
+        // let managementBar = <div></div>; //
 
-        // Condition to choose what will be rendered: 
-        // admin browser
+        // // Condition to choose what will be rendered: 
+        // // admin browser
 
-        if (this.role === "ADMIN_ROLE" && this.action === "BROWSER") {
+        // if (this.role === "ADMIN_ROLE" && this.action === "BROWSER") {
 
-            managementBar =
-                <div className="Post_Summary_Button_Group_Port" >
-                    <div className="Simple_Blue_Button" style={{ marginRight: "10px", fontSize: "16px" }}>Xem trước</div>
-                    <div className="Simple_Red_Button" style={{ fontSize: "16px" }}>Từ chối</div>
-                </div>
-        }
+        //     managementBar =
+        //         <div className="Post_Summary_Button_Group_Port" >
+        //             <div className="Simple_Blue_Button" style={{ marginRight: "10px", fontSize: "16px" }}>Xem trước</div>
+        //             <div className="Simple_Red_Button" style={{ fontSize: "16px" }}>Từ chối</div>
+        //         </div>
+        // }
         // if{}
         //          //render reaction bar
         //          reactionBar = <div className="Post_Summary_Reaction_Bar">
@@ -88,44 +88,45 @@ class Admin_PostSummaryItem extends Component {
         //      </div>
 
         //Render tag from tags list
-        tagsGroup = this.props.tags.map((tag) => {
-            return (
-                <Tag text={tag}></Tag>
-            )
-        }
-        );
+        // tagsGroup = this.props.tags.map((tag) => {
+        //     return (
+        //         <Tag text={tag}></Tag>
+        //     )
+        // }
+        // );
 
         return (
-            <div className="Post_Summary" >
-                <div className="Post_Summary_Head_Bar_Port">
-                    {/* {(this.role === "ADMIN_ROLE" && this.action === "BROWSER")
-                        ? */}
-                    {/*  */}
-                    {headbar}
+            <div></div>
+        //     <div className="Post_Summary" >
+        //         <div className="Post_Summary_Head_Bar_Port">
+        //             {/* {(this.role === "ADMIN_ROLE" && this.action === "BROWSER")
+        //                 ? */}
+        //             {/*  */}
+        //             {headbar}
 
 
 
-                </div>
+        //         </div>
 
-                <div className="Post_Summary_Title">
-                    {this.props.title}
-                </div>
-                <div className="Post_Summary_Content_Port">
-                    {this.props.content}
-                </div>
-                <div className="Post_Summary_Image_Port">
-                    <img alt="post" className="Post_Summary_Image" src={this.props.image}></img>
-                </div>
-                <div className="Post_Summary_Requested_Tags_Port">
-                    {tagsGroup}
-                </div>
-                <div className="Post_Summary_Reaction_Bar_Port">
-                    {reactionBar}
-                </div>
-                <div className="Post_Summary_Management_Bar_Bar_Port">
-                    {managementBar}
-                </div>
-            </div >
+        //         <div className="Post_Summary_Title">
+        //             {this.props.title}
+        //         </div>
+        //         <div className="Post_Summary_Content_Port">
+        //             {this.props.content}
+        //         </div>
+        //         <div className="Post_Summary_Image_Port">
+        //             <img alt="post" className="Post_Summary_Image" src={this.props.image}></img>
+        //         </div>
+        //         <div className="Post_Summary_Requested_Tags_Port">
+        //             {tagsGroup}
+        //         </div>
+        //         <div className="Post_Summary_Reaction_Bar_Port">
+        //             {reactionBar}
+        //         </div>
+        //         <div className="Post_Summary_Management_Bar_Bar_Port">
+        //             {managementBar}
+        //         </div>
+        //     </div >
         );
     }
 }

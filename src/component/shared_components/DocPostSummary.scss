@@ -5,33 +5,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
 
-.Post_Summary_Item,
-.Requested_Post_Summary_Item {
+.DocPost_Summary_Item {
     position: relative;
     width: 100%;
     height: fit-content;
     margin: auto;
     margin-bottom: 10px;
-
     padding-top: 5px;
+    border-radius: 2px;
     background-repeat: no-repeat;
     border: 1px #c4c4c4 solid;
     max-width: 1000px;
 }
 
-.Post_Summary_Item:hover,
-.Requested_Post_Summary_Item:hover {
+.DocPost_Summary_Item:hover {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
+    border: 1px white solid;
 }
 
-.Post_Summary_Item:active,
-.Requested_Post_Summary_Item:active {
+.DocPost_Summary_Item:active {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
+    border: 1px white solid;
 }
 
-//headBar
-.Post_Summary_Head_Bar,
-.Requested_Post_Summary_Item_Header_1 {
+//general summary item headbar
+.DocPost_Summary_Item_Header_1 {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -48,7 +46,8 @@
     user-select: none;
 }
 
-.Requested_Post_Summary_Item_Header_2 {
+//requested summary item header
+.Requested_DocPost_Summary_Item_Header_2 {
     display: flex;
     justify-content: flex-start;
     width: 100%;
@@ -65,43 +64,74 @@
     user-select: none;
 }
 
-//Requested Post Header 1
-.Requested_Post_Summary_Item_Author_Link:hover {
+//Doc summary item header (contain time, semester, subject)
+.Doc_Category_Time_Semester_Subject_Header {
+    height: 1.5rem;
+    // margin-top: 5px;
+    display: flex;
+}
+
+.Doc_Category_Time_Semester_Subject_Icon {
+    margin-top: 0.6rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.1rem;
+    
+}
+
+.Doc_Category_Time_Semester_Subject_Text {
+    line-height: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    height: fit-content;
+    position: relative;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #363636;
+    user-select: none;
+    margin-right: 0.6rem;
+}
+//General summary item header 1
+.DocPost_Summary_Item_Author_Link:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.Requested_Post_Summary_Item_Author_Link:active {
+.DocPost_Summary_Item_Author_Link:active {
     opacity: 60%;
     cursor: pointer;
 }
 
-.Requested_Post_Summary_Item_Requested_Date {
+.DocPost_Summary_Item_Requested_Date {
     font-size: 16px;
 }
 
-//Requested Post Header 2
-.Requested_Post_Summary_Item_Category {
+//General summary item header 2
+.Requested_DocPost_Summary_Item_Category {
     padding-left: 5px;
     color: #5279db;
 }
 
-.Requested_Post_Summary_Item_Category:hover {
+.Requested_DocPost_Summary_Item_Category:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Requested_Post_Summary_Item_Category:active {
+.Requested_DocPost_Summary_Item_Category:active {
     opacity: 60%;
 }
 
+//Doc summary item category header
+
 //Content
-.Requested_Post_Summary_Item_Main_Port {
+.DocPost_Summary_Item_Main_Port {
     padding: 10px;
     padding-top: 0px;
 }
 
-.Post_Summary_Title {
+.DocPost_Summary_Title {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -115,7 +145,7 @@
     color: #202020;
 }
 
-.Post_Summary_Content {
+.DocPost_Summary_Content {
     padding-left: 5px;
     font-family: Sarabun;
     font-style: normal;
@@ -127,25 +157,25 @@
     color: #363636;
 }
 
-.Post_Summary_Image_Port {
+.DocPost_Summary_Image_Port {
     display: flex;
     width: 100%;
     max-height: 200px;
 }
 
-.Post_Summary_Image {
+.DocPost_Summary_Image {
     width: auto;
     max-height: 200px;
     margin: auto;
 }
 
-.Post_Summary_Tags_Port {
+.DocPost_Summary_Tags_Port {
     margin-left: 5px;
     margin-top: 5px;
     display: flex;
 }
 
-.Requested_Post_Summary_Item_Footer {
+.DocPost_Summary_Item_Footer {
     border-top: 1px #c4c4c4 solid;
     padding: 5px;
     display: flex;

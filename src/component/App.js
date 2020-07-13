@@ -32,15 +32,15 @@ const App = () => {
                 <Route exact path="/admin">
                     <AdminPage></AdminPage>
                 </Route>
-                <Route exact path="/admin/post_browser">
+                <Route exact path="/admin/post_approving">
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/categories_management" component={AdminPage} />
 
-                <Route exact path="/admin/post_browser/:id">
+                <Route exact path="/admin/post_approving/:id">
                     {/* Tới một bài viết cụ thể và admin có quyền duyệt*/}
                 </Route>
-                <Route exact path="/admin/doc_browser">
+                <Route exact path="/admin/doc_approving">
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/users_management">
