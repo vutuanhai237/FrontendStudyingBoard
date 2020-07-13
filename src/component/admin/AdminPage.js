@@ -22,6 +22,8 @@ import Admin_DocApprovingPage from './Admin_DocApprovingPage/Admin_DocApprovingP
 import Admin_PostApprovingPage from './Admin_PostApprovingPage/Admin_PostApprovingPage';
 import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
 import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_CategoriesManagement'
+import Admin_PageNotification from './Admin_PageNotification/Admin_PageNotification'
+
 import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 
 //resource string
@@ -370,6 +372,9 @@ class AdminPage extends Component {
                                 </Route>
                                 <Route path="/admin/categories_management">
                                     <Admin_CategoriesManagement></Admin_CategoriesManagement>
+                                </Route>
+                                <Route path="/admin/page_notification">
+                                    <Admin_PageNotification></Admin_PageNotification>
                                 </Route>
                             </Switch>
                         </div>

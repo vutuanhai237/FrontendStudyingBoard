@@ -104,9 +104,9 @@ class Admin_RequestedDocSummaryItem extends Component {
                         <img alt="post" className="DocPost_Summary_Image" src={this.props.image}></img>
                     </div>
 
-                    <div className="DocPost_Summary_Requested_Tags_Port">
+                    {/* <div className="DocPost_Summary_Requested_Tags_Port">
                         {tagsGroup}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="DocPost_Summary_Item_Footer">
                     <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>

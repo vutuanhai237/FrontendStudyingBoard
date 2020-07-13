@@ -11,6 +11,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
+import Admin_PageNotification from "./admin/Admin_PageNotification/Admin_PageNotification";
 
 const App = () => {
 
@@ -49,7 +50,9 @@ const App = () => {
                 <Route exact path="admin/user/:id">
                     {/* Admin tới trang chi tiết của người dùng được chọn và toàn quyền thi triển võ công */}
                 </Route>
-
+                <Route exact path="/admin/page_notification">
+                    <AdminPage></AdminPage>
+                </Route>
 
                 {/* User, himself các kiểu */}
                 <Route exact path="/user/:id">
