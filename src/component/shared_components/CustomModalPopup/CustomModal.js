@@ -14,8 +14,8 @@ import fail_management_icon from '../../../img/fail_management_icon.png'
 import '../SimpleRedButton/SimpleRedButton.scss'
 import '../SimpleBlueButton/SimpleBlueButton.scss'
 import '../SimpleWhiteButton/SimpleWhiteButton.scss'
-import '../SimpleTextInput/SimpleTextInput.scss'
-import '../SimpleLabel/SimpleLabel.scss'
+import '../SimpleTextInput.scss'
+import '../SimpleLabel.scss'
 export default class CustomModal extends React.Component {
 
     //to use this component:

@@ -28,6 +28,7 @@ import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 
 //resource string
 import { STR_LOGOUT_VN } from '../../constant/index.js';
+import Admin_AccountInformationManagement from './Admin_AccountInformationManagement/Admin_AccountInformationManagement';
 
 
 class AdminPage extends Component {
@@ -250,7 +251,7 @@ class AdminPage extends Component {
 
                                     <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
                                         <div style={{ height: "5px" }}></div>
-                                        {
+                                        {/* {
                                             window.location.pathname === "/admin/account_management" ?
                                                 <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Trang cá nhân
@@ -259,14 +260,14 @@ class AdminPage extends Component {
                                                 <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Trang cá nhân
                                                 </div>
-                                        }
+                                        } */}
                                         {
-                                            window.location.pathname === "/admin/account_information" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_information"} style={{ display: "flex", textDecoration: "none" }}>
+                                            window.location.pathname === "/admin/account_management" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Thông tin tài khoản
                                                 </div>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_information"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Thông tin tài khoản
                                                 </div>
                                         }
@@ -375,6 +376,9 @@ class AdminPage extends Component {
                                 </Route>
                                 <Route path="/admin/page_notification">
                                     <Admin_PageNotification></Admin_PageNotification>
+                                </Route>
+                                <Route path="/admin/account_management">
+                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
                             </Switch>
                         </div>

@@ -3,7 +3,7 @@ import Home from "./pages/home";
 import Posts from "./pages/posts";
 import Post from "./pages/post";
 import Docs from "./pages/docs";
-import Doc from "./pages/doc";
+// import Doc from "./pages/doc";
 import Events from "./pages/events";
 import CrPost from "./pages/createPost";
 import CrDoc from "./pages/createDoc";
@@ -11,7 +11,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
-import Admin_PageNotification from "./admin/Admin_PageNotification/Admin_PageNotification";
+// import Admin_PageNotification from "./admin/Admin_PageNotification/Admin_PageNotification";
 
 const App = () => {
 
@@ -51,6 +51,10 @@ const App = () => {
                     {/* Admin tới trang chi tiết của người dùng được chọn và toàn quyền thi triển võ công */}
                 </Route>
                 <Route exact path="/admin/page_notification">
+                    <AdminPage></AdminPage>
+                </Route>
+
+                <Route exact path="/admin/account_management">
                     <AdminPage></AdminPage>
                 </Route>
 

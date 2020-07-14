@@ -5,7 +5,7 @@ import '../AdminPage'
 import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import './Admin_PageNotification.scss'
-import done_icon from '../../../img/done_icon.png'
+// import done_icon from '../../../img/done_icon.png'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
