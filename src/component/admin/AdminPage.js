@@ -23,7 +23,8 @@ import Admin_PostApprovingPage from './Admin_PostApprovingPage/Admin_PostApprovi
 import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
 import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_CategoriesManagement'
 import Admin_PageNotification from './Admin_PageNotification/Admin_PageNotification'
-import Admin_UpdatePasswords from './Admin_AccountInformationManagement/Admin_UpdatePasswords'
+// import Admin_UpdatePasswords from './Admin_AccountInformationManagement/Admin_UpdatePasswords'
+import Admin_UserRoleManagement from './Admin_UserRoleManagement/Admin_UserRoleManangement'
 import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 
 //resource string
@@ -382,6 +383,9 @@ class AdminPage extends Component {
                                 </Route>
                                 <Route path="/admin/account_management/update_passwords">
                                     <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                </Route>
+                                <Route path = "/admin/user_role_management">
+                                    <Admin_UserRoleManagement></Admin_UserRoleManagement>
                                 </Route>
                             </Switch>
                         </div>

@@ -61,7 +61,9 @@ const App = () => {
                 <Route exact path="/admin/account_management/update_passwords">
                     <AdminPage></AdminPage>
                 </Route>
-
+                <Route exact path="/admin/user_role_management">
+                    <AdminPage></AdminPage>
+                </Route>
                 {/* User, himself các kiểu */}
                 <Route exact path="/user/:id">
                     <AdminPage></AdminPage>
