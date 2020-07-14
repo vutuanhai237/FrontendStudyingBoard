@@ -77,7 +77,7 @@ class Admin_AccountInformationManagement extends Component {
                         <div className="width_50_percents">
                             <Router>
                                 <Switch>
-                                    <Route exact path="/admin/account_management">
+                                    <Route exact path="/admin">
                                         <div className="Account_Information_Port">
 
                                             <div className="Simple_Gray_Label_18px">Avatar: </div>
@@ -124,7 +124,7 @@ class Admin_AccountInformationManagement extends Component {
 
                                     </Route>
 
-                                    <Route exact path = "/admin/account_management/update_passwords">
+                                    <Route path = "/admin/update_passwords">
                                         <Admin_UpdatePasswords></Admin_UpdatePasswords>
                                     </Route>
 

@@ -50,15 +50,12 @@ const App = () => {
                 <Route exact path="admin/user/:id">
                     {/* Admin tới trang chi tiết của người dùng được chọn và toàn quyền thi triển võ công */}
                 </Route>
-                <Route exact path="/admin/page_notification">
-                    <AdminPage></AdminPage>
-                </Route>
-
+            
                 <Route exact path="/admin/account_management">
                     <AdminPage></AdminPage>
                 </Route>
 
-                <Route exact path="/admin/account_management/update_passwords">
+                <Route exact path="/admin/update_passwords">
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/user_role_management">
