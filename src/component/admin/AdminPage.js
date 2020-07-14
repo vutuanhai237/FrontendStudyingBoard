@@ -23,7 +23,7 @@ import Admin_PostApprovingPage from './Admin_PostApprovingPage/Admin_PostApprovi
 import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
 import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_CategoriesManagement'
 import Admin_PageNotification from './Admin_PageNotification/Admin_PageNotification'
-
+import Admin_UpdatePasswords from './Admin_AccountInformationManagement/Admin_UpdatePasswords'
 import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 
 //resource string
@@ -297,7 +297,7 @@ class AdminPage extends Component {
                                         {
                                             window.location.pathname === "/admin/docs_list" ?
                                                 <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
-                                                    Danh dách tài liệu
+                                                    Danh sách tài liệu
                                                 </div>
                                                 :
                                                 <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
@@ -305,12 +305,12 @@ class AdminPage extends Component {
                                                 </div>
                                         }
                                         {
-                                            window.location.pathname === "/admin/update_pass" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_pass"} style={{ display: "flex", textDecoration: "none" }}>
+                                            window.location.pathname === "/admin/account_management/update_passwords" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_management/update_passwords"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Cập nhật mật khẩu
                                                 </div>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_pass"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_management/update_passwords"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Cập nhật mật khẩu
                                                 </div>
                                         }
@@ -339,7 +339,7 @@ class AdminPage extends Component {
                                     }
 
                                     {/* Thong ke */}
-                                    {
+                                    {/* {
                                         window.location.pathname === "/admin/analysis" ?
                                             <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/analysis_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
@@ -354,7 +354,7 @@ class AdminPage extends Component {
                                                     Thống kê
                                                 </div>
                                             </div>
-                                    }
+                                    } */}
                                 </div >
                             </ div >
                         </div>
@@ -378,6 +378,9 @@ class AdminPage extends Component {
                                     <Admin_PageNotification></Admin_PageNotification>
                                 </Route>
                                 <Route path="/admin/account_management">
+                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                </Route>
+                                <Route path="/admin/account_management/update_passwords">
                                     <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
                             </Switch>

@@ -11,6 +11,8 @@ import './Admin_AccountInformationManagement.scss'
 import { ClickAwayListener } from '@material-ui/core'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Admin_UpdatePasswords from './Admin_UpdatePasswords'
 
 class Admin_AccountInformationManagement extends Component {
     constructor(props) {
@@ -73,49 +75,61 @@ class Admin_AccountInformationManagement extends Component {
                 <div className="Admin_Show_Port">
                     <div className="display_flex width_100_percents" >
                         <div className="width_50_percents">
-                            <div className="Account_Information_Port">
+                            <Router>
+                                <Switch>
+                                    <Route exact path="/admin/account_management">
+                                        <div className="Account_Information_Port">
 
-                                <div className="Simple_Gray_Label_18px">Avatar: </div>
-                                <div className="Account_Information_Avatar_Port">
-                                    <img className="Account_Information_Avatar_Image" alt="avatar" src={this.state.accountInformation.avartarUrl} />
-                                </div>
+                                            <div className="Simple_Gray_Label_18px">Avatar: </div>
+                                            <div className="Account_Information_Avatar_Port">
+                                                <img className="Account_Information_Avatar_Image" alt="avatar" src={this.state.accountInformation.avartarUrl} />
+                                            </div>
 
-                                {/* Display name */}
-                                <div className="Simple_Gray_Label_18px margin_top_10px">
-                                    Họ tên:
-                             </div>
-                                <input type="text" className="Simple_Text_Input" />
+                                            {/* Display name */}
+                                            <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                Họ tên:
+                                            </div>
+                                            <input type="text" className="Simple_Text_Input" />
 
-                                {/* Username */}
-                                <div className="Simple_Gray_Label_18px margin_top_10px">
-                                    Username:
-                              </div>
-                                <input type="text" className="Simple_Text_Input" />
+                                            {/* Username */}
+                                            <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                Username:
+                                            </div>
+                                            <input type="text" className="Simple_Text_Input" />
 
-                                {/* Passwords */}
-                                <div className="Simple_Gray_Label_18px margin_top_10px">
-                                    Passwords:
-                            </div>
-                                <input type="text" className="Simple_Text_Input" />
+                                            {/* Passwords */}
+                                            <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                Passwords:
+                                            </div>
+                                            <input type="text" className="Simple_Text_Input" />
 
-                                {/* Facebook */}
-                                <div className="Simple_Gray_Label_18px margin_top_10px">
-                                    Facebook:
-                             </div>
-                                <input type="text" className="Simple_Text_Input" />
+                                            {/* Facebook */}
+                                            <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                Facebook:
+                                            </div>
+                                            <input type="text" className="Simple_Text_Input" />
 
-                                {/* Gmail */}
-                                <div className="Simple_Gray_Label_18px margin_top_10px">
-                                    Gmail:
-                             </div>
-                                <input type="text" className="Simple_Text_Input" />
-                            </div>
+                                            {/* Gmail */}
+                                            <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                Gmail:
+                                            </div>
+                                            <input type="text" className="Simple_Text_Input" />
+                                            </div>
 
-                            <div className="display_flex margin_top_10px" >
-                                <button className="Simple_Blue_Button margin_auto"  >
-                                    Lưu thay đổi
-                            </button>
-                            </div>
+                                        <div className="display_flex margin_top_10px" >
+                                            <button className="Simple_Blue_Button margin_auto"  >
+                                                Lưu thay đổi
+                                            </button>
+                                        </div>
+
+                                    </Route>
+
+                                    <Route exact path = "/admin/account_management/update_passwords">
+                                        <Admin_UpdatePasswords></Admin_UpdatePasswords>
+                                    </Route>
+
+                                </Switch>
+                            </Router>
                         </div>
 
                         <div className="margin_left_10px" />
@@ -123,7 +137,7 @@ class Admin_AccountInformationManagement extends Component {
                         <div className="width_50_percents">
                             <div className="Account_Information_Port">
                                 <div className="display_flex">
-                                    <div className="Simple_Gray_Label_18px" style = {{lineHeight: "25px"}}>Role:</div>
+                                    <div className="Simple_Gray_Label_18px" style={{ lineHeight: "25px" }}>Role:</div>
                                     <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
                                         <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
