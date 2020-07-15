@@ -33,8 +33,11 @@ export const POST_POST_LIKE_POST = "POST_POST_LIKE_POST";
 export const POST_POST_COMMENT_POST = "POST_POST_COMMENT_POST";
 export const POST_GET_TOP_POST_BY_PAGE = "POST_GET_TOP_POST_BY_PAGE";
 export const POST_GET_TOP_POST_BY_ID = "POST_GET_TOP_POST_BY_ID";
-
 //resource string manage
 export const STR_LOGOUT_VN = "Đăng xuất"
 export const STR_LOGOUT_EN = "Logout"
 
+// user
+export const USER_POST_LOGIN = "USER_POST_LOGIN";
+export const USER_POST_REGISTER = "USER_POST_REGISTER";
+export const USER_GET_CURRENT_USER = "USER_GET_CURRENT_USER";

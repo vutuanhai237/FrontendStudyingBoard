@@ -1,5 +1,4 @@
 import {
-
     DOC_GET_CATEGORIES_DOC,
     DOC_GET_SUBJECTS,
     DOC_GET_SEMESTERS,
@@ -71,7 +70,7 @@ const initialState = {
     currentFilterSemester: "",
 }
 
-function DocumentReducer(state = initialState, action) {
+function docReducer(state = initialState, action) {
     switch (action.type) {
         case DOC_GET_CATEGORIES_DOC:
             return { ...state, categories: action.payload };
@@ -94,5 +93,5 @@ function DocumentReducer(state = initialState, action) {
     }
 }
 
-export default DocumentReducer;
+export default docReducer;
 

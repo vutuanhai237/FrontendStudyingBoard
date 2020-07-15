@@ -20,11 +20,11 @@ const initialState = {
     topWallPaper: fakeWallPaper,
 }
 
-function HomeReducer(state = initialState, action) {
+function homeReducer(state = initialState, action) {
     switch (action.type) {
         default:
             return initialState;
     }
 }
 
-export default HomeReducer;
+export default homeReducer;

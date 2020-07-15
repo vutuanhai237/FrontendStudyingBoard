@@ -2,10 +2,10 @@ import { combineReducers } from "redux";
 import homeReducer from "./homeReducer"
 import docReducer from "./docReducer"
 import postReducer from "./postReducer"
-import loginRegisterReducer from "./loginRegisterReducer"
+import userReducer from "./userReducer"
 var rootReducer = combineReducers({
     home: homeReducer,
-    loginRegister: loginRegisterReducer,
+    user: userReducer,
     post: postReducer,
     doc: docReducer,
 });

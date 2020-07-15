@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./login.scss";
 import logo from "../../img/logo-bht.png";
+import { HOST } from "../../constant/index"
+import { postLogin, getCurrentUser } from "../../service/userAPI"
+
+import { bindActionCreators } from 'redux';
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -14,63 +18,59 @@ class LoginForm extends React.Component {
             modalShow: false,
             isLoginSuccess: false,
         };
+        this.statusLoginCode = 0;
     }
-    handleClick = async (event) => {
-        event.preventDefault();
-        if (this.state.login) {
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: this.refs.username.value, password: this.refs.password.value })
-            };
-            console.log(requestOptions);
-            let response = await fetch('api/v1/auth/login', requestOptions);
-            if(!response.ok) {
-                this.setState({
-                    isLoginSuccess: false
-                })
-                return;
-            }
-            else {
-                let data = await response.json();
-                sessionStorage.setItem("token", data.accessToken);
-                this.setState({
-                    isLoginSuccess: true
-                })
-            }
-        }
-    }
+
 
     login() {
-        
-        const { accounts } = this.props;
-        this.setState({
-            isLoginSuccess: false,
-            modalShow: true,
-        });
-        accounts.map((item) => {
-            if (
-                this.refs.username.value === item.username &&
-                this.refs.password.value === item.password
-            ) {
-                this.setState({
-                    isLoginSuccess: true,
-                    modalShow: true,
-                });
-                sessionStorage.setItem("token", "ok");
-            }
-            return 0;
-        });
 
-        this.forceUpdate();
+        // this.setState({
+        //     isLoginSuccess: false,
+        //     modalShow: true,
+        // });
+        const account = {
+            username: this.refs.username.value,
+            password: this.refs.password.value,
+        }
+        this.props.postLogin(account);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.statusLoginCode);
+        this.statusLoginCode = nextProps.statusLoginCode;
+        console.log(this.statusLoginCode);
+        //this.handleModal();
+    }
+
+    handleModal() {
+        if (this.statusLoginCode === 0) {
+            this.setState({
+                isLoginSuccess: false,
+                modalShow: true,
+            });
+        } else {
+            this.setState({
+                isLoginSuccess: true,
+                modalShow: true,
+            });
+        }
     }
     handleClose() {
         this.setState({
             modalShow: false,
         });
+        if (this.statusLoginCode !== 0) {
+            const createHistory = require("history").createBrowserHistory;
+            let history = createHistory();
+            history.push("/");
+            let pathUrl = window.location.href;
+            window.location.href = pathUrl;
+        }
     }
-    register() {}
-    forgotpassword() {}
+    register() {
+        this.props.getCurrentUser();
+    }
+    forgotpassword() { }
 
     render() {
         return (
@@ -180,7 +180,7 @@ class LoginForm extends React.Component {
                         </Link>
                         <Row>
                             <Col className="btn-register">
-                                <Button className="btn-block" href="/register">
+                                <Button onClick={this.register.bind(this)} className="btn-block" >
                                     Đăng ký
                                 </Button>
                             </Col>
@@ -203,13 +203,14 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-       // accounts: state.login_register.accounts,
+        statusLoginCode: state.user.statusLoginCode,
     };
 };
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    postLogin,
+    getCurrentUser,
+}, dispatch);
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(LoginForm)
