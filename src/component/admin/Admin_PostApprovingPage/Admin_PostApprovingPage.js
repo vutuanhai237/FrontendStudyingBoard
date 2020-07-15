@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import '../AdminPage'
-import Admin_RequestedPostSummaryItem from '../admin_components/Admin_RequestedPostSummaryItem/Admin_RequestedPostSummaryItem'
+import Admin_RequestedPostSummaryItem from '../admin_components/Admin_RequestedPostSummaryItem'
 import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
 import Paginator from '../../shared_components/Paginator/ServerPaginator'
 
-class Admin_PostBrowser extends Component {
+class Admin_PostApprovingPage extends Component {
     constructor({ routeConfig }) {
         super();
         this.isAdminBrowserPost = true;
@@ -371,4 +371,4 @@ class Admin_PostBrowser extends Component {
         );
     }
 }
-export default Admin_PostBrowser;
+export default Admin_PostApprovingPage;

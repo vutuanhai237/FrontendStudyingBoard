@@ -18,14 +18,18 @@ import user_role_management_menu_item_element from '../../img/user_role_manageme
 import analysis_management_menu_item_element from '../../img/analysis_icon.png'
 
 //pages
-import Admin_DocBrowser from './Admin_DocBrowser/Admin_DocBrowser';
-import Admin_PostBrowser from './Admin_PostBrowser/Admin_PostBrowser';
+import Admin_DocApprovingPage from './Admin_DocApprovingPage/Admin_DocApprovingPage';
+import Admin_PostApprovingPage from './Admin_PostApprovingPage/Admin_PostApprovingPage';
 import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
 import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_CategoriesManagement'
+import Admin_PageNotification from './Admin_PageNotification/Admin_PageNotification'
+// import Admin_UpdatePasswords from './Admin_AccountInformationManagement/Admin_UpdatePasswords'
+import Admin_UserRoleManagement from './Admin_UserRoleManagement/Admin_UserRoleManangement'
 import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 
 //resource string
 import { STR_LOGOUT_VN } from '../../constant/index.js';
+import Admin_AccountInformationManagement from './Admin_AccountInformationManagement/Admin_AccountInformationManagement';
 
 
 class AdminPage extends Component {
@@ -136,27 +140,27 @@ class AdminPage extends Component {
                                         <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
                                             {/* <div classname></div> */}
                                             {
-                                                window.location.pathname === "/admin/post_browser" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/post_browser"} style={{ display: "flex", textDecoration: "none" }}>
+                                                window.location.pathname === "/admin/post_approving" ?
+                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/post_approving"} style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt bài viết
                                                     </div>
                                                     </div> :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/post_browser"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/post_approving"} style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt bài viết
                                                     </div>
                                                     </div>
                                             }
                                             {
-                                                window.location.pathname === "/admin/doc_browser" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/doc_browser"} to="/admin/doc_browser" style={{ display: "flex", textDecoration: "none" }}>
+                                                window.location.pathname === "/admin/doc_approving" ?
+                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/doc_approving"} to="/admin/doc_approving" style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Duyệt tài liệu
                                                     </div>
                                                     </div>
                                                     :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = " /admin/doc_browser"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = " /admin/doc_approving"} style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt tài liệu
                                                    </div>
@@ -164,7 +168,7 @@ class AdminPage extends Component {
                                             }
                                             {
                                                 window.location.pathname === "/admin/page_notification" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/page_notification"} to="/admin/doc_browser" style={{ display: "flex", textDecoration: "none" }}>
+                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/page_notification"} to="/admin/doc_approving" style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Thông báo trang
                                                     </div>
@@ -178,7 +182,7 @@ class AdminPage extends Component {
                                             }
                                             {
                                                 window.location.pathname === "/admin/categories_management" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/categories_management"} to="/admin/doc_browser" style={{ display: "flex", textDecoration: "none" }}>
+                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/categories_management"} to="/admin/doc_approving" style={{ display: "flex", textDecoration: "none" }}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Quản lý danh mục
                                                     </div>
@@ -248,7 +252,7 @@ class AdminPage extends Component {
 
                                     <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
                                         <div style={{ height: "5px" }}></div>
-                                        {
+                                        {/* {
                                             window.location.pathname === "/admin/account_management" ?
                                                 <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Trang cá nhân
@@ -257,14 +261,14 @@ class AdminPage extends Component {
                                                 <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Trang cá nhân
                                                 </div>
-                                        }
+                                        } */}
                                         {
-                                            window.location.pathname === "/admin/account_information" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_information"} style={{ display: "flex", textDecoration: "none" }}>
+                                            window.location.pathname === "/admin" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Thông tin tài khoản
                                                 </div>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_information"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Thông tin tài khoản
                                                 </div>
                                         }
@@ -284,7 +288,7 @@ class AdminPage extends Component {
                                         {
                                             window.location.pathname === "/admin/posts_list" ?
                                                 <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/posts_list"} style={{ display: "flex", textDecoration: "none" }}>
-                                                    Danh dách bài viết
+                                                    Danh sách bài viết
                                                 </div>
                                                 :
                                                 <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/posts_list"} style={{ display: "flex", textDecoration: "none" }}>
@@ -294,7 +298,7 @@ class AdminPage extends Component {
                                         {
                                             window.location.pathname === "/admin/docs_list" ?
                                                 <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
-                                                    Danh dách tài liệu
+                                                    Danh sách tài liệu
                                                 </div>
                                                 :
                                                 <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
@@ -302,12 +306,12 @@ class AdminPage extends Component {
                                                 </div>
                                         }
                                         {
-                                            window.location.pathname === "/admin/update_pass" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_pass"} style={{ display: "flex", textDecoration: "none" }}>
+                                            window.location.pathname === "/admin/update_passwords" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_passwords"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Cập nhật mật khẩu
                                                 </div>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_pass"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_passwords"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Cập nhật mật khẩu
                                                 </div>
                                         }
@@ -336,7 +340,7 @@ class AdminPage extends Component {
                                     }
 
                                     {/* Thong ke */}
-                                    {
+                                    {/* {
                                         window.location.pathname === "/admin/analysis" ?
                                             <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/analysis_management"} style={{ display: "flex", textDecoration: "none" }}>
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
@@ -351,7 +355,7 @@ class AdminPage extends Component {
                                                     Thống kê
                                                 </div>
                                             </div>
-                                    }
+                                    } */}
                                 </div >
                             </ div >
                         </div>
@@ -359,17 +363,29 @@ class AdminPage extends Component {
                         {/* Router Outlet */}
                         <div className="Admin_Router_Outlet" >
                             <Switch>
-                                <Route path="/admin/post_browser">
-                                    <Admin_PostBrowser></Admin_PostBrowser>
+                                <Route path="/admin/post_approving">
+                                    <Admin_PostApprovingPage></Admin_PostApprovingPage>
                                 </Route>
-                                <Route path="/admin/doc_browser">
-                                    <Admin_DocBrowser></Admin_DocBrowser>
+                                <Route path="/admin/doc_approving">
+                                    <Admin_DocApprovingPage></Admin_DocApprovingPage>
                                 </Route>
                                 <Route path="/admin/users_management">
                                     <Admin_UserManagement></Admin_UserManagement>
                                 </Route>
                                 <Route path="/admin/categories_management">
                                     <Admin_CategoriesManagement></Admin_CategoriesManagement>
+                                </Route>
+                                <Route path="/admin/page_notification">
+                                    <Admin_PageNotification></Admin_PageNotification>
+                                </Route>
+                                <Route path="/admin">
+                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                </Route>
+                                <Route path="/admin/update_passwords">
+                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                </Route>
+                                <Route path = "/admin/user_role_management">
+                                    <Admin_UserRoleManagement></Admin_UserRoleManagement>
                                 </Route>
                             </Switch>
                         </div>

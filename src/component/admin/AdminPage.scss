@@ -89,12 +89,24 @@
     justify-content: space-between;
 }
 
+.width_100_percents {
+    width: 100%;
+}
+
 .padding_10px {
     padding: 10px;
 }
 
 .padding_right_10px {
     padding-right: 10px;
+}
+
+.margin_auto {
+    margin: auto;
+}
+
+.background_green{
+    background: green;
 }
 
 .margin_left_5px {
@@ -105,8 +117,23 @@
     margin-right: 5px;
 }
 
+.margin_top_5px {
+    margin-top: 5px;
+}
+
+.margin_top_15px {
+    margin-top: 15px !important;
+}
+
+.margin_top_10px {
+    margin-top: 10px !important;
+}
+
 .width_50_percents {
     width: 50%;
+}
+.margin_left_10px{
+   width: 10px;
 }
 
 .Number_Of_Item {
@@ -122,5 +149,3 @@
     padding-right: 10px;
     width: 100%;
 }
-
-

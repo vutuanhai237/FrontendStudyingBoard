@@ -1,0 +1,79 @@
+.Account_Information_Port {
+    border: 1px #c4c4c4 solid;
+    border-radius: 5px;
+    border-top: 5px solid #5279db;
+    // width: 50%;
+    width: 100%;
+    padding: 10px;
+    margin-right: 10px;
+    // background: green;
+    // background: 10px;
+    // min-width: 25rem;
+}
+
+.Account_Information_Update_Passwords_Port {
+    border: 1px #c4c4c4 solid;
+    border-radius: 5px;
+    border-top: 5px solid #5279db;
+    // width: 50%;
+    width: 100%;
+    padding: 10px;
+    // margin-right: 10px;
+    // background: green;
+    // background: 10px;
+    // min-width: 25rem;
+}
+
+.Account_Information_Avatar_Port {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Account_Information_Avatar_Image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+// Role and achivement port:
+.Account_Information_Role_Achivement_Port {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Account_Information_Own_Role_Port {
+    border-top: 5px #5279db solid;
+    width: 100%;
+    border-bottom: 1px solid #c4c4c4;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    color: #5279db;
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+}
+
+.Account_Information_Achivement_Port {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #363636;
+    width: 100%;
+}
+
+.Account_Information_Achivement_Post_Doc_Count_Port {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
