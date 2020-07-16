@@ -39,21 +39,17 @@ export function postLogin(account) {
 export function getCurrentUser() {
     return dispatch => {
         var myHeaders = new Headers();
-        // myHeaders.append("Cookie", "JSESSIONID=F99620D192BE9382E3B59DC6B765278D");
-        // console.log("JSESSIONID=" + Cookies.get('JSESSIONID'));
-        // console.log(myHeaders);
-        //myHeaders.append("Cookie", "JSESSIONID=" + Cookies.get('JSESSIONID'));
+
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
-            redirect: 'follow',
-            credentials: 'include'
+            redirect: 'follow'
         };
-
-        fetch(`https://${HOST}/users/current`, requestOptions)
+        fetch(`https://${HOST}/users/current;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result))
+                dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
             })
             .catch(error => console.log('error', error));
 
