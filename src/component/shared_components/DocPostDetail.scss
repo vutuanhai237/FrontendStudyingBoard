@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@400&display=swap");
+
+.DocPost_Detail {
+    position: relative;
+    width: 60%;
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    border: 1px #c4c4c4 solid;
+    max-width: 1000px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px 1px #c4c4c4;
+    border: 1px white solid;
+    border-top: #5279db 5px solid;
+}
+
+.DocPost_Detail_Main_Port {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.DocPost_Detail_Title {
+    padding-top: 5px;
+    font-family: "Roboto Slab";
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #202020;
+}
+
+//general summary item headbar
+.DocPost_Detail_Category_Header {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    height: fit-content;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    display: flex;
+    color: #5279db;
+    user-select: none;
+}
+
+//requested user infor header
+.DocPost_User_Infor_Header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    height: fit-content;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    color: #363636;
+    user-select: none;
+}
+
+//for category header
+.Prefix_DocPost_Detail_Category {
+    background: #5279db;
+    width: 5px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: 5px;
+}
+
+.DocPost_Detail_Category {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    background: #5279db;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.DocPost_Detail_Time_Semester_Subject_Icon {
+    margin-top: 0.6rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.1rem;
+}
+
+.DocPost_Detail_Time_Semester_Subject_Text {
+    line-height: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    height: fit-content;
+    position: relative;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #363636;
+    user-select: none;
+    margin-right: 0.6rem;
+}
+
+.DocPost_Detail_User_Infor_Avatar {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px #eeeeee;
+}
+
+.DocPost_Detail_User_Infor_Display_Name {
+    margin-left: 5px;
+    line-height: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    height: fit-content;
+    position: relative;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #363636;
+    user-select: none;
+    line-height: 30px;
+    margin-right: 0.6rem;
+}
+
+.DocPost_Detail_User_Infor_Posted_Time {
+    line-height: 30px;
+    display: flex;
+    margin-left: 5px;
+    justify-content: flex-start;
+    height: fit-content;
+    position: relative;
+    font-family: "Roboto Slab";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #363636;
+    user-select: none;
+    margin-right: 0.6rem;
+}
+
+.DocPost_Detail_Content {
+    margin-top: 10px;
+    margin-left: 5px;
+    font-family: "Sarabun";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+}
+
+.Doc_Detail_View_Count_Doc_Count {
+    margin-top: 30px;
+    display: flex;
+    font-family: "Barlow Condensed";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    color: #363636;
+    margin-left: 5%;
+}
+
+.Document_Live_Preview {
+    // padding-top: 10px;
+    margin-top: 5px;
+    width: 90%;
+    margin-left: 5%;
+    height: 600px;
+    background: #c4c4c4;
+    margin-bottom: 15px;
+    border: 1px #c4c4c4 solid;
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.Doc_Detail_File_Name {
+    width: fit-content;
+    margin-left: 5px;
+    display: flex;
+    justify-content: flex-start;
+    height: fit-content;
+    position: relative;
+    height: fit-content;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    display: flex;
+    color: #5279db;
+    user-select: none;
+}
+
+.Doc_Detail_File_Name:hover,
+.Doc_Detail_File_Name:active {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.DocPost_Detail_Footer {
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}

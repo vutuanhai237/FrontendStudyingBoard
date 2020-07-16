@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-import '../../shared_components/DocPostSummary.scss'
-// import Tag from '../../shared_components/Tag/Tag'
+import '../../shared_components/DocPostDetail.scss'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_btn_element from '../../../img/gray_btn_element.png'
 
-class Admin_RequestedDocSummaryItem extends Component {
+class Admin_PostPreview extends Component {
 
     constructor(props) {
         super(props);
@@ -30,8 +29,13 @@ class Admin_RequestedDocSummaryItem extends Component {
         this.isRejectRequestedPopupOpen = false;
 
         this.state = {
-            // isRejectRequestedPopupOpen: false,
+
         }
+    }
+
+
+    componentDidMount() {
+
     }
 
     getFirstImage() {
@@ -39,15 +43,6 @@ class Admin_RequestedDocSummaryItem extends Component {
     }
 
     render() {
-
-        // Render tag from tags list
-
-        // let tagsGroup = this.tags.map((tag) => {
-        //     return (
-        //         <Tag text={tag}></Tag>
-        //     )
-        // }
-        // );
 
         return (
 
@@ -137,11 +132,11 @@ class Admin_RequestedDocSummaryItem extends Component {
     }
 
     navigateToSameCategoryDocsPage = () => {
-        window.location.href = "/post/category?id=" + this.requestedCategoryID;
+        window.location.href = "/docs/category?id=" + this.requestedCategoryID;
     }
 
     handlerPreviewRequestedPost = () => {
-        window.location.href = "/admin/post_browser/" + this.id;
+        window.location.href = "/admin/doc_approving/" + this.id;
     }
 
     handlerRejectRequestedPost = () => {
@@ -162,4 +157,4 @@ class Admin_RequestedDocSummaryItem extends Component {
 
 
 }
-export default Admin_RequestedDocSummaryItem;
+export default  Admin_PostPreview;

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import '../AdminPage'
-import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
+import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_upload_icon from '../../../img/gray_upload_icon.png'
 import gray_write_icon from '../../../img/gray_write_icon.png'
@@ -14,25 +14,21 @@ import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Admin_UpdatePasswords from './Admin_UpdatePasswords'
 
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { getCurrentUser } from '../../../service/userAPI'
+
+
+
+
 class Admin_AccountInformationManagement extends Component {
     constructor(props) {
-        super();
+        super(props);
         this.isAnyChangeRoleDropdownComboboxOpen = true;
-        this.passwordsString = "";
+        // this.accountInformation = this.props.account;
         this.state = {
-            accountInformation: {
-                userID: 1,
-                avartarUrl: "https://i.imgur.com/SZJgL6C.jpg",
-                displayName: "Nguyen Van Dong",
-                username: "admin",
-                passwordLength: "10",
-                facebook: "https://www.facebook.com/profile.php?id=100024742350400",
-                gmail: "dongnv.since1999@gmail.com",
-                doc_count: 100,
-                post_count: 300,
-                score: 12345,
-                roleID: 0,
-            },
             roles: [
                 {
                     id: 0,
@@ -47,31 +43,29 @@ class Admin_AccountInformationManagement extends Component {
                     role: "Account"
                 }
             ],
-
             isChangeRoleConfirmationPopupOpen: false,
             passwordsString: "",
             canSaveInformation: false,
-
         }
     }
 
     componentDidMount() {
-        this.generatePassword();
+        this.props.getCurrentUser();
     }
 
 
 
     render() {
-        let roles_Combobox = this.state.roles.map(role =>
+        let roles_Combobox =
+            this.state.roles.map(role =>
+                this.props.accountInformation.roleID === role.id ?
+                    <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
+                    <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
+                        onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
+                    </div>
+            )
 
 
-            this.state.accountInformation.roleID === role.id ?
-                <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
-                    onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
-                </div>
-
-        )
         return (
             <div>
                 <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
@@ -87,42 +81,42 @@ class Admin_AccountInformationManagement extends Component {
                                             <div className="Account_Information_Avatar_Port">
                                                 <div className="Simple_White_Button ">Cập nhật avatar</div>
                                                 {/* <div className="margin_left_10px"></div> */}
-                                                <img className="Account_Information_Avatar_Image" alt="avatar" src={this.state.accountInformation.avartarUrl} />
+                                                <img className="Account_Information_Avatar_Image" alt="avatar" src={this.props.accountInformation.avartar} />
                                             </div>
 
                                             {/* Display name */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Họ tên:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
+                                            <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
                                             {/* Username */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Username:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.username} />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
 
                                             {/* Passwords */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Passwords:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" value={this.state.passwordsString} />
+                                            <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
 
                                             {/* Facebook */}
-                                            <div className="Simple_Gray_Label_18px margin_top_10px">
+                                            {/* <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Facebook:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.facebook} />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.facebook} /> */}
 
-                                            {/* Gmail */}
+                                            {/* Email */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
-                                                Gmail:
+                                                Email:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.gmail} />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
                                         </div>
 
                                         <div className="display_flex margin_top_10px" >
-                                            <button disabled = {!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
+                                            <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
                                                 Lưu thay đổi
                                             </button>
                                         </div>
@@ -152,7 +146,9 @@ class Admin_AccountInformationManagement extends Component {
                                                         {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
                                                         <div className="display_flex">
                                                             <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
-                                                                {this.state.roles[this.state.accountInformation.roleID].role}
+                                                                {this.props.accountInformation.roleId ?
+                                                                    this.state.roles[this.props.accountInformation.roleId].role : "User"
+                                                                }
                                                             </div>
                                                         </div>
                                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element"} />
@@ -175,15 +171,15 @@ class Admin_AccountInformationManagement extends Component {
                                 <div className="margin_top_10px" />
 
                                 <div className="Account_Information_Achivement_Port">
-                                    <div className="Account_Information_Achivement_Score">Scrore: {this.state.accountInformation.score}</div>
+                                    <div className="Account_Information_Achivement_Score">Scrore: {this.props.accountInformation.score}</div>
                                     <div className="Account_Information_Achivement_Post_Doc_Count_Port">
                                         <div className="display_flex width_50_percents">
                                             <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                            <div className="margin_left_5px">{this.state.accountInformation.post_count}</div>
+                                            <div className="margin_left_5px">{this.props.accountInformation.postCount}</div>
                                         </div>
                                         <div className="display_flex width_50_percents">
                                             <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                            <div className="margin_left_5px"> {this.state.accountInformation.doc_count}</div>
+                                            <div className="margin_left_5px"> {this.props.accountInformation.documentCount}</div>
                                         </div>
                                     </div>
 
@@ -218,11 +214,13 @@ class Admin_AccountInformationManagement extends Component {
     //#region support initate value for rendering
     generatePassword = () => {
         let _passwordsString = "";
-        for (let i = 0; i < this.state.accountInformation.passwordLength; i++) {
-            _passwordsString += "*";
+        console.log(String(this.props.accountInformation.password));
+        if (this.props.accountInformation.password !== undefined) {
+            for (let i = 0; i < this.props.accountInformation.password.length; i++) {
+                _passwordsString += "*";
+            }
         }
-        // console.log(_passwordsString);
-        this.setState({ passwordsString: _passwordsString });
+        return _passwordsString;
     }
 
     //#region handler combobox role and change role
@@ -267,7 +265,7 @@ class Admin_AccountInformationManagement extends Component {
         }
 
         sub_dropdown_item.className = "Activated_Dropdown_Combobox_Sub_Item";
-        this.state.accountInformation.roleID = roleID;
+        this.props.accountInformation.roleID = roleID;
 
         // open a confirmation popup
         this.openChangeRoleConfirmationPopup(roleID);
@@ -326,10 +324,23 @@ class Admin_AccountInformationManagement extends Component {
     //#region handler for valid admin information front-end
     handlerChangeUserDisplay = (e) => {
         console.log(e.target.value);
-        this.state.accountInformation.displayName = e.target.value;
+        this.props.accountInformation.displayName = e.target.value;
         this.setState();
 
     }
     //#endregion
 }
-export default Admin_AccountInformationManagement;
+
+
+const mapStatetoProps = (state) => {
+    console.log(state.user.account);
+    return {
+        accountInformation: state.user.account
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getCurrentUser
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Admin_AccountInformationManagement));

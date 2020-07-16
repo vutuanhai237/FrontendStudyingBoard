@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import '../AdminPage'
-import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
+import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import './Admin_UserRoleManagement.scss'
 
