@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import '../../shared_components/DocPostSummary.scss'
-import Tag from '../../shared_components/Tag/Tag'
+// import Tag from '../../shared_components/Tag/Tag'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_btn_element from '../../../img/gray_btn_element.png'
 
@@ -42,19 +42,19 @@ class Admin_RequestedDocSummaryItem extends Component {
 
         // Render tag from tags list
 
-        let tagsGroup = this.tags.map((tag) => {
-            return (
-                <Tag text={tag}></Tag>
-            )
-        }
-        );
+        // let tagsGroup = this.tags.map((tag) => {
+        //     return (
+        //         <Tag text={tag}></Tag>
+        //     )
+        // }
+        // );
 
         return (
 
             <div className="DocPost_Summary_Item" >
                 <div className="DocPost_Summary_Item_Main_Port">
                     <div className="DocPost_Summary_Item_Header_1">
-                        <div className="DocPost_DocPost_Summary_Item_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
+                        <div className="DocPost_Summary_Item_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
                         <div className="DocPost_Summary_Item_Requested_Date">

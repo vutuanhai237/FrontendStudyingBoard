@@ -18,6 +18,7 @@ class Admin_AccountInformationManagement extends Component {
     constructor(props) {
         super();
         this.isAnyChangeRoleDropdownComboboxOpen = true;
+        this.passwordsString = "";
         this.state = {
             accountInformation: {
                 userID: 1,
@@ -48,12 +49,14 @@ class Admin_AccountInformationManagement extends Component {
             ],
 
             isChangeRoleConfirmationPopupOpen: false,
+            passwordsString: "",
+            canSaveInformation: false,
 
         }
     }
 
     componentDidMount() {
-
+        this.generatePassword();
     }
 
 
@@ -82,6 +85,8 @@ class Admin_AccountInformationManagement extends Component {
 
                                             <div className="Simple_Gray_Label_18px">Avatar: </div>
                                             <div className="Account_Information_Avatar_Port">
+                                                <div className="Simple_White_Button ">Cập nhật avatar</div>
+                                                {/* <div className="margin_left_10px"></div> */}
                                                 <img className="Account_Information_Avatar_Image" alt="avatar" src={this.state.accountInformation.avartarUrl} />
                                             </div>
 
@@ -89,42 +94,42 @@ class Admin_AccountInformationManagement extends Component {
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Họ tên:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" />
+                                            <input type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
                                             {/* Username */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Username:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.username} />
 
                                             {/* Passwords */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Passwords:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" />
+                                            <input disabled type="text" className="Simple_Text_Input" value={this.state.passwordsString} />
 
                                             {/* Facebook */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Facebook:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.facebook} />
 
                                             {/* Gmail */}
                                             <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Gmail:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" />
-                                            </div>
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.state.accountInformation.gmail} />
+                                        </div>
 
                                         <div className="display_flex margin_top_10px" >
-                                            <button className="Simple_Blue_Button margin_auto"  >
+                                            <button disabled = {!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
                                                 Lưu thay đổi
                                             </button>
                                         </div>
 
                                     </Route>
 
-                                    <Route path = "/admin/update_passwords">
+                                    <Route path="/admin/update_passwords">
                                         <Admin_UpdatePasswords></Admin_UpdatePasswords>
                                     </Route>
 
@@ -188,6 +193,7 @@ class Admin_AccountInformationManagement extends Component {
                     </div>
                 </div>
 
+                {/* #region Popup region */}
                 {/* modal for veritfy change role */}
                 <CustomModal
                     open={this.state.isChangeRoleConfirmationPopupOpen}
@@ -203,9 +209,23 @@ class Admin_AccountInformationManagement extends Component {
                     <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                 </CustomModal>
 
+                {/* #endregion */}
+
             </div >
         );
     }
+
+    //#region support initate value for rendering
+    generatePassword = () => {
+        let _passwordsString = "";
+        for (let i = 0; i < this.state.accountInformation.passwordLength; i++) {
+            _passwordsString += "*";
+        }
+        // console.log(_passwordsString);
+        this.setState({ passwordsString: _passwordsString });
+    }
+
+    //#region handler combobox role and change role
 
     handleDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
@@ -253,7 +273,6 @@ class Admin_AccountInformationManagement extends Component {
         this.openChangeRoleConfirmationPopup(roleID);
     }
 
-    //handler change role
     openChangeRoleConfirmationPopup = (roleID) => {
         this.closeAllChangeRoleDropdownCombobox();
         this.notifyHeader = "Xác nhận?";
@@ -301,5 +320,16 @@ class Admin_AccountInformationManagement extends Component {
         this.isAnyChangeRoleDropdownComboboxOpen = false;
         this.setState({})
     }
+
+    //#endregion
+
+    //#region handler for valid admin information front-end
+    handlerChangeUserDisplay = (e) => {
+        console.log(e.target.value);
+        this.state.accountInformation.displayName = e.target.value;
+        this.setState();
+
+    }
+    //#endregion
 }
 export default Admin_AccountInformationManagement;

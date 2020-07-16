@@ -9,7 +9,7 @@ import './Admin_UserRoleManagement.scss'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
-class Admin_CategoryManagement extends Component {
+class Admin_UserRoleManagement extends Component {
     constructor(props) {
         super();
 
@@ -78,7 +78,7 @@ class Admin_CategoryManagement extends Component {
     render() {
         return (
             <div>
-                <Admin_Titlebar title="QUẢN LÝ DANH MỤC" />
+                <Admin_Titlebar title="QUẢN LÝ QUYỀN NGƯỜI DÙNG" />
                 <div className="Admin_Show_Port">
                     {/* Danh mục bài viết */}
                     <div className="Category_Type_Dropdown" id="admin-post-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("admin-post-categories-dropdown", "admin-post-categories-container")}>
@@ -299,4 +299,4 @@ class Admin_CategoryManagement extends Component {
 
 
 }
-export default Admin_CategoryManagement;
+export default Admin_UserRoleManagement;

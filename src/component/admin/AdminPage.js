@@ -3,10 +3,8 @@ import React, { Component } from 'react'
 import './AdminPage.scss'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '../../constant/index.js'
-import './Admin_LeftSidebar.scss'
 
-//resource image, icon
-
+// import resource image, icon
 import dropdown_btn from '../../img/dropdown_icon.png'
 import gray_write_icon from '../../img/gray_write_icon.png'
 import gray_upload_icon from '../../img/gray_upload_icon.png'
@@ -17,20 +15,25 @@ import activity_management_menu_item_element from '../../img/activity_management
 import user_role_management_menu_item_element from '../../img/user_role_management_icon.png'
 import analysis_management_menu_item_element from '../../img/analysis_icon.png'
 
-//pages
+//import pages
 import Admin_DocApprovingPage from './Admin_DocApprovingPage/Admin_DocApprovingPage';
 import Admin_PostApprovingPage from './Admin_PostApprovingPage/Admin_PostApprovingPage';
 import Admin_UserManagement from './Admin_UserManagement/Admin_UserManagement';
 import Admin_CategoriesManagement from './Admin_CategoriesManagement/Admin_CategoriesManagement'
 import Admin_PageNotification from './Admin_PageNotification/Admin_PageNotification'
-// import Admin_UpdatePasswords from './Admin_AccountInformationManagement/Admin_UpdatePasswords'
-import Admin_UserRoleManagement from './Admin_UserRoleManagement/Admin_UserRoleManangement'
-import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
-
-//resource string
-import { STR_LOGOUT_VN } from '../../constant/index.js';
 import Admin_AccountInformationManagement from './Admin_AccountInformationManagement/Admin_AccountInformationManagement';
+import Admin_UserRoleManagement from './Admin_UserRoleManagement/Admin_UserRoleManangement'
 
+//import css
+import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
+import './Admin_LeftSidebar.scss'
+
+//import component
+import Header from '../container/header'
+import Footer from '../container/footer'
+
+//import resource string
+import { STR_LOGOUT_VN } from '../../constant/index.js';
 
 class AdminPage extends Component {
     constructor(props) {
@@ -61,7 +64,7 @@ class AdminPage extends Component {
     }
 
     componentDidMount() {
-        console.log(window.location.pathname);
+        // console.log('%PUBLIC_PATH');
     }
 
     render() {
@@ -72,7 +75,7 @@ class AdminPage extends Component {
 
                 {/* Header Area */}
                 <div className="Admin_Header">
-                    {/* <Header></Header> */}
+                    <Header></Header>
                 </div>
 
                 {/* Body Area */}
@@ -378,7 +381,7 @@ class AdminPage extends Component {
                                 <Route path="/admin/page_notification">
                                     <Admin_PageNotification></Admin_PageNotification>
                                 </Route>
-                                <Route path="/admin">
+                                <Route exact path="/admin">
                                     <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
                                 <Route path="/admin/update_passwords">
@@ -391,6 +394,7 @@ class AdminPage extends Component {
                         </div>
                     </Router>
                 </div>
+                <Footer></Footer>
             </div >
 
         );

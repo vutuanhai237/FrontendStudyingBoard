@@ -3,15 +3,20 @@ import React, { Component } from 'react'
 import '../AdminPage'
 import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
 import Admin_RequestedDocSummaryItem from '../admin_components/Admin_RequestedDocSummaryItem'
-
+import { admin_getAllNotApprovedDocuments } from "../../../service/admin_services/admin_docAPIs"
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { ADMIN_GET_ALL_NOT_APPROVED_DOCUMENTS } from '../../../constant';
 
 class Admin_DocApprovingPage extends Component {
     constructor(props) {
         super();
-        this.maxPostNumber = 10;
+        this.maxDocNumber = 10;
         this.isAdminBrower = true;
+
         this.state = {
-            requestedPosts:
+            requestedDocs:
                 [
                     {
                         "id": 60,
@@ -27,7 +32,9 @@ class Admin_DocApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "downCount": 30,
                         "viewCount": 50,
-                        "subject":"Cấu trúc rời rạc",
+                        "subject": "Cấu trúc rời rạc",
+                        "semester": "Học kỳ I",
+                        "year": "2019 - 2020",
 
                         "tags": [
                             "some tag",
@@ -48,7 +55,9 @@ class Admin_DocApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "downCount": 40,
                         "viewCount": 0,
-                        "subject":"Nhập môn mạch số",
+                        "subject": "Nhập môn mạch số",
+                        "semester": "Học kỳ II",
+                        "year": "2019 - 2020",
 
                         "tags": [
                             "tag1",
@@ -60,33 +69,58 @@ class Admin_DocApprovingPage extends Component {
 
     }
 
+    componentDidMount() {
+
+        this.props.admin_getAllNotApprovedDocuments();
+    }
     render() {
 
-        let summaryRequestedPostList = this.state.requestedPosts.map((requestedPost) =>
-            <Admin_RequestedDocSummaryItem
-                role="ADMIN_ROLE"
-                isAdminBrowser={this.isAdminBrower}
-                authorName={requestedPost.authorName}
-                requestedDate={requestedPost.requestedDate}
-                requestedTime={requestedPost.requestedTime}
-                requestedCategory={requestedPost.category}
-                title={requestedPost.title}
-                content={requestedPost.Summary}
-                tags={requestedPost.tags}
-                likeCount={requestedPost.likeCount}
-                commentCount={requestedPost.commentCount}
-                subject = {requestedPost.subject}
-            ></Admin_RequestedDocSummaryItem>
-        )
+        let { requestedDocs } = this.props;
+
+        let summaryRequestedDocList =
+            requestedDocs.map((requestedDoc) => (
+                < Admin_RequestedDocSummaryItem
+                    key={requestedDoc.id}
+                    role="ADMIN_ROLE"
+                    isAdminBrowser={this.isAdminBrower}
+                    authorName={requestedDoc.authorName}
+                    authorID={requestedDoc.authorID}
+                    semester={requestedDoc.semester}
+                    year={requestedDoc.year}
+                    requestedDate={requestedDoc.requestedDate}
+                    requestedTime={requestedDoc.requestedTime}
+                    requestedCategory={requestedDoc.category}
+                    title={requestedDoc.title}
+                    content={requestedDoc.Summary}
+                    tags={requestedDoc.tags}
+                    likeCount={requestedDoc.likeCount}
+                    commentCount={requestedDoc.commentCount}
+                    subject={requestedDoc.subject}
+                ></Admin_RequestedDocSummaryItem >)
+            )
+
 
         return (
             <div>
                 <Admin_Titlebar title="PHÊ DUYỆT TÀI LIỆU" />
                 <div className="Admin_Show_Port">
-                    {summaryRequestedPostList}
+                    {summaryRequestedDocList}
                 </div>
             </div>
         );
     }
 }
-export default Admin_DocApprovingPage;
+
+const mapStatetoProps = (state) => {
+    console.log("*Map state to props function has been called!  ");
+    console.log(state.admin_doc);
+    return {
+        requestedDocs: state.admin_doc.requestedDocs
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    admin_getAllNotApprovedDocuments
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Admin_DocApprovingPage));
