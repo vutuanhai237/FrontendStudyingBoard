@@ -75,7 +75,7 @@ export function getTopDoc() {
         fetch(`http://${HOST}/docs/goodDoc?limit=3`, requestOptions)
             .then(response => response.text())
             .then(result => {
-                dispatch(docGetTopDoc(JSON.parse(result)));
+                dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
             })
             .catch(error => console.log('error', error));
     }
@@ -91,7 +91,7 @@ export function getSearchDoc(filter) {
         fetch(`https://${HOST}/docs/search?${filter}`, requestOptions)
             .then(response => response.text())
             .then(result => {
-                dispatch(docGetSearchDoc(JSON.parse(result)));
+                dispatch(docGetSearchDoc(JSON.parse(result).shortDocs));
             })
             .catch(error => console.log('error', error));
     }
