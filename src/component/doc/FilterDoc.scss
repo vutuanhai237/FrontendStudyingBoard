@@ -1,0 +1,30 @@
+$unhover_color: rgba(0, 0, 0, 0.54);
+.filter {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    
+}
+
+.filter p {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    line-height:35px;
+}
+
+// .filter #dropdown-basic-button {
+//     margin-left: 0px;
+//     margin-right: 5px;
+// }
+
+
+// @media (max-width: 750px) {
+//     .filter {
+//         margin-left: 20px;
+//     }
+// }

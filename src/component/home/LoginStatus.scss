@@ -1,0 +1,50 @@
+
+#login-status #avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+@media (max-width: 767px) {
+    #avatar {
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+}
+#avatar:hover {
+    cursor: pointer;
+}
+
+#login-status.dropdown-toggle {
+    background: white;
+    border: transparent;
+}
+
+#login-status.dropdown-toggle:hover {
+    background: white;
+    border: transparent;
+}
+
+#login-status.dropdown-toggle:focus {
+    background-color: transparent;
+}
+
+#login-status primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+    background-color: white;
+    border-color: white;
+}
+
+#login-status.dropdown-toggle::after {
+    color: black;
+    background: white;
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 1200px) {
+   
+}
