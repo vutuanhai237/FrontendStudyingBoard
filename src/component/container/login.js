@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./Login.scss";
 import logo from "../../img/logo-bht.png";
-import { HOST } from "../../constant/index"
-import { postLogin, getCurrentUser } from "../../service/UserAPI"
+import { postLogin, getCurrentUser } from "../../service/UserAPI";
 
 import { bindActionCreators } from 'redux';
 class LoginForm extends React.Component {
@@ -17,27 +16,37 @@ class LoginForm extends React.Component {
             password: "",
             modalShow: false,
             isLoginSuccess: false,
-            
+
         };
         this.statusLoginCode = 0;
         this.modalMessage = "";
         this.modalOKMessage = "Đồng ý";
-
+        this.username = React.createRef("");
+        this.password = React.createRef("");
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
+    handleUsernameChange(e) {
+        e.preventDefault();
+        this.setState({ username: this.username.current.value })
+    }
 
+    handlePasswordChange(e) {
+        e.preventDefault();
+        this.setState({ password: this.password.current.value })
+    }
     login() {
         const account = {
-            username: this.refs.username.value,
-            password: this.refs.password.value,
+            username: this.state.username,
+            password: this.state.password,
         }
         this.props.postLogin(account);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.statusLoginCode);
         this.statusLoginCode = nextProps.statusLoginCode;
-        console.log(this.statusLoginCode);
         this.handleModal();
     }
 
@@ -53,7 +62,7 @@ class LoginForm extends React.Component {
                 isLoginSuccess: false,
                 modalShow: true,
             });
-            switch(this.statusLoginCode) {
+            switch (this.statusLoginCode) {
                 case 0:
                     this.modalMessage = "Đăng nhập thất bại, sai tài khoản";
                     break;
@@ -62,7 +71,7 @@ class LoginForm extends React.Component {
                     break;
                 default:
                     break;
-                
+
             }
         }
     }
@@ -86,14 +95,9 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <Modal
-                    centered
-                    show={this.state.modalShow}
-                    onHide={this.handleClose.bind(this)}
-                    animation={false}
-                >
+                <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
                     <Modal.Header closeButton>
-                        <Modal.Title contained-modal-title-vcenter>
+                        <Modal.Title contained-modal-title-vcenter="true">
                             Thông báo
                         </Modal.Title>
                     </Modal.Header>
@@ -105,12 +109,7 @@ class LoginForm extends React.Component {
                                         {this.modalMessage} &#128540;
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button
-                                            variant="success"
-                                            href="/"
-                                            onClick={this.handleClose.bind(
-                                                this
-                                            )}
+                                        <Button variant="success" onClick={this.handleClose}
                                         >
                                             {this.modalOKMessage}
                                         </Button>
@@ -124,12 +123,7 @@ class LoginForm extends React.Component {
                                         {this.modalMessage} &#128517;
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button
-                                            variant="danger"
-                                            onClick={this.handleClose.bind(
-                                                this
-                                            )}
-                                        >
+                                        <Button variant="danger" onClick={this.handleClose}>
                                             {this.modalOKMessage}
                                         </Button>
                                     </Modal.Footer>
@@ -158,17 +152,19 @@ class LoginForm extends React.Component {
                             controlId="formBasicEmail"
                         >
                             <Form.Control
+                                onChange={this.handleUsernameChange}
                                 type="text"
                                 placeholder="Nhập username"
-                                ref="username"
+                                ref={this.username}
                             />
                         </Form.Group>
                         {/* Password */}
                         <Form.Group controlId="formBasicPassword">
                             <Form.Control
+                                onChange={this.handlePasswordChange}
                                 type="password"
                                 placeholder="Nhập mật khẩu"
-                                ref="password"
+                                ref={this.password}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBasicCheckbox">

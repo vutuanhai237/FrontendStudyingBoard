@@ -10,7 +10,6 @@ class WallPaper extends Component {
         if (!topWallPaper) {
             return <div></div>;
         }
-        console.log(topWallPaper);
         return (
             <div>
                 <Carousel className="carousel">

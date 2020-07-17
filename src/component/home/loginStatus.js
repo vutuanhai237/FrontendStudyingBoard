@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import avatar from "../../img/anh.jpg";
-import { getCurrentUser } from "../../service/UserAPI"
+import { getLogout } from "../../service/UserAPI"
 class LoginStatus extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +23,7 @@ class LoginStatus extends Component {
         window.location.href = pathUrl;
     }
     handleLogout() {
+        this.props.getLogout();
         const createHistory = require("history").createBrowserHistory;
         let history = createHistory();
         history.push("/login");
@@ -52,7 +53,7 @@ class LoginStatus extends Component {
                             <Popover id={`popover-positioned-${"bottom"}`}>
                                 <Popover.Content>
                                     <Dropdown.Item>
-                                        {'Xin chào + ' + this.props.account.username}
+                                        {'Xin chào, ' + account.username}
                                     </Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item href="#/action-1">
@@ -60,7 +61,7 @@ class LoginStatus extends Component {
                                     </Dropdown.Item>
                                     <Dropdown.Item href="#/action-2">
                                         <p style={{ display: "inline" }}>
-                                            Thông báo{" "}
+                                            Thông báo {' '}
                                         </p>
                                         <Badge variant="success">9</Badge>
                                     </Dropdown.Item>
@@ -88,6 +89,16 @@ class LoginStatus extends Component {
 }
 
 
+const mapStateToProps = (state) => {
+    return {
+        
+    };
+};
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getLogout,
+}, dispatch);
 
-export default LoginStatus;
 
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(LoginStatus)
+);

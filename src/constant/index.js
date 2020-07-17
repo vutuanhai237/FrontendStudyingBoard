@@ -6,14 +6,6 @@ export const HOST = "bhtweb.herokuapp.com"
 export const PORT = "80"
 //#endregion
 
-// login
-export const LOGIN_POST_LOGIN = "LOGIN_POST_LOGIN";
-export const LOGIN_POST_LOGOUT = "LOGIN_POST_LOGOUT";
-export const LOGIN_GET_FORGOT_PASSWORD = "LOGIN_GET_FORGOT_PASSWORD";
-
-// register
-export const REGISTER_POST_REGISTER = "REGISTER_POST_REGISTER";
-
 // home
 export const HOME_GET_TOP_DOC = "HOME_GET_TOP_DOC";
 export const HOME_GET_TOP_DOCUMENT = "HOME_GET_TOP_DOCUMENT";
@@ -52,7 +44,7 @@ export const STR_LOGOUT_EN = "Logout"
 export const USER_POST_LOGIN = "USER_POST_LOGIN";
 export const USER_POST_REGISTER = "USER_POST_REGISTER";
 export const USER_GET_CURRENT_USER = "USER_GET_CURRENT_USER";
-
+export const USER_GET_LOGOUT = "USER_GET_LOGOUT";
 //#endregion 
 
 //#region admin exclusive constant

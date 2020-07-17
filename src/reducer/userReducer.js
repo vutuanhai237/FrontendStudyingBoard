@@ -5,18 +5,7 @@ import {
 } from "../constant/index"
 
 const initialState = {
-    account: {
-        id: 1,
-        username: 'phucnh1',
-        password: '123456',
-        avatar: 'avt',
-        email: 'phuc98@gmail.com',
-        score: 100,
-        postCount: 0,
-        documentCount: 11,
-        roleId: 1,
-        roleName: 'ADMIN',
-    },
+    account: null,
     statusLoginCode: 0,
 }
 

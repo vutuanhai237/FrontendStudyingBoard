@@ -79,7 +79,6 @@ function DocReducer(state = initialState, action) {
         case DOC_GET_SUBJECTS:
             return { ...state, subjects: action.payload };
         case DOC_GET_TOP_DOC:
-            console.log(state);
             return { ...state, topDoc: action.payload };
         case DOC_GET_SEARCH_DOC:
             return { ...state, searchDocs: action.payload };

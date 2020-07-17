@@ -30,7 +30,6 @@ class TopEvent extends Component {
 
     render() {
         const { events } = this.props;
-        console.log(events);
         const style = {
             display: this.state.isExpand,
         };

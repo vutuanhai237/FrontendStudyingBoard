@@ -15,24 +15,61 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import { getCurrentUser } from "../../service/UserAPI"
+import { HOST, PORT } from '../../constant/index';
+import FormData from 'form-data';
+import Cookies from 'js-cookie';
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            account: null,
+        }
+    }
     redirect(url) {
         const createHistory = require("history").createBrowserHistory;
         let history = createHistory();
         history.push(url);
         let pathUrl = window.location.href;
         window.location.href = pathUrl;
-    }
-    componentDidMount() {
-        console.log(this.props.topDoc);
-        this.props.getCurrentUser();
-        console.log(this.props.topDoc);
-    }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
+
+    }
+    componentWillMount() {
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        fetch(`https://${HOST}/users/current;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                this.setState({
+                    account: JSON.parse(result).account,
+                });
+                if (typeof account === 'undefined') {
+                    this.setState({
+                        account: null,
+                    });
+                }
+            })
+            .catch(error => {
+                console.log('error', error);
+                this.setState({
+                    account: null,
+                });
+                console.log(this.state.account);
+            });
+           
     }
     render() {
+        let loginStatus;
+        if (typeof account === 'undefined') {
+            loginStatus = <Nav.Link className="menu-item" href="/login"> Đăng nhập </Nav.Link>
+        } else {
+            loginStatus = <LoginStatus account={this.state.account} id="login" className="float-right" />
+        }
         return (
             <div>
                 <Navbar className="navbar" bg="white" expand="lg">
@@ -92,7 +129,9 @@ class Header extends Component {
                             <Nav.Link className="menu-item" href="/rank">
                                 Hạng
                             </Nav.Link>
-                            <LoginStatus account={this.props.account} id="login" className="float-right" />
+                            {loginStatus}
+
+
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
