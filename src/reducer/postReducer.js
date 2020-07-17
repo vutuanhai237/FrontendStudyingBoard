@@ -108,7 +108,7 @@ const initialState = {
     currentPost: fakePosts[0],
 };
 
-function postReducer(state = initialState, action) {
+function PostReducer(state = initialState, action) {
     
     switch (action.type) {    
         case "post/like_changed":
@@ -128,8 +128,8 @@ function postReducer(state = initialState, action) {
             });
             return { ...state, posts: new_post };
         default:
-            return initialState;
+            return state;
     }
 }
 
-export default postReducer;
+export default PostReducer;

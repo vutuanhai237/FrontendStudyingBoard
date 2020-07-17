@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Header from "../container/header";
-import Footer from "../container/footer";
-import ListPost from "../container/listPost";
+import Header from "../container/Header";
+import Footer from "../container/Footer";
+import ListPost from "../container/ListPost";
 class Posts extends Component {
     render() {
         return (

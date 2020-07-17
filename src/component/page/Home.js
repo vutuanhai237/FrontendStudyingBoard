@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Header from "../container/header";
-import Footer from "../container/footer";
-import WallPage from "../container/wallpage";
-import TopPost from "../container/topPost";
-import TopDocument from "../container/topDoc";
-import TopEvent from "../container/topEvent";
-import "./home.scss";
+import Header from "../container/Header";
+import Footer from "../container/Footer";
+import WallPage from "../container/Wallpage";
+import TopPost from "../container/TopPost";
+import TopDocument from "../container/TopDoc";
+import TopEvent from "../container/TopEvent";
+import "./Home.scss";
 class Home extends Component {
     render() {
         return (

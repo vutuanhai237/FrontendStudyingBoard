@@ -10,12 +10,12 @@ import {
     OverlayTrigger,
     Tooltip,
 } from "react-bootstrap";
-import AuthorInfo from "../post/authorInfo";
-import FooterSummaryPost from "../post/footerSummaryPost";
+import AuthorInfo from "../post/AuthorInfo";
+import FooterSummaryPost from "../post/FooterSummaryPost";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import "./createPost.scss";
+import "./CreatePost.scss";
 class Post extends Component {
     constructor(props) {
         super(props);

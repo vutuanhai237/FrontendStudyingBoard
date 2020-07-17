@@ -2,7 +2,7 @@ import {
     userPostLogin,
     userPostRegister,
     userGetCurrentUser,
-} from "../action/userAction.js";
+} from "../action/UserAction.js";
 import { HOST, PORT } from '../constant/index';
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
@@ -53,7 +53,6 @@ export function getCurrentUser() {
             })
             .catch(error => console.log('error', error));
 
-
-
+      
     }
 }

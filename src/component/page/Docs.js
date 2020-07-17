@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Header from "../container/header";
-import Footer from "../container/footer";
-import ListDocument from "../container/listDoc";
+import Header from "../container/Header";
+import Footer from "../container/Footer";
+import ListDocument from "../container/ListDoc";
 class Docs extends Component {
     render() {
         return (

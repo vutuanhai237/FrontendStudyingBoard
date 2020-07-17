@@ -11,8 +11,8 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Footer from '../../container/footer'
-import Header from '../../container/header'
+import Footer from '../../container/Footer'
+import Header from '../../container/Header'
 
 import gray_download_icon from '../../../img/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'

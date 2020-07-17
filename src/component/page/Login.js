@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import PostDetail from "../container/post";
-class Post extends Component {
+import LoginForm from "../container/Login";
+class Login extends Component {
     render() {
         return (
             <div>
-                <PostDetail/>
+                <LoginForm />
             </div>
         );
     }
 }
 
-export default Post;
+export default Login;

@@ -29,8 +29,8 @@ import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
 import './Admin_LeftSidebar.scss'
 
 //import component
-import Header from '../container/header'
-import Footer from '../container/footer'
+import Header from '../container/Header'
+import Footer from '../container/Footer'
 
 //import resource string
 import { STR_LOGOUT_VN } from '../../constant/index.js';

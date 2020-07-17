@@ -70,7 +70,7 @@ const initialState = {
     currentFilterSemester: "",
 }
 
-function docReducer(state = initialState, action) {
+function DocReducer(state = initialState, action) {
     switch (action.type) {
         case DOC_GET_CATEGORIES_DOC:
             return { ...state, categories: action.payload };
@@ -79,6 +79,7 @@ function docReducer(state = initialState, action) {
         case DOC_GET_SUBJECTS:
             return { ...state, subjects: action.payload };
         case DOC_GET_TOP_DOC:
+            console.log(state);
             return { ...state, topDoc: action.payload };
         case DOC_GET_SEARCH_DOC:
             return { ...state, searchDocs: action.payload };
@@ -89,9 +90,9 @@ function docReducer(state = initialState, action) {
         case DOC_POST_UP_DOWNLOAD_DOC:
             return { ...state };
         default:
-            return initialState;
+            return state;
     }
 }
 
-export default docReducer;
+export default DocReducer;
 

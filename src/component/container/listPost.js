@@ -7,11 +7,10 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "../post/summaryPost";
-import FilterPost from "../post/filterPost";
-import Paging from "../paging"
-//import "./topPost.scss"
-import "./listPost.scss"
+import SummaryPost from "../post/SummaryPost";
+import FilterPost from "../post/FilterPost";
+import Paging from "../Paging"
+import "./ListPost.scss"
 class ListPost extends Component {
     constructor(props) {
         super(props);
