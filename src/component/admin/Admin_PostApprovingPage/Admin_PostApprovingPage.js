@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import '../AdminPage'
-import Admin_RequestedPostSummaryItem from '../admin_components/Admin_RequestedPostSummaryItem'
-import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
+import Admin_RequestedPostSummaryItem from '../_admin_components/Admin_RequestedPostSummaryItem'
+import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import Paginator from '../../shared_components/Paginator/ServerPaginator'
 
 class Admin_PostApprovingPage extends Component {

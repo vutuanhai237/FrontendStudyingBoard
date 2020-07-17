@@ -11,6 +11,7 @@ import Login from "./page/Login";
 import Register from "./page/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
+import Admin_DocPreview from './admin/Admin_DocPostPreview/Admin_DocPreview'
 // import Admin_PageNotification from "./admin/Admin_PageNotification/Admin_PageNotification";
 
 const App = () => {
@@ -50,7 +51,7 @@ const App = () => {
                 <Route exact path="admin/user/:id">
                     {/* Admin tới trang chi tiết của người dùng được chọn và toàn quyền thi triển võ công */}
                 </Route>
-            
+
                 <Route exact path="/admin/account_management">
                     <AdminPage></AdminPage>
                 </Route>
@@ -61,10 +62,13 @@ const App = () => {
                 <Route exact path="/admin/user_role_management">
                     <AdminPage></AdminPage>
                 </Route>
+
                 {/* User, himself các kiểu */}
                 <Route exact path="/user/:id">
                     <AdminPage></AdminPage>
                 </Route>
+
+                <Route exact path="/admin/doc_approving/:id" component={Admin_DocPreview} />
 
             </Switch>
             <div className="App"></div>

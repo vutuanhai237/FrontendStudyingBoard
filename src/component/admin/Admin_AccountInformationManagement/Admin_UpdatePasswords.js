@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import '../AdminPage'
-import Admin_Titlebar from '../admin_components/Admin_Titlebar/Admin_Titlebar'
+import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import '../../shared_components/Avatar.scss'
 
@@ -10,6 +10,7 @@ class Admin_UpdatePasswords extends Component {
     constructor(props) {
         super();
         this.isAnyChangeRoleDropdownComboboxOpen = true;
+        this.canClickUpdatePassWord = false;
         this.state = {
             accountInformation: {
                 userID: 1,
@@ -49,7 +50,6 @@ class Admin_UpdatePasswords extends Component {
     }
 
 
-
     render() {
 
         return (
@@ -57,31 +57,34 @@ class Admin_UpdatePasswords extends Component {
                 <div>
                     <div className="display_flex width_100_percents" >
                         <div className="Account_Information_Update_Passwords_Port">
+                            <form onSubmit={() => this.handlerUpdatePassword()}>
+                                <div className="Simple_Gray_Label_18px " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
 
-                            <div className="Simple_Gray_Label_18px " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
+                                {/* Display name */}
 
-                            {/* Display name */}
-                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                Mật khẩu hiện tại:
+                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                    Mật khẩu hiện tại:
                              </div>
-                            <input type="text" className="Simple_Text_Input" />
+                                <input type="password" className="Simple_Text_Input" defaultValue="" onChange={(e) => this.handlerChangeCurrentPasswords(e)} />
 
-                            {/* Username */}
-                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                Mật khẩu mới:
+                                {/* Username */}
+                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                    Mật khẩu mới:
                               </div>
-                            <input type="text" className="Simple_Text_Input" />
+                                <input type="password" className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPasswords(e)} />
 
-                            {/* Passwords */}
-                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                Xác nhận mật khẩu mới:
+                                {/* Passwords */}
+                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                    Xác nhận mật khẩu mới:
                             </div>
-                            <input type="text" className="Simple_Text_Input" />
+                                <input type="password" className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationNewPasswords(e)} />
+                            </form>
                         </div>
+
 
                     </div>
                     <div className="display_flex margin_top_10px" >
-                        <button className="Simple_Blue_Button margin_auto"  >
+                        <button className="Simple_Blue_Button margin_auto" disabled={!this.canClickUpdatePassWord} >
                             Xác nhận
                         </button>
                     </div>
@@ -106,22 +109,24 @@ class Admin_UpdatePasswords extends Component {
         );
     }
 
+    //#region handler change text inputs
+    handlerChangeCurrentPasswords = (e) => {
 
-
-
-    handlerVerifyChangeRoleConfirmation = (roleID) => {
-        // send request to server   
-        //...
-
-        this.closeChangeRoleConfirmationPopup();
     }
 
-    handleCancelChangeRoleConfirmation = () => { //phai co popup thi moi test duoc
-        // this.roleID = this.recover_roleID;
-        this.closeChangeRoleConfirmationPopup();
+    handlerChangeNewPasswords = (e) => {
 
-        // this.setState({});
     }
+
+    handlerChangeConfirmationNewPasswords = (e) => {
+
+    }
+    //#endregion
+
+    handlerUpdatePassword = (e) => {
+        e.preventDefault();
+    }
+
 
 }
 export default Admin_UpdatePasswords;
