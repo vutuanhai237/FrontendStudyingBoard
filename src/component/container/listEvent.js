@@ -7,10 +7,10 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "../post/summaryPost";
-import Paging from "../paging"
-import "./topPost.scss"
-import "./listPost.scss"
+import SummaryPost from "../post/SummaryPost";
+import Paging from "../Paging"
+import "./TopPost.scss"
+import "./ListPost.scss"
 class ListEvent extends Component {
     constructor(props) {
         super(props);

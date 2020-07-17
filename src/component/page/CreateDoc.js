@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Header from "../container/header";
-import CreateDoc from "../container/createDoc";
+import Header from "../container/Header";
+import CreateDoc from "../container/CreateDoc.js";
 class CrDoc extends Component {
     render() {
         return (

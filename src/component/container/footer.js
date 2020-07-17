@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import logo from "../../img/logo.png"
-import "./footer.scss"
+import "./Footer.scss"
 
 class Footer extends Component {
     render() {

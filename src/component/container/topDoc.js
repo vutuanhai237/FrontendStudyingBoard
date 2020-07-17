@@ -7,10 +7,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
-import SummaryDocument from "../doc/summaryDoc";
+import SummaryDocument from "../doc/SummaryDoc";
 import { bindActionCreators } from 'redux';
-import { getTopDoc } from "../../service/docAPI"
-import "./topDoc.scss";
+import { getTopDoc } from "../../service/DocAPI"
+import "./TopDoc.scss";
 class TopDoc extends Component {
     constructor(props) {
         super(props);

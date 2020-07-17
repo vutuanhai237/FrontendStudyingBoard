@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Nav, Dropdown, OverlayTrigger, Popover, Badge } from "react-bootstrap";
-import "./loginStatus.scss";
+import "./LoginStatus.scss";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { bindActionCreators } from 'redux';
 import avatar from "../../img/anh.jpg";
+import { getCurrentUser } from "../../service/UserAPI"
 class LoginStatus extends Component {
     constructor(props) {
         super(props);
@@ -9,17 +14,24 @@ class LoginStatus extends Component {
             isLogin: false,
         };
     }
+   
     handleLogin() {
-        this.setState({ isLogin: true });
-        console.log(this.state.isLogin);
+        const createHistory = require("history").createBrowserHistory;
+        let history = createHistory();
+        history.push("/login");
+        let pathUrl = window.location.href;
+        window.location.href = pathUrl;
     }
     handleLogout() {
-        this.setState({
-            isLogin: false,
-        });
+        const createHistory = require("history").createBrowserHistory;
+        let history = createHistory();
+        history.push("/login");
+        let pathUrl = window.location.href;
+        window.location.href = pathUrl;
     }
     render() {
-        if (!this.state.isLogin) {
+        const {account} = this.props;
+        if (account === null) {
             return (
                 <Nav.Link
                     onClick={this.handleLogin.bind(this)}
@@ -39,7 +51,9 @@ class LoginStatus extends Component {
                         overlay={
                             <Popover id={`popover-positioned-${"bottom"}`}>
                                 <Popover.Content>
-                                    <Dropdown.Item>Xin chào</Dropdown.Item>
+                                    <Dropdown.Item>
+                                        {'Xin chào + ' + this.props.account.username}
+                                    </Dropdown.Item>
                                     <Dropdown.Divider />
                                     <Dropdown.Item href="#/action-1">
                                         Trang cá nhân
@@ -73,4 +87,7 @@ class LoginStatus extends Component {
     }
 }
 
+
+
 export default LoginStatus;
+

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Header from "../container/header";
-import CreatePost from "../container/createPost";
+import Header from "../container/Header";
+import CreatePost from "../container/CreatePost";
 class CrPost extends Component {
     render() {
         return (

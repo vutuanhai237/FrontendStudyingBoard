@@ -6,7 +6,7 @@ import {
     docGetTopDoc,
     docGetSearchDoc,
     docGetDocByID,
-} from "../action/docAction.js";
+} from "../action/DocAction.js";
 import { HOST, PORT } from '../constant/index';
 import FormData from 'form-data';
 

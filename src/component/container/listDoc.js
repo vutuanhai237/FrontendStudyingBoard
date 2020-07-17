@@ -7,12 +7,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryDoc from "../doc/summaryDoc";
-import FilterDoc from "../doc/filterDoc";
-import Paging from "../paging";
-import "./topPost.scss";
-import "./listPost.scss";
-import { getSearchDoc } from "../../service/docAPI.js"
+import SummaryDoc from "../doc/SummaryDoc";
+import FilterDoc from "../doc/FilterDoc";
+import Paging from "../Paging";
+import "./TopPost.scss";
+import "./ListPost.scss";
+import { getSearchDoc } from "../../service/DocAPI.js"
 import { bindActionCreators } from 'redux';
 class ListDoc extends Component {
     constructor(props) {

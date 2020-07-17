@@ -5,8 +5,8 @@
 // dependency component: none
 import React, { Component } from "react";
 import { Nav, Navbar, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
-import "./footerSummaryPost.scss";
-import "./authorInfo.scss"
+import "./FooterSummaryPost.scss";
+import "./AuthorInfo.scss"
 
 class AuthorInfo extends Component {
     constructor(props) {

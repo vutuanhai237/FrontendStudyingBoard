@@ -5,7 +5,7 @@
 // dependency component: none
 import React, { Component } from "react";
 import { Row, Col, Dropdown, DropdownButton, Button } from "react-bootstrap";
-import "./filterDoc.scss";
+import "./FilterDoc.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -14,7 +14,7 @@ import {
     getSubjects,
     getCategoriesDoc,
     getSearchDoc,
-} from "../../service/docAPI.js"
+} from "../../service/DocAPI.js"
 class FilterDoc extends Component {
     constructor(props) {
         super(props);

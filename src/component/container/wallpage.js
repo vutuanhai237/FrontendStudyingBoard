@@ -3,7 +3,7 @@ import anh from "../../img/board.png";
 import { Carousel, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "./wallpage.scss";
+import "./Wallpage.scss";
 class WallPaper extends Component {
     render() {
         const { topWallPaper } = this.props;

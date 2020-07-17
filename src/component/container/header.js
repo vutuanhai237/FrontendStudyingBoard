@@ -7,17 +7,30 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Redirect } from "react-router-dom";
-import "./header.scss";
-import SearchBar from "../searchBar";
-import PropTypes from "prop-types";
-import LoginStatus from "../home/loginStatus";
+import "./Header.scss";
+import SearchBar from "../SearchBar";
+import LoginStatus from "../home/LoginStatus";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { bindActionCreators } from 'redux';
+import { getCurrentUser } from "../../service/UserAPI"
 class Header extends Component {
-    redirectToCreatePost(url) {
+    redirect(url) {
         const createHistory = require("history").createBrowserHistory;
         let history = createHistory();
         history.push(url);
         let pathUrl = window.location.href;
         window.location.href = pathUrl;
+    }
+    componentDidMount() {
+        console.log(this.props.topDoc);
+        this.props.getCurrentUser();
+        console.log(this.props.topDoc);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
     }
     render() {
         return (
@@ -36,7 +49,7 @@ class Header extends Component {
                     </Navbar.Brand>
                     <div
                         onClick={() =>
-                            this.redirectToCreatePost("/create_post")
+                            this.redirect("/create_post")
                         }
                     >
                         <FontAwesomeIcon
@@ -46,7 +59,7 @@ class Header extends Component {
                     </div>
                     <div
                         onClick={() =>
-                            this.redirectToCreatePost("/create_document")
+                            this.redirect("/create_document")
                         }
                     >
                         <FontAwesomeIcon
@@ -79,7 +92,7 @@ class Header extends Component {
                             <Nav.Link className="menu-item" href="/rank">
                                 Hạng
                             </Nav.Link>
-                            <LoginStatus id="login" className="float-right" />
+                            <LoginStatus account={this.props.account} id="login" className="float-right" />
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -89,7 +102,18 @@ class Header extends Component {
     }
 }
 
-Header.propTypes = {
-    isLogin: PropTypes.bool,
+const mapStateToProps = (state) => {
+    return {
+        account: state.user.account,
+        topDoc: state.doc.topDoc,
+    };
 };
-export default Header;
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getCurrentUser,
+}, dispatch);
+
+
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(Header)
+);
+

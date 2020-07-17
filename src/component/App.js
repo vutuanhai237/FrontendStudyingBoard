@@ -1,14 +1,14 @@
 import React from "react";
-import Home from "./pages/home";
-import Posts from "./pages/posts";
-import Post from "./pages/post";
-import Docs from "./pages/docs";
+import Home from "./page/Home";
+import Posts from "./page/Posts";
+import Post from "./page/Post";
+import Docs from "./page/Docs";
 // import Doc from "./pages/doc";
-import Events from "./pages/events";
-import CrPost from "./pages/createPost";
-import CrDoc from "./pages/createDoc";
-import Login from "./pages/login";
-import Register from "./pages/register";
+import Events from "./page/Events";
+import CrPost from "./page/CreatePost";
+import CrDoc from "./page/CreateDoc";
+import Login from "./page/Login";
+import Register from "./page/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AdminPage from './admin/AdminPage'
 // import Admin_PageNotification from "./admin/Admin_PageNotification/Admin_PageNotification";

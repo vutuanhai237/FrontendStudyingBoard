@@ -5,8 +5,8 @@
 // dependency component: footer summary post
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
-import "./summaryPost.scss";
-import FooterSummaryPost from "./footerSummaryPost";
+import "./SummaryPost.scss";
+import FooterSummaryPost from "./FooterSummaryPost";
 class SummaryPost extends Component {
     render() {
         const { item } = this.props;

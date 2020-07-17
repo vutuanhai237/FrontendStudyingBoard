@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { Col, Nav } from "react-bootstrap";
 import { faDownload, faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./footerSummaryDoc.scss";
+import "./FooterSummaryDoc.scss";
 class FooterSummaryDocument extends Component {
     render() {
         const { item } = this.props;

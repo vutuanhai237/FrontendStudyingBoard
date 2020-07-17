@@ -3,10 +3,10 @@ import { Form, Button, Modal, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "./login.scss";
+import "./Login.scss";
 import logo from "../../img/logo-bht.png";
 import { HOST } from "../../constant/index"
-import { postLogin, getCurrentUser } from "../../service/userAPI"
+import { postLogin, getCurrentUser } from "../../service/UserAPI"
 
 import { bindActionCreators } from 'redux';
 class LoginForm extends React.Component {
@@ -17,17 +17,16 @@ class LoginForm extends React.Component {
             password: "",
             modalShow: false,
             isLoginSuccess: false,
+            
         };
         this.statusLoginCode = 0;
+        this.modalMessage = "";
+        this.modalOKMessage = "Đồng ý";
+
     }
 
 
     login() {
-
-        // this.setState({
-        //     isLoginSuccess: false,
-        //     modalShow: true,
-        // });
         const account = {
             username: this.refs.username.value,
             password: this.refs.password.value,
@@ -39,27 +38,39 @@ class LoginForm extends React.Component {
         console.log(nextProps.statusLoginCode);
         this.statusLoginCode = nextProps.statusLoginCode;
         console.log(this.statusLoginCode);
-        //this.handleModal();
+        this.handleModal();
     }
 
     handleModal() {
-        if (this.statusLoginCode === 0) {
-            this.setState({
-                isLoginSuccess: false,
-                modalShow: true,
-            });
-        } else {
+        if (this.statusLoginCode === 3) {
             this.setState({
                 isLoginSuccess: true,
                 modalShow: true,
             });
+            this.modalMessage = "Đăng nhập thành công";
+        } else {
+            this.setState({
+                isLoginSuccess: false,
+                modalShow: true,
+            });
+            switch(this.statusLoginCode) {
+                case 0:
+                    this.modalMessage = "Đăng nhập thất bại, sai tài khoản";
+                    break;
+                case 1:
+                    this.modalMessage = "Đăng nhập thất bại, sai mật khẩu";
+                    break;
+                default:
+                    break;
+                
+            }
         }
     }
     handleClose() {
         this.setState({
             modalShow: false,
         });
-        if (this.statusLoginCode !== 0) {
+        if (this.statusLoginCode === 3) {
             const createHistory = require("history").createBrowserHistory;
             let history = createHistory();
             history.push("/");
@@ -91,7 +102,7 @@ class LoginForm extends React.Component {
                             return (
                                 <div>
                                     <Modal.Body>
-                                        Đăng nhập thành công &#128540;
+                                        {this.modalMessage} &#128540;
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button
@@ -101,7 +112,7 @@ class LoginForm extends React.Component {
                                                 this
                                             )}
                                         >
-                                            Đồng ý
+                                            {this.modalOKMessage}
                                         </Button>
                                     </Modal.Footer>
                                 </div>
@@ -110,7 +121,7 @@ class LoginForm extends React.Component {
                             return (
                                 <div>
                                     <Modal.Body>
-                                        Đăng nhập thất bại &#128517;
+                                        {this.modalMessage} &#128517;
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button
@@ -119,7 +130,7 @@ class LoginForm extends React.Component {
                                                 this
                                             )}
                                         >
-                                            Đồng ý
+                                            {this.modalOKMessage}
                                         </Button>
                                     </Modal.Footer>
                                 </div>
