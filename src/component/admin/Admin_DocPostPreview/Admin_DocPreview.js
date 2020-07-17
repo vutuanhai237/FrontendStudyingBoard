@@ -140,6 +140,7 @@ class Admin_DocPreview extends Component {
                         </div>
                     </div>
                     <div className="Document_Live_Preview">
+                        
                         <PDFViewer
                             document={{
                                 url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf',
@@ -149,22 +150,7 @@ class Admin_DocPreview extends Component {
                             loader={true}
                             alert={true}
                             navbarOnTop={true}
-                            css={{
-                                navbarWrapper: "background: green",
-                                zoomOutBtn: "background: green"
-                            }}
-                        // shape={
-                        //     navbarWrapper: "background: green ",
-                        //     zoomOutBtn: String,  // CSS Class for the ZoomOut Button
-                        //     resetZoomBtn: String,  // CSS Class for the Reset Zoom Button
-                        //     zoomInBtn: String,  // CSS Class for the ZoomIn Button
-                        //     previousPageBtn: String,  // CSS Class for the PreviousPage button
-                        //     pageIndicator: String,  // CSS Class for the Page Indicator
-                        //     nextPageBtn: String,  // CSS Class for the NextPage button
-                        //     rotateLeftBtn: String,  // CSS Class for the RotateLeft button
-                        //     resetRotationBtn: String,  // CSS Class for the Reset Rotation button
-                        //     rotateRightBtn: String  // CSS Class for the RotateRight button
-                        // }
+
                         />
                     </div>
                     <div className="DocPost_Detail_Footer">

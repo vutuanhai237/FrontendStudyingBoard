@@ -190,16 +190,14 @@
 }
 
 .Document_Live_Preview {
-    // padding-top: 10px;
     margin-top: 5px;
     width: 90%;
     margin-left: 5%;
-    height: 600px;
     background: #c4c4c4;
     margin-bottom: 15px;
     border: 1px #c4c4c4 solid;
     border-radius: 5px;
-    height: fit-content;
+    height: 900px;
 }
 
 .Doc_Detail_File_Name {
@@ -233,3 +231,67 @@
     padding-right: 5px;
     padding-bottom: 5px;
 }
+
+//exclusive for custom pdf viewer (by overriding these classes in template)
+div .has-margin-bottom-15 {
+    margin-bottom: 5px !important;
+}
+
+div .has-margin-top-15 {
+    margin-top: 5px !important;
+}
+
+div .has-background-black {
+    background: white !important;
+    display: flex !important;
+}
+
+.buttons {
+    flex-wrap: none;
+}
+
+.columns.is-mobile > .column.is-2 {
+    display: flex !important;
+    flex: auto !important;
+    width: fit-content !important;
+}
+
+.columns.is-mobile > .column.is-3 {
+    display: flex !important;
+    flex: auto !important;
+    width: fit-content !important;
+}
+
+.column {
+    display: flex !important;
+}
+
+.box {
+    padding: 5px !important;
+}
+
+.buttons.are-small .button:not(.is-normal):not(.is-medium):not(.is-large) {
+    border-radius: 5px !important;
+}
+
+div .button.is-black {
+    background: #5279db !important;
+}
+
+div .button.is-black:hover {
+    opacity: 80%;
+}
+
+.container div div {
+    height: 840px !important;
+}
+
+.container div div div {
+    height: fit-content !important;
+}
+
+.container div div div canvas {
+    max-width: 792px;
+}
+
+
