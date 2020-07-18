@@ -1,0 +1,113 @@
+.Simple_White_Button {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: white;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #363636;
+    border: #c4c4c4 1px solid;
+    user-select: none;
+    min-width: 80px;
+}
+
+.Simple_White_Button:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.Simple_White_Button:active {
+    background: #c4c4c4;
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Simple_White_Button:disabled {
+    background: #c4c4c4;
+    color: white;
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Simple_Red_Button {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: #fe3a3a;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ffffff;
+    border: #ffffff;
+    user-select: none;
+    min-width: 80px;
+}
+
+.Simple_Red_Button:hover {
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Simple_Red_Button:active {
+    background: #c4c4c4;
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Simple_Red_Button:disabled {
+    background: #c4c4c4;
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Simple_Blue_Button {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 25px;
+    vertical-align: auto;
+    text-align: center;
+    border-radius: 5px;
+    background: #5279db;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ffffff;
+    border: #ffffff;
+    user-select: none;
+    min-width: 80px;
+}
+
+.Simple_Blue_Button:hover {
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.Simple_Blue_Button:active {
+    background: #c4c4c4;
+    cursor: pointer;
+}
+
+.Simple_Blue_Button:disabled {
+    background: #c4c4c4;
+    cursor: pointer;
+}
+
+.Is_Form_Button {
+    margin-top: 1.5rem;
+}

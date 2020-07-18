@@ -56,7 +56,7 @@ const App = () => {
                     <AdminPage></AdminPage>
                 </Route>
 
-                <Route exact path="/admin/update_passwords">
+                <Route exact path="/admin/update_password">
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="/admin/user_role_management">

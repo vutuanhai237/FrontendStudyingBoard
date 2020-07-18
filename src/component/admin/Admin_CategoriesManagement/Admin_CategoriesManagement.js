@@ -186,12 +186,12 @@ class Admin_CategoryManagement extends Component {
                     closeModal={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}); }}
                 >
                     <div className="Custom_Modal_Body">
-                        <div className="Simple_Gray_Label_18px"> Tên danh mục mới: </div>
+                        <div className="Simple_Gray_Label"> Tên danh mục mới: </div>
                         <input type="text" className="Simple_Text_Input" placeholder="Nhập tên danh mục ..." />
                     </div>
 
                     <div className="Custom_Modal_Footer">
-                        <div className="Simple_Gray_Label_18px">Xác nhận?</div>
+                        <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
                             <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
                             <button className="Simple_White_Button" onClick={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
@@ -208,12 +208,12 @@ class Admin_CategoryManagement extends Component {
                     closeModal={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}); }}
                 >
                     <div className="Custom_Modal_Body">
-                        <div className="Simple_Gray_Label_18px"> Tên danh mục: </div>
+                        <div className="Simple_Gray_Label"> Tên danh mục: </div>
                         <input type="text" className="Simple_Text_Input" defaultValue={this.selected_category_name} />
                     </div>
 
                     <div className="Custom_Modal_Footer">
-                        <div className="Simple_Gray_Label_18px">Xác nhận?</div>
+                        <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
                             <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
                             <button className="Simple_White_Button" onClick={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>

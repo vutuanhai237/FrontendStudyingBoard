@@ -1,4 +1,6 @@
-.Simple_Gray_Label_18px {
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.Simple_Gray_Label {
     width: 100%;
     height: fit-content;
     vertical-align: auto;
@@ -6,7 +8,7 @@
     background: white;
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.1rem;
     line-height: 100%;
     color: #363636;
     user-select: none;
@@ -16,7 +18,7 @@
     margin-top: 2px;
 }
 
-.Simple_Blue_Label_18px {
+.Simple_Blue_Label {
     width: 100%;
     height: fit-content;
     vertical-align: auto;
@@ -24,7 +26,7 @@
     background: white;
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.1rem;
     line-height: 100%;
     color: #5279db;
     user-select: none;
@@ -32,4 +34,27 @@
     width: 100%;
     margin-bottom: 5px;
     margin-top: 2px;
+}
+
+.Simple_Error_Label {
+    margin-top: 0.2rem;
+    padding-left: 0.5rem;
+    position: absolute;
+    height: fit-content;
+    vertical-align: auto;
+    background: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 0.7rem;
+    text-align: right;
+    line-height: 100%;
+    color: #fe3a3a;
+    // background: green;
+    user-select: none;
+    min-width: 80px;
+    width: 100%;
+}
+
+.Is_Form_Label {
+    margin-top: 1.2rem;
 }

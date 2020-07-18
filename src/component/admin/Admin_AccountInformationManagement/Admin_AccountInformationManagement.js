@@ -12,7 +12,7 @@ import { ClickAwayListener } from '@material-ui/core'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Admin_UpdatePasswords from './Admin_UpdatePasswords'
+import Admin_UpdatePassword from './Admin_UpdatePassword'
 
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
@@ -44,7 +44,7 @@ class Admin_AccountInformationManagement extends Component {
                 }
             ],
             isChangeRoleConfirmationPopupOpen: false,
-            passwordsString: "",
+            passwordString: "",
             canSaveInformation: false,
         }
     }
@@ -79,7 +79,7 @@ class Admin_AccountInformationManagement extends Component {
                                         <Route exact path="/admin">
                                             <div className="Account_Information_Port">
 
-                                                <div className="Simple_Gray_Label_18px">Avatar: </div>
+                                                <div className="Simple_Gray_Label">Avatar: </div>
                                                 <div className="Account_Information_Avatar_Port">
                                                     <div className="Simple_White_Button ">Cập nhật avatar</div>
                                                     {/* <div className="margin_left_10px"></div> */}
@@ -87,31 +87,31 @@ class Admin_AccountInformationManagement extends Component {
                                                 </div>
 
                                                 {/* Display name */}
-                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                <div className="Simple_Gray_Label margin_top_10px">
                                                     Họ tên:
                                             </div>
                                                 <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
                                                 {/* Username */}
-                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                <div className="Simple_Gray_Label margin_top_10px">
                                                     Username:
                                             </div>
                                                 <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
 
-                                                {/* Passwords */}
-                                                <div className="Simple_Gray_Label_18px margin_top_10px">
-                                                    Passwords:
+                                                {/* Password */}
+                                                <div className="Simple_Gray_Label margin_top_10px">
+                                                    Password:
                                             </div>
                                                 <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
 
                                                 {/* Facebook */}
-                                                {/* <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                {/* <div className="Simple_Gray_Label margin_top_10px">
                                                 Facebook:
                                             </div>
                                             <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.facebook} /> */}
 
                                                 {/* Email */}
-                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                <div className="Simple_Gray_Label margin_top_10px">
                                                     Email:
                                             </div>
                                                 <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
@@ -125,8 +125,8 @@ class Admin_AccountInformationManagement extends Component {
 
                                         </Route>
 
-                                        <Route path="/admin/update_passwords">
-                                            <Admin_UpdatePasswords></Admin_UpdatePasswords>
+                                        <Route path="/admin/update_password">
+                                            <Admin_UpdatePassword></Admin_UpdatePassword>
                                         </Route>
 
                                     </Switch>
@@ -138,7 +138,7 @@ class Admin_AccountInformationManagement extends Component {
                             <div className="width_50_percents">
                                 <div className="Account_Information_Port">
                                     <div className="display_flex">
-                                        <div className="Simple_Gray_Label_18px" style={{ lineHeight: "25px" }}>Role:</div>
+                                        <div className="Simple_Gray_Label" style={{ lineHeight: "25px" }}>Role:</div>
                                         <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
                                             <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
@@ -218,14 +218,14 @@ class Admin_AccountInformationManagement extends Component {
 
     //#region support initate value for rendering
     generatePassword = () => {
-        let _passwordsString = "";
+        let _passwordString = "";
         console.log(String(this.props.accountInformation.password));
         if (this.props.accountInformation.password !== undefined) {
             for (let i = 0; i < this.props.accountInformation.password.length; i++) {
-                _passwordsString += "*";
+                _passwordString += "*";
             }
         }
-        return _passwordsString;
+        return _passwordString;
     }
 
     //#region handler combobox role and change role

@@ -25,7 +25,7 @@ import Admin_AccountInformationManagement from './Admin_AccountInformationManage
 import Admin_UserRoleManagement from './Admin_UserRoleManagement/Admin_UserRoleManangement'
 
 //import css
-import '../shared_components/SimpleBlueButton/SimpleBlueButton.scss';
+import '../shared_components/SimpleButton.scss';
 import './Admin_LeftSidebar.scss'
 
 //import component
@@ -309,12 +309,12 @@ class AdminPage extends Component {
                                                 </div>
                                         }
                                         {
-                                            window.location.pathname === "/admin/update_passwords" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_passwords"} style={{ display: "flex", textDecoration: "none" }}>
+                                            window.location.pathname === "/admin/update_password" ?
+                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_password"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Cập nhật mật khẩu
                                                 </div>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_passwords"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_password"} style={{ display: "flex", textDecoration: "none" }}>
                                                     Cập nhật mật khẩu
                                                 </div>
                                         }
@@ -384,7 +384,7 @@ class AdminPage extends Component {
                                 <Route exact path="/admin">
                                     <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
-                                <Route path="/admin/update_passwords">
+                                <Route path="/admin/update_password">
                                     <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
                                 <Route path = "/admin/user_role_management">

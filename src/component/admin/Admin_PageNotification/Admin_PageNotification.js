@@ -118,12 +118,12 @@ class Admin_PageNotification extends Component {
                     closeModal={() => { this.isAddNotificationPopupOpen = false; this.setState({}); }}
                 >
                     <div className="Custom_Modal_Body">
-                        <div className="Simple_Gray_Label_18px"> Nội dung thông báo: </div>
+                        <div className="Simple_Gray_Label"> Nội dung thông báo: </div>
                         <input type="text" className="Simple_Text_Input" placeholder="Nhập tên thông báo ..." />
                     </div>
 
                     <div className="Custom_Modal_Footer">
-                        <div className="Simple_Gray_Label_18px">Xác nhận?</div>
+                        <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
                             <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
                             <button className="Simple_White_Button" onClick={() => { this.isAddNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
@@ -140,12 +140,12 @@ class Admin_PageNotification extends Component {
                     closeModal={() => { this.isEditNotificationPopupOpen = false; this.setState({}); }}
                 >
                     <div className="Custom_Modal_Body">
-                        <div className="Simple_Gray_Label_18px"> Tên thông báo: </div>
+                        <div className="Simple_Gray_Label"> Tên thông báo: </div>
                         <input type="text" className="Simple_Text_Input" defaultValue={this.selected_category_name} />
                     </div>
 
                     <div className="Custom_Modal_Footer">
-                        <div className="Simple_Gray_Label_18px">Xác nhận?</div>
+                        <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
                             <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
                             <button className="Simple_White_Button" onClick={() => { this.isEditNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>

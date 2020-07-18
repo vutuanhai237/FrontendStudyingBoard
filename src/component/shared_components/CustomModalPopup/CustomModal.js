@@ -10,10 +10,8 @@ import success_management_icon from '../../../img/success_management_icon.png'
 import fail_management_icon from '../../../img/fail_management_icon.png'
 // import '../../../'
 
-//import button
-import '../SimpleRedButton/SimpleRedButton.scss'
-import '../SimpleBlueButton/SimpleBlueButton.scss'
-import '../SimpleWhiteButton/SimpleWhiteButton.scss'
+//import scss
+import '../SimpleButton.scss'
 import '../SimpleTextInput.scss'
 import '../SimpleLabel.scss'
 export default class CustomModal extends React.Component {
