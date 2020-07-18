@@ -50,165 +50,170 @@ class Admin_AccountInformationManagement extends Component {
     }
 
     componentDidMount() {
+        // console.log(this.props);
         this.props.getCurrentUser();
     }
 
 
 
     render() {
-        let roles_Combobox =
-            this.state.roles.map(role =>
-                this.props.accountInformation.roleID === role.id ?
-                    <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                    <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
-                        onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
-                    </div>
-            )
+        if (this.props.accountInformation) {
+            let roles_Combobox =
+                this.state.roles.map(role =>
+                    this.props.accountInformation.roleID === role.id ?
+                        <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
+                        <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
+                            onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
+                        </div>
+                )
 
 
-        return (
-            <div>
-                <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
-                <div className="Admin_Show_Port">
-                    <div className="display_flex width_100_percents" >
-                        <div className="width_50_percents">
-                            <Router>
-                                <Switch>
-                                    <Route exact path="/admin">
-                                        <div className="Account_Information_Port">
+            return (
+                <div>
+                    <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
+                    <div className="Admin_Show_Port">
+                        <div className="display_flex width_100_percents" >
+                            <div className="width_50_percents">
+                                <Router>
+                                    <Switch>
+                                        <Route exact path="/admin">
+                                            <div className="Account_Information_Port">
 
-                                            <div className="Simple_Gray_Label_18px">Avatar: </div>
-                                            <div className="Account_Information_Avatar_Port">
-                                                <div className="Simple_White_Button ">Cập nhật avatar</div>
-                                                {/* <div className="margin_left_10px"></div> */}
-                                                <img className="Account_Information_Avatar_Image" alt="avatar" src={this.props.accountInformation.avartar} />
+                                                <div className="Simple_Gray_Label_18px">Avatar: </div>
+                                                <div className="Account_Information_Avatar_Port">
+                                                    <div className="Simple_White_Button ">Cập nhật avatar</div>
+                                                    {/* <div className="margin_left_10px"></div> */}
+                                                    <img className="Account_Information_Avatar_Image" alt="avatar" src={this.props.accountInformation.avartar} />
+                                                </div>
+
+                                                {/* Display name */}
+                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                    Họ tên:
                                             </div>
+                                                <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
-                                            {/* Display name */}
-                                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                                Họ tên:
+                                                {/* Username */}
+                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                    Username:
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
+                                                <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
 
-                                            {/* Username */}
-                                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                                Username:
+                                                {/* Passwords */}
+                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                    Passwords:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
+                                                <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
 
-                                            {/* Passwords */}
-                                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                                Passwords:
-                                            </div>
-                                            <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
-
-                                            {/* Facebook */}
-                                            {/* <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                {/* Facebook */}
+                                                {/* <div className="Simple_Gray_Label_18px margin_top_10px">
                                                 Facebook:
                                             </div>
                                             <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.facebook} /> */}
 
-                                            {/* Email */}
-                                            <div className="Simple_Gray_Label_18px margin_top_10px">
-                                                Email:
+                                                {/* Email */}
+                                                <div className="Simple_Gray_Label_18px margin_top_10px">
+                                                    Email:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
-                                        </div>
+                                                <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
+                                            </div>
 
-                                        <div className="display_flex margin_top_10px" >
-                                            <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
-                                                Lưu thay đổi
+                                            <div className="display_flex margin_top_10px" >
+                                                <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
+                                                    Lưu thay đổi
                                             </button>
-                                        </div>
+                                            </div>
 
-                                    </Route>
+                                        </Route>
 
-                                    <Route path="/admin/update_passwords">
-                                        <Admin_UpdatePasswords></Admin_UpdatePasswords>
-                                    </Route>
+                                        <Route path="/admin/update_passwords">
+                                            <Admin_UpdatePasswords></Admin_UpdatePasswords>
+                                        </Route>
 
-                                </Switch>
-                            </Router>
-                        </div>
+                                    </Switch>
+                                </Router>
+                            </div>
 
-                        <div className="margin_left_10px" />
+                            <div className="margin_left_10px" />
 
-                        <div className="width_50_percents">
-                            <div className="Account_Information_Port">
-                                <div className="display_flex">
-                                    <div className="Simple_Gray_Label_18px" style={{ lineHeight: "25px" }}>Role:</div>
-                                    <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
+                            <div className="width_50_percents">
+                                <div className="Account_Information_Port">
+                                    <div className="display_flex">
+                                        <div className="Simple_Gray_Label_18px" style={{ lineHeight: "25px" }}>Role:</div>
+                                        <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
-                                        <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
-                                            <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
-                                                <div style={{ position: "absolute", width: "140px" }}>
-                                                    <div className="Disable_Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox"}>
-                                                        {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
-                                                        <div className="display_flex">
-                                                            <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
-                                                                {this.props.accountInformation.roleId ?
-                                                                    this.state.roles[this.props.accountInformation.roleId].role : "User"
-                                                                }
+                                            <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
+                                                <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
+                                                    <div style={{ position: "absolute", width: "140px" }}>
+                                                        <div className="Disable_Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox"}>
+                                                            {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
+                                                            <div className="display_flex">
+                                                                <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
+                                                                    {this.props.accountInformation.roleId ?
+                                                                        this.state.roles[this.props.accountInformation.roleId].role : "User"
+                                                                    }
+                                                                </div>
                                                             </div>
+                                                            <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element"} />
                                                         </div>
-                                                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element"} />
+
+                                                        {this.isAnyChangeRoleDropdownComboboxOpen ? (
+                                                            <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container"}>
+                                                                {roles_Combobox}
+                                                                <div className="margin_bottom_5px" />
+                                                                <div className="margin_bottom_5px" />
+                                                            </div>
+                                                        ) : <div id={"user-role-dropdown-combobox-container"}></div>}
+
                                                     </div>
-
-                                                    {this.isAnyChangeRoleDropdownComboboxOpen ? (
-                                                        <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container"}>
-                                                            {roles_Combobox}
-                                                            <div className="margin_bottom_5px" />
-                                                            <div className="margin_bottom_5px" />
-                                                        </div>
-                                                    ) : <div id={"user-role-dropdown-combobox-container"}></div>}
-
                                                 </div>
                                             </div>
-                                        </div>
-                                    </ClickAwayListener>
-                                </div>
-
-                                <div className="margin_top_10px" />
-
-                                <div className="Account_Information_Achivement_Port">
-                                    <div className="Account_Information_Achivement_Score">Scrore: {this.props.accountInformation.score}</div>
-                                    <div className="Account_Information_Achivement_Post_Doc_Count_Port">
-                                        <div className="display_flex width_50_percents">
-                                            <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                            <div className="margin_left_5px">{this.props.accountInformation.postCount}</div>
-                                        </div>
-                                        <div className="display_flex width_50_percents">
-                                            <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                            <div className="margin_left_5px"> {this.props.accountInformation.documentCount}</div>
-                                        </div>
+                                        </ClickAwayListener>
                                     </div>
 
-                                </div >
+                                    <div className="margin_top_10px" />
+
+                                    <div className="Account_Information_Achivement_Port">
+                                        <div className="Account_Information_Achivement_Score">Scrore: {this.props.accountInformation.score}</div>
+                                        <div className="Account_Information_Achivement_Post_Doc_Count_Port">
+                                            <div className="display_flex width_50_percents">
+                                                <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
+                                                <div className="margin_left_5px">{this.props.accountInformation.postCount}</div>
+                                            </div>
+                                            <div className="display_flex width_50_percents">
+                                                <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
+                                                <div className="margin_left_5px"> {this.props.accountInformation.documentCount}</div>
+                                            </div>
+                                        </div>
+
+                                    </div >
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* #region Popup region */}
-                {/* modal for veritfy change role */}
-                <CustomModal
-                    open={this.state.isChangeRoleConfirmationPopupOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="confirmation"
-                    closeModal={() => this.closeChangeRoleConfirmationPopup()}
-                >
+                    {/* #region Popup region */}
+                    {/* modal for veritfy change role */}
+                    <CustomModal
+                        open={this.state.isChangeRoleConfirmationPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="confirmation"
+                        closeModal={() => this.closeChangeRoleConfirmationPopup()}
+                    >
 
-                    {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
-                </CustomModal>
+                        {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
+                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
+                    </CustomModal>
 
-                {/* #endregion */}
+                    {/* #endregion */}
 
-            </div >
-        );
+                </div >
+
+            );
+        }
+        return <></>
     }
 
     //#region support initate value for rendering
@@ -298,25 +303,28 @@ class Admin_AccountInformationManagement extends Component {
 
     closeAllChangeRoleDropdownCombobox = () => {
 
-        let parent_id = "user-role-parent-dropdown-combobox";
-        let show_text_id = "user-role-parent-dropdown-combobox-text";
-        let dropdown_element_id = "user-role-dropdown-btn-element";
-        let container_id = "user-role-dropdown-combobox-container";
+        if (this.isAnyChangeRoleDropdownComboboxOpen === true) {
+            let parent_id = "user-role-parent-dropdown-combobox";
+            let show_text_id = "user-role-parent-dropdown-combobox-text";
+            let dropdown_element_id = "user-role-dropdown-btn-element";
+            let container_id = "user-role-dropdown-combobox-container";
 
-        let parent_menu_item = document.getElementById(parent_id);
-        let dropdown_element = document.getElementById(dropdown_element_id);
-        let show_text = document.getElementById(show_text_id);
-        let dropdown_container = document.getElementById(container_id);
+            let parent_menu_item = document.getElementById(parent_id);
+            let dropdown_element = document.getElementById(dropdown_element_id);
+            let show_text = document.getElementById(show_text_id);
+            let dropdown_container = document.getElementById(container_id);
 
-        if (dropdown_container.style.display === "block") {
-            dropdown_container.style.display = "none";
-            parent_menu_item.style.background = "white";
-            parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "#363636";
-            dropdown_element.src = dropdown_btn;
+            if (dropdown_container.style.display === "block") {
+                dropdown_container.style.display = "none";
+                parent_menu_item.style.background = "white";
+                parent_menu_item.style.paddingLeft = "0px";
+                show_text.style.color = "#363636";
+                dropdown_element.src = dropdown_btn;
+            }
+            this.isAnyChangeRoleDropdownComboboxOpen = false;
+            this.setState({})
         }
-        this.isAnyChangeRoleDropdownComboboxOpen = false;
-        this.setState({})
+
     }
 
     //#endregion
@@ -333,7 +341,7 @@ class Admin_AccountInformationManagement extends Component {
 
 
 const mapStatetoProps = (state) => {
-    console.log(state.user.account);
+    // console.log(state);
     return {
         accountInformation: state.user.account
     };
