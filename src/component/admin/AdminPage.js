@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import './AdminPage.scss'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '../../constant/index.js'
 
 // import resource image, icon
@@ -13,7 +13,7 @@ import user_management_menu_item_element from '../../img/user_management_icon.pn
 import account_management_menu_item_element from '../../img/account_management_icon.png'
 import activity_management_menu_item_element from '../../img/activity_management_icon.png'
 import user_role_management_menu_item_element from '../../img/user_role_management_icon.png'
-import analysis_management_menu_item_element from '../../img/analysis_icon.png'
+// import analysis_management_menu_item_element from '../../img/analysis_icon.png's
 
 //import pages
 import Admin_DocApprovingPage from './Admin_DocApprovingPage/Admin_DocApprovingPage';
@@ -144,58 +144,73 @@ class AdminPage extends Component {
                                             {/* <div classname></div> */}
                                             {
                                                 window.location.pathname === "/admin/post_approving" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/post_approving"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                        to="/admin/post_approving">
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt bài viết
-                                                    </div>
-                                                    </div> :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/post_approving"} style={{ display: "flex", textDecoration: "none" }}>
+                                                        </div>
+                                                    </Link>
+                                                    :
+                                                    <Link className="Sub_Dropdown_Menu_Item"
+                                                        onClick={() => this.setState({})}
+                                                        to="/admin/post_approving">
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt bài viết
-                                                    </div>
-                                                    </div>
+                                                        </div>
+                                                    </Link>
                                             }
                                             {
                                                 window.location.pathname === "/admin/doc_approving" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/doc_approving"} to="/admin/doc_approving" style={{ display: "flex", textDecoration: "none" }}>
+                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                        to="/admin/doc_approving">
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Duyệt tài liệu
                                                     </div>
-                                                    </div>
+                                                    </Link>
                                                     :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = " /admin/doc_approving"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    <Link className="Sub_Dropdown_Menu_Item"
+                                                        to="/admin/doc_approving"
+                                                        onClick={() => this.setState({})}
+                                                    >
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt tài liệu
-                                                   </div>
-                                                    </div>
+                                                        </div>
+                                                    </Link>
                                             }
                                             {
                                                 window.location.pathname === "/admin/page_notification" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/page_notification"} to="/admin/doc_approving" style={{ display: "flex", textDecoration: "none" }}>
+                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                        to="/admin/doc_approving"  >
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Thông báo trang
                                                     </div>
-                                                    </div>
+                                                    </Link>
                                                     :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = " /admin/page_notification"} style={{ display: "flex", textDecoration: "none" }}>
+                                                    <Link className="Sub_Dropdown_Menu_Item"
+                                                        to="/admin/page_notification"
+                                                        onClick={() => this.setState({})}
+                                                    >
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Thông báo trang
-                                                    </div>
-                                                    </div>
+                                                        </div>
+                                                    </Link>
                                             }
                                             {
                                                 window.location.pathname === "/admin/categories_management" ?
-                                                    <div className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/categories_management"} to="/admin/doc_approving" style={{ display: "flex", textDecoration: "none" }}>
+                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                        to="/admin/categories_management">
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Quản lý danh mục
                                                     </div>
-                                                    </div>
+                                                    </Link>
                                                     :
-                                                    <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/categories_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                    <Link className="Sub_Dropdown_Menu_Item"
+                                                        to="/admin/categories_management"
+                                                        onClick={() => this.setState({})}>
+                                                        <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Quản lý danh mục
-                                                    </div>
-                                                    </div>
+                                                        </div>
+                                                    </Link>
                                             }
                                             <div className="margin_bottom_5px" />
                                             <div className="decoration_underline " />
@@ -203,41 +218,59 @@ class AdminPage extends Component {
                                             <div className="margin_bottom_5px" />
                                         </div>
                                     </div>
-
+                                    {console.log(window.location.pathname)}
                                     {/* Quan ly nguoi dung */}
                                     {
                                         window.location.pathname === "/admin/users_management" ?
-                                            <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active " onClick={() => window.location.href = "/admin/users_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={user_management_menu_item_element} id="users-managent-btn-element" />
+                                            <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                to="/admin/users_management">
+                                                <img alt="*"
+                                                    className="Primary_Menu_Item_Element"
+                                                    src={user_management_menu_item_element}
+                                                    id="users-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Quản lý người dùng
                                                 </div>
-                                            </div>
+                                            </Link>
                                             :
-                                            <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/admin/users_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={user_management_menu_item_element} id="users-managent-btn-element" />
+                                            <Link className="Vertical_Menu_Item"
+                                                to="/admin/users_management"
+                                                onClick={() => this.setState({})}>
+                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                    src={user_management_menu_item_element}
+                                                    id="users-managent-btn-element"
+                                                />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Quản lý người dùng
                                                 </div>
-                                            </div>
+                                            </Link>
                                     }
 
                                     {/* Quan ly hoat dong: các báo cáo người dùng  */}
                                     {
                                         window.location.pathname === "/admin/activity_management" ?
-                                            <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/activity_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={activity_management_menu_item_element} id="users-managent-btn-element" />
+                                            <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                to="/admin/activity_management"
+                                            >
+                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                    src={activity_management_menu_item_element}
+                                                    id="users-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Quản lý hoạt động
                                                 </div>
-                                            </div>
+                                            </Link>
                                             :
-                                            <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/admin/activity_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={activity_management_menu_item_element} id="users-managent-btn-element" />
+                                            <Link className="Vertical_Menu_Item"
+                                                to="/admin/activity_management"
+                                                onClick={() => this.setState({})}>
+                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                    src={activity_management_menu_item_element}
+                                                    id="users-managent-btn-element"
+                                                />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Quản lý hoạt động
                                                 </div>
-                                            </div>
+                                            </Link>
                                     }
 
                                     {/* Quan ly tai khoan menu item*/}
@@ -245,78 +278,104 @@ class AdminPage extends Component {
                                         onClick={(e) => this.handleDisplayNoneDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
                                         }>
                                         <div className="display_flex">
-                                            <img alt="*" className="Primary_Menu_Item_Element" src={account_management_menu_item_element} id="page-managent-btn-element" />
-                                            <div className="Vertical_Menu_Item_Text" id="account-managent-parent-menu-item-text">
+                                            <img alt="*" className="Primary_Menu_Item_Element"
+                                                src={account_management_menu_item_element}
+                                                id="page-managent-btn-element" />
+                                            <div className="Vertical_Menu_Item_Text"
+                                                id="account-managent-parent-menu-item-text">
                                                 Quản lý tài khoản
                                             </div>
                                         </div>
-                                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="account-management-dropdown-btn-element" />
+                                        <img alt="v" className="Dropdown_Btn_Element"
+                                            src={dropdown_btn}
+                                            id="account-management-dropdown-btn-element" />
                                     </div >
 
-                                    <div className="Vertical_Dropdown_Menu_Item_Container" id="account-management-menu-item-container">
+                                    <div className="Vertical_Dropdown_Menu_Item_Container"
+                                        id="account-management-menu-item-container">
                                         <div style={{ height: "5px" }}></div>
                                         {/* {
-                                            window.location.pathname === "/admin/account_management" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                            window.location.pathname === "/admin/account_management" 
+                                            ?
+                                                <Link
+                                             className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" to = "/admin/account_management">
                                                     Trang cá nhân
-                                                </div>
-                                                :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/account_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                                </Link>:<Link className="Sub_Dropdown_Menu_Item" to = "/admin/account_management">
                                                     Trang cá nhân
                                                 </div>
                                         } */}
                                         {
                                             window.location.pathname === "/admin" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link
+                                                    className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                    to="/admin">
                                                     Thông tin tài khoản
-                                                </div>
+                                                </Link>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link className="Sub_Dropdown_Menu_Item"
+                                                    to="/admin"
+                                                    onClick={() => this.setState({})}>
                                                     Thông tin tài khoản
-                                                </div>
+                                                </Link>
                                         }
                                         {
                                             window.location.pathname === "/admin/notification" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/notification"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link
+                                                    className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                    to="/admin/notification">
                                                     Thông báo
-                                                </div>
+                                                </Link>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/notification"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link className="Sub_Dropdown_Menu_Item"
+                                                    to="/admin/notification"
+                                                    onClick={() => this.setState({})}>
                                                     Thông báo
-                                                </div>
+                                                </Link>
                                         }
                                         {/* <div className="Sub_Dropdown_Menu_Item">
                                             Đổi avatar
                                         </div> */}
                                         {
                                             window.location.pathname === "/admin/posts_list" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/posts_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link
+                                                    className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                    to="/admin/posts_list">
                                                     Danh sách bài viết
-                                                </div>
+                                                </Link>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/posts_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link className="Sub_Dropdown_Menu_Item"
+                                                    to="/admin/posts_list"
+                                                    onClick={() => this.setState({})}>
                                                     Danh sách bài viết
-                                                </div>
+                                                </Link>
                                         }
                                         {
                                             window.location.pathname === "/admin/docs_list" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link
+                                                    className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                    to="/admin/docs_list">
                                                     Danh sách tài liệu
-                                                </div>
+                                                 </Link>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/docs_list"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link className="Sub_Dropdown_Menu_Item"
+                                                    to="/admin/docs_list"
+                                                    onClick={() => this.setState({})}>
                                                     Danh sách tài liệu
-                                                </div>
+                                                </Link>
                                         }
                                         {
                                             window.location.pathname === "/admin/update_password" ?
-                                                <div className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/update_password"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link
+                                                    className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                    to="/admin/update_password">
                                                     Cập nhật mật khẩu
-                                                </div>
+                                              </Link>
                                                 :
-                                                <div className="Sub_Dropdown_Menu_Item" onClick={() => window.location.href = "/admin/update_password"} style={{ display: "flex", textDecoration: "none" }}>
+                                                <Link className="Sub_Dropdown_Menu_Item"
+                                                    to="/admin/update_password"
+                                                    onClick={() => this.setState({})}>
                                                     Cập nhật mật khẩu
-                                                </div>
+                                                </Link>
                                         }
                                         <div className="margin_bottom_5px" />
                                         <div className="decoration_underline " />
@@ -327,32 +386,37 @@ class AdminPage extends Component {
                                     {/* Quan lý quyền truy cập: role */}
                                     {
                                         window.location.pathname === "/admin/user_role_management" ?
-                                            <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/user_role_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={user_role_management_menu_item_element} id="users-managent-btn-element" />
+                                            <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                to="/admin/user_role_management">
+                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                    src={user_role_management_menu_item_element}
+                                                    id="users-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Quản lý quyền truy cập
                                                 </div>
-                                            </div>
+                                            </Link>
                                             :
-                                            <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/admin/user_role_management"} style={{ display: "flex", textDecoration: "none" }}>
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={user_role_management_menu_item_element} id="users-managent-btn-element" />
+                                            <Link className="Vertical_Menu_Item"
+                                                to="/admin/user_role_management"
+                                                onClick={() => this.setState({})}>
+                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                    src={user_role_management_menu_item_element}
+                                                    id="users-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Quản lý quyền truy cập
                                                 </div>
-                                            </div>
+                                            </Link>
                                     }
 
                                     {/* Thong ke */}
                                     {/* {
                                         window.location.pathname === "/admin/analysis" ?
-                                            <div className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" onClick={() => window.location.href = "/admin/analysis_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                            <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" to = "/admin/analysis_management">
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Thống kê
                                                 </div>
-                                            </div>
-                                            :
-                                            <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/admin/analysis_management"} style={{ display: "flex", textDecoration: "none" }}>
+                                        </Link>:<Link className="Vertical_Menu_Item" to = "/admin/analysis_management">
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
                                                 <div className="Vertical_Menu_Item_Text"  >
                                                     Thống kê
@@ -381,13 +445,13 @@ class AdminPage extends Component {
                                 <Route path="/admin/page_notification">
                                     <Admin_PageNotification></Admin_PageNotification>
                                 </Route>
-                                <Route exact path="/admin">
-                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                <Route exact path="/admin" component = {Admin_AccountInformationManagement}>
+                                    {/* <Admin_AccountInformationManagement></Admin_AccountInformationManagement> */}
                                 </Route>
-                                <Route path="/admin/update_password">
-                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                <Route exact path="/admin/update_password" component = {Admin_AccountInformationManagement}>
+                                    {/* <Admin_AccountInformationManagement></Admin_AccountInformationManagement> */}
                                 </Route>
-                                <Route path = "/admin/user_role_management">
+                                <Route path="/admin/user_role_management">
                                     <Admin_UserRoleManagement></Admin_UserRoleManagement>
                                 </Route>
                             </Switch>

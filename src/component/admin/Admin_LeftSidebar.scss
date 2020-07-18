@@ -4,6 +4,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
 
+a {
+    text-decoration: none;
+    text-decoration-style: unset;
+}
+
+a:hover {
+    text-decoration: none;
+}
 /*This port contain Admin info and vertical menu below Admin info*/
 .Admin_Info_Menu_Port {
     position: relative;
@@ -149,6 +157,8 @@
     padding-bottom: 1px;
     margin-top: 5px;
     margin-bottom: 1px;
+    border: none;
+    border-radius: 0px;
 }
 
 .Vertical_Dropdown_Menu_Item_Container {
@@ -166,12 +176,15 @@
 }
 
 .Vertical_Menu_Item_Text {
+    box-sizing: border-box;
     font-family: "Barlow Condensed", "san-serif";
     font-weight: 500;
     font-size: 20px;
     color: #363636;
     padding-left: 5px;
-    text-decoration: none;
+    text-decoration: none !important;
+    // border: none;
+    outline: none;
 }
 
 .Dropdown_Btn_Element {
@@ -215,26 +228,30 @@
     color: #363636;
     padding-left: 10%;
     user-select: none;
-    border-right: 4px white solid;
+    display: flex;
+    text-decoration: none;
     padding-top: 1px;
     padding-bottom: 1px;
     margin-top: 1px;
     margin-bottom: 1px;
+    border: none;
+    border-radius: 0px;
 }
 
 .Parent_Dropdown_Menu_Item:hover,
 .Vertical_Menu_Item:hover,
 .Sub_Dropdown_Menu_Item:hover {
-    background: #eeeeee !important;
+    background: #eeeeee;
     cursor: pointer;
-    border-right: 4px #c4c4c4 solid ;
-    
+    border-right: 4px #5279db solid;
 }
 
 .Parent_Dropdown_Menu_Item:active,
 .Vertical_Menu_Item:active,
 .Sub_Dropdown_Menu_Item:active {
-    background: #dedede !important;
+    background: #dedede;
+    border: none;
+    border-right: 4px #5279db solid;
     cursor: pointer;
 }
 
@@ -244,9 +261,15 @@
     width: 20px;
     height: 20px;
 }
-
+.Sub_Dropdown_Menu_Item_Text {
+}
 .Main_Interactive_Menu_Item_Active {
-    background: #e5eeee !important;
+    background: #e5eeee;
     cursor: pointer;
+    border: none;
+    border-radius: 0px;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
     border-right: 4px #5279db solid;
 }

@@ -45,7 +45,13 @@ const App = () => {
                 <Route exact path="/admin/doc_approving">
                     <AdminPage></AdminPage>
                 </Route>
+                <Route exact path="/admin/page_notification">
+                    <AdminPage></AdminPage>
+                </Route>
                 <Route exact path="/admin/users_management">
+                    <AdminPage></AdminPage>
+                </Route>
+                <Route exact path="/admin/activity_management">
                     <AdminPage></AdminPage>
                 </Route>
                 <Route exact path="admin/user/:id">

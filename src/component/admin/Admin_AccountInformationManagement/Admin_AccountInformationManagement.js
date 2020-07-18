@@ -71,66 +71,61 @@ class Admin_AccountInformationManagement extends Component {
             return (
                 <div>
                     <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
+                    {console.log(window.location.pathname)}
                     <div className="Admin_Show_Port">
                         <div className="display_flex width_100_percents" >
                             <div className="width_50_percents">
-                                <Router>
-                                    <Switch>
-                                        <Route exact path="/admin">
-                                            <div className="Account_Information_Port">
+                                {(window.location.pathname === "/admin" || window.location.pathname === "/admin/") ?
+                                    <div>
+                                        <div className="Account_Information_Port">
 
-                                                <div className="Simple_Gray_Label">Avatar: </div>
-                                                <div className="Account_Information_Avatar_Port">
-                                                    <div className="Simple_White_Button ">Cập nhật avatar</div>
-                                                    {/* <div className="margin_left_10px"></div> */}
-                                                    <img className="Account_Information_Avatar_Image" alt="avatar" src={this.props.accountInformation.avartar} />
-                                                </div>
-
-                                                {/* Display name */}
-                                                <div className="Simple_Gray_Label margin_top_10px">
-                                                    Họ tên:
+                                            <div className="Simple_Gray_Label">Avatar: </div>
+                                            <div className="Account_Information_Avatar_Port">
+                                                <div className="Simple_White_Button ">Cập nhật avatar</div>
+                                                {/* <div className="margin_left_10px"></div> */}
+                                                <img className="Account_Information_Avatar_Image" alt="avatar" src={this.props.accountInformation.avartar} />
                                             </div>
-                                                <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
-                                                {/* Username */}
-                                                <div className="Simple_Gray_Label margin_top_10px">
-                                                    Username:
+                                            {/* Display name */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Họ tên:
                                             </div>
-                                                <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
+                                            <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
-                                                {/* Password */}
-                                                <div className="Simple_Gray_Label margin_top_10px">
-                                                    Password:
+                                            {/* Username */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Username:
                                             </div>
-                                                <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
 
-                                                {/* Facebook */}
-                                                {/* <div className="Simple_Gray_Label margin_top_10px">
+                                            {/* Password */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Password:
+                                            </div>
+                                            <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
+
+                                            {/* Facebook */}
+                                            {/* <div className="Simple_Gray_Label margin_top_10px">
                                                 Facebook:
                                             </div>
                                             <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.facebook} /> */}
 
-                                                {/* Email */}
-                                                <div className="Simple_Gray_Label margin_top_10px">
-                                                    Email:
+                                            {/* Email */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Email:
                                             </div>
-                                                <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
-                                            </div>
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
+                                        </div>
 
-                                            <div className="display_flex margin_top_10px" >
-                                                <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
-                                                    Lưu thay đổi
+                                        <div className="display_flex margin_top_10px" >
+                                            <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
+                                                Lưu thay đổi
                                             </button>
-                                            </div>
-
-                                        </Route>
-
-                                        <Route path="/admin/update_password">
-                                            <Admin_UpdatePassword></Admin_UpdatePassword>
-                                        </Route>
-
-                                    </Switch>
-                                </Router>
+                                        </div>
+                                    </div>
+                                    :
+                                    < Admin_UpdatePassword />
+                                }
                             </div>
 
                             <div className="margin_left_10px" />
@@ -189,7 +184,7 @@ class Admin_AccountInformationManagement extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div >
 
                     {/* #region Popup region */}
                     {/* modal for veritfy change role */}

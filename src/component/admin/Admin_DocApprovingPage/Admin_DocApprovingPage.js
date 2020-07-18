@@ -35,36 +35,36 @@ class Admin_DocApprovingPage extends Component {
         this.props.admin_getAllNotApprovedDocuments();
     }
     render() {
+        let summaryRequestedDocList = <></>; //sau nay se lam mot cai content loader.
 
-        let { requestedDocs } = this.props;
+        if (this.props.requestedDocs) {
+            summaryRequestedDocList =
+                this.props.requestedDocs.map((requestedDoc) => (
+                    < Admin_RequestedDocSummaryItem
+                        key={requestedDoc.id}
+                        id={requestedDoc.id}
+                        authorName={requestedDoc.authorName}
+                        authorID={requestedDoc.authorID}
+                        requestedDate={requestedDoc.requestedDate}
+                        requestedTime={requestedDoc.requestedTime}
+                        requestedCategory={requestedDoc.categoryName}
+                        requestedCategoryID={requestedDoc.categoryID}
+                        title={requestedDoc.title}
+                        content={requestedDoc.summary}
+                        viewCount={requestedDoc.viewCount}
+                        downloadCount={requestedDoc.downloadCount}
+                        subject={requestedDoc.subjectName}
+                        subjectID={requestedDoc.subjectID}
+                        // lost
+                        semester={requestedDoc.semester}
+                        year={requestedDoc.year}
 
-        let summaryRequestedDocList =
-            requestedDocs.map((requestedDoc) => (
-                < Admin_RequestedDocSummaryItem
-                    key={requestedDoc.id}
-                    id={requestedDoc.id}
-                    authorName={requestedDoc.authorName}
-                    authorID={requestedDoc.authorID}
-                    requestedDate={requestedDoc.requestedDate}
-                    requestedTime={requestedDoc.requestedTime}
-                    requestedCategory={requestedDoc.categoryName}
-                    requestedCategoryID={requestedDoc.categoryID}
-                    title={requestedDoc.title}
-                    content={requestedDoc.summary}
-                    viewCount={requestedDoc.viewCount}
-                    downloadCount={requestedDoc.downloadCount}
-                    subject={requestedDoc.subjectName}
-                    subjectID={requestedDoc.subjectID}
-                    // lost
-                    semester={requestedDoc.semester}
-                    year={requestedDoc.year}
+                        //not need
+                        publishDate={requestedDoc.documentPublishDtm}
 
-                    //not need
-                    publishDate={requestedDoc.documentPublishDtm}
-
-                ></Admin_RequestedDocSummaryItem >)
-            )
-
+                    ></Admin_RequestedDocSummaryItem >)
+                )
+        }
         return (
             <div>
                 <Admin_Titlebar title="PHÊ DUYỆT TÀI LIỆU" />
