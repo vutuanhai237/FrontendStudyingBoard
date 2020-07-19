@@ -6,8 +6,9 @@ import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_upload_icon from '../../../img/gray_upload_icon.png'
 import gray_write_icon from '../../../img/gray_write_icon.png'
-import '../../shared_components/Avatar.scss'
+// import '../../shared_components/Avatar.scss'
 import './Admin_AccountInformationManagement.scss'
+import './Admin_AIMResponsiveLayout.scss'
 import { ClickAwayListener } from '@material-ui/core'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
@@ -71,63 +72,12 @@ class Admin_AccountInformationManagement extends Component {
             return (
                 <div>
                     <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
-                    {console.log(window.location.pathname)}
-                    {console.log("*")}
+
                     <div className="Admin_Show_Port">
-                        <div className="display_flex width_100_percents" >
+                        <div className="Admin_Show_Port_Bounding_Port">
 
 
-
-                            <div className="width_50_percents">
-                                {(window.location.pathname === "/admin" || window.location.pathname === "/admin/") ?
-                                    <div>
-                                        <div className="Account_Information_Port">
-
-
-                                            {/* Display name */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
-                                                Họ tên:
-                                            </div>
-                                            <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
-
-                                            {/* Username */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
-                                                Username:
-                                            </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
-
-                                            {/* Password */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
-                                                Password:
-                                            </div>
-                                            <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
-
-                                            {/* Facebook */}
-                                            {/* <div className="Simple_Gray_Label margin_top_10px">
-                                                Facebook:
-                                            </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.facebook} /> */}
-
-                                            {/* Email */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
-                                                Email:
-                                            </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
-                                        </div>
-
-                                        <div className="display_flex margin_top_10px" >
-                                            <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
-                                                Lưu thay đổi
-                                            </button>
-                                        </div>
-                                    </div>
-                                    :
-                                    < Admin_UpdatePassword />
-                                }
-
-                            </div>
-                            <div className="margin_left_10px" />
-                            <div className="width_50_percents">
+                            <div className="Admin_Account_Information_Bounding_Port">
                                 <div className="Account_Information_Port">
 
                                     {/* <div className="Simple_Gray_Label">Avatar: </div> */}
@@ -186,12 +136,53 @@ class Admin_AccountInformationManagement extends Component {
                                                 <div className="margin_left_5px"> {this.props.accountInformation.documentCount}</div>
                                             </div>
                                         </div>
-
                                     </div >
                                 </div>
                             </div>
+                            <div className="Admin_Account_Information_Bounding_Port">
+
+                                <div className="Account_Information_Port">
+                                    {(window.location.pathname === "/admin" || window.location.pathname === "/admin/") ?
+                                        <div>
+                                            {/* Display name */}
+                                            < div className="Simple_Gray_Label margin_top_10px">
+                                                Họ tên:
+                                            </div>
+                                            <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
+
+                                            {/* Username */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Username:
+                                            </div>
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
+
+                                            {/* Password */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Password:
+                                            </div>
+                                            <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
+
+                                            {/* Email */}
+                                            <div className="Simple_Gray_Label margin_top_10px">
+                                                Email:
+                                            </div>
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
+
+                                            <div className="display_flex margin_top_10px" >
+                                                <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
+                                                    Lưu thay đổi
+                                            </button>
+                                            </div>
+                                        </div>
+                                        :
+                                        < Admin_UpdatePassword />
+                                    }
+                                </div>
+
+                            </div>
                         </div>
-                    </div >
+                    </div>
+                    {/* </div > */}
 
                     {/* #region Popup region */}
                     {/* modal for veritfy change role */}

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import '../AdminPage'
 import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import '../../shared_components/Avatar.scss'
+// import '../../shared_components/Avatar.scss'
 
 class Admin_UpdatePassword extends Component {
     constructor(props) {
@@ -86,71 +86,66 @@ class Admin_UpdatePassword extends Component {
 
         return (
             <div>
-                <div>
-                    <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
-                        <div className="display_flex width_100_percents" >
+                {/* <div className="Admin_Account_Information_Bounding_Port"> */}
+                <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
 
-                            <div className="Account_Information_Update_Password_Port">
+                    <div className="Simple_Gray_Label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
 
-                                <div className="Simple_Gray_Label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
-
-                                {/* Current password */}
-                                <div className="position_relative" >
-                                    <div className="Simple_Gray_Label margin_top_10px">
-                                        Mật khẩu hiện tại:
+                    {/* Current password */}
+                    <div className="position_relative" >
+                        <div className="Simple_Gray_Label margin_top_10px">
+                            Mật khẩu hiện tại:
                                     </div>
-                                    <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
-                                    <div className="Simple_Error_Label" hidden={!this.isCurrentPasswordEmpty} >
-                                        *Mật khẩu hiện tại không được để trống.
+                        <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
+                        <div className="Simple_Error_Label" hidden={!this.isCurrentPasswordEmpty} >
+                            *Mật khẩu hiện tại không được để trống.
                                     </div>
+                    </div>
+
+                    {/* New password */}
+                    <div className="position_relative" >
+                        <div className="Simple_Gray_Label Is_Form_Label">
+                            Mật khẩu mới:
+                                    </div>
+                        <input type="password" defaultValue="" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
+                        <div className="Simple_Error_Label" hidden={!this.isNewPasswordEmpty} >
+                            *Mật khẩu mới không được để trống.
+                                    </div>
+                        <div className="Simple_Error_Label" hidden={!this.isNewPasswordLessThan6Characters} >
+                            *Mật khẩu mới không được ít hơn 6 ký tự.
+                                    </div>
+                        <div className="Simple_Error_Label" hidden={this.isNewPasswordLessThan6Characters || !this.isNewPasswordContainSpecialCharacters} >
+                            *Mật khẩu mới không được chứa các ký tự đặc biệt.
+                                    </div>
+
+                    </div>
+
+                    {/* Confirm new password */}
+                    <div className="position_relative" >
+                        <div className="Simple_Gray_Label Is_Form_Label">
+                            Xác nhận mật khẩu:
                                 </div>
-
-                                {/* New password */}
-                                <div className="position_relative" >
-                                    <div className="Simple_Gray_Label Is_Form_Label">
-                                        Mật khẩu mới:
+                        <input type="password" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
+                        <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordEmpty} >
+                            *Mật khẩu xác nhận không được để trống.
                                     </div>
-                                    <input type="password" defaultValue="" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
-                                    <div className="Simple_Error_Label" hidden={!this.isNewPasswordEmpty} >
-                                        *Mật khẩu mới không được để trống.
+                        <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordLessThan6Characters} >
+                            *Mật khẩu xác nhận không được ít hơn 6 ký tự.
                                     </div>
-                                    <div className="Simple_Error_Label" hidden={!this.isNewPasswordLessThan6Characters} >
-                                        *Mật khẩu mới không được ít hơn 6 ký tự.
-                                    </div>
-                                    <div className="Simple_Error_Label" hidden={this.isNewPasswordLessThan6Characters || !this.isNewPasswordContainSpecialCharacters} >
-                                        *Mật khẩu mới không được chứa các ký tự đặc biệt.
+                        <div className="Simple_Error_Label" hidden={this.isConfirmationPasswordLessThan6Characters || !this.isConfirmationPasswordContainSpecialCharacters} >
+                            *Mật khẩu xác nhận không được chứa các ký tự đặc biệt.
                                     </div>
 
-                                </div>
-
-                                {/* Confirm new password */}
-                                <div className="position_relative" >
-                                    <div className="Simple_Gray_Label Is_Form_Label">
-                                        Xác nhận mật khẩu:
-                                </div>
-                                    <input type="password" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
-                                    <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordEmpty} >
-                                        *Mật khẩu xác nhận không được để trống.
-                                    </div>
-                                    <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordLessThan6Characters} >
-                                        *Mật khẩu xác nhận không được ít hơn 6 ký tự.
-                                    </div>
-                                    <div className="Simple_Error_Label" hidden={this.isConfirmationPasswordLessThan6Characters || !this.isConfirmationPasswordContainSpecialCharacters} >
-                                        *Mật khẩu xác nhận không được chứa các ký tự đặc biệt.
-                                    </div>
-
-                                </div>
-                                <div className="display_flex" >
-                                    <button className="Simple_Blue_Button margin_auto Is_Form_Button" disabled={!this.canClickUpdatePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
-                                        Xác nhận
+                    </div>
+                    <div className="display_flex" >
+                        <button className="Simple_Blue_Button margin_auto Is_Form_Button" disabled={!this.canClickUpdatePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
+                            Xác nhận
                                     </button>
-                                </div>
-                            </div>
+                    </div>
 
+                </form>
+                {/* </div> */}
 
-                        </div>
-                    </form>
-                </div>
 
                 {/* modal for verifing change role */}
                 <CustomModal
@@ -375,7 +370,7 @@ class Admin_UpdatePassword extends Component {
         }
 
         //call function to update password
-        
+
     }
 
     //#endregion

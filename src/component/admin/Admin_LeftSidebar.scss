@@ -16,14 +16,14 @@ a:hover {
 /*This port contain Admin info and vertical menu below Admin info*/
 .Admin_Info_Menu_Port {
     position: relative;
-    width: 300px;
+    width: 250px;
     // background: pink;
 }
 
 .Fake_Admin_Info_Menu_Port {
     display: block;
     position: relative;
-    width: 300px;
+    width: 250px;
     height: 0px;
     background: transparent;
     // background: ;
@@ -32,7 +32,7 @@ a:hover {
 /* User Info Port: contain: avatar, display name, gmail and logout button */
 .Admin_Info_Port {
     display: flex;
-    width: 300px;
+    width: 100%;
     border-left: 1px;
     border-top: 1px;
     border-right: 1px;
@@ -147,7 +147,7 @@ a:hover {
     padding-top: 0px;
     position: relative;
     box-sizing: border-box;
-    width: 300px;
+    width: 250px;
     border-left: 1px;
     border-right: 1px;
     border-bottom: 1px;
