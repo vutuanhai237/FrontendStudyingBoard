@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import "./Login.scss";
 import logo from "../../img/logo-bht.png";
 import { postLogin, getCurrentUser } from "../../service/UserAPI";
-
+import { redirect } from "../../constant/index";
 import { bindActionCreators } from 'redux';
 class LoginForm extends React.Component {
     constructor(props) {
@@ -26,6 +26,8 @@ class LoginForm extends React.Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.login = this.login.bind(this);
+        this.register = this.register.bind(this);
     }
 
     handleUsernameChange(e) {
@@ -80,15 +82,11 @@ class LoginForm extends React.Component {
             modalShow: false,
         });
         if (this.statusLoginCode === 3) {
-            const createHistory = require("history").createBrowserHistory;
-            let history = createHistory();
-            history.push("/");
-            let pathUrl = window.location.href;
-            window.location.href = pathUrl;
+            redirect("")
         }
     }
     register() {
-        this.props.getCurrentUser();
+        redirect("/register");
     }
     forgotpassword() { }
 
@@ -135,49 +133,19 @@ class LoginForm extends React.Component {
 
                 <div className="d-flex justify-content-center">
                     <Form id="login-form">
-                        <Image
-                            className="rounded mx-auto d-block"
-                            height="200px"
-                            width="200px"
-                            alt="logo"
-                            src={logo}
-                            center
-                        ></Image>
-
+                        <Image className="rounded mx-auto d-block" height="200px" width="200px" alt="logo" src={logo} center></Image>
                         <p className="title text-center">ĐĂNG NHẬP</p>
                         <br />
-                        {/* Mail */}
-                        <Form.Group
-                            className="email-input"
-                            controlId="formBasicEmail"
-                        >
-                            <Form.Control
-                                onChange={this.handleUsernameChange}
-                                type="text"
-                                placeholder="Nhập username"
-                                ref={this.username}
-                            />
+                        <Form.Group className="email-input" controlId="formBasicEmail">
+                            <Form.Control onChange={this.handleUsernameChange} type="text" placeholder="Nhập username" ref={this.username}/>
                         </Form.Group>
-                        {/* Password */}
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Control
-                                onChange={this.handlePasswordChange}
-                                type="password"
-                                placeholder="Nhập mật khẩu"
-                                ref={this.password}
-                            />
+                            <Form.Control onChange={this.handlePasswordChange} type="password" placeholder="Nhập mật khẩu" ref={this.password}/>
                         </Form.Group>
                         <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check
-                                type="checkbox"
-                                label="Ghi nhớ đăng nhập"
-                            />
+                            <Form.Check type="checkbox" label="Ghi nhớ đăng nhập"/>
                         </Form.Group>
-                        {/* Submit */}
-                        <Button
-                            className="btn-block"
-                            onClick={this.login.bind(this)}
-                        >
+                        <Button className="btn-block" onClick={this.login}>
                             Đăng nhập
                         </Button>
                         <Link to="/">
@@ -187,16 +155,13 @@ class LoginForm extends React.Component {
                         </Link>
                         <Row>
                             <Col className="btn-register">
-                                <Button onClick={this.register.bind(this)} className="btn-block" >
+                                <Button onClick={this.register} className="btn-block" >
                                     Đăng ký
                                 </Button>
                             </Col>
 
                             <Col className="btn-forgot">
-                                <Button
-                                    className="btn-block"
-                                    href="/forgotpass"
-                                >
+                                <Button className="btn-block" href="/forgotpass">
                                     Quên mật khẩu
                                 </Button>
                             </Col>

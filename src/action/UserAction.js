@@ -24,10 +24,12 @@ export function userGetLogout(statusLogoutCode) {
     }
 }
 
-export function userPostRegister(account) {
+export function userPostRegister(statusRegisterCode) {
     return {
         type: USER_POST_REGISTER,
-        payload: account,
+        payload: {
+            statusRegisterCode: statusRegisterCode,
+        }
     }
 }
 

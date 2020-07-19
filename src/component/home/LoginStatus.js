@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import avatar from "../../img/anh.jpg";
 import { getLogout } from "../../service/UserAPI"
+import { redirect } from "../../constant/index"
 class LoginStatus extends Component {
     constructor(props) {
         super(props);
@@ -16,19 +17,11 @@ class LoginStatus extends Component {
     }
    
     handleLogin() {
-        const createHistory = require("history").createBrowserHistory;
-        let history = createHistory();
-        history.push("/login");
-        let pathUrl = window.location.href;
-        window.location.href = pathUrl;
+        redirect("/login");
     }
     handleLogout() {
         this.props.getLogout();
-        const createHistory = require("history").createBrowserHistory;
-        let history = createHistory();
-        history.push("/login");
-        let pathUrl = window.location.href;
-        window.location.href = pathUrl;
+        redirect("/login");
     }
     render() {
         const {account} = this.props;

@@ -4,6 +4,13 @@
 // global
 export const HOST = "bhtweb.herokuapp.com"
 export const PORT = "80"
+export function redirect(url) {
+    const createHistory = require("history").createBrowserHistory;
+    let history = createHistory();
+    history.push(url);
+    let pathUrl = window.location.href;
+    window.location.href = pathUrl;
+}
 //#endregion
 
 // home
