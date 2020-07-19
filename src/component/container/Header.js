@@ -60,7 +60,7 @@ class Header extends Component {
             loginStatus = <LoginStatus account={this.state.account} id="login" className="float-right" />
         }
         return (
-            <div>
+            <div id = "header">
                 <Navbar className="navbar" bg="white" expand="lg">
                     <Navbar.Brand className="py-0" href="/">
                         <img src={logo} width="144" height="60" className="d-inline-block align-top" alt="logo"/>
