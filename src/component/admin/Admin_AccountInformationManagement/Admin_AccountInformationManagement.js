@@ -72,19 +72,17 @@ class Admin_AccountInformationManagement extends Component {
                 <div>
                     <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
                     {console.log(window.location.pathname)}
+                    {console.log("*")}
                     <div className="Admin_Show_Port">
                         <div className="display_flex width_100_percents" >
+
+
+
                             <div className="width_50_percents">
                                 {(window.location.pathname === "/admin" || window.location.pathname === "/admin/") ?
                                     <div>
                                         <div className="Account_Information_Port">
 
-                                            <div className="Simple_Gray_Label">Avatar: </div>
-                                            <div className="Account_Information_Avatar_Port">
-                                                <div className="Simple_White_Button ">Cập nhật avatar</div>
-                                                {/* <div className="margin_left_10px"></div> */}
-                                                <img className="Account_Information_Avatar_Image" alt="avatar" src={this.props.accountInformation.avartar} />
-                                            </div>
 
                                             {/* Display name */}
                                             <div className="Simple_Gray_Label margin_top_10px">
@@ -126,19 +124,28 @@ class Admin_AccountInformationManagement extends Component {
                                     :
                                     < Admin_UpdatePassword />
                                 }
+
                             </div>
-
                             <div className="margin_left_10px" />
-
                             <div className="width_50_percents">
                                 <div className="Account_Information_Port">
+
+                                    {/* <div className="Simple_Gray_Label">Avatar: </div> */}
+                                    <div className="Account_Information_Avatar_Port">
+                                        <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img>
+                                        {/* // src={this.props.accountInformation.avartar} /> */}
+
+                                        {/* <div className="margin_left_10px"></div> */}
+                                    </div>
+                                    <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }}>Cập nhật avatar</div>
+
                                     <div className="display_flex">
                                         <div className="Simple_Gray_Label" style={{ lineHeight: "25px" }}>Role:</div>
                                         <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
                                             <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
                                                 <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
-                                                    <div style={{ position: "absolute", width: "140px" }}>
+                                                    <div style={{ position: "absolute", width: "200px" }}>
                                                         <div className="Disable_Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox"}>
                                                             {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
                                                             <div className="display_flex">
@@ -165,7 +172,7 @@ class Admin_AccountInformationManagement extends Component {
                                         </ClickAwayListener>
                                     </div>
 
-                                    <div className="margin_top_10px" />
+                                    <div className="margin_top_5px" />
 
                                     <div className="Account_Information_Achivement_Port">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.props.accountInformation.score}</div>

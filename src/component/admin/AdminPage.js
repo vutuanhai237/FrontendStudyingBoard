@@ -72,6 +72,7 @@ class AdminPage extends Component {
         return (
 
             <div className="Admin">
+                {window.onscroll = () => this.scrollFunction()}
 
                 {/* Header Area */}
                 <div className="Admin_Header">
@@ -83,49 +84,52 @@ class AdminPage extends Component {
                     {/* Left Sidebar */}
                     <Router>
                         <div>
-                            < div className="Admin_Info_Menu_Port" >
+                            < div className="Admin_Info_Menu_Port" id="admin-left-sidebar" >
 
-                                {/* Admin Infor Port */}
-                                < div className="Admin_Info_Port" >
-                                    <div className="Avatar_Port">
-                                        <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
-                                    </div>
-                                    <div className="User_Name_Gmail_Port">
-                                        <div className="Display_Name">
-                                            {this.state.info.displayName}
+                                {/* bounded for animation */}
+                                <div className="Bounded_Class_Infor_And_Archivement_Port" id="bounded-class-infor-and-archivement-port">
+                                    {/* Admin Infor Port */}
+                                    < div className="Admin_Info_Port" >
+                                        <div className="Avatar_Port">
+                                            <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
                                         </div>
-                                        <div className="Gmail">
-                                            {this.state.info.gmail}
-                                        </div>
-                                        <div className="Logout_Btn_Port">
-                                            {/* <button className="Logout_Btn">Đăng xuất</button> */}
-                                            <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div>
-                                        </div>
-                                    </div>
-                                </div >
-
-                                {/* Role and achivement port */}
-                                < div className="Role_Achivement_Port" >
-                                    <div className="Own_Role_Port">
-                                        Admin
-                                    </div>
-                                    <div className="Achivement_Port">
-                                        <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
-                                        <div className="Achivement_Post_Doc_Count_Port">
-                                            <div className="display_flex width_50_percents">
-                                                <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                <div className="margin_left_5px">{this.state.info.post_count}</div>
+                                        <div className="User_Name_Gmail_Port">
+                                            <div className="Display_Name">
+                                                {this.state.info.displayName}
                                             </div>
-                                            <div className="display_flex width_50_percents">
-                                                <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                <div className="margin_left_5px"> {this.state.info.doc_count}</div>
+                                            <div className="Gmail">
+                                                {this.state.info.gmail}
+                                            </div>
+                                            <div className="Logout_Btn_Port">
+                                                {/* <button className="Logout_Btn">Đăng xuất</button> */}
+                                                <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div>
                                             </div>
                                         </div>
+                                    </div >
+
+                                    {/* Role and achivement port */}
+                                    < div className="Role_Achivement_Port" >
+                                        <div className="Own_Role_Port">
+                                            Admin
                                     </div>
-                                </div >
+                                        <div className="Achivement_Port">
+                                            <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
+                                            <div className="Achivement_Post_Doc_Count_Port">
+                                                <div className="display_flex width_50_percents">
+                                                    <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
+                                                    <div className="margin_left_5px">{this.state.info.post_count}</div>
+                                                </div>
+                                                <div className="display_flex width_50_percents">
+                                                    <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
+                                                    <div className="margin_left_5px"> {this.state.info.doc_count}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div >
+                                </div>
 
                                 {/* Admin Menu Port */}
-                                < div className="Admin_Vertical_Menu_Port" >
+                                < div className="Admin_Vertical_Menu_Port" id="admin-vertical-menu-port" >
                                     {/* Quản lý nội dung */}
                                     <div>
                                         <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
@@ -152,7 +156,7 @@ class AdminPage extends Component {
                                                     </Link>
                                                     :
                                                     <Link className="Sub_Dropdown_Menu_Item"
-                                                        onClick={() => this.setState({})}
+                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
                                                         to="/admin/post_approving">
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt bài viết
@@ -170,7 +174,7 @@ class AdminPage extends Component {
                                                     :
                                                     <Link className="Sub_Dropdown_Menu_Item"
                                                         to="/admin/doc_approving"
-                                                        onClick={() => this.setState({})}
+                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
                                                     >
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Duyệt tài liệu
@@ -188,7 +192,7 @@ class AdminPage extends Component {
                                                     :
                                                     <Link className="Sub_Dropdown_Menu_Item"
                                                         to="/admin/page_notification"
-                                                        onClick={() => this.setState({})}
+                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
                                                     >
                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                             Thông báo trang
@@ -206,7 +210,7 @@ class AdminPage extends Component {
                                                     :
                                                     <Link className="Sub_Dropdown_Menu_Item"
                                                         to="/admin/categories_management"
-                                                        onClick={() => this.setState({})}>
+                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                             Quản lý danh mục
                                                         </div>
@@ -218,7 +222,7 @@ class AdminPage extends Component {
                                             <div className="margin_bottom_5px" />
                                         </div>
                                     </div>
-                                    {console.log(window.location.pathname)}
+                                    {/* {console.log(window.location.pathname)} */}
                                     {/* Quan ly nguoi dung */}
                                     {
                                         window.location.pathname === "/admin/users_management" ?
@@ -235,7 +239,7 @@ class AdminPage extends Component {
                                             :
                                             <Link className="Vertical_Menu_Item"
                                                 to="/admin/users_management"
-                                                onClick={() => this.setState({})}>
+                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                 <img alt="*" className="Primary_Menu_Item_Element"
                                                     src={user_management_menu_item_element}
                                                     id="users-managent-btn-element"
@@ -262,7 +266,7 @@ class AdminPage extends Component {
                                             :
                                             <Link className="Vertical_Menu_Item"
                                                 to="/admin/activity_management"
-                                                onClick={() => this.setState({})}>
+                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                 <img alt="*" className="Primary_Menu_Item_Element"
                                                     src={activity_management_menu_item_element}
                                                     id="users-managent-btn-element"
@@ -314,7 +318,10 @@ class AdminPage extends Component {
                                                 :
                                                 <Link className="Sub_Dropdown_Menu_Item"
                                                     to="/admin"
-                                                    onClick={() => this.setState({})}>
+                                                    //  onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                    onClick={() => this.handleAccountInformationMenuItemClick()}
+                                                >
+
                                                     Thông tin tài khoản
                                                 </Link>
                                         }
@@ -328,7 +335,7 @@ class AdminPage extends Component {
                                                 :
                                                 <Link className="Sub_Dropdown_Menu_Item"
                                                     to="/admin/notification"
-                                                    onClick={() => this.setState({})}>
+                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                     Thông báo
                                                 </Link>
                                         }
@@ -345,7 +352,7 @@ class AdminPage extends Component {
                                                 :
                                                 <Link className="Sub_Dropdown_Menu_Item"
                                                     to="/admin/posts_list"
-                                                    onClick={() => this.setState({})}>
+                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                     Danh sách bài viết
                                                 </Link>
                                         }
@@ -359,7 +366,7 @@ class AdminPage extends Component {
                                                 :
                                                 <Link className="Sub_Dropdown_Menu_Item"
                                                     to="/admin/docs_list"
-                                                    onClick={() => this.setState({})}>
+                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                     Danh sách tài liệu
                                                 </Link>
                                         }
@@ -373,7 +380,7 @@ class AdminPage extends Component {
                                                 :
                                                 <Link className="Sub_Dropdown_Menu_Item"
                                                     to="/admin/update_password"
-                                                    onClick={() => this.setState({})}>
+                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                     Cập nhật mật khẩu
                                                 </Link>
                                         }
@@ -398,7 +405,7 @@ class AdminPage extends Component {
                                             :
                                             <Link className="Vertical_Menu_Item"
                                                 to="/admin/user_role_management"
-                                                onClick={() => this.setState({})}>
+                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                 <img alt="*" className="Primary_Menu_Item_Element"
                                                     src={user_role_management_menu_item_element}
                                                     id="users-managent-btn-element" />
@@ -427,6 +434,8 @@ class AdminPage extends Component {
                             </ div >
                         </div>
 
+                        <div className="Fake_Admin_Info_Menu_Port" id="fake-admin-info-menu-port"></div>
+
                         {/* Router Outlet */}
                         <div className="Admin_Router_Outlet" >
                             <Switch>
@@ -445,11 +454,11 @@ class AdminPage extends Component {
                                 <Route path="/admin/page_notification">
                                     <Admin_PageNotification></Admin_PageNotification>
                                 </Route>
-                                <Route exact path="/admin" component = {Admin_AccountInformationManagement}>
-                                    {/* <Admin_AccountInformationManagement></Admin_AccountInformationManagement> */}
+                                <Route exact path="/admin" >
+                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
-                                <Route exact path="/admin/update_password" component = {Admin_AccountInformationManagement}>
-                                    {/* <Admin_AccountInformationManagement></Admin_AccountInformationManagement> */}
+                                <Route exact path="/admin/update_password">
+                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
                                 </Route>
                                 <Route path="/admin/user_role_management">
                                     <Admin_UserRoleManagement></Admin_UserRoleManagement>
@@ -483,6 +492,43 @@ class AdminPage extends Component {
             dropdown_container.style.display = "block"
             :
             dropdown_container.style.display = "none"
+    }
+
+    //code style for animation when change to account information
+    handleAccountInformationMenuItemClick = () => {
+        let bounded_class = document.getElementById("bounded-class-infor-and-archivement-port");
+        let vertical_menu_port = document.getElementById("admin-vertical-menu-port");
+        bounded_class.style.height = "0px";
+        vertical_menu_port.style.borderTop = "5px solid #5279db";
+        this.setState({});
+    }
+
+    handleOnNotAccountInformationMenuItemClick = () => {
+        let bounded_class = document.getElementById("bounded-class-infor-and-archivement-port");
+        let vertical_menu_port = document.getElementById("admin-vertical-menu-port");
+        bounded_class.style.height = "185px";
+        vertical_menu_port.style.borderTop = "1px solid #c4c4c4";
+        this.setState({});
+    }
+
+
+    scrollFunction = () => {
+        if (document.body.scrollTop >= 100 || document.documentElement.scrollTop >= 100) {
+            document.getElementById("admin-left-sidebar").style.position = "fixed";
+            document.getElementById("admin-left-sidebar").style.top = "10px";
+            document.getElementById("fake-admin-info-menu-port").style.display = "block";
+            // console.log(document.getElementById("header").style.height);
+
+        } else {
+            document.getElementById("admin-left-sidebar").style.position = "relative";
+            document.getElementById("admin-left-sidebar").style.top = "0px";
+            document.getElementById("fake-admin-info-menu-port").style.display = "none";
+        }
+        console.log(document.getElementById("footer").stylez);
+        // console.log(document.getElementById("footer").style);
+        // if (document.body.scrollTop > (document.getElementById("footer").offsetTop - document.getElementById("footer").style.height)) {
+        //     console.log("A");
+        // }
     }
 }
 export default AdminPage;
