@@ -38,11 +38,14 @@ export const POST_GET_CATEGORY_POST = "POST_GET_CATEGORY_POST";
 export const POST_GET_HASHTAG = "POST_GET_HASHTAG";
 
 //// 2. For reader
-export const POST_POST_LIKE_POST = "POST_POST_LIKE_POST";
-export const POST_POST_COMMENT_POST = "POST_POST_COMMENT_POST";
-export const POST_GET_TOP_POST_BY_PAGE = "POST_GET_TOP_POST_BY_PAGE";
-export const POST_GET_TOP_POST_BY_ID = "POST_GET_TOP_POST_BY_ID";
+export const POST_POST_LIKE = "POST_POST_LIKE_POST";
+export const POST_POST_SAVE = "POST_POST_COMMENT_POST";
+export const POST_POST_COMMENT = "POST_POST_COMMENT_POST";
+export const POST_GET_POST_BY_FILTER = "POST_GET_POST_BY_FILTER";
+export const POST_GET_TOP_POST = "POST_GET_TOP_POST";
+export const POST_GET_POST_BY_ID = "POST_GET_POST_BY_ID";
 
+export const POST_GET_COMMENT_BY_ID = "POST_GET_COMMENT_BY_ID";
 //resource string manage
 export const STR_LOGOUT_VN = "Đăng xuất"
 export const STR_LOGOUT_EN = "Logout"

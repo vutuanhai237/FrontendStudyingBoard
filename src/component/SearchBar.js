@@ -12,7 +12,7 @@ import './SearchBar.scss'
 
 class SearchBar extends Component {
     render() {
-        const { className, placeholder, method, action, onSearch, paramName, noBorder } = this.props;
+        const { icon, className, placeholder, method, action, onSearch, paramName, noBorder } = this.props;
         return (
             <div className={className}>
                 <Form className="w-100" method={method} action={action} >
@@ -25,7 +25,7 @@ class SearchBar extends Component {
                             />
                             <div className="input-group-append">
                                 <Button onClick={onSearch} variant="light" type="button">
-                                    <FontAwesomeIcon icon={faSearch} />
+                                    <FontAwesomeIcon icon={icon} />
                                 </Button>
                             </div>
                         </InputGroup>

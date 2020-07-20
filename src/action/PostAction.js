@@ -1,18 +1,62 @@
 import {
 
-    DOC_POST_LIKE_DOC,
-    DOC_POST_COMMENT_DOC,
-
+    POST_POST_LIKE,
+    POST_POST_SAVE,
+    POST_POST_COMMENT,
+    POST_GET_POST_BY_ID,
+    POST_GET_POST_BY_FILTER,
+    POST_GET_TOP_POST,
 } from "../constant/index.js"
 
-
-
-
-export function docPostCommentPost(idPost, idUser, idParentComment, content) {
+export function postPostLike(statusPostLikeCode) {
     return {
-        type: DOC_POST_COMMENT_DOC,
+        type: POST_POST_LIKE,
         payload: { 
-            idPost, idUser, idParentComment, content 
+            statusPostLikeCode: statusPostLikeCode
+        }
+    }
+}
+
+export function postPostSave(statusPostSaveCode) {
+    return {
+        type: POST_POST_SAVE,
+        payload: { 
+            statusPostSaveCode: statusPostSaveCode
+        }
+    }
+}
+
+export function postPostComment(statusPostCommentCode) {
+    return {
+        type: POST_POST_COMMENT,
+        payload: { 
+            statusPostCommentCode: statusPostCommentCode
+        }
+    }
+}
+export function postGetPostByID(post) {
+    return {
+        type: POST_GET_POST_BY_ID,
+        payload: { 
+            post: post
+        }
+    }
+}
+
+export function postGetPostByFilter(posts) {
+    return {
+        type: POST_GET_POST_BY_FILTER,
+        payload: { 
+            posts: posts
+        }
+    }
+}
+
+export function postGetTopPost(topPost) {
+    return {
+        type: POST_GET_TOP_POST,
+        payload: { 
+            topPost: topPost
         }
     }
 }

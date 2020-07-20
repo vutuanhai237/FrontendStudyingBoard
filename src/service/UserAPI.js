@@ -38,11 +38,7 @@ export function postRegister(account) {
     }
 }
 
-
-
-
 export function postLogin(account) {
-
     return dispatch => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");

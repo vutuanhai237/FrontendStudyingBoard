@@ -6,6 +6,8 @@ import {
     faCloudUploadAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Redirect } from "react-router-dom";
 import "./Header.scss";
 import SearchBar from "../SearchBar";
@@ -74,7 +76,7 @@ class Header extends Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <div id="search">
-                            <SearchBar noBorder placeholder="Tìm kiếm" paramName="keyword" action="/search"/>
+                            <SearchBar noBorder placeholder="Tìm kiếm" paramName="keyword" action="/search" icon={faSearch}/>
                         </div>
                         <Nav className="justify-content-center">
                             {/* Menu */}

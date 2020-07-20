@@ -11,15 +11,11 @@ class RegisterForm extends React.Component {
         super(props);
         this.state = {
             modalShow: false,
-            modalMessage: "Đăng ký thất bại",
             usernameAlert: "",
             emailAlert: "",
             passwordAlert: "",
             password2Alert: "",
-       
-            
-
-            isRegisterSuccess: false,
+            isValidRegister: false,
             uploadFileName: "",
             account: {
                 username: "",
@@ -30,7 +26,9 @@ class RegisterForm extends React.Component {
 
             }
         };
-
+        this.modalMessage = "Đăng ký thất bại";
+        this.statusRegisterCode = 0;
+        this.isRegisterSuccess = false;
         this.username = React.createRef("");
         this.password = React.createRef("");
         this.password2 = React.createRef("");
@@ -41,25 +39,29 @@ class RegisterForm extends React.Component {
         this.handlePassword2Change = this.handlePassword2Change.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.changeUploadFileName = this.changeUploadFileName.bind(this);
-       
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.statusRegisterCode = nextProps.statusRegisterCode;
+        console.log(nextProps.statusRegisterCode);
+        this.handleModal();
     }
 
     componentDidMount() {
         this.myInterval = null;
         function myTimer() {
             if (this.state.usernameAlert === "" && this.state.passwordAlert === ""
-            && this.state.password2Alert === "" && this.state.emailAlert === "") {
+                && this.state.password2Alert === "" && this.state.emailAlert === "") {
                 this.setState({
-                    isRegisterSuccess: true,
-                }) 
+                    isValidRegister: true,
+                })
             } else {
                 this.setState({
-                    isRegisterSuccess: false,
-                }) 
+                    isValidRegister: false,
+                })
             }
-            console.log(this.state.isRegisterSuccess);
         }
-      
         this.myInterval = setInterval(myTimer.bind(this), 1000);
     }
 
@@ -132,11 +134,39 @@ class RegisterForm extends React.Component {
 
     register() {
         this.setState({
-            isRegisterSuccess: true,
             modalShow: true,
         });
         console.log(this.state.account);
         this.props.postRegister(this.state.account);
+    }
+
+    handleModal() {
+        if (this.statusRegisterCode === 11) {
+            this.setState({
+                modalShow: true,
+            });
+            this.isRegisterSuccess = true;
+            this.modalMessage = "Đăng ký thành công";
+        } else {
+            this.setState({
+                modalShow: true,
+            });
+            this.isRegisterSuccess = false;
+            switch (this.statusRegisterCode) {
+                case 10:
+                    this.modalMessage = "Tài khoản đã tồn tại";
+                    break;
+                case 12:
+                    this.modalMessage = "Ảnh đại diện không hợp lệ";
+                    break;
+                case 2:
+                    this.modalMessage = "Server đang bị lỗi";
+                    break;
+                default:
+                    break;
+
+            }
+        }
     }
     handleClose() {
         this.setState({
@@ -144,25 +174,15 @@ class RegisterForm extends React.Component {
         });
     }
     render() {
-        var modalBody = null;
-        if (this.state.isRegisterSuccess) {
-            modalBody = <div>
-                <Modal.Body>{this.state.modalMessage}</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="success" href="/login" onClick={this.handleClose}>
-                        Đồng ý
-                </Button>
-                </Modal.Footer>
-            </div>
+        var modalButton = null;
+        if (this.isRegisterSuccess) {
+            modalButton = <Button variant="success" href="/login" onClick={this.handleClose}>
+                Đồng ý
+            </Button>
         } else {
-            modalBody = <div>
-                <Modal.Body>{this.state.modalMessage}</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={this.handleClose}>
-                        Đồng ý
-                </Button>
-                </Modal.Footer>
-            </div>
+            modalButton = <Button variant="danger" onClick={this.handleClose}>
+                Đồng ý
+            </Button>
         }
         return (
             <div>
@@ -172,11 +192,16 @@ class RegisterForm extends React.Component {
                             Thông báo
                         </Modal.Title>
                     </Modal.Header>
-                    {modalBody}
+                    <Modal.Body>{this.modalMessage}</Modal.Body>
+                    <Modal.Footer>
+                        {modalButton}
+                    </Modal.Footer>
                 </Modal>
                 <div className="d-flex justify-content-center">
                     <Form id="register-form">
-                        <Image className="rounded mx-auto d-block" height="200px" width="200px" alt="logo" src={logo} center="true"></Image>
+                        <a href="/">
+                            <Image className="rounded mx-auto d-block" height="200px" width="200px" alt="logo" src={logo} center="true"></Image>
+                        </a>
                         <p className="title text-center">ĐĂNG KÝ</p>
                         <br />
                         <Form.Group controlId="formBasicEmail">
@@ -217,7 +242,7 @@ class RegisterForm extends React.Component {
                             </Form.File>
                         </Form.Group>
 
-                        <Button disabled={!this.state.isRegisterSuccess}className="btn-block" onClick={this.register.bind(this)}>
+                        <Button disabled={!this.state.isValidRegister} className="btn-block" onClick={this.register.bind(this)}>
                             Đăng ký
                         </Button>
                     </Form>
@@ -228,6 +253,7 @@ class RegisterForm extends React.Component {
 }
 const mapStateToProps = (state) => {
     return {
+        statusRegisterCode: state.user.statusRegisterCode,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({

@@ -12,15 +12,17 @@ import {
 } from "react-bootstrap";
 import AuthorInfo from "../post/AuthorInfo";
 import FooterSummaryPost from "../post/FooterSummaryPost";
+import CommentPosts from "../post/CommentPosts";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import "./CreatePost.scss";
+
 class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tag: [],
+            tag: ["BIKIP", "TANGAI"],
             modalShow: false,
             modalWaringAddTagOver: false,
             messageModal: "",
@@ -38,7 +40,6 @@ class Post extends Component {
     }
 
     render() {
-        const listTag = ["A", "B", "C"];
         const {currentPost} = this.props;
         return (
             <div id="create-post">
@@ -75,7 +76,7 @@ class Post extends Component {
                 ></div>
                 <Row className="justify-content-start">
                     {
-                        listTag.map(item => {
+                        currentPost.tags.map(item => {
                             return <div>
                                 <Button>{item}</Button>
                             </div>
@@ -83,7 +84,7 @@ class Post extends Component {
                     }
                 </Row>
                 <FooterSummaryPost item={this.props.currentPost}/>
-
+                <CommentPosts/>
             </div>
         );
     }

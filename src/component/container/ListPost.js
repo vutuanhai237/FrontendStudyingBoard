@@ -11,6 +11,8 @@ import SummaryPost from "../post/SummaryPost";
 import FilterPost from "../post/FilterPost";
 import Paging from "../Paging"
 import "./ListPost.scss"
+import { bindActionCreators } from 'redux';
+import { getPostByFilter } from "../../service/PostAPI"
 class ListPost extends Component {
     constructor(props) {
         super(props);
@@ -19,10 +21,11 @@ class ListPost extends Component {
         }
     }
 
-
+    componentDidMount() {
+        this.props.getPostByFilter("page=1");
+    }
     render() {
-        const { posts } = this.props;
-
+        console.log(this.props.posts);
         return (
             <div id="group-post">
                 <div>
@@ -32,7 +35,7 @@ class ListPost extends Component {
                 <Card.Body id="card-body">
                     <Row>
                         {
-                            posts.map(item => {
+                            this.props.posts.map(item => {
                                 return <Col sm={12} md={6}>
                                     <SummaryPost item={item}></SummaryPost>
                                 </Col>
@@ -47,20 +50,17 @@ class ListPost extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
-
         posts: state.post.posts,
-
     };
-
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-
-    }
-}
+};
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getPostByFilter
+}, dispatch);
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListPost));
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(ListPost)
+);
+
