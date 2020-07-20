@@ -99,38 +99,42 @@ class AdminPage extends Component {
                                             <div className="Avatar_Port">
                                                 <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
                                             </div>
-                                            <div className="User_Name_Gmail_Port">
+                                            <div className="Achivement_Port">
+                                                {/* <div className="margin_auto"> */}
+                                                    <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
+                                                    <div className="Achivement_Post_Doc_Count_Port">
+                                                        <div className="display_flex width_50_percents">
+                                                            <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
+                                                            <div className="margin_left_5px">{this.state.info.post_count}</div>
+                                                        </div>
+
+                                                        <div className="display_flex width_50_percents">
+                                                            <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
+                                                            <div className="margin_left_5px"> {this.state.info.doc_count}</div>
+                                                        </div>
+                                                    </div>
+                                                {/* </div> */}
+                                            </div>
+                                            {/* <div className="User_Name_Gmail_Port">
                                                 <div className="Display_Name">
                                                     {this.state.info.displayName}
                                                 </div>
                                                 <div className="Gmail">
                                                     {this.state.info.gmail}
-                                                </div>
-                                                <div className="Logout_Btn_Port">
-                                                    {/* <button className="Logout_Btn">Đăng xuất</button> */}
-                                                    <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div>
-                                                </div>
-                                            </div>
+                                                </div> */}
+                                            {/* <div className="Logout_Btn_Port"> */}
+                                            {/* <button className="Logout_Btn">Đăng xuất</button> */}
+                                            {/* <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div> */}
+                                            {/* </div> */}
+                                            {/* </div> */}
                                         </div >
 
                                         {/* Role and achivement port */}
                                         < div className="Role_Achivement_Port" >
                                             <div className="Own_Role_Port">
                                                 Admin
-                                    </div>
-                                            <div className="Achivement_Port">
-                                                <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
-                                                <div className="Achivement_Post_Doc_Count_Port">
-                                                    <div className="display_flex width_50_percents">
-                                                        <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                        <div className="margin_left_5px">{this.state.info.post_count}</div>
-                                                    </div>
-                                                    <div className="display_flex width_50_percents">
-                                                        <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                        <div className="margin_left_5px"> {this.state.info.doc_count}</div>
-                                                    </div>
-                                                </div>
                                             </div>
+
                                         </div >
                                     </div>
 
@@ -503,18 +507,18 @@ class AdminPage extends Component {
 
     //code style for animation when change to account information
     handleAccountInformationMenuItemClick = () => {
-        let bounded_class = document.getElementById("bounded-class-infor-and-archivement-port");
-        let vertical_menu_port = document.getElementById("admin-vertical-menu-port");
-        bounded_class.style.height = "0px";
-        vertical_menu_port.style.borderTop = "5px solid #5279db";
+        // let bounded_class = document.getElementById("bounded-class-infor-and-archivement-port");
+        // let vertical_menu_port = document.getElementById("admin-vertical-menu-port");
+        // bounded_class.style.height = "0px";
+        // vertical_menu_port.style.borderTop = "5px solid #5279db";
         this.setState({});
     }
 
     handleOnNotAccountInformationMenuItemClick = () => {
-        let bounded_class = document.getElementById("bounded-class-infor-and-archivement-port");
-        let vertical_menu_port = document.getElementById("admin-vertical-menu-port");
-        bounded_class.style.height = "185px";
-        vertical_menu_port.style.borderTop = "1px solid #c4c4c4";
+        // let bounded_class = document.getElementById("bounded-class-infor-and-archivement-port");
+        // let vertical_menu_port = document.getElementById("admin-vertical-menu-port");
+        // bounded_class.style.height = "100%";
+        // vertical_menu_port.style.borderTop = "1px solid #c4c4c4";
         this.setState({});
     }
 
