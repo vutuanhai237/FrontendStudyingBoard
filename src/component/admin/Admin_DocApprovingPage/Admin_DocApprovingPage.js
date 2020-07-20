@@ -48,7 +48,7 @@ class Admin_DocApprovingPage extends Component {
                         requestedDate={requestedDoc.requestedDate}
                         requestedTime={requestedDoc.requestedTime}
                         requestedCategory={requestedDoc.categoryName}
-                        requestedCategoryID={requestedDoc.categoryID}
+                        requestedCategoryID={requestedDoc.categoryID}   
                         title={requestedDoc.title}
                         content={requestedDoc.summary}
                         viewCount={requestedDoc.viewCount}

@@ -1,0 +1,26 @@
+@media (min-width: 0px) {
+    .container div div div canvas {
+        // width: 100%;
+        max-width: 100%;
+    }
+    .DocPost_Detail {
+        width: 96%;
+    }
+}
+
+// @media (min-width: 800px) {
+//     .Document_Live_Preview {
+//         width: 400px;
+//         margin: auto;
+//     }
+// }
+
+@media (min-width: 900px) {
+    .container div div div canvas {
+        // width: 100%;
+        max-width: 792px;
+    }
+    .DocPost_Detail {
+        width: 60%;
+    }
+}

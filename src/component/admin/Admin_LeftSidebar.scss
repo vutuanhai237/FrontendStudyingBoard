@@ -45,18 +45,6 @@ a:hover {
     margin-bottom: 10px;
 }
 
-.Admin_Info_Port .Avatar_Port {
-    position: relative;
-    overflow: hidden;
-    background-origin: border-box;
-}
-
-.Admin_Info_Port .Avatar {
-    position: absolute;
-    min-width: 100%;
-    min-height: 100%;
-}
-
 /*This port contain display and email*/
 .Admin_Info_Port .User_Name_Gmail_Port {
     margin-left: 10px;
@@ -76,7 +64,7 @@ a:hover {
 }
 
 .Admin_Info_Port .Gmail {
-    width: 190px;
+    width: 100px;
     position: relative;
     font-family: "Rosario", sans-serif;
     font-style: normal;
@@ -89,11 +77,6 @@ a:hover {
     overflow: hidden !important;
     text-overflow: ellipsis;
     display: inline-block;
-}
-
-// Role and achivement port:
-.Role_Achivement_Port {
-    width: 100%;
 }
 
 .Own_Role_Port {
@@ -113,35 +96,38 @@ a:hover {
 }
 
 .Achivement_Port {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    width: 100%;
-    display: flex;
+    padding-top: 5px;
+    // padding-left: 5px;
+    // padding-right: ;
     justify-content: space-between;
     font-family: Barlow Condensed;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 30px;
-    border-left: 1px solid #c4c4c4;
-    border-right: 1px solid #c4c4c4;
+    width: 150px;
     color: #363636;
-    width: 100%;
-    // background: green;
+    // margin: auto;
+    margin-left: 10px;
+    height: 80px;
+    border-bottom: 3px #c4c4c4 solid;
+    border-top: 3px #c4c4c4 solid;
+    padding-bottom: 5px;
+}
+
+.Small_User_Item_Element {
+    width: 20px;
+    height: 20px;
 }
 
 .Achivement_Post_Doc_Count_Port {
+    // margin: auto;
     display: flex;
-    width: 50%;
     justify-content: space-between;
 }
+
 /*Admin Vertical Menu Port: contain these menu options: Tên hiển thị, đối mật khấu, Bài đăng */
 .Admin_Vertical_Menu_Port {
-    // min-height: 854px;
-    // height: 100%;
-    // margin: 10px;
     margin-top: 0px;
     padding: 10px;
     padding-top: 0px;
@@ -156,7 +142,6 @@ a:hover {
     border-style: solid;
     // background: ;
     height: 460px;
-    // background: green;
 }
 
 .Vertical_Menu_Item {
@@ -299,5 +284,10 @@ a:hover {
 .Bounded_Class_Infor_And_Archivement_Port {
     overflow: hidden;
     transition: all 0.4s;
-    height: 185px;
+    // height: 185px;
+}
+
+.Avatar_Port {
+    width: 80px;
+    height: 80px;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import '../../shared_components/DocPostDetail.scss'
+import '../../shared_components/DPD_ResponsiveLayout.scss'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_btn_element from '../../../img/gray_btn_element.png'
 
