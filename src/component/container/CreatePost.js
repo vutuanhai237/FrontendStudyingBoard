@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { Editor } from "@tinymce/tinymce-react";
 import "./CreatePost.scss";
+
 class CreatePost extends Component {
     constructor(props) {
         super(props);
@@ -19,10 +20,15 @@ class CreatePost extends Component {
             tag: [],
             modalShow: false,
             modalWaringAddTagOver: false,
-            messageModal: "",
+            modalMessage: "",
             content: "",
             category: "",
+
         };
+        this.handleClose = this.handleClose.bind(this);
+        this.handleEditorChange = this.handleEditorChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
+        
     }
     setCategory(item) {
         this.setState({
@@ -91,12 +97,7 @@ class CreatePost extends Component {
         const category = ["A", "B", "C", "D", "E", "F"];
         return (
             <div id="create-post">
-                <Modal
-                    centered
-                    show={this.state.modalShow}
-                    onHide={this.handleClose.bind(this)}
-                    animation={false}
-                >
+                <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
                     <Modal.Header closeButton>
                         <Modal.Title contained-modal-title-vcenter>
                             Thông báo
@@ -105,33 +106,18 @@ class CreatePost extends Component {
                     <div>
                         <Modal.Body>{this.state.modelMessage}</Modal.Body>
                         <Modal.Footer>
-                            <Button
-                                variant="success"
-                                href=""
-                                onClick={this.handleClose.bind(this)}
-                            >
+                            <Button variant="success" href="" onClick={this.handleClose}>
                                 Đồng ý
                             </Button>
                         </Modal.Footer>
                     </div>
                 </Modal>
-                <div
-                    dangerouslySetInnerHTML={{ __html: this.state.content }}
-                ></div>
+                <div dangerouslySetInnerHTML={{ __html: this.state.content }}/>
                 <p className="title">VIẾT BÀI</p>
                 <Form>
-                    <Form.Control
-                        id="enter-title"
-                        type="text"
-                        placeholder="Nhập tiêu đề"
-                    />
-                    <Form.Control
-                        id="enter-summary"
-                        type="text"
-                        placeholder="Nhập tóm tắt"
-                    />
-                    <Editor
-                        initialValue="<p>Hãy viết gì đó</p>"
+                    <Form.Control id="enter-title" type="text" placeholder="Nhập tiêu đề"/>
+                    <Form.Control id="enter-summary" type="text"placeholder="Nhập tóm tắt"/>
+                    <Editor initialValue="<p>Hãy viết gì đó</p>"
                         init={{
                             height: 500,
                             menubar:
@@ -148,34 +134,19 @@ class CreatePost extends Component {
                     />
                     <Row>
                         <Col>
-                            <Form.Control
-                                onKeyDown={this.addTag.bind(this)}
-                                className="enter-tag"
-                                type="text"
-                                placeholder="Nhập tag"
-                                ref="inputTag"
-                            />
+                            <Form.Control onKeyDown={this.addTag.bind(this)} className="enter-tag" type="text" placeholder="Nhập tag" ref="inputTag"/>
                         </Col>
                         <Col>
                             {this.state.tag.map((item) => {
                                 return (
-                                    <Button
-                                        onClick={() => this.deleteTag(item)}
-                                        className="tag"
-                                        variant="secondary"
-                                    >
+                                    <Button onClick={() => this.deleteTag(item)} className="tag" variant="secondary">
                                         {item}
                                     </Button>
                                 );
                             })}
                         </Col>
                         <Col className="justify-content-end d-flex">
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title="Chọn danh mục"
-                                className="dropdown"
-                                onSelect={(evt) => this.setCategory(evt)}
-                            >
+                            <DropdownButton id="dropdown-basic-button" title="Chọn danh mục" className="dropdown" onSelect={(evt) => this.setCategory(evt)}>
                                 {category.map((item) => {
                                     return (
                                         <Dropdown.Item eventKey={item}>
@@ -187,16 +158,9 @@ class CreatePost extends Component {
                         </Col>
                     </Row>
 
-                    <Button
-                        block
-                        className="btn-submit"
-                        variant="success"
-                        onClick={this.handleUpload.bind(this)}
-                    >
+                    <Button block className="btn-submit" variant="success"onClick={this.handleUpload}>
                         Đăng bài{" "}
-                        {this.state.category.length > 0
-                            ? "trong danh mục " + this.state.category
-                            : ""}
+                        {this.state.category.length > 0? "trong danh mục " + this.state.category: ""}
                     </Button>
                 </Form>
             </div>

@@ -4,7 +4,7 @@
 // state: none
 // dependency component: none
 import React, { Component } from "react";
-import { Nav, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Nav, Row, Form, Button, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./FooterSummaryPost.scss";
 
 import { connect } from "react-redux";
@@ -17,64 +17,100 @@ import {
 import {
     postComment,
 } from "../../service/PostAPI"
-
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import {
+    faArrowRight
+} from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "../SearchBar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { bindActionCreators } from 'redux';
 import "./CommentPost.scss"
 class CommentPost extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            replyMessage: "Phản hồi",
+            isReply: false,
+        }
         this.commentPost = this.commentPost.bind(this);
         this.replyComment = this.replyComment.bind(this);
+
     }
     replyComment() {
-        console.log(1);
+        if (this.state.isReply) {
+            this.setState({
+                replyMessage: "Phản hồi",
+                isReply: false,
+            })
+        } else {
+            this.setState({
+                replyMessage: "Hủy bỏ",
+                isReply: true,
+            })
+        }
     }
     commentPost(comment) {
         this.props.postComment(this.props.item.id, comment);
     }
     render() {
         const { item } = this.props;
-        return (
-            <div id="comment">
-                <Row>
-                    <Nav className="container-fluid ">
-                        <Nav.Item>
-                            <Nav.Link>
-                                <img src={item.userAvatarURL} alt="Avatar" id="avatar" />
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Row>
-                                <p id="username">{item.userName}</p>
-                            </Row>
-                            <Row>
-                                <p id="timestamp">{item.postTimeStamp}</p>
-                            </Row>
-                        </Nav.Item>
-
-                    </Nav>
-                </Row>
-                <Row>
-                    <Nav className="container-fluid ">
-                        <Nav.Item>
-                            <p id="content">{item.content}</p>
-                        </Nav.Item>
-                    </Nav>
-                </Row>
-                <Row>
-                    <Nav className="container-fluid ">
-                        <Nav.Item>
-                            <a onClick={this.replyComment()}>
-                                Click me
-                            </a>
-                        </Nav.Item>
-                    </Nav>
-                </Row>
+        var replyButton, commentSection, comment, searchBar = null;
+        if (!this.props.isChild) {
+            replyButton = <Button id="replyButton" onClick={this.replyComment} variant="link">{this.state.replyMessage}</Button>
+        }
+        if (this.state.isReply) {
+            searchBar = <div style={{ marginLeft: "-10px", marginTop: "5px" }} >
+                <SearchBar noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
 
             </div>
-        )
+
+        } else {
+            searchBar = null;
+        }
+        commentSection = <div>
+            <Row>
+                <Nav className="container-fluid ">
+                    <Nav.Item>
+                        <Nav.Link>
+                            <img src={item.userAvatarURL} alt="Avatar" id="avatar" />
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Row>
+                            <p id="username">{item.userName}</p>
+                        </Row>
+                        <Row>
+                            <p id="timestamp">{item.postTimeStamp}</p>
+                        </Row>
+                    </Nav.Item>
+
+                </Nav>
+            </Row>
+            <Row>
+                <Nav className="container-fluid ">
+                    <Nav.Item>
+                        <p id="content">{item.content}</p>
+                    </Nav.Item>
+                </Nav>
+            </Row>
+            <Row>
+                <Nav className="container-fluid ">
+                    <Nav.Item>
+                        {replyButton}
+
+                    </Nav.Item>
+                </Nav>
+            </Row>
+        </div>
+        if (!this.props.isChild) {
+            return <div style={{ width: "100%" }} id="comment">
+                {commentSection}
+                {searchBar}
+            </div>
+        } else {
+            return <div style={{ marginLeft: "50px", marginTop: "0px" }} id="comment">
+                {commentSection}
+            </div>
+        }
     }
 }
 

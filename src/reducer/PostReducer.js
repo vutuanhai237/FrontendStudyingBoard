@@ -22,7 +22,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: "<p>H&atilde;y viết g&igrave; đ&oacute;Trong năm 1993, tạp ch&iacute; NY Time xuất bản bộ truyện tranh của Peter Steiner, nội dung l&agrave; về một con ch&oacute; ngồi trước m&aacute;y t&iacute;nh n&oacute;i chuyện với một con ch&oacute; kh&aacute;c, con đầu ti&ecirc;n n&oacute;i,&rdquo;Tr&ecirc;n Internet, kh&ocirc;ng ai biết m&agrave;y l&agrave; ch&oacute;&rdquo;. C&acirc;u truyện n&agrave;y lấy &yacute; tưởng từ sự thật l&agrave; bạn kh&ocirc;ng biết ai đang giao tiếp với m&igrave;nh th&ocirc;ng qua m&aacute;y t&iacute;nh! C&oacute; một con ch&oacute; đang g&otilde; email đầu b&ecirc;n kia, hay một m&aacute;y t&iacute;nh giả dạng con người trong Turing Test, những điều n&agrave;y ho&agrave;n to&agrave;n c&oacute; thể xảy ra.</p>",
+        contentURL: '<p><strong>Trung Quốc &ldquo;gồng m&igrave;nh&rdquo; ngăn lũ, c&aacute;c l&aacute;ng giềng ch&acirc;u &Aacute; chung cảnh ngập lụt</strong></p><p>C&aacute;c đợt mưa lớn k&eacute;o d&agrave;i từ cuối th&aacute;ng 5 đ&atilde; khiến nhiều quốc gia ở ch&acirc;u &Aacute; rơi v&agrave;o cảnh ngập lụt, h&agrave;ng triệu người phải sơ t&aacute;n, thiệt hại kinh tế l&ecirc;n đến h&agrave;ng tỷ USD.</p><p><img src="https://icdn.dantri.com.vn/2020/07/20/20200714-t-025615-z-1293354825-rc-2-qsh-93-uqqirtrmadp-3-chinafloods-1595237294600.jpg" /></p>',
         tags: ["tag1", "tag2"],
     },
     {

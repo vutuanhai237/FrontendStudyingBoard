@@ -4,7 +4,7 @@
 // state: none
 // dependency component: none
 import React, { Component } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import "./FooterSummaryPost.scss";
 
 import { connect } from "react-redux";
@@ -30,14 +30,27 @@ class CommentPosts extends Component {
     render() {
         const { currentComments } = this.props;
         return <div className="comment">
-            <SearchBar noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
-            {currentComments.map((item) => {
-                return (
-                    <Row>
-                        <CommentPost item={item}/>
-                    </Row>
-                );
-            })}
+                <SearchBar noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
+                {currentComments.map((item) => {
+                    return (
+                        <Row>
+                            <CommentPost isChild={false} item={item} />
+                            <Col>
+                                {
+
+                                    (item.commentChilds).map((subItem) => {
+                                        return <Row>
+                                            <CommentPost isChild={true} item={subItem} />
+
+                                        </Row>
+
+                                    })
+                                }
+                            </Col>
+
+                        </Row>
+                    );
+                })}
         </div>
     }
 }

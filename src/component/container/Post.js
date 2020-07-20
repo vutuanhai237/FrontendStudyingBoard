@@ -17,7 +17,8 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import "./CreatePost.scss";
-
+import "./Post.scss"
+import Tags from "../post/Tags"
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -26,11 +27,13 @@ class Post extends Component {
             modalShow: false,
             modalWaringAddTagOver: false,
             messageModal: "",
-            content: '<p>H&atilde;y viết g&igrave; đ&oacute;Trong năm 1993, tạp ch&iacute; NY Time xuất bản bộ truyện tranh của Peter Steiner, nội dung l&agrave; về một con ch&oacute; ngồi trước m&aacute;y t&iacute;nh n&oacute;i chuyện với một con ch&oacute; kh&aacute;c, con đầu ti&ecirc;n n&oacute;i,&rdquo;Tr&ecirc;n Internet, kh&ocirc;ng ai biết m&agrave;y l&agrave; ch&oacute;&rdquo;. C&acirc;u truyện n&agrave;y lấy &yacute; tưởng từ sự thật l&agrave; bạn kh&ocirc;ng biết ai đang giao tiếp với m&igrave;nh th&ocirc;ng qua m&aacute;y t&iacute;nh! C&oacute; một con ch&oacute; đang g&otilde; email đầu b&ecirc;n kia, hay một m&aacute;y t&iacute;nh giả dạng con người trong Turing Test, những điều n&agrave;y ho&agrave;n to&agrave;n c&oacute; thể xảy ra.</p>',
+            content: '<p><strong>Trung Quốc &ldquo;gồng m&igrave;nh&rdquo; ngăn lũ, c&aacute;c l&aacute;ng giềng ch&acirc;u &Aacute; chung cảnh ngập lụt</strong></p><p>C&aacute;c đợt mưa lớn k&eacute;o d&agrave;i từ cuối th&aacute;ng 5 đ&atilde; khiến nhiều quốc gia ở ch&acirc;u &Aacute; rơi v&agrave;o cảnh ngập lụt, h&agrave;ng triệu người phải sơ t&aacute;n, thiệt hại kinh tế l&ecirc;n đến h&agrave;ng tỷ USD.</p><p><img src="https://icdn.dantri.com.vn/2020/07/20/20200714-t-025615-z-1293354825-rc-2-qsh-93-uqqirtrmadp-3-chinafloods-1595237294600.jpg" /></p>',
             category: "Bí kíp",
             title: "Hướng dẫn tán gái phần 1",
             summary: "Bài viết này rất hay và đây là tóm tắt",
+            
         };
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleClose() {
@@ -43,12 +46,7 @@ class Post extends Component {
         const {currentPost} = this.props;
         return (
             <div id="create-post">
-                <Modal
-                    centered
-                    show={this.state.modalShow}
-                    onHide={this.handleClose.bind(this)}
-                    animation={false}
-                >
+                <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
                     <Modal.Header closeButton>
                         <Modal.Title contained-modal-title-vcenter>
                             Thông báo
@@ -57,11 +55,7 @@ class Post extends Component {
                     <div>
                         <Modal.Body>{this.state.modelMessage}</Modal.Body>
                         <Modal.Footer>
-                            <Button
-                                variant="success"
-                                href=""
-                                onClick={this.handleClose.bind(this)}
-                            >
+                            <Button variant="success" href="" onClick={this.handleClose}>
                                 Đồng ý
                             </Button>
                         </Modal.Footer>
@@ -71,18 +65,8 @@ class Post extends Component {
                 <p className="title">{currentPost.title}</p>
                 <div>{currentPost.summary}</div>
                 <AuthorInfo item={currentPost}/>
-                <div
-                    dangerouslySetInnerHTML={{ __html: currentPost.contentURL }}
-                ></div>
-                <Row className="justify-content-start">
-                    {
-                        currentPost.tags.map(item => {
-                            return <div>
-                                <Button>{item}</Button>
-                            </div>
-                        })
-                    }
-                </Row>
+                <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.contentURL }}/>
+                <Tags tags={currentPost.tags}/>
                 <FooterSummaryPost item={this.props.currentPost}/>
                 <CommentPosts/>
             </div>
