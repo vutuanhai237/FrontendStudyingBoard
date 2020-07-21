@@ -12,9 +12,6 @@ class Tags extends Component {
 
     }
 
-    handleClick(item) {
-        redirect("/item");
-    }
 
     render() {
         const { tags } = this.props;
@@ -24,7 +21,7 @@ class Tags extends Component {
                     {
                         tags.map(item => {
                             return <div>
-                                <Button onClick={() => this.handleClick(item)} variant="secondary" style={{ marginRight: "15px", borderRadius: "15px" }}>{item}</Button>
+                                <Button onClick={this.props.handleClick(item)} variant="secondary" style={{ marginRight: "15px", borderRadius: "15px" }}>{item}</Button>
                             </div>
                         })
                     }

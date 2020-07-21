@@ -67,11 +67,11 @@ class Header extends Component {
                     <Navbar.Brand className="py-0" href="/">
                         <img src={logo} width="144" height="60" className="d-inline-block align-top" alt="logo"/>
                     </Navbar.Brand>
-                    <div onClick={() => redirect("/create_post")}>
-                        <FontAwesomeIcon id="write-icon" icon={faFileSignature}/>
+                    <div id="write-icon" onClick={() => redirect("/create_post")}>
+                        <FontAwesomeIcon icon={faFileSignature}/>
                     </div>
-                    <div onClick={() => redirect("/create_document")}>
-                        <FontAwesomeIcon id="upload-icon"icon={faCloudUploadAlt}/>
+                    <div id="upload-icon" onClick={() => redirect("/create_document")}>
+                        <FontAwesomeIcon icon={faCloudUploadAlt}/>
                     </div>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -88,9 +88,6 @@ class Header extends Component {
                             </Nav.Link>
                             <Nav.Link className="menu-item" href="/events">
                                 Sự kiện
-                            </Nav.Link>
-                            <Nav.Link className="menu-item" href="/rank">
-                                Hạng
                             </Nav.Link>
                             {loginStatus}
                         </Nav>

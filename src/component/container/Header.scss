@@ -2,6 +2,7 @@ div hr {
   margin-top: 0px;
   margin-bottom: 0px;
   border: 2px solid #5279db;
+  height: 0px;
 }
 
 .navbar .menu-item {
@@ -9,17 +10,14 @@ div hr {
   font-size: 20px;
   font-weight: bolder;
   margin-left: 20px;
+  padding: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .navbar .menu-item:hover {
   transition: all 0.5s;
   transform: scale(1.1);
-
-}
-
-div .navbar {
-  width: 100%;
-  max-width: 1366px;
 }
 
 #login {
@@ -34,15 +32,15 @@ div .navbar {
 }
 
 #search {
-  //max-width: 400px;
   padding-left: 30px;
-  padding-right: 30px;
+  padding-right: 10px;
 }
 
-#write-icon,
-#upload-icon {
+#header #write-icon, #header #upload-icon {
   color: #5279db;
-  margin-left: 30px;
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 767px) {
@@ -59,12 +57,17 @@ div .navbar {
     margin-left: 0px;
   }
 
-  #write,
-  #upload,
   #login {
     margin-top: 5px;
     margin-bottom: 15px;
     margin-left: 0px;
+  }
+
+  #header #write-icon, #header #upload-icon {
+    color: #5279db;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -72,8 +75,8 @@ div .navbar {
   #search {
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .navbar .menu-item {
     padding-top: 0px;
@@ -81,14 +84,19 @@ div .navbar {
     padding-right: 0px;
     margin-top: 7px;
     margin-bottom: 7px;
-    margin-left: 10px;
+    margin-left: 20px;
   }
 
-  #write,
-  #upload,
   #login {
     margin-top: 5px;
     margin-bottom: 0px;
     margin-left: 0px;
+  }
+
+  #header #write-icon, #header #upload-icon {
+    color: #5279db;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
   }
 }

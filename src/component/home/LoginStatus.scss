@@ -4,15 +4,26 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    margin-top: 0px;
     margin-left: 30px;
 }
 
-@media (max-width: 767px) {
-    #avatar {
+@media (max-width: 768px) {
+    #login-status #avatar {
         margin-left: 0px;
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 }
+
+@media (max-width: 1200px) {
+    #login-status #avatar {
+        margin-left: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
 #avatar:hover {
     cursor: pointer;
 }
@@ -43,8 +54,10 @@
 }
 
 @media (max-width: 767px) {
+
 }
 
 @media (max-width: 1200px) {
    
+
 }

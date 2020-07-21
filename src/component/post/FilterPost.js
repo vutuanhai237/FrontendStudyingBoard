@@ -15,11 +15,7 @@ class FilterPost extends Component {
             <div>
                 <Row className="filter">
                     <p className="prelabel" style={{ display: "inline" }}>Thời gian</p>
-                    <DropdownButton
-                        id="dropdown-menu"
-                        title="Chọn thời gian"
-                        className="dropdown"
-                    >
+                    <DropdownButton id="dropdown-menu" title="Chọn thời gian" className="dropdown">
                         <Dropdown.Item as="button">
                             Sớm nhất
                         </Dropdown.Item>
