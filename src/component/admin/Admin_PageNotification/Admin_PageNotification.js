@@ -70,16 +70,16 @@ class Admin_PageNotification extends Component {
 
                                 <ClickAwayListener onClickAway={() => { this.closeAllNotificationListItemActivated() }}>
 
-                                    <div className="Category_List_Port">
-                                        <div className="Category_List_Header">
-                                            <div className="Category_List_CODE_Header">Mã thông báo</div>
-                                            <div className="Category_List_NAME_Header">Nội dung thông báo</div>
+                                    <div className="Custom_Table_Port">
+                                        <div className="Custom_Table_Header">
+                                            <div className="Custom_Table_20percents_Header">Mã thông báo</div>
+                                            <div className="Custom_Table_80percents_Header">Nội dung thông báo</div>
                                         </div>
 
                                         {this.state.notificationList.map(item =>
-                                            <div className="Category_List_Item" name="Post_Category_List_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
-                                                <div className="Category_List_Item_CODE">{item.id}</div>
-                                                <div className="Category_List_Item_NAME">
+                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
+                                                <div className="Custom_Table_Item_20percents">{item.id}</div>
+                                                <div className="Custom_Table_Item_80percents">
                                                     {item.title}
 
 
@@ -208,14 +208,14 @@ class Admin_PageNotification extends Component {
 
     //post category area:
     handlerNotificationItemClick = (e, id, name) => {
-        let all_item = document.getElementsByName("Post_Category_List_Item");
+        let all_item = document.getElementsByName("Post_Custom_Table_Item");
 
         for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Category_List_Item";
+            all_item[i].className = "Custom_Table_Item";
         }
 
         let category_item = document.getElementById("admin-post-category-item-" + id);
-        category_item.className = "Category_List_Item_Activated";
+        category_item.className = "Custom_Table_Item_Activated";
 
         this.selected_category_id = id;
         this.selected_category_name = name;
@@ -228,9 +228,9 @@ class Admin_PageNotification extends Component {
     }
 
     closeAllNotificationListItemActivated = () => {
-        let all_item = document.getElementsByName("Post_Category_List_Item");
+        let all_item = document.getElementsByName("Post_Custom_Table_Item");
         for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Category_List_Item";
+            all_item[i].className = "Custom_Table_Item";
         }
         this.setState({
             canClickDeleteNotification: false,

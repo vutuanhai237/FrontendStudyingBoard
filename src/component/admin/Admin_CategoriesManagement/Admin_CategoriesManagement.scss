@@ -1,13 +1,12 @@
 .Category_Component {
-    width: 96%;
+    left: 98%;
     user-select: none;
-    margin-left: 2%;
+    padding-left: 2%;
 }
 
 .Category_Component_Title {
     margin-top: 10px;
     width: 100%;
-    // border-bottom: 1px solid #c4c4c4;
     font-family: Barlow Condensed;
     font-style: normal;
     font-weight: 600;
@@ -17,7 +16,7 @@
     color: #5279db;
 }
 
-.Category_List_Port {
+.Custom_Table_Port {
     width: 100%;
     font-family: Barlow Condensed;
     font-style: normal;
@@ -28,7 +27,7 @@
     color: #5279db;
 }
 
-.Category_List_Header {
+.Custom_Table_Header {
     width: 100%;
     font-family: Barlow Condensed;
     font-style: normal;
@@ -40,9 +39,11 @@
     display: flex;
     background: #5279db;
     user-select: none;
+    border: 1px #5279db solid;
+    border-bottom: white 1px solid;
 }
 
-.Category_List_CODE_Header {
+.Custom_Table_20percents_Header {
     width: 20%;
     text-align: center;
     font-family: Barlow Condensed;
@@ -50,11 +51,14 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 30px;
+    border: 1px solid #5279db;
     text-align: center;
 }
 
-.Category_List_NAME_Header {
-    border-left: 1px white solid;
+.Custom_Table_80percents_Header {
+    border: 1px #5279db solid;
+    border-left: 1px solid white;
+    // border-bottom: 1px solid white;
     width: 80%;
     text-align: center;
     font-family: Barlow Condensed;
@@ -65,25 +69,39 @@
     text-align: center;
 }
 
-.Category_List_Item {
-    width: 100%;
-    display: flex;
-    border: 1px solid #c4c4c4;
-    border-top: none;
-    user-select: none;
+.Custom_Table_40percents_Header {
+    border-left: 1px white solid;
+    width: 40%;
+    text-align: center;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
 }
 
-.Category_List_Item_Activated {
+.Custom_Table_Item {
     width: 100%;
     display: flex;
     border: 1px solid #c4c4c4;
     border-top: none;
     user-select: none;
-    background: #dddddd;
+    background: white;
+}
+
+.Custom_Table_Item_Activated {
+    width: 100%;
+    display: flex;
+    border: 1px solid #97afe9;
+    border-top: none;
+    user-select: none;
+    background: #97afe9;
+    color: white;
     cursor: pointer;
 }
 
-.Category_List_Item_CODE {
+.Custom_Table_Item_20percents {
     width: 20%;
     text-align: center;
     font-family: Barlow Condensed;
@@ -91,10 +109,12 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 26px;
+    // background: white;
     color: #363636;
 }
 
-.Category_List_Item_NAME {
+.Custom_Table_Item_80percents {
+    // background: white;
     border-left: 1px #c4c4c4 solid;
     width: 80%;
     text-align: center;
@@ -108,13 +128,28 @@
     padding-left: 2%;
 }
 
-.Category_List_Item:hover {
+.Custom_Table_Item_40percents {
+    border-left: 1px #c4c4c4 solid;
+    width: 40%;
+    text-align: center;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    // background: white;
+    text-align: left;
+    color: #363636;
+    padding-left: 2%;
+}
+
+.Custom_Table_Item:hover {
     background: #eeeeee;
     cursor: pointer;
 }
 
 .Category_Buttons_Port {
-    margin-top: 5px;
+    margin-top: 15px;
     display: flex;
     justify-content: flex-end;
 }
@@ -122,7 +157,6 @@
 .Category_Type_Dropdown {
     width: 100%;
     min-width: 250px;
-    // border-top: 1px #c4c4c4 solid;
     border-bottom: 3px solid #5279db;
     font-family: Barlow Condensed;
     font-style: normal;
@@ -146,4 +180,47 @@
 
 .Category_Type_Dropdown_Container {
     display: block;
+    // background-color: green;
+}
+
+.Category_Dropdown {
+    width: 100%;
+    min-width: 250px;
+    // border-top: 1px #c4c4c4 solid;
+    border-bottom: 2px solid #c4c4c4;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    height: 30px;
+    text-align: left;
+    color: #5279db;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+    transition: all 0.2s;
+}
+
+.Category_Dropdown:hover {
+    background: #eeeeee;
+    cursor: pointer;
+}
+
+.Category_Dropdown_Title {
+    width: 100%;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #5279db;
+}
+
+.Category_Dropdown_Container {
+    display: block;
+    background-color: #eeeeee;
+    padding: 5px;
 }

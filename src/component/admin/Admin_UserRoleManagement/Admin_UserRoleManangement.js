@@ -98,16 +98,16 @@ class Admin_UserRoleManagement extends Component {
                                 </div> */}
                                 <ClickAwayListener onClickAway={() => { this.closeAllPostCategoryListItemActivated() }}>
 
-                                    <div className="Category_List_Port">
-                                        <div className="Category_List_Header">
-                                            <div className="Category_List_CODE_Header">Mã quyền</div>
-                                            <div className="Category_List_NAME_Header">Tên quyền - Quyền tương ứng</div>
+                                    <div className="Custom_Table_Port">
+                                        <div className="Custom_Table_Header">
+                                            <div className="Custom_Table_20percents_Header">Mã quyền</div>
+                                            <div className="Custom_Table_80percents_Header">Tên quyền - Quyền tương ứng</div>
                                         </div>
 
                                         {this.state.rolesList.map(item =>
-                                            <div className="Category_List_Item" name="Post_Category_List_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.title)} >
-                                                <div className="Category_List_Item_CODE">{item.id}</div>
-                                                <div className="Category_List_Item_NAME">{item.title}</div>
+                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.title)} >
+                                                <div className="Custom_Table_Item_20percents">{item.id}</div>
+                                                <div className="Custom_Table_Item_80percents">{item.title}</div>
                                             </div>
                                         )}
 
@@ -223,14 +223,14 @@ class Admin_UserRoleManagement extends Component {
 
     //post category area:
     handlerPostCategoryItemClick = (e, id, name) => {
-        let all_item = document.getElementsByName("Post_Category_List_Item");
+        let all_item = document.getElementsByName("Post_Custom_Table_Item");
 
         for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Category_List_Item";
+            all_item[i].className = "Custom_Table_Item";
         }
 
         let category_item = document.getElementById("admin-post-category-item-" + id);
-        category_item.className = "Category_List_Item_Activated";
+        category_item.className = "Custom_Table_Item_Activated";
 
         this.selected_category_id = id;
         this.selected_category_name = name;
@@ -243,9 +243,9 @@ class Admin_UserRoleManagement extends Component {
     }
 
     closeAllPostCategoryListItemActivated = () => {
-        let all_item = document.getElementsByName("Post_Category_List_Item");
+        let all_item = document.getElementsByName("Post_Custom_Table_Item");
         for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Category_List_Item";
+            all_item[i].className = "Custom_Table_Item";
         }
         this.setState({
             canClickDeletePostCategory: false,

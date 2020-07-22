@@ -6,6 +6,12 @@ import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import { isContainSpecialCharacter } from '../../../utils/Utils'
 
+//import for Redux
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getCurrentUser } from '../../../service/UserAPI'
+
 class Admin_UpdatePassword extends Component {
     constructor(props) {
         super();
@@ -32,7 +38,7 @@ class Admin_UpdatePassword extends Component {
         this.isConfirmationPasswordLessThan6Characters = false;
         this.isConfirmationPasswordContainSpecialCharacters = false;
 
-
+        this.realPassword = "";
 
         //for POST to server new information of new password
         this.updatePassword_DTO = {
@@ -78,7 +84,9 @@ class Admin_UpdatePassword extends Component {
     }
 
     componentDidMount() {
-
+        this.props.getCurrentUser();
+        this.realPassword = this.props.accountInformation.password;
+        console.log(this.realPassword);
     }
 
 
@@ -107,7 +115,7 @@ class Admin_UpdatePassword extends Component {
                         <div className="Simple_Gray_Label Is_Form_Label">
                             Mật khẩu mới:
                                     </div>
-                        <input type="password" defaultValue="" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
+                        <input type="password" defaultValue="" autoComplete="off" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
                         <div className="Simple_Error_Label" hidden={!this.isNewPasswordEmpty} >
                             *Mật khẩu mới không được để trống.
                                     </div>
@@ -125,7 +133,7 @@ class Admin_UpdatePassword extends Component {
                         <div className="Simple_Gray_Label Is_Form_Label">
                             Xác nhận mật khẩu:
                                 </div>
-                        <input type="password" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
+                        <input type="password" autoComplete="off" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
                         <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordEmpty} >
                             *Mật khẩu xác nhận không được để trống.
                                     </div>
@@ -182,7 +190,7 @@ class Admin_UpdatePassword extends Component {
                     shadow={true}
                     title={this.notifyHeader}
                     text={this.notifyContent}
-                    type="alert_fail"
+                    type="alert_success"
                     closeModal={() => this.closeSuccessAlertPopup()}
                 >
 
@@ -368,6 +376,10 @@ class Admin_UpdatePassword extends Component {
             this.openFailedAlertPopup();
             return;
         }
+        this.notifyHeader = "Thành công!";
+        this.notifyContent = "Cập nhật khẩu thành công!";
+        this.isAnySuccessAlertPopupOpen = true;
+        this.setState({});
 
         //call function to update password
 
@@ -376,4 +388,18 @@ class Admin_UpdatePassword extends Component {
     //#endregion
 
 }
-export default Admin_UpdatePassword;
+
+//#region for Redux
+const mapStatetoProps = (state) => {
+    // (state);
+    return {
+        accountInformation: state.user.account
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getCurrentUser
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Admin_UpdatePassword));
+ //#endregion
