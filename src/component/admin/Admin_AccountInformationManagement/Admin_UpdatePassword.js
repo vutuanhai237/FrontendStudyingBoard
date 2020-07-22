@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import '../AdminPage'
 import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-// import '../../shared_components/Avatar.scss'
+import { isContainSpecialCharacter } from '../../../utils/Utils'
 
 class Admin_UpdatePassword extends Component {
     constructor(props) {
@@ -254,7 +254,7 @@ class Admin_UpdatePassword extends Component {
         else
             this.isNewPasswordLessThan6Characters = false;
 
-        if (this.isContainSpecialCharacter(this.updatePassword_DTO.newPassword)) {
+        if (isContainSpecialCharacter(this.updatePassword_DTO.newPassword)) {
             this.isNewPasswordContainSpecialCharacters = true;
             this.canClickUpdatePassword = false;
 
@@ -286,7 +286,7 @@ class Admin_UpdatePassword extends Component {
         else
             this.isConfirmationPasswordLessThan6Characters = false;
 
-        if (this.isContainSpecialCharacter(this.updatePassword_DTO.confirmationPassword)) {
+        if (isContainSpecialCharacter(this.updatePassword_DTO.confirmationPassword)) {
             this.isConfirmationPasswordContainSpecialCharacters = true;
             this.canClickUpdatePassword = false;
         }
@@ -298,7 +298,7 @@ class Admin_UpdatePassword extends Component {
 
     handlerChangeStateOfSubmitButton = () => {
         this.canClickUpdatePassword = true;
-        console.log("As")
+
         //check current password
         console.log(this.updatePassword_DTO.currentPassword)
         if (this.updatePassword_DTO.currentPassword === ""
@@ -324,7 +324,7 @@ class Admin_UpdatePassword extends Component {
             return;
         }
 
-        if (this.isContainSpecialCharacter(this.updatePassword_DTO.newPassword)) {
+        if (isContainSpecialCharacter(this.updatePassword_DTO.newPassword)) {
             this.canClickUpdatePassword = false;
             this.setState({});
             return;
@@ -347,7 +347,7 @@ class Admin_UpdatePassword extends Component {
             return;
         }
 
-        if (this.isContainSpecialCharacter(this.updatePassword_DTO.confirmationPassword)) {
+        if (isContainSpecialCharacter(this.updatePassword_DTO.confirmationPassword)) {
             this.canClickUpdatePassword = false;
             this.setState({});
             return;
@@ -375,9 +375,5 @@ class Admin_UpdatePassword extends Component {
 
     //#endregion
 
-    //#region
-    isContainSpecialCharacter(str) {
-        return /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
-    }
 }
 export default Admin_UpdatePassword;

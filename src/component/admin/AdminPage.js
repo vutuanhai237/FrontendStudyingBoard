@@ -38,23 +38,22 @@ import Footer from '../container/Footer'
 //import resource string
 import { STR_LOGOUT_VN } from '../../constant/index.js';
 
+//import for Redux
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { getCurrentUser } from '../../service/UserAPI'
+
 class AdminPage extends Component {
     constructor(props) {
         super(props);
 
+        this.score = 0;
+        this.post_count = 0;
+        this.doc_count = 0;
+        this.avatarUrl = "https://i.imgur.com/SZJgL6C.jpg";
         this.state = {
-            "info": {
-                "avatarUrl": "https://i.imgur.com/q54xYo3.png",
-                "displayName": "Nguyen Van Dong",
-                "userName": "tesla",
-                "gmail": "dongnv.since1999@gmail.com",
-                "password_length": 10,
-                "score": "1235",
-                "post_count": "300",
-                "doc_count": "0",
-                "role": "Admin",
-                "roleID": 1
-            },
+
         }
     }
 
@@ -67,249 +66,255 @@ class AdminPage extends Component {
     }
 
     componentDidMount() {
-        // console.log('%PUBLIC_PATH');
+        this.props.getCurrentUser();
+        // this
     }
 
     render() {
+        if (this.props.accountInformation !== null && this.props.accountInformation !== undefined) {
 
-        return (
+            this.score = this.props.accountInformation.score;
+            this.post_count = this.props.accountInformation.postCount;
+            this.doc_count = this.props.accountInformation.documentCount;
+            // this.avatarUrl = this.props.accountInformation.avatar;
 
-            <div className="Admin">
-                {window.onscroll = () => this.scrollFunction()}
+            return (
+                <div className="Admin">
+                    {window.onscroll = () => this.scrollFunction()}
 
-                {/* Header Area */}
-                <div className="Admin_Header">
-                    <Header></Header>
-                </div>
+                    {/* Header Area */}
+                    <div className="Admin_Header">
+                        <Header></Header>
+                    </div>
 
-                {/* Body Area */}
-                <div className="Admin_Main_Port">
-                    {/* Left Sidebar */}
+                    {/* Body Area */}
+                    <div className="Admin_Main_Port">
+                        {/* Left Sidebar */}
 
-                    <Router>
-                        <div>
+                        <Router>
                             <div>
-                                <div className="Fake_Admin_Info_Menu_Port" id="fake-admin-info-menu-port"></div>
-                                < div className="Admin_Info_Menu_Port" id="admin-left-sidebar" >
+                                <div>
+                                    <div className="Fake_Admin_Info_Menu_Port" id="fake-admin-info-menu-port"></div>
+                                    < div className="Admin_Info_Menu_Port" id="admin-left-sidebar" >
 
-                                    {/* bounded for animation */}
-                                    <div className="Bounded_Class_Infor_And_Archivement_Port" id="bounded-class-infor-and-archivement-port">
-                                        {/* Admin Infor Port */}
-                                        < div className="Admin_Info_Port" >
-                                            <div className="Avatar_Port">
-                                                <img alt="avatar" className="Show_Avatar" src={this.state.info.avatarUrl} />
-                                            </div>
-                                            <div className="Achivement_Port">
-                                                {/* <div className="margin_auto"> */}
-                                                    <div className="Achivement_Score">Scrore: {this.state.info.score}</div>
+                                        {/* bounded for animation */}
+                                        <div className="Bounded_Class_Infor_And_Archivement_Port" id="bounded-class-infor-and-archivement-port">
+                                            {/* Admin Infor Port */}
+                                            < div className="Admin_Info_Port" >
+                                                <div className="Avatar_Port">
+                                                    <img alt="avatar" className="Show_Avatar" src={this.avatarUrl} />
+                                                </div>
+                                                <div className="Achivement_Port">
+                                                    {/* <div className="margin_auto"> */}
+                                                    <div className="Achivement_Score">Scrore: {this.score}</div>
                                                     <div className="Achivement_Post_Doc_Count_Port">
                                                         <div className="display_flex width_50_percents">
                                                             <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                            <div className="margin_left_5px">{this.state.info.post_count}</div>
+                                                            <div className="margin_left_5px">{this.post_count}</div>
                                                         </div>
 
                                                         <div className="display_flex width_50_percents">
                                                             <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                            <div className="margin_left_5px"> {this.state.info.doc_count}</div>
+                                                            <div className="margin_left_5px"> {this.doc_count}</div>
                                                         </div>
                                                     </div>
-                                                {/* </div> */}
-                                            </div>
-                                            {/* <div className="User_Name_Gmail_Port">
+                                                    {/* </div> */}
+                                                </div>
+                                                {/* <div className="User_Name_Gmail_Port">
                                                 <div className="Display_Name">
-                                                    {this.state.info.displayName}
+                                                    {this.displayName}
                                                 </div>
                                                 <div className="Gmail">
-                                                    {this.state.info.gmail}
+                                                    {this.gmail}
                                                 </div> */}
-                                            {/* <div className="Logout_Btn_Port"> */}
-                                            {/* <button className="Logout_Btn">Đăng xuất</button> */}
-                                            {/* <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div> */}
-                                            {/* </div> */}
-                                            {/* </div> */}
-                                        </div >
+                                                {/* <div className="Logout_Btn_Port"> */}
+                                                {/* <button className="Logout_Btn">Đăng xuất</button> */}
+                                                {/* <div className="Simple_Blue_Button">{STR_LOGOUT_VN}</div> */}
+                                                {/* </div> */}
+                                                {/* </div> */}
+                                            </div >
 
-                                        {/* Role and achivement port */}
-                                        < div className="Role_Achivement_Port" >
-                                            <div className="Own_Role_Port">
-                                                Admin
+                                            {/* Role and achivement port */}
+                                            < div className="Role_Achivement_Port" >
+                                                <div className="Own_Role_Port">
+                                                    Admin
                                             </div>
 
-                                        </div >
-                                    </div>
-
-                                    {/* Admin Menu Port */}
-                                    < div className="Admin_Vertical_Menu_Port" id="admin-vertical-menu-port" >
-                                        {/* <div className="Fake_Admin_Info_Menu_Port" id="fake-admin-info-menu-port"></div> */}
-                                        {/* Quản lý nội dung */}
-                                        <div>
-                                            <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
-                                                onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
-                                                <div className="display_flex">
-                                                    <img alt="*" className="Primary_Menu_Item_Element" src={content_management_menu_item_element} id="page-managent-btn-element" />
-                                                    <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
-                                                        Quản lý nội dung
-                                                </div>
-                                                </div>
-
-                                                <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
-                                            </div>
-
-                                            <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
-                                                <div className="margin_bottom_5px"></div>
-                                                {
-                                                    window.location.pathname === "/admin/post_approving" ?
-                                                        <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                            to="/admin/post_approving">
-                                                            <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                Duyệt bài viết
-                                                        </div>
-                                                        </Link>
-                                                        :
-                                                        <Link className="Sub_Dropdown_Menu_Item"
-                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                            to="/admin/post_approving">
-                                                            <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                Duyệt bài viết
-                                                        </div>
-                                                        </Link>
-                                                }
-                                                {
-                                                    window.location.pathname === "/admin/doc_approving" ?
-                                                        <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                            to="/admin/doc_approving">
-                                                            <div className="Sub_Dropdown_Menu_Item_Text">
-                                                                Duyệt tài liệu
-                                                    </div>
-                                                        </Link>
-                                                        :
-                                                        <Link className="Sub_Dropdown_Menu_Item"
-                                                            to="/admin/doc_approving"
-                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                        >
-                                                            <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                Duyệt tài liệu
-                                                        </div>
-                                                        </Link>
-                                                }
-                                                {
-                                                    window.location.pathname === "/admin/page_notification" ?
-                                                        <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                            to="/admin/doc_approving"  >
-                                                            <div className="Sub_Dropdown_Menu_Item_Text">
-                                                                Thông báo trang
-                                                    </div>
-                                                        </Link>
-                                                        :
-                                                        <Link className="Sub_Dropdown_Menu_Item"
-                                                            to="/admin/page_notification"
-                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                        >
-                                                            <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                Thông báo trang
-                                                        </div>
-                                                        </Link>
-                                                }
-                                                {
-                                                    window.location.pathname === "/admin/categories_management" ?
-                                                        <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                            to="/admin/categories_management">
-                                                            <div className="Sub_Dropdown_Menu_Item_Text">
-                                                                Quản lý danh mục
-                                                    </div>
-                                                        </Link>
-                                                        :
-                                                        <Link className="Sub_Dropdown_Menu_Item"
-                                                            to="/admin/categories_management"
-                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                            <div className="Sub_Dropdown_Menu_Item_Text">
-                                                                Quản lý danh mục
-                                                        </div>
-                                                        </Link>
-                                                }
-                                                <div className="margin_bottom_5px" />
-                                                <div className="decoration_underline " />
-                                                <div className="margin_bottom_5px" />
-                                                <div className="margin_bottom_5px" />
-                                            </div>
+                                            </div >
                                         </div>
-                                        {/* {console.log(window.location.pathname)} */}
-                                        {/* Quan ly nguoi dung */}
-                                        {
-                                            window.location.pathname === "/admin/users_management" ?
-                                                <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                    to="/admin/users_management">
-                                                    <img alt="*"
-                                                        className="Primary_Menu_Item_Element"
-                                                        src={user_management_menu_item_element}
-                                                        id="users-managent-btn-element" />
-                                                    <div className="Vertical_Menu_Item_Text"  >
-                                                        Quản lý người dùng
-                                                </div>
-                                                </Link>
-                                                :
-                                                <Link className="Vertical_Menu_Item"
-                                                    to="/admin/users_management"
-                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                    <img alt="*" className="Primary_Menu_Item_Element"
-                                                        src={user_management_menu_item_element}
-                                                        id="users-managent-btn-element"
-                                                    />
-                                                    <div className="Vertical_Menu_Item_Text"  >
-                                                        Quản lý người dùng
-                                                </div>
-                                                </Link>
-                                        }
 
-                                        {/* Quan ly hoat dong: các báo cáo người dùng  */}
-                                        {
-                                            window.location.pathname === "/admin/activity_management" ?
-                                                <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                    to="/admin/activity_management"
-                                                >
-                                                    <img alt="*" className="Primary_Menu_Item_Element"
-                                                        src={activity_management_menu_item_element}
-                                                        id="users-managent-btn-element" />
-                                                    <div className="Vertical_Menu_Item_Text"  >
-                                                        Quản lý hoạt động
+                                        {/* Admin Menu Port */}
+                                        < div className="Admin_Vertical_Menu_Port" id="admin-vertical-menu-port" >
+                                            {/* <div className="Fake_Admin_Info_Menu_Port" id="fake-admin-info-menu-port"></div> */}
+                                            {/* Quản lý nội dung */}
+                                            <div>
+                                                <div className="Parent_Dropdown_Menu_Item" id="page-managent-parent-menu-item"
+                                                    onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-management-dropdown-btn-element", "page-management-menu-item-container")}>
+                                                    <div className="display_flex">
+                                                        <img alt="*" className="Primary_Menu_Item_Element" src={content_management_menu_item_element} id="page-managent-btn-element" />
+                                                        <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
+                                                            Quản lý nội dung
                                                 </div>
-                                                </Link>
-                                                :
-                                                <Link className="Vertical_Menu_Item"
-                                                    to="/admin/activity_management"
-                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                    <img alt="*" className="Primary_Menu_Item_Element"
-                                                        src={activity_management_menu_item_element}
-                                                        id="users-managent-btn-element"
-                                                    />
-                                                    <div className="Vertical_Menu_Item_Text"  >
-                                                        Quản lý hoạt động
-                                                </div>
-                                                </Link>
-                                        }
+                                                    </div>
 
-                                        {/* Quan ly tai khoan menu item*/}
-                                        < div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
-                                            onClick={(e) => this.handleDisplayNoneDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
-                                            }>
-                                            <div className="display_flex">
-                                                <img alt="*" className="Primary_Menu_Item_Element"
-                                                    src={account_management_menu_item_element}
-                                                    id="page-managent-btn-element" />
-                                                <div className="Vertical_Menu_Item_Text"
-                                                    id="account-managent-parent-menu-item-text">
-                                                    Quản lý tài khoản
+                                                    <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
+                                                </div>
+
+                                                <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-management-menu-item-container">
+                                                    <div className="margin_bottom_5px"></div>
+                                                    {
+                                                        window.location.pathname === "/admin/post_approving" ?
+                                                            <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                                to="/admin/post_approving">
+                                                                <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                    Duyệt bài viết
+                                                        </div>
+                                                            </Link>
+                                                            :
+                                                            <Link className="Sub_Dropdown_Menu_Item"
+                                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                                to="/admin/post_approving">
+                                                                <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                    Duyệt bài viết
+                                                        </div>
+                                                            </Link>
+                                                    }
+                                                    {
+                                                        window.location.pathname === "/admin/doc_approving" ?
+                                                            <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                                to="/admin/doc_approving">
+                                                                <div className="Sub_Dropdown_Menu_Item_Text">
+                                                                    Duyệt tài liệu
+                                                    </div>
+                                                            </Link>
+                                                            :
+                                                            <Link className="Sub_Dropdown_Menu_Item"
+                                                                to="/admin/doc_approving"
+                                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                            >
+                                                                <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                    Duyệt tài liệu
+                                                        </div>
+                                                            </Link>
+                                                    }
+                                                    {
+                                                        window.location.pathname === "/admin/page_notification" ?
+                                                            <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                                to="/admin/doc_approving"  >
+                                                                <div className="Sub_Dropdown_Menu_Item_Text">
+                                                                    Thông báo trang
+                                                    </div>
+                                                            </Link>
+                                                            :
+                                                            <Link className="Sub_Dropdown_Menu_Item"
+                                                                to="/admin/page_notification"
+                                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                            >
+                                                                <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                    Thông báo trang
+                                                        </div>
+                                                            </Link>
+                                                    }
+                                                    {
+                                                        window.location.pathname === "/admin/categories_management" ?
+                                                            <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                                to="/admin/categories_management">
+                                                                <div className="Sub_Dropdown_Menu_Item_Text">
+                                                                    Quản lý danh mục
+                                                    </div>
+                                                            </Link>
+                                                            :
+                                                            <Link className="Sub_Dropdown_Menu_Item"
+                                                                to="/admin/categories_management"
+                                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                                <div className="Sub_Dropdown_Menu_Item_Text">
+                                                                    Quản lý danh mục
+                                                        </div>
+                                                            </Link>
+                                                    }
+                                                    <div className="margin_bottom_5px" />
+                                                    <div className="decoration_underline " />
+                                                    <div className="margin_bottom_5px" />
+                                                    <div className="margin_bottom_5px" />
+                                                </div>
                                             </div>
-                                            </div>
-                                            <img alt="v" className="Dropdown_Btn_Element"
-                                                src={dropdown_btn}
-                                                id="account-management-dropdown-btn-element" />
-                                        </div >
+                                            {/* {(window.location.pathname)} */}
+                                            {/* Quan ly nguoi dung */}
+                                            {
+                                                window.location.pathname === "/admin/users_management" ?
+                                                    <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                        to="/admin/users_management">
+                                                        <img alt="*"
+                                                            className="Primary_Menu_Item_Element"
+                                                            src={user_management_menu_item_element}
+                                                            id="users-managent-btn-element" />
+                                                        <div className="Vertical_Menu_Item_Text"  >
+                                                            Quản lý người dùng
+                                                </div>
+                                                    </Link>
+                                                    :
+                                                    <Link className="Vertical_Menu_Item"
+                                                        to="/admin/users_management"
+                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                        <img alt="*" className="Primary_Menu_Item_Element"
+                                                            src={user_management_menu_item_element}
+                                                            id="users-managent-btn-element"
+                                                        />
+                                                        <div className="Vertical_Menu_Item_Text"  >
+                                                            Quản lý người dùng
+                                                </div>
+                                                    </Link>
+                                            }
 
-                                        <div className="Vertical_Dropdown_Menu_Item_Container"
-                                            id="account-management-menu-item-container">
-                                            <div className="margin_bottom_5px"></div>
-                                            {/* {
+                                            {/* Quan ly hoat dong: các báo cáo người dùng  */}
+                                            {
+                                                window.location.pathname === "/admin/activity_management" ?
+                                                    <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                        to="/admin/activity_management"
+                                                    >
+                                                        <img alt="*" className="Primary_Menu_Item_Element"
+                                                            src={activity_management_menu_item_element}
+                                                            id="users-managent-btn-element" />
+                                                        <div className="Vertical_Menu_Item_Text"  >
+                                                            Quản lý hoạt động
+                                                </div>
+                                                    </Link>
+                                                    :
+                                                    <Link className="Vertical_Menu_Item"
+                                                        to="/admin/activity_management"
+                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                        <img alt="*" className="Primary_Menu_Item_Element"
+                                                            src={activity_management_menu_item_element}
+                                                            id="users-managent-btn-element"
+                                                        />
+                                                        <div className="Vertical_Menu_Item_Text"  >
+                                                            Quản lý hoạt động
+                                                </div>
+                                                    </Link>
+                                            }
+
+                                            {/* Quan ly tai khoan menu item*/}
+                                            < div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
+                                                onClick={(e) => this.handleDisplayNoneDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-management-dropdown-btn-element", "account-management-menu-item-container")
+                                                }>
+                                                <div className="display_flex">
+                                                    <img alt="*" className="Primary_Menu_Item_Element"
+                                                        src={account_management_menu_item_element}
+                                                        id="page-managent-btn-element" />
+                                                    <div className="Vertical_Menu_Item_Text"
+                                                        id="account-managent-parent-menu-item-text">
+                                                        Quản lý tài khoản
+                                            </div>
+                                                </div>
+                                                <img alt="v" className="Dropdown_Btn_Element"
+                                                    src={dropdown_btn}
+                                                    id="account-management-dropdown-btn-element" />
+                                            </div >
+
+                                            <div className="Vertical_Dropdown_Menu_Item_Container"
+                                                id="account-management-menu-item-container">
+                                                <div className="margin_bottom_5px"></div>
+                                                {/* {
                                             window.location.pathname === "/admin/account_management" 
                                             ?
                                                 <Link
@@ -319,115 +324,115 @@ class AdminPage extends Component {
                                                     Trang cá nhân
                                                 </div>
                                         } */}
-                                            {
-                                                window.location.pathname === "/admin" ?
-                                                    <Link
-                                                        className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                        to="/admin">
-                                                        Thông tin tài khoản
+                                                {
+                                                    window.location.pathname === "/admin" ?
+                                                        <Link
+                                                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                            to="/admin">
+                                                            Thông tin tài khoản
                                                 </Link>
-                                                    :
-                                                    <Link className="Sub_Dropdown_Menu_Item"
-                                                        to="/admin"
-                                                        //  onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                        onClick={() => this.handleAccountInformationMenuItemClick()}
-                                                    >
+                                                        :
+                                                        <Link className="Sub_Dropdown_Menu_Item"
+                                                            to="/admin"
+                                                            //  onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                            onClick={() => this.handleAccountInformationMenuItemClick()}
+                                                        >
 
-                                                        Thông tin tài khoản
+                                                            Thông tin tài khoản
                                                 </Link>
-                                            }
-                                            {
-                                                window.location.pathname === "/admin/notification" ?
-                                                    <Link
-                                                        className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                        to="/admin/notification">
-                                                        Thông báo
+                                                }
+                                                {
+                                                    window.location.pathname === "/admin/notification" ?
+                                                        <Link
+                                                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                            to="/admin/notification">
+                                                            Thông báo
                                                 </Link>
-                                                    :
-                                                    <Link className="Sub_Dropdown_Menu_Item"
-                                                        to="/admin/notification"
-                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                        Thông báo
+                                                        :
+                                                        <Link className="Sub_Dropdown_Menu_Item"
+                                                            to="/admin/notification"
+                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                            Thông báo
                                                 </Link>
-                                            }
-                                            {/* <div className="Sub_Dropdown_Menu_Item">
+                                                }
+                                                {/* <div className="Sub_Dropdown_Menu_Item">
                                             Đổi avatar
                                         </div> */}
-                                            {
-                                                window.location.pathname === "/admin/posts_list" ?
-                                                    <Link
-                                                        className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                        to="/admin/posts_list">
-                                                        Danh sách bài viết
+                                                {
+                                                    window.location.pathname === "/admin/posts_list" ?
+                                                        <Link
+                                                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                            to="/admin/posts_list">
+                                                            Danh sách bài viết
                                                 </Link>
-                                                    :
-                                                    <Link className="Sub_Dropdown_Menu_Item"
-                                                        to="/admin/posts_list"
-                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                        Danh sách bài viết
+                                                        :
+                                                        <Link className="Sub_Dropdown_Menu_Item"
+                                                            to="/admin/posts_list"
+                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                            Danh sách bài viết
                                                 </Link>
-                                            }
-                                            {
-                                                window.location.pathname === "/admin/docs_list" ?
-                                                    <Link
-                                                        className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                        to="/admin/docs_list">
-                                                        Danh sách tài liệu
+                                                }
+                                                {
+                                                    window.location.pathname === "/admin/docs_list" ?
+                                                        <Link
+                                                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                            to="/admin/docs_list">
+                                                            Danh sách tài liệu
                                                  </Link>
-                                                    :
-                                                    <Link className="Sub_Dropdown_Menu_Item"
-                                                        to="/admin/docs_list"
-                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                        Danh sách tài liệu
+                                                        :
+                                                        <Link className="Sub_Dropdown_Menu_Item"
+                                                            to="/admin/docs_list"
+                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                            Danh sách tài liệu
                                                 </Link>
-                                            }
-                                            {
-                                                window.location.pathname === "/admin/update_password" ?
-                                                    <Link
-                                                        className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                        to="/admin/update_password">
-                                                        Cập nhật mật khẩu
+                                                }
+                                                {
+                                                    window.location.pathname === "/admin/update_password" ?
+                                                        <Link
+                                                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                            to="/admin/update_password">
+                                                            Cập nhật mật khẩu
                                               </Link>
+                                                        :
+                                                        <Link className="Sub_Dropdown_Menu_Item"
+                                                            to="/admin/update_password"
+                                                            onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                            Cập nhật mật khẩu
+                                                </Link>
+                                                }
+                                                <div className="margin_bottom_5px" />
+                                                <div className="decoration_underline " />
+                                                <div className="margin_bottom_5px" />
+                                                <div className="margin_bottom_5px" />
+                                            </div>
+
+                                            {/* Quan lý quyền truy cập: role */}
+                                            {
+                                                window.location.pathname === "/admin/user_role_management" ?
+                                                    <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                        to="/admin/user_role_management">
+                                                        <img alt="*" className="Primary_Menu_Item_Element"
+                                                            src={user_role_management_menu_item_element}
+                                                            id="users-managent-btn-element" />
+                                                        <div className="Vertical_Menu_Item_Text"  >
+                                                            Quản lý quyền truy cập
+                                                </div>
+                                                    </Link>
                                                     :
-                                                    <Link className="Sub_Dropdown_Menu_Item"
-                                                        to="/admin/update_password"
+                                                    <Link className="Vertical_Menu_Item"
+                                                        to="/admin/user_role_management"
                                                         onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                        Cập nhật mật khẩu
-                                                </Link>
+                                                        <img alt="*" className="Primary_Menu_Item_Element"
+                                                            src={user_role_management_menu_item_element}
+                                                            id="users-managent-btn-element" />
+                                                        <div className="Vertical_Menu_Item_Text"  >
+                                                            Quản lý quyền truy cập
+                                                </div>
+                                                    </Link>
                                             }
-                                            <div className="margin_bottom_5px" />
-                                            <div className="decoration_underline " />
-                                            <div className="margin_bottom_5px" />
-                                            <div className="margin_bottom_5px" />
-                                        </div>
 
-                                        {/* Quan lý quyền truy cập: role */}
-                                        {
-                                            window.location.pathname === "/admin/user_role_management" ?
-                                                <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                    to="/admin/user_role_management">
-                                                    <img alt="*" className="Primary_Menu_Item_Element"
-                                                        src={user_role_management_menu_item_element}
-                                                        id="users-managent-btn-element" />
-                                                    <div className="Vertical_Menu_Item_Text"  >
-                                                        Quản lý quyền truy cập
-                                                </div>
-                                                </Link>
-                                                :
-                                                <Link className="Vertical_Menu_Item"
-                                                    to="/admin/user_role_management"
-                                                    onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                    <img alt="*" className="Primary_Menu_Item_Element"
-                                                        src={user_role_management_menu_item_element}
-                                                        id="users-managent-btn-element" />
-                                                    <div className="Vertical_Menu_Item_Text"  >
-                                                        Quản lý quyền truy cập
-                                                </div>
-                                                </Link>
-                                        }
-
-                                        {/* Thong ke */}
-                                        {/* {
+                                            {/* Thong ke */}
+                                            {/* {
                                         window.location.pathname === "/admin/analysis" ?
                                             <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" to = "/admin/analysis_management">
                                                 <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
@@ -441,47 +446,49 @@ class AdminPage extends Component {
                                                 </div>
                                             </div>
                                     } */}
-                                    </div >
-                                </ div >
+                                        </div >
+                                    </ div >
+                                </div>
                             </div>
-                        </div>
 
 
-                        {/* Router Outlet */}
-                        <div className="Admin_Router_Outlet" >
-                            <Switch>
-                                <Route path="/admin/post_approving">
-                                    <Admin_PostApprovingPage></Admin_PostApprovingPage>
-                                </Route>
-                                <Route path="/admin/doc_approving">
-                                    <Admin_DocApprovingPage></Admin_DocApprovingPage>
-                                </Route>
-                                <Route path="/admin/users_management">
-                                    <Admin_UserManagement></Admin_UserManagement>
-                                </Route>
-                                <Route path="/admin/categories_management">
-                                    <Admin_CategoriesManagement></Admin_CategoriesManagement>
-                                </Route>
-                                <Route path="/admin/page_notification">
-                                    <Admin_PageNotification></Admin_PageNotification>
-                                </Route>
-                                <Route exact path="/admin" >
-                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
-                                </Route>
-                                <Route exact path="/admin/update_password">
-                                    <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
-                                </Route>
-                                <Route path="/admin/user_role_management">
-                                    <Admin_UserRoleManagement></Admin_UserRoleManagement>
-                                </Route>
-                            </Switch>
-                        </div>
-                    </Router>
-                </div>
-                <Footer></Footer>
-            </div >
+                            {/* Router Outlet */}
+                            <div className="Admin_Router_Outlet" >
+                                <Switch>
+                                    <Route path="/admin/post_approving">
+                                        <Admin_PostApprovingPage></Admin_PostApprovingPage>
+                                    </Route>
+                                    <Route path="/admin/doc_approving">
+                                        <Admin_DocApprovingPage></Admin_DocApprovingPage>
+                                    </Route>
+                                    <Route path="/admin/users_management">
+                                        <Admin_UserManagement></Admin_UserManagement>
+                                    </Route>
+                                    <Route path="/admin/categories_management">
+                                        <Admin_CategoriesManagement></Admin_CategoriesManagement>
+                                    </Route>
+                                    <Route path="/admin/page_notification">
+                                        <Admin_PageNotification></Admin_PageNotification>
+                                    </Route>
+                                    <Route exact path="/admin" >
+                                        <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                    </Route>
+                                    <Route exact path="/admin/update_password">
+                                        <Admin_AccountInformationManagement></Admin_AccountInformationManagement>
+                                    </Route>
+                                    <Route path="/admin/user_role_management">
+                                        <Admin_UserRoleManagement></Admin_UserRoleManagement>
+                                    </Route>
+                                </Switch>
+                            </div>
+                        </Router>
+                    </div>
+                    <Footer></Footer>
+                </div >
 
-        );
+            );
+        }
+        return <></>
     }
 
     //code style for dropdown menu
@@ -522,7 +529,7 @@ class AdminPage extends Component {
         this.setState({});
     }
 
-
+    //#region for handle on scroll
     scrollFunction = () => {
 
         let left_sidebar = document.getElementById("admin-left-sidebar");
@@ -540,7 +547,6 @@ class AdminPage extends Component {
         }
 
         if (getRectBottom(header) <= 0 - 21) {
-            // left_sidebar.classList.replace("Left_Sidebar_Reach_Footer", "Left_Sidebar_After_Header");
             left_sidebar.classList.add("Left_Sidebar_After_Header");
             left_sidebar.classList.remove("Left_Sidebar_Reach_Footer");
             document.getElementById("fake-admin-info-menu-port").style.display = "block";
@@ -552,19 +558,25 @@ class AdminPage extends Component {
         }
 
         //Handler for Footer
-
-        console.log("*" + getRectTop(footer));
-        console.log("***" + getRectBottom(left_sidebar));
         if ((getRectBottom(left_sidebar)) >= getRectTop(footer) - 45) {
             left_sidebar.classList.replace("Left_Sidebar_After_Header", "Left_Sidebar_Reach_Footer");
-            console.log("*");
         }
-        // if (document.body.scrollTop + window.innerHeight < (getRectTop(footer) + document.body.scrollTop)) {
-        //     left_sidebar.style.position = 'fixed'; // restore when you scroll up
-        //     console.log("**");
-        // }
-
     }
+    //#endregion
 
 }
-export default AdminPage;
+
+//#region for redux
+const mapStatetoProps = (state) => {
+    // (state);
+    return {
+        accountInformation: state.user.account
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getCurrentUser
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(AdminPage));
+//#endregion

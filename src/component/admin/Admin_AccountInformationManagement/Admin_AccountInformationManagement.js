@@ -6,71 +6,116 @@ import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_upload_icon from '../../../img/gray_upload_icon.png'
 import gray_write_icon from '../../../img/gray_write_icon.png'
-// import '../../shared_components/Avatar.scss'
+
 import './Admin_AccountInformationManagement.scss'
 import './Admin_AIMResponsiveLayout.scss'
-import { ClickAwayListener } from '@material-ui/core'
+import { ClickAwayListener, CircularProgress } from '@material-ui/core'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Admin_UpdatePassword from './Admin_UpdatePassword'
+import { isContainSpecialCharacter } from '../../../utils/Utils'
+import ImageUploader from 'react-images-upload'
 
+//import for Redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import { getCurrentUser } from '../../../service/UserAPI'
-
-
-
 
 class Admin_AccountInformationManagement extends Component {
     constructor(props) {
         super(props);
-        this.isAnyChangeRoleDropdownComboboxOpen = true;
-        // this.accountInformation = this.props.account;
+        //initiate data from props:
+        //if value been set by a string, db didn't match it.
+
+        //from user API
+        this.displayName = "Nguyễn Văn Đông";
+        this.userID = "";
+        this.password = "";
+        this.avatar = "";
+        this.email = "";
+        this.score = "";
+        this.postCount = 0;
+        this.documentCount = 0;
+        this.roleID = 2;
+        this.roleName = "";
+
+        //from Role API:
+        this.roleList = [
+            {
+                roleID: 1,
+                roleName: "ADMIN",
+                role: "Admin"
+            },
+            {
+
+                roleID: 2,
+                roleName: "COLLABORATOR",
+                role: "Collaborator"
+            },
+            {
+                id: 2,
+                roleName: "USER",
+                role: "User"
+            }
+        ];
+
+        //for popup
+        this.isChangeRoleConfirmationPopupOpen = false;
+        this.passwordString = "";
+        this.canClickSaveInformation = false;
+        this.isAnySuccessAlertPopupOpen = false;
+        this.isAnyFailedAlertPopupOpen = false;
+
+        this.isChangeRoleConfirmationPopupOpen = false;
+        this.isUpdateInformationPopupOpen = false;
+        this.isAnyChangeRoleDropdownComboboxOpen = false;
+
+        this.isUpdateAvatarPopupOpen = false;
+        this.isHaveAnyImageInFileLoader = false;
+        //for valid input
+        this.isDisplayNameEmpty = false;
+        this.isDisplayNameContainSpecialCharacters = false;
+
+
+
+        this.updateInformation_DTO = {
+            displayName: "",
+            avatarFile: []
+        }
+
         this.state = {
-            roles: [
-                {
-                    id: 0,
-                    role: "Admin"
-                },
-                {
-                    id: 1,
-                    role: "Collaborator"
-                },
-                {
-                    id: 2,
-                    role: "Account"
-                }
-            ],
-            isChangeRoleConfirmationPopupOpen: false,
-            passwordString: "",
-            canSaveInformation: false,
+            pictures: []
         }
     }
 
     componentDidMount() {
-        // console.log(this.props);
+        // (this.props);
         this.props.getCurrentUser();
+        // this.props.roleList = this.roleList;
     }
 
 
 
     render() {
+
         if (this.props.accountInformation) {
             let roles_Combobox =
-                this.state.roles.map(role =>
+                // this.props.roleList.map(role =>
+                this.roleList.map(role =>
                     this.props.accountInformation.roleID === role.id ?
                         <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
                         <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
                         </div>
                 )
-
+            // ("*");
+            // (this.userID);
 
             return (
                 <div>
+
                     <Admin_Titlebar title="THÔNG TIN TÀI KHOẢN" />
 
                     <div className="Admin_Show_Port">
@@ -86,8 +131,10 @@ class Admin_AccountInformationManagement extends Component {
                                         {/* // src={this.props.accountInformation.avartar} /> */}
 
                                         {/* <div className="margin_left_10px"></div> */}
+
+                                        {/* <div>{this.props.</div> */}
                                     </div>
-                                    <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }}>Cập nhật avatar</div>
+                                    <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
 
                                     <div className="display_flex">
                                         <div className="Simple_Gray_Label" style={{ lineHeight: "25px" }}>Role:</div>
@@ -101,14 +148,14 @@ class Admin_AccountInformationManagement extends Component {
                                                             <div className="display_flex">
                                                                 <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
                                                                     {this.props.accountInformation.roleId ?
-                                                                        this.state.roles[this.props.accountInformation.roleId].role : "User"
+                                                                        this.roleList[this.props.accountInformation.roleId].role : "User"
                                                                     }
                                                                 </div>
                                                             </div>
                                                             <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element"} />
                                                         </div>
 
-                                                        {this.isAnyChangeRoleDropdownComboboxOpen ? (
+                                                        {this.isChangeRoleDropdownComboboxOpen ? (
                                                             <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container"}>
                                                                 {roles_Combobox}
                                                                 <div className="margin_bottom_5px" />
@@ -145,31 +192,41 @@ class Admin_AccountInformationManagement extends Component {
                                     {(window.location.pathname === "/admin" || window.location.pathname === "/admin/") ?
                                         <div>
                                             {/* Display name */}
-                                            < div className="Simple_Gray_Label margin_top_10px">
-                                                Họ tên:
+                                            <div className="position_relative">
+                                                < div className="Simple_Gray_Label Is_Form_Label">
+                                                    Họ tên:
+                                                </div>
+                                                <input type="text" className="Simple_Text_Input"
+                                                    defaultValue={this.displayName} id="admin-display-name-text-input"
+                                                    onChange={(e) => this.handlerChangeUserDisplay(e)} />
+                                                <div className="Simple_Error_Label" hidden={!this.isDisplayNameEmpty} >
+                                                    *Tên không được để trống.
+                                                </div>
+                                                <div className="Simple_Error_Label" hidden={!this.isDisplayNameContainSpecialCharacters} >
+                                                    *Tên không được chứa các ký tự đặc biệt.
+                                                </div>
                                             </div>
-                                            <input type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.displayName} onChange={(e) => this.handlerChangeUserDisplay(e)} />
 
                                             {/* Username */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
+                                            <div className="Simple_Gray_Label Is_Form_Label">
                                                 Username:
                                             </div>
                                             <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
 
                                             {/* Password */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
+                                            <div className="Simple_Gray_Label Is_Form_Label">
                                                 Password:
                                             </div>
                                             <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
 
                                             {/* Email */}
-                                            <div className="Simple_Gray_Label margin_top_10px">
+                                            <div className="Simple_Gray_Label Is_Form_Label">
                                                 Email:
                                             </div>
                                             <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
 
                                             <div className="display_flex margin_top_10px" >
-                                                <button disabled={!this.state.canSaveInformationgihtub} className="Simple_Blue_Button margin_auto"  >
+                                                <button disabled={!this.canClickSaveInformation} className="Simple_Blue_Button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
                                                     Lưu thay đổi
                                             </button>
                                             </div>
@@ -185,9 +242,30 @@ class Admin_AccountInformationManagement extends Component {
                     {/* </div > */}
 
                     {/* #region Popup region */}
-                    {/* modal for veritfy change role */}
+
+                    {/* modal success alert */}
                     <CustomModal
-                        open={this.state.isChangeRoleConfirmationPopupOpen}
+                        open={this.isAnySuccessAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
+                    />
+
+                    {/* modal success alert */}
+                    <CustomModal
+                        open={this.isAnyFailedAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_failed"
+                        closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
+                    />
+
+                    {/* for verify change role */}
+                    <CustomModal
+                        open={this.isChangeRoleConfirmationPopupOpen}
                         shadow={true}
                         title={this.notifyHeader}
                         text={this.notifyContent}
@@ -197,11 +275,63 @@ class Admin_AccountInformationManagement extends Component {
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
                         <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
+                        <button className="Simple_White_Button" onClick={() => this.handlerCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 
-                    {/* #endregion */}
+                    {/* modal for veritfy update informartion */}
+                    <CustomModal
+                        open={this.isUpdateInformationPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="confirmation"
+                        closeModal={() => this.closeUpdateInformationConfirmationPopup()}
+                    >
 
+                        {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
+                        <div className="Simple_Gray_Label">Xác nhận?</div>
+                        <div style={{ display: "flex" }}>
+                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
+                            <button className="Simple_White_Button" onClick={() => this.handlerCancelVerifyUpdateInformation()}>Cancel</button>
+                        </div>
+                    </CustomModal>
+
+                    {/* Popup for update avatar */}
+                    <CustomModal open={this.isUpdateAvatarPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="custom"
+                        closeModal={() => this.closeUpdateAvatarPopup()}
+                    >
+                        <div className="Custom_Modal_Body">
+                            <ImageUploader
+                                withIcon={true}
+                                buttonText='Tải ảnh lên'
+                                onChange={this.onDrop}
+                                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                maxFileSize={5242880}
+                                singleImage={true}
+                                withPreview={true}
+                                labelClass="Simple_Gray_Label"
+                            ></ImageUploader>
+                        </div>
+                        {this.isHaveAnyImageInFileLoader
+                            ?
+                            <div className="Custom_Modal_Footer">
+
+                                <div className="Simple_Gray_Label">Xác nhận?</div>
+                                <div style={{ display: "flex" }}>
+                                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
+                                    <button className="Simple_White_Button" onClick={() => { this.isUpdateAvatarPopupOpen = false; this.setState({}) }}>Cancel</button>
+                                </div>
+                            </div>
+                            :
+                            <></>
+                        }
+                    </CustomModal>
+                    {/* #endregion */}
+                    <div src={this.state.pictures[0]}></div>
                 </div >
 
             );
@@ -209,10 +339,45 @@ class Admin_AccountInformationManagement extends Component {
         return <></>
     }
 
-    //#region support initate value for rendering
+    //#region handle for popup 
+
+    //for general alert popup
+    openSuccessAlertPopup = () => {
+        this.isAnySuccessAlertPopupOpen = true;
+        this.setState();
+    }
+
+    openFailedSuccessAlertPopup = () => {
+        this.isAnyFailedAlertPopupOpen = true;
+        this.setState({});
+    }
+
+    //for change role
+    closeChangeRoleConfirmationPopup = (roleID) => {
+        this.isChangeRoleConfirmationPopupOpen = false;
+        this.setState({});
+    }
+
+    closeUpdateInformationConfirmationPopup = () => {
+        this.isUpdateInformationPopupOpen = false;
+        this.setState({});
+    }
+
+    //for update avatar
+    closeUpdateAvatarPopup = () => {
+        this.isUpdateAvatarPopupOpen = false;
+        this.setState({});
+    }
+
+
+    //for update information
+    //#endregion
+
+
+    //#region support initate value for rendering and handler image drop
     generatePassword = () => {
         let _passwordString = "";
-        console.log(String(this.props.accountInformation.password));
+        (String(this.props.accountInformation.password));
         if (this.props.accountInformation.password !== undefined) {
             for (let i = 0; i < this.props.accountInformation.password.length; i++) {
                 _passwordString += "*";
@@ -220,6 +385,18 @@ class Admin_AccountInformationManagement extends Component {
         }
         return _passwordString;
     }
+
+    onDrop = (pictureFile) => {
+        this.setState({
+            pictures: this.state.pictures.concat(pictureFile),
+        });
+        this.updateInformation_DTO.avatarFile = pictureFile;
+        this.isHaveAnyImageInFileLoader = true;
+        if (this.updateInformation_DTO.avatarFile[0] === undefined || this.updateInformation_DTO.avatarFile[0] === null)
+            this.isHaveAnyImageInFileLoader = false;
+        this.setState({});
+    }
+    //#endregion
 
     //#region handler combobox role and change role
 
@@ -246,7 +423,7 @@ class Admin_AccountInformationManagement extends Component {
             dropdown_element.src = white_dropdown_btn;
         }
 
-        this.isAnyChangeRoleDropdownComboboxOpen = true;
+        this.isChangeRoleDropdownComboboxOpen = true;
         this.setState({});
     }
 
@@ -255,9 +432,9 @@ class Admin_AccountInformationManagement extends Component {
         let item_id = "user-role-dropdown-combobox-sub-item-" + roleID;
         let sub_dropdown_item = document.getElementById(item_id);
 
-        for (let i = 0; i < this.state.roles.length; i++) {
+        for (let i = 0; i < this.roleList.length; i++) {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + i;
-            console.log(sub_dropdown_item_index_id);
+            // (sub_dropdown_item_index_id);
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";
         }
@@ -276,27 +453,9 @@ class Admin_AccountInformationManagement extends Component {
         this.setState({ isChangeRoleConfirmationPopupOpen: true });
     }
 
-    closeChangeRoleConfirmationPopup = (roleID) => {
-        this.setState({ isChangeRoleConfirmationPopupOpen: false });
-    }
-
-    handlerVerifyChangeRoleConfirmation = (roleID) => {
-        // send request to server   
-        //...
-
-        this.closeChangeRoleConfirmationPopup();
-    }
-
-    handleCancelChangeRoleConfirmation = () => { //phai co popup thi moi test duoc
-        this.roleID = this.recover_roleID;
-        this.closeChangeRoleConfirmationPopup();
-
-        // this.setState({});
-    }
-
     closeAllChangeRoleDropdownCombobox = () => {
 
-        if (this.isAnyChangeRoleDropdownComboboxOpen === true) {
+        if (this.isChangeRoleDropdownComboboxOpen === true) {
             let parent_id = "user-role-parent-dropdown-combobox";
             let show_text_id = "user-role-parent-dropdown-combobox-text";
             let dropdown_element_id = "user-role-dropdown-btn-element";
@@ -314,7 +473,7 @@ class Admin_AccountInformationManagement extends Component {
                 show_text.style.color = "#363636";
                 dropdown_element.src = dropdown_btn;
             }
-            this.isAnyChangeRoleDropdownComboboxOpen = false;
+            this.isChangeRoleDropdownComboboxOpen = false;
             this.setState({})
         }
 
@@ -322,19 +481,103 @@ class Admin_AccountInformationManagement extends Component {
 
     //#endregion
 
-    //#region handler for valid admin information front-end
+    //#region validator for display name input
+    handlerChangeStateOfSubmitButton = () => {
+        this.canClickSaveInformation = true;
+        this.isDisplayNameEmpty = false;
+        this.isDisplayNameContainSpecialCharacters = false;
+
+        if ((this.updateInformation_DTO.displayName === ""
+            || this.updateInformation_DTO.displayName === null)) {
+            this.canClickSaveInformation = false;
+            this.isDisplayNameEmpty = true;
+            console.log(
+                "A"
+            )
+            this.setState({});
+            return;
+        }
+
+        if (isContainSpecialCharacter(this.updateInformation_DTO.displayName)) {
+            this.canClickSaveInformation = false;
+            this.isDisplayNameContainSpecialCharacters = true;
+            this.setState({});
+            return;
+        }
+
+        this.setState({});
+    }
+
     handlerChangeUserDisplay = (e) => {
-        console.log(e.target.value);
-        this.props.accountInformation.displayName = e.target.value;
-        this.setState();
+        this.updateInformation_DTO.displayName = e.target.value;
+        console.log(this.updateInformation_DTO.displayName);
+        this.handlerChangeStateOfSubmitButton();
+    }
+
+    //#endregion
+
+    //#region main handler event and call APIs
+
+    handlerClickSaveInformation = () => {
+        this.notifyContent = "Xác nhận cập nhật thông tin?";
+        this.notifyHeader = "Cập nhật thông tin";
+        this.isUpdateInformationPopupOpen = true;
+        this.setState({});
+    }
+
+    handlerVerifyUpdateInformation = () => {
+        //.. call API
+        this.isUpdateInformationPopupOpen = false;
+        this.canClickSaveInformation = false;
+        this.notifyHeader = "Thành công";
+        this.notifyContent = "Cập nhật thông tin thành công!";
+        this.openSuccessAlertPopup();
+        this.setState({});
 
     }
+
+    handlerCancelVerifyUpdateInformation = () => {
+        document.getElementById("admin-display-name-text-input").value = this.displayName;
+        this.isUpdateInformationPopupOpen = false;
+        this.canClickSaveInformation = false;
+        this.setState({});
+    }
+
+    handlerVerifyChangeRoleConfirmation = (roleID) => {
+        // send request to server   
+        //...
+
+        this.closeChangeRoleConfirmationPopup();
+    }
+
+    handlerCancelChangeRoleConfirmation = () => { //phai co popup thi moi test duoc
+        this.roleID = this.recover_roleID;
+        this.closeChangeRoleConfirmationPopup();
+    }
+
+    handlerClickUpdateAvatar = () => {
+        this.isUpdateAvatarPopupOpen = true;
+        this.notifyContent = "Chọn ảnh:";
+        this.notifyHeader = "Cập nhật avatar";
+        this.setState({});
+    }
+
+    handlerVerifyUpdateAvatarConfirmation = () => {
+
+        //call API to update avatar.
+        this.isUpdateAvatarPopupOpen = false;
+        this.notifyContent = "Cập nhật ảnh đại diện thành công!";
+        this.notifyHeader = "Thành công";
+        this.isAnySuccessAlertPopupOpen = true;
+        this.setState({});
+    }
+
     //#endregion
 }
 
-
+//#region for Redux
 const mapStatetoProps = (state) => {
-    // console.log(state);
+    // (state);
     return {
         accountInformation: state.user.account
     };
@@ -345,3 +588,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Admin_AccountInformationManagement));
+ //#endregion

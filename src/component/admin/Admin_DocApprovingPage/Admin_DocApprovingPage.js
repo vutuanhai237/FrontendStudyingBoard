@@ -77,7 +77,6 @@ class Admin_DocApprovingPage extends Component {
 }
 
 const mapStatetoProps = (state) => {
-    // console.log("*Map state to props function has been called!  ");
     console.log(state.admin_doc);
     return {
         requestedDocs: state.admin_doc.requestedDocs

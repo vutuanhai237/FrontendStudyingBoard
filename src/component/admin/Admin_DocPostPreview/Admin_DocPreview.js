@@ -7,7 +7,8 @@ import gray_btn_element from '../../../img/gray_btn_element.png'
 
 import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import Admin_RequestedDocSummaryItem from '../_admin_components/Admin_RequestedDocSummaryItem'
-import { admin_getAllNotApprovedDocuments } from "../../../service/admin_services/admin_docAPIs"
+
+import { admin_getCurrentNotApprovedDocumentDetail } from "../../../service/admin_services/admin_docAPIs"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -26,22 +27,24 @@ class Admin_DocPreview extends Component {
     constructor(props) {
         super(props);
 
-        // this.id = this.props.id;
-        // this.authorName = this.props.authorName;
-        // this.authorID = this.props.authorID;
-        // this.requestedDate = this.props.requestedDate;
-        // this.requestedTime = this.props.requestedTime;
-        // this.requestedCategory = this.props.requestedCategory;
-        // this.requestedCategoryID = this.props.requestedCategoryID;
-        // this.semester = this.props.semester;
-        // this.year = this.props.year;
-        // this.subject = this.props.subject;
-        // this.title = this.props.title;
-        // this.content = this.props.content;
-        // this.image = this.props.image;
-        // this.tags = this.props.tags;
-        // this.viewCount = this.props.viewCount;
-        // this.downCount = this.props.downCount;
+        this.currentNotApprovedDocumentID = "";
+
+        this.id = this.props.id;
+        this.authorName = this.props.authorName;
+        this.authorID = this.props.authorID;
+        this.requestedDate = this.props.requestedDate;
+        this.requestedTime = this.props.requestedTime;
+        this.requestedCategory = this.props.requestedCategory;
+        this.requestedCategoryID = this.props.requestedCategoryID;
+        this.semester = this.props.semester;
+        this.year = this.props.year;
+        this.subject = this.props.subject;
+        this.title = this.props.title;
+        this.content = this.props.content;
+        this.image = this.props.image;
+        this.tags = this.props.tags;
+        this.viewCount = this.props.viewCount;
+        this.downCount = this.props.downCount;
 
         this.id = "id";
         this.authorName = "Huỳnh Thị Kim Thảo";
@@ -70,22 +73,26 @@ class Admin_DocPreview extends Component {
 
     }
 
-
     componentDidMount() {
-
+        this.fetchCurrentNotApprovedDocument();
     }
 
-    getFirstImage() {
-
+    fetchCurrentNotApprovedDocument = () => {
+        this.currentNotApprovedDocumentID = this.props.match.params.id;
+        this.props.admin_getCurrentNotApprovedDocumentDetail(this.currentNotApprovedDocumentID);
     }
 
     render() {
+        console.log("Props");
+        console.log(this.props);
 
         return (
             <div>
                 <Header />
                 <div className="DocPost_Detail" >
                     <div className="DocPost_Detail_Main_Port">
+
+
                         <div className="DocPost_Detail_Title">
                             {this.title}
                         </div>
@@ -141,7 +148,7 @@ class Admin_DocPreview extends Component {
                         </div>
                     </div>
                     <div className="Document_Live_Preview">
-                        
+
                         <PDFViewer
                             document={{
                                 url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf',
@@ -211,4 +218,20 @@ class Admin_DocPreview extends Component {
     }
 
 }
-export default Admin_DocPreview;
+
+const mapStatetoProps = (state) => {
+    // console.log("State admin_doc:");
+    // console.log(state.admin_doc);
+    console.log("State:");
+    console.log(state);
+
+    return {
+        currentNotApprovedDocumentDetail: state.admin_doc.currentNotApprovedDocumentDetail
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    admin_getCurrentNotApprovedDocumentDetail
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Admin_DocPreview));

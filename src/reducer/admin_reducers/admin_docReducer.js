@@ -1,6 +1,9 @@
 import {
-    ADMIN_GET_ALL_NOT_APPROVED_DOCUMENTS
+    ADMIN_GET_ALL_NOT_APPROVED_DOCUMENTS,
+    ADMIN_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
+    ADMIN_APPROVE_A_DOCUMENT
 } from "../../constant/index"
+
 const requestedDocs = [
     {
         "id": 4,
@@ -131,6 +134,18 @@ function admin_docReducer(state = initialState, action) {
                 // console.log("Admin get all not approved documents payload case has been called");
                 return { ...state, requestedDocs: action.payload };
             }
+
+        case ADMIN_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL: {
+            // console.log("Admin get a not approved document payload case has been called");
+            return { ...state, currentNotApprovedDocumentDetail: action.payload }
+        }
+
+        case ADMIN_APPROVE_A_DOCUMENT:
+            {
+                // console.log("Admin get a not approved document payload case has been called");
+                return { ...state, currentDocumentApprovedStatus: action.payload }
+            }
+
         default:
             {
                 return initialState;

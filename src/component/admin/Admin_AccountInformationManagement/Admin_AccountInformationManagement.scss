@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
+
 .Admin_Show_Port_Bounding_Port {
     display: flex;
     width: 100%;
@@ -8,7 +14,6 @@
 .Admin_Account_Information_Bounding_Port {
     width: 60%;
     padding: 5px;
-    
 }
 
 .Account_Information_Port {
@@ -83,4 +88,41 @@
     // width: 50%;
     width: 200px;
     justify-content: space-between;
+}
+
+//exclusive for update avatar
+.fileContainer p {
+    margin: auto;
+    text-align: center;
+    font-size: 16px !important;
+}
+
+.fileUploader .fileContainer .chooseFileButton {
+    background: #5279db !important;
+    font-family: "Barlow Condensed", "san-serif";
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 22px;
+    height: 25px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 80px;
+    border-radius: 5px !important;
+}
+
+.fileContainer .deleteImage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    background: #fe3a3a;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 24px !important;
+    width: 24px !important;
+    font-size: 12px !important;
+    height: 24px !important;
 }
