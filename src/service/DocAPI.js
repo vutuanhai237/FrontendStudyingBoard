@@ -9,7 +9,7 @@ import {
 } from "../action/DocAction.js";
 import { HOST, PORT } from '../constant/index';
 import FormData from 'form-data';
-
+import Cookies from 'js-cookie';
 
 export function postDoc(doc) {
     return dispatch => {
@@ -51,16 +51,41 @@ export function getSemesters() {
 
 export function getSubjects() {
     return dispatch => {
+        // var requestOptions = {
+        //     method: 'GET',
+        //     redirect: 'follow'
+        // };
+
+        // fetch(`http://${HOST}/subjects`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(docGetSubjects(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
+
+        // var myHeaders = new Headers();
+        // var requestOptions = {
+        //     method: 'GET',
+        //     headers: myHeaders,
+        //     redirect: 'follow'
+        // };
+
+        // fetch(`https://${HOST}/admin/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => console.log(result))
+        //     .catch(error => console.log('error', error));
+
+        var myHeaders = new Headers();
+   
         var requestOptions = {
             method: 'GET',
+            headers: myHeaders,
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/subjects`, requestOptions)
+        fetch(`https://${HOST}/users;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
-            .then(result => {
-                dispatch(docGetSubjects(JSON.parse(result)));
-            })
+            .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
 }
