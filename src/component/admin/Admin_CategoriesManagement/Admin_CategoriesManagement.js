@@ -12,7 +12,6 @@ import { ClickAwayListener } from '@material-ui/core';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import { getCurrentUser } from '../../../service/UserAPI'
 import { getCategoriesDoc, getSubjects, getSemesters } from '../../../service/DocAPI'
 
 
@@ -193,8 +192,8 @@ class Admin_CategoryManagement extends Component {
                                         </div>
                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                     </div>
-                                    <ClickAwayListener onClickAway={() => { this.closeAllSubjectListItemActivated() }}>
 
+                                    <ClickAwayListener onClickAway={() => { this.closeAllSubjectListItemActivated() }}>
                                         <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-subjects-container">
                                             <div className="Custom_Table_Port">
                                                 <div className="Custom_Table_Header">
@@ -218,6 +217,7 @@ class Admin_CategoryManagement extends Component {
                                         </div> */}
                                         </div>
                                     </ClickAwayListener>
+
                                     {/* Danh sach cac hoc ky */}
                                     <div className="Category_Dropdown margin_top_15px" id="admin-doc-semesters-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("admin-doc-semesters-dropdown", "admin-doc-semesters-container")}>
                                         <div className="Category_Dropdown_Title">
@@ -225,8 +225,8 @@ class Admin_CategoryManagement extends Component {
                                         </div>
                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                     </div>
-                                    <ClickAwayListener onClickAway={() => { this.closeAllSemesterListItemActivated() }}>
 
+                                    <ClickAwayListener onClickAway={() => { this.closeAllSemesterListItemActivated() }}>
                                         <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-semesters-container">
                                             <div className="Custom_Table_Port">
                                                 <div className="Custom_Table_Header">

@@ -18,18 +18,18 @@ class Admin_UserItem extends Component {
     constructor(props) {
         super(props);
 
-        this.roleID = this.props.roleID;
-        this.userID = this.props.userID;
-        this.name = this.props.name;
-        this.userName = this.props.userName;
-        this.nickName = this.props.nickName;
-        this.avatarUrl = this.props.avatarUrl;
-        this.email = this.props.email;
-        this.postCount = this.props.postCount;
-        this.docCount = this.props.docCount;
-        this.score = this.props.score;
 
-        this.rolesList = this.props.rolesList;
+        this.roleID = "";
+        this.userID = "";
+        this.name = "";
+        this.userName = "";
+        this.nickName = "";
+        this.avatarUrl = "";
+        this.email = "";
+        this.postCount = "";
+        this.docCount = "";
+        this.score = "";
+        this.rolesList = [];
 
         //for cancel change roleID
         this.recover_roleID = this.props.roleID;
@@ -39,7 +39,6 @@ class Admin_UserItem extends Component {
         this.notifyContent = "";
 
         this.state = {
-            roles: this.rolesList,
             role_PutDTO: {
                 id: this.roleID
             },
@@ -53,92 +52,105 @@ class Admin_UserItem extends Component {
     }
 
     render() {
+        
+        if (this.rolesList !== null && this.rolesList !== undefined) {
+            this.roleID = this.props.roleID;
+            this.userID = this.props.userID;
+            this.name = this.props.name;
+            this.userName = this.props.userName;
+            // this.nickName = this.props.nickName;
+            this.avatarUrl = this.props.avatarUrl;
+            this.email = this.props.email;
+            this.postCount = this.props.postCount;
+            this.docCount = this.props.docCount;
+            this.score = this.props.score;
+            this.rolesList = this.props.rolesList;
 
-        let roles_Combobox = this.state.roles.map(role =>
-
-
-            this.roleID === role.id ?
-                <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.id} value={role.role} key={role.id}
-                    onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
-                </div>
-
-        )
-
-        return (
-            <div className="Admin_User_Item"  >
-
-                <img alt="avatar" src={this.avatarUrl} className="Show_Avatar"></img>
-
-                <div style={{
-                    paddingLeft: "10px", width: "100%"
-                }}>
-                    < div style={{ display: "flex" }}>
-                        <div className="User_Item_Name">{this.name}</div>
-                        <div className="User_Item_Nick_Name">({this.nickName})</div>
+            let roles_Combobox = this.rolesList.map(role =>
+                this.roleID === role.id ?
+                    <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
+                    <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.id} value={role.role} key={role.id}
+                        onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
                     </div>
-                    <div>
-                        <div className="User_Item_Email">{this.email}</div>
 
-                        {/* statusbar: score, docs count, posts count, role */}
-                        <div className="User_Item_Statusbar" >
+            )
 
-                            <div style={{ "display": "flex" }}>
-                                <div className="User_Item_Score">Scrore: {this.score}</div>
-                                <img alt="avatar" src={gray_write_icon} className="User_Item_Element" ></img>
-                                <div className="User_Item_Post_Count">{this.postCount}</div>
-                                <img alt="avatar" src={gray_upload_icon} className="User_Item_Element"></img>
-                                <div className="User_Item_Doc_Count"> {this.docCount}</div>
-                            </div>
+            return (
+                <div className="Admin_User_Item"  >
 
-                            <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
+                    <img alt="avatar" src={this.avatarUrl} className="Show_Avatar"></img>
 
-                                <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 - this.userID }}>
-                                    <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
-                                        <div style={{ position: "absolute", width: "140px" }}>
-                                            <div className="Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox-" + this.userID}
-                                                onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
-                                                <div className="display_flex">
-                                                    <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
-                                                        {this.state.roles[this.roleID].role}
+                    <div style={{
+                        paddingLeft: "10px", width: "100%"
+                    }}>
+                        < div style={{ display: "flex" }}>
+                            <div className="User_Item_Name">{this.name}</div>
+                            {/* <div className="User_Item_Nick_Name">({this.nickName})</div> */}
+                        </div>
+                        <div>
+                            <div className="User_Item_Email">{this.email}</div>
+
+                            {/* statusbar: score, docs count, posts count, role */}
+                            <div className="User_Item_Statusbar" >
+
+                                <div style={{ "display": "flex" }}>
+                                    <div className="User_Item_Score">Scrore: {this.score}</div>
+                                    <img alt="avatar" src={gray_write_icon} className="User_Item_Element" ></img>
+                                    <div className="User_Item_Post_Count">{this.postCount}</div>
+                                    <img alt="avatar" src={gray_upload_icon} className="User_Item_Element"></img>
+                                    <div className="User_Item_Doc_Count"> {this.docCount}</div>
+                                </div>
+
+                                <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
+
+                                    <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 - this.userID }}>
+                                        <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
+                                            <div style={{ position: "absolute", width: "140px" }}>
+                                                <div className="Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox-" + this.userID}
+                                                    onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
+                                                    <div className="display_flex">
+                                                        <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
+                                                            {this.rolesList[this.roleID].role}
+                                                        </div>
                                                     </div>
+                                                    <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element-" + this.userID} />
                                                 </div>
-                                                <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element-" + this.userID} />
+
+                                                {this.isAnyChangeRoleDropdownComboboxOpen ? (
+                                                    <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container-" + this.userID}>
+                                                        {roles_Combobox}
+                                                        <div className="margin_bottom_5px" />
+                                                        <div className="margin_bottom_5px" />
+                                                    </div>
+                                                ) : <div id={"user-role-dropdown-combobox-container-" + this.userID}></div>}
+
                                             </div>
-
-                                            {this.isAnyChangeRoleDropdownComboboxOpen ? (
-                                                <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container-" + this.userID}>
-                                                    {roles_Combobox}
-                                                    <div className="margin_bottom_5px" />
-                                                    <div className="margin_bottom_5px" />
-                                                </div>
-                                            ) : <div id={"user-role-dropdown-combobox-container-" + this.userID}></div>}
-
                                         </div>
                                     </div>
-                                </div>
-                            </ClickAwayListener>
+                                </ClickAwayListener>
+                            </div>
                         </div>
-                    </div>
+                    </div >
+
+                    {/* modal for veritfy change role */}
+                    <CustomModal
+                        open={this.state.isChangeRoleConfirmationPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="confirmation"
+                        closeModal={() => this.closeChangeRoleConfirmationPopup()}
+                    >
+
+                        {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
+                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
+                    </CustomModal>
+
                 </div >
-
-                {/* modal for veritfy change role */}
-                <CustomModal
-                    open={this.state.isChangeRoleConfirmationPopupOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="confirmation"
-                    closeModal={() => this.closeChangeRoleConfirmationPopup()}
-                >
-
-                    {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
-                </CustomModal>
-
-            </div >
-        );
+            );
+        }
+        return <></>
     }
 
     handleDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {
@@ -173,7 +185,7 @@ class Admin_UserItem extends Component {
         let item_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + roleID;
         let sub_dropdown_item = document.getElementById(item_id);
 
-        for (let i = 0; i < this.state.roles.length; i++) {
+        for (let i = 0; i < this.rolesList.length; i++) {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + i;
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";

@@ -13,19 +13,19 @@ export function adminGetAllNotApprovedDocuments(requestedDocs) {
 }
 
 
-export function adminGetCurrentNotApprovedDocumentDetail(requestedDocs) {
+export function adminGetCurrentNotApprovedDocumentDetail(requestedDoc) {
     // console.log("Get all not approved docs function has been called!");
     return {
         type: ADMIN_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
-        payload: requestedDocs,
+        payload: requestedDoc,
     }
 }
 
 
-export function adminApproveADocument(requestedDocs) {
+export function adminApproveADocument(requestedDoc) {
     // console.log("Get all not approved docs function has been called!");
     return {
         type: ADMIN_APPROVE_A_DOCUMENT,
-        payload: requestedDocs,
+        payload: requestedDoc,
     }
 }

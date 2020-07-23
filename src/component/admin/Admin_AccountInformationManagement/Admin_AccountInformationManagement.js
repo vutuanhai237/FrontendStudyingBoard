@@ -30,6 +30,7 @@ class Admin_AccountInformationManagement extends Component {
         //if value been set by a string, db didn't match it.
 
         //from user API
+        this.accountInformation = [];
         this.displayName = "Nguyễn Văn Đông";
         this.userID = "";
         this.password = "";
@@ -100,7 +101,19 @@ class Admin_AccountInformationManagement extends Component {
 
     render() {
 
-        if (this.props.accountInformation) {
+        if (!this.props.accountInformation !== null && this.props.accountInformation !== undefined) {
+            this.accountInformation = this.props.accountInformation;
+            this.displayName = this.accountInformation.displayName;
+            this.userID = "";
+            this.password = "";
+            this.avatar = "";
+            this.email = "";
+            this.score = "";
+            this.postCount = 0;
+            this.documentCount = 0;
+            this.roleID = 2;
+            this.roleName = "";
+
             let roles_Combobox =
                 // this.props.roleList.map(role =>
                 this.roleList.map(role =>

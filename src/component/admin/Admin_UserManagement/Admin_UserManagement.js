@@ -6,65 +6,20 @@ import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
 import Paginator from '../../shared_components/Paginator/ClientPaginator'
 import Admin_UserItem from '../_admin_components/Admin_UserItem/Admin_UserItem'
 
-// import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
+//import for redux
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { admin_getAllUsers } from '../../../service/admin_services/admin_userAPIs'
 
 class Admin_UserManagement extends Component {
     constructor(props) {
         super();
         this.maxItemPerPage = 10;
-        this.isAdminBrower = true;
+
+        this.usersList = [];
+
         this.state = {
-            usersList:
-                [
-                    {
-                        "userID": 1,
-                        "avatarUrl": "https://i.imgur.com/q54xYo3.png",
-                        "name": "Nguyen Van Dong",
-                        "nickName": "Tesla",
-                        "email": "dongnv.since1999@gmail.com",
-                        "score": "10^9",
-                        "post_count": "300",
-                        "doc_count": "0",
-                        "role": "Admin",
-                        "roleID": 1
-                    },
-                    {
-                        "userID": 2,
-                        "avatarUrl": "https://i.imgur.com/q54xYo3.png",
-                        "name": "Nguyen Van Hai",
-                        "nickName": "Tesla",
-                        "email": "vutuanhai@gmail.com",
-                        "score": "10",
-                        "post_count": "200",
-                        "doc_count": "0",
-                        "role": "User",
-                        "roleID": 0
-                    },
-                    {
-                        "userID": 20,
-                        "avatarUrl": "https://i.imgur.com/q54xYo3.png",
-                        "name": "Phuc Nguyen Hong",
-                        "nickName": "Tesla",
-                        "email": "dongnv.since1999@gmail.com",
-                        "score": "10^9",
-                        "post_count": "300",
-                        "doc_count": "0",
-                        "role": "Admin",
-                        "roleID": 1
-                    },
-                    {
-                        "userID": 21,
-                        "avatarUrl": "https://i.imgur.com/q54xYo3.png",
-                        "name": "Luu Bieu Nghj",
-                        "nickName": "Veg nai",
-                        "email": "vutuanhai@gmail.com",
-                        "score": "10",
-                        "post_count": "200",
-                        "doc_count": "0",
-                        "role": "User",
-                        "roleID": 0
-                    }
-                ],
             rolesList: [
                 {
                     id: 0,
@@ -77,23 +32,19 @@ class Admin_UserManagement extends Component {
                 {
                     id: 2,
                     role: "User"
+                },
+                {
+                    id: 3,
+                    role: "User"
                 }
             ],
             isChangeRoleConfirmationPopupOpen: false,
-            
+
         }
     }
 
     componentDidMount() {
-        this.fetchAllUserInPageOne();
-        this.fetchAllRole();
-    }
-
-    fetchAllUserInPageOne = () => {
-        //feta
-    }
-
-    fetchAllRole = () => {
+        this.props.admin_getAllUsers();
 
     }
 
@@ -103,25 +54,32 @@ class Admin_UserManagement extends Component {
 
     render() {
 
-        let usersList = this.state.usersList.map((userItem) =>
-            <Admin_UserItem
-                key={userItem.userID}
-                role={userItem.role}
-                roleID={userItem.roleID}
-                userID={userItem.userID}
-                name={userItem.name}
-                userName={userItem.userName}
-                nickName={userItem.nickName}
-                avatarUrl={userItem.avatarUrl}
-                email={userItem.email}
-                postCount={userItem.post_count}
-                docCount={userItem.doc_count}
-                score={userItem.score}
+        let userItemList = <></>;
 
-                rolesList={this.state.rolesList}
-            >
-            </Admin_UserItem>
-        )
+        if (this.props.userList !== null && this.props.userList !== undefined) {
+            this.usersList = this.props.userList;
+
+            userItemList = this.usersList.map((userItem) =>
+                <Admin_UserItem
+                    key={userItem.userID}
+                    role={userItem.roleName}
+                    roleID={userItem.roleId}
+                    userID={userItem.id}
+                    name={userItem.displayName}
+                    userName={userItem.userName}
+                    // nickName={userItem.displayName}
+                    // avatarUrl={userItem.avatar}
+                    avatarUrl="https://i.imgur.com/SZJgL6C.jpg"
+                    email={userItem.email}
+                    postCount={userItem.postCount}
+                    docCount={userItem.documentCount}
+                    score={userItem.score}
+
+                    rolesList={this.state.rolesList}
+                >
+                </Admin_UserItem>
+            )
+        }
 
         return (
             <div>
@@ -131,23 +89,38 @@ class Admin_UserManagement extends Component {
                     <div className="Number_Of_Item">
                         Tổng số:
                         <div style={{ width: "5px" }} />
-                        {this.state.usersList.length}
+                        {this.usersList.length}
                     </div>
 
-                    {usersList}
+                    {userItemList}
 
-
-                    <Paginator config={{
-                        changePage: (currentInteractList) => this.onPageChange(currentInteractList),
-                        rawData: this.state.usersList,
-                        maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5,
-                        bottom: "20px"
-                    }}
-                    />
+                    {/* <Paginator config={{
+                            changePage: (currentInteractList) => this.onPageChange(currentInteractList),
+                            rawData: this.state.usersList,
+                            maxItemPerPage: this.maxItemPerPage,
+                            numPagesShown: 5,
+                            bottom: "20px"
+                        }}
+                        /> */}
                 </div>
             </div>
         );
+
     }
 }
-export default Admin_UserManagement;
+
+//#region for Redux
+const mapStatetoProps = (state) => {
+    // console.log("*");
+    console.log(state);
+    return {
+        userList: state.admin_user.allUsers.accounts
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    admin_getAllUsers
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Admin_UserManagement));
+//#endregion

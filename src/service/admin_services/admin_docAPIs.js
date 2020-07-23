@@ -82,3 +82,7 @@ export function admin_approveADocument() {
     }
 
 }
+
+export function admin_getAllUsers() {
+
+}
