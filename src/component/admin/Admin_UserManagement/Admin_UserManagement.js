@@ -16,9 +16,8 @@ class Admin_UserManagement extends Component {
     constructor(props) {
         super();
         this.maxItemPerPage = 10;
-
         this.usersList = [];
-
+        
         this.state = {
             rolesList: [
                 {
@@ -38,6 +37,7 @@ class Admin_UserManagement extends Component {
                     role: "User"
                 }
             ],
+            currentInteractList: [],
             isChangeRoleConfirmationPopupOpen: false,
 
         }
@@ -45,11 +45,11 @@ class Admin_UserManagement extends Component {
 
     componentDidMount() {
         this.props.admin_getAllUsers();
-
     }
 
-    onPageChange = () => {
-
+    //client
+    onPageChangeClient = (currentInteractList) => {
+        this.setState({ currentInteractList: currentInteractList })
     }
 
     render() {
@@ -58,8 +58,8 @@ class Admin_UserManagement extends Component {
 
         if (this.props.userList !== null && this.props.userList !== undefined) {
             this.usersList = this.props.userList;
-
-            userItemList = this.usersList.map((userItem) =>
+        
+            userItemList = this.state.currentInteractList.map((userItem) =>
                 <Admin_UserItem
                     key={userItem.userID}
                     role={userItem.roleName}
@@ -94,14 +94,14 @@ class Admin_UserManagement extends Component {
 
                     {userItemList}
 
-                    {/* <Paginator config={{
-                            changePage: (currentInteractList) => this.onPageChange(currentInteractList),
-                            rawData: this.state.usersList,
-                            maxItemPerPage: this.maxItemPerPage,
-                            numPagesShown: 5,
-                            bottom: "20px"
-                        }}
-                        /> */}
+                    <Paginator config={{
+                        changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
+                        rawData: [...this.usersList],
+                        maxItemPerPage: this.maxItemPerPage,
+                        numPagesShown: 5,
+                        bottom: "31px"
+                    }}
+                    />
                 </div>
             </div>
         );

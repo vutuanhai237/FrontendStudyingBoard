@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import '../AdminPage'
 import Admin_RequestedPostSummaryItem from '../_admin_components/Admin_RequestedPostSummaryItem'
 import Admin_Titlebar from '../_admin_components/Admin_Titlebar/Admin_Titlebar'
-import Paginator from '../../shared_components/Paginator/ServerPaginator'
+import Paginator from '../../shared_components/Paginator/ClientPaginator'
 
 class Admin_PostApprovingPage extends Component {
     constructor({ routeConfig }) {
@@ -281,37 +281,16 @@ class Admin_PostApprovingPage extends Component {
     componentDidMount() {
 
         // this.pageCount = 4;
-        // this.state.currentInteractList = this.state.requestedPosts;
         this.setState({
             currentInteractList: this.state.requestedPosts
         })
-        // this.setState({ pageCount: 7 });
-        //init current interact list = những item đầu tiên trong danh sách với số lượng = this.maxItemPerPage
-
-        //inject an array you want to render to paginator by data
-
-        //for client
-
-        //get all and some code behind
-
-        // if (this.state.requestedPosts.length <= this.maxItemPerPage) {
-        //     this.setState({ currentInteractList: this.state.requestedPosts })
-        // }
-        // else {
-        //     this.state.currentInteractList.splice(0, this.state.currentInteractList.length);
-        //     for (let i = 0; i < this.maxItemPerPage; i++) {
-        //         this.state.currentInteractList.push(this.state.requestedPosts[i])
-        //     }
-        //     this.setState(this.state);
-        // }
-
-        //server => cứ get với page = 1, rồi gán cho current interact list
+    
     }
 
 
     //client
     onPageChangeClient = (currentInteractList) => {
-        // this.setState({ currentInteractList: currentInteractList })
+        this.setState({ currentInteractList: currentInteractList })
     }
 
     //client
@@ -329,11 +308,11 @@ class Admin_PostApprovingPage extends Component {
                 action="BROWSER"
                 id={requestedPost.id}
                 authorName={requestedPost.authorName}
-                authorID = {requestedPost.authorID}
+                authorID={requestedPost.authorID}
                 requestedDate={requestedPost.requestedDate}
                 requestedTime={requestedPost.requestedTime}
                 requestedCategory={requestedPost.category}
-                requestedCategoryID = {requestedPost.categoryID}
+                requestedCategoryID={requestedPost.categoryID}
                 title={requestedPost.title}
                 content={requestedPost.Summary}
                 image={requestedPost.firstImageURL}
@@ -357,13 +336,13 @@ class Admin_PostApprovingPage extends Component {
                     {summaryRequestedPostList}
 
                     <Paginator config={{
-                        // changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList), //client
-                        // rawData: this.state.requestedPosts, //client
-                        changePage: (page_number) => this.onPageChangeServer(page_number), //server   
+                        changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList), //client
+                        rawData: this.state.requestedPosts, //client
+                        // changePage: (page_number) => this.onPageChangeServer(page_number), //server   
                         pageCount: this.state.pageCount, //server
                         maxItemPerPage: this.maxItemPerPage,
                         numPagesShown: 5,
-                        bottom: "20px"
+                        bottom: "31px"
                     }}
                     />
                 </div>
