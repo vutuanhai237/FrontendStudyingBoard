@@ -15,6 +15,8 @@ import { withRouter } from "react-router-dom";
 // import { getCurrentUser } from '../../../service/UserAPI'
 import { getCategoriesDoc, getSubjects, getSemesters } from '../../../service/DocAPI'
 
+
+//chuyen thanh chi xem nen chua co handle click cho cac item trong bang danh muc bai viet
 class Admin_CategoryManagement extends Component {
     constructor(props) {
         super();
@@ -102,31 +104,36 @@ class Admin_CategoryManagement extends Component {
                         <div className="Category_Type_Dropdown_Container" id="admin-post-categories-container">
                             <div className="Category_Component_List">
                                 <div className="Category_Component">
-                                    <div className="Category_Component_Title">
-                                        Danh sách danh mục:
+                                    {/* Danh sach cac danh muc bai viet*/}
+                                    <div className="Category_Dropdown margin_top_15px" id="admin-post-category-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("admin-post-category-dropdown", "admin-post-category-container")}>
+                                        <div className="Category_Dropdown_Title">
+                                            Danh sách danh mục:
+                                        </div>
+                                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                     </div>
+
                                     <ClickAwayListener onClickAway={() => { this.closeAllPostCategoryListItemActivated() }}>
-
-                                        <div className="Custom_Table_Port">
-                                            <div className="Custom_Table_Header">
-                                                <div className="Custom_Table_20percents_Header">Mã danh mục</div>
-                                                <div className="Custom_Table_80percents_Header">Tên danh mục</div>
-                                            </div>
-
-                                            {this.state.postCategoriesList.map(item =>
-                                                <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.name)} >
-                                                    <div className="Custom_Table_Item_20percents">{item.id}</div>
-                                                    <div className="Custom_Table_Item_80percents">{item.title}</div>
+                                        <div className="Category_Dropdown_Container  margin_top_5px" id="admin-post-category-container">
+                                            <div className="Custom_Table_Port">
+                                                <div className="Custom_Table_Header">
+                                                    <div className="Custom_Table_20percents_Header">Mã danh mục</div>
+                                                    <div className="Custom_Table_80percents_Header">Tên danh mục</div>
                                                 </div>
-                                            )}
 
+                                                {this.state.postCategoriesList.map(item =>
+                                                    <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"admin-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.name)} >
+                                                        <div className="Custom_Table_Item_20percents">{item.id}</div>
+                                                        <div className="Custom_Table_Item_80percents">{item.title}</div>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                     </ClickAwayListener>
-                                    <div className="Category_Buttons_Port">
+                                    {/* <div className="Category_Buttons_Port">
                                         <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
                                         <button className="Simple_White_Button margin_right_5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
                                         <button className="Simple_Red_Button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div style={{ height: "30px" }}></div>
                             </div>
@@ -154,28 +161,30 @@ class Admin_CategoryManagement extends Component {
                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                     </div>
 
-                                    <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-categories-container">
-                                        <div className="Custom_Table_Port">
-                                            <div className="Custom_Table_Header">
-                                                <div className="Custom_Table_20percents_Header">Mã danh mục</div>
-                                                <div className="Custom_Table_80percents_Header">Tên danh mục</div>
-                                            </div>
+                                    <ClickAwayListener onClickAway={() => { this.closeAllDocCategoryListItemActivated() }}>
+                                        <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-categories-container">
                                             <div className="Custom_Table_Port">
-                                                {this.documentCategoriesList.map(item =>
-                                                    <div className="Custom_Table_Item" key={item.id} id={'admin-doc-category-item' + item.id} onClick={() => this.handerDocCategoryItemClick(item.id, item.name)}>
-                                                        <div className="Custom_Table_Item_20percents">{item.id}</div>
-                                                        <div className="Custom_Table_Item_80percents">{item.name}</div>
-                                                    </div>
-                                                )}
+                                                <div className="Custom_Table_Header">
+                                                    <div className="Custom_Table_20percents_Header">Mã danh mục</div>
+                                                    <div className="Custom_Table_80percents_Header">Tên danh mục</div>
+                                                </div>
+                                                <div className="Custom_Table_Port" >
+                                                    {this.documentCategoriesList.map(item =>
+                                                        <div className="Custom_Table_Item" name="Document_Category_Custom_Table_Item" key={item.id} id={'admin-doc-category-item-' + item.id} onClick={(e) => this.handerDocCategoryItemClick(e, item.id, item.name)}>
+                                                            <div className="Custom_Table_Item_20percents">{item.id}</div>
+                                                            <div className="Custom_Table_Item_80percents">{item.name}</div>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="Category_Buttons_Port" >
+                                            {/* <div className="Category_Buttons_Port" >
                                             <div className="Simple_Blue_Button margin_right_5px">Thêm</div>
                                             <div className="Simple_White_Button margin_right_5px">Sửa</div>
                                             <div className="Simple_Red_Button">Xóa</div>
+                                        </div> */}
                                         </div>
-                                    </div>
+                                    </ClickAwayListener>
 
                                     {/* Danh sach cac mon hoc */}
                                     <div className="Category_Dropdown margin_top_15px" id="admin-doc-subjects-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("admin-doc-subjects-dropdown", "admin-doc-subjects-container")}>
@@ -184,30 +193,31 @@ class Admin_CategoryManagement extends Component {
                                         </div>
                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                     </div>
+                                    <ClickAwayListener onClickAway={() => { this.closeAllSubjectListItemActivated() }}>
 
-                                    <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-subjects-container">
-                                        <div className="Custom_Table_Port">
-                                            <div className="Custom_Table_Header">
-                                                <div className="Custom_Table_20percents_Header">Mã môn học</div>
-                                                <div className="Custom_Table_80percents_Header">Tên môn học</div>
-                                            </div>
+                                        <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-subjects-container">
                                             <div className="Custom_Table_Port">
-                                                {this.documentSubjectList.map(item =>
-                                                    <div className="Custom_Table_Item" key={item.id}>
-                                                        <div className="Custom_Table_Item_20percents">{item.id}</div>
-                                                        <div className="Custom_Table_Item_80percents">{item.name}</div>
-                                                    </div>
-                                                )}
+                                                <div className="Custom_Table_Header">
+                                                    <div className="Custom_Table_20percents_Header">Mã môn học</div>
+                                                    <div className="Custom_Table_80percents_Header">Tên môn học</div>
+                                                </div>
+                                                <div className="Custom_Table_Port">
+                                                    {this.documentSubjectList.map(item =>
+                                                        <div className="Custom_Table_Item" name="Subject_Custom_Table_Item" key={item.subjectId} id={'admin-subject-item-' + item.subjectId} onClick={(e) => this.handerSubjectItemClick(e, item.subjectId, item.subjectName)}>
+                                                            <div className="Custom_Table_Item_20percents">{item.subjectId}</div>
+                                                            <div className="Custom_Table_Item_80percents">{item.subjectName}</div>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="Category_Buttons_Port" >
+                                            {/* <div className="Category_Buttons_Port" >
                                             <div className="Simple_Blue_Button margin_right_5px">Thêm</div>
                                             <div className="Simple_White_Button margin_right_5px">Sửa</div>
                                             <div className="Simple_Red_Button">Xóa</div>
+                                        </div> */}
                                         </div>
-                                    </div>
-
+                                    </ClickAwayListener>
                                     {/* Danh sach cac hoc ky */}
                                     <div className="Category_Dropdown margin_top_15px" id="admin-doc-semesters-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("admin-doc-semesters-dropdown", "admin-doc-semesters-container")}>
                                         <div className="Category_Dropdown_Title">
@@ -215,32 +225,33 @@ class Admin_CategoryManagement extends Component {
                                         </div>
                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                                     </div>
+                                    <ClickAwayListener onClickAway={() => { this.closeAllSemesterListItemActivated() }}>
 
-                                    <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-semesters-container">
-                                        <div className="Custom_Table_Port">
-                                            <div className="Custom_Table_Header">
-                                                <div className="Custom_Table_20percents_Header">Mã học kỳ</div>
-                                                <div className="Custom_Table_40percents_Header">Học kỳ</div>
-                                                <div className="Custom_Table_40percents_Header">Năm học</div>
-                                            </div>
+                                        <div className="Category_Dropdown_Container  margin_top_5px" id="admin-doc-semesters-container">
                                             <div className="Custom_Table_Port">
-                                                {this.documentSemesterList.map(item =>
-                                                    <div className="Custom_Table_Item" key={item.semesterId}>
-                                                        <div className="Custom_Table_Item_20percents">{item.semesterId}</div>
-                                                        <div className="Custom_Table_Item_40percents">{item.semesterNo}</div>
-                                                        <div className="Custom_Table_Item_40percents">{item.academicYear}</div>
-                                                    </div>
-                                                )}
+                                                <div className="Custom_Table_Header">
+                                                    <div className="Custom_Table_20percents_Header">Mã học kỳ</div>
+                                                    <div className="Custom_Table_40percents_Header">Học kỳ</div>
+                                                    <div className="Custom_Table_40percents_Header">Năm học</div>
+                                                </div>
+                                                <div className="Custom_Table_Port">
+                                                    {this.documentSemesterList.map(item =>
+                                                        <div className="Custom_Table_Item" key={item.semesterId} name="Semester_Custom_Table_Item" id={'admin-semester-item-' + item.semesterId} onClick={(e) => this.handerSemesterItemClick(e, item.semesterId, item.semesterNo)}>
+                                                            <div className="Custom_Table_Item_20percents">{item.semesterId}</div>
+                                                            <div className="Custom_Table_Item_40percents">{item.semesterNo}</div>
+                                                            <div className="Custom_Table_Item_40percents">{item.academicYear}</div>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div className="Category_Buttons_Port" >
+                                            {/* <div className="Category_Buttons_Port" >
                                             <div className="Simple_Blue_Button margin_right_5px">Thêm</div>
                                             <div className="Simple_White_Button margin_right_5px">Sửa</div>
                                             <div className="Simple_Red_Button">Xóa</div>
+                                        </div> */}
                                         </div>
-                                    </div>
-
+                                    </ClickAwayListener>
                                 </div>
                             </div>
                         </div>
@@ -429,8 +440,98 @@ class Admin_CategoryManagement extends Component {
     //#endregion
 
     //#region for Doc category area:
-    handerDocCategoryItemClick = () => {
+    handerDocCategoryItemClick = (e, id, name) => {
+        let all_item = document.getElementsByName("Document_Category_Custom_Table_Item");
 
+        for (let i = 0; i < all_item.length; i++) {
+            all_item[i].className = "Custom_Table_Item";
+        }
+
+        let category_item = document.getElementById("admin-doc-category-item-" + id);
+        // category_item.className
+        category_item.className = "Custom_Table_Item_Activated";
+
+        this.selected_category_id = id;
+        // this.selected_category_name = name;
+
+        this.setState({
+            canClickDeletePostCategory: true,
+            canClickEditPostCategory: true
+        });
+    }
+
+    closeAllDocCategoryListItemActivated = () => {
+        let all_item = document.getElementsByName("Document_Category_Custom_Table_Item");
+        for (let i = 0; i < all_item.length; i++) {
+            all_item[i].className = "Custom_Table_Item";
+        }
+        this.setState({
+            canClickDeleteDocCategory: false,
+            canClickEditDocCategory: false
+        });
+    }
+
+    handerSubjectItemClick = (e, id, name) => {
+        let all_item = document.getElementsByName("Subject_Custom_Table_Item");
+
+        for (let i = 0; i < all_item.length; i++) {
+            all_item[i].className = "Custom_Table_Item";
+        }
+
+        let category_item = document.getElementById("admin-subject-item-" + id);
+        // category_item.className
+        category_item.className = "Custom_Table_Item_Activated";
+
+        this.selected_category_id = id;
+        // this.selected_category_name = name;
+
+        this.setState({
+            canClickDeleteSubject: true,
+            canClickEditSubject: true
+        });
+    }
+
+    closeAllSubjectListItemActivated = () => {
+        let all_item = document.getElementsByName("Subject_Custom_Table_Item");
+        for (let i = 0; i < all_item.length; i++) {
+            all_item[i].className = "Custom_Table_Item";
+        }
+        this.setState({
+            canClickDeleteSubject: false,
+            canClickEditSubject: false
+        });
+    }
+
+
+    handerSemesterItemClick = (e, id, name) => {
+        let all_item = document.getElementsByName("Semester_Custom_Table_Item");
+
+        for (let i = 0; i < all_item.length; i++) {
+            all_item[i].className = "Custom_Table_Item";
+        }
+
+        let category_item = document.getElementById("admin-semester-item-" + id);
+        // category_item.className
+        category_item.className = "Custom_Table_Item_Activated";
+
+        this.selected_category_id = id;
+        // this.selected_category_name = name;
+
+        this.setState({
+            canClickDeleteSemester: true,
+            canClickEditSemester: true
+        });
+    }
+
+    closeAllSemesterListItemActivated = () => {
+        let all_item = document.getElementsByName("Semester_Custom_Table_Item");
+        for (let i = 0; i < all_item.length; i++) {
+            all_item[i].className = "Custom_Table_Item";
+        }
+        this.setState({
+            canClickDeleteSemester: false,
+            canClickEditSemester: false
+        });
     }
     //#endregion
 
