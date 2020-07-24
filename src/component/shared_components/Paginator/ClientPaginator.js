@@ -138,11 +138,11 @@ class Paginator extends Component {
         //clear current list then add what we need
         this.currentInteractList.splice(0, this.currentInteractList.length);
 
-        if (page_number === this.pageCount) {
+        if (page_number === this.pageCount) { //if reach last page
             for (let i = (page_number - 1) * this.maxItemPerPage; i < this.rawData.length; i++)
                 this.currentInteractList.push(this.rawData[i])
         }
-        else {
+        else { //if not last page
             for (let i = (page_number - 1) * this.maxItemPerPage; i < (page_number - 1) * this.maxItemPerPage + this.maxItemPerPage; i++)
                 this.currentInteractList.push(this.rawData[i])
         }

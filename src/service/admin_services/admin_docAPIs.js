@@ -37,13 +37,12 @@ export function admin_getAllNotApprovedDocuments() {
 export function admin_getCurrentNotApprovedDocumentDetail(previewDoc_ID) {
     return dispatch => {
         let myHeaders = new Headers();
-        // myHeaders.append("jsessionid", Cookies.get("JSESSIONID"));
+ 
         console.log(previewDoc_ID);
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
-            redirect: 'follow',
-            jsessionid: Cookies.get("JSESSIONID")
+            redirect: 'follow'
         };
 
         fetch(`http://${HOST}/docs/preview?id=${previewDoc_ID};jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
@@ -52,8 +51,8 @@ export function admin_getCurrentNotApprovedDocumentDetail(previewDoc_ID) {
             .then(
                 result => {
                     console.log("2 Stage");
-                    // dispatch(adminGetCurrentNotApprovedDocumentDetail(result.shortDocs))
-                    console.log(result)
+                    dispatch(adminGetCurrentNotApprovedDocumentDetail(result.shortDocs))
+                    // console.log(result)
                 }
             )
             .catch(error => console.log('error', error));

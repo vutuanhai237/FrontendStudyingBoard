@@ -44,6 +44,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getCurrentUser } from '../../service/UserAPI'
 
+//import for permission
+import { logAllPermissionByRoleName } from '../../utils/PermissionManagement'
+
 class AdminPage extends Component {
     constructor(props) {
         super(props);
@@ -52,9 +55,12 @@ class AdminPage extends Component {
         this.post_count = 0;
         this.doc_count = 0;
         this.avatarUrl = "https://i.imgur.com/SZJgL6C.jpg";
-        this.state = {
 
-        }
+        this.roleNamesList = [
+            {
+
+            }
+        ]
     }
 
     isAuthenticated = async () => {
@@ -76,6 +82,9 @@ class AdminPage extends Component {
             this.score = this.props.accountInformation.score;
             this.post_count = this.props.accountInformation.postCount;
             this.doc_count = this.props.accountInformation.documentCount;
+
+
+            logAllPermissionByRoleName("ROLE_USER");
             // this.avatarUrl = this.props.accountInformation.avatar;
 
             return (
