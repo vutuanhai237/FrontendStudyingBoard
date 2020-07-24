@@ -84,7 +84,7 @@ class AdminPage extends Component {
             this.doc_count = this.props.accountInformation.documentCount;
 
 
-            logAllPermissionByRoleName("ROLE_USER");
+            logAllPermissionByRoleName("ROLE_ADMIN");
             // this.avatarUrl = this.props.accountInformation.avatar;
 
             return (
