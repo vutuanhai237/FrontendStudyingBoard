@@ -70,7 +70,7 @@ export function getSubjects() {
         //     redirect: 'follow'
         // };
 
-        // fetch(`https://${HOST}/admin/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        // fetch(`https://${HOST}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
         //     .then(response => response.text())
         //     .then(result => console.log(result))
         //     .catch(error => console.log('error', error));

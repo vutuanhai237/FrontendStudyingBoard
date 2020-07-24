@@ -1,4 +1,6 @@
-const PermissionList = {
+
+
+export const PermissionList = {
     DocumentPermission: {
         Upload: { DocumentUpload: "DOCUMENT_UPLOAD" },
         Edit: { DocumentEdit: "DOCUMENT_EDIT" },
@@ -156,11 +158,29 @@ const PermissionList = {
             AccountPreviewDoc: "ACCOUNT_PREVIEW_DOC",
             AccountPreviewPost: "ACCOUNT_PREVIEW_POST"
         }
+    },
+    NotificationPermission: //interact to own account
+    {
+        Edit: { NotificationEdit: "NOTIFICATION_EDIT" },
+        Add: { NotificationAdd: "NOTIFICATION_ADD" },
+        Delete: { NotificationDelete: "NOTIFICATION_DELETE" },
+        Set: { NotificationSet: "NOTIFICATION_SET" },
+        UnsetAny: { NotificationUnsetAny: "NOTIFICATION_UNSET_ANY" },
+        ViewAll: { NotificationViewAll: "NOTIFICATION_VIEW_ALL" }, //View in table
+
+        All: {
+            NotificationEdit: "NOTIFICATION_EDIT",
+            NotificationAdd: "NOTIFICATION_ADD",
+            NotificationDelete: "NOTIFICATION_DELETE",
+            NotificationSet: "NOTIFICATION_SET",
+            NotificationUnsetAny: "NOTIFICATION_UNSET_ANY",
+            NotificationViewAll: "NOTIFICATION_VIEW_ALL"
+        }
     }
 }
 
 export function getRoleNameByName(roleName) {
-    if (roleName === "ROLE_ADMIN")
+    if (roleName === "ADMIN")
         return "Admin";
     if (roleName === "ROLE_USER")
         return "User";
@@ -179,17 +199,25 @@ export function getRoleNamebyID(roleId) {
     return "Guest";
 }
 
-export function isGrantedSpecificPermission(permissionList) {
-    // if(ROLE_ADMIN )
+export function isGrantedSpecificPermissionByRoleName(permission, roleName) {
+
 }
 
-export function isGrantedListPermission([listPermission]) {
+export function isGrantedSpecificPermissionByRoleId(permission, roleId) {
+
+}
+
+export function isGrantedPermissionsByName(...listPermissionName) {
+
+}
+
+export function isGrantedPermissionsById(...listPermissionName) {
 
 }
 
 export function logAllPermissionByRoleName(roleName) {
-    if (roleName === "ROLE_ADMIN") {
-        console.log(ROLE_ADMIN);
+    if (roleName === "ADMIN") {
+        console.log(ADMIN);
         return;
     }
     if (roleName === "ROLE_USER") {
@@ -205,17 +233,15 @@ export function logAllPermissionByRoleName(roleName) {
 
 
 //config:
-export const ROLE_ADMIN = {
+export const ADMIN = {
     ...PermissionList.AccountPermission.All,
     ...PermissionList.DocumentPermission.All,
     ...PermissionList.PostPermission.All,
     ...PermissionList.ActivityPermission.All,
     ...PermissionList.CategoryPermission.All,
-    // ...PermissionList.PostCategoryPermission.All,
-    // ...PermissionList.SemesterPermission.All,
-    // ...PermissionList.SubjectPermission.All,
     ...PermissionList.RolePermission.All,
-    ...PermissionList.UserPermission.All
+    ...PermissionList.UserPermission.All,
+    ...PermissionList.NotificationPermission.All
 
 }
 

@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
+
+.Management_User_Item {
+    position: relative;
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    background-repeat: no-repeat;
+    border: 1px #c4c4c4 solid;
+    border-top: 3px #eeeeee solid; 
+    border-radius: 5px;
+    display: flex;
+}
+
+.Management_User_Item:hover,
+.Management_User_ItemL:active {
+    border: 1px white solid;
+    border-top: 3px #5279db solid;
+    box-shadow: 0px 0px 5px 1px #c4c4c4;
+}
+
+.User_Item_Name {
+    width: fit-content;
+    height: 25px;
+    font-family: "Roboto Slab";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    display: flex;
+    color: #363636;
+    padding-right: 20px;
+}
+
+.User_Item_Nick_Name {
+    position: relative;
+    width: 120px;
+    height: 25px;
+    font-family: "Barlow Condensed";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    color: #363636;
+}
+
+.User_Item_Email {
+    height: 20px;
+    font-family: "Rosario";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.User_Item_Element {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+}
+
+.User_Item_Score {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    align-items: center;
+}
+
+.User_Item_Post_Count {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.User_Item_Doc_Count {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.User_Item_Statusbar {
+    display: flex;
+    font-family: Barlow Condensed;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 5px;
+    justify-content: space-between;
+}

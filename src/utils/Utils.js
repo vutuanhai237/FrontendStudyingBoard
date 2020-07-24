@@ -1,4 +1,4 @@
-import Admin_UserRoleManagement from "../component/admin/Admin_UserRoleManagement/Admin_UserRoleManangement";
+import Management_UserRoleManagement from "../component/management/Management_UserRoleManagement/Management_UserRoleManangement";
 
 export function isContainSpecialCharacter(str) {
     return /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);

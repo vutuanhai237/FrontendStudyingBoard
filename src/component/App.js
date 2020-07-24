@@ -10,9 +10,9 @@ import CrDoc from "./page/CreateDoc";
 import Login from "./page/Login";
 import Register from "./page/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AdminPage from './admin/AdminPage'
-import Admin_DocPreview from './admin/Admin_DocPostPreview/Admin_DocPreview'
-// import Admin_PageNotification from "./admin/Admin_PageNotification/Admin_PageNotification";
+import ManagementPage from './management/ManagementPage'
+import Management_DocPreview from './management/Management_DocPostPreview/Management_DocPreview'
+// import Management_PageNotification from "./management/Management_PageNotification/Management_PageNotification";
 
 const App = () => {
 
@@ -30,55 +30,30 @@ const App = () => {
                 <Route exact path="/docs/:id" component={Docs} />
                 <Route exact path="/events" component={Events} />
 
-                {/* Admin */}
-                <Route exact path="/admin">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="/admin/post_approving">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="/admin/categories_management" component={AdminPage} />
+                {/* Admin management */}
+                <Route exact path="/management" component={ManagementPage} />
+                <Route exact path="/management/post_approving" component={ManagementPage} />
+                <Route exact path="/management/categories_management" component={ManagementPage} />
+                {/* <Route exact path="/management/post_approving/:id"> */}
+                <Route exact path="/management/doc_approving" component={ManagementPage} />
+                <Route exact path="/management/page_notification" component={ManagementPage} />
+                <Route exact path="/management/users_management" component={ManagementPage} />
+                <Route exact path="/management/activity_management" component={ManagementPage} />
+                {/* <Route exact path="management/user/:id"> */}
+                <Route exact path="/management/account_management" component={ManagementPage} />
+                <Route exact path="/management/update_password" component={ManagementPage} />
+                <Route exact path="/management/user_role_management" component={ManagementPage} />
+                <Route exact path="/management/doc_approving/:id" component={Management_DocPreview} />
 
-                <Route exact path="/admin/post_approving/:id">
-                    {/* Tới một bài viết cụ thể và admin có quyền duyệt*/}
-                </Route>
-                <Route exact path="/admin/doc_approving">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="/admin/page_notification">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="/admin/users_management">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="/admin/activity_management">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="admin/user/:id">
-                    {/* Admin tới trang chi tiết của người dùng được chọn và toàn quyền thi triển võ công */}
-                </Route>
-
-                <Route exact path="/admin/account_management">
-                    <AdminPage></AdminPage>
-                </Route>
-
-                <Route exact path="/admin/update_password">
-                    <AdminPage></AdminPage>
-                </Route>
-                <Route exact path="/admin/user_role_management">
-                    <AdminPage></AdminPage>
-                </Route>
-
-                {/* User, himself các kiểu */}
+                {/* User manegement */}
                 <Route exact path="/user/:id">
-                    <AdminPage></AdminPage>
+                    <ManagementPage></ManagementPage>
                 </Route>
-
-                <Route exact path="/admin/doc_approving/:id" component={Admin_DocPreview} />
+        
 
             </Switch>
             <div className="App"></div>
-        </Router>
+        </Router >
     );
 }
 

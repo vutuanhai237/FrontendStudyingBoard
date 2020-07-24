@@ -7,14 +7,14 @@ import '../DocPostSummary.scss'
 import PostReactionBar from './PostReactionBar/PostReactionBar'
 import Tag from '../Tag/Tag'
 
-class Admin_PostSummaryItem extends Component {
+class Management_PostSummaryItem extends Component {
 
     constructor(props) {
         super(props);
 
         //for conditionally render
-        // this.role = this.props.role; //"ADMIN_ROLE" or "USER_ROLE" or "CONTRIBUTOR_ROLE"
-        // this.action = this.props.action; //"VIEW_MY_SELF" or "BROWSE" (only Admin) or "VIEW_PUBLIC"
+        // this.role = this.props.role; //"MANAGEMENT_ROLE" or "USER_ROLE" or "CONTRIBUTOR_ROLE"
+        // this.action = this.props.action; //"VIEW_MY_SELF" or "BROWSE" (only Management) or "VIEW_PUBLIC"
         this.role = "USER";
         this.action = "VIEW_MY_SELF";
         //for show content
@@ -42,7 +42,7 @@ class Admin_PostSummaryItem extends Component {
     render() {
 
         //Init dynamic components
-        // let headbar = (this.role === "ADMIN_ROLE" && this.action === "BROWSER") ?
+        // let headbar = (this.role === "MANAGEMENT_ROLE" && this.action === "BROWSER") ?
         //     <div className="Post_Summary_Head_Bar">
         //         <div className="Post_Summary_Head_Bar_Author_Requested_Date_Post">
         //             <div className="Post_Summary_Head_Bar_Author_Port">
@@ -71,9 +71,9 @@ class Admin_PostSummaryItem extends Component {
         // let managementBar = <div></div>; //
 
         // // Condition to choose what will be rendered: 
-        // // admin browser
+        // // management browser
 
-        // if (this.role === "ADMIN_ROLE" && this.action === "BROWSER") {
+        // if (this.role === "MANAGEMENT_ROLE" && this.action === "BROWSER") {
 
         //     managementBar =
         //         <div className="Post_Summary_Button_Group_Port" >
@@ -99,7 +99,7 @@ class Admin_PostSummaryItem extends Component {
             <div></div>
         //     <div className="Post_Summary" >
         //         <div className="Post_Summary_Head_Bar_Port">
-        //             {/* {(this.role === "ADMIN_ROLE" && this.action === "BROWSER")
+        //             {/* {(this.role === "MANAGEMENT_ROLE" && this.action === "BROWSER")
         //                 ? */}
         //             {/*  */}
         //             {headbar}
@@ -130,4 +130,4 @@ class Admin_PostSummaryItem extends Component {
         );
     }
 }
-export default Admin_PostSummaryItem;
+export default Management_PostSummaryItem;
