@@ -51,17 +51,17 @@ export function getSemesters() {
 
 export function getSubjects() {
     return dispatch => {
-        // var requestOptions = {
-        //     method: 'GET',
-        //     redirect: 'follow'
-        // };
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
 
-        // fetch(`http://${HOST}/subjects`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         dispatch(docGetSubjects(JSON.parse(result)));
-        //     })
-        //     .catch(error => console.log('error', error));
+        fetch(`http://${HOST}/subjects`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                dispatch(docGetSubjects(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
 
         // var myHeaders = new Headers();
         // var requestOptions = {
@@ -70,23 +70,23 @@ export function getSubjects() {
         //     redirect: 'follow'
         // };
 
-        // fetch(`https://${HOST}/admin/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        // fetch(`https://${HOST}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
         //     .then(response => response.text())
         //     .then(result => console.log(result))
         //     .catch(error => console.log('error', error));
 
-        var myHeaders = new Headers();
-   
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+        // var myHeaders = new Headers();
 
-        fetch(`https://${HOST}/users;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+        // var requestOptions = {
+        //     method: 'GET',
+        //     headers: myHeaders,
+        //     redirect: 'follow'
+        // };
+
+        // fetch(`https://${HOST}/users;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => console.log(result))
+        //     .catch(error => console.log('error', error));
     }
 }
 

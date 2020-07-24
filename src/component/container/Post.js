@@ -65,7 +65,7 @@ class Post extends Component {
                 <p className="title">{currentPost.title}</p>
                 <div>{currentPost.summary}</div>
                 <AuthorInfo item={currentPost}/>
-                <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.contentURL }}/>
+                <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.content }}/>
                 <Tags tags={currentPost.tags}/>
                 <FooterSummaryPost item={this.props.currentPost}/>
                 <CommentPosts/>

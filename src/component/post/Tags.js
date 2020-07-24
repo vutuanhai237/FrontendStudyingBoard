@@ -9,10 +9,12 @@ import "./Tags.scss"
 class Tags extends Component {
     constructor(props) {
         super(props);
-
+        this.handleClick = this.handleClick.bind(this);
     }
 
-
+    handleClick(item) {
+        console.log(item);
+    }
     render() {
         const { tags } = this.props;
         return (
@@ -21,7 +23,7 @@ class Tags extends Component {
                     {
                         tags.map(item => {
                             return <div>
-                                <Button onClick={this.props.handleClick(item)} variant="secondary" style={{ marginRight: "15px", borderRadius: "15px" }}>{item}</Button>
+                                <Button onClick={this.handleClick(item)} variant="secondary" style={{ marginRight: "15px", borderRadius: "15px" }}>{item}</Button>
                             </div>
                         })
                     }

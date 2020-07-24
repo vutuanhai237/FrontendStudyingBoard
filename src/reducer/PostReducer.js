@@ -22,7 +22,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: '<p><strong>Trung Quốc &ldquo;gồng m&igrave;nh&rdquo; ngăn lũ, c&aacute;c l&aacute;ng giềng ch&acirc;u &Aacute; chung cảnh ngập lụt</strong></p><p>C&aacute;c đợt mưa lớn k&eacute;o d&agrave;i từ cuối th&aacute;ng 5 đ&atilde; khiến nhiều quốc gia ở ch&acirc;u &Aacute; rơi v&agrave;o cảnh ngập lụt, h&agrave;ng triệu người phải sơ t&aacute;n, thiệt hại kinh tế l&ecirc;n đến h&agrave;ng tỷ USD.</p><p><img src="https://icdn.dantri.com.vn/2020/07/20/20200714-t-025615-z-1293354825-rc-2-qsh-93-uqqirtrmadp-3-chinafloods-1595237294600.jpg" /></p>',
+        content: '<p><strong>Trung Quốc &ldquo;gồng m&igrave;nh&rdquo; ngăn lũ, c&aacute;c l&aacute;ng giềng ch&acirc;u &Aacute; chung cảnh ngập lụt</strong></p><p>C&aacute;c đợt mưa lớn k&eacute;o d&agrave;i từ cuối th&aacute;ng 5 đ&atilde; khiến nhiều quốc gia ở ch&acirc;u &Aacute; rơi v&agrave;o cảnh ngập lụt, h&agrave;ng triệu người phải sơ t&aacute;n, thiệt hại kinh tế l&ecirc;n đến h&agrave;ng tỷ USD.</p><p><img src="https://icdn.dantri.com.vn/2020/07/20/20200714-t-025615-z-1293354825-rc-2-qsh-93-uqqirtrmadp-3-chinafloods-1595237294600.jpg" /></p>',
         tags: ["tag1", "tag2"],
     },
     {
@@ -42,7 +42,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: "string",
+        content: "string",
         tags: [{ tag: "tag1" }, { tag: "tag1" }],
     },
     {
@@ -62,7 +62,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: "string",
+        content: "string",
         tags: [{ tag: "tag1" }, { tag: "tag1" }],
     },
     {
@@ -82,7 +82,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: "string",
+        content: "string",
         tags: [{ tag: "tag1" }, { tag: "tag1" }],
     },
     {
@@ -102,7 +102,7 @@ const fakePosts = [
         publishDate: "1/2/2020",
         authorAvatarURL:
             "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg",
-        contentURL: "string",
+        content: "string",
         tags: [{ tag: "tag1" }, { tag: "tag1" }],
     },
 ];
