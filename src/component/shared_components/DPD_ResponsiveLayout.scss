@@ -3,24 +3,40 @@
         // width: 100%;
         max-width: 100%;
     }
+
+    .container div div {
+        height: fit-content;
+    }
+
     .DocPost_Detail {
         width: 96%;
     }
-}
 
-// @media (min-width: 800px) {
-//     .Document_Live_Preview {
-//         width: 400px;
-//         margin: auto;
-//     }
-// }
+    .Document_Live_Preview {
+        height: fit-content;
+        // background: green;
+    }
+
+    .Document_Live_Preview .container {
+        height: fit-content;
+    }
+}
 
 @media (min-width: 900px) {
     .container div div div canvas {
         // width: 100%;
         max-width: 792px;
     }
+
+    .container div div {
+        height: 840px;
+    }
+
     .DocPost_Detail {
         width: 60%;
+    }
+
+    .Document_Live_Preview {
+        height: 900px;
     }
 }

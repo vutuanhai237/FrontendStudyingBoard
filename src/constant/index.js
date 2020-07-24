@@ -3,7 +3,7 @@
 //#region general config
 // global
 export const HOST = "bhtweb.herokuapp.com"
-export const PORT = "80"
+export const PORT = "localhost:8080/bhtweb"
 export function redirect(url) {
     const createHistory = require("history").createBrowserHistory;
     let history = createHistory();
@@ -46,6 +46,7 @@ export const POST_GET_TOP_POST = "POST_GET_TOP_POST";
 export const POST_GET_POST_BY_ID = "POST_GET_POST_BY_ID";
 
 export const POST_GET_COMMENT_BY_ID = "POST_GET_COMMENT_BY_ID";
+
 //resource string manage
 export const STR_LOGOUT_VN = "Đăng xuất"
 export const STR_LOGOUT_EN = "Logout"
@@ -57,8 +58,17 @@ export const USER_GET_CURRENT_USER = "USER_GET_CURRENT_USER";
 export const USER_GET_LOGOUT = "USER_GET_LOGOUT";
 //#endregion 
 
-//#region admin exclusive constant
-export const ADMIN_GET_ALL_NOT_APPROVED_DOCUMENTS = "ADMIN_GET_ALL_NOT_APPROVED_DOCUMENTS";
+//#region management exclusive constant
+
+//for document
+export const MANAGEMENT_GET_ALL_NOT_APPROVED_DOCUMENTS = "MANAGEMENT_GET_ALL_NOT_APPROVED_DOCUMENTS";
+export const MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL = "MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL";
+export const MANAGEMENT_APPROVE_A_DOCUMENT = "MANAGEMENT_APPROVE_A_DOCUMENT";
+
+//for user
+export const MANAGEMENT_GET_ALL_USERS = "MANAGEMENT_GET_ALL_USERS"
+export const MANAGEMENT_GET_ALL_ROLES = "MANAGEMENT_GET_ALL_ROLES"
+// export const MANAGEMENT_
 
 //#endregion
 
