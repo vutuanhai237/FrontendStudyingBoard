@@ -4,12 +4,21 @@ import {
     postPostLike,
     postPostComment,
     postPostSave,
+    delPostUnLike,
 } from "../action/PostAction.js";
 import { HOST, PORT } from '../constant/index';
 import FormData from 'form-data';
 
+export function delUnLike(id) {
+    return dispatch => {
+
+    }
+}
+
+
 export function postLike(id) {
     return dispatch => {
+
     }
 }
 
@@ -36,7 +45,7 @@ export function getPostByID(id) {
             redirect: 'follow'
           };
           
-          fetch(`https://{HOST}/posts?id=` + id, requestOptions)
+          fetch(`https://${PORT}/posts?id=` + id, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -52,7 +61,7 @@ export function getPostByFilter(filter) {
             method: 'GET',
             redirect: 'follow'
           };
-          fetch(`https://${HOST}/posts?${filter}`, requestOptions)
+          fetch(`http://${PORT}/posts?${filter}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));

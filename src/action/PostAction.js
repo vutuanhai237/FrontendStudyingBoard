@@ -6,7 +6,10 @@ import {
     POST_GET_POST_BY_ID,
     POST_GET_POST_BY_FILTER,
     POST_GET_TOP_POST,
+    POST_DEL_POST_UNLIKE,
 } from "../constant/index.js"
+
+// POST section
 
 export function postPostLike(statusPostLikeCode) {
     return {
@@ -16,6 +19,16 @@ export function postPostLike(statusPostLikeCode) {
         }
     }
 }
+
+export function delPostUnlike(statusPostUnLikeCode) {
+    return {
+        type: POST_DEL_POST_UNLIKE,
+        payload: { 
+            statusPostUnLikeCode: statusPostUnLikeCode
+        }
+    }
+}
+
 
 export function postPostSave(statusPostSaveCode) {
     return {
@@ -34,6 +47,11 @@ export function postPostComment(statusPostCommentCode) {
         }
     }
 }
+
+
+// POSTS section
+
+
 export function postGetPostByID(post) {
     return {
         type: POST_GET_POST_BY_ID,

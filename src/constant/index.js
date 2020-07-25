@@ -44,8 +44,8 @@ export const POST_POST_COMMENT = "POST_POST_COMMENT_POST";
 export const POST_GET_POST_BY_FILTER = "POST_GET_POST_BY_FILTER";
 export const POST_GET_TOP_POST = "POST_GET_TOP_POST";
 export const POST_GET_POST_BY_ID = "POST_GET_POST_BY_ID";
-
 export const POST_GET_COMMENT_BY_ID = "POST_GET_COMMENT_BY_ID";
+export const POST_DEL_POST_UNLIKE = "POST_DEL_POST_UNLIKE";
 
 //resource string manage
 export const STR_LOGOUT_VN = "Đăng xuất"

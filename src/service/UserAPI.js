@@ -11,7 +11,7 @@ import Cookies from 'js-cookie';
 export function postRegister(account) {
     return dispatch => {
         var myHeaders = new Headers();
-    
+
         var formdata = new FormData();
         formdata.append("username", account.username);
         formdata.append("avatar", account.avatar);
@@ -53,7 +53,7 @@ export function postLogin(account) {
         };
 
 
-        fetch(`https://${HOST}/login`, requestOptions)
+        fetch(`http://${PORT}/login`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 Cookies.set('JSESSIONID', JSON.parse(result).sessionID);
@@ -77,7 +77,7 @@ export function getCurrentUser() {
             headers: myHeaders,
             redirect: 'follow'
         };
-        fetch(`https://${HOST}/users/current;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        fetch(`http://${PORT}/users/current?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
@@ -88,6 +88,7 @@ export function getCurrentUser() {
                 dispatch(userGetCurrentUser(null, error.statusCode))
             })
 
+      
 
     }
 }

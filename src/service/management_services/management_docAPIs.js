@@ -20,12 +20,18 @@ export function management_getAllNotApprovedDocuments() {
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response => response.text())
-            .then(
-                result => dispatch(managementGetAllNotApprovedDocuments(JSON.parse(result).shortDocs))
-            )
+            .then(result => {
+                console.log(result);
+                dispatch(managementGetAllNotApprovedDocuments(JSON.parse(result).shortDocs))
+            })
+
             .catch(error => console.log('error', error));
+
+
+        // dispatch(managementGetAllNotApprovedDocuments(JSON.parse(result).shortDocs))
+
     }
 
 }
@@ -37,25 +43,25 @@ export function management_getAllNotApprovedDocuments() {
 export function management_getCurrentNotApprovedDocumentDetail(previewDoc_ID) {
     return dispatch => {
         let myHeaders = new Headers();
- 
-        console.log(previewDoc_ID);
+
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/docs/preview?id=${previewDoc_ID};jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        let previewDoc_ID = 21;
+        fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response =>
                 response.json())
-            .then(
-                result => {
+            .then(result => {
                     console.log("2 Stage");
-                    dispatch(managementGetCurrentNotApprovedDocumentDetail(result.shortDocs))
-                    // console.log(result)
+                    //dispatch(managementGetCurrentNotApprovedDocumentDetail(result.shortDocs))
+                    console.log(result)
                 }
             )
             .catch(error => console.log('error', error));
+                  
     }
 
 }
@@ -72,7 +78,8 @@ export function management_approveADocument() {
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        console.log(`http://${PORT}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'))
+        fetch(`http://${PORT}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(
                 result => dispatch(managementApproveADocument(JSON.parse(result).shortDocs))
