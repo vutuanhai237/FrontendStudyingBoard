@@ -124,7 +124,7 @@ class FilterDoc extends Component {
         return (
             <div className="filter">
                 <Row d-flex flex-row>
-                    <DropdownButton id="dropdown-basic-button" title={this.state.currentCategory}>
+                    <DropdownButton id="category" title={this.state.currentCategory}>
                         <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey="Chọn tất cả">
                             Chọn tất cả
                         </Dropdown.Item>
@@ -137,7 +137,7 @@ class FilterDoc extends Component {
                         })}
                     </DropdownButton>
 
-                    <DropdownButton id="dropdown-basic-button" className="d-inline" title={this.state.currentSubject}>
+                    <DropdownButton id="subject" className="d-inline" title={this.state.currentSubject}>
                         <Dropdown.Item onSelect={(evt) => this.changeCurrentSubject(evt)} eventKey="Chọn tất cả">
                             Chọn tất cả
                         </Dropdown.Item>
@@ -150,7 +150,7 @@ class FilterDoc extends Component {
                         })}
                     </DropdownButton>
 
-                    <DropdownButton id="dropdown-basic-button" title={this.state.currentSemester}>
+                    <DropdownButton id="semester" title={this.state.currentSemester}>
                         <Dropdown.Item onSelect={(evt) => this.changeCurrentSemester(evt)} eventKey="Chọn tất cả">
                             Chọn tất cả
                         </Dropdown.Item>

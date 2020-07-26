@@ -3,7 +3,7 @@ $hover_color: rgba(0, 0, 0, 1);
 $height_image: 200px;
 $transition_time: 0.5s;
 $margin_small: 5px;
-$margin_medium: 15px;
+$margin_medium: 10px;
 
 
 #summary {
@@ -109,7 +109,7 @@ $margin_medium: 15px;
 
     .card-title,
     .card-summary {
-        margin-left: $margin_medium;
+        margin-left: 0;
         margin-right: $margin_medium;
     }
     .card-category,

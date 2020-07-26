@@ -17,7 +17,7 @@ import CommentPost from "./CommentPost"
 import {
     postComment,
 } from "../../service/PostAPI"
-
+import { getPostCommentByID } from "../../service/PostAPI"
 import { bindActionCreators } from 'redux';
 class CommentPosts extends Component {
     constructor(props) {
@@ -27,42 +27,43 @@ class CommentPosts extends Component {
     commentPost(comment) {
         this.props.postComment(this.props.item.id, comment);
     }
+
     render() {
         const { currentComments } = this.props;
         return <div className="comment">
-                <SearchBar noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
-                {currentComments.map((item) => {
-                    return (
-                        <Row>
-                            <CommentPost isChild={false} item={item} />
-                            <Col>
-                                {
+            <SearchBar noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
+            {currentComments.map((item) => {
+                return (
+                    <Row>
+                        <CommentPost isChild={false} item={item} />
+                        <Col>
+                            {
 
-                                    (item.commentChilds).map((subItem) => {
-                                        return <Row>
-                                            <CommentPost isChild={true} item={subItem} />
+                                (item.commentChilds).map((subItem) => {
+                                    return <Row>
+                                        <CommentPost isChild={true} item={subItem} />
 
-                                        </Row>
+                                    </Row>
 
-                                    })
-                                }
-                            </Col>
+                                })
+                            }
+                        </Col>
 
-                        </Row>
-                    );
-                })}
+                    </Row>
+                );
+            })}
         </div>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        currentComments: state.post.currentComments,
+        
     };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postComment
+    postComment,
 }, dispatch);
 
 export default withRouter(

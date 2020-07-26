@@ -35,10 +35,16 @@ class CreateDoc extends Component {
                 currentCategory: "Chọn danh mục",
                 currentSemester: "Chọn học kì",
                 currentSubject: "Chọn môn học",
+                categoryID: -1,
+                semesterID: -1,
+                subjectID: -1,
             }
+            
 
         };
-
+        this.handleClose = this.handleClose.bind(this);
+        this.changeUploadFileName = this.changeUploadFileName.bind(this);
+        //this.handleUpload = this.handleUpload.bind(this);
     }
 
     componentDidMount() {
@@ -50,7 +56,8 @@ class CreateDoc extends Component {
         this.setState({
             modalShow: true,
         });
-        this.forceUpdate();
+        console.log(this.state.doc);
+        this.props.postDoc(this.state.doc);
     }
 
     handleClose() {
@@ -60,70 +67,78 @@ class CreateDoc extends Component {
     }
 
     changeCurrentCategory(evt) {
+        const { categories } = this.props;
         this.setState({
-            doc: {...this.state.doc, currentCategory: evt}
+            doc: { 
+                ...this.state.doc, 
+                currentCategory: evt, 
+                categoryID: categories.find(e => e.name === evt).id 
+            }
         })
+
     }
 
     changeCurrentSemester(evt) {
+        const { semesters } = this.props;
         this.setState({
-            doc: {...this.state.doc, currentSemester: evt}
+            doc: { 
+                ...this.state.doc, 
+                currentSemester: evt,
+                semesterID: semesters.find(e => (e.semesterNo + " . " + e.academicYear) === evt).semesterId, 
+            }
         })
     }
 
     changeCurrentSubject(evt) {
+        const { subjects } = this.props;
+
         this.setState({
-            doc: {...this.state.doc, currentSubject: evt}
+            doc: { 
+                ...this.state.doc, 
+                currentSubject: evt,
+                subjectID: subjects.find(e => e.subjectName === evt).subjectId, 
+            }
         })
     }
 
     changeUploadFileName(evt) {
         this.setState({
-            doc: {...this.state.doc, uploadFileName: evt.target.files[0].name, file: evt.target.files[0]}
+            doc: { ...this.state.doc, uploadFileName: evt.target.files[0].name, file: evt.target.files[0] }
         })
     }
     render() {
         const { categories, semesters, subjects } = this.props;
+        var modalBody = null;
+        if (this.state.isLoginSuccess) {
+            modalBody = <div>
+                <Modal.Body>
+                    Tải lên thành công
+                    </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="success" href="/" onClick={this.handleClose}>
+                        Đồng ý
+                        </Button>
+                </Modal.Footer>
+            </div>
+        } else {
+            modalBody = <div>
+                <Modal.Body>Tải lên thất bại</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={this.handleClose}>
+                        Đồng ý
+                    </Button>
+                </Modal.Footer>
+            </div>
+        }
         return (
             <div id="create-post">
-                <Modal
-                    centered
-                    show={this.state.modalShow}
-                    onHide={this.handleClose.bind(this)}
-                    animation={false}
-                >
+                <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
                     <Modal.Header closeButton>
                         <Modal.Title contained-modal-title-vcenter>
                             Thông báo
                         </Modal.Title>
                     </Modal.Header>
-                    {(() => {
-                        if (this.state.isLoginSuccess) {
-                            return (
-                                <div>
-                                    <Modal.Body>
-                                        Tải lên thành công
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                        <Button variant="success" href="/" onClick={this.handleClose.bind(this)}>
-                                            Đồng ý
-                                        </Button>
-                                    </Modal.Footer>
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <div>
-                                    <Modal.Body>Tải lên thất bại</Modal.Body>
-                                    <Modal.Footer>
-                                        <Button variant="danger" onClick={this.handleClose.bind(this)}>
-                                            Đồng ý
-                                        </Button>
-                                    </Modal.Footer>
-                                </div>
-                            );
-                        }
-                    })()}
+                    {modalBody}
                 </Modal>
 
                 <p className="title">UPLOAD TÀI LIỆU</p>
@@ -132,28 +147,19 @@ class CreateDoc extends Component {
                         <InputGroup.Prepend>
                             <InputGroup.Text>Tên tài liệu</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Nhập tên tài liệu"
-                            aria-label="Amount (to the nearest dollar)"
-                        />
+                        <FormControl placeholder="Nhập tên tài liệu" aria-label="Amount (to the nearest dollar)"/>
                     </InputGroup>
 
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text>Mô tả tài liệu</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Nhập mô tả tài liệu"
-                            aria-label="Amount (to the nearest dollar)"
-                        />
+                        <FormControl placeholder="Nhập mô tả tài liệu" aria-label="Amount (to the nearest dollar)"/>
                     </InputGroup>
 
                     <Row>
                         <Col>
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title={this.state.doc.currentCategory}
-                            >
+                            <DropdownButton title={this.state.doc.currentCategory}>
                                 {categories.map((item) => {
                                     return (
                                         <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.name}>
@@ -166,10 +172,7 @@ class CreateDoc extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title={this.state.doc.currentSubject}
-                            >
+                            <DropdownButton title={this.state.doc.currentSubject}>
                                 {subjects.map((item) => {
                                     return (
                                         <Dropdown.Item onSelect={(evt) => this.changeCurrentSubject(evt)} eventKey={item.subjectName}>
@@ -182,10 +185,7 @@ class CreateDoc extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <DropdownButton
-                                id="dropdown-basic-button"
-                                title={this.state.doc.currentSemester}
-                            >
+                            <DropdownButton title={this.state.doc.currentSemester}>
                                 {semesters.map((item) => {
                                     return (
                                         <Dropdown.Item onSelect={(evt) => this.changeCurrentSemester(evt)} eventKey={item.semesterNo + " . " + item.academicYear}>
@@ -200,9 +200,8 @@ class CreateDoc extends Component {
                     <br className="mb-1"></br>
                     <Row className="browser-upload">
                         <Col>
-
-                            <Form.File id="formcheck-api-custom" onChange={this.changeUploadFileName.bind(this)} custom>
-                                <Form.File.Input onChange={this.changeUploadFileName.bind(this)} isValid />
+                            <Form.File id="formcheck-api-custom" onChange={this.changeUploadFileName} custom>
+                                <Form.File.Input onChange={this.changeUploadFileName} isValid />
                                 <Form.File.Label data-browse="Tải lên">
                                     {this.state.uploadFileName}
                                 </Form.File.Label>
@@ -212,7 +211,7 @@ class CreateDoc extends Component {
                     </Row>
 
                     <br></br>
-                    <Button block className="btn-submit" variant="success" type="submit" onClick={this.handleUpload.bind(this)}>
+                    <Button block className="btn-submit" variant="success" onClick={this.handleUpload.bind(this)}>
                         Tải lên
                     </Button>
                 </Form>

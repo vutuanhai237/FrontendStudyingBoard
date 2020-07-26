@@ -12,7 +12,7 @@ import FilterPost from "../post/FilterPost";
 import Paging from "../Paging"
 import "./ListPost.scss"
 import { bindActionCreators } from 'redux';
-import { getPostByFilter } from "../../service/PostAPI"
+import { getSearchPost, getCategoriesPost } from "../../service/PostAPI"
 class ListPost extends Component {
     constructor(props) {
         super(props);
@@ -22,14 +22,14 @@ class ListPost extends Component {
     }
 
     componentDidMount() {
-        this.props.getPostByFilter("page=1");
+        this.props.getSearchPost("page=1");
+      
     }
     render() {
-        console.log(this.props.posts);
         return (
             <div id="group-post">
                 <div>
-                    <p className="title">DANH SÁCH BÀI VIẾT</p>
+                    <p style={{marginTop: "20px"}}className="title">DANH SÁCH BÀI VIẾT</p>
                 </div>
                 <FilterPost/>
                 <Card.Body id="card-body">
@@ -53,10 +53,12 @@ class ListPost extends Component {
 const mapStateToProps = (state) => {
     return {
         posts: state.post.posts,
+        categories: state.post.categories,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getPostByFilter
+    getSearchPost,
+    getCategoriesPost,
 }, dispatch);
 
 

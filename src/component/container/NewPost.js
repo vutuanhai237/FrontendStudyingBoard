@@ -1,5 +1,5 @@
 // Document by VTH
-// function: shows the top of events in home page.
+// function: shows the top of posts in home page.
 // props from parent: none
 // state: expand or not
 // dependency component: summary post
@@ -8,18 +8,22 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
-import { getPostNewActivities } from "../../service/PostAPI";
-import { bindActionCreators } from "redux";
 import "./TopPost.scss";
-class TopEvent extends Component {
+import { bindActionCreators } from "redux";
+import { getPostNewests } from "../../service/PostAPI"
+class NewPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isExpand: "block",
         };
     }
+
+    componentDidMount() {
+        this.props.getPostNewests();
+    }
     changeStatePost() {
-        if (this.state.isExpand == "block") {
+        if (this.state.isExpand === "block") {
             this.setState({
                 isExpand: "none",
             });
@@ -29,23 +33,21 @@ class TopEvent extends Component {
             });
         }
     }
-    componentDidMount() {
-        this.props.getPostNewActivities();
-    }
+
     render() {
-        const { newActivities } = this.props;
+        const { newests } = this.props;
         const style = {
             display: this.state.isExpand,
         };
         return (
             <div id="group-post">
                 <div onClick={this.changeStatePost.bind(this)}>
-                    <p style={{marginTop: "20px"}} className="title">HOẠT ĐỘNG MỚI</p>
+                    <p className="title">BÀI VIẾT MỚI</p>
                 </div>
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {newActivities.map((item) => {
+                        {newests.map((item) => {
                             return (
                                 <Col sm={12} md={4}>
                                     <SummaryPost item={item}></SummaryPost>
@@ -61,14 +63,14 @@ class TopEvent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        newActivities: state.post.newActivities,
+        newests: state.post.newests,
     };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getPostNewActivities,
+    getPostNewests,
 }, dispatch);
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(TopEvent)
+    connect(mapStateToProps, mapDispatchToProps)(NewPost)
 );

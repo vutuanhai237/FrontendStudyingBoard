@@ -15,7 +15,7 @@ import "./CreatePost.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { getCategoriesDoc } from "../../service/DocAPI";
+import { getCategoriesPost } from "../../service/PostAPI";
 import Tags from "../../component/post/Tags";
 class CreatePost extends Component {
     constructor(props) {
@@ -48,14 +48,14 @@ class CreatePost extends Component {
             isPreview: true,
         })
     }
-    changeCurrentCategory(evt, name) {
+    changeCurrentCategory(evt) {
         console.log(evt);
         this.setState({
             currentCategory: evt
         })
     }
     componentDidMount() {
-        this.props.getCategoriesDoc();
+        this.props.getCategoriesPost();
     }
 
     handleUpload() {
@@ -156,8 +156,8 @@ class CreatePost extends Component {
                         <DropdownButton id="dropdown-basic-button" title={this.state.currentCategory} className="dropdown">
                             {categories.map((item) => {
                                 return (
-                                    <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.name}>
-                                        {item.name}
+                                    <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.title}>
+                                        {item.title}
                                     </Dropdown.Item>
 
                                 );
@@ -207,12 +207,13 @@ class CreatePost extends Component {
 
 const mapStatetoProps = (state) => {
     return {
-        categories: state.doc.categories,
+        categories: state.post.categories,
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCategoriesDoc,
+    getCategoriesPost,
+    
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CreatePost));

@@ -70,7 +70,7 @@ class Header extends Component {
                     <div id="write-icon" onClick={() => redirect("/create_post")}>
                         <FontAwesomeIcon icon={faFileSignature}/>
                     </div>
-                    <div id="upload-icon" onClick={() => redirect("/create_document")}>
+                    <div id="upload-icon" onClick={() => redirect("/create_doc")}>
                         <FontAwesomeIcon icon={faCloudUploadAlt}/>
                     </div>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

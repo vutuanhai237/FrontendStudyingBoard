@@ -1,10 +1,10 @@
 $unhover_color: rgba(0, 0, 0, 0.54);
 .filter {
-    margin-left: 0px;
+    margin-left: 20px;
     margin-right: 0px;
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor: pointer;
+    cursor: progress;
     
 }
 
@@ -22,9 +22,14 @@ $unhover_color: rgba(0, 0, 0, 0.54);
     margin-right: 5px;
 }
 
-
+.filter .postcato{
+    margin-left: 20px;
+}
 @media (max-width: 750px) {
     .filter {
+        margin-left: 20px;
+    }
+    .filter .postcato {
         margin-left: 20px;
     }
 }

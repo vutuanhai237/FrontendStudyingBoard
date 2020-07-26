@@ -9,10 +9,10 @@ import {
     DOC_GET_DOC_BY_ID,
 } from "../constant/index.js"
 
-export function docPostDoc(doc) {
+export function docPostDoc(statusPostDocCode) {
     return {
         type: DOC_POST_DOC,
-        payload: doc,
+        payload: statusPostDocCode,
     }
 }
 

@@ -27,7 +27,7 @@ class ListDoc extends Component {
         return (
             <div id="group-post">
                 <div>
-                    <p className="title">DANH SÁCH TÀI LIỆU</p>
+                    <p style={{marginTop: "20px"}} className="title">DANH SÁCH TÀI LIỆU</p>
                 </div>
                 <FilterDoc />
                 <Card.Body id="card-body">

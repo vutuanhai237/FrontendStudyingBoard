@@ -9,12 +9,18 @@ import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
 import "./TopPost.scss";
+import { bindActionCreators } from "redux";
+import { getPostHighlights } from "../../service/PostAPI"
 class TopPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isExpand: "block",
         };
+    }
+
+    componentDidMount() {
+        this.props.getPostHighlights();
     }
     changeStatePost() {
         if (this.state.isExpand === "block") {
@@ -29,7 +35,7 @@ class TopPost extends Component {
     }
 
     render() {
-        const { posts } = this.props;
+        const { highlights } = this.props;
         const style = {
             display: this.state.isExpand,
         };
@@ -41,7 +47,7 @@ class TopPost extends Component {
 
                 <Card.Body style={style} className="card-body">
                     <Row>
-                        {posts.slice(0,3).map((item) => {
+                        {highlights.map((item) => {
                             return (
                                 <Col sm={12} md={4}>
                                     <SummaryPost item={item}></SummaryPost>
@@ -57,13 +63,13 @@ class TopPost extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.post.posts,
+        highlights: state.post.highlights,
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getPostHighlights,
+}, dispatch);
 
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(TopPost)

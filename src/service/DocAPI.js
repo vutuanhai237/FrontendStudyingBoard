@@ -13,7 +13,31 @@ import Cookies from 'js-cookie';
 
 export function postDoc(doc) {
     return dispatch => {
-
+        var myHeaders = new Headers();
+       
+        var formdata = new FormData();
+        formdata.append("file", doc.file);
+        formdata.append("title", doc.title);
+        formdata.append("summary", doc.summary);
+        formdata.append("categoryId", doc.categoryID);
+        formdata.append("subjectId", doc.subjectID);
+        formdata.append("semesterId", doc.semesterID);
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: formdata,
+          redirect: 'follow'
+        };
+        
+        fetch(`http://${PORT}/docs/upload?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+          .then(response => response.text())
+          .then(result => {
+              console.log(result);
+              const statusPostDocCode = 1;
+              dispatch(docPostDoc(statusPostDocCode));
+          })
+          .catch(error => console.log('error', error));
     }
 }
 

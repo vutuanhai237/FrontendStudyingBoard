@@ -13,7 +13,7 @@ class SummaryPost extends Component {
         return (
             <div id="summary">
                 <a href={"/posts/" + 1}>
-                    <Card.Img variant="top" src={item.authorAvatarURL} />
+                    <Card.Img variant="top" src={item.imageURL} />
                     <Card.Link className="card-title" href={item.contentURL}>
                         {item.title}
                     </Card.Link>
@@ -29,7 +29,7 @@ class SummaryPost extends Component {
                         {item.authorName}
                     </Card.Link>
                     <Card.Text className="card-date">{item.publishDate}</Card.Text>
-                    <FooterSummaryPost item={item} />
+                    {/* <FooterSummaryPost isSummary={true} item={item} /> */}
                 </a>
             </div>
         );
