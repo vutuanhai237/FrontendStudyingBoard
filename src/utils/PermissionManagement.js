@@ -296,8 +296,8 @@ const COLLABORATOR = {
     ...PermissionList.PostPermission.Save,
     ...PermissionList.PostPermission.Like,
     ...PermissionList.PostPermission.Create,
-    ...PermissionList.DocumentPermission.Approve,
-    ...PermissionList.DocumentPermission.Preview,
+    ...PermissionList.PostPermission.Approve,
+    ...PermissionList.PostPermission.Preview,
 }
 
 const getPermissionOfRoleByRoleName = function (roleName) {
