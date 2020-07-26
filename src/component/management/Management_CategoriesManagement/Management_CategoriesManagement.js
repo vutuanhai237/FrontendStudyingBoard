@@ -540,7 +540,6 @@ class Management_CategoryManagement extends Component {
 
 //#region for Redux
 const mapStatetoProps = (state) => {
-    // console.log("*");
     console.log(state.doc);
     return {
         categoryList: state.doc.categories,

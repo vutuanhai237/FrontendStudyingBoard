@@ -86,7 +86,7 @@ class Management_UpdatePassword extends Component {
     componentDidMount() {
         this.props.getCurrentUser();
         this.realPassword = this.props.accountInformation.password;
-        console.log(this.realPassword);
+        // console.log(this.realPassword);
     }
 
 
@@ -349,7 +349,7 @@ class Management_UpdatePassword extends Component {
         if ((this.updatePassword_DTO.confirmationPassword !== ""
             && this.updatePassword_DTO.confirmationPassword !== null)
             && this.updatePassword_DTO.confirmationPassword.length < 6) {
-            console.log("A")
+            
             this.canClickUpdatePassword = false;
             this.setState({});
             return;

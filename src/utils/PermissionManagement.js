@@ -1,6 +1,10 @@
+import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 
 
-export const PermissionList = {
+const PermissionList = {
+    ContentManagementPermission: {
+        Management: { ContentManagement: "CONTENT_MANAGEMENT" }
+    },
     DocumentPermission: {
         Upload: { DocumentUpload: "DOCUMENT_UPLOAD" },
         Edit: { DocumentEdit: "DOCUMENT_EDIT" },
@@ -182,12 +186,24 @@ export const PermissionList = {
 export function getRoleNameByName(roleName) {
     if (roleName === "ADMIN")
         return "Admin";
-    if (roleName === "ROLE_USER")
+    if (roleName === "USER")
         return "User";
-    if (roleName === "ROLE_COLLABORATOR")
+    if (roleName === "COLLABORATOR")
         return "Collaborator";
     return "Guest";
 }
+
+
+export function getRoleNameFilterByName(roleName) {
+    if (roleName === "ADMIN")
+        return "Admin";
+    if (roleName === "USER")
+        return "User";
+    if (roleName === "COLLABORATOR")
+        return "Collaborator";
+    return "All";
+}
+
 
 export function getRoleNamebyID(roleId) {
     if (roleId === 1)
@@ -199,33 +215,46 @@ export function getRoleNamebyID(roleId) {
     return "Guest";
 }
 
-export function isGrantedSpecificPermissionByRoleName(permission, roleName) {
-
+//to use this function, class use this must have 
+export const isGrantedPermissions = function (permissionList) {
+    if (this.props.accountInformation.roleName) {
+        for (let key in permissionList) {
+            if (!(getPermissionOfRoleByRoleName(this.props.accountInformation.roleName).hasOwnProperty(key)))
+                return false;
+        }
+        return true;
+    }
+    else {
+        console.log("Please make props.accountInformation.roleName of " + this.class + "not undefined or null!")
+    }
+    return false;
 }
 
-export function isGrantedSpecificPermissionByRoleId(permission, roleId) {
 
-}
 
-export function isGrantedPermissionsByName(...listPermissionName) {
+// export function isGrantedSpecificPermissionByRoleId(permission, roleId) {
 
-}
+// }
 
-export function isGrantedPermissionsById(...listPermissionName) {
+// export function isGrantedPermissions(...listPermissionName) {
 
-}
+// }
+
+// export function isGrantedPermissionsById(...listPermissionName) {
+
+// }
 
 export function logAllPermissionByRoleName(roleName) {
     if (roleName === "ADMIN") {
         console.log(ADMIN);
         return;
     }
-    if (roleName === "ROLE_USER") {
-        console.log(ROLE_USER);
+    if (roleName === "USER") {
+        console.log(USER);
         return;
     }
-    if (roleName === "ROLE_COLLABORATOR") {
-        console.log(ROLE_COLLABORATOR);
+    if (roleName === "COLLABORATOR") {
+        console.log(COLLABORATOR);
         return;
     }
 
@@ -233,7 +262,8 @@ export function logAllPermissionByRoleName(roleName) {
 
 
 //config:
-export const ADMIN = {
+const ADMIN = {
+    ...PermissionList.ContentManagementPermission.Management,
     ...PermissionList.AccountPermission.All,
     ...PermissionList.DocumentPermission.All,
     ...PermissionList.PostPermission.All,
@@ -245,7 +275,7 @@ export const ADMIN = {
 
 }
 
-export const ROLE_USER = {
+const USER = {
     ...PermissionList.DocumentPermission.Upload,
     ...PermissionList.DocumentPermission.Download,
     ...PermissionList.AccountPermission.All,
@@ -255,18 +285,43 @@ export const ROLE_USER = {
     ...PermissionList.PostPermission.Create,
 }
 
-export const ROLE_COLLABORATOR = {
+const COLLABORATOR = {
+    ...PermissionList.AccountPermission.All,
+    ...PermissionList.ContentManagementPermission.Management,
     ...PermissionList.DocumentPermission.Upload,
     ...PermissionList.DocumentPermission.Download,
     ...PermissionList.DocumentPermission.Approve,
     ...PermissionList.DocumentPermission.Preview,
-
-    ...PermissionList.AccountPermission.All,
-
     ...PermissionList.PostPermission.Comment,
     ...PermissionList.PostPermission.Save,
     ...PermissionList.PostPermission.Like,
     ...PermissionList.PostPermission.Create,
     ...PermissionList.DocumentPermission.Approve,
     ...PermissionList.DocumentPermission.Preview,
-} 
+}
+
+const getPermissionOfRoleByRoleName = function (roleName) {
+    switch (roleName) {
+        case "ADMIN":
+            return ADMIN;
+        case "COLLABORATOR":
+            return COLLABORATOR;
+        case "USER":
+            return USER;
+        default:
+            return;
+
+    }
+}
+
+export const {
+    AccountPermission,
+    DocumentPermission,
+    ActivityPermission,
+    NotificationPermission,
+    RolePermission,
+    CategoryPermission,
+    PostPermission,
+    UserPermission,
+    ContentManagementPermission
+} = PermissionList;

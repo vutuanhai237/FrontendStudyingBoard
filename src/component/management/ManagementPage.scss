@@ -98,7 +98,12 @@
 }
 
 .justify_content_space_between {
+    display: flex;
     justify-content: space-between;
+}
+
+.text_align_right {
+    text-align: right;
 }
 
 .width_100_percents {
@@ -161,6 +166,9 @@
 .position_relative {
     position: relative;
 }
+.padding_3px {
+    padding: 3px;
+}
 .Number_Of_Item {
     margin-bottom: 10px;
     font-family: "Barlow Condensed";
@@ -168,4 +176,9 @@
     font-size: 16;
     font-weight: 600;
     color: #363636;
+}
+
+.Icon_Size_24_x_24{
+    width: 24px;
+    height: 24px;
 }

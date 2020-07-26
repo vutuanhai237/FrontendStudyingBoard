@@ -18,6 +18,22 @@
     margin-top: 2px;
 }
 
+.Simple_Gray_Label_Fit_Content {
+    width: fit-content;
+    height: fit-content;
+    vertical-align: auto;
+    text-align: left;
+    // background: white;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 100%;
+    color: #363636;
+    user-select: none;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
 .Simple_Blue_Label {
     width: 100%;
     height: fit-content;

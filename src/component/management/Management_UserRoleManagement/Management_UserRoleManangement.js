@@ -34,7 +34,7 @@ class Management_UserRoleManagement extends Component {
         this.selected_category_name = "";
 
         this.state = {
-            rolesList:
+            roleList:
                 [
                     {
                         "id": 1,
@@ -104,7 +104,7 @@ class Management_UserRoleManagement extends Component {
                                             <div className="Custom_Table_80percents_Header">Tên quyền - Quyền tương ứng</div>
                                         </div>
 
-                                        {this.state.rolesList.map(item =>
+                                        {this.state.roleList.map(item =>
                                             <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.title)} >
                                                 <div className="Custom_Table_Item_20percents">{item.id}</div>
                                                 <div className="Custom_Table_Item_80percents">{item.title}</div>

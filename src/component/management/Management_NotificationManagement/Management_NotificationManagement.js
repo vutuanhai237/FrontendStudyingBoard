@@ -4,12 +4,12 @@ import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
 import dropdown_btn from '../../../img/dropdown_icon.png'
-import './Management_PageNotification.scss'
+import './Management_NotificationManagement.scss'
 // import done_icon from '../../../img/done_icon.png'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
-class Management_PageNotification extends Component {
+class Management_NotificationManagement extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -292,4 +292,4 @@ class Management_PageNotification extends Component {
 
 
 }
-export default Management_PageNotification;
+export default Management_NotificationManagement;

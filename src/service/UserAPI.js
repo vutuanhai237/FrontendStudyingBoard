@@ -25,7 +25,7 @@ export function postRegister(account) {
             redirect: 'follow'
         };
 
-        fetch(`https://${HOST}/register`, requestOptions)
+        fetch(`https://${PORT}/register`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -104,7 +104,7 @@ export function getLogout() {
             redirect: 'follow'
         };
         Cookies.remove('JSESSIONID');
-        fetch(`https://${HOST}/logout`, requestOptions)
+        fetch(`https://${PORT}/logout`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);

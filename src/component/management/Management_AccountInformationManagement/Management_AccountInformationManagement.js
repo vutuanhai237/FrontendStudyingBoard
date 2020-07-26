@@ -22,6 +22,10 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getCurrentUser } from '../../../service/UserAPI'
+import { management_getAllRoles } from '../../../service/management_services/management_userAPIs'
+
+//import for role config
+import { getRoleNameFilterByName } from '../../../utils/PermissionManagement'
 
 class Management_AccountInformationManagement extends Component {
     constructor(props) {
@@ -41,26 +45,6 @@ class Management_AccountInformationManagement extends Component {
         this.documentCount = 0;
         this.roleID = 2;
         this.roleName = "";
-
-        //from Role API:
-        this.roleList = [
-            {
-                roleID: 1,
-                roleName: "MANAGEMENT",
-                role: "Management"
-            },
-            {
-
-                roleID: 2,
-                roleName: "COLLABORATOR",
-                role: "Collaborator"
-            },
-            {
-                id: 2,
-                roleName: "USER",
-                role: "User"
-            }
-        ];
 
         //for popup
         this.isChangeRoleConfirmationPopupOpen = false;
@@ -89,12 +73,13 @@ class Management_AccountInformationManagement extends Component {
         this.state = {
             pictures: []
         }
+
+        this.roleList = [];
     }
 
     componentDidMount() {
         // (this.props);
         this.props.getCurrentUser();
-        // this.props.roleList = this.roleList;
     }
 
 
@@ -109,15 +94,16 @@ class Management_AccountInformationManagement extends Component {
             this.avatar = "";
             this.email = "";
             this.score = "";
-            this.postCount = 0;
-            this.documentCount = 0;
-            this.roleID = 2;
-            this.roleName = "";
+            this.postCount = this.props.accountInformation.postCount;
+            this.documentCount = this.props.accountInformation.documentCount;
+            this.roleID = this.props.accountInformation.roleId;
+            this.roleName = this.props.accountInformation.roleName;
 
+            this.roleList = this.props.roleList;
+            // console.log(this.roleList);
             let roles_Combobox =
-                // this.props.roleList.map(role =>
                 this.roleList.map(role =>
-                    this.props.accountInformation.roleID === role.id ?
+                    this.accountInformation.roleID === role.id ?
                         <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
                         <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
@@ -160,8 +146,12 @@ class Management_AccountInformationManagement extends Component {
                                                             {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
                                                             <div className="display_flex">
                                                                 <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
-                                                                    {this.props.accountInformation.roleId ?
-                                                                        this.roleList[this.props.accountInformation.roleId].role : "User"
+                                                                    {
+                                                                        this.roleList.map(role =>
+                                                                            role.UserGroupID === this.roleID ?
+                                                                                getRoleNameFilterByName(role.UserGroupName)
+                                                                                : <></>
+                                                                        )
                                                                     }
                                                                 </div>
                                                             </div>
@@ -189,11 +179,11 @@ class Management_AccountInformationManagement extends Component {
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Port">
                                             <div className="display_flex width_50_percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                <div className="margin_left_5px">{this.props.accountInformation.postCount}</div>
+                                                <div className="margin_left_5px">{this.postCount}</div>
                                             </div>
                                             <div className="display_flex width_50_percents">
                                                 <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                <div className="margin_left_5px"> {this.props.accountInformation.documentCount}</div>
+                                                <div className="margin_left_5px"> {this.documentCount}</div>
                                             </div>
                                         </div>
                                     </div >
@@ -202,7 +192,11 @@ class Management_AccountInformationManagement extends Component {
                             <div className="Management_Account_Information_Bounding_Port">
 
                                 <div className="Account_Information_Port">
-                                    {(window.location.pathname === "/management" || window.location.pathname === "/management/") ?
+                                    {(window.location.pathname === "/admin"
+                                        || window.location.pathname === "/admin/"
+                                        || window.location.pathname === "/user"
+                                        || window.location.pathname === "/user/"
+                                    ) ?
                                         <div>
                                             {/* Display name */}
                                             <div className="position_relative">
@@ -591,13 +585,15 @@ class Management_AccountInformationManagement extends Component {
 //#region for Redux
 const mapStatetoProps = (state) => {
     // (state);
+    // console.log(state);
     return {
+        roleList: state.management_user.allRoles,
         accountInformation: state.user.account
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCurrentUser
+    getCurrentUser, management_getAllRoles
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Management_AccountInformationManagement));
