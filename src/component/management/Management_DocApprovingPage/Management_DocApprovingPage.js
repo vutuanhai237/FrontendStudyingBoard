@@ -73,7 +73,6 @@ class Management_DocApprovingPage extends Component {
                     // lost
                     semester={requestedDoc.semester}
                     year={requestedDoc.year}
-
                     //not need
                     publishDate={requestedDoc.documentPublishDtm}
 
@@ -108,9 +107,9 @@ class Management_DocApprovingPage extends Component {
 }
 
 const mapStatetoProps = (state) => {
-    console.log(state.management_doc);
+    console.log(state);
     return {
-        requestedDocs: state.management_doc.requestedDocs
+        requestedDocs: state.management_doc.requestedDocs,
     };
 }
 

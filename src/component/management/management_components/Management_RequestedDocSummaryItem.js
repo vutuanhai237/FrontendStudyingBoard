@@ -35,9 +35,8 @@ class Management_RequestedDocSummaryItem extends Component {
     }
 
 
-    componentDidMount()
-    {
-        
+    componentDidMount() {
+
     }
 
     getFirstImage() {
@@ -139,7 +138,12 @@ class Management_RequestedDocSummaryItem extends Component {
     }
 
     navigateToAuthorPersonalPage = () => {
-        window.location.href = "/management/user/" + this.authorID;
+        if (window.location.pathname.substring(0, 6) === "/admin") {
+            window.location.href = "/admin/user/" + this.authorID;
+            return;
+        }
+        if (window.location.pathname.substring(0, 5) === "/user")
+            window.location.href = "/user/" + this.authorID;
     }
 
     navigateToSameCategoryDocsPage = () => {
@@ -147,7 +151,13 @@ class Management_RequestedDocSummaryItem extends Component {
     }
 
     handlerPreviewRequestedPost = () => {
-        window.location.href = "/management/doc_approving/" + this.id;
+        if (window.location.pathname.substring(0, 6) === "/admin") {
+            window.location.href = "/admin/doc_approving/" + this.id;
+            return;
+        }
+        if (window.location.pathname.substring(0, 5) === "/user")
+            window.location.href = "/user/doc_approving/" + this.id;
+
     }
 
     handlerRejectRequestedPost = () => {

@@ -271,11 +271,11 @@ class ManagementPage extends Component {
                                                             </Link>
                                                     }
                                                     {
-                                                        window.location.pathname === "/admin/posts_list" || window.location.pathname === "/user/posts_list"
+                                                        window.location.pathname === "/admin/docs_list" || window.location.pathname === "/user/docs_list"
                                                             ?
                                                             <Link
                                                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                                to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/posts_list" : "/user/posts_list"}
+                                                                to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/docs_list" : "/user/docs_list"}
                                                             >
                                                                 Danh sách tài liệu
                                                             </Link>
