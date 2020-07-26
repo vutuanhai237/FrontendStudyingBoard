@@ -98,7 +98,12 @@
 }
 
 .justify_content_space_between {
+    display: flex;
     justify-content: space-between;
+}
+
+.text_align_right {
+    text-align: right;
 }
 
 .width_100_percents {
@@ -160,6 +165,9 @@
 }
 .position_relative {
     position: relative;
+}
+.padding_3px {
+    padding: 3px;
 }
 .Number_Of_Item {
     margin-bottom: 10px;

@@ -12,8 +12,8 @@ import Register from "./page/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ManagementPage from './management/ManagementPage'
 import Management_DocPreview from './management/Management_DocPostPreview/Management_DocPreview'
-// import Management_PageNotification from "./management/Management_PageNotification/Management_PageNotification";
 
+// import 
 const App = () => {
 
     return (
@@ -30,26 +30,32 @@ const App = () => {
                 <Route exact path="/docs/:id" component={Docs} />
                 <Route exact path="/events" component={Events} />
 
-                {/* Admin management */}
-                <Route exact path="/management" component={ManagementPage} />
-                <Route exact path="/management/post_approving" component={ManagementPage} />
-                <Route exact path="/management/categories_management" component={ManagementPage} />
-                {/* <Route exact path="/management/post_approving/:id"> */}
-                <Route exact path="/management/doc_approving" component={ManagementPage} />
-                <Route exact path="/management/page_notification" component={ManagementPage} />
-                <Route exact path="/management/users_management" component={ManagementPage} />
-                <Route exact path="/management/activity_management" component={ManagementPage} />
-                {/* <Route exact path="management/user/:id"> */}
-                <Route exact path="/management/account_management" component={ManagementPage} />
-                <Route exact path="/management/update_password" component={ManagementPage} />
-                <Route exact path="/management/user_role_management" component={ManagementPage} />
-                <Route exact path="/management/doc_approving/:id" component={Management_DocPreview} />
+                {/* Account and Page (admin and collab only) management */}
+                <Route exact path="/admin" component={ManagementPage} />     {/* for admin */}
+                <Route exact path="/admin/update_password" component={ManagementPage} />
+                <Route exact="/user" component={ManagementPage} />{/* for user and collab */}
+                <Route exact path="/user/update_password" component={ManagementPage} />
 
-                {/* User manegement */}
-                <Route exact path="/user/:id">
-                    <ManagementPage></ManagementPage>
-                </Route>
-        
+                {/* Admin and collab page content management */}
+                {/* for admin */}
+                <Route exact path="/admin/post_approving" component={ManagementPage} />
+                <Route exact path="/admin/post_approving/:id" />
+                <Route exact path="/admin/doc_approving" component={ManagementPage} />
+                <Route exact path="/admin/doc_approving/:id" component={Management_DocPreview} />
+
+                {/* for collab */}
+                <Route exact path="/user/post_approving" component={ManagementPage} />
+                {/* <Route exact path="/user/post_approving/:id" component = {}/> */}
+                <Route exact path="/user/doc_approving" component={ManagementPage} />
+                <Route exact path="/user/doc_approving/:id" component={Management_DocPreview} />
+
+                {/* for admin only */}
+                <Route exact path="/admin/page_notification" component={ManagementPage} />
+                <Route exact path="/admin/categories_management" component={ManagementPage} />
+                <Route exact path="/admin/users_management" component={ManagementPage} />
+                <Route exact path="/admin/activity_management" component={ManagementPage} />
+                <Route exact path="/admin/user_role_management" component={ManagementPage} />
+                <Route exact path="/admin/users_management/:id" component={ManagementPage} />
 
             </Switch>
             <div className="App"></div>

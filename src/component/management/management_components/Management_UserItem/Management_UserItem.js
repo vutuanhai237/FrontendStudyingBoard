@@ -4,7 +4,7 @@ import gray_write_icon from '../../../../img/gray_write_icon.png'
 import gray_upload_icon from '../../../../img/gray_upload_icon.png'
 import white_dropdown_btn from '../../../../img/white_dropdown_icon.png'
 import dropdown_btn from '../../../../img/dropdown_icon.png'
-
+import icon_write from '../../../../img/icon_write.png'
 //combobox
 import '../../../shared_components/CustomCombobox.scss'
 
@@ -12,7 +12,7 @@ import '../../../shared_components/CustomCombobox.scss'
 import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
 
 import { ClickAwayListener } from '@material-ui/core';
-
+import { getRoleNameByName } from '../../../../utils/PermissionManagement'
 class Management_UserItem extends Component {
 
     constructor(props) {
@@ -20,6 +20,7 @@ class Management_UserItem extends Component {
 
 
         this.roleID = "";
+        this.roleName = "";
         this.userID = "";
         this.name = "";
         this.userName = "";
@@ -29,7 +30,7 @@ class Management_UserItem extends Component {
         this.postCount = "";
         this.docCount = "";
         this.score = "";
-        this.rolesList = [];
+        this.roleList = [];
 
         //for cancel change roleID
         this.recover_roleID = this.props.roleID;
@@ -52,25 +53,35 @@ class Management_UserItem extends Component {
     }
 
     render() {
-        
-        if (this.rolesList !== null && this.rolesList !== undefined) {
+
+        if (this.roleList !== null && this.roleList !== undefined) {
             this.roleID = this.props.roleID;
+            this.roleName = this.props.roleName;
             this.userID = this.props.userID;
             this.name = this.props.name;
             this.userName = this.props.userName;
-            // this.nickName = this.props.nickName;
             this.avatarUrl = this.props.avatarUrl;
             this.email = this.props.email;
             this.postCount = this.props.postCount;
             this.docCount = this.props.docCount;
             this.score = this.props.score;
-            this.rolesList = this.props.rolesList;
+            this.roleList = this.props.roleList;
 
-            let roles_Combobox = this.rolesList.map(role =>
-                this.roleID === role.id ?
-                    <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                    <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.id} value={role.role} key={role.id}
-                        onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
+            let roles_Combobox = this.roleList.map(role =>
+                this.roleID === role.UserGroupID ?
+                    <div className="Activated_Dropdown_Combobox_Sub_Item"
+                        id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
+                        value={getRoleNameByName(role.UserGroupName)}
+                        key={role.UserGroupID}>
+                        {getRoleNameByName(role.UserGroupName)}
+                    </div>
+                    :
+                    <div className="Dropdown_Combobox_Sub_Item"
+                        id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
+                        value={role.UserGroupName}
+                        key={role.UserGroupID}
+                        onClick={() => this.handleDropDownMenuItemClick(role.UserGroupID)}>
+                        {getRoleNameByName(role.UserGroupName)}
                     </div>
 
             )
@@ -83,9 +94,12 @@ class Management_UserItem extends Component {
                     <div style={{
                         paddingLeft: "10px", width: "100%"
                     }}>
-                        < div style={{ display: "flex" }}>
+                        < div style={{ display: "flex", justifyContent: "space-between" }}>
                             <div className="User_Item_Name">{this.name}</div>
-                            {/* <div className="User_Item_Nick_Name">({this.nickName})</div> */}
+                            <div className="User_Item_Edit_Btn" onClick={() => { window.location.href = "/management/users_management/" + this.userID }}>
+                                <img alt="edit" className="User_Item_Edit_Btn_Element margin_right_5px" src={icon_write} />
+                                <div className="Simple_Gray_Label" style={{ paddingTop: "2px" }}>Chỉnh sửa</div>
+                            </div>
                         </div>
                         <div>
                             <div className="User_Item_Email">{this.email}</div>
@@ -110,7 +124,11 @@ class Management_UserItem extends Component {
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
                                                     <div className="display_flex">
                                                         <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
-                                                            {this.rolesList[this.roleID].role}
+
+                                                            {this.roleList ?
+                                                                getRoleNameByName(this.roleName)
+                                                                : ""
+                                                            }
                                                         </div>
                                                     </div>
                                                     <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id={"user-role-dropdown-btn-element-" + this.userID} />
@@ -185,7 +203,7 @@ class Management_UserItem extends Component {
         let item_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + roleID;
         let sub_dropdown_item = document.getElementById(item_id);
 
-        for (let i = 0; i < this.rolesList.length; i++) {
+        for (let i = 1; i <= this.roleList.length; i++) {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + i;
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";

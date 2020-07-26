@@ -20,7 +20,7 @@ import Management_DocApprovingPage from './Management_DocApprovingPage/Managemen
 import Management_PostApprovingPage from './Management_PostApprovingPage/Management_PostApprovingPage';
 import Management_UserManagement from './Management_UserManagement/Management_UserManagement';
 import Management_CategoriesManagement from './Management_CategoriesManagement/Management_CategoriesManagement'
-import Management_PageNotification from './Management_PageNotification/Management_PageNotification'
+import Management_NotificationManagement from './Management_NotificationManagement/Management_NotificationManagement'
 import Management_AccountInformationManagement from './Management_AccountInformationManagement/Management_AccountInformationManagement';
 import Management_UserRoleManagement from './Management_UserRoleManagement/Management_UserRoleManangement'
 
@@ -45,7 +45,7 @@ import { withRouter } from "react-router-dom";
 import { getCurrentUser } from '../../service/UserAPI'
 
 //import for permission
-import { logAllPermissionByRoleName, getRoleNameByName } from '../../utils/PermissionManagement'
+import { logAllPermissionByRoleName, getRoleNameByName, PermissionList } from '../../utils/PermissionManagement'
 
 class ManagementPage extends Component {
     constructor(props) {
@@ -465,30 +465,29 @@ class ManagementPage extends Component {
                             {/* Router Outlet */}
                             <div className="Management_Router_Outlet" >
                                 <Switch>
-                                    <Route path="/management/post_approving">
-                                        <Management_PostApprovingPage></Management_PostApprovingPage>
-                                    </Route>
-                                    <Route path="/management/doc_approving">
-                                        <Management_DocApprovingPage></Management_DocApprovingPage>
-                                    </Route>
-                                    <Route path="/management/users_management">
-                                        <Management_UserManagement></Management_UserManagement>
-                                    </Route>
-                                    <Route path="/management/categories_management">
-                                        <Management_CategoriesManagement></Management_CategoriesManagement>
-                                    </Route>
-                                    <Route path="/management/page_notification">
-                                        <Management_PageNotification></Management_PageNotification>
-                                    </Route>
-                                    <Route exact path="/management" >
-                                        <Management_AccountInformationManagement></Management_AccountInformationManagement>
-                                    </Route>
-                                    <Route exact path="/management/update_password">
-                                        <Management_AccountInformationManagement></Management_AccountInformationManagement>
-                                    </Route>
-                                    <Route path="/management/user_role_management">
-                                        <Management_UserRoleManagement></Management_UserRoleManagement>
-                                    </Route>
+
+                                    {/* Account and Page (admin and collab only) management */}
+                                    <Route exact path="/admin" component={Management_AccountInformationManagement} />     {/* for admin */}
+                                    <Route exact path="/admin/update_password" component={Management_AccountInformationManagement} />
+                                    <Route exact="/user" component={Management_AccountInformationManagement} />{/* for user and collab */}
+                                    <Route exact path="/user/update_password" component={Management_AccountInformationManagement} />
+
+                                    {/* Admin and collab page content management */}
+                                    {/* for admin */}
+                                    <Route exact path="/admin/post_approving" component={Management_PostApprovingPage} />
+                                    <Route exact path="/admin/doc_approving" component={Management_DocApprovingPage} />
+
+                                    {/* for collab */}
+                                    <Route exact path="/user/post_approving" component={Management_PostApprovingPage} />
+                                    <Route exact path="/user/doc_approving" component={Management_DocApprovingPage} />
+
+                                    {/* for admin only */}
+                                    <Route exact path="/admin/page_notification" component={Management_NotificationManagement} />
+                                    <Route exact path="/admin/categories_management" component={Management_CategoriesManagement} />
+                                    <Route exact path="/admin/users_management" component={Management_UserManagement} />
+                                    {/* <Route exact path="/admin/activity_management" component={ManagementPage} /> */}
+                                    <Route exact path="/admin/user_role_management" component={Management_UserRoleManagement} />
+                                    {/* <Route exact path="/admin/users_management/:id" component={ManagementPage} /> */}
                                 </Switch>
                             </div>
                         </Router>
@@ -498,7 +497,7 @@ class ManagementPage extends Component {
 
             );
         }
-        return <></>
+        return <> </>
     }
 
     //code style for dropdown menu

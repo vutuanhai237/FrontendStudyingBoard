@@ -182,12 +182,24 @@ export const PermissionList = {
 export function getRoleNameByName(roleName) {
     if (roleName === "ADMIN")
         return "Admin";
-    if (roleName === "ROLE_USER")
+    if (roleName === "USER")
         return "User";
-    if (roleName === "ROLE_COLLABORATOR")
+    if (roleName === "COLLABORATOR")
         return "Collaborator";
     return "Guest";
 }
+
+
+export function getRoleNameFilterByName(roleName) {
+    if (roleName === "ADMIN")
+        return "Admin";
+    if (roleName === "USER")
+        return "User";
+    if (roleName === "COLLABORATOR")
+        return "Collaborator";
+    return "All";
+}
+
 
 export function getRoleNamebyID(roleId) {
     if (roleId === 1)
@@ -220,12 +232,12 @@ export function logAllPermissionByRoleName(roleName) {
         console.log(ADMIN);
         return;
     }
-    if (roleName === "ROLE_USER") {
-        console.log(ROLE_USER);
+    if (roleName === "USER") {
+        console.log(USER);
         return;
     }
-    if (roleName === "ROLE_COLLABORATOR") {
-        console.log(ROLE_COLLABORATOR);
+    if (roleName === "COLLABORATOR") {
+        console.log(COLLABORATOR);
         return;
     }
 
@@ -245,7 +257,7 @@ export const ADMIN = {
 
 }
 
-export const ROLE_USER = {
+export const USER = {
     ...PermissionList.DocumentPermission.Upload,
     ...PermissionList.DocumentPermission.Download,
     ...PermissionList.AccountPermission.All,
@@ -255,7 +267,7 @@ export const ROLE_USER = {
     ...PermissionList.PostPermission.Create,
 }
 
-export const ROLE_COLLABORATOR = {
+export const COLLABORATOR = {
     ...PermissionList.DocumentPermission.Upload,
     ...PermissionList.DocumentPermission.Download,
     ...PermissionList.DocumentPermission.Approve,

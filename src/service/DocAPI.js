@@ -24,7 +24,7 @@ export function getCategoriesDoc() {
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/docs/categories`, requestOptions)
+        fetch(`http://${PORT}/docs/categories`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(docGetCategoriesDoc(JSON.parse(result)));
@@ -40,7 +40,7 @@ export function getSemesters() {
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/semesters`, requestOptions)
+        fetch(`http://${PORT}/semesters`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(docGetSemesters(JSON.parse(result)));
@@ -56,7 +56,7 @@ export function getSubjects() {
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/subjects`, requestOptions)
+        fetch(`http://${PORT}/subjects`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(docGetSubjects(JSON.parse(result)));
@@ -70,7 +70,7 @@ export function getSubjects() {
         //     redirect: 'follow'
         // };
 
-        // fetch(`https://${HOST}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        // fetch(`https://${PORT}/management/docs/notApproved&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
         //     .then(response => response.text())
         //     .then(result => console.log(result))
         //     .catch(error => console.log('error', error));
@@ -83,7 +83,7 @@ export function getSubjects() {
         //     redirect: 'follow'
         // };
 
-        // fetch(`https://${HOST}/users;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        // fetch(`https://${PORT}/users&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
         //     .then(response => response.text())
         //     .then(result => console.log(result))
         //     .catch(error => console.log('error', error));
@@ -97,7 +97,7 @@ export function getTopDoc() {
             redirect: 'follow'
         };
 
-        fetch(`http://${HOST}/docs/goodDoc?limit=3`, requestOptions)
+        fetch(`http://${PORT}/docs/goodDoc?limit=3`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
@@ -113,7 +113,7 @@ export function getSearchDoc(filter) {
             redirect: 'follow'
         };
 
-        fetch(`https://${HOST}/docs/search?${filter}`, requestOptions)
+        fetch(`https://${PORT}/docs/search?${filter}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(docGetSearchDoc(JSON.parse(result).shortDocs));

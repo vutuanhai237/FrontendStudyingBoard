@@ -21,6 +21,7 @@ export function management_getAllNotApprovedDocuments() {
         };
 
         fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        // fetch(`http://${PORT}/admin/docs/notApproved&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -78,8 +79,9 @@ export function management_approveADocument() {
             redirect: 'follow'
         };
 
-        console.log(`http://${PORT}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'))
-        fetch(`http://${PORT}/management/docs/notApproved;jsessionid=` + Cookies.get('JSESSIONID'), requestOptions)
+        // console.log(`http://${PORT}/management/docs/notApproved&sessionID=` + Cookies.get('JSESSIONID'))
+        // fetch(`http://${PORT}/management/docs/notApproved&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        fetch(`http://${PORT}/admin/docs/notApproved&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(
                 result => dispatch(managementApproveADocument(JSON.parse(result).shortDocs))

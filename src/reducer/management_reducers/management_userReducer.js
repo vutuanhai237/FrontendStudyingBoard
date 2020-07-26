@@ -7,9 +7,22 @@ const allUsers = [
 
 ]
 
-const allRoles = [
+const allRoles =
+    [
+        {
+            "UserGroupID": 1,
+            "UserGroupName": "ADMIN"
+        },
+        {
+            "UserGroupID": 2,
+            "UserGroupName": "COLLABORATOR"
+        },
+        {
+            "UserGroupID": 3,
+            "UserGroupName": "USER"
+        }
+    ]
 
-]
 
 const initialState = {
     allUsers: allUsers,
