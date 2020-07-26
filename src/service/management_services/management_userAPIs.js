@@ -15,7 +15,7 @@ export function management_getAllUsers() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/users&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        fetch(`http://${PORT}/users?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(
                 result => {

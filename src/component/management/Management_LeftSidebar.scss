@@ -17,7 +17,6 @@ a:hover {
 .Management_Info_Menu_Port {
     position: relative;
     width: 250px;
-    // background: pink;
 }
 
 .Fake_Management_Info_Menu_Port {
@@ -26,7 +25,6 @@ a:hover {
     width: 250px;
     height: 0px;
     background: transparent;
-    // background: ;
 }
 
 /* User Info Port: contain: avatar, display name, gmail and logout button */
@@ -92,13 +90,10 @@ a:hover {
     color: #5279db;
     border-left: 1px solid #c4c4c4;
     border-right: 1px solid #c4c4c4;
-    // background: pink;
 }
 
 .Achivement_Port {
     padding-top: 5px;
-    // padding-left: 5px;
-    // padding-right: ;
     justify-content: space-between;
     font-family: Barlow Condensed;
     font-style: normal;
@@ -107,7 +102,6 @@ a:hover {
     line-height: 30px;
     width: 150px;
     color: #363636;
-    // margin: auto;
     margin-left: 10px;
     height: 80px;
     border-bottom: 3px #c4c4c4 solid;
@@ -121,7 +115,6 @@ a:hover {
 }
 
 .Achivement_Post_Doc_Count_Port {
-    // margin: auto;
     display: flex;
     justify-content: space-between;
 }
@@ -137,11 +130,70 @@ a:hover {
     border-left: 1px;
     border-right: 1px;
     border-bottom: 1px;
-    border-top: 1px;
+
     border-color: #c4c4c4;
+    border-top: 2px #dddddd;
     border-style: solid;
-    // background: ;
+    // border-top: none;
     height: 460px;
+}
+
+.Tab_Menu {
+    width: 100%;
+    border-right: 1px #c4c4c4 solid;
+    border-left: 1px #c4c4c4 solid;
+    display: flex;
+}
+
+.Tab_Menu_Item_Port_50_percents {
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+    padding-bottom: 0px;
+    user-select: none;
+    height: fit-content;
+}
+
+.Tab_Menu_Item_Port {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    display: flex;
+    margin: auto;
+    padding: 4px;
+    width: 100%;
+    color: #363636;
+}
+.Activated_Tab_Menu_Item_Port {
+    position: relative;
+    display: flex;
+    margin: auto;
+    padding: 4px;
+    width: 100%;
+    background: #dddddd;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.Tab_Menu_Item_Port:hover {
+    background: #eeeeee;
+}
+
+.Tab_Menu_Item {
+    position: relative;
+    display: flex;
+    margin: auto;
+    width: fit-content;
+}
+
+.Tab_Menu_Item_Text {
+    margin: auto;
+    width: fit-content;
+    margin-left: 5px;
+    line-height: 24px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
 }
 
 .Vertical_Menu_Item {
@@ -150,9 +202,7 @@ a:hover {
     font-family: "Barlow Condensed", "san-serif";
     font-weight: 500;
     color: #363636;
-    // border: 1px white solid;
     user-select: none;
-    // border-bottom: 1px #eeeeee solid;
     text-decoration: none;
     box-shadow: 0px 1px 0px 0px #eeeeee;
     padding-top: 1px;
@@ -185,7 +235,6 @@ a:hover {
     color: #363636;
     padding-left: 0.35rem;
     text-decoration: none !important;
-    // border: none;
     outline: 0px;
 }
 
@@ -210,10 +259,9 @@ a:hover {
     padding-right: 10px;
     color: white;
     box-shadow: 0px 1px 0px 0px #eeeeee;
-    // padding-top: 1px;
-    // padding-bottom: 1px;
     margin-top: 0.35rem;
     margin-bottom: 1px;
+    // background: green;
 }
 
 .Btn_Element {

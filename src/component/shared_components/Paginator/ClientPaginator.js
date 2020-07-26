@@ -29,7 +29,7 @@ class Paginator extends Component {
         //     //ko sao dau
         //     this.pageCount = Math.floor(this.rawData.length / this.maxItemPerPage) + 1;
         // }
-        // console.log("*");
+        
         // console.log(this.rawData.length);
 
         // //initial array of page you want to render

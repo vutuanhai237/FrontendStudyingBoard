@@ -35,9 +35,9 @@ class Management_UserManagement extends Component {
 
         this.isChangeRoleConfirmationPopupOpen = false;
         this.isAnyChangeRoleFilterDropdownComboboxOpen = false;
-        this.currentInteractList_Level1 = [];
+        
         this.state = {
-            currentInteractList_Level2: []
+            currentInteractList: []
         }
     }
 
@@ -48,7 +48,7 @@ class Management_UserManagement extends Component {
 
     //client
     onPageChangeClient = (currentInteractList) => {
-        this.setState({ currentInteractList_Level2: currentInteractList })
+        this.setState({ currentInteractList: currentInteractList })
     }
 
     render() {
@@ -63,7 +63,7 @@ class Management_UserManagement extends Component {
 
 
             if (this.isTheFirstTimeLoad && this.roleList) {
-                this.currentInteractList_Level1 = [...this.usersList];
+                this.usersList = [...this.usersList];
                 this.roleFilterList = this.roleFilterList.concat(...this.roleList)
                 this.isTheFirstTimeLoad = false;
             }
@@ -92,7 +92,7 @@ class Management_UserManagement extends Component {
             this.isTheFirstTimeLoad = false;
 
 
-            userItemList = this.state.currentInteractList_Level2.map((userItem) =>
+            userItemList = this.state.currentInteractList.map((userItem) =>
                 <Management_UserItem
                     key={userItem.userID}
                     roleName={userItem.roleName}
@@ -173,8 +173,8 @@ class Management_UserManagement extends Component {
                     {userItemList}
 
                     <Paginator config={{
-                        changePage: (currentInteractList_Level2) => this.onPageChangeClient(currentInteractList_Level2),
-                        rawData: this.currentInteractList_Level1,
+                        changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
+                        rawData: this.usersList,
                         maxItemPerPage: this.maxItemPerPage,
                         numPagesShown: 5,
                         bottom: "31px"
@@ -190,15 +190,15 @@ class Management_UserManagement extends Component {
         sub_dropdown_item_index.forEach.className = "Dropdown_Combobox_Sub_Item";
         this.roleNameFilter = roleName;
         // if (roleName === "All") {
-        //     this.currentInteractList_Level1 = this.usersList;
+        //     this.currentInteractList = this.usersList;
         //     this.closeChangeRoleFilterDropdownCombobox();
         //     return;
         // }
-        // this.currentInteractList_Level1.splice(0, this.currentInteractList_Level1.length);
+        // this.currentInteractList.splice(0, this.currentInteractList.length);
         // for (let i = 0; i < this.usersList.length; i++) {
         //     if (this.usersList[i].roleName === roleName)
-        //         // console.log("A");
-        //         this.currentInteractList_Level1.push(this.usersList[i])
+        //         
+        //         this.currentInteractList.push(this.usersList[i])
         // }
         this.closeChangeRoleFilterDropdownCombobox();
     }
@@ -237,8 +237,8 @@ class Management_UserManagement extends Component {
 
 //#region for Redux
 const mapStatetoProps = (state) => {
-    // console.log("*");
-    console.log(state);
+    
+    console.log(state.management_user.allUsers.accounts);
     return {
         userList: state.management_user.allUsers.accounts,
         roleList: state.management_user.allRoles

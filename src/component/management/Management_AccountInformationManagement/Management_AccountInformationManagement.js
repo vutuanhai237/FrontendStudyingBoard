@@ -100,7 +100,7 @@ class Management_AccountInformationManagement extends Component {
             this.roleName = this.props.accountInformation.roleName;
 
             this.roleList = this.props.roleList;
-            console.log(this.roleList);
+            // console.log(this.roleList);
             let roles_Combobox =
                 this.roleList.map(role =>
                     this.accountInformation.roleID === role.id ?
@@ -192,7 +192,11 @@ class Management_AccountInformationManagement extends Component {
                             <div className="Management_Account_Information_Bounding_Port">
 
                                 <div className="Account_Information_Port">
-                                    {(window.location.pathname === "/management" || window.location.pathname === "/management/") ?
+                                    {(window.location.pathname === "/admin"
+                                        || window.location.pathname === "/admin/"
+                                        || window.location.pathname === "/user"
+                                        || window.location.pathname === "/user/"
+                                    ) ?
                                         <div>
                                             {/* Display name */}
                                             <div className="position_relative">
@@ -581,7 +585,7 @@ class Management_AccountInformationManagement extends Component {
 //#region for Redux
 const mapStatetoProps = (state) => {
     // (state);
-    console.log(state);
+    // console.log(state);
     return {
         roleList: state.management_user.allRoles,
         accountInformation: state.user.account

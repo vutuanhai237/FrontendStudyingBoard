@@ -70,7 +70,7 @@ export function getSubjects() {
         //     redirect: 'follow'
         // };
 
-        // fetch(`https://${PORT}/management/docs/notApproved&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        // fetch(`https://${PORT}/management/docs/notApproved?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
         //     .then(response => response.text())
         //     .then(result => console.log(result))
         //     .catch(error => console.log('error', error));
@@ -83,7 +83,7 @@ export function getSubjects() {
         //     redirect: 'follow'
         // };
 
-        // fetch(`https://${PORT}/users&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        // fetch(`https://${PORT}/users?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
         //     .then(response => response.text())
         //     .then(result => console.log(result))
         //     .catch(error => console.log('error', error));
