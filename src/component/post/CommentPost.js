@@ -59,7 +59,7 @@ class CommentPost extends Component {
         }
         if (this.state.isReply) {
             searchBar = <div style={{ marginLeft: "-10px", marginTop: "5px" }} >
-                <SearchBar noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
+                <SearchBar isSearchBar={false} noBorder placeholder="Nhập bình luận" paramName="comment" icon={faArrowRight} action={this.postComment} />
 
             </div>
 

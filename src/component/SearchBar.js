@@ -11,18 +11,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SearchBar.scss'
 
 class SearchBar extends Component {
+    passValue() {
+        this.props.passValueToHeader(this.refs.text.value);
+    }
     render() {
-        const { icon, className, placeholder, method, action, onSearch, paramName, noBorder } = this.props;
+        const { isSearchBar, icon, className, placeholder, method, action, onSearch, paramName, noBorder } = this.props;
         return (
             <div className={className}>
                 <Form className="w-100" method={method} action={action} >
                     <div className={`search-bar ${!noBorder ? 'search-border' : ''}`} >
                         <InputGroup>
-                            <FormControl
-                                type="text"
-                                placeholder={placeholder}
-                                name={paramName}
-                            />
+                            <FormControl onKeyPress={e => {
+                                if (e.key === 'Enter' && isSearchBar) e.preventDefault();
+                            }} onChange={this.passValue.bind(this)} ref="text" type="text" placeholder={placeholder} name={paramName} />
                             <div className="input-group-append">
                                 <Button onClick={onSearch} variant="light" type="button">
                                     <FontAwesomeIcon icon={icon} />

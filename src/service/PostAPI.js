@@ -11,9 +11,98 @@ import {
     postGetPostHighlights,
     postGetPostNewests,
     postGetPostNewActivities,
+    postGetTags,
+    postPostPost,
 } from "../action/PostAction.js";
 import { HOST, PORT } from '../constant/index';
 import FormData from 'form-data';
+
+export function postPost(post) {
+    return dispatch => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({ 
+            "title": post.title, 
+            "imageURL": post.imageURL, 
+            "content": post.content, 
+            "submitDate": "Dec 24, 2020 7:00:00 AM", 
+            "publishDate": "Dec 29, 2020 7:00:00 AM", 
+            "readTime": 0, 
+            "likeCount": 0, 
+            "numView": 0, 
+            "postSoftDeleted": false, 
+            "postHidden": false, 
+            "postApproved": false, 
+            "authorID": post.authorID, 
+            "authorName": post.authorName, 
+            "categoryID": post.categoryID, 
+            "categoryName": post.categoryName, 
+            "authorAvatarURL": post.authorAvatarURL, 
+            "summary": post.summary, 
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        
+        fetch(`http://${PORT}/posts?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => console.log('error', error));
+    }
+}
+export function getTagsByID(pid) {
+    return dispatch => {
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+
+                dispatch(postGetTags(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
+    }
+}
+
+
+
+
+export function getTagsByID(pid) {
+    return dispatch => {
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+
+                dispatch(postGetTags(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
+    }
+}
+
+
+
+
 
 
 export function getPostHighlights() {
@@ -188,6 +277,8 @@ export function getPostByID(uid, pid) {
 
                 dispatch(postGetPostByID(JSON.parse(result)[0]));
                 this.getIsLikePostByUID(uid, pid);
+                this.getPostCommentByID(pid);
+                this.getTagsByID(pid);
                 console.log("Fetch post success!");
             })
             .catch(error => console.log('error', error));
@@ -220,10 +311,11 @@ export function getSearchPost(filter) {
             method: 'GET',
             redirect: 'follow'
         };
+
         fetch(`http://${PORT}/posts?${filter}`, requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(JSON.parse(result));
+                console.log(`http://${PORT}/posts?${filter}`)
                 dispatch(postGetSearchPost(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));

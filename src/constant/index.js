@@ -49,6 +49,7 @@ export const POST_GET_IS_LIKE_POST_BY_UID = "POST_GET_IS_LIKE_POST_BY_UID";
 export const POST_GET_POST_HIGHLIGHTS = "POST_GET_POST_HIGHLIGHTS";
 export const POST_GET_POST_NEWESTS = "POST_GET_POST_NEWESTS";
 export const POST_GET_POST_NEW_ACTIVITIES = "POST_GET_POST_NEW_ACTIVITIES";
+export const POST_GET_TAGS_BY_ID = "POST_GET_TAGS_BY_ID";
 //resource string manage
 export const STR_LOGOUT_VN = "Đăng xuất"
 export const STR_LOGOUT_EN = "Logout"

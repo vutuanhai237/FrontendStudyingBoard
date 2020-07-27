@@ -12,9 +12,9 @@ class SummaryPost extends Component {
         const { item } = this.props;
         return (
             <div id="summary">
-                <a href={"/posts/" + 1}>
+                <a href={"/posts/" + item.id}>
                     <Card.Img variant="top" src={item.imageURL} />
-                    <Card.Link className="card-title" href={item.contentURL}>
+                    <Card.Link className="card-title" href={"/posts/" + item.id}>
                         {item.title}
                     </Card.Link>
                     <p className="card-summary">{item.summary}</p>

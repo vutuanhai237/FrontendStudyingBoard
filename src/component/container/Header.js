@@ -26,8 +26,9 @@ class Header extends Component {
         super(props);
         this.state = {
             account: null,
+            keywork: "",
         }
-        
+        this.handleSearch = this.handleSearch.bind(this);
         
     }
 
@@ -54,6 +55,17 @@ class Header extends Component {
       
         this.myInterval = setInterval(myTimer.bind(this), 2000);
     }
+
+    handleSearch(evt) {
+        redirect(`/search/${this.state.keywork}`);
+    }
+
+    passValueToHeader(value) {
+        console.log(value);
+        this.setState({
+            keywork: value,
+        })
+    }
     render() {
         let loginStatus;
         if (this.state.account === null) {
@@ -76,7 +88,7 @@ class Header extends Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <div id="search">
-                            <SearchBar noBorder placeholder="Tìm kiếm" paramName="keyword" action="/search" icon={faSearch}/>
+                            <SearchBar isSearchBar={true} passValueToHeader={this.passValueToHeader.bind(this)} noBorder placeholder="Tìm kiếm" paramName="search" onSearch={() => this.handleSearch()} icon={faSearch}/>
                         </div>
                         <Nav className="justify-content-center">
                             {/* Menu */}

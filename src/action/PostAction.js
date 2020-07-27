@@ -1,5 +1,5 @@
 import {
-
+    POST_POST_POST,
     POST_POST_LIKE,
     POST_POST_SAVE,
     POST_POST_COMMENT,
@@ -12,10 +12,28 @@ import {
     POST_GET_CATEGORIES_POST,
     POST_GET_POST_HIGHLIGHTS,
     POST_GET_POST_NEWESTS,
-    POST_GET_POST_NEW_ACTIVITIES
+    POST_GET_POST_NEW_ACTIVITIES,
+    POST_GET_TAGS_BY_ID,
 } from "../constant/index.js"
 
 // POST section
+export function postGetTags(statusPostPostCode) {
+    return {
+        type: POST_POST_POST,
+        payload: { 
+            statusPostPostCode: statusPostPostCode
+        }
+    }
+}
+
+export function postGetTags(tags) {
+    return {
+        type: POST_GET_TAGS_BY_ID,
+        payload: { 
+            tags: tags
+        }
+    }
+}
 
 export function postPostLike(statusPostLikeCode) {
     return {

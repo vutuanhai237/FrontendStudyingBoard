@@ -49,19 +49,19 @@ class LoginStatus extends Component {
                                         {'Xin chào, ' + account.username}
                                     </Dropdown.Item>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item href="#/action-1">
+                                    <Dropdown.Item href="/user">
                                         Trang cá nhân
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">
+                                    <Dropdown.Item href="/user">
                                         <p style={{ display: "inline" }}>
                                             Thông báo {' '}
                                         </p>
                                         <Badge variant="success">9</Badge>
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">
+                                    <Dropdown.Item href="/user">
                                         Bài viết của tôi
                                     </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-4">
+                                    <Dropdown.Item href="/user">
                                         Tài liệu của tôi
                                     </Dropdown.Item>
                                     <Dropdown.Item

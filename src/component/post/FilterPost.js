@@ -22,7 +22,7 @@ class FilterPost extends Component {
                 currentCategoryID: -1,
             }
         };
-
+        this.changeCurrentCategory = this.changeCurrentCategory.bind(this);
     }
 
     componentDidMount() {
@@ -30,19 +30,19 @@ class FilterPost extends Component {
     }
     filterPost() {
         let filter = "";
-        if (this.state.filter.currentCategoryID !== -1) filter = filter.concat("category=" + this.state.filter.currentCategoryID + "&")
-   
+        if (this.state.filter.currentCategoryID !== -1) filter = filter.concat("categoryID=" + this.state.filter.currentCategoryID + "&")
         console.log(filter);
-        this.props.getSearchDoc(filter);
+        this.props.getSearchPost(filter);
     }
     changeCurrentCategory(evt, name) {
         const { categories } = this.props;
+
         let isAll = true;
         this.setState({
             currentCategory: evt
         })
         categories.filter(item => {
-            if (item.name === evt) {
+            if (item.title === evt) {
                 this.setState({
                     filter: { ...this.state.filter, currentCategoryID: item.id }
                 }, () => { this.filterPost(); })

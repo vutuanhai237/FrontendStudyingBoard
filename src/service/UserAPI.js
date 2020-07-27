@@ -57,6 +57,7 @@ export function postLogin(account) {
             .then(response => response.text())
             .then(result => {
                 Cookies.set('JSESSIONID', JSON.parse(result).sessionID);
+                Cookies.set('UID', JSON.parse(result).account.id);
                 dispatch(userPostLogin(JSON.parse(result).account, JSON.parse(result).statusCode))
 
             })

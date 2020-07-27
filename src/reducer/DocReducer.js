@@ -68,6 +68,7 @@ const initialState = {
     topDoc: [],
     searchDocs: [],
     currentFilterSemester: "",
+    statusPostDocCode: 0,
 }
 
 function DocReducer(state = initialState, action) {
@@ -83,7 +84,7 @@ function DocReducer(state = initialState, action) {
         case DOC_GET_SEARCH_DOC:
             return { ...state, searchDocs: action.payload };
         case DOC_POST_DOC:
-            return { ...state };
+            return { ...state, statusPostDocCode: action.payload };
         case DOC_POST_UP_VIEW_DOC:
             return { ...state };
         case DOC_POST_UP_DOWNLOAD_DOC:

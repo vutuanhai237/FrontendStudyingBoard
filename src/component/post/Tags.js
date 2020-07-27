@@ -23,7 +23,7 @@ class Tags extends Component {
                     {
                         tags.map(item => {
                             return <div>
-                                <Button onClick={this.handleClick(item)} variant="secondary" style={{ marginRight: "15px", borderRadius: "15px" }}>{item}</Button>
+                                <Button onClick={()=> {this.handleClick(item)}} variant="secondary" style={{ marginRight: "15px", borderRadius: "15px" }}>{item.tagdetail}</Button>
                             </div>
                         })
                     }

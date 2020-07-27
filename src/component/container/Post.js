@@ -17,9 +17,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import "./CreatePost.scss";
-import "./Post.scss"
-import Tags from "../post/Tags"
-import { getPostByID, getPostCommentByID, getIsLikePostByUID } from "../../service/PostAPI"
+import "./Post.scss";
+import Tags from "../post/Tags";
+import Cookies from 'js-cookie';
+import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "../../service/PostAPI";
+
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +31,7 @@ class Post extends Component {
             modalWaringAddTagOver: false,
             messageModal: "",
         };
+        this.isLogin = false;
         this.handleClose = this.handleClose.bind(this);
     }
 
@@ -39,13 +42,27 @@ class Post extends Component {
     }
 
     componentDidMount() {
-        this.props.getPostByID(2, 3)
-        this.props.getPostCommentByID(3);
-     
-       
+
+        const url = window.location.href;
+        const index = url.search("posts/");
+        const idPost = url.slice(index + 6, url.length);
+        const userID = Cookies.get(`UID`);
+        console.log(userID);
+        if (typeof userID === `undefined`) {
+            this.props.getPostByID(-1, idPost);
+        } else {
+            this.isLogin = true;
+            this.props.getPostByID(userID, idPost);
+        }
+
+
     }
     render() {
-        const { currentPost, currentComments } = this.props;
+        const { currentPost, currentComments, tags } = this.props;
+        var footer = null;
+        if (this.isLogin) {
+             footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
+        }
         return (
             <div id="create-post">
                 <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
@@ -68,8 +85,8 @@ class Post extends Component {
                 <div>{currentPost.summary}</div>
                 <AuthorInfo item={currentPost} />
                 <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.content }} />
-                {/* <Tags tags={currentPost.tags} /> */}
-                <FooterSummaryPost isSummary={false} item={currentPost} />
+                <Tags tags={tags} />
+                {footer}
                 <CommentPosts currentComments={currentComments} />
             </div>
         );
@@ -80,6 +97,7 @@ const mapStatetoProps = (state) => {
     return {
         currentPost: state.post.currentPost,
         currentComments: state.post.currentComments,
+        tags: state.post.tags,
     };
 }
 
@@ -87,6 +105,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostByID,
     getPostCommentByID,
     getIsLikePostByUID,
+    getTagsByID,
+
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Post));

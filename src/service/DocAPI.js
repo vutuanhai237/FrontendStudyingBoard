@@ -33,9 +33,8 @@ export function postDoc(doc) {
         fetch(`http://${PORT}/docs/upload?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
           .then(response => response.text())
           .then(result => {
-              console.log(result);
-              const statusPostDocCode = 1;
-              dispatch(docPostDoc(statusPostDocCode));
+              console.log(JSON.parse(result).statusCode);
+              dispatch(docPostDoc(JSON.parse(result).statusCode));
           })
           .catch(error => console.log('error', error));
     }
@@ -137,7 +136,7 @@ export function getSearchDoc(filter) {
             redirect: 'follow'
         };
 
-        fetch(`https://${PORT}/docs/search?${filter}`, requestOptions)
+        fetch(`http://${PORT}/docs/search?${filter}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(docGetSearchDoc(JSON.parse(result).shortDocs));

@@ -26,6 +26,7 @@ class CreateDoc extends Component {
         super(props);
         this.state = {
             modalShow: false,
+            modalMessage: "",
             isLoginSuccess: true,
             uploadFileName: "Chọn file (ppt, pptx, txt, pdf)",
             doc: {
@@ -38,26 +39,56 @@ class CreateDoc extends Component {
                 categoryID: -1,
                 semesterID: -1,
                 subjectID: -1,
-            }
+            },
             
+            isUploading: false,
 
         };
+        this.statusPostDocCode = 0;
         this.handleClose = this.handleClose.bind(this);
         this.changeUploadFileName = this.changeUploadFileName.bind(this);
         //this.handleUpload = this.handleUpload.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.statusPostDocCode);
+        console.log(this.state.isUploading)
+        if (this.state.isUploading) {
+            this.statusPostDocCode = nextProps.statusPostDocCode;
+            this.handleModal();
+        }
+        
+    }
     componentDidMount() {
         this.props.getCategoriesDoc();
         this.props.getSemesters();
         this.props.getSubjects();
     }
-    handleUpload() {
+
+    handleModal() {
+        console.log(this.statusPostDocCode)
+        if (this.statusPostDocCode !== 18) {
+            this.setState({
+                modalShow: true,
+                modalMessage: "Tải lên thất bại",
+            });
+        } else {
+            this.setState({
+                modalShow: true,
+                modalMessage: "Tải lên thành công",
+            });
+        }
         this.setState({
-            modalShow: true,
-        });
+            isUploading: false,
+        })
+    }
+    handleUpload() {
+      
         console.log(this.state.doc);
         this.props.postDoc(this.state.doc);
+        this.setState({
+            isUploading: true,
+        })
     }
 
     handleClose() {
@@ -109,10 +140,10 @@ class CreateDoc extends Component {
     render() {
         const { categories, semesters, subjects } = this.props;
         var modalBody = null;
-        if (this.state.isLoginSuccess) {
+        if (this.statusPostDocCode === 18) {
             modalBody = <div>
                 <Modal.Body>
-                    Tải lên thành công
+                    {this.state.modalMessage}
                     </Modal.Body>
                 <Modal.Footer>
                     <Button variant="success" href="/" onClick={this.handleClose}>
@@ -122,7 +153,7 @@ class CreateDoc extends Component {
             </div>
         } else {
             modalBody = <div>
-                <Modal.Body>Tải lên thất bại</Modal.Body>
+                <Modal.Body>{this.state.modalMessage}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={this.handleClose}>
                         Đồng ý
@@ -226,6 +257,7 @@ const mapStatetoProps = (state) => {
         categories: state.doc.categories,
         semesters: state.doc.semesters,
         subjects: state.doc.subjects,
+        statusPostDocCode: state.doc.statusPostDocCode,
     };
 }
 

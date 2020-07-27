@@ -9,6 +9,7 @@ import CrPost from "./page/CreatePost";
 import CrDoc from "./page/CreateDoc";
 import Login from "./page/Login";
 import Register from "./page/Register";
+import Search from "./page/Search"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ManagementPage from './management/ManagementPage'
 import Management_DocPreview from './management/Management_DocPostPreview/Management_DocPreview'
@@ -29,6 +30,7 @@ const App = () => {
                 <Route exact path="/docs" component={Docs} />
                 <Route exact path="/docs/:id" component={Docs} />
                 <Route exact path="/events" component={Events} />
+                <Route exact path="/search/:keywork" component={Search} />
 
                 {/* Account and Page (admin and collab only) management */}
                 <Route exact path="/admin" component={ManagementPage} />     {/* for admin */}
