@@ -46,14 +46,14 @@ export function management_getCurrentPreviewDocument(previewDoc_ID) {
             headers: myHeaders,
             redirect: 'follow'
         };
-
-        let previewDoc_ID = 21;
+        
+        console.log("API has been called " + previewDoc_ID);
         fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response =>
                 response.json())
             .then(result => {
-                dispatch(managementGetCurrentPreviewDocument(result))
-                console.log(result)
+                console.log(result);
+                dispatch(managementGetCurrentPreviewDocument(result));
             }
             )
             .catch(error => console.log('error', error));

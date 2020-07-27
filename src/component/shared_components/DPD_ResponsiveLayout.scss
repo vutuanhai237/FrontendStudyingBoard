@@ -13,7 +13,8 @@
     }
 
     .Document_Live_Preview {
-        height: fit-content;
+        // height: fit-content;
+        min-height: 360px;
         // background: green;
     }
 
@@ -37,6 +38,6 @@
     }
 
     .Document_Live_Preview {
-        height: 900px;
+        height: 660px;
     }
 }

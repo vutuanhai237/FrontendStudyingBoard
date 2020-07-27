@@ -113,11 +113,11 @@ class Management_UserRoleManagement extends Component {
 
                                     </div>
                                 </ClickAwayListener>
-                                <div className="Category_Buttons_Port">
+                                {/* <div className="Category_Buttons_Port">
                                     <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
                                     <button className="Simple_White_Button margin_right_5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
                                     <button className="Simple_Red_Button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>
-                                </div>
+                                </div> */}
                             </div>
                             <div style={{ height: "30px" }}></div>
                         </div>

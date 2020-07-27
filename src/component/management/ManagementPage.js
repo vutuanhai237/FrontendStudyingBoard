@@ -238,7 +238,7 @@ class ManagementPage extends Component {
                                                                 to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin" : "/user"}> Thông tin tài khoản
                                                             </Link>
                                                     }
-                                                    {
+                                                    {/* {
                                                         window.location.pathname === "/admin/notification" || window.location.pathname === "/user/notification"
                                                             ?
                                                             <Link
@@ -252,7 +252,7 @@ class ManagementPage extends Component {
                                                                 onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
                                                                 Thông báo
                                                             </Link>
-                                                    }
+                                                    } */}
                                                     {
                                                         window.location.pathname === "/admin/posts_list" || window.location.pathname === "/user/posts_list"
                                                             ?
@@ -444,7 +444,7 @@ class ManagementPage extends Component {
                                                                 :
                                                                 <></>
                                                         }
-                                                        {
+                                                        {/* {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(NotificationPermission.ViewAll))
                                                                 ?
@@ -468,7 +468,7 @@ class ManagementPage extends Component {
                                                                     </Link>
                                                                 :
                                                                 <></>
-                                                        }
+                                                        } */}
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(CategoryPermission.View))
@@ -537,7 +537,7 @@ class ManagementPage extends Component {
                                                 }
 
                                                 {/* Quan ly hoat dong: các báo cáo người dùng  */}
-                                                {
+                                                {/* {
                                                     (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                         && this.isGrantedPermissions(UserPermission.All))
                                                         ?
@@ -567,7 +567,7 @@ class ManagementPage extends Component {
                                                             </Link>
                                                         :
                                                         <></>
-                                                }
+                                                } */}
 
 
 

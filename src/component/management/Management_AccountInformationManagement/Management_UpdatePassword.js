@@ -10,7 +10,10 @@ import { isContainSpecialCharacter } from '../../../utils/Utils'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from '../../../service/UserAPI'
+import { getCurrentUser, getLogout } from '../../../service/UserAPI'
+
+import Cookies from 'js-cookie'
+import { PORT } from '../../../constant/index'
 
 class Management_UpdatePassword extends Component {
     constructor(props) {
@@ -23,7 +26,7 @@ class Management_UpdatePassword extends Component {
         this.isAnySuccessAlertPopupOpen = false;
 
         //check condition to disable update password button
-        this.canClickUpdatePassword = false;
+        this.canClickSavePassword = false;
 
         //for show error labels
         this.isCurrentPasswordEmpty = false;
@@ -38,169 +41,140 @@ class Management_UpdatePassword extends Component {
         this.isConfirmationPasswordLessThan6Characters = false;
         this.isConfirmationPasswordContainSpecialCharacters = false;
 
-        this.realPassword = "";
+        this.isAnySuccessLogoutAlertPopupOpen = false;
 
-        //for POST to server new information of new password
         this.updatePassword_DTO = {
-            //may be have id of user
             currentPassword: "",
             newPassword: "",
-            confirmationPassword: ""
+            confirmationPassword: "",
         }
-
-        this.state = {
-            accountInformation: {
-                userID: 1,
-                avartarUrl: "https://i.imgur.com/SZJgL6C.jpg",
-                displayName: "Nguyen Van Dong",
-                username: "management",
-                passwordLength: "10",
-                facebook: "https://www.facebook.com/profile.php?id=100024742350400",
-                gmail: "dongnv.since1999@gmail.com",
-                doc_count: 100,
-                post_count: 300,
-                score: 12345,
-                roleID: 0,
-            },
-            roles: [
-                {
-                    id: 0,
-                    role: "Management"
-                },
-                {
-                    id: 1,
-                    role: "Collaborator"
-                },
-                {
-                    id: 2,
-                    role: "Account"
-                }
-            ],
-
-
-
-
-        }
+        this.username = "";
     }
+
 
     componentDidMount() {
         this.props.getCurrentUser();
-        this.realPassword = this.props.accountInformation.password;
-        // console.log(this.realPassword);
     }
 
 
     render() {
+        if (this.props.accountInformation) {
+            this.username = this.props.username;
+            return (
 
-        return (
-            <div>
-                {/* <div className="Management_Account_Information_Bounding_Port"> */}
-                <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
+                <div>
+                    {/* <div className="Management_Account_Information_Bounding_Port"> */}
+                    <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
 
-                    <div className="Simple_Gray_Label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
+                        <div className="Simple_Gray_Label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
 
-                    {/* Current password */}
-                    <div className="position_relative" >
-                        <div className="Simple_Gray_Label margin_top_10px">
-                            Mật khẩu hiện tại:
+                        {/* Current password */}
+                        <div className="position_relative" >
+                            <div className="Simple_Gray_Label margin_top_10px">
+                                Mật khẩu hiện tại:
                                     </div>
-                        <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
-                        <div className="Simple_Error_Label" hidden={!this.isCurrentPasswordEmpty} >
-                            *Mật khẩu hiện tại không được để trống.
+                            <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
+                            <div className="Simple_Error_Label" hidden={!this.isCurrentPasswordEmpty} >
+                                *Mật khẩu hiện tại không được để trống.
                                     </div>
-                    </div>
+                        </div>
 
-                    {/* New password */}
-                    <div className="position_relative" >
-                        <div className="Simple_Gray_Label Is_Form_Label">
-                            Mật khẩu mới:
+                        {/* New password */}
+                        <div className="position_relative" >
+                            <div className="Simple_Gray_Label Is_Form_Label">
+                                Mật khẩu mới:
                                     </div>
-                        <input type="password" defaultValue="" autoComplete="off" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
-                        <div className="Simple_Error_Label" hidden={!this.isNewPasswordEmpty} >
-                            *Mật khẩu mới không được để trống.
+                            <input type="password" defaultValue="" autoComplete="off" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
+                            <div className="Simple_Error_Label" hidden={!this.isNewPasswordEmpty} >
+                                *Mật khẩu mới không được để trống.
                                     </div>
-                        <div className="Simple_Error_Label" hidden={!this.isNewPasswordLessThan6Characters} >
-                            *Mật khẩu mới không được ít hơn 6 ký tự.
+                            <div className="Simple_Error_Label" hidden={!this.isNewPasswordLessThan6Characters} >
+                                *Mật khẩu mới không được ít hơn 6 ký tự.
                                     </div>
-                        <div className="Simple_Error_Label" hidden={this.isNewPasswordLessThan6Characters || !this.isNewPasswordContainSpecialCharacters} >
-                            *Mật khẩu mới không được chứa các ký tự đặc biệt.
+                            <div className="Simple_Error_Label" hidden={this.isNewPasswordLessThan6Characters || !this.isNewPasswordContainSpecialCharacters} >
+                                *Mật khẩu mới không được chứa các ký tự đặc biệt.
                                     </div>
 
-                    </div>
+                        </div>
 
-                    {/* Confirm new password */}
-                    <div className="position_relative" >
-                        <div className="Simple_Gray_Label Is_Form_Label">
-                            Xác nhận mật khẩu:
+                        {/* Confirm new password */}
+                        <div className="position_relative" >
+                            <div className="Simple_Gray_Label Is_Form_Label">
+                                Xác nhận mật khẩu:
                                 </div>
-                        <input type="password" autoComplete="off" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
-                        <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordEmpty} >
-                            *Mật khẩu xác nhận không được để trống.
+                            <input type="password" autoComplete="off" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
+                            <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordEmpty} >
+                                *Mật khẩu xác nhận không được để trống.
                                     </div>
-                        <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordLessThan6Characters} >
-                            *Mật khẩu xác nhận không được ít hơn 6 ký tự.
+                            <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordLessThan6Characters} >
+                                *Mật khẩu xác nhận không được ít hơn 6 ký tự.
                                     </div>
-                        <div className="Simple_Error_Label" hidden={this.isConfirmationPasswordLessThan6Characters || !this.isConfirmationPasswordContainSpecialCharacters} >
-                            *Mật khẩu xác nhận không được chứa các ký tự đặc biệt.
+                            <div className="Simple_Error_Label" hidden={this.isConfirmationPasswordLessThan6Characters || !this.isConfirmationPasswordContainSpecialCharacters} >
+                                *Mật khẩu xác nhận không được chứa các ký tự đặc biệt.
                                     </div>
 
-                    </div>
-                    <div className="display_flex" >
-                        <button className="Simple_Blue_Button margin_auto Is_Form_Button" disabled={!this.canClickUpdatePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
-                            Xác nhận
+                        </div>
+                        <div className="display_flex" >
+                            <button className="Simple_Blue_Button margin_auto Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
+                                Xác nhận
                                     </button>
-                    </div>
+                        </div>
 
-                </form>
-                {/* </div> */}
+                    </form>
+                    {/* </div> */}
 
 
-                {/* modal for verifing change role */}
-                <CustomModal
-                    open={this.isChangeRoleConfirmationPopupOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="confirmation"
-                    closeModal={() => this.closeChangeRoleConfirmationPopup()}
-                >
+                    {/* modal for verifing change role */}
+                    <CustomModal
+                        open={this.isChangeRoleConfirmationPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="confirmation"
+                        closeModal={() => this.closeChangeRoleConfirmationPopup()}
+                    >
 
-                    {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
-                </CustomModal>
+                        {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
+                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
+                    </CustomModal>
 
-                {/* modal for notification anything */}
-                <CustomModal
-                    open={this.isAnyFailedAlertPopupOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="alert_fail"
-                    closeModal={() => this.closeFailedAlertPopup()}
-                >
+                    {/* modal for notification anything */}
+                    <CustomModal
+                        open={this.isAnyFailedAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_fail"
+                        closeModal={() => this.closeFailedAlertPopup()}
+                    >
+                    </CustomModal>
 
-                    {/* code footer to handler event in parent class (if you want to show a confirmation modal)
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button> */}
-                </CustomModal>
+                    <CustomModal
+                        open={this.isAnySuccessAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => this.closeSuccessAlertPopup()}
+                    >
+                    </CustomModal>
 
-                <CustomModal
-                    open={this.isAnySuccessAlertPopupOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="alert_success"
-                    closeModal={() => this.closeSuccessAlertPopup()}
-                >
+                    {/* for popup and logout */}
+                    <CustomModal
+                        open={this.isAnySuccessLogoutAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.props.getLogout(); this.isAnySuccessLogoutAlertPopupOpen = false; window.location.pathname = "/"; this.setState({}) }}
+                    >
+                    </CustomModal>
 
-                    {/* code footer to handler event in parent class (if you want to show a confirmation modal)
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button> */}
-                </CustomModal>
-
-            </div >
-        );
+                </div >
+            );
+        }
+        return <></>;
     }
 
     //#region handler popup region
@@ -246,7 +220,7 @@ class Management_UpdatePassword extends Component {
         if (this.updatePassword_DTO.newPassword === ""
             || this.updatePassword_DTO.newPassword === null) {
             this.isNewPasswordEmpty = true;
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
 
         }
         else
@@ -256,7 +230,7 @@ class Management_UpdatePassword extends Component {
             && this.updatePassword_DTO.newPassword !== null)
             && this.updatePassword_DTO.newPassword.length < 6) {
             this.isNewPasswordLessThan6Characters = true;
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
 
         }
         else
@@ -264,7 +238,7 @@ class Management_UpdatePassword extends Component {
 
         if (isContainSpecialCharacter(this.updatePassword_DTO.newPassword)) {
             this.isNewPasswordContainSpecialCharacters = true;
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
 
         }
         else
@@ -280,7 +254,7 @@ class Management_UpdatePassword extends Component {
         if (this.updatePassword_DTO.confirmationPassword === ""
             || this.updatePassword_DTO.confirmationPassword === null) {
             this.isConfirmationPasswordEmpty = true;
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
         }
         else
             this.isConfirmationPasswordEmpty = false;
@@ -289,14 +263,14 @@ class Management_UpdatePassword extends Component {
             && this.updatePassword_DTO.confirmationPassword !== null)
             && this.updatePassword_DTO.confirmationPassword.length < 6) {
             this.isConfirmationPasswordLessThan6Characters = true;
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
         }
         else
             this.isConfirmationPasswordLessThan6Characters = false;
 
         if (isContainSpecialCharacter(this.updatePassword_DTO.confirmationPassword)) {
             this.isConfirmationPasswordContainSpecialCharacters = true;
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
         }
         else
             this.isConfirmationPasswordContainSpecialCharacters = false;
@@ -305,13 +279,13 @@ class Management_UpdatePassword extends Component {
     }
 
     handlerChangeStateOfSubmitButton = () => {
-        this.canClickUpdatePassword = true;
+        this.canClickSavePassword = true;
 
         //check current password
         console.log(this.updatePassword_DTO.currentPassword)
         if (this.updatePassword_DTO.currentPassword === ""
             || this.updatePassword_DTO.currentPassword === null) {
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
@@ -319,7 +293,7 @@ class Management_UpdatePassword extends Component {
         //check new password
         if (this.updatePassword_DTO.newPassword === ""
             || this.updatePassword_DTO.newPassword === null) {
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
@@ -327,13 +301,13 @@ class Management_UpdatePassword extends Component {
         if ((this.updatePassword_DTO.newPassword !== ""
             && this.updatePassword_DTO.newPassword !== null)
             && this.updatePassword_DTO.newPassword.length < 6) {
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
 
         if (isContainSpecialCharacter(this.updatePassword_DTO.newPassword)) {
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
@@ -341,7 +315,7 @@ class Management_UpdatePassword extends Component {
         //check confirmation password
         if (this.updatePassword_DTO.confirmationPassword === ""
             || this.updatePassword_DTO.confirmationPassword === null) {
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
@@ -349,14 +323,14 @@ class Management_UpdatePassword extends Component {
         if ((this.updatePassword_DTO.confirmationPassword !== ""
             && this.updatePassword_DTO.confirmationPassword !== null)
             && this.updatePassword_DTO.confirmationPassword.length < 6) {
-            
-            this.canClickUpdatePassword = false;
+
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
 
         if (isContainSpecialCharacter(this.updatePassword_DTO.confirmationPassword)) {
-            this.canClickUpdatePassword = false;
+            this.canClickSavePassword = false;
             this.setState({});
             return;
         }
@@ -368,7 +342,7 @@ class Management_UpdatePassword extends Component {
     //#region main handler to call APIs 
     handlerUpdatePassword = (e) => {
         e.preventDefault();
-
+        console.log(this.newPassword);
         //check if new password and confirmation pass word is the same?
         if (this.updatePassword_DTO.confirmationPassword !== this.updatePassword_DTO.newPassword) {
             this.notifyContent = "Thất bại";
@@ -376,12 +350,46 @@ class Management_UpdatePassword extends Component {
             this.openFailedAlertPopup();
             return;
         }
-        this.notifyHeader = "Thành công!";
-        this.notifyContent = "Cập nhật khẩu thành công!";
-        this.isAnySuccessAlertPopupOpen = true;
-        this.setState({});
 
-        //call function to update password
+        var urlencoded = new URLSearchParams();
+
+        urlencoded.append("username", this.username);
+        urlencoded.append("oldPasword", this.updatePassword_DTO.currentPassword);
+        urlencoded.append("password", this.updatePassword_DTO.newPassword);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        fetch(`http://${PORT}/account/update?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                if (JSON.parse(result).statusCode === 20) {
+                    console.log(result);
+                    this.isUpdatePasswordPopupOpen = false;
+                    this.canClickSavePassword = false;
+                    this.notifyHeader = "Thành công";
+                    this.notifyContent = "Bạn cần đăng nhập lại!";
+                    this.isAnySuccessLogoutAlertPopupOpen = true;
+                    this.setState({});
+                    return;
+                }
+                console.log(result);
+                this.isUpdatePasswordPopupOpen = false;
+                this.canClickSavePassword = false;
+                this.notifyHeader = "Thất bại";
+                this.notifyContent = "Cập nhật mật khẩu không thành công!";
+                this.isAnyFailedAlertPopupOpen = true;
+                this.setState({});
+
+            }
+            )
+            .catch(error => console.log('error', error));
 
     }
 
@@ -398,7 +406,7 @@ const mapStatetoProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCurrentUser
+    getCurrentUser, getLogout
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Management_UpdatePassword));

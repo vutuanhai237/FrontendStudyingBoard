@@ -6,7 +6,7 @@ import Management_Titlebar from '../management_components/Management_Titlebar/Ma
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import gray_upload_icon from '../../../img/gray_upload_icon.png'
 import gray_write_icon from '../../../img/gray_write_icon.png'
-
+import { PORT } from '../../../constant/index'
 import './Management_AccountInformationManagement.scss'
 import './Management_AIMResponsiveLayout.scss'
 import { ClickAwayListener, CircularProgress } from '@material-ui/core'
@@ -27,6 +27,8 @@ import { management_getAllRoles } from '../../../service/management_services/man
 //import for role config
 import { getRoleNameFilterByName } from '../../../utils/PermissionManagement'
 
+import Cookies from 'js-cookie'
+
 class Management_AccountInformationManagement extends Component {
     constructor(props) {
         super(props);
@@ -34,7 +36,6 @@ class Management_AccountInformationManagement extends Component {
         //if value been set by a string, db didn't match it.
 
         //from user API
-        this.accountInformation = [];
         this.displayName = "Nguyễn Văn Đông";
         this.userID = "";
         this.password = "";
@@ -52,6 +53,7 @@ class Management_AccountInformationManagement extends Component {
         this.canClickSaveInformation = false;
         this.isAnySuccessAlertPopupOpen = false;
         this.isAnyFailedAlertPopupOpen = false;
+        this.isAnySuccessReloadAlertPopupOpen = false;
 
         this.isChangeRoleConfirmationPopupOpen = false;
         this.isUpdateInformationPopupOpen = false;
@@ -65,9 +67,11 @@ class Management_AccountInformationManagement extends Component {
 
 
 
+
         this.updateInformation_DTO = {
-            displayName: "",
-            avatarFile: []
+            username: "",
+            oldPasword: "",
+            displayname: "",
         }
 
         this.state = {
@@ -82,28 +86,34 @@ class Management_AccountInformationManagement extends Component {
         this.props.getCurrentUser();
     }
 
-
-
     render() {
 
         if (!this.props.accountInformation !== null && this.props.accountInformation !== undefined) {
             this.accountInformation = this.props.accountInformation;
             this.displayName = this.accountInformation.displayName;
-            this.userID = "";
-            this.password = "";
-            this.avatar = "";
-            this.email = "";
-            this.score = "";
-            this.postCount = this.props.accountInformation.postCount;
-            this.documentCount = this.props.accountInformation.documentCount;
-            this.roleID = this.props.accountInformation.roleId;
-            this.roleName = this.props.accountInformation.roleName;
+            this.userID = this.accountInformation.id;
+            this.password = this.accountInformation.password;
+            this.avatar = this.accountInformation.avatar;
+            this.email = this.accountInformation.email;
+            this.score = this.accountInformation.score;
+            this.postCount = this.accountInformation.postCount;
+            this.documentCount = this.accountInformation.documentCount;
+            this.roleID = this.accountInformation.roleId;
+            this.roleName = this.accountInformation.roleName;
+            this.username = this.accountInformation.username;
+
+            // for update information DTO
+            this.updateInformation_DTO.oldPasword = this.password;
+            this.updateInformation_DTO.username = this.username;
+
+            console.log(this.accountInformation)
+
 
             this.roleList = this.props.roleList;
             // console.log(this.roleList);
             let roles_Combobox =
                 this.roleList.map(role =>
-                    this.accountInformation.roleID === role.id ?
+                    this.roleID === role.id ?
                         <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
                         <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
@@ -133,7 +143,9 @@ class Management_AccountInformationManagement extends Component {
 
                                         {/* <div>{this.props.</div> */}
                                     </div>
-                                    <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
+                                    {/* <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div> */}
+
+                                    <div className="margin_top_10px" />
 
                                     <div className="display_flex">
                                         <div className="Simple_Gray_Label" style={{ lineHeight: "25px" }}>Role:</div>
@@ -175,7 +187,7 @@ class Management_AccountInformationManagement extends Component {
                                     <div className="margin_top_5px" />
 
                                     <div className="Account_Information_Achivement_Port">
-                                        <div className="Account_Information_Achivement_Score">Scrore: {this.props.accountInformation.score}</div>
+                                        <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Port">
                                             <div className="display_flex width_50_percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
@@ -218,7 +230,7 @@ class Management_AccountInformationManagement extends Component {
                                             <div className="Simple_Gray_Label Is_Form_Label">
                                                 Username:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.username} />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.username} />
 
                                             {/* Password */}
                                             <div className="Simple_Gray_Label Is_Form_Label">
@@ -230,7 +242,7 @@ class Management_AccountInformationManagement extends Component {
                                             <div className="Simple_Gray_Label Is_Form_Label">
                                                 Email:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.props.accountInformation.email} />
+                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.email} />
 
                                             <div className="display_flex margin_top_10px" >
                                                 <button disabled={!this.canClickSaveInformation} className="Simple_Blue_Button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
@@ -239,7 +251,7 @@ class Management_AccountInformationManagement extends Component {
                                             </div>
                                         </div>
                                         :
-                                        < Management_UpdatePassword />
+                                        < Management_UpdatePassword oldPass={this.password} username={this.username} />
                                     }
                                 </div>
 
@@ -260,13 +272,22 @@ class Management_AccountInformationManagement extends Component {
                         closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
                     />
 
-                    {/* modal success alert */}
+                    <CustomModal
+                        open={this.isAnySuccessReloadAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.isAnySuccessReloadAlertPopupOpen = false; this.setState({}); window.location.reload() }}
+                    />
+
+                    {/* modal failed alert */}
                     <CustomModal
                         open={this.isAnyFailedAlertPopupOpen}
                         shadow={true}
                         title={this.notifyHeader}
                         text={this.notifyContent}
-                        type="alert_failed"
+                        type="alert_fail"
                         closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
                     />
 
@@ -494,18 +515,15 @@ class Management_AccountInformationManagement extends Component {
         this.isDisplayNameEmpty = false;
         this.isDisplayNameContainSpecialCharacters = false;
 
-        if ((this.updateInformation_DTO.displayName === ""
-            || this.updateInformation_DTO.displayName === null)) {
+        if ((this.updateInformation_DTO.displayname === ""
+            || this.updateInformation_DTO.displayname === null)) {
             this.canClickSaveInformation = false;
             this.isDisplayNameEmpty = true;
-            console.log(
-                "A"
-            )
             this.setState({});
             return;
         }
 
-        if (isContainSpecialCharacter(this.updateInformation_DTO.displayName)) {
+        if (isContainSpecialCharacter(this.updateInformation_DTO.displayname)) {
             this.canClickSaveInformation = false;
             this.isDisplayNameContainSpecialCharacters = true;
             this.setState({});
@@ -516,8 +534,7 @@ class Management_AccountInformationManagement extends Component {
     }
 
     handlerChangeUserDisplay = (e) => {
-        this.updateInformation_DTO.displayName = e.target.value;
-        console.log(this.updateInformation_DTO.displayName);
+        this.updateInformation_DTO.displayname = e.target.value;
         this.handlerChangeStateOfSubmitButton();
     }
 
@@ -533,13 +550,48 @@ class Management_AccountInformationManagement extends Component {
     }
 
     handlerVerifyUpdateInformation = () => {
-        //.. call API
-        this.isUpdateInformationPopupOpen = false;
-        this.canClickSaveInformation = false;
-        this.notifyHeader = "Thành công";
-        this.notifyContent = "Cập nhật thông tin thành công!";
-        this.openSuccessAlertPopup();
-        this.setState({});
+
+        // console.log(this.updateInformation_DTO);
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("username", this.updateInformation_DTO.username);
+        urlencoded.append("oldPasword", this.updateInformation_DTO.oldPasword);
+        urlencoded.append("displayname", this.updateInformation_DTO.displayname);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        fetch(`http://${PORT}/account/update?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                if (JSON.parse(result).statusCode === 20) {
+                    console.log(result);
+                    this.isUpdateInformationPopupOpen = false;
+                    this.canClickSaveInformation = false;
+                    this.notifyHeader = "Thành công";
+                    this.notifyContent = "Cập nhật thông tin thành công!";
+                    this.isAnySuccessReloadAlertPopupOpen = true;
+                    this.setState({});
+                    return;
+                }
+                console.log(result);
+                this.isUpdateInformationPopupOpen = false;
+                this.canClickSaveInformation = false;
+                this.notifyHeader = "Thất bại";
+                this.notifyContent = "Cập nhật thông tin không thành công!";
+                this.isAnyFailedAlertPopupOpen = true;
+                this.setState({});
+
+            }
+            )
+            .catch(error => console.log('error', error));
+
 
     }
 

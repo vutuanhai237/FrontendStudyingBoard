@@ -59,7 +59,7 @@ class Management_DocPreview extends Component {
         this.isApproveRequestedPopupOpen = false;
         this.isAnyFailedAlertPopupOpen = false;
         this.isAnySuccessAlertPopupOpen = false;
-
+        this.isAnySuccessBackAlertPopupOpen = false;
     }
 
     componentDidMount() {
@@ -74,15 +74,14 @@ class Management_DocPreview extends Component {
 
     render() {
 
-        console.log("*");
-        console.log(this.props);
+        // console.log("*");
+        // console.log(this.props);
 
         if (this.props.accountInformation) {
 
             this.roleName = this.props.accountInformation.roleName;
-            console.log(this.roleName);
 
-            //neu khong co quyen preview => khong cho preview
+            // neu khong co quyen preview => khong cho preview
             if (!this.isGrantedPermissions(DocumentPermission.Preview))
                 return <>{window.location.pathname = "/"}</>;
 
@@ -94,8 +93,11 @@ class Management_DocPreview extends Component {
             if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "ADMIN")
                 return <>{window.location.pathname = "/admin" + window.location.pathname.substring(5, window.location.pathname.length)}</>;
 
+            console.log("**");
+
             if (this.props.currentPreviewDocument) {
-                if (this.props.currentPreviewDocument.statusCode === 14) return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
+                if (this.props.currentPreviewDocument.statusCode === 14)
+                    return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
                 this.currentPreviewDocument = this.props.currentPreviewDocument.documentDTO;
                 this.id = this.currentPreviewDocument.id;
                 this.authorName = this.currentPreviewDocument.authorName;
@@ -113,151 +115,164 @@ class Management_DocPreview extends Component {
                 this.avartarUrl = this.currentPreviewDocument.title.authorAvatar;
                 this.fileName = this.currentPreviewDocument.fileName;
                 this.linkFile = this.currentPreviewDocument.url;
+            }
 
+            return (
+                <div>
+                    <Header />
+                    <div className="DocPost_Detail" >
+                        {this.props.currentPreviewDocument ?
 
-                return (
-                    <div>
-                        <Header />
-                        <div className="DocPost_Detail" >
-                            {this.props.currentPreviewDocument ?
+                            <div>
+                                <div className="DocPost_Detail_Main_Port">
 
-                                <div>
-                                    <div className="DocPost_Detail_Main_Port">
+                                    <div className="DocPost_Detail_Title">
+                                        {this.title}
+                                    </div>
 
-                                        <div className="DocPost_Detail_Title">
-                                            {this.title}
+                                    <div className="DocPost_Detail_Category_Header">
+
+                                        <div className="Prefix_DocPost_Detail_Category"> </div>
+                                        <div className="DocPost_Detail_Category">
+                                            {this.categoryName}
                                         </div>
-
-                                        <div className="DocPost_Detail_Category_Header">
-
-                                            <div className="Prefix_DocPost_Detail_Category"> </div>
-                                            <div className="DocPost_Detail_Category">
-                                                {this.categoryName}
-                                            </div>
-                                            <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                                            <div className="DocPost_Detail_Time_Semester_Subject_Text">
-                                                Môn học: &nbsp;
+                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                            Môn học: &nbsp;
                                             {this.subject}
-                                            </div>
-                                            <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                                            <div className="DocPost_Detail_Time_Semester_Subject_Text">
-                                                Học kỳ: &nbsp;
+                                        </div>
+                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                            Học kỳ: &nbsp;
                                             {this.semesterName}
-                                            </div >
-                                            {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} /> */}
-                                            {/* <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                        </div >
+                                        {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} /> */}
+                                        {/* <div className="DocPost_Detail_Time_Semester_Subject_Text">
                                             Năm học: &nbsp;
                                             {this.year}
                                         </div> */}
-                                        </div>
-
-                                        <div className="DocPost_User_Infor_Header">
-                                            <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" />
-                                            <div style={{ flexDirection: "vertical" }}>
-                                                <div className="DocPost_Detail_User_Infor_Display_Name">{this.authorName}</div>
-                                                <div className="DocPost_Detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
-                                            </div>
-                                        </div>
-
-                                        <div className="DocPost_Detail_Content">
-                                            {this.content}
-                                        </div>
-
-                                        <div className="Doc_Detail_File_Name"
-                                        // onClick={() => window.open(this.linkFile)}
-                                        >
-                                            {this.fileName}
-                                        </div>
-
                                     </div>
 
-                                    <div className="Doc_Detail_View_Count_Doc_Count">
-                                        <div className="View_Count">lượt xem: {this.viewCount}</div>
-                                        <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
-                                            <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
-                                            <div style={{ marginLeft: "5px" }}>
-                                                {this.downloadCount}
-                                            </div>
+                                    <div className="DocPost_User_Infor_Header">
+                                        <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" />
+                                        <div style={{ flexDirection: "vertical" }}>
+                                            <div className="DocPost_Detail_User_Infor_Display_Name">{this.authorName}</div>
+                                            <div className="DocPost_Detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
                                         </div>
                                     </div>
-                                    <div className="Document_Live_Preview">
 
-                                        <PDFViewer
-                                            document={{
-                                                // url: this.url
-                                                url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf',
-                                            }}
-
-                                            hideRotation={true}
-                                            loader={true}
-                                            alert={true}
-                                            navbarOnTop={true}
-
-                                        />
+                                    <div className="DocPost_Detail_Content">
+                                        {this.content}
                                     </div>
-                                    <div className="DocPost_Detail_Footer">
-                                        <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
-                                        <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
+
+                                    <div className="Doc_Detail_File_Name"
+                                        onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}
+                                    >
+                                        {this.fileName}
                                     </div>
-                                </div> :
-                                <div className="padding_10px Simple_Gray_Label">
-                                    Loading ...
+
+                                </div>
+
+                                <div className="Doc_Detail_View_Count_Doc_Count">
+                                    <div className="View_Count">lượt xem: {this.viewCount}</div>
+                                    <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
+                                        <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
+                                        <div style={{ marginLeft: "5px" }}>
+                                            {this.downloadCount}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="Document_Live_Preview">
+
+                                    {/* <PDFViewer
+                                        document={{
+                                            // url: this.url
+                                            url: "https://drive.google.com/uc?export=pdf&id=0BxMDBIZ9xXAUd3R5RlJ6T3FaUUE",
+                                        }}
+
+                                        hideRotation={true}
+                                        loader={true}
+                                        alert={true}
+                                        navbarOnTop={true}
+
+                                    /> */}
+                                    <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe>
+                                </div>
+                                <div className="DocPost_Detail_Footer">
+                                    <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
+                                    {/* <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
+                                </div>
                             </div>
-                            }
-                        </div>
+                            :
+                            <div className="padding_10px Simple_Gray_Label">
+                                Loading ...
+                            </div>
+                        }
+                    </div>
 
-                        {/* Popup for reject requested post */}
-                        <CustomModal
-                            shadow={true}
-                            type="confirmation"
-                            open={this.isRejectRequestedPopupOpen}
-                            title="Xác nhận?"
-                            text="Xác nhận từ chối tiếp nhận bài viết này?"
-                            closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
-                        >
-                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                            <button className="Simple_White_Button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
+                    {/* Popup for reject requested post */}
+                    <CustomModal
+                        shadow={true}
+                        type="confirmation"
+                        open={this.isRejectRequestedPopupOpen}
+                        title="Xác nhận?"
+                        text="Xác nhận từ chối tiếp nhận bài viết này?"
+                        closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
+                    >
+                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+                        <button className="Simple_White_Button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
-                        </CustomModal>
+                    </CustomModal>
 
-                        {/* Popup for approve requested post */}
-                        <CustomModal
-                            shadow={true}
-                            type="confirmation"
-                            open={this.isApproveRequestedPopupOpen}
-                            title="Xác nhận?"
-                            text="Xác nhận duyệt bài viết này?"
-                            closeModal={() => { this.isApproveRequestedPopupOpen = false; this.setState({}); }}
-                        >
-                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
-                            <button className="Simple_White_Button" onClick={() => this.handleCancelApproveRequestedPostConfirmation()}>Cancel</button>
-                        </CustomModal>
+                    {/* Popup for approve requested post */}
+                    <CustomModal
+                        shadow={true}
+                        type="confirmation"
+                        open={this.isApproveRequestedPopupOpen}
+                        title="Xác nhận?"
+                        text="Xác nhận duyệt bài viết này?"
+                        closeModal={() => { this.isApproveRequestedPopupOpen = false; this.setState({}); }}
+                    >
+                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
+                        <button className="Simple_White_Button" onClick={() => this.handleCancelApproveRequestedPostConfirmation()}>Cancel</button>
+                    </CustomModal>
 
-                        {/* modal for notification anything */}
-                        <CustomModal
-                            open={this.isAnyFailedAlertPopupOpen}
-                            shadow={true}
-                            title={this.notifyHeader}
-                            text={this.notifyContent}
-                            type="alert_fail"
-                            closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
-                        >
-                        </CustomModal>
+                    {/* modal for notification anything */}
+                    <CustomModal
+                        open={this.isAnyFailedAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_fail"
+                        closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
+                    >
+                    </CustomModal>
 
-                        <CustomModal
-                            open={this.isAnySuccessAlertPopupOpen}
-                            shadow={true}
-                            title={this.notifyHeader}
-                            text={this.notifyContent}
-                            type="alert_success"
-                            closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
-                        >
-                        </CustomModal>
-                        <Footer />
-                    </div >
-                );
-            }
+                    <CustomModal
+                        open={this.isAnySuccessBackAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.isAnySuccessBackAlertPopupOpen = false; window.location.pathname = "/admin/doc_approving"; this.setState({}) }}
+                    >
+                    </CustomModal>
+
+                    {/* success back */}
+                    <CustomModal
+                        open={this.isAnySuccessAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
+                    >
+                    </CustomModal>
+                    <Footer />
+                </div >
+            );
         }
+
         return <></>
     }
     //#region navigate region
@@ -307,11 +322,12 @@ class Management_DocPreview extends Component {
             .then(response => response.text())
             .then(
                 result => {
-                    if (result.statusCode === "16") {
+                    if (JSON.parse(result).statusCode === 16) {
                         this.notifyHeader = "Thành công";
                         this.notifyContent = "Duyệt tài liệu thành công!";
                         this.isApproveRequestedPopupOpen = false;
-                        this.isAnySuccessAlertPopupOpen = true;
+                        this.isAnySuccessBackAlertPopupOpen = true;
+
                         this.setState({})
                     }
                     else {
@@ -335,7 +351,6 @@ class Management_DocPreview extends Component {
 }
 
 const mapStatetoProps = (state) => {
-    console.log("*");
     console.log(state);
     return {
         currentPreviewDocument: state.management_doc.currentPreviewDocument,
