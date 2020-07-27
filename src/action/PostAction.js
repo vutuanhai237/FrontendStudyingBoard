@@ -17,7 +17,7 @@ import {
 } from "../constant/index.js"
 
 // POST section
-export function postGetTags(statusPostPostCode) {
+export function postPostPost(statusPostPostCode) {
     return {
         type: POST_POST_POST,
         payload: { 

@@ -15,7 +15,7 @@ import "./CreatePost.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { getCategoriesPost } from "../../service/PostAPI";
+import { getCategoriesPost, postPost } from "../../service/PostAPI";
 import Tags from "../../component/post/Tags";
 class CreatePost extends Component {
     constructor(props) {
@@ -25,9 +25,27 @@ class CreatePost extends Component {
             modalShow: false,
             modalWaringAddTagOver: false,
             modalMessage: "",
-            content: "",
+
             currentCategory: "Chọn danh mục",
             isPreview: false,
+            // post
+            title: "",//
+            imageURL: "",//
+            content: "",//
+            //submitDate: "Dec 24, 2020 7:00:00 AM",
+            //publishDate: "Dec 29, 2020 7:00:00 AM",
+            readTime: 0,//
+            likeCount: 0,
+            numView: 0,//
+            postSoftDeleted: false,
+            postHidden: false,
+            postApproved: false,
+            authorID: "",//
+            authorName: "",//
+            categoryID: "",//
+            categoryName: "",//
+            authorAvatarURL: "",//
+            summary: "", //
         };
         this.handleClose = this.handleClose.bind(this);
         this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -37,6 +55,33 @@ class CreatePost extends Component {
         this.handleClickTag = this.handleClickTag.bind(this);
         this.writeView = this.writeView.bind(this);
         this.previewView = this.previewView.bind(this);
+        this.getReadingTime = this.getReadingTime.bind(this);
+
+        // post
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleSummaryChange = this.handleSummaryChange.bind(this);
+        this.handleImageURLChange = this.handleImageURLChange.bind(this);
+    }
+
+    // getDateTime() {
+    //     const monthNames = ["January", "February", "March", "April", "May", "June",
+    //         "July", "August", "September", "October", "November", "December"
+    //     ];
+    //     const d = new Date();
+    //     const month = monthNames[d.getMonth()].slice(0,3);
+    //     const date = d.getDate();
+    //     const year = d.getFullYear();
+    //     const hour = d.getHours();
+
+    //     //submitDate: "Dec 24, 2020 7:00:00 AM"
+
+    // }
+    getReadingTime(text) {
+        const wordsPerMinute = 200;
+        const noOfWords = text.split(/\s/g).length;
+        const minutes = noOfWords / wordsPerMinute;
+        const readTime = Math.ceil(minutes);
+        return readTime;
     }
     writeView() {
         this.setState({
@@ -48,6 +93,7 @@ class CreatePost extends Component {
             isPreview: true,
         })
     }
+
     changeCurrentCategory(evt) {
         console.log(evt);
         this.setState({
@@ -59,10 +105,39 @@ class CreatePost extends Component {
     }
 
     handleUpload() {
+        const { account, categories } = this.props;
         this.setState({
             modalShow: true,
         });
-        this.forceUpdate();
+
+
+        this.setState({
+            authorID: account.id,
+            authorName: account.displayName,
+            authorAvatarURL: account.avatar,
+            categoryName: this.state.currentCategory,
+            categoryID: (categories.find(e => e.title === this.state.currentCategory)).id,
+            readTime: this.getReadingTime(this.state.content),
+        })
+        const post = {
+            title: this.state.title,
+            imageURL: this.state.imageURL,
+            content: this.state.content,
+         
+            readTime: this.state.readTime,//
+            likeCount: 0,
+            numView: 0,//
+            postSoftDeleted: false,
+            postHidden: false,
+            postApproved: false,
+            authorID: this.state.authorID,
+            authorName: this.state.authorName,
+            categoryID: this.state.categoryID,
+            categoryName: this.state.categoryName,
+            authorAvatarURL: this.state.authorAvatarURL,
+            summary:this.state.summary,
+        }
+        this.props.postPost(post);
     }
 
     handleClose() {
@@ -110,6 +185,7 @@ class CreatePost extends Component {
     handleClickTag(item) {
         console.log(item)
     }
+
     handleEditorChange = (e) => {
         console.log(e.target.getContent());
         this.setState({
@@ -117,7 +193,22 @@ class CreatePost extends Component {
         });
     };
 
+    handleTitleChange() {
+        this.setState({
+            title: this.refs.title.value,
+        })
+    }
 
+    handleSummaryChange() {
+        this.setState({
+            summary: this.refs.summary.value,
+        })
+    }
+    handleImageURLChange() {
+        this.setState({
+            imageURL: this.refs.imageURL.value,
+        })
+    }
     render() {
         const { categories } = this.props;
         var body = null;
@@ -128,8 +219,8 @@ class CreatePost extends Component {
             </div>;
         } else {
             body = <Form>
-                <Form.Control id="enter-title" type="text" placeholder="Nhập tiêu đề" />
-                <Form.Control id="enter-summary" type="text" placeholder="Nhập tóm tắt" />
+                <Form.Control onChange={this.handleTitleChange} ref="title" id="enter-title" type="text" placeholder="Nhập tiêu đề" />
+                <Form.Control onChange={this.handleSummaryChange} ref="summary" id="enter-summary" type="text" placeholder="Nhập tóm tắt" />
                 <Editor initialValue={this.state.content}
                     init={{
                         height: 500,
@@ -165,10 +256,11 @@ class CreatePost extends Component {
                         </DropdownButton>
                     </Col>
                 </Row>
+                <Form.Control style={{marginTop: "0px"}} onChange={this.handleImageURLChange} ref="imageURL" id="enter-title" type="text" placeholder="Nhập đường link ảnh đại diện bài post" />
 
                 <Button block className="btn-submit" variant="success" onClick={this.handleUpload}>
                     Đăng bài
-            </Button>
+                </Button>
             </Form>
         }
         return (
@@ -208,12 +300,13 @@ class CreatePost extends Component {
 const mapStatetoProps = (state) => {
     return {
         categories: state.post.categories,
+        account: state.user.account,
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCategoriesPost,
-    
+    postPost,
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CreatePost));

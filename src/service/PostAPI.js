@@ -16,7 +16,7 @@ import {
 } from "../action/PostAction.js";
 import { HOST, PORT } from '../constant/index';
 import FormData from 'form-data';
-
+import Cookies from 'js-cookie';
 export function postPost(post) {
     return dispatch => {
         var myHeaders = new Headers();
@@ -26,14 +26,14 @@ export function postPost(post) {
             "title": post.title, 
             "imageURL": post.imageURL, 
             "content": post.content, 
-            "submitDate": "Dec 24, 2020 7:00:00 AM", 
-            "publishDate": "Dec 29, 2020 7:00:00 AM", 
-            "readTime": 0, 
-            "likeCount": 0, 
-            "numView": 0, 
-            "postSoftDeleted": false, 
-            "postHidden": false, 
-            "postApproved": false, 
+            //"submitDate": "Dec 24, 2020 7:00:00 AM", 
+            //"publishDate": "Dec 29, 2020 7:00:00 AM", 
+            "readTime": post.readTime, 
+            "likeCount": post.likeCount, 
+            "numView": post.numView, 
+            "postSoftDeleted": post.postSoftDeleted, 
+            "postHidden": post.postHidden, 
+            "postApproved": post.postApproved, 
             "authorID": post.authorID, 
             "authorName": post.authorName, 
             "categoryID": post.categoryID, 
@@ -70,7 +70,6 @@ export function getTagsByID(pid) {
         fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
-
                 dispatch(postGetTags(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));
@@ -78,27 +77,6 @@ export function getTagsByID(pid) {
 }
 
 
-
-
-export function getTagsByID(pid) {
-    return dispatch => {
-        var myHeaders = new Headers();
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-
-                dispatch(postGetTags(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-    }
-}
 
 
 
