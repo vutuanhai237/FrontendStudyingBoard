@@ -8,11 +8,16 @@ import icon_write from '../../../../img/icon_write.png'
 //combobox
 import '../../../shared_components/CustomCombobox.scss'
 
+
 //modal popup
 import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
 
 import { ClickAwayListener } from '@material-ui/core';
 import { getRoleNameByName } from '../../../../utils/PermissionManagement'
+
+import Cookies from 'js-cookie'
+import { PORT } from '../../../../constant/index'
+
 class Management_UserItem extends Component {
 
     constructor(props) {
@@ -46,6 +51,10 @@ class Management_UserItem extends Component {
             isChangeRoleConfirmationPopupOpen: false,
 
         }
+
+        this.isAnyFailedAlertPopupOpen = false;
+        this.isAnySuccessAlertPopupOpen = false;
+
     }
 
     componentDidMount() {
@@ -66,6 +75,7 @@ class Management_UserItem extends Component {
             this.docCount = this.props.docCount;
             this.score = this.props.score;
             this.roleList = this.props.roleList;
+
 
             let roles_Combobox = this.roleList.map(role =>
                 this.roleID === role.UserGroupID ?
@@ -162,8 +172,30 @@ class Management_UserItem extends Component {
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
                         <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
+                        <button className="Simple_White_Button" onClick={() => this.closeChangeRoleConfirmationPopup()}>Cancel</button>
                     </CustomModal>
+
+
+                    {/* modal success alert */}
+                    <CustomModal
+                        open={this.isAnySuccessAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
+                    />
+
+                    {/* modal failed alert */}
+                    <CustomModal
+                        open={this.isAnyFailedAlertPopupOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_fail"
+                        closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
+                    />
+
 
                 </div >
             );
@@ -213,11 +245,11 @@ class Management_UserItem extends Component {
         this.roleID = roleID;
 
         //open a confirmation popup
-        this.openChangeRoleConfirmationPopup(roleID);
+        this.openChangeRoleConfirmationPopup();
     }
 
     //handler change role
-    openChangeRoleConfirmationPopup = (roleID) => {
+    openChangeRoleConfirmationPopup = () => {
         this.closeAllChangeRoleDropdownCombobox();
         this.notifyHeader = "Xác nhận?";
         this.notifyContent = "Xác nhận thay đổi quyền người dùng?";
@@ -229,8 +261,43 @@ class Management_UserItem extends Component {
     }
 
     handlerVerifyChangeRoleConfirmation = (roleID) => {
-        // send request to server   
-        //...
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("username", this.userName);
+        urlencoded.append("roleId", this.roleID);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        fetch(`http://${PORT}/admin/updaterole?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                if (JSON.parse(result).statusCode === 20) {
+                    this.isUpdateInformationPopupOpen = false;
+                    this.canClickSaveInformation = false;
+                    this.notifyHeader = "Thành công";
+                    this.notifyContent = "Cập nhật quyền thành công!";
+                    this.isAnySuccessPopupOpen = true;
+                    this.setState({});
+
+                    return;
+                }
+                this.isUpdateInformationPopupOpen = false;
+                this.canClickSaveInformation = false;
+                this.notifyHeader = "Thất bại";
+                this.notifyContent = "Cập nhật quyền không thành công!";
+                this.isAnyFailedAlertPopupOpen = true;
+                this.setState({});
+
+            }
+            )
+            .catch(error => console.log('error', error));
 
         this.closeChangeRoleConfirmationPopup();
     }

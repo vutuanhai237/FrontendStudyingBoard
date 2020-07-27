@@ -28,7 +28,7 @@
 
 .DocPost_Summary_Item:active {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
-    border: 1px white solid;
+    border-top: 3px #5279db solid;
 }
 
 //general summary item headbar
@@ -183,4 +183,146 @@
     display: flex;
     width: 100%;
     justify-content: flex-end;
+}
+
+//no for approve
+.Prefix_DocPost_Summary_Category {
+    background: #5279db;
+    width: 5px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: 5px;
+}
+
+.DocPost_Summary_Category {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    background: #5279db;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 10px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.DocPost_Summary_Time_Semester_Subject_Icon {
+    margin-top: 0.6rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.1rem;
+}
+
+.DocPost_Summary_Time_Semester_Subject_Text {
+    line-height: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    height: fit-content;
+    position: relative;
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    color: #363636;
+    user-select: none;
+    margin-right: 0.6rem;
+}
+
+// Post Reactionbar
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap");
+
+.Post_Reaction_Bar {
+    border-top: 1px #c4c4c4 solid;
+    padding-top: 5px;
+    display: flex;
+    margin: auto;
+    width: 95%;
+    padding-top: 3px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: fit-content;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+//likeBtn
+.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn_Port {
+    display: flex;
+}
+
+.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn {
+    width: 20px;
+    height: 20px;
+}
+
+.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn_Port .Post_Reaction_Bar_Like_Count {
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #363636;
+    margin-left: 5px;
+}
+
+//this port content saveBtn and comment Btn
+.Post_Reaction_Bar .Post_Reaction_Bar_Save_Comment_Btn_Port {
+    display: flex;
+}
+
+//saveBtn
+.Post_Reaction_Bar_Save_Btn_Port {
+    display: flex;
+    user-select: none;
+}
+
+.Post_Reaction_Bar .Post_Reaction_Bar_Save_Btn {
+    width: 20px;
+    height: 20px;
+}
+
+.Post_Reaction_Bar .Post_Reaction_Bar_Save_Btn:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.Post_Reaction_Bar .Post_Reaction_Bar_Save_Text {
+    font-family: "Barlow Condensed", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    color: #363636;
+}
+
+//commentBtn
+.Post_Reaction_Bar_Comment_Btn_Port {
+    display: flex;
+    padding-left: 15px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 18px;
+    line-height: 20px;
+    color: #363636;
+    width: fit-content;
+    user-select: none;
+}
+.Post_Reaction_Bar_Comment_Btn_Port:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.Post_Reaction_Bar_Comment_Count {
+    display: flex;
+    padding-left: 5px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 20px;
+    color: #363636;
 }

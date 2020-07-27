@@ -1,7 +1,8 @@
 import {
     managementGetAllNotApprovedDocuments,
     managementGetCurrentPreviewDocument,
-    managementApproveADocument
+    managementApproveADocument,
+    managementGetAllUserDocList
 } from "../../action/management_actions/management_docActions";
 import { HOST, PORT } from '../../constant/index';
 import Cookies from 'js-cookie'
@@ -46,7 +47,7 @@ export function management_getCurrentPreviewDocument(previewDoc_ID) {
             headers: myHeaders,
             redirect: 'follow'
         };
-        
+
         console.log("API has been called " + previewDoc_ID);
         fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response =>
@@ -81,4 +82,27 @@ export function management_approveADocument(docID) {
     }
 
 }
+
+
+export function management_getAllUserDocList(userID) {
+    return dispatch => {
+
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        fetch(`http://${PORT}/user/docs?uid=${userID}&approved=1&page=0`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => dispatch(managementGetAllUserDocList(JSON.parse(result))
+                ))
+            .catch(error => console.log('error', error))
+    }
+
+}
+
+
 

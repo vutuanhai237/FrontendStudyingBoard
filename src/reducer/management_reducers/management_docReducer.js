@@ -1,7 +1,8 @@
 import {
     MANAGEMENT_GET_ALL_NOT_APPROVED_DOCUMENTS,
     MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
-    MANAGEMENT_APPROVE_A_DOCUMENT
+    MANAGEMENT_APPROVE_A_DOCUMENT,
+    MANAGEMENT_GET_ALL_DOCS_OF_USER
 } from "../../constant/index"
 
 const requestedDocs = [
@@ -37,6 +38,11 @@ function management_docReducer(state = initialState, action) {
             {
                 // console.log("Management get a not approved document payload case has been called");
                 return { ...state, currentDocumentApprovedStatus: action.payload }
+            }
+
+        case MANAGEMENT_GET_ALL_DOCS_OF_USER:
+            {
+                return { ...state, userDocList: action.payload }
             }
 
         default:

@@ -39,14 +39,16 @@ export function management_getAllRoles() {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/usergroups`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(
-        //         result => {
-        //             dispatch(managementGetAllRoles(JSON.parse(result)));
-        //         }
-        //     )
-        //     .catch(error => console.log('error', error));
+        fetch(`http://${PORT}/usergroups`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+
+                    // console.log("*"); console.log(result);
+                    dispatch(managementGetAllRoles(JSON.parse(result).bhtUserGroups));
+                }
+            )
+            .catch(error => console.log('error', error));
 
         dispatch(managementGetAllRoles());
     }

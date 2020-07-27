@@ -5,8 +5,8 @@ import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
 import Paginator from '../../shared_components/Paginator/ClientPaginator'
 import Management_UserItem from '../management_components/Management_UserItem/Management_UserItem'
-import { ClickAwayListener } from '@material-ui/core'
-import { getRoleNameByName, getRoleNameFilterByName } from '../../../utils/PermissionManagement'
+// import { ClickAwayListener } from '@material-ui/core'
+// import { getRoleNameByName, getRoleNameFilterByName } from '../../../utils/PermissionManagement'
 import dropdown_btn from '../../../img/dropdown_icon.png'
 import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
 
@@ -54,7 +54,7 @@ class Management_UserManagement extends Component {
     render() {
 
         let userItemList = <></>;
-        let searchDropdown = <></>;
+        // let searchDropdown = <></>;
 
         if (this.props.userList !== null && this.props.userList !== undefined
             && this.props.roleList !== null && this.props.roleList !== undefined) {
@@ -68,27 +68,27 @@ class Management_UserManagement extends Component {
                 this.isTheFirstTimeLoad = false;
             }
 
-            searchDropdown = this.roleFilterList.map(role =>
-                this.roleNameFilter === role.UserGroupName ?
-                    <div className="Activated_Dropdown_Combobox_Sub_Item"
-                        name="User_Management_Role_Filter_Combobox_Item"
-                        id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
-                        value={getRoleNameFilterByName(role.UserGroupName)}
-                        onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}
-                        key={role.UserGroupID}>
-                        {getRoleNameFilterByName(role.UserGroupName)}
+            // searchDropdown = this.roleFilterList.map(role =>
+            //     this.roleNameFilter === role.UserGroupName ?
+            //         <div className="Activated_Dropdown_Combobox_Sub_Item"
+            //             name="User_Management_Role_Filter_Combobox_Item"
+            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
+            //             value={getRoleNameFilterByName(role.UserGroupName)}
+            //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}
+            //             key={role.UserGroupID}>
+            //             {getRoleNameFilterByName(role.UserGroupName)}
 
-                    </div>
-                    :
-                    <div className="Dropdown_Combobox_Sub_Item"
-                        name="User_Management_Role_Filter_Combobox_Item"
-                        id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
-                        value={getRoleNameFilterByName(role.UserGroupName)}
-                        key={role.UserGroupID}
-                        onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}>
-                        {getRoleNameFilterByName(role.UserGroupName)}
-                    </div>
-            )
+            //         </div>
+            //         :
+            //         <div className="Dropdown_Combobox_Sub_Item"
+            //             name="User_Management_Role_Filter_Combobox_Item"
+            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
+            //             value={getRoleNameFilterByName(role.UserGroupName)}
+            //             key={role.UserGroupID}
+            //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}>
+            //             {getRoleNameFilterByName(role.UserGroupName)}
+            //         </div>
+            // )
             this.isTheFirstTimeLoad = false;
 
 
@@ -101,8 +101,8 @@ class Management_UserManagement extends Component {
                     name={userItem.displayName}
                     userName={userItem.userName}
                     // nickName={userItem.displayName}
-                    // avatarUrl={userItem.avatar}
-                    avatarUrl="https://i.imgur.com/SZJgL6C.jpg"
+                    avatarUrl={userItem.avatar}
+                    // avatarUrl="https://i.imgur.com/SZJgL6C.jpg"
                     email={userItem.email}
                     postCount={userItem.postCount}
                     docCount={userItem.documentCount}
@@ -238,7 +238,6 @@ class Management_UserManagement extends Component {
 //#region for Redux
 const mapStatetoProps = (state) => {
     
-    console.log(state.management_user.allUsers.accounts);
     return {
         userList: state.management_user.allUsers.accounts,
         roleList: state.management_user.allRoles

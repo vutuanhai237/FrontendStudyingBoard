@@ -25,7 +25,8 @@ import Management_CategoriesManagement from './Management_CategoriesManagement/M
 import Management_NotificationManagement from './Management_NotificationManagement/Management_NotificationManagement'
 import Management_AccountInformationManagement from './Management_AccountInformationManagement/Management_AccountInformationManagement';
 import Management_UserRoleManagement from './Management_UserRoleManagement/Management_UserRoleManangement'
-
+import Management_MyDocList from './Management_MyDocList/Management_MyDocList';
+import Management_MyPostList from './Management_MyPostList/Management_MyPostList'
 //import css
 import '../shared_components/SimpleButton.scss';
 
@@ -62,6 +63,7 @@ import {
     ActivityPermission,
     RolePermission
 } from '../../utils/PermissionManagement'
+
 
 class ManagementPage extends Component {
     constructor(props) {
@@ -628,11 +630,16 @@ class ManagementPage extends Component {
                             <div className="Management_Router_Outlet" >
                                 <Switch>
 
-                                    {/* Account and Page (admin and collab only) admin */}
+
                                     <Route exact path="/admin" component={Management_AccountInformationManagement} />     {/* for admin */}
                                     <Route exact path="/admin/update_password" component={Management_AccountInformationManagement} />
+                                    <Route exact path="/admin/docs_list" component={Management_MyDocList} />
+                                    <Route exact path="/admin/posts_list" component={Management_MyPostList} />
+
                                     <Route exact path="/user" component={Management_AccountInformationManagement} />{/* for user and collab */}
                                     <Route exact path="/user/update_password" component={Management_AccountInformationManagement} />
+                                    <Route exact path="/user/docs_list" component={Management_MyDocList} />
+                                    <Route exact path="/user/posts_list" component={Management_MyPostList} />
 
                                     {/* Admin and collab page content admin */}
                                     {/* for admin */}
@@ -650,6 +657,7 @@ class ManagementPage extends Component {
                                     {/* <Route exact path="/admin/activity_management" component={ManagementPage} /> */}
                                     <Route exact path="/admin/user_role_management" component={Management_UserRoleManagement} />
                                     {/* <Route exact path="/admin/user_management/:id" component={ManagementPage} /> */}
+
                                 </Switch>
                             </div>
                         </Router>

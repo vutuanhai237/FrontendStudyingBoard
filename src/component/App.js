@@ -35,8 +35,13 @@ const App = () => {
                 {/* Account and Page (admin and collab only) management */}
                 <Route exact path="/admin" component={ManagementPage} />     {/* for admin */}
                 <Route exact path="/admin/update_password" component={ManagementPage} />
+                <Route exact path="/admin/docs_list" component={ManagementPage} />
+                <Route exact path="/admin/posts_list" component={ManagementPage} />
+
                 <Route exact path="/user" component={ManagementPage} />{/* for user and collab */}
                 <Route exact path="/user/update_password" component={ManagementPage} />
+                <Route exact path="/user/docs_list" component={ManagementPage} />
+                <Route exact path="/user/posts_list" component={ManagementPage} />
 
                 {/* Admin and collab page content management */}
                 {/* for admin */}
