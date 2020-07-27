@@ -35,7 +35,7 @@ const App = () => {
                 {/* Account and Page (admin and collab only) management */}
                 <Route exact path="/admin" component={ManagementPage} />     {/* for admin */}
                 <Route exact path="/admin/update_password" component={ManagementPage} />
-                <Route exact="/user" component={ManagementPage} />{/* for user and collab */}
+                <Route exact path="/user" component={ManagementPage} />{/* for user and collab */}
                 <Route exact path="/user/update_password" component={ManagementPage} />
 
                 {/* Admin and collab page content management */}
@@ -46,10 +46,10 @@ const App = () => {
                 <Route exact path="/admin/doc_approving/:id" component={Management_DocPreview} />
 
                 {/* for collab */}
-                <Route exact path="/user/collaborator/post_approving" component={ManagementPage} />
+                <Route exact path="/user/post_approving" component={ManagementPage} />
                 {/* <Route exact path="/user/post_approving/:id" component = {}/> */}
-                <Route exact path="/user/collaborator/doc_approving" component={ManagementPage} />
-                <Route exact path="/user/collaborator/doc_approving/:id" component={Management_DocPreview} />
+                <Route exact path="/user/doc_approving" component={ManagementPage} />
+                <Route exact path="/user/doc_approving/:id" component={Management_DocPreview} />
 
                 {/* for admin only */}
                 <Route exact path="/admin/page_notification" component={ManagementPage} />

@@ -128,7 +128,7 @@ class Management_PostPreview extends Component {
     }
 
     navigateToAuthorPersonalPage = () => {
-        window.location.href = "/management/user/" + this.authorID;
+        window.location.href = "/admin/user/" + this.authorID;
     }
 
     navigateToSameCategoryDocsPage = () => {
@@ -136,7 +136,7 @@ class Management_PostPreview extends Component {
     }
 
     handlerPreviewRequestedPost = () => {
-        window.location.href = "/management/doc_approving/" + this.id;
+        window.location.href = "/admin/doc_approving/" + this.id;
     }
 
     handlerRejectRequestedPost = () => {

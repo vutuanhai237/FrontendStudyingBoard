@@ -12,7 +12,7 @@ export function managementGetAllNotApprovedDocuments(requestedDocs) {
 }
 
 
-export function managementGetCurrentNotApprovedDocumentDetail(requestedDoc) {
+export function managementGetCurrentPreviewDocument(requestedDoc) {
     return {
         type: MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
         payload: requestedDoc,

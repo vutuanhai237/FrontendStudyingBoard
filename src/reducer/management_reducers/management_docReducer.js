@@ -30,7 +30,7 @@ function management_docReducer(state = initialState, action) {
 
         case MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL: {
             // console.log("Management get a not approved document payload case has been called");
-            return { ...state, currentNotApprovedDocumentDetail: action.payload }
+            return { ...state, currentPreviewDocument: action.payload }
         }
 
         case MANAGEMENT_APPROVE_A_DOCUMENT:
