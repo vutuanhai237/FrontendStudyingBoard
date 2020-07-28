@@ -112,7 +112,7 @@ class Management_DocPreview extends Component {
                 this.uploadedTime = "22-08-2020";
                 this.viewCount = this.currentPreviewDocument.viewCount;
                 this.downloadCount = this.currentPreviewDocument.downloadCount;
-                this.avartarUrl = this.currentPreviewDocument.title.authorAvatar;
+                // this.avartarUrl = this.currentPreviewDocument.title.authorAvatar;
                 this.fileName = this.currentPreviewDocument.fileName;
                 this.linkFile = this.currentPreviewDocument.url;
             }

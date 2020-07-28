@@ -13,7 +13,7 @@ import '../../../shared_components/CustomCombobox.scss'
 import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
 
 import { ClickAwayListener } from '@material-ui/core';
-import { getRoleNameByName } from '../../../../utils/PermissionManagement'
+import { getRoleNameByName, getRoleNamebyID } from '../../../../utils/PermissionManagement'
 
 import Cookies from 'js-cookie'
 import { PORT } from '../../../../constant/index'
@@ -25,10 +25,11 @@ class Management_UserItem extends Component {
 
 
         this.roleID = "";
+        this.role_post = "";
         this.roleName = "";
         this.userID = "";
         this.name = "";
-        this.userName = "";
+        this.username = "";
         this.nickName = "";
         this.avatarUrl = "";
         this.email = "";
@@ -38,22 +39,21 @@ class Management_UserItem extends Component {
         this.roleList = [];
 
         //for cancel change roleID
-        this.recover_roleID = this.props.roleID;
+        this.recover_roleID = { ...this.props.roleID };
 
         this.isAnyChangeRoleDropdownComboboxOpen = false;
 
         this.notifyContent = "";
 
         this.state = {
-            role_PutDTO: {
-                id: this.roleID
-            },
+
             isChangeRoleConfirmationPopupOpen: false,
 
         }
 
         this.isAnyFailedAlertPopupOpen = false;
         this.isAnySuccessAlertPopupOpen = false;
+        this.isTheFirstTimeLoaded = true;
 
     }
 
@@ -63,19 +63,23 @@ class Management_UserItem extends Component {
 
     render() {
 
-        if (this.roleList !== null && this.roleList !== undefined) {
-            this.roleID = this.props.roleID;
-            this.roleName = this.props.roleName;
-            this.userID = this.props.userID;
-            this.name = this.props.name;
-            this.userName = this.props.userName;
-            this.avatarUrl = this.props.avatarUrl;
-            this.email = this.props.email;
-            this.postCount = this.props.postCount;
-            this.docCount = this.props.docCount;
-            this.score = this.props.score;
-            this.roleList = this.props.roleList;
+        if (this.props.roleList !== null && this.props.roleList !== undefined
+            && this.props.name) {
 
+            if (this.isTheFirstTimeLoaded) {
+                this.roleID = this.props.roleID;
+                this.roleName = this.props.roleName;
+                this.userID = this.props.userID;
+                this.name = this.props.name;
+                this.username = this.props.username;
+                this.avatarUrl = this.props.avatarUrl;
+                this.email = this.props.email;
+                this.postCount = this.props.postCount;
+                this.docCount = this.props.docCount;
+                this.score = this.props.score;
+                this.roleList = this.props.roleList;
+                this.isTheFirstTimeLoaded = false;
+            }
 
             let roles_Combobox = this.roleList.map(role =>
                 this.roleID === role.UserGroupID ?
@@ -99,7 +103,7 @@ class Management_UserItem extends Component {
             return (
                 <div className="Management_User_Item"  >
 
-                    <img alt="avatar" src={this.avatarUrl} className="Show_Avatar"></img>
+                    <img alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} className="Show_Avatar"></img>
 
                     <div style={{
                         paddingLeft: "10px", width: "100%"
@@ -136,7 +140,7 @@ class Management_UserItem extends Component {
                                                         <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
 
                                                             {this.roleList ?
-                                                                getRoleNameByName(this.roleName)
+                                                                getRoleNamebyID(this.roleID)
                                                                 : ""
                                                             }
                                                         </div>
@@ -240,9 +244,10 @@ class Management_UserItem extends Component {
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";
         }
-
+        console.log("**");
+        console.log(roleID)
         sub_dropdown_item.className = "Activated_Dropdown_Combobox_Sub_Item";
-        this.roleID = roleID;
+        this.role_post = roleID;
 
         //open a confirmation popup
         this.openChangeRoleConfirmationPopup();
@@ -260,12 +265,14 @@ class Management_UserItem extends Component {
         this.setState({ isChangeRoleConfirmationPopupOpen: false });
     }
 
-    handlerVerifyChangeRoleConfirmation = (roleID) => {
+    handlerVerifyChangeRoleConfirmation = () => {
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("username", this.userName);
-        urlencoded.append("roleId", this.roleID);
-
+        urlencoded.append("username", this.username);
+        urlencoded.append("ruleId", this.role_post);
+        console.log("*");
+        console.log(this.username);
+        console.log(this.role_post);
         var requestOptions = {
             method: 'POST',
             headers: {
@@ -276,24 +283,27 @@ class Management_UserItem extends Component {
         };
 
         fetch(`http://${PORT}/admin/updaterole?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
-                if (JSON.parse(result).statusCode === 20) {
+
+                if (result.statusCode === 20) {
                     this.isUpdateInformationPopupOpen = false;
                     this.canClickSaveInformation = false;
                     this.notifyHeader = "Thành công";
                     this.notifyContent = "Cập nhật quyền thành công!";
-                    this.isAnySuccessPopupOpen = true;
+                    this.isAnySuccessAlertPopupOpen = true;
+                    this.roleID = this.role_post;
+                    console.log(this.roleID + " A");
                     this.setState({});
 
-                    return;
+                } else {
+                    this.isUpdateInformationPopupOpen = false;
+                    this.canClickSaveInformation = false;
+                    this.notifyHeader = "Thất bại";
+                    this.notifyContent = "Cập nhật quyền không thành công!";
+                    this.isAnyFailedAlertPopupOpen = true;
+                    this.setState({});
                 }
-                this.isUpdateInformationPopupOpen = false;
-                this.canClickSaveInformation = false;
-                this.notifyHeader = "Thất bại";
-                this.notifyContent = "Cập nhật quyền không thành công!";
-                this.isAnyFailedAlertPopupOpen = true;
-                this.setState({});
 
             }
             )
@@ -303,7 +313,7 @@ class Management_UserItem extends Component {
     }
 
     handleCancelChangeRoleConfirmation = () => { //phai co popup thi moi test duoc
-        this.roleID = this.recover_roleID;
+        this.roleID = { ...this.recover_roleID };
         this.closeChangeRoleConfirmationPopup();
 
         // this.setState({});

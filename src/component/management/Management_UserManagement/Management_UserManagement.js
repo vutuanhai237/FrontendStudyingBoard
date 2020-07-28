@@ -99,7 +99,7 @@ class Management_UserManagement extends Component {
                     roleID={userItem.roleId}
                     userID={userItem.id}
                     name={userItem.displayName}
-                    userName={userItem.userName}
+                    username={userItem.username}
                     // nickName={userItem.displayName}
                     avatarUrl={userItem.avatar}
                     // avatarUrl="https://i.imgur.com/SZJgL6C.jpg"

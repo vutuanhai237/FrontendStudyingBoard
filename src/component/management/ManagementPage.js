@@ -113,6 +113,7 @@ class ManagementPage extends Component {
             this.score = this.props.accountInformation.score;
             this.post_count = this.props.accountInformation.postCount;
             this.doc_count = this.props.accountInformation.documentCount;
+            this.username = this.props.accountInformation.username;
             // this.avatarUrl = this.props.accountInformation.avatar;
             // console.log(this.isGrantedPermissions(ContentManagementPermission.Management));
 
@@ -140,7 +141,7 @@ class ManagementPage extends Component {
                                             {/* Management Infor Port */}
                                             < div className="Management_Info_Port" >
                                                 <div className="Avatar_Port">
-                                                    <img alt="avatar" className="Show_Avatar" src={this.avatarUrl} />
+                                                    <img alt="avatar" className="Show_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png"} />
                                                 </div>
                                                 <div className="Achivement_Port">
                                                     {/* <div className="margin_auto"> */}
@@ -256,21 +257,21 @@ class ManagementPage extends Component {
                                                             </Link>
                                                     } */}
                                                     {
-                                                        window.location.pathname === "/admin/posts_list" || window.location.pathname === "/user/posts_list"
-                                                            ?
-                                                            <Link
-                                                                className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                                to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/posts_list" : "/user/posts_list"}
-                                                            >
-                                                                Danh sách bài viết
-                                                            </Link>
-                                                            :
-                                                            <Link className="Sub_Dropdown_Menu_Item"
-                                                                to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/posts_list" : "/user/posts_list"
-                                                                }
-                                                                onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                                Danh sách bài viết
-                                                            </Link>
+                                                        // window.location.pathname === "/admin/posts_list" || window.location.pathname === "/user/posts_list"
+                                                        //     ?
+                                                        //     <Link
+                                                        //         className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                                                        //         to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/posts_list" : "/user/posts_list"}
+                                                        //     >
+                                                        //         Danh sách bài viết
+                                                        //     </Link>
+                                                        //     :
+                                                        //     <Link className="Sub_Dropdown_Menu_Item"
+                                                        //         to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/posts_list" : "/user/posts_list"
+                                                        //         }
+                                                        //         onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
+                                                        //         Danh sách bài viết
+                                                        //     </Link>
                                                     }
                                                     {
                                                         window.location.pathname === "/admin/docs_list" || window.location.pathname === "/user/docs_list"
@@ -397,28 +398,28 @@ class ManagementPage extends Component {
                                                     <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
                                                         <div className="margin_bottom_5px" />
                                                         {
-                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                                && this.isGrantedPermissions(PostPermission.Approve))
-                                                                ?
-                                                                window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
-                                                                    ?
-                                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
-                                                                    >
-                                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                            Duyệt bài viết
-                                                                        </div>
-                                                                    </Link>
-                                                                    :
-                                                                    <Link className="Sub_Dropdown_Menu_Item"
-                                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
-                                                                    >
-                                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                            Duyệt bài viết
-                                                                         </div>
-                                                                    </Link>
-                                                                : <></>
+                                                            // (this.isGrantedPermissions(ContentManagementPermission.Management)
+                                                            //     && this.isGrantedPermissions(PostPermission.Approve))
+                                                            //     ?
+                                                            //     window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
+                                                            //         ?
+                                                            //         <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                            //             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                            //         >
+                                                            //             <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                            //                 Duyệt bài viết
+                                                            //             </div>
+                                                            //         </Link>
+                                                            //         :
+                                                            //         <Link className="Sub_Dropdown_Menu_Item"
+                                                            //             onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                            //             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                            //         >
+                                                            //             <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                            //                 Duyệt bài viết
+                                                            //              </div>
+                                                            //         </Link>
+                                                            //     : <></>
                                                         }
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)

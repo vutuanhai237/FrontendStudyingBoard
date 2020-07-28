@@ -100,7 +100,7 @@ class Doc extends Component {
                 this.uploadedTime = "22-08-2020";
                 this.viewCount = this.document.viewCount;
                 this.downloadCount = this.document.downloadCount;
-                this.avartarUrl = this.document.title.authorAvatar;
+                // this.avartarUrl = this.document.title.authorAvatar;
                 this.fileName = this.document.fileName;
                 this.linkFile = this.document.url;
             }

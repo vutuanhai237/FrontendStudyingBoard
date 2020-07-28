@@ -83,7 +83,7 @@ class Management_RequestedPostSummaryItem extends Component {
                 </div>
                 <div className="DocPost_Summary_Item_Footer">
                     <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
-                    <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
+                    {/* <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
                 </div>
 
                 {/* Popup for reject requested post */}
