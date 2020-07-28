@@ -3,7 +3,7 @@ import Home from "./page/Home";
 import Posts from "./page/Posts";
 import Post from "./page/Post";
 import Docs from "./page/Docs";
-// import Doc from "./pages/doc";
+import Doc from "./page/Doc";
 import Events from "./page/Events";
 import CrPost from "./page/CreatePost";
 import CrDoc from "./page/CreateDoc";
@@ -28,7 +28,7 @@ const App = () => {
                 <Route exact path="/posts" component={Posts} />
                 <Route exact path="/posts/:id" component={Post} />
                 <Route exact path="/docs" component={Docs} />
-                <Route exact path="/docs/:id" component={Docs} />
+                <Route exact path="/docs/:id" component={Doc} />
                 <Route exact path="/events" component={Events} />
                 <Route exact path="/search/:keywork" component={Search} />
 

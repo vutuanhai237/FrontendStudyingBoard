@@ -9,19 +9,17 @@ import './Management_UserRoleManagement.scss'
 import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
+//import for redux
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { management_getAllUsers, management_getAllRoles } from '../../../service/management_services/management_userAPIs'
+
+import { getRoleNameByName } from '../../../utils/PermissionManagement'
+
 class Management_UserRoleManagement extends Component {
     constructor(props) {
         super();
-
-        //Post 
-        this.isAddPostCategoryPopupOpen = false;
-        this.isEditPostCategoryPopupOpen = false;
-        this.isVerifyDeletePostCategoryPopupOpen = false;
-
-        //Doc
-        this.isAddDocCategoryPopupOpen = false;
-        this.isEditDocCategoryPopupOpen = false;
-        this.isVerifyDeleteDocCategoryPopupOpen = false;
 
         //Notify
         this.notifyHeader = "";
@@ -34,21 +32,6 @@ class Management_UserRoleManagement extends Component {
         this.selected_category_name = "";
 
         this.state = {
-            roleList:
-                [
-                    {
-                        "id": 1,
-                        "title": "Management"
-                    },
-                    {
-                        "id": 2,
-                        "title": "Contributor"
-                    },
-                    {
-                        "id": 3,
-                        "title": "User"
-                    }
-                ],
             canClickEditPostCategory: false,
             canClickDeletePostCategory: false,
             canClickEditDocCategory: false,
@@ -58,24 +41,12 @@ class Management_UserRoleManagement extends Component {
     }
 
     componentDidMount() {
-        // console.log(process.env.path);
-        this.fetchAllCategoryInPageOne();
-        this.fetchAllRole();
+        this.props.management_getAllRoles();
     }
 
-    fetchAllCategoryInPageOne = () => {
-        //feta
-    }
-
-    fetchAllRole = () => {
-
-    }
-
-    onPageChange = () => {
-
-    }
 
     render() {
+
         return (
             <div>
                 <Management_Titlebar title="QUẢN LÝ QUYỀN NGƯỜI DÙNG" />
@@ -88,7 +59,7 @@ class Management_UserRoleManagement extends Component {
                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                     </div>
 
-                    <div className = "margin_top_10px"></div>
+                    <div className="margin_top_10px"></div>
 
                     <div className="Category_Type_Dropdown_Container" id="management-post-categories-container">
                         <div className="Category_Component_List">
@@ -103,13 +74,17 @@ class Management_UserRoleManagement extends Component {
                                             <div className="Custom_Table_20percents_Header">Mã quyền</div>
                                             <div className="Custom_Table_80percents_Header">Tên quyền - Quyền tương ứng</div>
                                         </div>
-
-                                        {this.state.roleList.map(item =>
-                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.title)} >
-                                                <div className="Custom_Table_Item_20percents">{item.id}</div>
-                                                <div className="Custom_Table_Item_80percents">{item.title}</div>
-                                            </div>
-                                        )}
+                                        {this.props.roleList ?
+                                            <> {
+                                                this.props.roleList.map(item =>
+                                                    <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.UserGroupID} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.UserGroupID, item.UserGroupName)} >
+                                                        <div className="Custom_Table_Item_20percents">{item.UserGroupID}</div>
+                                                        <div className="Custom_Table_Item_80percents">{getRoleNameByName(item.UserGroupName)}</div>
+                                                    </div>
+                                                )
+                                            }</>
+                                            :
+                                            <></>}
 
                                     </div>
                                 </ClickAwayListener>
@@ -299,4 +274,20 @@ class Management_UserRoleManagement extends Component {
 
 
 }
-export default Management_UserRoleManagement;
+
+
+//#region for Redux
+const mapStatetoProps = (state) => {
+
+    return {
+        // userList: state.management_user.allUsers.accounts,
+        roleList: state.management_user.allRoles
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    management_getAllUsers, management_getAllRoles
+}, dispatch);
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Management_UserRoleManagement));
+//#endregion

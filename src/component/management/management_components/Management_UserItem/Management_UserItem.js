@@ -106,10 +106,10 @@ class Management_UserItem extends Component {
                     }}>
                         < div style={{ display: "flex", justifyContent: "space-between" }}>
                             <div className="User_Item_Name">{this.name}</div>
-                            <div className="User_Item_Edit_Btn" onClick={() => { window.location.href = "/management/users_management/" + this.userID }}>
+                            {/* <div className="User_Item_Edit_Btn" onClick={() => { window.location.href = "/management/users_management/" + this.userID }}>
                                 <img alt="edit" className="User_Item_Edit_Btn_Element margin_right_5px" src={icon_write} />
                                 <div className="Simple_Gray_Label" style={{ paddingTop: "2px" }}>Chỉnh sửa</div>
-                            </div>
+                            </div> */}
                         </div>
                         <div>
                             <div className="User_Item_Email">{this.email}</div>

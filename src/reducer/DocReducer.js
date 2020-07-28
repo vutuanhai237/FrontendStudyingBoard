@@ -7,7 +7,7 @@ import {
     DOC_GET_TOP_DOC,
     DOC_POST_DOC,
     DOC_POST_UP_VIEW_DOC,
-    DOC_POST_UP_DOWNLOAD_DOC,
+    DOC_POST_UP_DOWNLOAD_DOC
 } from "../constant/index"
 const fakeDocuments = [
     {
@@ -89,6 +89,9 @@ function DocReducer(state = initialState, action) {
             return { ...state };
         case DOC_POST_UP_DOWNLOAD_DOC:
             return { ...state };
+        case DOC_GET_DOC_BY_ID: {
+            return { ...state, document: action.payload }
+        }
         default:
             return state;
     }

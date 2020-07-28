@@ -1,27 +1,26 @@
 import React, { Component } from 'react'
 
-import '../../shared_components/DocPostDetail.scss'
-import '../../shared_components/DPD_ResponsiveLayout.scss'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import gray_btn_element from '../../../img/gray_btn_element.png'
+import '../shared_components/DocPostDetail.scss'
+import '../shared_components/DPD_ResponsiveLayout.scss'
+import CustomModal from '../shared_components/CustomModalPopup/CustomModal'
+import gray_btn_element from '../../img/gray_btn_element.png'
 
-import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import Management_RequestedDocSummaryItem from '../management_components/Management_RequestedDocSummaryItem'
+import { management_getCurrentPreviewDocument } from "../../service/management_services/management_docAPIs"
+import { getCurrentUser } from "../../service/UserAPI"
+import { isGrantedPermissions, DocumentPermission } from "../../utils/PermissionManagement"
+import { getDocumentByID } from "../../service/DocAPI"
 
-import { management_getCurrentPreviewDocument } from "../../../service/management_services/management_docAPIs"
-import { getCurrentUser } from "../../../service/UserAPI"
-import { isGrantedPermissions, DocumentPermission } from "../../../utils/PermissionManagement"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Footer from '../../container/Footer'
-import Header from '../../container/Header'
+import Footer from '../container/Footer'
+import Header from '../container/Header'
 
-import gray_download_icon from '../../../img/gray_download_icon.png'
+import gray_download_icon from '../../img/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'
-import { PORT } from '../../../constant/index'
+import { PORT } from '../../constant/index'
 import Cookies from 'js-cookie'
 //import for pdf viewer:
 
@@ -31,7 +30,7 @@ class Doc extends Component {
     constructor(props) {
         super(props);
 
-        this.currentPreviewDocumentID = "";
+        this.documentID = "";
         this.isGrantedPermissions = isGrantedPermissions.bind(this);
 
         this.id = "";
@@ -67,8 +66,8 @@ class Doc extends Component {
     }
 
     fetchCurrentNotApprovedDocument = () => {
-        this.currentPreviewDocumentID = this.props.match.params.id;
-        this.props.management_getCurrentPreviewDocument(this.currentPreviewDocumentID);
+        this.documentID = this.props.match.params.id;
+        this.props.getDocumentByID(this.documentID);
         this.props.getCurrentUser();
     }
 
@@ -77,53 +76,41 @@ class Doc extends Component {
         // console.log("*");
         // console.log(this.props);
 
+        console.log(this.props);
+
         if (this.props.accountInformation) {
 
-            this.roleName = this.props.accountInformation.roleName;
-
-            // neu khong co quyen preview => khong cho preview
-            if (!this.isGrantedPermissions(DocumentPermission.Preview))
-                return <>{window.location.pathname = "/"}</>;
-
-            //neu khong la admin => home
-            if (window.location.pathname.substring(0, 6) === "/admin" && this.roleName !== "ADMIN")
-                return <>{window.location.pathname = "/"}</>;
-
-            //neu la admin => admin
-            if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "ADMIN")
-                return <>{window.location.pathname = "/admin" + window.location.pathname.substring(5, window.location.pathname.length)}</>;
-
-            console.log("**");
-            // console.log(this.props.currentPreviewDocument)
-            // if (this.props.currentPreviewDocument.statusCode === 14)
+            // console.log(this.props.document)
+            // if (this.props.document.statusCode === 14)
             //     return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
-            if (this.props.currentPreviewDocument) {
-                if (this.props.currentPreviewDocument.statusCode === 14)
+            if (this.props.document) {
+                if (this.props.document.statusCode === 14)
                     return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
-                this.currentPreviewDocument = this.props.currentPreviewDocument.documentDTO;
-                this.id = this.currentPreviewDocument.id;
-                this.authorName = this.currentPreviewDocument.authorName;
-                this.authorID = this.currentPreviewDocument.authorID;
-                this.categoryName = this.currentPreviewDocument.categoryName;
-                this.categoryID = this.currentPreviewDocument.categoryID;
-                this.semesterName = this.currentPreviewDocument.semesterName;
-                this.semesterID = this.currentPreviewDocument.semesterID;
-                this.subject = this.currentPreviewDocument.subjectName;
-                this.title = this.currentPreviewDocument.title;
-                this.content = this.currentPreviewDocument.summary;
+                this.document = this.props.document.documentDTO;
+                this.id = this.document.id;
+                this.authorName = this.document.authorName;
+                this.authorID = this.document.authorID;
+                this.categoryName = this.document.categoryName;
+                this.categoryID = this.document.categoryID;
+                this.semesterName = this.document.semesterName;
+                this.semesterID = this.document.semesterID;
+                this.subject = this.document.subjectName;
+                this.title = this.document.title;
+                this.content = this.document.summary;
                 this.uploadedTime = "22-08-2020";
-                this.viewCount = this.currentPreviewDocument.viewCount;
-                this.downloadCount = this.currentPreviewDocument.downloadCount;
-                this.avartarUrl = this.currentPreviewDocument.title.authorAvatar;
-                this.fileName = this.currentPreviewDocument.fileName;
-                this.linkFile = this.currentPreviewDocument.url;
+                this.viewCount = this.document.viewCount;
+                this.downloadCount = this.document.downloadCount;
+                this.avartarUrl = this.document.title.authorAvatar;
+                this.fileName = this.document.fileName;
+                this.linkFile = this.document.url;
             }
 
             return (
+
                 <div>
                     <Header />
                     <div className="DocPost_Detail" >
-                        {this.props.currentPreviewDocument ?
+                        {this.props.document ?
 
                             <div>
                                 <div className="DocPost_Detail_Main_Port">
@@ -167,9 +154,8 @@ class Doc extends Component {
                                         {this.content}
                                     </div>
 
-                                    <div className="Doc_Detail_File_Name"
-                                    onClick={() => window.open(this.linkFile)}
-                                    >
+                                    <div className="Doc_Summary_File_Name"
+                                        onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}>
                                         {this.fileName}
                                     </div>
 
@@ -186,23 +172,13 @@ class Doc extends Component {
                                 </div>
                                 <div className="Document_Live_Preview">
 
-                                    <PDFViewer
-                                        document={{
-                                            // url: this.url
-                                            url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf',
-                                        }}
+                                    <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe>
 
-                                        hideRotation={true}
-                                        loader={true}
-                                        alert={true}
-                                        navbarOnTop={true}
-
-                                    />
                                 </div>
-                                <div className="DocPost_Detail_Footer">
+                                {/* <div className="DocPost_Detail_Footer">
                                     <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
                                     <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
-                                </div>
+                                </div> */}
                             </div> :
                             <div className="padding_10px Simple_Gray_Label">
                                 Loading ...
@@ -304,7 +280,7 @@ class Doc extends Component {
 
     handlerVerifyApproveRequestedPostConfirmation = () => {
 
-        fetch(`http://${PORT}/admin/docs/approved?id=${this.currentPreviewDocumentID}&sessionID=` + Cookies.get('JSESSIONID'),
+        fetch(`http://${PORT}/admin/docs/approved?id=${this.documentID}&sessionID=` + Cookies.get('JSESSIONID'),
             {
                 method: 'GET'
             })
@@ -312,19 +288,19 @@ class Doc extends Component {
             .then(
                 result => {
                     // if (result.statusCode === 16) {
-                        this.notifyHeader = "Thành công";
-                        this.notifyContent = "Duyệt tài liệu thành công!";
-                        this.isApproveRequestedPopupOpen = false;
-                        this.isAnySuccessAlertPopupOpen = true;
-                        this.setState({})
+                    this.notifyHeader = "Thành công";
+                    this.notifyContent = "Duyệt tài liệu thành công!";
+                    this.isApproveRequestedPopupOpen = false;
+                    this.isAnySuccessAlertPopupOpen = true;
+                    this.setState({})
                     // }
                     // else {
-                        // this.notifyHeader = "Thất bại";
-                        // this.notifyContent = "Duyệt tài liệu không thành công!";
-                        // this.isApproveRequestedPopupOpen = false;
-                        // this.isAnyFailedAlertPopupOpen = true;
-                        // console.log(result);
-                        // this.setState({})
+                    // this.notifyHeader = "Thất bại";
+                    // this.notifyContent = "Duyệt tài liệu không thành công!";
+                    // this.isApproveRequestedPopupOpen = false;
+                    // this.isAnyFailedAlertPopupOpen = true;
+                    // console.log(result);
+                    // this.setState({})
                     // }
                 }
             )
@@ -339,15 +315,16 @@ class Doc extends Component {
 }
 
 const mapStatetoProps = (state) => {
+    console.log("*");
     console.log(state);
     return {
-        currentPreviewDocument: state.management_doc.currentPreviewDocument,
+        document: state.doc.document,
         accountInformation: state.user.account
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    management_getCurrentPreviewDocument,
+    getDocumentByID,
     getCurrentUser
 }, dispatch);
 

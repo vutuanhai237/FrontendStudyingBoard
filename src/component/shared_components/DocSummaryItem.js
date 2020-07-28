@@ -43,15 +43,6 @@ class DocSummaryItem extends Component {
 
     render() {
 
-        // Render tag from tags list
-
-        // let tagsGroup = this.tags.map((tag) => {
-        //     return (
-        //         <Tag text={tag}></Tag>
-        //     )
-        // }
-        // );
-
         return (
 
             <div className="DocPost_Summary_Item" >
@@ -90,9 +81,9 @@ class DocSummaryItem extends Component {
                         </div > */}
                         {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} /> */}
                         {/* <div className="DocPost_Detail_Time_Semester_Subject_Text">
-    Năm học: &nbsp;
-    {this.year}
-</div> */}
+                            Năm học: &nbsp;
+                            {this.year}
+                        </div> */}
                     </div>
 
                     <div className="Requested_Doc_Summary_Item_Header_3">
@@ -107,8 +98,16 @@ class DocSummaryItem extends Component {
                         {this.props.content}
                     </div>
 
-                    <div className="DocPost_Summary_Image_Port">
-                        <img alt="post" className="DocPost_Summary_Image" src={this.props.image}></img>
+                    {/* <div className="DocPost_Summary_Image_Port">
+                        {/* <img alt="post" className="DocPost_Summary_Image" src={this.props.image}></img> */}
+
+
+                    {/* </div> */}
+
+                    <div className="Doc_Summary_File_Name"
+                        onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}
+                    >
+                        {this.fileName}
                     </div>
 
                     {/* <div className="DocPost_Summary_Requested_Tags_Port">
@@ -117,6 +116,14 @@ class DocSummaryItem extends Component {
                 </div>
 
                 <DocReactionBar></DocReactionBar>
+
+                <div className="DocPost_Summary_Continue_Reading_Port">
+                    <div className="Simple_Blue_Button DocPost_Summary_Continue_Reading"
+                        onClick={() => { window.location.pathname = "/docs/" + this.id }}>
+                        Đọc tiếp
+                        </div>
+                </div>
+
 
                 {/* Popup for reject requested post */}
                 <CustomModal
@@ -139,7 +146,7 @@ class DocSummaryItem extends Component {
 
     navigateToAuthorPersonalPage = () => {
         if (window.location.pathname.substring(0, 6) === "/admin") {
-            window.location.href = "/admin/user/" + this.authorID;
+            window.location.href = "/admin/user_management/user/" + this.authorID;
             return;
         }
         if (window.location.pathname.substring(0, 5) === "/user")
