@@ -85,7 +85,7 @@ class CommentPost extends Component {
                     </Nav.Item>
                     <Nav.Item>
                         <Row>
-                            <p id="username">{item.userName}</p>
+                            <p id="username">{item.username}</p>
                         </Row>
                         <Row>
                             <p id="timestamp">{item.postTimeStamp}</p>

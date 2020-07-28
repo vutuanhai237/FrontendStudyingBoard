@@ -209,9 +209,9 @@ export function getRoleNamebyID(roleId) {
     if (roleId === 1)
         return "Admin";
     if (roleId === 2)
-        return "User";
-    if (roleId === 3)
         return "Collaborator";
+    if (roleId === 3)
+        return "User";
     return "Guest";
 }
 

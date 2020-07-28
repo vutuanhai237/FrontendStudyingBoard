@@ -136,7 +136,10 @@ class Management_AccountInformationManagement extends Component {
 
                                     {/* <div className="Simple_Gray_Label">Avatar: </div> */}
                                     <div className="Account_Information_Avatar_Port">
-                                        <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img>
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
+                                        <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} ></img>
+                                  
                                         {/* // src={this.props.accountInformation.avartar} /> */}
 
                                         {/* <div className="margin_left_10px"></div> */}
