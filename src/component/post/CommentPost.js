@@ -33,7 +33,7 @@ class CommentPost extends Component {
         }
         this.commentPost = this.commentPost.bind(this);
         this.replyComment = this.replyComment.bind(this);
-
+        this.deleteComment = this.deleteComment.bind(this);
     }
     replyComment() {
         if (this.state.isReply) {
@@ -48,14 +48,23 @@ class CommentPost extends Component {
             })
         }
     }
+
+    deleteComment() {
+
+    }
     commentPost(comment) {
-        this.props.postComment(this.props.item.id, comment);
+        this.props.postComment(comment);
     }
     render() {
-        const { item } = this.props;
-        var replyButton, commentSection, comment, searchBar = null;
+        const { item, account } = this.props;
+        var replyButton, deleteButton, commentSection, comment, searchBar = null;
+        if (account.roleName === "ADMIN") {
+            deleteButton= <Button id="replyButton" onClick={this.deleteComment} variant="link">Xóa</Button>
+            
+        }
         if (!this.props.isChild) {
             replyButton = <Button id="replyButton" onClick={this.replyComment} variant="link">{this.state.replyMessage}</Button>
+            
         }
         if (this.state.isReply) {
             searchBar = <div style={{ marginLeft: "-10px", marginTop: "5px" }} >
@@ -96,7 +105,7 @@ class CommentPost extends Component {
                 <Nav className="container-fluid ">
                     <Nav.Item>
                         {replyButton}
-
+                        {deleteButton}
                     </Nav.Item>
                 </Nav>
             </Row>
@@ -115,7 +124,9 @@ class CommentPost extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        account: state.user.account,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

@@ -20,26 +20,67 @@ import Cookies from 'js-cookie';
 export function postPost(post) {
     return dispatch => {
         var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Content-Type", "text/plain");
+        var tags = [];
+        post.tags.map(item => {
+            tags.push(item.tagdetail)
+        })
 
-        var raw = JSON.stringify({ 
-            "title": post.title, 
-            "imageURL": post.imageURL, 
-            "content": post.content, 
+        console.log(tags)
+        var raw = JSON.stringify({
+            "title": post.title,
+            "imageURL": post.imageURL,
+            "content": post.content,
             //"submitDate": "Dec 24, 2020 7:00:00 AM", 
             //"publishDate": "Dec 29, 2020 7:00:00 AM", 
-            "readTime": post.readTime, 
-            "likeCount": post.likeCount, 
-            "numView": post.numView, 
-            "postSoftDeleted": post.postSoftDeleted, 
-            "postHidden": post.postHidden, 
-            "postApproved": post.postApproved, 
-            "authorID": post.authorID, 
-            "authorName": post.authorName, 
-            "categoryID": post.categoryID, 
-            "categoryName": post.categoryName, 
-            "authorAvatarURL": post.authorAvatarURL, 
-            "summary": post.summary, 
+            "readTime": post.readTime,
+            "likeCount": post.likeCount,
+            "numView": post.numView,
+            "postSoftDeleted": post.postSoftDeleted,
+            "postHidden": post.postHidden,
+            "postApproved": post.postApproved,
+            "authorID": post.authorID,
+            "authorName": post.authorName,
+            "categoryID": post.categoryID,
+            "categoryName": post.categoryName,
+            "authorAvatarURL": post.authorAvatarURL,
+            "summary": post.summary,
+            "tags": tags,
+        });
+
+        var formdata = new FormData();
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        console.log(requestOptions)
+        fetch(`http://${PORT}/posts?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                dispatch(postPostPost(1));
+            })
+            .catch(error => console.log('error', error));
+    }
+}
+
+export function postComment(comment) {
+    return dispatch => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+      
+        var raw = JSON.stringify({ 
+            "content": comment.content, 
+            "userAvatarURL": comment.userAvatarURL, 
+            "userID": comment.userID, 
+            "userName": comment.userName, 
+            "commentSoftDeleted": false, 
+            "commentHidden": false, 
+            "commentApproved": false, 
+            "parentCommentID": 1, 
+            "postID": comment.postID, 
         });
 
         var requestOptions = {
@@ -48,15 +89,23 @@ export function postPost(post) {
             body: raw,
             redirect: 'follow'
         };
-        
-        fetch(`http://${PORT}/posts?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+
+        fetch(`http://${PORT}/postComments?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
+
             })
             .catch(error => console.log('error', error));
     }
 }
+
+
+
+
+
+
+
 export function getTagsByID(pid) {
     return dispatch => {
         var myHeaders = new Headers();
@@ -202,13 +251,6 @@ export function getIsLikePostByUID(uid, pid) {
 }
 
 
-
-
-
-export function postComment(uid, comment) {
-    return dispatch => {
-    }
-}
 
 export function postSave(uid) {
     return dispatch => {

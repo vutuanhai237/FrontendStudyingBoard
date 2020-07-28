@@ -12,6 +12,7 @@ import './SearchBar.scss'
 
 class SearchBar extends Component {
     passValue() {
+        
         this.props.passValueToHeader(this.refs.text.value);
     }
     render() {

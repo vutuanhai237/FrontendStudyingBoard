@@ -153,7 +153,8 @@ class LoginForm extends React.Component {
                                 Hoặc xem với tư cách khách &#128526;
                             </p>
                         </Link>
-                        <Row>
+                        
+                        <Row className="pt-3">
                             <Col className="btn-register">
                                 <Button onClick={this.register} className="btn-block" >
                                     Đăng ký

@@ -14,7 +14,7 @@ export function postRegister(account) {
 
         var formdata = new FormData();
         formdata.append("username", account.username);
-        formdata.append("avatar", account.avatar);
+        formdata.append("avatar", account.file);
         formdata.append("email", account.email);
         formdata.append("password", account.password);
 
@@ -24,8 +24,9 @@ export function postRegister(account) {
             body: formdata,
             redirect: 'follow'
         };
-
-        fetch(`https://${PORT}/register`, requestOptions)
+        console.log(account)
+        console.log(requestOptions)
+        fetch(`http://${PORT}/register`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -78,7 +79,7 @@ export function getCurrentUser() {
             headers: myHeaders,
             redirect: 'follow'
         };
-        fetch(`http://${PORT}/users/current?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        fetch(`http://${PORT}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
@@ -105,7 +106,8 @@ export function getLogout() {
             redirect: 'follow'
         };
         Cookies.remove('JSESSIONID');
-        fetch(`https://${PORT}/logout`, requestOptions)
+        Cookies.remove('UID');
+        fetch(`http://${PORT}/logout`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);

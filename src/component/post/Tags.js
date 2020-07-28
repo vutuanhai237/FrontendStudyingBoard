@@ -17,6 +17,7 @@ class Tags extends Component {
     }
     render() {
         const { tags } = this.props;
+        console.log(tags)
         return (
             <div>
                 <Row id="tags" className="justify-content-start">

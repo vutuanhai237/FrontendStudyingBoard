@@ -9,6 +9,7 @@ import {
     POST_GET_POST_NEWESTS,
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
+    POST_POST_POST,
 } from "../constant/index"
 
 const initialState = {
@@ -22,10 +23,13 @@ const initialState = {
     newActivities: [],
     newests: [],
     tags: [],
+    statusPostPostCode: 0,
 };
 
 function PostReducer(state = initialState, action) {
     switch (action.type) {
+        case POST_POST_POST:
+            return { ...state, statusPostPostCode: action.payload.statusPostPostCode }
         case POST_GET_TAGS_BY_ID:
             
             return { ...state, tags: action.payload.tags }

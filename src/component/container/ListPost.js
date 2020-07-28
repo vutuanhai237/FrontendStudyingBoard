@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Row, Card, Col } from "react-bootstrap";
+import { Row, Card, Col, Pagination } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
 import FilterPost from "../post/FilterPost";
 import Paging from "../Paging"
@@ -23,15 +23,31 @@ class ListPost extends Component {
 
     componentDidMount() {
         this.props.getSearchPost("page=1");
-      
+
+    }
+
+    handleNewPage(number) {
+        this.setState({
+            current_page: number,
+        })
     }
     render() {
+        let paginItems = [];
+        for (let number = 1; number <= 5; number++) {
+            paginItems.push(
+                <Pagination.Item onClick={() => {this.handleNewPage(number)}}key={number} active={number === this.state.current_page}>
+                    {number}
+                </Pagination.Item>,
+            );
+        }
+
+
         return (
             <div id="group-post">
                 <div>
-                    <p style={{marginTop: "20px"}}className="title">DANH SÁCH BÀI VIẾT</p>
+                    <p style={{ marginTop: "20px" }} className="title">DANH SÁCH BÀI VIẾT</p>
                 </div>
-                <FilterPost/>
+                <FilterPost />
                 <Card.Body id="card-body">
                     <Row>
                         {
@@ -44,7 +60,7 @@ class ListPost extends Component {
 
                     </Row>
                 </Card.Body>
-                <Paging type="posts"></Paging>
+                <Pagination>{paginItems}</Pagination>
             </div>
         );
     }

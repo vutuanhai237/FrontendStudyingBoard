@@ -26,6 +26,8 @@ class CreatePost extends Component {
             modalWaringAddTagOver: false,
             modalMessage: "",
 
+            isUploading: false,
+
             currentCategory: "Chọn danh mục",
             isPreview: false,
             // post
@@ -63,19 +65,35 @@ class CreatePost extends Component {
         this.handleImageURLChange = this.handleImageURLChange.bind(this);
     }
 
-    // getDateTime() {
-    //     const monthNames = ["January", "February", "March", "April", "May", "June",
-    //         "July", "August", "September", "October", "November", "December"
-    //     ];
-    //     const d = new Date();
-    //     const month = monthNames[d.getMonth()].slice(0,3);
-    //     const date = d.getDate();
-    //     const year = d.getFullYear();
-    //     const hour = d.getHours();
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.statusPostPostCode);
+        console.log(this.state.isUploading)
+        if (this.state.isUploading) {
+            this.statusPostPostCode = nextProps.statusPostPostCode;
+            this.handleModal();
+        }
+        
+    }
 
-    //     //submitDate: "Dec 24, 2020 7:00:00 AM"
 
-    // }
+    handleModal() {
+        console.log(this.statusPostPostCode)
+        if (this.statusPostPostCode !== 1) {
+            this.setState({
+                modalShow: true,
+                modalMessage: "Tải lên thất bại",
+            });
+        } else {
+            this.setState({
+                modalShow: true,
+                modalMessage: "Tải lên thành công",
+            });
+        }
+        this.setState({
+            isUploading: false,
+        })
+    }
+
     getReadingTime(text) {
         const wordsPerMinute = 200;
         const noOfWords = text.split(/\s/g).length;
@@ -105,39 +123,30 @@ class CreatePost extends Component {
     }
 
     handleUpload() {
-        const { account, categories } = this.props;
-        this.setState({
-            modalShow: true,
-        });
-
-
-        this.setState({
-            authorID: account.id,
-            authorName: account.displayName,
-            authorAvatarURL: account.avatar,
-            categoryName: this.state.currentCategory,
-            categoryID: (categories.find(e => e.title === this.state.currentCategory)).id,
-            readTime: this.getReadingTime(this.state.content),
-        })
+        const { account, categories } = this.props;  
         const post = {
             title: this.state.title,
             imageURL: this.state.imageURL,
             content: this.state.content,
          
-            readTime: this.state.readTime,//
+            readTime: this.getReadingTime(this.state.content),//
             likeCount: 0,
             numView: 0,//
             postSoftDeleted: false,
             postHidden: false,
             postApproved: false,
-            authorID: this.state.authorID,
-            authorName: this.state.authorName,
-            categoryID: this.state.categoryID,
-            categoryName: this.state.categoryName,
-            authorAvatarURL: this.state.authorAvatarURL,
+            authorID: account.id,
+            authorName: account.displayName,
+            categoryID: (categories.find(e => e.title === this.state.currentCategory)).id,
+            categoryName: this.state.currentCategory,
+            authorAvatarURL: account.avatar,
             summary:this.state.summary,
+            tags: this.state.tags,
         }
         this.props.postPost(post);
+        this.setState({
+            isUploading: true,
+        })
     }
 
     handleClose() {
@@ -152,7 +161,7 @@ class CreatePost extends Component {
 
         if (e.keyCode === 13 && e.target.value.length > 0) {
             if (tags.length < 5) {
-                tags.push(e.target.value);
+                tags.push({id: 1, tagdetail: e.target.value});
                 this.setState({
                     tags: tags,
                     modalShow: false,
@@ -171,7 +180,7 @@ class CreatePost extends Component {
             });
         }
         if (this.state.tags.length - oldLength === 1) this.refs.inputtags.value = "";
-        this.forceUpdate();
+
     }
     deletetags(item) {
         let tempttags = this.state.tags;
@@ -272,7 +281,7 @@ class CreatePost extends Component {
                         </Modal.Title>
                     </Modal.Header>
                     <div>
-                        <Modal.Body>{this.state.modelMessage}</Modal.Body>
+                        <Modal.Body>{this.state.modalMessage}</Modal.Body>
                         <Modal.Footer>
                             <Button variant="success" href="" onClick={this.handleClose}>
                                 Đồng ý
@@ -301,6 +310,7 @@ const mapStatetoProps = (state) => {
     return {
         categories: state.post.categories,
         account: state.user.account,
+        statusPostPostCode: state.post.statusPostPostCode,
     };
 }
 

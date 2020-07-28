@@ -44,6 +44,7 @@
     padding-left: 0px;
     padding-right: 0px;
     color: rgba(0, 0, 0, 0.54);
+    margin-right: 10px;
 }
 
 #comment #replyButton:hover {
@@ -54,6 +55,15 @@
 #comment #replyButton:active {
     //color: #5279DB;
     transition: all 0.5s;
+}
+
+
+#comment #deleteButton {
+    transition: all 0.5s;
+    padding-left: 0px;
+    padding-right: 0px;
+    color: rgba(0, 0, 0, 0.54);
+    
 }
 
 #comment .nav-link {
