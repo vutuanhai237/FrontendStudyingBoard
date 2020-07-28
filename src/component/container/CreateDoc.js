@@ -31,8 +31,8 @@ class CreateDoc extends Component {
             uploadFileName: "Chọn file (ppt, pptx, txt, pdf)",
             doc: {
                 fileName: "",
-                fileDescription: "",
-                file: "",
+                summary: "",
+                title: "",
                 currentCategory: "Chọn danh mục",
                 currentSemester: "Chọn học kì",
                 currentSubject: "Chọn môn học",
@@ -48,6 +48,7 @@ class CreateDoc extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.changeUploadFileName = this.changeUploadFileName.bind(this);
         //this.handleUpload = this.handleUpload.bind(this);
+        this.changeFileName = this.changeFileName.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -83,7 +84,7 @@ class CreateDoc extends Component {
         })
     }
     handleUpload() {
-      
+        
         console.log(this.state.doc);
         this.props.postDoc(this.state.doc);
         this.setState({
@@ -120,6 +121,16 @@ class CreateDoc extends Component {
         })
     }
 
+    changeFileName() {
+        this.setState({
+            doc: { 
+                ...this.state.doc, 
+                title: this.refs.title.value,
+                summary: this.refs.summary.value,
+                
+            }
+        })
+    }
     changeCurrentSubject(evt) {
         const { subjects } = this.props;
 
@@ -134,7 +145,7 @@ class CreateDoc extends Component {
 
     changeUploadFileName(evt) {
         this.setState({
-            doc: { ...this.state.doc, uploadFileName: evt.target.files[0].name, file: evt.target.files[0] }
+            doc: { ...this.state.doc, fileName: evt.target.files[0].name, file: evt.target.files[0] }
         })
     }
     render() {
@@ -178,14 +189,14 @@ class CreateDoc extends Component {
                         <InputGroup.Prepend>
                             <InputGroup.Text>Tên tài liệu</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl placeholder="Nhập tên tài liệu" aria-label="Amount (to the nearest dollar)"/>
+                        <FormControl onChange={this.changeFileName} ref="title" placeholder="Nhập tên tài liệu" aria-label="Amount (to the nearest dollar)"/>
                     </InputGroup>
 
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text>Mô tả tài liệu</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl placeholder="Nhập mô tả tài liệu" aria-label="Amount (to the nearest dollar)"/>
+                        <FormControl ref="summary"placeholder="Nhập mô tả tài liệu" aria-label="Amount (to the nearest dollar)"/>
                     </InputGroup>
 
                     <Row>

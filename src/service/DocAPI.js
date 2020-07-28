@@ -14,7 +14,7 @@ import Cookies from 'js-cookie';
 export function postDoc(doc) {
     return dispatch => {
         var myHeaders = new Headers();
-
+        console.log(doc)
         var formdata = new FormData();
         formdata.append("file", doc.file);
         formdata.append("title", doc.title);
