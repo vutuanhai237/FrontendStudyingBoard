@@ -3,17 +3,19 @@ import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 
 const PermissionList = {
     ContentManagementPermission: {
-        Management: { ContentManagement: "CONTENT_MANAGEMENT" }
+        //this is permission to show "Quản trị" or :"Cộng tác" tab menu to approve or category
+        Management: { ContentManagement: "CONTENT_MANAGEMENT" } 
     },
     DocumentPermission: {
-        Upload: { DocumentUpload: "DOCUMENT_UPLOAD" },
-        Edit: { DocumentEdit: "DOCUMENT_EDIT" },
-        Delete: { DocumentDelete: "DOCUMENT_DELETE" },
-        Approve: { DocumentApprove: "DOCUMENT_APPROVE" },
-        Download: { DocumentDownload: "DOCUMENT_DOWNLOAD" },
-        Preview: { DocumentPreview: "DOCUMENT_PREVIEW" },
 
-        All: {
+        Upload: { DocumentUpload: "DOCUMENT_UPLOAD" }, //gain this permission to upload a document.
+        Edit: { DocumentEdit: "DOCUMENT_EDIT" }, //gain this permission to edit information of an uploaded document.
+        Delete: { DocumentDelete: "DOCUMENT_DELETE" }, //gain this permission to delete an uploaded document.
+        Approve: { DocumentApprove: "DOCUMENT_APPROVE" }, //gain this permission to approve a document uploaded by user.  
+        Download: { DocumentDownload: "DOCUMENT_DOWNLOAD" }, //gain this permission to download an uploaded document. 
+        Preview: { DocumentPreview: "DOCUMENT_PREVIEW" }, //gain this permission to preview a document uploaded by user (view a unapproved document).  
+
+        All: { //Gain all document permission
             DocumentUpload: "DOCUMENT_UPLOAD",
             DocumentEdit: "DOCUMENT_EDIT",
             DocumentDelete: "DOCUMENT_DELETE",
@@ -24,10 +26,10 @@ const PermissionList = {
     },
     PostPermission:
     {
-        Create: { PostCreate: "POST_CREATE" },
-        Edit: { PostEdit: "POST_EDIT" },
-        Delete: { PostDelete: "POST_DELETE" },
-        Approve: { PostApprove: "POST_APPROVE" },
+        Create: { PostCreate: "POST_CREATE" },  //gain this permission to write a post.
+        Edit: { PostEdit: "POST_EDIT" }, //gain this permission to edit an uploaded post.
+        Delete: { PostDelete: "POST_DELETE" }, //gain this permission to delete an uploaded post.
+        Approve: { PostApprove: "POST_APPROVE" }, 
         Comment: { PostComment: "POST_COMMENT" },
         Like: { PostLike: "POST_LIKE" },
         Save: { PostSave: "POST_SAVE" },

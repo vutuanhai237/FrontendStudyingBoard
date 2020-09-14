@@ -7,10 +7,40 @@ import {
     docGetSearchDoc,
     docGetDocByID,
 } from "../action/DocAction.js";
-import { HOST, PORT } from '../constant/index';
+import {
+    HOST,
+    PORT
+} from '../constant/index';
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
+//#region Fake data
+const doc_v1 = {
+    "statusCode": 15,
+    "statusMessage": "Get resource success!",
+    "documentDTO": {
+        "id": 1,
+        "url": "hehe",
+        "title": "title ne",
+        "summary": " summatry luom",
+        "authorName": "phucnh",
+        "authorID": 1,
+        "authorAvatar": "https://image.shutterstock.com/image-photo/butterfly-grass-on-meadow-night-260nw-1111729556.jpg",
+        "categoryID": 1,
+        "categoryName": "De thi",
+        "subjectID": 1,
+        "subjectName": "Nhập môn lập trình",
+        "viewCount": 3,
+        "downloadCount": 0,
+        "fileName": "\"Tên file tài liệu số 1\"",
+        "semesterId": 1,
+        "semesterName": "HK1 * 2016-2017"
+    }
+}
+
+//#endregion 
+
+//upload new document
 export function postDoc(doc) {
     return dispatch => {
         var myHeaders = new Headers();
@@ -85,31 +115,6 @@ export function getSubjects() {
                 dispatch(docGetSubjects(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));
-
-        // var myHeaders = new Headers();
-        // var requestOptions = {
-        //     method: 'GET',
-        //     headers: myHeaders,
-        //     redirect: 'follow'
-        // };
-
-        // fetch(`https://${PORT}/management/docs/notApproved?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => console.log(result))
-        //     .catch(error => console.log('error', error));
-
-        // var myHeaders = new Headers();
-
-        // var requestOptions = {
-        //     method: 'GET',
-        //     headers: myHeaders,
-        //     redirect: 'follow'
-        // };
-
-        // fetch(`https://${PORT}/users?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => console.log(result))
-        //     .catch(error => console.log('error', error));
     }
 }
 
@@ -120,12 +125,14 @@ export function getTopDoc() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/docs/goodDoc?limit=3`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
-            })
-            .catch(error => console.log('error', error));
+        // fetch(`http://${PORT}/docs/goodDoc?limit=3`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
+        //     })
+        //     .catch(error => console.log('error', error));
+        let result = doc_v1;
+        docGetTopDoc(result);
     }
 }
 

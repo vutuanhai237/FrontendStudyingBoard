@@ -4,9 +4,32 @@ import {
     userGetCurrentUser,
     userGetLogout,
 } from "../action/UserAction.js";
-import { HOST, PORT } from '../constant/index';
+import {
+    HOST,
+    PORT
+} from '../constant/index';
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
+
+//#region Fake data
+const user_admin = {
+    "statusCode": 5,
+    "statusMessage": "Get account success!",
+    "account": {
+        "id": 1,
+        "username": "phucnh",
+        "password": "123456",
+        "avatar": "https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg",
+        "email": "phuc98@gmail.com",
+        "score": 100,
+        "postCount": 0,
+        "documentCount": 11,
+        "roleId": 1,
+        "roleName": "ADMIN"
+    }
+}
+
+//#endregion
 
 export function postRegister(account) {
     return dispatch => {
@@ -79,20 +102,21 @@ export function getCurrentUser() {
             headers: myHeaders,
             redirect: 'follow'
         };
-        fetch(`http://${PORT}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
+        // fetch(`http://${PORT}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
 
-            })
-            .catch(error => {
-                console.log('error', error);
-                dispatch(userGetCurrentUser(null, error.statusCode))
-            })
+        //     })
+        //     .catch(error => {
+        //         console.log('error', error);
+        //         dispatch(userGetCurrentUser(null, error.statusCode))
+        //     })
+        let result = user_admin;
+        dispatch(userGetCurrentUser(result.account, result.statusCode))
 
-      
-           
-    
+
+
     }
 }
 
