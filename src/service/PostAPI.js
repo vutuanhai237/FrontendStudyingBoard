@@ -22,14 +22,85 @@ import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
 //#region Fake data region
+
+export const categioriesList = [ //this fake data contain catefory of all table related to category like semester, subject, ...
+    //for post
+    {
+        "id": 1,
+        "categoryName": "Ngôn ngữ lập trình"
+    },
+    {
+        "id": 2,
+        "categoryName": "Kiến thức môn học"
+    },
+    {
+        "id": 3,
+        "categoryName": "Hỏi đáp"
+    },
+    {
+        "id": 4,
+        "categoryName": "Công nghệ mới"
+    },
+    {
+        "id": 5,
+        "categoryName": "Hoạt động trang"
+    },
+
+    //for doc: categories and year, semester ("Đề thi" only) 
+    {
+        "id": 6,
+        "categoryName": "Đề thi"
+    },
+    {
+        "id": 7,
+        "categoryName": "Khóa luận"
+    },
+    {
+        "id": 8,
+        "categoryName": "Giáo trình"
+    },
+    {
+        "id": 9,
+        "categoryName": "Sách"
+    },
+    {
+        "id": 10,
+        "categoryName": "Slide bài giảng"
+    },
+
+    //year
+    {
+        "id": 6,
+        "categoryName": "Đề thi"
+    },
+    {
+        "id": 7,
+        "categoryName": "Khóa luận"
+    },
+    {
+        "id": 8,
+        "categoryName": "Giáo trình"
+    },
+    {
+        "id": 9,
+        "categoryName": "Sách"
+    },
+    {
+        "id": 10,
+        "categoryName": "Slide bài giảng"
+    },
+]
+
+const tagList = ["C++", "Java", "Cẩm nang", "Lập trình Di động", "Đinh hướng nghề nghiệp", "Than vãn"]
+
 const post_summary_1 = {
     id: "Post_1",
-    authorName: "Vu Tuan Hai",
+    authorName: "Vũ Tuấn Hải",
     authorID: "Author_1",
     requestedDate: "1/1/2020",
     requestedTime: "13:00",
     requestedCategory: "Ngôn ngữ lập trình",
-    requestedCategoryID: "Cate_1",
+    requestedCategoryID: "1",
     title: "Thông báo thu học phí bằng C++",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
     imageURL: "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg",
@@ -41,12 +112,12 @@ const post_summary_1 = {
 
 const post_summary_2 = {
     id: "Post_2",
-    authorName: "Luu Bieu Nghi",
+    authorName: "Lưu Biêu Nghị",
     authorID: "Author_2",
     requestedDate: "1/1/2020",
     requestedTime: "17:00",
-    requestedCategory: "Ngôn ngữ lập trình",
-    requestedCategoryID: "Cate_1",
+    requestedCategory: "Kiến thức môn học",
+    requestedCategoryID: "2",
     title: "Thông báo nghỉ học bằng C++",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
     imageURL: "https://blog.hubspot.com/hubfs/types-of-image-files-extensions.jpg",
@@ -58,13 +129,13 @@ const post_summary_2 = {
 
 const post_summary_3 = {
     id: "Post_3",
-    authorName: "Nguyen Van Dong",
+    authorName: "Nguyễn Văn Đông",
     authorID: "Author_3",
     requestedDate: "1/1/2020",
     requestedTime: "17:00",
-    requestedCategory: "Ngôn ngữ lập trình",
-    requestedCategoryID: "Cate_1",
-    title: "Thông báo bằng Python",
+    requestedCategory: "Công nghệ mới",
+    requestedCategoryID: "4",
+    title: "Blockchain trong quản lý học phí",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
     imageURL: "https://cdn.searchenginejournal.com/wp-content/uploads/2019/08/c573bf41-6a7c-4927-845c-4ca0260aad6b-760x400.jpeg",
     tagList: ["Lập trình", "Python"],
@@ -91,33 +162,42 @@ const post_summary_4 = {
 }
 
 const highlightPostResults = [
-    post_summary_1, post_summary_2, post_summary_3
+    post_summary_2, post_summary_3, post_summary_1
 ]
 
 const allPostsSummary = [
     post_summary_1, post_summary_2, post_summary_3, post_summary_4
 ]
 
+
+//isLiked, isSaved and comment may be get from another API
 const current_Post_Detail = { //get via GET method.
     "statusCode": 15,
     "statusMessage": "Get resource success!",
     "documentDTO": {
-        "id": 1,
-        "url": "hehe",
-        "title": "title ne",
-        "summary": " summatry luom",
-        "authorName": "phucnh",
+        "title": "BÀI VIẾT CHO NHỮNG AI ĐÃ, ĐANG VÀ SẼ HỌC GAME!",
+        "imageURL": "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/117301752_157280435980177_534263431605817536_o.png?_nc_cat=104&_nc_sid=730e14&_nc_ohc=sxcWadeT9ZIAX92JGiZ&_nc_ht=scontent-sin6-1.xx&oh=c78228232e9faac37d9627945b6be6b0&oe=5F8536E5",
+        "content": `Khi thực hiện series NMPT Game một năm trước, mình gặp rất nhiều khó khăn, và chắc chắn những ai đã, đang và sẽ học Game sẽ cảm nhận được, sau đây là đôi dòng suy nghĩ của mình, một người đã pass Game gửi đến cho những ai sắp học game. Bài viết này là bài nhập môn, khởi động nên hợp với những người yêu thích yếu tố “phi kĩ thuật”.
+        Điều đầu tiên là về mục đích của series này. Ngày này năm trước, mình và nhiều bạn cùng lớp đã vượt qua môn game sớm hơn thời gian biểu chuẩn lẫn tỉ lệ qua môn cực kì cao (trong khi đó nhiều người rớt đến 4,5 lần, có những lớp rớt hơn 50% - mình nghe kể lại thôi chứ cũng chưa xác thực bao giờ :v). Với nhiều sinh viên SE, nhắc đến game là sợ vỡ mật nhưng vào thời điểm đó, mình đã từng tin rằng bản thân có thể vượt qua nó nếu như bỏ ra thời gian và công sức xứng đáng (chỉ cho đến khi code framework, thực sự nản, tâm lý chung của mọi người mà!). Đến nay, lý do mình và đồng đội pass có lẽ là tinh thần can đảm code 10 - 12h / ngày trong gần 1 tháng ròng. Người ta thường nói rằng: nếu bạn đi một mình, bạn sẽ tiến rất chậm nhưng nếu đi cùng nhau, bạn sẽ tiến rất xa.
+        Dân gian có câu: “Rảnh rỗi sinh nông nổi”, nên sau buổi nhậu mừng pass game, mình nghĩ nên dùng tí văn chương này để viết những bài viết có tâm và đủ kiến thức.
+        Tuy nhiên, việc đọc hiểu có lẽ cũng là một thách thức
+        Đầu tiên là về chất lượng bài viết, nội dung đầu lúc nào cũng có vẻ dễ thở, nên bài viết có thể viết theo kiểu phóng túng hài hước một chút. Tuy nhiên, càng về sau lượng kiến thức càng dày và khó,. Nếu đọc hết series, các bạn có thể thấy dung lượng bài viết (hay nói cách khác là deadline hàng tuần) càng ngày càng lớn: từ 1500 -> 2000 -> 2500 words. `,
+        "submitDate": "Dec 24, 2020 7:00:00 AM",
+        "publishDate": "Dec 29, 2020 7:00:00 AM",
+        "readTime": "10 phút",
+        "likeCount": 30,
+        // "numView": numView, => change to viewCount
+        "viewCount": 561,
+        "postSoftDeleted": false, //don't know
+        "postHidden": false,
+        "postApproved": true,
         "authorID": 1,
-        "authorAvatar": "avt",
-        "categoryID": 1,
-        "categoryName": "De thi",
-        "subjectID": 1,
-        "subjectName": "Nhập môn lập trình",
-        "viewCount": 3,
-        "downloadCount": 0,
-        "fileName": "\"Tên file tài liệu số 1\"",
-        "semesterId": 1,
-        "semesterName": "HK1 * 2016-2017"
+        "authorName": "Nguyen Hong Phuc", // === displayName of this author
+        "categoryID": "Hỏi đáp",
+        "categoryName": "categoryName",
+        "authorAvatarURL": "https://www.w3schools.",
+        "summary": "Khi thực hiện series NMPT Game một năm trước, mình gặp rất nhiều khó khăn, và chắc chắn những ai đã, đang và sẽ học Game sẽ cảm nhận được, ",
+        "tags": [tagList[0], tagList[2]],
     }
 }
 
@@ -330,7 +410,7 @@ export function postLike(uid, pid) {
     }
 }
 
- //Lay thong tin xem nguoi dung co ID la uid co dang like bai post co ID la pid khong
+//Lay thong tin xem nguoi dung co ID la uid co dang like bai post co ID la pid khong
 export function getIsLikePostByUID(uid, pid) {
     return dispatch => {
         var myHeaders = new Headers();
@@ -352,7 +432,7 @@ export function getIsLikePostByUID(uid, pid) {
         //         })
         //         .catch(error => console.log('error', error));
         // }
-        let result = ["Post_1", "Post_3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
+        let result = ["1", "3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
         const allPostLikeByUID = result;
         const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
         console.log("Liked: " + isLiked)
@@ -363,11 +443,11 @@ export function getIsLikePostByUID(uid, pid) {
 
 
 export function postSave(uid) {
-    return dispatch => {}
+    return dispatch => { }
 }
 
 export function postUnSave(uid) {
-    return dispatch => {}
+    return dispatch => { }
 }
 
 export function getPostCommentByID(pid) {
@@ -437,19 +517,22 @@ export function getCategoriesPost() {
 }
 
 
-export function getSearchPost(filter) {
+export function getSearchPost(filter) { //this API is also call when open all post link with filter is all
     return dispatch => {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/posts?${filter}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(`http://${PORT}/posts?${filter}`)
-                dispatch(postGetSearchPost(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
+        // fetch(`http://${PORT}/posts?${filter}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(`http://${PORT}/posts?${filter}`)
+        //         dispatch(postGetSearchPost(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
+        let result = allPostsSummary;
+        dispatch(postGetSearchPost(result));
+
     }
 }

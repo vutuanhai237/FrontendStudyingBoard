@@ -12,20 +12,58 @@ import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
 //#region Fake data
-const user_admin = {
+const admin = {
     "statusCode": 5,
     "statusMessage": "Get account success!",
     "account": {
         "id": 1,
         "username": "phucnh",
+        "displayName": "Nguyen Hong Phuc",
         "password": "123456",
-        "avatar": "https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg",
+        "avatarURL": "https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg",
         "email": "phuc98@gmail.com",
         "score": 100,
         "postCount": 0,
         "documentCount": 11,
         "roleId": 1,
         "roleName": "ADMIN"
+    }
+}
+
+
+const collaborator_1 = {
+    "statusCode": 5,
+    "statusMessage": "Get account success!",
+    "account": {
+        "id": 1,
+        "username": "dongnv1",
+        "displayName": "Nguyễn Văn Đông",
+        "password": "123456",
+        "avatarURL": "https://tinypng.com/images/social/website.jpg",
+        "email": "jionvodoi@gmail.com",
+        "score": 100,
+        "postCount": 0,
+        "documentCount": 11,
+        "roleId": 2,
+        "roleName": "COLLABORATOR"
+    }
+}
+
+const user_1 = {
+    "statusCode": 5,
+    "statusMessage": "Get account success!",
+    "account": {
+        "id": 1,
+        "username": "dongnv",
+        "displayName": "Lưu Biêu Nghị",
+        "password": "123456",
+        "avatarURL": "https://www.w3schools.com/w3css/img_avatar3.png",
+        "email": "dongnv.since1999@gmail.com",
+        "score": 100,
+        "postCount": 0,
+        "documentCount": 11,
+        "roleId": 3,
+        "roleName": "USER"
     }
 }
 
@@ -37,7 +75,7 @@ export function postRegister(account) {
 
         var formdata = new FormData();
         formdata.append("username", account.username);
-        formdata.append("avatar", account.file);
+        formdata.append("avatarURL", account.file);
         formdata.append("email", account.email);
         formdata.append("password", account.password);
 
@@ -112,7 +150,7 @@ export function getCurrentUser() {
         //         console.log('error', error);
         //         dispatch(userGetCurrentUser(null, error.statusCode))
         //     })
-        let result = user_admin;
+        let result = admin;
         dispatch(userGetCurrentUser(result.account, result.statusCode))
 
 

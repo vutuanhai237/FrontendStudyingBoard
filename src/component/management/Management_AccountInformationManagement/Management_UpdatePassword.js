@@ -115,7 +115,7 @@ class Management_UpdatePassword extends Component {
 
                         </div>
                         <div className="display_flex" >
-                            <button className="Simple_Blue_Button margin_auto Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
+                            <button className="Simple_Blue_Button Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
                                 Xác nhận
                                     </button>
                         </div>

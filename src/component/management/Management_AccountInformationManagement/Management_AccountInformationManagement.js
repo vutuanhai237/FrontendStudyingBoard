@@ -39,7 +39,7 @@ class Management_AccountInformationManagement extends Component {
         this.displayName = "Nguyễn Văn Đông";
         this.userID = "";
         this.password = "";
-        this.avatar = "";
+        this.avatarURL = "";
         this.email = "";
         this.score = "";
         this.postCount = 0;
@@ -101,7 +101,7 @@ class Management_AccountInformationManagement extends Component {
             this.roleID = this.accountInformation.roleId;
             this.roleName = this.accountInformation.roleName;
             this.username = this.accountInformation.username;
-
+            this.avatarURL = this.accountInformation.avatarURL;
             // for update information DTO
             this.updateInformation_DTO.oldPasword = this.password;
             this.updateInformation_DTO.username = this.username;
@@ -138,10 +138,9 @@ class Management_AccountInformationManagement extends Component {
                                     <div className="Account_Information_Avatar_Port">
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img> */}
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
-                                        <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} ></img>
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
                                   
-                                        {/* // src={this.props.accountInformation.avartar} /> */}
-
+                                      <img className = "Account_Information_Avatar_Image" alt = "avatar" src = {this.avatarURL}/>
                                         {/* <div className="margin_left_10px"></div> */}
 
                                         {/* <div>{this.props.</div> */}

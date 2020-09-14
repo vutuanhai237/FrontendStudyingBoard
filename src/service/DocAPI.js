@@ -23,11 +23,11 @@ const doc_v1 = {
         "url": "hehe",
         "title": "title ne",
         "summary": " summatry luom",
-        "authorName": "phucnh",
+        "authorName": "Nguyễn Hồng Phúc",
         "authorID": 1,
         "authorAvatar": "https://image.shutterstock.com/image-photo/butterfly-grass-on-meadow-night-260nw-1111729556.jpg",
         "categoryID": 1,
-        "categoryName": "De thi",
+        "categoryName": "Đề thi",
         "subjectID": 1,
         "subjectName": "Nhập môn lập trình",
         "viewCount": 3,
@@ -37,7 +37,51 @@ const doc_v1 = {
         "semesterName": "HK1 * 2016-2017"
     }
 }
+const doc_v2 = {
+    "statusCode": 15,
+    "statusMessage": "Get resource success!",
+    "documentDTO": {
+        "id": 1,
+        "url": "bom",
+        "title": "",
+        "summary": "",
+        "authorName": "Lưu Biêu Nghị",
+        "authorID": 1,
+        "authorAvatar": "https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg",
+        "categoryID": 1,
+        "categoryName": "Không phải đề thi",
+        // "subjectID": 1,
+        // "subjectName": "",
+        "viewCount": 3,
+        "downloadCount": 0,
+        "fileName": "Slide ôn tập CTDL&GT năm 2017 - 2018 - BHT Công nghệ phần mềm",
+        // "semesterId": 1,
+        // "semesterName": "HK1 * 2016-2017"
+    }
+}
 
+const doc_v3 = {
+    "statusCode": 15,
+    "statusMessage": "Get resource success!",
+    "documentDTO": {
+        "id": 1,
+        "url": "bom",
+        "title": "",
+        "summary": "",
+        "authorName": "Huỳnh Thị Kim Thảo",
+        "authorID": 1,
+        "authorAvatar": "https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg",
+        "categoryID": 1,
+        "categoryName": "Slide ôn tập",
+        // "subjectID": 1,
+        // "subjectName": "",
+        "viewCount": 3,
+        "downloadCount": 0,
+        "fileName": "Slide ôn tập nhập môn mạch số năm 2017 - 2018 - BHT Công nghệ phần mềm",
+        // "semesterId": 1,
+        // "semesterName": "HK1 * 2016-2017"
+    }
+}
 //#endregion 
 
 //upload new document
