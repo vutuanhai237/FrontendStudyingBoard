@@ -123,7 +123,7 @@ class Management_DocPreview extends Component {
                         {this.props.currentPreviewDocument ?
 
                             <div>
-                                <div className="DocPost_Detail_Main_Port">
+                                <div className="DocPost_Detail_Main_Layout">
 
                                     <div className="DocPost_Detail_Title">
                                         {this.title}

@@ -4,19 +4,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
 
-.Management_Show_Port_Bounding_Port {
+.Management_Show_Layout_Bounding_Layout {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     // background: green;
 }
 
-.Management_Account_Information_Bounding_Port {
+.Management_Account_Information_Bounding_Layout {
     width: 60%;
     padding: 5px;
 }
 
-.Account_Information_Port {
+.Account_Information_Layout {
     border: 1px #c4c4c4 solid;
     border-radius: 5px;
     border-top: 5px solid #5279db;
@@ -25,14 +25,14 @@
     width: 100%;
 }
 
-.Account_Information_Update_Password_Port {
+.Account_Information_Update_Password_Layout {
     border: 1px #c4c4c4 solid;
     border-radius: 5px;
     border-top: 5px solid #5279db;
     width: 100%;
 }
 
-.Account_Information_Avatar_Port {
+.Account_Information_Avatar_Layout {
     display: flex;
     justify-content: space-between;
 }
@@ -46,12 +46,12 @@
 }
 
 // Role and achivement port:
-.Account_Information_Role_Achivement_Port {
+.Account_Information_Role_Achivement_Layout {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.Account_Information_Own_Role_Port {
+.Account_Information_Own_Role_Layout {
     border-top: 5px #5279db solid;
     width: 100%;
     border-bottom: 1px solid #c4c4c4;
@@ -66,7 +66,7 @@
     border-right: 1px solid #c4c4c4;
 }
 
-.Account_Information_Achivement_Port {
+.Account_Information_Achivement_Layout {
     user-select: none;
     // padding-top: 4px;
     // padding-bottom: 4px;
@@ -83,7 +83,7 @@
     // background: green;
 }
 
-.Account_Information_Achivement_Post_Doc_Count_Port {
+.Account_Information_Achivement_Post_Doc_Count_Layout {
     display: flex;
     // width: 50%;
     width: 200px;

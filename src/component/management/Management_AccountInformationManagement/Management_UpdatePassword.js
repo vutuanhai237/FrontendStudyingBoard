@@ -63,7 +63,7 @@ class Management_UpdatePassword extends Component {
             return (
 
                 <div>
-                    {/* <div className="Management_Account_Information_Bounding_Port"> */}
+                    {/* <div className="Management_Account_Information_Bounding_Layout"> */}
                     <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
 
                         <div className="Simple_Gray_Label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>

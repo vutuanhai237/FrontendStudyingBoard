@@ -120,7 +120,7 @@ class Management_UserManagement extends Component {
 
             <div>
                 <Management_Titlebar title="QUẢN LÝ NGƯỜI DÙNG" />
-                <div className="Management_Show_Port">
+                <div className="Management_Show_Layout">
 
                     <div className="display_flex justify_content_space_between margin_top_10px"  >
                         <div className="Number_Of_Item">

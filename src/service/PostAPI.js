@@ -23,7 +23,7 @@ import Cookies from 'js-cookie';
 
 //#region Fake data region
 
-export const categioriesList = [ //this fake data contain catefory of all table related to category like semester, subject, ...
+export const categoriesList = [ //this fake data contain catefory of all table related to category like semester, subject, ...
     //for post
     {
         "id": 1,
@@ -46,10 +46,10 @@ export const categioriesList = [ //this fake data contain catefory of all table 
         "categoryName": "Hoạt động trang"
     },
 
-    //for doc: categories and year, semester ("Đề thi" only) 
+    //for doc: categories and year, semester ("Đề thi" only) and subject (redesign)
     {
         "id": 6,
-        "categoryName": "Đề thi"
+        "categoryName": "Đề thi",
     },
     {
         "id": 7,
@@ -66,29 +66,68 @@ export const categioriesList = [ //this fake data contain catefory of all table 
     {
         "id": 10,
         "categoryName": "Slide bài giảng"
+    },
+    {
+        "id": 11,
+        "categoryName": "Slide ôn tập"
     },
 
-    //year
+    //year and semester only for "Đề thi"
     {
-        "id": 6,
-        "categoryName": "Đề thi"
+        "id": 12,
+        "year": "2016 - 2017"
     },
     {
-        "id": 7,
-        "categoryName": "Khóa luận"
+        "id": 13,
+        "year": "2017 - 2018"
     },
     {
-        "id": 8,
-        "categoryName": "Giáo trình"
+        "id": 14,
+        "year": "2018 - 2019"
     },
     {
-        "id": 9,
-        "categoryName": "Sách"
+        "id": 15,
+        "year": "2019 - 2020"
     },
     {
-        "id": 10,
-        "categoryName": "Slide bài giảng"
+        "id": 16,
+        "year": "2020 - 2021"
     },
+    {
+        "id": 17,
+        "semester": "Học kỳ I"
+    },
+    {
+        "id": 18,
+        "semester": "Học kỳ II"
+    },
+    {
+        "id": 19,
+        "semester": "Học kỳ hè"
+    },
+    {
+        "id": 20,
+        "subjectName": "Đại số tuyến tính"
+    },
+
+    //about subject: redesign the database 
+    {
+        "id": 21,
+        "subjectName": "Giải tích 1"
+    },
+    {
+        "id": 22,
+        "subjectName": "Lập trình hướng đối tượng"
+    },
+    {
+        "id": 23,
+        "subjectName": "Nhập môn mạng máy tính"
+    },
+    {
+        "id": 24,
+        "subjectName": "Cấu trúc dữ liệu và giải thuật"
+    }
+
 ]
 
 const tagList = ["C++", "Java", "Cẩm nang", "Lập trình Di động", "Đinh hướng nghề nghiệp", "Than vãn"]
@@ -161,7 +200,7 @@ const post_summary_4 = {
     commentCount: 101
 }
 
-const highlightPostResults = [
+export const highlightPostResults = [
     post_summary_2, post_summary_3, post_summary_1
 ]
 
@@ -174,7 +213,7 @@ const allPostsSummary = [
 const current_Post_Detail = { //get via GET method.
     "statusCode": 15,
     "statusMessage": "Get resource success!",
-    "documentDTO": {
+    "postDTO": {
         "id": 1,
         "title": "BÀI VIẾT CHO NHỮNG AI ĐÃ, ĐANG VÀ SẼ HỌC GAME!",
         "imageURL": "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/117301752_157280435980177_534263431605817536_o.png?_nc_cat=104&_nc_sid=730e14&_nc_ohc=sxcWadeT9ZIAX92JGiZ&_nc_ht=scontent-sin6-1.xx&oh=c78228232e9faac37d9627945b6be6b0&oe=5F8536E5",
@@ -300,9 +339,12 @@ export function getTagsByID(pid) {
         // fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
         //     .then(response => response.text())
         //     .then(result => {
-        //         dispatch(postGetTags(JSON.parse(result)));
+        //        
         //     })
         //     .catch(error => console.log('error', error));
+
+        const result = tagList;
+        dispatch(postGetTags(result));
     }
 }
 
@@ -433,10 +475,13 @@ export function getIsLikePostByUID(uid, pid) {
         //         })
         //         .catch(error => console.log('error', error));
         // }
-        let result = ["1", "3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
-        const allPostLikeByUID = result;
-        const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
-        console.log("Liked: " + isLiked)
+
+
+        // let result = ["1", "3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
+        // const allPostLikeByUID = result;
+        // const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
+        // console.log("Liked: " + isLiked)
+        const isLiked = true;
         dispatch(postGetIsLikePostByUID(isLiked));
 
     }
@@ -494,7 +539,7 @@ export function getPostByID(uid, pid) {
         //     })
         //     .catch(error => console.log('error', error));
         let result = current_Post_Detail;
-        dispatch(postGetPostByID(result));
+        dispatch(postGetPostByID(result.postDTO));
         this.getIsLikePostByUID(uid, pid);
         this.getPostCommentByID(pid);
         this.getTagsByID(pid);
@@ -509,13 +554,16 @@ export function getCategoriesPost() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postCategories`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result))
-                dispatch(postGetCategoriesPost(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
+        // fetch(`http://${PORT}/postCategories`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(JSON.parse(result))
+        //         dispatch(postGetCategoriesPost(JSON.parse(result)));
+        //     })  dispatch(postGetCategoriesPost(JSON.parse(result)));
+        //     .catch(error => console.log('error', error));
+        const result = [categoriesList[0], categoriesList[1], categoriesList[2], categoriesList[3], categoriesList[4]];
+        dispatch(postGetCategoriesPost(result));
+
     }
 }
 

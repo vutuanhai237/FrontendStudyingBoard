@@ -48,7 +48,7 @@ class Management_RequestedPostSummaryItem extends Component {
         return (
 
             <div className="DocPost_Summary_Item" >
-                <div className="DocPost_Summary_Item_Main_Port">
+                <div className="DocPost_Summary_Item_Main_Layout">
                     <div className="DocPost_Summary_Item_Header_1">
                         <div className="DocPost_Summary_Item_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
@@ -73,11 +73,11 @@ class Management_RequestedPostSummaryItem extends Component {
                         {this.props.content}
                     </div>
 
-                    <div className="DocPost_Summary_Image_Port">
+                    <div className="DocPost_Summary_Image_Layout">
                         <img alt="post" className="DocPost_Summary_Image" src={this.props.image}></img>
                     </div>
 
-                    <div className="DocPost_Summary_Requested_Tags_Port">
+                    <div className="DocPost_Summary_Requested_Tags_Layout">
                         {tagsGroup}
                     </div>
                 </div>

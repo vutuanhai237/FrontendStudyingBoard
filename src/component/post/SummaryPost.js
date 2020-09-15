@@ -29,7 +29,7 @@ class SummaryPost extends Component {
                         {item.authorName}
                     </Card.Link>
                     <Card.Text className="card-date">{item.publishDate}</Card.Text>
-                    {/* <FooterSummaryPost isSummary={true} item={item} /> */}
+                    <FooterSummaryPost isSummary={true} item={item} />
                 </a>
             </div>
         );

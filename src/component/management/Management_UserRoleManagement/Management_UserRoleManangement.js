@@ -50,7 +50,7 @@ class Management_UserRoleManagement extends Component {
         return (
             <div>
                 <Management_Titlebar title="QUẢN LÝ QUYỀN NGƯỜI DÙNG" />
-                <div className="Management_Show_Port">
+                <div className="Management_Show_Layout">
                     {/* Danh mục bài viết */}
                     <div className="Category_Type_Dropdown" id="management-post-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-categories-dropdown", "management-post-categories-container")}>
                         <div>
@@ -69,7 +69,7 @@ class Management_UserRoleManagement extends Component {
                                 </div> */}
                                 <ClickAwayListener onClickAway={() => { this.closeAllPostCategoryListItemActivated() }}>
 
-                                    <div className="Custom_Table_Port">
+                                    <div className="Custom_Table_Layout">
                                         <div className="Custom_Table_Header">
                                             <div className="Custom_Table_20percents_Header">Mã quyền</div>
                                             <div className="Custom_Table_80percents_Header">Tên quyền - Quyền tương ứng</div>
@@ -88,7 +88,7 @@ class Management_UserRoleManagement extends Component {
 
                                     </div>
                                 </ClickAwayListener>
-                                {/* <div className="Category_Buttons_Port">
+                                {/* <div className="Category_Buttons_Layout">
                                     <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
                                     <button className="Simple_White_Button margin_right_5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
                                     <button className="Simple_Red_Button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>

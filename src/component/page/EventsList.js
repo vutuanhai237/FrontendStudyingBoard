@@ -9,8 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
 import Paging from "../Paging"
-import "./TopPost.scss"
-class ListEvent extends Component {
+class EventsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -61,4 +60,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListEvent));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventsList));

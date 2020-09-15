@@ -36,7 +36,7 @@ export default class CustomModal extends React.Component {
             <div>
                 {this.props.shadow ? <div className="Custom_Modal_Out_Shadow" /> : <></>}
 
-                <div className="Custom_Modal_Out_Port">
+                <div className="Custom_Modal_Out_Layout">
                     <div className="Custom_Modal_Wrapper">
                         {!(this.props.type === "custom") ?
                             <>
@@ -59,7 +59,7 @@ export default class CustomModal extends React.Component {
                                         <img className="Custom_Modal_Main_Icon" src={confirmation_icon} alt="icon" />
                                         : <></>
                                     }
-                                    <div className="Custom_Modal_Main_Content_Port">
+                                    <div className="Custom_Modal_Main_Content_Layout">
                                         <div className="Custom_Modal_Main_Text">
                                             {this.props.text}
                                         </div>

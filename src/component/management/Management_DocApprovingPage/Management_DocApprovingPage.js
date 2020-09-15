@@ -82,7 +82,7 @@ class Management_DocApprovingPage extends Component {
         return (
             <div>
                 <Management_Titlebar title="PHÊ DUYỆT TÀI LIỆU" />
-                <div className="Management_Show_Port">
+                <div className="Management_Show_Layout">
 
                     <div className="Number_Of_Item">
                         Tổng số:

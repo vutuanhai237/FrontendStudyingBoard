@@ -127,15 +127,15 @@ class Management_AccountInformationManagement extends Component {
 
                     <Management_Titlebar title="THÔNG TIN TÀI KHOẢN" />
 
-                    <div className="Management_Show_Port">
-                        <div className="Management_Show_Port_Bounding_Port">
+                    <div className="Management_Show_Layout">
+                        <div className="Management_Show_Layout_Bounding_Layout">
 
 
-                            <div className="Management_Account_Information_Bounding_Port">
-                                <div className="Account_Information_Port">
+                            <div className="Management_Account_Information_Bounding_Layout">
+                                <div className="Account_Information_Layout">
 
                                     {/* <div className="Simple_Gray_Label">Avatar: </div> */}
-                                    <div className="Account_Information_Avatar_Port">
+                                    <div className="Account_Information_Avatar_Layout">
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img> */}
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
@@ -188,9 +188,9 @@ class Management_AccountInformationManagement extends Component {
 
                                     <div className="margin_top_5px" />
 
-                                    <div className="Account_Information_Achivement_Port">
+                                    <div className="Account_Information_Achivement_Layout">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
-                                        <div className="Account_Information_Achivement_Post_Doc_Count_Port">
+                                        <div className="Account_Information_Achivement_Post_Doc_Count_Layout">
                                             <div className="display_flex width_50_percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
                                                 <div className="margin_left_5px">{this.postCount}</div>
@@ -203,9 +203,9 @@ class Management_AccountInformationManagement extends Component {
                                     </div >
                                 </div>
                             </div>
-                            <div className="Management_Account_Information_Bounding_Port">
+                            <div className="Management_Account_Information_Bounding_Layout">
 
-                                <div className="Account_Information_Port">
+                                <div className="Account_Information_Layout">
                                     {(window.location.pathname === "/admin"
                                         || window.location.pathname === "/admin/"
                                         || window.location.pathname === "/user"

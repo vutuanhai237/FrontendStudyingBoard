@@ -10,7 +10,6 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryDoc from "../doc/SummaryDoc";
 import FilterDoc from "../doc/FilterDoc";
 import Paging from "../Paging";
-import "./TopPost.scss";
 import { getSearchDoc } from "../../service/DocAPI.js"
 import { bindActionCreators } from 'redux';
 class ListDoc extends Component {
@@ -26,7 +25,7 @@ class ListDoc extends Component {
         return (
             <div id="group-post">
                 <div>
-                    <p style={{marginTop: "20px"}} className="title">DANH SÁCH TÀI LIỆU</p>
+                    <p style={{ marginTop: "20px" }} className="title">DANH SÁCH TÀI LIỆU</p>
                 </div>
                 <FilterDoc />
                 <Card.Body id="card-body">

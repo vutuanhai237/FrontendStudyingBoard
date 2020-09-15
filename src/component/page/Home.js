@@ -9,14 +9,11 @@ class Home extends Component {
     render() {
         return (
             <div>
-              
                 <WallPage />
                 <TopEvent />
                 <TopPost />
                 <NewPost />
                 <TopDocument />
-
-            
             </div>
         );
     }

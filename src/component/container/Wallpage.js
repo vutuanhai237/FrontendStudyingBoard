@@ -1,15 +1,29 @@
 import React, { Component } from "react";
-import anh from "../../img/board.png";
 import { Carousel, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./Wallpage.scss";
+
+//demo only 
+import { highlightPostResults } from "../../service/PostAPI";
+
 class WallPaper extends Component {
+
+    constructor(props) {
+        super(props);
+        // this.props = highlightPostResults;
+    }
+
     imageClick() {
         console.log(1)
     }
+
+    componentDidMount() {
+
+    }
+
     render() {
-        const { newActivities } = this.props;
+        const newActivities = highlightPostResults;
         if (!newActivities) {
             return <div></div>;
         }

@@ -1,12 +1,12 @@
 import React from "react";
 import Home from "./page/Home";
-import Posts from "./page/PostsList/PostsList";
-import Post from "./page/PostDetail";
-import Docs from "./page/Docs";
-import Doc from "./page/Doc";
-import Events from "./page/Events";
-import CrPost from "./page/CreatePost";
-import CrDoc from "./page/CreateDoc";
+import PostsList from "./page/PostsList/PostsList";
+import PostDetail from "./page/PostDetail";
+import DocsList from "./page/DocsList";
+import DocDetail from "./page/DocDetail";
+import EventsList from "./page/EventsList";
+import CreatePost from "./page/CreatePost";
+import CreateDoc from "./page/CreateDoc";
 import Login from "./page/Login";
 import Register from "./page/Register";
 import Search from "./page/Search";
@@ -27,13 +27,13 @@ const App = () => {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/create_post" component={CrPost} />
-                    <Route exact path="/create_doc" component={CrDoc} />
-                    <Route exact path="/posts" component={Posts} />
-                    <Route exact path="/posts/:id" component={Post} />
-                    <Route exact path="/docs" component={Docs} />
-                    <Route exact path="/docs/:id" component={Doc} />
-                    <Route exact path="/events" component={Events} />
+                    <Route exact path="/create_post" component={CreatePost} />
+                    <Route exact path="/create_doc" component={CreateDoc} />
+                    <Route exact path="/posts" component={PostsList} />
+                    <Route exact path="/posts/:id" component={PostDetail} />
+                    <Route exact path="/docs" component={DocsList} />
+                    <Route exact path="/docs/:id" component={DocDetail} />
+                    <Route exact path="/events" component={EventsList} />
                     <Route exact path="/search/:keywork" component={Search} />
 
                     {/* Account and Page (admin and collab only) management */}

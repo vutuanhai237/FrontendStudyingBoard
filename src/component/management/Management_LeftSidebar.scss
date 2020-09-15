@@ -14,12 +14,12 @@ a:hover {
 }
 
 /*This port contain Management info and vertical menu below Management info*/
-.Management_Info_Menu_Port {
+.Management_Info_Menu_Layout {
     position: relative;
     width: 250px;
 }
 
-.Fake_Management_Info_Menu_Port {
+.Fake_Management_Info_Menu_Layout {
     display: block;
     position: relative;
     width: 250px;
@@ -27,8 +27,8 @@ a:hover {
     background: transparent;
 }
 
-/* User Info Port: contain: avatar, display name, gmail and logout button */
-.Management_Info_Port {
+/* User Info Layout: contain: avatar, display name, gmail and logout button */
+.Management_Info_Layout {
     display: flex;
     width: 100%;
     border-left: 1px;
@@ -44,13 +44,13 @@ a:hover {
 }
 
 /*This port contain display and email*/
-.Management_Info_Port .User_Name_Gmail_Port {
+.Management_Info_Layout .User_Name_Gmail_Layout {
     margin-left: 10px;
     position: relative;
     width: fit-content;
 }
 
-.Management_Info_Port .Display_Name {
+.Management_Info_Layout .Display_Name {
     position: relative;
     font-style: normal;
     font-weight: bold;
@@ -61,7 +61,7 @@ a:hover {
     color: #5279db;
 }
 
-.Management_Info_Port .Gmail {
+.Management_Info_Layout .Gmail {
     width: 100px;
     position: relative;
     font-family: "Rosario", sans-serif;
@@ -77,7 +77,7 @@ a:hover {
     display: inline-block;
 }
 
-.Own_Role_Port {
+.Own_Role_Layout {
     border-top: 0.35rem #5279db solid;
     width: 100%;
     border-bottom: 1px solid #c4c4c4;
@@ -92,7 +92,7 @@ a:hover {
     border-right: 1px solid #c4c4c4;
 }
 
-.Achivement_Port {
+.Achivement_Layout {
     padding-top: 5px;
     justify-content: space-between;
     font-family: Barlow Condensed;
@@ -114,13 +114,13 @@ a:hover {
     height: 20px;
 }
 
-.Achivement_Post_Doc_Count_Port {
+.Achivement_Post_Doc_Count_Layout {
     display: flex;
     justify-content: space-between;
 }
 
-/*Management Vertical Menu Port: contain these menu options: Tên hiển thị, đối mật khấu, Bài đăng */
-.Management_Vertical_Menu_Port {
+/*Management Vertical Menu Layout: contain these menu options: Tên hiển thị, đối mật khấu, Bài đăng */
+.Management_Vertical_Menu_Layout {
     margin-top: 0px;
     padding: 10px;
     padding-top: 0px;
@@ -145,7 +145,7 @@ a:hover {
     display: flex;
 }
 
-.Tab_Menu_Item_Port_50_percents {
+.Tab_Menu_Item_Layout_50_percents {
     width: 50%;
     text-align: center;
     padding: 5px;
@@ -154,7 +154,7 @@ a:hover {
     height: fit-content;
 }
 
-.Tab_Menu_Item_Port {
+.Tab_Menu_Item_Layout {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     position: relative;
@@ -164,7 +164,7 @@ a:hover {
     width: 100%;
     color: #363636;
 }
-.Activated_Tab_Menu_Item_Port {
+.Activated_Tab_Menu_Item_Layout {
     position: relative;
     display: flex;
     margin: auto;
@@ -175,7 +175,7 @@ a:hover {
     border-top-right-radius: 5px;
 }
 
-.Tab_Menu_Item_Port:hover {
+.Tab_Menu_Item_Layout:hover {
     background: #eeeeee;
 }
 
@@ -329,13 +329,13 @@ a:hover {
     border-right: 4px #5279db solid;
 }
 
-.Bounded_Class_Infor_And_Archivement_Port {
+.Bounded_Class_Infor_And_Archivement_Layout {
     overflow: hidden;
     transition: all 0.4s;
     // height: 185px;
 }
 
-.Avatar_Port {
+.Avatar_Layout {
     width: 80px;
     height: 80px;
 }

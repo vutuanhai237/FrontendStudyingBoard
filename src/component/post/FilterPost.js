@@ -42,7 +42,7 @@ class FilterPost extends Component {
             currentCategory: evt
         })
         categories.filter(item => {
-            if (item.title === evt) {
+            if (item.categoryName === evt) {
                 this.setState({
                     filter: { ...this.state.filter, currentCategoryID: item.id }
                 }, () => { this.filterPost(); })
@@ -62,23 +62,19 @@ class FilterPost extends Component {
         return (
             <div className="filter">
                 <Row d-flex flex-row>
-                    <DropdownButton id="category" title={this.state.currentCategory}>
+                    <DropdownButton id="category" categoryName={this.state.currentCategory}>
                         <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey="Chọn tất cả">
                             Chọn tất cả
-                    </Dropdown.Item>
+                        </Dropdown.Item>
                         {categories.map((item) => {
                             return (
-                                <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.title}>
-                                    {item.title}
+                                <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.categoryName}>
+                                    {item.categoryName}
                                 </Dropdown.Item>
                             );
                         })}
                     </DropdownButton>
-
-
                 </Row>
-
-
             </div>
         );
     }

@@ -68,7 +68,7 @@ class Management_MyDocList extends Component {
         return (
             <div>
                 <Management_Titlebar title="TÀI LIỆU CỦA TÔI" />
-                <div className="Management_Show_Port">
+                <div className="Management_Show_Layout">
 
                     <div className="Number_Of_Item">
                         Tổng số:

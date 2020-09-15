@@ -49,17 +49,17 @@ class PostReactionBar extends Component {
 
         return (
             <div className="Root_Post_Reaction_Bar">
-                <div className="Root_Post_Reaction_Bar_Like_Btn_Port">
+                <div className="Root_Post_Reaction_Bar_Like_Btn_Layout">
                     {likeBtn}
                     <div className="Root_Post_Reaction_Bar_Like_Count">{this.props.likeCount}</div>
                 </div>
 
-                <div className="Root_Post_Reaction_Bar_Save_Comment_Btn_Port">
-                    <div className="Root_Post_Reaction_Bar_Save_Btn_Port">
+                <div className="Root_Post_Reaction_Bar_Save_Comment_Btn_Layout">
+                    <div className="Root_Post_Reaction_Bar_Save_Btn_Layout">
                         {saveBtn}
                         <div className="Root_Post_Reaction_Bar_Save_Text"> {this.state.isSaved ? "Lưu" : "Huỷ"} </div>
                     </div>
-                    <div className="Root_Post_Reaction_Bar_Comment_Btn_Port">
+                    <div className="Root_Post_Reaction_Bar_Comment_Btn_Layout">
                         <div className="Root_Post_Reaction_Bar_Comment_Text">
                             Bình luận
                         </div>

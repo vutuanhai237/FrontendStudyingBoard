@@ -12,7 +12,7 @@ class Management_Titlebar extends Component {
 
     render() {
         return (
-            <div className="Management_Horizontal_Menu_Port">
+            <div className="Management_Horizontal_Menu_Layout">
 
                 {/* Menu bar */}
                 <div className="Horizontal_Menu_Bar">

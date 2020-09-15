@@ -17,7 +17,7 @@
     position: fixed;
 }
 
-.Custom_Modal_Out_Port {
+.Custom_Modal_Out_Layout {
     z-index: 1000000000;
     top: 0px;
     left: 0px;
@@ -130,7 +130,7 @@
     border-radius: 5px;
 }
 
-.Custom_Modal_Main_Content_Port {
+.Custom_Modal_Main_Content_Layout {
     display: flex;
     // background: gray;
     width: 100%;
@@ -163,7 +163,7 @@
     width: 100%;
 }
 
-.Custom_Modal_Confirmation_Port {
+.Custom_Modal_Confirmation_Layout {
     background: white;
     display: flex;
     justify-content: space-between;

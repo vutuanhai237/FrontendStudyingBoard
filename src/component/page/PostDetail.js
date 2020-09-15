@@ -37,8 +37,10 @@ class PostDetail extends Component {
         const url = window.location.href;
         const index = url.search("posts/");
         const idPost = url.slice(index + 6, url.length);
+
         const userID = Cookies.get(`UID`);
-        console.log(userID);
+        // console.log(userID);
+        // const userID = "1";
         if (typeof userID === `undefined`) {
             this.props.getPostByID(-1, idPost);
         } else {
@@ -51,12 +53,20 @@ class PostDetail extends Component {
         if (this.props.currentPost === undefined || this.props.currentPost === null) return (<></>)
         console.log(this.props.currentPost);
         const { currentPost, currentComments, tags } = this.props;
-        var footer = null;
-        if (this.isLogin) {
-            footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
-        }
+        let footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
+
         return (
             <div id="create-post">
+                {console.log(currentPost.content)}
+                <p className="title">{currentPost.title}</p>
+                <div>{currentPost.summary}</div>
+                <AuthorInfo item={currentPost} />
+                <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.content }} />
+                <Tags tags={tags} />
+                {footer}
+                <CommentPosts currentComments={currentComments} />
+
+                {/* Modal for something */}
                 <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
                     <Modal.Header closeButton>
                         <Modal.Title contained-modal-title-vcenter>
@@ -73,13 +83,6 @@ class PostDetail extends Component {
                     </div>
                 </Modal>
 
-                <p className="title">{currentPost.title}</p>
-                <div>{currentPost.summary}</div>
-                <AuthorInfo item={currentPost} />
-                <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.content }} />
-                <Tags tags={tags} />
-                {footer}
-                <CommentPosts currentComments={currentComments} />
             </div>
         );
     }

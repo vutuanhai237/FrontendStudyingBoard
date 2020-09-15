@@ -25,7 +25,7 @@ import Cookies from 'js-cookie'
 //import for pdf viewer:
 
 
-class Doc extends Component {
+class DocDetail extends Component {
 
     constructor(props) {
         super(props);
@@ -100,7 +100,7 @@ class Doc extends Component {
                 this.uploadedTime = "22-08-2020";
                 this.viewCount = this.document.viewCount;
                 this.downloadCount = this.document.downloadCount;
-                // this.avartarUrl = this.document.title.authorAvatar;
+                this.avartarUrl = this.document.authorAvatar;
                 this.fileName = this.document.fileName;
                 this.linkFile = this.document.url;
             }
@@ -111,7 +111,7 @@ class Doc extends Component {
                         {this.props.document ?
 
                             <div>
-                                <div className="DocPost_Detail_Main_Port">
+                                <div className="DocPost_Detail_Main_Layout">
 
                                     <div className="DocPost_Detail_Title">
                                         {this.title}
@@ -133,11 +133,11 @@ class Doc extends Component {
                                             Học kỳ: &nbsp;
                                             {this.semesterName}
                                         </div >
-                                        {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} /> */}
-                                        {/* <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
                                             Năm học: &nbsp;
                                             {this.year}
-                                        </div> */}
+                                        </div>
                                     </div>
 
                                     <div className="DocPost_User_Infor_Header">
@@ -326,4 +326,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Doc));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(DocDetail));

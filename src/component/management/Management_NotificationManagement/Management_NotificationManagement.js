@@ -51,7 +51,7 @@ class Management_NotificationManagement extends Component {
         return (
             <div>
                 <Management_Titlebar title="QUẢN LÝ THÔNG BÁO" />
-                <div className="Management_Show_Port">
+                <div className="Management_Show_Layout">
                     {/* Danh mục bài viết */}
 
 
@@ -70,7 +70,7 @@ class Management_NotificationManagement extends Component {
 
                                 <ClickAwayListener onClickAway={() => { this.closeAllNotificationListItemActivated() }}>
 
-                                    <div className="Custom_Table_Port">
+                                    <div className="Custom_Table_Layout">
                                         <div className="Custom_Table_Header">
                                             <div className="Custom_Table_20percents_Header">Mã thông báo</div>
                                             <div className="Custom_Table_80percents_Header">Nội dung thông báo</div>
@@ -90,7 +90,7 @@ class Management_NotificationManagement extends Component {
 
                                     </div>
                                 </ClickAwayListener>
-                                <div className="Category_Buttons_Port display_flex justify-content-md-between">
+                                <div className="Category_Buttons_Layout display_flex justify-content-md-between">
                                     <div>
                                         <button className="Simple_Blue_Button margin_right_5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
                                         <button className="Simple_White_Button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>
