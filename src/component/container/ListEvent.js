@@ -10,7 +10,6 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
 import Paging from "../Paging"
 import "./TopPost.scss"
-import "./ListPost.scss"
 class ListEvent extends Component {
     constructor(props) {
         super(props);

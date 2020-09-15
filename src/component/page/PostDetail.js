@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import {
-    Form,
     Button,
-    DropdownButton,
-    Dropdown,
-    Row,
-    Col,
-    Modal,
-    OverlayTrigger,
-    Tooltip,
+    Modal
 } from "react-bootstrap";
 import AuthorInfo from "../post/AuthorInfo";
 import FooterSummaryPost from "../post/FooterSummaryPost";
@@ -16,13 +9,11 @@ import CommentPosts from "../post/CommentPosts";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import "./CreatePost.scss";
-import "./Post.scss";
 import Tags from "../post/Tags";
 import Cookies from 'js-cookie';
 import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "../../service/PostAPI";
 
-class Post extends Component {
+class PostDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -54,14 +45,15 @@ class Post extends Component {
             this.isLogin = true;
             this.props.getPostByID(userID, idPost);
         }
-
-
     }
+
     render() {
+        if (this.props.currentPost === undefined || this.props.currentPost === null) return (<></>)
+        console.log(this.props.currentPost);
         const { currentPost, currentComments, tags } = this.props;
         var footer = null;
         if (this.isLogin) {
-             footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
+            footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
         }
         return (
             <div id="create-post">
@@ -109,4 +101,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Post));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(PostDetail));

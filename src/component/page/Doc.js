@@ -106,9 +106,7 @@ class Doc extends Component {
             }
 
             return (
-
                 <div>
-                    <Header />
                     <div className="DocPost_Detail" >
                         {this.props.document ?
 
@@ -233,7 +231,7 @@ class Doc extends Component {
                         closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
                     >
                     </CustomModal>
-                    <Footer />
+
                 </div >
             );
         }

@@ -7,13 +7,12 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col, Pagination } from "react-bootstrap";
-import SummaryPost from "../post/SummaryPost";
-import FilterPost from "../post/FilterPost";
-import Paging from "../Paging"
-import "./ListPost.scss"
+import SummaryPost from "../../post/SummaryPost";
+import FilterPost from "../../post/FilterPost";
+import Paging from "../../Paging";
 import { bindActionCreators } from 'redux';
-import { getSearchPost, getCategoriesPost } from "../../service/PostAPI"
-class ListPost extends Component {
+import { getSearchPost, getCategoriesPost } from "../../../service/PostAPI"
+class PostsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,7 +34,7 @@ class ListPost extends Component {
         let paginItems = [];
         for (let number = 1; number <= 5; number++) {
             paginItems.push(
-                <Pagination.Item onClick={() => {this.handleNewPage(number)}}key={number} active={number === this.state.current_page}>
+                <Pagination.Item onClick={() => { this.handleNewPage(number) }} key={number} active={number === this.state.current_page}>
                     {number}
                 </Pagination.Item>,
             );
@@ -79,6 +78,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ListPost)
+    connect(mapStateToProps, mapDispatchToProps)(PostsList)
 );
 

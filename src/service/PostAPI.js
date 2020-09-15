@@ -94,7 +94,7 @@ export const categioriesList = [ //this fake data contain catefory of all table 
 const tagList = ["C++", "Java", "Cẩm nang", "Lập trình Di động", "Đinh hướng nghề nghiệp", "Than vãn"]
 
 const post_summary_1 = {
-    id: "Post_1",
+    id: "1",
     authorName: "Vũ Tuấn Hải",
     authorID: "Author_1",
     requestedDate: "1/1/2020",
@@ -111,7 +111,7 @@ const post_summary_1 = {
 }
 
 const post_summary_2 = {
-    id: "Post_2",
+    id: "2",
     authorName: "Lưu Biêu Nghị",
     authorID: "Author_2",
     requestedDate: "1/1/2020",
@@ -128,7 +128,7 @@ const post_summary_2 = {
 }
 
 const post_summary_3 = {
-    id: "Post_3",
+    id: "3",
     authorName: "Nguyễn Văn Đông",
     authorID: "Author_3",
     requestedDate: "1/1/2020",
@@ -145,7 +145,7 @@ const post_summary_3 = {
 }
 
 const post_summary_4 = {
-    id: "Post_4",
+    id: "4",
     authorName: "Nguyen Hong Phuc",
     authorID: "Author_4",
     requestedDate: "1/1/2020",
@@ -175,6 +175,7 @@ const current_Post_Detail = { //get via GET method.
     "statusCode": 15,
     "statusMessage": "Get resource success!",
     "documentDTO": {
+        "id": 1,
         "title": "BÀI VIẾT CHO NHỮNG AI ĐÃ, ĐANG VÀ SẼ HỌC GAME!",
         "imageURL": "https://scontent-sin6-1.xx.fbcdn.net/v/t1.0-9/117301752_157280435980177_534263431605817536_o.png?_nc_cat=104&_nc_sid=730e14&_nc_ohc=sxcWadeT9ZIAX92JGiZ&_nc_ht=scontent-sin6-1.xx&oh=c78228232e9faac37d9627945b6be6b0&oe=5F8536E5",
         "content": `Khi thực hiện series NMPT Game một năm trước, mình gặp rất nhiều khó khăn, và chắc chắn những ai đã, đang và sẽ học Game sẽ cảm nhận được, sau đây là đôi dòng suy nghĩ của mình, một người đã pass Game gửi đến cho những ai sắp học game. Bài viết này là bài nhập môn, khởi động nên hợp với những người yêu thích yếu tố “phi kĩ thuật”.
@@ -296,12 +297,12 @@ export function getTagsByID(pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(postGetTags(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
+        // fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(postGetTags(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
     }
 }
 
@@ -460,15 +461,17 @@ export function getPostCommentByID(pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postComments?postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result))
-                dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
+        // fetch(`http://${PORT}/postComments?postID=${pid}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(JSON.parse(result))
+        //         dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
 
-            })
+        //     })
 
-            .catch(error => console.log('error', error));
+        //     .catch(error => console.log('error', error));
+        let result = [];
+        dispatch(postGetPostCommentByID(result));
     }
 }
 
@@ -491,7 +494,7 @@ export function getPostByID(uid, pid) {
         //     })
         //     .catch(error => console.log('error', error));
         let result = current_Post_Detail;
-        postGetPostByID(result);
+        dispatch(postGetPostByID(result));
         this.getIsLikePostByUID(uid, pid);
         this.getPostCommentByID(pid);
         this.getTagsByID(pid);

@@ -119,7 +119,6 @@ class Management_DocPreview extends Component {
 
             return (
                 <div>
-                    <Header />
                     <div className="DocPost_Detail" >
                         {this.props.currentPreviewDocument ?
 
@@ -268,7 +267,7 @@ class Management_DocPreview extends Component {
                         closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
                     >
                     </CustomModal>
-                    <Footer />
+              
                 </div >
             );
         }

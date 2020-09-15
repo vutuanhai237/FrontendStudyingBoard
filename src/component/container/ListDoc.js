@@ -11,7 +11,6 @@ import SummaryDoc from "../doc/SummaryDoc";
 import FilterDoc from "../doc/FilterDoc";
 import Paging from "../Paging";
 import "./TopPost.scss";
-import "./ListPost.scss";
 import { getSearchDoc } from "../../service/DocAPI.js"
 import { bindActionCreators } from 'redux';
 class ListDoc extends Component {

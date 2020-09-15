@@ -10,7 +10,6 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
 import FilterPost from "../post/FilterPost";
 import Paging from "../Paging"
-import "./ListPost.scss"
 import { bindActionCreators } from 'redux';
 import { getSearchPost } from "../../service/PostAPI"
 class Search extends Component {
