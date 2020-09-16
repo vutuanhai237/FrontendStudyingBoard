@@ -73,10 +73,6 @@ class Management_DocPreview extends Component {
     }
 
     render() {
-
-        // console.log("*");
-        // console.log(this.props);
-
         if (this.props.accountInformation) {
 
             this.roleName = this.props.accountInformation.roleName;
@@ -94,6 +90,8 @@ class Management_DocPreview extends Component {
                 return <>{window.location.pathname = "/admin" + window.location.pathname.substring(5, window.location.pathname.length)}</>;
 
             console.log("**");
+            console.log(this.props);
+            console.log(this.props.currentPreviewDocument);
 
             if (this.props.currentPreviewDocument) {
                 if (this.props.currentPreviewDocument.statusCode === 14)
@@ -112,7 +110,7 @@ class Management_DocPreview extends Component {
                 this.uploadedTime = "22-08-2020";
                 this.viewCount = this.currentPreviewDocument.viewCount;
                 this.downloadCount = this.currentPreviewDocument.downloadCount;
-                // this.avartarUrl = this.currentPreviewDocument.title.authorAvatar;
+                this.avartarUrl = this.currentPreviewDocument.authorAvatar;
                 this.fileName = this.currentPreviewDocument.fileName;
                 this.linkFile = this.currentPreviewDocument.url;
             }
@@ -145,11 +143,11 @@ class Management_DocPreview extends Component {
                                             Học kỳ: &nbsp;
                                             {this.semesterName}
                                         </div >
-                                        {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} /> */}
-                                        {/* <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
                                             Năm học: &nbsp;
                                             {this.year}
-                                        </div> */}
+                                        </div>
                                     </div>
 
                                     <div className="DocPost_User_Infor_Header">
@@ -267,7 +265,7 @@ class Management_DocPreview extends Component {
                         closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
                     >
                     </CustomModal>
-              
+
                 </div >
             );
         }
@@ -350,7 +348,6 @@ class Management_DocPreview extends Component {
 }
 
 const mapStatetoProps = (state) => {
-    console.log(state);
     return {
         currentPreviewDocument: state.management_doc.currentPreviewDocument,
         accountInformation: state.user.account

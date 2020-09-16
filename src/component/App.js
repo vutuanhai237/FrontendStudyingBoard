@@ -41,11 +41,13 @@ const App = () => {
                     <Route exact path="/admin/update_password" component={ManagementPage} />
                     <Route exact path="/admin/docs_list" component={ManagementPage} />
                     <Route exact path="/admin/posts_list" component={ManagementPage} />
+                    <Route exact path="/admin/notification" component={ManagementPage} />
 
                     <Route exact path="/user" component={ManagementPage} />{/* for user and collab */}
                     <Route exact path="/user/update_password" component={ManagementPage} />
                     <Route exact path="/user/docs_list" component={ManagementPage} />
                     <Route exact path="/user/posts_list" component={ManagementPage} />
+                    <Route exact path="/user/notification" component={ManagementPage} />                   
 
                     {/* Admin and collab page content management */}
                     {/* for admin */}
@@ -56,7 +58,7 @@ const App = () => {
 
                     {/* for collab */}
                     <Route exact path="/user/post_approving" component={ManagementPage} />
-                    {/* <Route exact path="/user/post_approving/:id" component = {}/> */}
+                    <Route exact path="/user/post_approving/:id" component = {Management_DocPreview}/>
                     <Route exact path="/user/doc_approving" component={ManagementPage} />
                     <Route exact path="/user/doc_approving/:id" component={Management_DocPreview} />
 
