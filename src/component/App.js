@@ -12,17 +12,16 @@ import Register from "./page/Register";
 import Search from "./page/Search";
 import Header from "./container/Header";
 import Footer from "./container/Footer"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router, HashRouter } from "react-router-dom";
 import ManagementPage from './management/ManagementPage'
 import Management_DocPreview from './management/Management_DocPostPreview/Management_DocPreview'
 
 // import 
 const App = () => {
-
     return (
         <div>
             <Header />
-            <Router>
+            <HashRouter>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
@@ -47,7 +46,7 @@ const App = () => {
                     <Route exact path="/user/update_password" component={ManagementPage} />
                     <Route exact path="/user/docs_list" component={ManagementPage} />
                     <Route exact path="/user/posts_list" component={ManagementPage} />
-                    <Route exact path="/user/notification" component={ManagementPage} />                   
+                    <Route exact path="/user/notification" component={ManagementPage} />
 
                     {/* Admin and collab page content management */}
                     {/* for admin */}
@@ -58,7 +57,7 @@ const App = () => {
 
                     {/* for collab */}
                     <Route exact path="/user/post_approving" component={ManagementPage} />
-                    <Route exact path="/user/post_approving/:id" component = {Management_DocPreview}/>
+                    <Route exact path="/user/post_approving/:id" component={Management_DocPreview} />
                     <Route exact path="/user/doc_approving" component={ManagementPage} />
                     <Route exact path="/user/doc_approving/:id" component={Management_DocPreview} />
 
@@ -72,7 +71,7 @@ const App = () => {
 
                 </Switch>
                 <div className="App"></div>
-            </Router >
+            </HashRouter >
             <Footer />
         </div>
     );
