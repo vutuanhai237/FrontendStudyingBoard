@@ -34,7 +34,9 @@ class Header extends Component {
 
     componentDidMount() {
       
-        this.props.getCurrentUser();
+        console.log("$$");
+        console.log(this.props.account);
+        this.props.getCurrentUser(this.props.account);
         this.myInterval = null;
      
         function myTimer() {

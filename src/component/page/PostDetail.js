@@ -50,7 +50,7 @@ class PostDetail extends Component {
     }
 
     render() {
-        if (this.props.currentPost === undefined || this.props.currentPost === null) return (<></>)
+        if (this.props.currentPost === undefined || this.props.currentPost === null) return (<div></div>)
         console.log(this.props.currentPost);
         const { currentPost, currentComments, tags } = this.props;
         let footer = <FooterSummaryPost isSummary={false} item={currentPost} />;

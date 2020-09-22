@@ -34,12 +34,12 @@ export default class CustomModal extends React.Component {
         }
         return (
             <div>
-                {this.props.shadow ? <div className="Custom_Modal_Out_Shadow" /> : <></>}
+                {this.props.shadow ? <div className="Custom_Modal_Out_Shadow" /> : <div></div>}
 
                 <div className="Custom_Modal_Out_Layout">
                     <div className="Custom_Modal_Wrapper">
                         {!(this.props.type === "custom") ?
-                            <>
+                            <div>
                                 <div className="Custom_Modal_Header">
                                     <div> {this.props.title} </div>
                                     <img className="Custom_Modal_Close_Button" alt="header" src={red_delete_icon}
@@ -49,15 +49,15 @@ export default class CustomModal extends React.Component {
                                 <div className="Custom_Modal_Body">
                                     {(this.props.type === "alert_success") ?
                                         <img className="Custom_Modal_Main_Icon" src={success_management_icon} alt="icon" />
-                                        : <></>
+                                        : <div></div>
                                     }
                                     {(this.props.type === "alert_fail") ?
                                         <img className="Custom_Modal_Main_Icon" src={fail_management_icon} alt="icon" />
-                                        : <></>
+                                        : <div></div>
                                     }
                                     {(this.props.type === "confirmation") ?
                                         <img className="Custom_Modal_Main_Icon" src={confirmation_icon} alt="icon" />
-                                        : <></>
+                                        : <div></div>
                                     }
                                     <div className="Custom_Modal_Main_Content_Layout">
                                         <div className="Custom_Modal_Main_Text">
@@ -70,25 +70,25 @@ export default class CustomModal extends React.Component {
                                     <div className="Custom_Modal_Footer">
                                         {this.props.children}
                                     </div>
-                                    : <></>
+                                    : <div></div>
                                 }
 
                                 {(this.props.type === "alert_success" || this.props.type === "alert_fail") ?
                                     <div className="Custom_Modal_Footer">
                                         <div className="Simple_Blue_Button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div>
                                     </div>
-                                    : <></>
+                                    : <div></div>
                                 }
-                            </>
+                            </div>
                             :
-                            <>
+                            <div>
                                 <div className="Custom_Modal_Header">
                                     <div> {this.props.title} </div>
                                     <img className="Custom_Modal_Close_Button" alt="header" src={red_delete_icon}
                                         onClick={() => this.props.closeModal()} />
                                 </div>
                                     {this.props.children}                              
-                            </>}
+                            </div>}
                     </div>
                 </div>
             </div>

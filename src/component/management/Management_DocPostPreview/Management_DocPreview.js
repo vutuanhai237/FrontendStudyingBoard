@@ -79,23 +79,22 @@ class Management_DocPreview extends Component {
 
             // neu khong co quyen preview => khong cho preview
             if (!this.isGrantedPermissions(DocumentPermission.Preview))
-                return <>{window.location.pathname = "/"}</>;
+                return <div>{window.location.pathname = "/"}</div>;
 
             //neu khong la admin => home
             if (window.location.pathname.substring(0, 6) === "/admin" && this.roleName !== "ADMIN")
-                return <>{window.location.pathname = "/"}</>;
+                return <div>{window.location.pathname = "/"}</div>;
 
             //neu la admin => admin
             if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "ADMIN")
-                return <>{window.location.pathname = "/admin" + window.location.pathname.substring(5, window.location.pathname.length)}</>;
+                return <div>{window.location.pathname = "/admin" + window.location.pathname.substring(5, window.location.pathname.length)}</div>;
 
             console.log("**");
             console.log(this.props);
-            console.log(this.props.currentPreviewDocument);
 
             if (this.props.currentPreviewDocument) {
                 if (this.props.currentPreviewDocument.statusCode === 14)
-                    return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
+                    return <div>Không tìm thấy tài nguyên {window.location.href = "/"}</div>;
                 this.currentPreviewDocument = this.props.currentPreviewDocument.documentDTO;
                 this.id = this.currentPreviewDocument.id;
                 this.authorName = this.currentPreviewDocument.authorName;
@@ -110,7 +109,8 @@ class Management_DocPreview extends Component {
                 this.uploadedTime = "22-08-2020";
                 this.viewCount = this.currentPreviewDocument.viewCount;
                 this.downloadCount = this.currentPreviewDocument.downloadCount;
-                this.avartarUrl = this.currentPreviewDocument.authorAvatar;
+                // this.avartarUrl = this.currentPreviewDocument.authorAvatar;
+                this.avartar = this.currentPreviewDocument.avatar;
                 this.fileName = this.currentPreviewDocument.fileName;
                 this.linkFile = this.currentPreviewDocument.url;
             }
@@ -151,7 +151,12 @@ class Management_DocPreview extends Component {
                                     </div>
 
                                     <div className="DocPost_User_Infor_Header">
-                                        <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" />
+
+                                        {/* This is the way to set avatar from a online server via Google Drive */}
+                                        <img alt="avatar" className="DocPost_Detail_User_Infor_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png"} />
+
+                                        {/* This is the way to load avatar from blob of database */}
+                                        {/* <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" /> */}
                                         <div style={{ flexDirection: "vertical" }}>
                                             <div className="DocPost_Detail_User_Infor_Display_Name">{this.authorName}</div>
                                             <div className="DocPost_Detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
@@ -270,18 +275,18 @@ class Management_DocPreview extends Component {
             );
         }
 
-        return <></>
+        return <div></div>
     }
     //#region navigate region
     navigateToAuthorPersonalPage = () => {
 
         //neu khong la admin => home
         if (window.location.pathname.substring(0, 6) === "/admin" && this.roleName === "ADMIN")
-            return <>{window.location.pathname = "admin/user_management/" + this.authorID}</>;
+            return <div>{window.location.pathname = "admin/user_management/" + this.authorID}</div>;
 
         //neu la admin => admin
         if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "COLLABORATOR")
-            return <>{window.location.pathname = "/user/" + this.authorID}</>;
+            return <div>{window.location.pathname = "/user/" + this.authorID}</div>;
         ;
     }
 

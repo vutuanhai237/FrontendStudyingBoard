@@ -75,16 +75,16 @@ class Management_UserRoleManagement extends Component {
                                             <div className="Custom_Table_80percents_Header">Tên quyền - Quyền tương ứng</div>
                                         </div>
                                         {this.props.roleList ?
-                                            <> {
+                                            <div>{
                                                 this.props.roleList.map(item =>
                                                     <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.UserGroupID} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.UserGroupID, item.UserGroupName)} >
                                                         <div className="Custom_Table_Item_20percents">{item.UserGroupID}</div>
                                                         <div className="Custom_Table_Item_80percents">{getRoleNameByName(item.UserGroupName)}</div>
                                                     </div>
                                                 )
-                                            }</>
+                                            }</div>
                                             :
-                                            <></>}
+                                            <div></div>}
 
                                     </div>
                                 </ClickAwayListener>

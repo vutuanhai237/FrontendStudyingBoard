@@ -16,6 +16,7 @@ import user_role_management_menu_item_element from '../../img/user_role_manageme
 import management_icon from '../../img/gray_management_icon.png'
 import gray_nb_upload_icon from '../../img/gray_nb_upload_icon.png'
 import gray_nb_write_icon from '../../img/gray_nb_write_icon.png'
+import analysis_management_menu_item_element from '../../img/analysis_management_icon.png'
 
 //import pages
 import Management_DocApprovingPage from './Management_DocApprovingPage/Management_DocApprovingPage';
@@ -104,11 +105,11 @@ class ManagementPage extends Component {
 
             //neu khong la admin va co tinh vao domain cua admin=> home
             if (window.location.pathname.substring(0, 6) === "/admin" && this.roleName !== "ADMIN")
-                return <>{window.location.pathname = "/"}</>;
+                return <div>{window.location.pathname = "/"}</div>;
 
             //neu la admin va co tinh vao trang quan ly cua user => admin
             if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "ADMIN")
-                return <>{window.location.pathname = "/admin"}</>;
+                return <div>{window.location.pathname = "/admin"}</div>;
 
             this.score = this.props.accountInformation.score;
             this.post_count = this.props.accountInformation.postCount;
@@ -137,8 +138,10 @@ class ManagementPage extends Component {
                                             < div className="Management_Info_Layout" >
                                                 <div className="Avatar_Layout">
                                                     {/* This is the way to set avatar from a online server via Google Drive */}
-                                                    {/* <img alt="avatar" className="Show_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png"} /> */}
-                                                    <img alt="avatar" className="Show_Avatar" src={this.avatarURL} />
+                                                    <img alt="avatar" className="Show_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png"} />
+
+                                                    {/* This is the way to load avatar from blob of database */}
+                                                    {/* <img alt="avatar" className="Show_Avatar" src={this.avatarURL} /> */}
                                                 </div>
                                                 <div className="Achivement_Layout">
                                                     {/* <div className="margin_auto"> */}
@@ -190,14 +193,14 @@ class ManagementPage extends Component {
                                                         </div>
                                                     </div>
                                                 </div> :
-                                                <></>
+                                                <div></div>
                                             }
                                         </div>
 
                                         {this.isTheFirstTimeLoaded ?
                                             this.initiateTabMenuItem()
                                             :
-                                            <></>
+                                            <div></div>
                                         }
 
                                         {/* Management Menu Layout */}
@@ -395,28 +398,28 @@ class ManagementPage extends Component {
                                                     <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
                                                         <div className="margin_bottom_5px" />
                                                         {
-                                                            // (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                            //     && this.isGrantedPermissions(PostPermission.Approve))
-                                                            //     ?
-                                                            //     window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
-                                                            //         ?
-                                                            //         <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                            //             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
-                                                            //         >
-                                                            //             <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                            //                 Duyệt bài viết
-                                                            //             </div>
-                                                            //         </Link>
-                                                            //         :
-                                                            //         <Link className="Sub_Dropdown_Menu_Item"
-                                                            //             onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                            //             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
-                                                            //         >
-                                                            //             <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                            //                 Duyệt bài viết
-                                                            //              </div>
-                                                            //         </Link>
-                                                            //     : <></>
+                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
+                                                                && this.isGrantedPermissions(PostPermission.Approve))
+                                                                ?
+                                                                window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
+                                                                    ?
+                                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                                    >
+                                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                            Duyệt bài viết
+                                                                        </div>
+                                                                    </Link>
+                                                                    :
+                                                                    <Link className="Sub_Dropdown_Menu_Item"
+                                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                                    >
+                                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                            Duyệt bài viết
+                                                                         </div>
+                                                                    </Link>
+                                                                : <div></div>
                                                         }
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
@@ -442,9 +445,9 @@ class ManagementPage extends Component {
                                                                     </div>
                                                                     </Link>
                                                                 :
-                                                                <></>
+                                                                <div></div>
                                                         }
-                                                        {/* {
+                                                        {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(NotificationPermission.ViewAll))
                                                                 ?
@@ -467,8 +470,8 @@ class ManagementPage extends Component {
                                                                         </div>
                                                                     </Link>
                                                                 :
-                                                                <></>
-                                                        } */}
+                                                                <div></div>
+                                                        }
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(CategoryPermission.View))
@@ -490,7 +493,7 @@ class ManagementPage extends Component {
                                                                             Quản lý danh mục
                                                                     </div>
                                                                     </Link>
-                                                                : <></>
+                                                                : <div></div>
                                                         }
                                                         <div className="margin_bottom_5px" />
                                                         <div className="decoration_underline " />
@@ -533,11 +536,11 @@ class ManagementPage extends Component {
                                                             </div>
                                                             </Link>
                                                         :
-                                                        <></>
+                                                        <div></div>
                                                 }
 
                                                 {/* Quan ly hoat dong: các báo cáo người dùng  */}
-                                                {/* {
+                                                {
                                                     (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                         && this.isGrantedPermissions(UserPermission.All))
                                                         ?
@@ -566,8 +569,8 @@ class ManagementPage extends Component {
                                                              </div>
                                                             </Link>
                                                         :
-                                                        <></>
-                                                } */}
+                                                        <div></div>
+                                                }
 
 
 
@@ -599,24 +602,26 @@ class ManagementPage extends Component {
                                                             </div>
                                                         </Link>
                                                     :
-                                                    <></>
+                                                    <div></div>
                                                 }
 
                                                 {/* Thong ke */}
-                                                {/* {
-                                                 window.location.pathname === "/admin/analysis" ?
-                                                <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" to = "/admin/analysis_management">
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
-                                                <div className="Vertical_Menu_Item_Text"  >
-                                                    Thống kê
-                                                </div>
-                                                 </Link>:<Link className="Vertical_Menu_Item" to = "/admin/analysis_management">
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
-                                                <div className="Vertical_Menu_Item_Text"  >
-                                                    Thống kê
-                                                </div>
-                                                </div>
-                                                } */}
+                                                {
+                                                    window.location.pathname === "/admin/analysis" ?
+                                                        <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" to="/admin/analysis_management">
+                                                            <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
+                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                                Thống kê
+                                                         </div>
+                                                        </Link> :
+                                                        <Link className="Vertical_Menu_Item" to="/admin/analysis_management">
+                                                            <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
+                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                                Thống kê
+                                                         </div>
+                                                        </Link>
+
+                                                }
                                             </div>
                                         </div >
                                     </ div >
@@ -664,7 +669,7 @@ class ManagementPage extends Component {
 
             );
         }
-        return <> </>
+        return <div></div>
     }
     //#region for UI/UX sidebar
     //code style for dropdown menu

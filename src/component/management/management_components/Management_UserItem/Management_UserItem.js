@@ -204,7 +204,7 @@ class Management_UserItem extends Component {
                 </div >
             );
         }
-        return <></>
+        return <div></div>
     }
 
     handleDropDownMenuClick = (e, parent_id, show_text_id, dropdown_element_id, container_id) => {

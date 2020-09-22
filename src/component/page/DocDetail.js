@@ -82,10 +82,10 @@ class DocDetail extends Component {
 
             // console.log(this.props.document)
             // if (this.props.document.statusCode === 14)
-            //     return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
+            //     return <div>Không tìm thấy tài nguyên {window.location.href = "/"}</div>;
             if (this.props.document) {
                 if (this.props.document.statusCode === 14)
-                    return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
+                    return <div>Không tìm thấy tài nguyên {window.location.href = "/"}</div>;
                 this.document = this.props.document.documentDTO;
                 this.id = this.document.id;
                 this.authorName = this.document.authorName;
@@ -236,18 +236,18 @@ class DocDetail extends Component {
             );
         }
 
-        return <></>
+        return <div></div>
     }
     //#region navigate region
     navigateToAuthorPersonalPage = () => {
 
         //neu khong la admin => home
         if (window.location.pathname.substring(0, 6) === "/admin" && this.roleName === "ADMIN")
-            return <>{window.location.pathname = "admin/user_management/" + this.authorID}</>;
+            return <div>{window.location.pathname = "admin/user_management/" + this.authorID}</div>;
 
         //neu la admin => admin
         if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "COLLABORATOR")
-            return <>{window.location.pathname = "/user/" + this.authorID}</>;
+            return <div>{window.location.pathname = "/user/" + this.authorID}</div>;
         ;
     }
 

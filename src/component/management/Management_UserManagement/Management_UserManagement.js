@@ -53,8 +53,8 @@ class Management_UserManagement extends Component {
 
     render() {
 
-        let userItemList = <></>;
-        // let searchDropdown = <></>;
+        let userItemList = <div></div>;
+        // let searchDropdown = <div></div>;
 
         if (this.props.userList !== null && this.props.userList !== undefined
             && this.props.roleList !== null && this.props.roleList !== undefined) {
