@@ -112,16 +112,16 @@ export function management_getAllNotApprovedDocuments() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
-                dispatch(managementGetAllNotApprovedDocuments(JSON.parse(result).shortDocs))
-            })
+        // fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(result);
+        //         dispatch(managementGetAllNotApprovedDocuments(JSON.parse(result).shortDocs))
+        //     })
 
-            .catch(error => console.log('error', error));
-        // const result = [doc_v1.documentDTO, doc_v2.documentDTO, doc_v3.documentDTO, doc_v4.documentDTO];
-        // dispatch(managementGetAllNotApprovedDocuments(result));
+        //     .catch(error => console.log('error', error));
+        const result = [doc_v1.documentDTO, doc_v2.documentDTO, doc_v3.documentDTO, doc_v4.documentDTO];
+        dispatch(managementGetAllNotApprovedDocuments(result));
 
     }
 
@@ -140,18 +140,18 @@ export function management_getCurrentPreviewDocument(previewDoc_ID) {
             headers: myHeaders,
             redirect: 'follow'
         };
-     
-        fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response =>
-                response.json())
-            .then(result => {
-                console.log(result);
-                dispatch(managementGetCurrentPreviewDocument(result));
-            }
-            )
-            .catch(error => console.log('error', error));
-        // const result = doc_v4;
-        // dispatch(managementGetCurrentPreviewDocument(result));
+        console.log("API has been called!");
+        // fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        //     .then(response =>
+        //         response.json())
+        //     .then(result => {
+        //         console.log(result);
+        //         dispatch(managementGetCurrentPreviewDocument(result));
+        //     }
+        //     )
+        //     .catch(error => console.log('error', error));
+        const result = doc_v4;
+        dispatch(managementGetCurrentPreviewDocument(result));
 
     }
 }

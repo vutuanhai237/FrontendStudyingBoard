@@ -39,8 +39,7 @@ class Management_AccountInformationManagement extends Component {
         this.displayName = "Nguyễn Văn Đông";
         this.userID = "";
         this.password = "";
-        // this.avatarURL = "";
-        this.avatar = "";
+        this.avatarURL = "";
         this.email = "";
         this.score = "";
         this.postCount = 0;
@@ -102,11 +101,13 @@ class Management_AccountInformationManagement extends Component {
             this.roleID = this.accountInformation.roleId;
             this.roleName = this.accountInformation.roleName;
             this.username = this.accountInformation.username;
-            // this.avatarURL = this.accountInformation.avatarURL;
-            this.avatar = this.accountInformation.avatar;
+            this.avatarURL = this.accountInformation.avatarURL;
             // for update information DTO
             this.updateInformation_DTO.oldPasword = this.password;
             this.updateInformation_DTO.username = this.username;
+
+            console.log(this.accountInformation)
+
 
             this.roleList = this.props.roleList;
             // console.log(this.roleList);
@@ -135,13 +136,14 @@ class Management_AccountInformationManagement extends Component {
 
                                     {/* <div className="Simple_Gray_Label">Avatar: </div> */}
                                     <div className="Account_Information_Avatar_Layout">
-
-                                        {/* load image from google drive */}
-                                        <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png"} ></img>
-
-                                        {/* <img className = "Account_Information_Avatar_Image" alt = "avatar" src = {this.avatarURL}/> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
+                                  
+                                      <img className = "Account_Information_Avatar_Image" alt = "avatar" src = {this.avatarURL}/>
                                         {/* <div className="margin_left_10px"></div> */}
 
+                                        {/* <div>{this.props.</div> */}
                                     </div>
                                     {/* <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div> */}
 
@@ -162,7 +164,7 @@ class Management_AccountInformationManagement extends Component {
                                                                         this.roleList.map(role =>
                                                                             role.UserGroupID === this.roleID ?
                                                                                 getRoleNameFilterByName(role.UserGroupName)
-                                                                                : <div></div>
+                                                                                : <></>
                                                                         )
                                                                     }
                                                                 </div>
@@ -355,7 +357,7 @@ class Management_AccountInformationManagement extends Component {
                                 </div>
                             </div>
                             :
-                            <div></div>
+                            <></>
                         }
                     </CustomModal>
                     {/* #endregion */}
@@ -364,7 +366,7 @@ class Management_AccountInformationManagement extends Component {
 
             );
         }
-        return <div></div>
+        return <></>
     }
 
     //#region handle for popup 

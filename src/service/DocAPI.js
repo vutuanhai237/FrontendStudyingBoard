@@ -136,8 +136,7 @@ export function postDoc(doc) {
         fetch(`http://${PORT}/docs/upload?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response => response.text())
             .then(result => {
-                // console.log(JSON.parse(result).statusCode);
-                console.log(JSON.parse(result));
+                console.log(JSON.parse(result).statusCode);
                 dispatch(docPostDoc(JSON.parse(result).statusCode));
             })
             .catch(error => console.log('error', error));
@@ -151,14 +150,14 @@ export function getCategoriesDoc() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/docs/categories`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetCategoriesDoc(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = [categoriesList[6], categoriesList[7], categoriesList[8], categoriesList[9], categoriesList[10], categoriesList[5]];
-        // dispatch(docGetCategoriesDoc(result));
+        // fetch(`http://${PORT}/docs/categories`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(docGetCategoriesDoc(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
+        const result = [categoriesList[6], categoriesList[7], categoriesList[8], categoriesList[9], categoriesList[10], categoriesList[5]];
+        dispatch(docGetCategoriesDoc(result));
     }
 }
 
@@ -169,19 +168,14 @@ export function getSemesters() {
             redirect: 'follow'
         };
 
-        //if payload is not undefined => không gọi
-        const result = [{}];
+        // fetch(`http://${PORT}/semesters`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(docGetSemesters(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
+        const result = [categoriesList[16], categoriesList[17], categoriesList[18]];
         dispatch(docGetSemesters(result));
-
-        fetch(`http://${PORT}/semesters`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetSemesters(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-
-        // const result = [categoriesList[16], categoriesList[17], categoriesList[18]];
-        // dispatch(docGetSemesters(result));
     }
 }
 
@@ -192,14 +186,14 @@ export function getSubjects() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/subjects`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetSubjects(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = [categoriesList[19], categoriesList[20], categoriesList[21], categoriesList[22]];
-        // dispatch(docGetSubjects(result));
+        // fetch(`http://${PORT}/subjects`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(docGetSubjects(JSON.parse(result)));
+        //     })
+        // .catch(error => console.log('error', error));
+        const result = [categoriesList[19], categoriesList[20], categoriesList[21], categoriesList[22]];
+        dispatch(docGetSubjects(result));
 
     }
 }
@@ -211,14 +205,14 @@ export function getTopDoc() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/docs/goodDoc?limit=3`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
-            })
-            .catch(error => console.log('error', error));
-        // let result = [doc_v1.documentDTO, doc_v2.documentDTO, doc_v3.documentDTO];
-        // dispatch(docGetTopDoc(result));
+        // fetch(`http://${PORT}/docs/goodDoc?limit=3`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
+        //     })
+        //     .catch(error => console.log('error', error));
+        let result = [doc_v1.documentDTO, doc_v2.documentDTO, doc_v3.documentDTO];
+        dispatch(docGetTopDoc(result));
     }
 }
 
@@ -244,14 +238,14 @@ export function getDocumentByID(id) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/docs/detail?id=${id}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result)
-                dispatch(docGetDocByID(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = doc_v1;
-        // dispatch(docGetDocByID(result));
+        // fetch(`http://${PORT}/docs/detail?id=${id}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(result)
+        //         dispatch(docGetDocByID(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
+        const result = doc_v1;
+        dispatch(docGetDocByID(result));
     }
 }

@@ -174,7 +174,7 @@ class Management_UpdatePassword extends Component {
                 </div >
             );
         }
-        return <div></div>;
+        return <></>;
     }
 
     //#region handler popup region

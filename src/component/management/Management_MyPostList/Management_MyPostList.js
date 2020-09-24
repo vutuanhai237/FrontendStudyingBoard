@@ -36,7 +36,7 @@ class Management_MyPostList extends Component {
     }
 
     render() {
-        let summaryMyDocList = <div></div>; //sau nay se lam mot cai content loader.
+        let summaryMyDocList = <></>; //sau nay se lam mot cai content loader.
         // console.log(this.state.currentInteractList);
         if (this.props.userDocList) {
             this.userDocList = this.props.userDocList;

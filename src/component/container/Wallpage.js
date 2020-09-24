@@ -11,7 +11,7 @@ class WallPaper extends Component {
 
     constructor(props) {
         super(props);
-        this.props = highlightPostResults;
+        // this.props = highlightPostResults;
     }
 
     imageClick() {

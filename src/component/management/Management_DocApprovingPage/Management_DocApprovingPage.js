@@ -49,7 +49,7 @@ class Management_DocApprovingPage extends Component {
     }
 
     render() {
-        let summaryRequestedDocList = <div></div>; //sau nay se lam mot cai content loader.
+        let summaryRequestedDocList = <></>; //sau nay se lam mot cai content loader.
         // console.log(this.state.currentInteractList);
         if (this.props.requestedDocs) {
             this.notApprovedDocumentsList = this.props.requestedDocs;

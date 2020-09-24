@@ -340,7 +340,7 @@ class Management_CategoryManagement extends Component {
                 </div >
             );
         }
-        return <div></div>
+        return <></>
     }
 
 
