@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import './ManagementPage.scss'
-import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '../../constant/index.js'
 
 // import resource image, icon
@@ -126,7 +126,7 @@ class ManagementPage extends Component {
                     <div className="Management_Main_Layout">
                         {/* Left Sidebar */}
 
-                        <HashRouter>
+                        <Router>
                             <div>
                                 <div>
                                     <div className="Fake_Management_Info_Menu_Layout" id="fake-admin-info-menu-port"></div>
@@ -663,7 +663,7 @@ class ManagementPage extends Component {
 
                                 </Switch>
                             </div>
-                        </HashRouter>
+                        </Router>
                     </div >
                 </div >
 
