@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
-import { getPostNewActivities } from "../../service/PostAPI";
+import { getPostNewActivities } from "service/PostAPI";
 import { bindActionCreators } from "redux";
 import "./TopPost.scss";
 class TopEvent extends Component {

@@ -8,7 +8,7 @@ import {
     DOC_POST_DOC,
     DOC_POST_UP_VIEW_DOC,
     DOC_POST_UP_DOWNLOAD_DOC
-} from "../constant/index"
+} from 'constants.js'
 const fakeDocuments = [
     {
         id: 0,
@@ -24,7 +24,7 @@ const fakeDocuments = [
         viewCount: 100,
         downloadCount: 1000,
         publishDate: "21/01/2020",
-        imageURL: "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg"
+        imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
     {
         id: 0,
@@ -40,7 +40,7 @@ const fakeDocuments = [
         viewCount: 0,
         downloadCount: 0,
         publishDate: "string",
-        imageURL: "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg"
+        imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
     {
         id: 0,
@@ -56,7 +56,7 @@ const fakeDocuments = [
         viewCount: 0,
         downloadCount: 0,
         publishDate: "string",
-        imageURL: "https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg"
+        imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
 ]
 

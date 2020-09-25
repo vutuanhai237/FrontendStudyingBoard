@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
 import './DocPostSummary.scss'
-// import Tag from '../../shared_components/Tag/Tag'
+// import Tag from 'component/shared_components/Tag/Tag'
 import CustomModal from './CustomModalPopup/CustomModal'
-import gray_btn_element from '../../img/gray_btn_element.png'
+import gray_btn_element from 'assets/images/gray_btn_element.png'
 import DocReactionBar from './DocReactionBar'
 
 class DocSummaryItem extends Component {

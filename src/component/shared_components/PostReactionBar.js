@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './PostReactionBar.scss'
-import liked_btn from '../../../../img/liked_btn.png'
-import unliked_btn from '../../../../img/unliked_btn.png'
-import full_blue_bookmark_btn from '../../../../img/full_blue_bookmark_btn.png'
-import gray_bookmark_btn from '../../../../img/gray_bookmark_btn.png'
+import liked_btn from 'assets/images/liked_btn.png'
+import unliked_btn from 'assets/images/unliked_btn.png'
+import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
+import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
 //Set text props for this component
 
 class PostReactionBar extends Component {
@@ -37,14 +37,14 @@ class PostReactionBar extends Component {
             likeBtn = <img className="Root_Post_Reaction_Bar_Like_Btn" src={liked_btn} onClick={this.toggleLikeImage}></img>
         }
         else {
-            likeBtn = <img className="Root_Post_Reaction_Bar_Like_Btn" src={unliked_btn} onClick={this.toggleLikeImage} ></ img>
+            likeBtn = <img className="Root_Post_Reaction_Bar_Like_Btn" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
         }
         //render saveBtn
         if (!this.state.isSaved) {
             saveBtn = <img className="Root_Post_Reaction_Bar_Save_Btn" src={full_blue_bookmark_btn} onClick={this.toggleSaveImage}></img>
         }
         else {
-            saveBtn = <img className="Root_Post_Reaction_Bar_Save_Btn" src={gray_bookmark_btn} onClick={this.toggleSaveImage} ></ img>
+            saveBtn = <img className="Root_Post_Reaction_Bar_Save_Btn" src={gray_bookmark_btn} onClick={this.toggleSaveImage} ></img>
         }
 
         return (

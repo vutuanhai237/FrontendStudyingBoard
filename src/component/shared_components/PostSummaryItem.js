@@ -1,8 +1,8 @@
 // import React, { Component } from 'react'
 
-// import '../../shared_components/DocPostSummary.scss'
-// import Tag from '../../shared_components/Tag/Tag'
-// import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
+// import 'component/shared_components/DocPostSummary.scss'
+// import Tag from 'component/shared_components/Tag/Tag'
+// import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
 
 // class Management_RequestedPostSummaryItem extends Component {
 

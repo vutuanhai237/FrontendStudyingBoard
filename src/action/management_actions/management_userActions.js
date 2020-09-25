@@ -1,7 +1,7 @@
 import {
     MANAGEMENT_GET_ALL_USERS,
     MANAGEMENT_GET_ALL_ROLES
-} from "../../constant/index"
+} from 'constants.js'
 
 export function managementGetAllUsers(allUsers) {
     return {

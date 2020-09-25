@@ -3,10 +3,10 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import dropdown_btn from '../../../img/dropdown_icon.png'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './Management_NotificationManagement.scss'
-// import done_icon from '../../../img/done_icon.png'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
+// import done_icon from 'assets/images/done_icon.png'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
 class Management_NotificationManagement extends Component {

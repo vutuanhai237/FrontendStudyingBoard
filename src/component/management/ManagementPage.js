@@ -2,20 +2,20 @@
 import React, { Component } from 'react'
 import './ManagementPage.scss'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import '../../constant/index.js'
+import 'constants.js'
 
 // import resource image, icon
-import dropdown_btn from '../../img/dropdown_icon.png'
-import gray_write_icon from '../../img/gray_write_icon.png'
-import gray_upload_icon from '../../img/gray_upload_icon.png'
-import content_management_menu_item_element from '../../img/content_management_icon.png'
-import user_management_menu_item_element from '../../img/user_management_icon.png'
-import account_management_menu_item_element from '../../img/account_management_icon.png'
-import activity_management_menu_item_element from '../../img/activity_management_icon.png'
-import user_role_management_menu_item_element from '../../img/user_role_management_icon.png'
-import management_icon from '../../img/gray_management_icon.png'
-import gray_nb_upload_icon from '../../img/gray_nb_upload_icon.png'
-import gray_nb_write_icon from '../../img/gray_nb_write_icon.png'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
+import gray_write_icon from 'assets/images/gray_write_icon.png'
+import gray_upload_icon from 'assets/images/gray_upload_icon.png'
+import content_management_menu_item_element from 'assets/images/content_management_icon.png'
+import user_management_menu_item_element from 'assets/images/user_management_icon.png'
+import account_management_menu_item_element from 'assets/images/account_management_icon.png'
+import activity_management_menu_item_element from 'assets/images/activity_management_icon.png'
+import user_role_management_menu_item_element from 'assets/images/user_role_management_icon.png'
+import management_icon from 'assets/images/gray_management_icon.png'
+import gray_nb_upload_icon from 'assets/images/gray_nb_upload_icon.png'
+import gray_nb_write_icon from 'assets/images/gray_nb_write_icon.png'
 
 //import pages
 import Management_DocApprovingPage from './Management_DocApprovingPage/Management_DocApprovingPage';
@@ -28,30 +28,26 @@ import Management_UserRoleManagement from './Management_UserRoleManagement/Manag
 import Management_MyDocList from './Management_MyDocList/Management_MyDocList';
 import Management_MyPostList from './Management_MyPostList/Management_MyPostList'
 //import css
-import '../shared_components/SimpleButton.scss';
+import 'component/shared_components/SimpleButton.scss';
 
 //for Left Sidebar
 import './Management_LeftSidebar.scss'
 import './Management_LSBScrollLayout.scss'
 
-//import component
-import Header from '../container/Header'
-import Footer from '../container/Footer'
-
 //import resource string
-import { STR_LOGOUT_VN } from '../../constant/index.js';
+import { STR_LOGOUT_VN } from 'constants.js';
 
 //import for Redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from '../../service/UserAPI'
+import { getCurrentUser } from 'service/UserAPI'
 
 //import for permission
 import {
     getRoleNameByName,
     isGrantedPermissions
-} from '../../utils/PermissionManagement'
+} from 'utils/PermissionManagement'
 
 import {
     DocumentPermission,
@@ -62,7 +58,7 @@ import {
     UserPermission,
     ActivityPermission,
     RolePermission
-} from '../../utils/PermissionManagement'
+} from 'utils/PermissionManagement'
 
 
 class ManagementPage extends Component {
@@ -72,7 +68,7 @@ class ManagementPage extends Component {
         this.score = 0;
         this.post_count = 0;
         this.doc_count = 0;
-        this.avatarURL = "https://i.imgur.com/SZJgL6C.jpg";
+        this.avatarURL = 'https://i.imgur.com/SZJgL6C.jpg';
         this.roleName = "User";
 
         this.isTheFirstTimeLoaded = true;
@@ -137,7 +133,7 @@ class ManagementPage extends Component {
                                             < div className="Management_Info_Layout" >
                                                 <div className="Avatar_Layout">
                                                     {/* This is the way to set avatar from a online server via Google Drive */}
-                                                    {/* <img alt="avatar" className="Show_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png"} /> */}
+                                                    {/* <img alt="avatar" className="Show_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png'} /> */}
                                                     <img alt="avatar" className="Show_Avatar" src={this.avatarURL} />
                                                 </div>
                                                 <div className="Achivement_Layout">

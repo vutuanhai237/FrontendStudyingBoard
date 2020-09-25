@@ -3,29 +3,29 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import gray_upload_icon from '../../../img/gray_upload_icon.png'
-import gray_write_icon from '../../../img/gray_write_icon.png'
-import { PORT } from '../../../constant/index'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
+import gray_upload_icon from 'assets/images/gray_upload_icon.png'
+import gray_write_icon from 'assets/images/gray_write_icon.png'
+import { PORT } from 'constants.js'
 import './Management_AccountInformationManagement.scss'
 import './Management_AIMResponsiveLayout.scss'
 import { ClickAwayListener, CircularProgress } from '@material-ui/core'
-import dropdown_btn from '../../../img/dropdown_icon.png'
-import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
+import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Management_UpdatePassword from './Management_UpdatePassword'
-import { isContainSpecialCharacter } from '../../../utils/Utils'
+import { isContainSpecialCharacter } from 'utils/Utils'
 import ImageUploader from 'react-images-upload'
 
 //import for Redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from '../../../service/UserAPI'
-import { management_getAllRoles } from '../../../service/management_services/management_userAPIs'
+import { getCurrentUser } from 'service/UserAPI'
+import { management_getAllRoles } from 'service/management_services/management_userAPIs'
 
 //import for role config
-import { getRoleNameFilterByName } from '../../../utils/PermissionManagement'
+import { getRoleNameFilterByName } from 'utils/PermissionManagement'
 
 import Cookies from 'js-cookie'
 
@@ -136,9 +136,9 @@ class Management_AccountInformationManagement extends Component {
 
                                     {/* <div className="Simple_Gray_Label">Avatar: </div> */}
                                     <div className="Account_Information_Avatar_Layout">
-                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src="https://i.imgur.com/SZJgL6C.jpg" ></img> */}
-                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
-                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} ></img> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src='https://i.imgur.com/SZJgL6C.jpg' ></img> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
+                                        {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
                                   
                                       <img className = "Account_Information_Avatar_Image" alt = "avatar" src = {this.avatarURL}/>
                                         {/* <div className="margin_left_10px"></div> */}

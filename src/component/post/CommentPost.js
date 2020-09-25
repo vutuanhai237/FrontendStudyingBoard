@@ -16,7 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
     postComment,
-} from "../../service/PostAPI"
+} from "service/PostAPI"
 import {
     faArrowRight
 } from "@fortawesome/free-solid-svg-icons";

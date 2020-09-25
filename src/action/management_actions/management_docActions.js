@@ -3,7 +3,7 @@ import {
     MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
     MANAGEMENT_APPROVE_A_DOCUMENT,
     MANAGEMENT_GET_ALL_DOCS_OF_USER
-} from "../../constant/index.js"
+} from "constants.js"
 
 export function managementGetAllNotApprovedDocuments(requestedDocs) {
     return {

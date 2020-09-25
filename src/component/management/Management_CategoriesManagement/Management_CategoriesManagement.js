@@ -3,16 +3,16 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import dropdown_btn from '../../../img/dropdown_icon.png'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './Management_CategoriesManagement.scss'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
 //import for Redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCategoriesDoc, getSubjects, getSemesters } from '../../../service/DocAPI'
+import { getCategoriesDoc, getSubjects, getSemesters } from 'service/DocAPI'
 
 
 //chuyen thanh chi xem nen chua co handle click cho cac item trong bang danh muc bai viet

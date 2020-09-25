@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { Nav, Navbar, Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./FooterSummaryPost.scss";
 import "./AuthorInfo.scss"
-import { redirect } from "../../constant/"
+import { redirect } from 'constants.js'
 class AuthorInfo extends Component {
     constructor(props) {
         super(props);

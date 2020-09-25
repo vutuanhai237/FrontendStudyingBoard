@@ -3,11 +3,11 @@ import './CustomModal.scss'
 
 
 //delete icon
-// import gray_delete_icon from '../../../img/gray_delete_icon.png'
-import red_delete_icon from '../../../img/red_delete_icon.png'
-import confirmation_icon from '../../../img/confirmation_management_icon.png'
-import success_management_icon from '../../../img/success_management_icon.png'
-import fail_management_icon from '../../../img/fail_management_icon.png'
+// import gray_delete_icon from 'assets/images/gray_delete_icon.png'
+import red_delete_icon from 'assets/images/red_delete_icon.png'
+import confirmation_icon from 'assets/images/confirmation_management_icon.png'
+import success_management_icon from 'assets/images/success_management_icon.png'
+import fail_management_icon from 'assets/images/fail_management_icon.png'
 // import '../../../'
 
 //import scss

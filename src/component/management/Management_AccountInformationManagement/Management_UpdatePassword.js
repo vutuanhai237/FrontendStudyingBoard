@@ -3,17 +3,17 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import { isContainSpecialCharacter } from '../../../utils/Utils'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
+import { isContainSpecialCharacter } from 'utils/Utils'
 
 //import for Redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser, getLogout } from '../../../service/UserAPI'
+import { getCurrentUser, getLogout } from 'service/UserAPI'
 
 import Cookies from 'js-cookie'
-import { PORT } from '../../../constant/index'
+import { PORT } from 'constants.js'
 
 class Management_UpdatePassword extends Component {
     constructor(props) {

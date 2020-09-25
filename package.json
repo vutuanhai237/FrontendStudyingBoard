@@ -32,7 +32,6 @@
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-router-outlet": "^0.1.1",
     "react-scripts": "^3.4.3",
     "react-transition-group": "^4.3.0",
     "reactjs-popup": "^1.5.0",
@@ -59,5 +58,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

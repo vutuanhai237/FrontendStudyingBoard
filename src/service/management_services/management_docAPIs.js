@@ -3,8 +3,8 @@ import {
     managementGetCurrentPreviewDocument,
     managementApproveADocument,
     managementGetAllUserDocList
-} from "../../action/management_actions/management_docActions";
-import { HOST, PORT } from '../../constant/index';
+} from "action/management_actions/management_docActions";
+import { HOST, PORT } from 'constants.js';
 import Cookies from 'js-cookie'
 
 // import FormData from 'form-data';
@@ -18,7 +18,7 @@ const doc_v1 = {
         "summary": " summatry luom",
         "authorName": "Nguyễn Hồng Phúc",
         "authorID": 1,
-        "authorAvatar": "https://image.shutterstock.com/image-photo/butterfly-grass-on-meadow-night-260nw-1111729556.jpg",
+        "authorAvatar": 'https://image.shutterstock.com/image-photo/butterfly-grass-on-meadow-night-260nw-1111729556.jpg',
         "categoryID": 1,
         "categoryName": "Đề thi",
         "subjectID": 1,
@@ -42,7 +42,7 @@ const doc_v2 = {
         "summary": "",
         "authorName": "Lưu Biêu Nghị",
         "authorID": 1,
-        "authorAvatar": "https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg",
+        "authorAvatar": 'https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg',
         "categoryID": 9,
         "categoryName": "Sách",
         // "subjectID": 1,
@@ -65,7 +65,7 @@ const doc_v3 = {
         "summary": "",
         "authorName": "Huỳnh Thị Kim Thảo",
         "authorID": 1,
-        "authorAvatar": "https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg",
+        "authorAvatar": 'https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg',
         "categoryID": 11,
         "categoryName": "Slide ôn tập",
         // "subjectID": 1,
@@ -88,7 +88,7 @@ const doc_v4 = {
         "summary": "",
         "authorName": "Huỳnh Thị Kim Thảo",
         "authorID": 1,
-        "authorAvatar": "https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg",
+        "authorAvatar": 'https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg',
         "categoryID": 11,
         "categoryName": "Slide ôn tập",
         // "subjectID": 1,

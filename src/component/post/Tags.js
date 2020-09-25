@@ -4,7 +4,7 @@ import {
     Row,
 } from "react-bootstrap";
 
-import { redirect } from "../../constant/"
+import { redirect } from 'constants.js'
 import "./Tags.scss"
 class Tags extends Component {
     constructor(props) {

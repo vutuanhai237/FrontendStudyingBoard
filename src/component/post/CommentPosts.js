@@ -16,8 +16,8 @@ import SearchBar from "../SearchBar";
 import CommentPost from "./CommentPost"
 import {
     postComment,
-} from "../../service/PostAPI"
-import { getPostCommentByID } from "../../service/PostAPI"
+} from "service/PostAPI"
+import { getPostCommentByID } from "service/PostAPI"
 import { bindActionCreators } from 'redux';
 class CommentPosts extends Component {
     constructor(props) {

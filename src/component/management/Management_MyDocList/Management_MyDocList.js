@@ -2,12 +2,12 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import DocSummaryItem from '../../shared_components/DocSummaryItem'
+import DocSummaryItem from 'component/shared_components/DocSummaryItem'
 
-import Paginator from '../../shared_components/Paginator/ClientPaginator'
+import Paginator from 'component/shared_components/Paginator/ClientPaginator'
 
 //import for redux
-import { management_getAllNotApprovedDocuments, management_getAllUserDocList } from "../../../service/management_services/management_docAPIs"
+import { management_getAllNotApprovedDocuments, management_getAllUserDocList } from "service/management_services/management_docAPIs"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";

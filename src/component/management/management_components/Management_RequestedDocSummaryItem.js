@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import '../../shared_components/DocPostSummary.scss'
-// import Tag from '../../shared_components/Tag/Tag'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import gray_btn_element from '../../../img/gray_btn_element.png'
+import 'component/shared_components/DocPostSummary.scss'
+// import Tag from 'component/shared_components/Tag/Tag'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
+import gray_btn_element from 'assets/images/gray_btn_element.png'
 
 class Management_RequestedDocSummaryItem extends Component {
 

@@ -10,7 +10,7 @@ import {
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
     POST_POST_POST,
-} from "../constant/index"
+} from 'constants.js'
 
 const initialState = {
     posts: [],

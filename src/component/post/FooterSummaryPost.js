@@ -20,7 +20,7 @@ import {
     delUnlike,
     postComment,
     postSave,
-} from "../../service/PostAPI"
+} from "service/PostAPI"
 
 import { bindActionCreators } from 'redux';
 class FooterSummaryPost extends Component {

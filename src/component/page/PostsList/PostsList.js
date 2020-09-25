@@ -11,7 +11,7 @@ import SummaryPost from "../../post/SummaryPost";
 import FilterPost from "../../post/FilterPost";
 import Paging from "../../Paging";
 import { bindActionCreators } from 'redux';
-import { getSearchPost, getCategoriesPost } from "../../../service/PostAPI"
+import { getSearchPost, getCategoriesPost } from "service/PostAPI"
 class PostsList extends Component {
     constructor(props) {
         super(props);

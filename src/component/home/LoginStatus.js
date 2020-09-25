@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
-import avatar from "../../img/anh.jpg";
-import { getLogout } from "../../service/UserAPI"
-import { redirect } from "../../constant/index"
+import avatar from 'assets/images/anh.jpg';
+import { getLogout } from "service/UserAPI"
+import { redirect } from 'constants.js'
 class LoginStatus extends Component {
     constructor(props) {
         super(props);

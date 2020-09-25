@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import { render } from "react-dom";
-import App from "../src/component/App"
+import App from "component/App"
 import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store/index";

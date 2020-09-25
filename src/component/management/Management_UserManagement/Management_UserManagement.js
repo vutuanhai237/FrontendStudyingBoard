@@ -3,18 +3,18 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import Paginator from '../../shared_components/Paginator/ClientPaginator'
+import Paginator from 'component/shared_components/Paginator/ClientPaginator'
 import Management_UserItem from '../management_components/Management_UserItem/Management_UserItem'
 // import { ClickAwayListener } from '@material-ui/core'
-// import { getRoleNameByName, getRoleNameFilterByName } from '../../../utils/PermissionManagement'
-import dropdown_btn from '../../../img/dropdown_icon.png'
-import white_dropdown_btn from '../../../img/white_dropdown_icon.png'
+// import { getRoleNameByName, getRoleNameFilterByName } from 'utils/PermissionManagement'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
+import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
 
 //import for redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { management_getAllUsers, management_getAllRoles } from '../../../service/management_services/management_userAPIs'
+import { management_getAllUsers, management_getAllRoles } from 'service/management_services/management_userAPIs'
 
 class Management_UserManagement extends Component {
     constructor(props) {
@@ -102,7 +102,7 @@ class Management_UserManagement extends Component {
                     username={userItem.username}
                     // nickName={userItem.displayName}
                     avatarUrl={userItem.avatar}
-                    // avatarUrl="https://i.imgur.com/SZJgL6C.jpg"
+                    // avatarUrl='https://i.imgur.com/SZJgL6C.jpg'
                     email={userItem.email}
                     postCount={userItem.postCount}
                     docCount={userItem.documentCount}

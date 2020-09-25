@@ -3,7 +3,7 @@ import {
     USER_POST_REGISTER,
     USER_GET_CURRENT_USER,
     USER_GET_LOGOUT,
-} from "../constant/index.js"
+} from "constants.js"
 
 export function userPostLogin(account, statusLoginCode) {
     return {

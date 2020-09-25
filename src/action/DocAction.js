@@ -7,7 +7,7 @@ import {
     DOC_POST_UP_VIEW_DOC,
     DOC_GET_TOP_DOC,
     DOC_GET_DOC_BY_ID,
-} from "../constant/index.js"
+} from "constants.js"
 
 export function docPostDoc(statusPostDocCode) {
     return {

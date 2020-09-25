@@ -3,11 +3,11 @@ import {
     userPostRegister,
     userGetCurrentUser,
     userGetLogout,
-} from "../action/UserAction.js";
+} from "action/UserAction.js";
 import {
     HOST,
     PORT
-} from '../constant/index';
+} from 'constants.js';
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
@@ -20,7 +20,7 @@ const admin = {
         "username": "phucnh",
         "displayName": "Nguyen Hong Phuc",
         "password": "123456",
-        "avatarURL": "https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg",
+        "avatarURL": 'https://cdn.jpegmini.com/user/images/slider_puffin_jpegmini_mobile.jpg',
         "email": "phuc98@gmail.com",
         "score": 100,
         "postCount": 0,
@@ -39,7 +39,7 @@ const collaborator_1 = {
         "username": "dongnv1",
         "displayName": "Nguyễn Văn Đông",
         "password": "123456",
-        "avatarURL": "https://tinypng.com/images/social/website.jpg",
+        "avatarURL": 'https://tinypng.com/images/social/website.jpg',
         "email": "jionvodoi@gmail.com",
         "score": 100,
         "postCount": 0,
@@ -57,7 +57,7 @@ const user_1 = {
         "username": "dongnv",
         "displayName": "Lưu Biêu Nghị",
         "password": "123456",
-        "avatarURL": "https://www.w3schools.com/w3css/img_avatar3.png",
+        "avatarURL": 'https://www.w3schools.com/w3css/img_avatar3.png',
         "email": "dongnv.since1999@gmail.com",
         "score": 100,
         "postCount": 0,

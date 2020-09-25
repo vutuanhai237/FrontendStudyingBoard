@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import logo from "../../img/logo.png";
+import logo from 'assets/images/logo.png';
 import {
     faFileSignature,
     faCloudUploadAlt,
@@ -16,9 +16,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
-import { getCurrentUser } from "../../service/UserAPI"
-import { HOST, PORT } from '../../constant/index';
-import { redirect } from "../../constant"
+import { getCurrentUser } from "service/UserAPI"
+import { HOST, PORT } from 'constants.js';
+import { redirect } from 'constants.js'
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
 class Header extends Component {

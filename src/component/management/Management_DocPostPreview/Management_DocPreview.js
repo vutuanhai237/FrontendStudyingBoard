@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 
-import '../../shared_components/DocPostDetail.scss'
-import '../../shared_components/DPD_ResponsiveLayout.scss'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import gray_btn_element from '../../../img/gray_btn_element.png'
+import 'component/shared_components/DocPostDetail.scss'
+import 'component/shared_components/DPD_ResponsiveLayout.scss'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
+import gray_btn_element from 'assets/images/gray_btn_element.png'
 
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
 import Management_RequestedDocSummaryItem from '../management_components/Management_RequestedDocSummaryItem'
 
-import { management_getCurrentPreviewDocument } from "../../../service/management_services/management_docAPIs"
-import { getCurrentUser } from "../../../service/UserAPI"
-import { isGrantedPermissions, DocumentPermission } from "../../../utils/PermissionManagement"
+import { management_getCurrentPreviewDocument } from "service/management_services/management_docAPIs"
+import { getCurrentUser } from "service/UserAPI"
+import { isGrantedPermissions, DocumentPermission } from "utils/PermissionManagement"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
@@ -19,9 +19,9 @@ import { connect } from "react-redux";
 import Footer from '../../container/Footer'
 import Header from '../../container/Header'
 
-import gray_download_icon from '../../../img/gray_download_icon.png'
+import gray_download_icon from 'assets/images/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'
-import { PORT } from '../../../constant/index'
+import { PORT } from 'constants.js'
 import Cookies from 'js-cookie'
 //import for pdf viewer:
 
@@ -51,7 +51,7 @@ class Management_DocPreview extends Component {
         this.uploadedTime = "22-08-2020";
         this.viewCount = "1000";
         this.downloadCount = "200";
-        this.avartarUrl = "https://i.imgur.com/SZJgL6C.jpg";
+        this.avartarUrl = 'https://i.imgur.com/SZJgL6C.jpg';
         this.fileName = "Suy tưởng - Marcus Antonius Arellius.pdf";
         this.linkFile = ""
 

@@ -12,7 +12,7 @@ import { bindActionCreators } from 'redux';
 import {
     getCategoriesPost,
     getSearchPost,
-} from "../../service/PostAPI"
+} from "service/PostAPI"
 class FilterPost extends Component {
     constructor(props) {
         super(props);

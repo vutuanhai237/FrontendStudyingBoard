@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import Tags from "../post/Tags";
 import Cookies from 'js-cookie';
-import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "../../service/PostAPI";
+import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "service/PostAPI";
 
 class PostDetail extends Component {
     constructor(props) {

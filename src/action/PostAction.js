@@ -14,7 +14,7 @@ import {
     POST_GET_POST_NEWESTS,
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
-} from "../constant/index.js"
+} from "constants.js"
 
 // POST section
 export function postPostPost(statusPostPostCode) {

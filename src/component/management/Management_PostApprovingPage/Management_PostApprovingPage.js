@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_RequestedPostSummaryItem from '../management_components/Management_RequestedPostSummaryItem'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import Paginator from '../../shared_components/Paginator/ClientPaginator'
+import Paginator from 'component/shared_components/Paginator/ClientPaginator'
 
 class Management_PostApprovingPage extends Component {
     constructor({ routeConfig }) {
@@ -29,7 +29,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 30,
                         "commentCount": 50,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "some tag",
                             "tag text"
@@ -49,7 +49,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -68,7 +68,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -87,7 +87,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -107,7 +107,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -126,7 +126,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -146,7 +146,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -166,7 +166,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 30,
                         "commentCount": 50,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "some tag",
                             "tag text"
@@ -186,7 +186,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -205,7 +205,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -224,7 +224,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -244,7 +244,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"
@@ -263,7 +263,7 @@ class Management_PostApprovingPage extends Component {
                         "contentURL": "contentURL",
                         "likeCount": 40,
                         "commentCount": 0,
-                        "firstImageURL": "https://imgur.com/inBsikg.png",
+                        "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
                             "tag1",
                             "tag2"

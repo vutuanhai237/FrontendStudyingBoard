@@ -13,11 +13,11 @@ import {
     postGetPostNewActivities,
     postGetTags,
     postPostPost,
-} from "../action/PostAction.js";
+} from "action/PostAction.js";
 import {
     HOST,
     PORT
-} from '../constant/index';
+} from 'constants.js';
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
@@ -142,7 +142,7 @@ const post_summary_1 = {
     requestedCategoryID: "1",
     title: "Thông báo thu học phí bằng C++",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
-    imageURL: "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg",
+    imageURL: 'https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg',
     tagList: ["Học phí", "C++"],
     viewCount: 200,
     likeCount: 100,
@@ -159,7 +159,7 @@ const post_summary_2 = {
     requestedCategoryID: "2",
     title: "Thông báo nghỉ học bằng C++",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
-    imageURL: "https://blog.hubspot.com/hubfs/types-of-image-files-extensions.jpg",
+    imageURL: 'https://blog.hubspot.com/hubfs/types-of-image-files-extensions.jpg',
     tagList: ["Học phí", "C#"],
     viewCount: 2000,
     likeCount: 10,
@@ -176,7 +176,7 @@ const post_summary_3 = {
     requestedCategoryID: "4",
     title: "Blockchain trong quản lý học phí",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
-    imageURL: "https://cdn.searchenginejournal.com/wp-content/uploads/2019/08/c573bf41-6a7c-4927-845c-4ca0260aad6b-760x400.jpeg",
+    imageURL: 'https://cdn.searchenginejournal.com/wp-content/uploads/2019/08/c573bf41-6a7c-4927-845c-4ca0260aad6b-760x400.jpeg',
     tagList: ["Lập trình", "Python"],
     viewCount: 200,
     likeCount: 300,
@@ -193,7 +193,7 @@ const post_summary_4 = {
     requestedCategoryID: "Cate_3",
     title: "Hướng dẫn sử dụng MS Team trong quá trình học tập online.",
     content: "Chào các bạn sinh viên. Phòng Đào tạo Đại học thông báo đến các bạn sinh viên Quy định về chính sách hỗ trợ công bố khoa học dành cho sinh viên, học viên cao học và nghiên cứu sinh theo link đính kèm",
-    imageURL: "https://i0.wp.com/office365itpros.com/wp-content/uploads/2019/10/Teams-Custom-Background-Setting.jpg?fit=840%2C439&ssl=1",
+    imageURL: 'https://i0.wp.com/office365itpros.com/wp-content/uploads/2019/10/Teams-Custom-Background-Setting.jpg?fit=840%2C439&ssl=1',
     tagList: ["Lập trình", "Python"],
     viewCount: 20,
     likeCount: 30,
@@ -235,7 +235,7 @@ const current_Post_Detail = { //get via GET method.
         "authorName": "Nguyen Hong Phuc", // === displayName of this author
         "categoryID": "Hỏi đáp",
         "categoryName": "categoryName",
-        "authorAvatarURL": "https://www.w3schools.",
+        "authorAvatarURL": 'https://www.w3schools.',
         "summary": "Khi thực hiện series NMPT Game một năm trước, mình gặp rất nhiều khó khăn, và chắc chắn những ai đã, đang và sẽ học Game sẽ cảm nhận được, ",
         "tags": [tagList[0], tagList[2]],
     }

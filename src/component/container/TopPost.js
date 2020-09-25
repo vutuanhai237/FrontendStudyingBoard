@@ -10,7 +10,7 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "../post/SummaryPost";
 import "./TopPost.scss";
 import { bindActionCreators } from "redux";
-import { getPostHighlights } from "../../service/PostAPI"
+import { getPostHighlights } from "service/PostAPI"
 class TopPost extends Component {
     constructor(props) {
         super(props);

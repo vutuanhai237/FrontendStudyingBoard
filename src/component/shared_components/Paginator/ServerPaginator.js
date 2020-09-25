@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import './Management_PostBrowser.scss'
-import '../../shared_components/Paginator/Paginator.scss'
+import 'component/shared_components/Paginator/Paginator.scss'
 
 
 class Paginator extends Component {

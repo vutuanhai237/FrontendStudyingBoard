@@ -15,7 +15,7 @@ import "./CreatePost.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { getCategoriesPost, postPost } from "../../service/PostAPI";
+import { getCategoriesPost, postPost } from "service/PostAPI";
 import Tags from "../../component/post/Tags";
 class CreatePost extends Component {
     constructor(props) {

@@ -10,7 +10,7 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryDoc from "../doc/SummaryDoc";
 import FilterDoc from "../doc/FilterDoc";
 import Paging from "../Paging";
-import { getSearchDoc } from "../../service/DocAPI.js"
+import { getSearchDoc } from "service/DocAPI.js"
 import { bindActionCreators } from 'redux';
 class ListDoc extends Component {
     constructor(props) {

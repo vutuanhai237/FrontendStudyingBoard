@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import './Management_UserItem.scss'
-import gray_write_icon from '../../../../img/gray_write_icon.png'
-import gray_upload_icon from '../../../../img/gray_upload_icon.png'
-import white_dropdown_btn from '../../../../img/white_dropdown_icon.png'
-import dropdown_btn from '../../../../img/dropdown_icon.png'
-import icon_write from '../../../../img/icon_write.png'
+import gray_write_icon from 'assets/images/gray_write_icon.png'
+import gray_upload_icon from 'assets/images/gray_upload_icon.png'
+import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
+import icon_write from 'assets/images/icon_write.png'
 //combobox
-import '../../../shared_components/CustomCombobox.scss'
+import 'component/shared_components/CustomCombobox.scss'
 
 
 //modal popup
-import CustomModal from '../../../shared_components/CustomModalPopup/CustomModal'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
 
 import { ClickAwayListener } from '@material-ui/core';
-import { getRoleNameByName, getRoleNamebyID } from '../../../../utils/PermissionManagement'
+import { getRoleNameByName, getRoleNamebyID } from 'utils/PermissionManagement'
 
 import Cookies from 'js-cookie'
-import { PORT } from '../../../../constant/index'
+import { PORT } from 'constants.js'
 
 class Management_UserItem extends Component {
 
@@ -103,7 +103,7 @@ class Management_UserItem extends Component {
             return (
                 <div className="Management_User_Item"  >
 
-                    <img alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png"} className="Show_Avatar"></img>
+                    <img alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + '.png'} className="Show_Avatar"></img>
 
                     <div style={{
                         paddingLeft: "10px", width: "100%"

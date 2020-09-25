@@ -3,19 +3,19 @@
 import React, { Component } from 'react'
 import '../ManagementPage'
 import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
-import dropdown_btn from '../../../img/dropdown_icon.png'
+import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './Management_UserRoleManagement.scss'
 
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
 
 //import for redux
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { management_getAllUsers, management_getAllRoles } from '../../../service/management_services/management_userAPIs'
+import { management_getAllUsers, management_getAllRoles } from 'service/management_services/management_userAPIs'
 
-import { getRoleNameByName } from '../../../utils/PermissionManagement'
+import { getRoleNameByName } from 'utils/PermissionManagement'
 
 class Management_UserRoleManagement extends Component {
     constructor(props) {

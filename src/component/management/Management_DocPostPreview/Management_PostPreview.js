@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import '../../shared_components/DocPostDetail.scss'
-import CustomModal from '../../shared_components/CustomModalPopup/CustomModal'
-import gray_btn_element from '../../../img/gray_btn_element.png'
+import 'component/shared_components/DocPostDetail.scss'
+import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
+import gray_btn_element from 'assets/images/gray_btn_element.png'
 
 class Management_PostPreview extends Component {
 

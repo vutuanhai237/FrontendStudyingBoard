@@ -19,7 +19,7 @@ import {
     getSubjects,
     getCategoriesDoc,
     postDoc,
-} from "../../service/DocAPI.js"
+} from "service/DocAPI.js"
 import "./CreateDoc.scss";
 class CreateDoc extends Component {
     constructor(props) {

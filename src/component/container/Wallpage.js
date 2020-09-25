@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import "./Wallpage.scss";
 
 //demo only 
-import { highlightPostResults } from "../../service/PostAPI";
+import { highlightPostResults } from "service/PostAPI";
 
 class WallPaper extends Component {
 
