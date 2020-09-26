@@ -44,56 +44,28 @@ class Management_RequestedDocSummaryItem extends Component {
     }
 
     render() {
-
-        // Render tag from tags list
-
-        // let tagsGroup = this.tags.map((tag) => {
-        //     return (
-        //         <Tag text={tag}></Tag>
-        //     )
-        // }
-        // );
-
+        
         return (
 
-            <div className="DocPost_Summary_Item" >
-                <div className="DocPost_Summary_Item_Main_Layout">
-                    <div className="DocPost_Summary_Item_Header_1">
-                        <div className="DocPost_Summary_Item_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="DocPost_Summary" >
+                <div className="DocPost_Summary_Main_Layout">
+                    <div className="DocPost_Summary_Author_Date_Metadata">
+                        <div className="DocPost_Summary_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="DocPost_Summary_Item_Requested_Date">
+                        <div className="DocPost_Summary_Requested_Date">
                             {this.requestedDate}
                         </div>
                     </div>
 
-                    <div className="Requested_DocPost_Summary_Item_Header_2">
+                    <div className="Requested_DocPost_Summary_Header_2">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_DocPost_Summary_Item_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                    <div className="Requested_DocPost_Summary_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div>
 
-                    <div className="Doc_Category_Time_Semester_Subject_Header">
-
-                        <img alt="*" className="Doc_Category_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                        <div className="Doc_Category_Time_Semester_Subject_Text">
-                            Môn học: &nbsp;
-                        {this.subject}
-                        </div>
-                        <img alt="*" className="Doc_Category_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                        <div className="Doc_Category_Time_Semester_Subject_Text">
-                            Học kỳ: &nbsp;
-                        {this.semester}
-                        </div >
-                        <img alt="*" className="Doc_Category_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                        <div className="Doc_Category_Time_Semester_Subject_Text">
-                            Năm học: &nbsp;
-                        {this.year}
-                        </div>
-                    </div>
-
-                    <div className="Requested_Doc_Summary_Item_Header_3">
+                    <div className="Requested_Doc_Summary_Header_3">
                         {/* {this.props.title} */}
                     </div>
 
@@ -109,13 +81,10 @@ class Management_RequestedDocSummaryItem extends Component {
                         <img alt="post" className="DocPost_Summary_Image" src={this.props.image}></img>
                     </div>
 
-                    {/* <div className="DocPost_Summary_Requested_Tags_Layout">
-                        {tagsGroup}
-                    </div> */}
                 </div>
-                <div className="DocPost_Summary_Item_Footer">
+                <div className="DocPost_Summary_Footer">
                     <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
-                    {/* <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
+                    <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                 </div>
 
                 {/* Popup for reject requested post */}

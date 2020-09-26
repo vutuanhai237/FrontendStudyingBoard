@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'BarlowCondensed-Bold';
+    src: local('BarlowCondensed'), url(./assets/fonts/BarlowCondensed-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BarlowCondensed-SemiBold';
+    src: local('BarlowCondensed'), url(./assets/fonts/BarlowCondensed-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BarlowCondensed-Medium';
+    src: local('BarlowCondensed'), url(./assets/fonts/BarlowCondensed-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'BarlowCondensed-Regular';
+    src: local('BarlowCondensed'), url(./assets/fonts/BarlowCondensed-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'RobotoSlab-Regular';
+    src: local('RobotoSlab'), url(./assets/fonts/RobotoSlab-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Rosario-Bold';
+    src: local('Rosario'), url(./assets/fonts/Rosario-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: local('Roboto'), url(./assets/fonts/Roboto-Regular.ttf), format('truetype');
+}
+
+@font-face{
+    font-family: 'Roboto-Medium';
+    src: local('Roboto'), url(./assets/fonts/Roboto-Medium.ttf), format('truetype');
+}

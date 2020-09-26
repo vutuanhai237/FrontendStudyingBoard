@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import './ManagementPage.scss'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import 'constants.js'
 
@@ -16,6 +15,7 @@ import user_role_management_menu_item_element from 'assets/images/user_role_mana
 import management_icon from 'assets/images/gray_management_icon.png'
 import gray_nb_upload_icon from 'assets/images/gray_nb_upload_icon.png'
 import gray_nb_write_icon from 'assets/images/gray_nb_write_icon.png'
+import analysis_management_icon from 'assets/images/analysis_management_icon.png'
 
 //import pages
 import Management_DocApprovingPage from './Management_DocApprovingPage/Management_DocApprovingPage';
@@ -27,15 +27,12 @@ import Management_AccountInformationManagement from './Management_AccountInforma
 import Management_UserRoleManagement from './Management_UserRoleManagement/Management_UserRoleManangement'
 import Management_MyDocList from './Management_MyDocList/Management_MyDocList';
 import Management_MyPostList from './Management_MyPostList/Management_MyPostList'
+
 //import css
 import 'component/shared_components/SimpleButton.scss';
-
-//for Left Sidebar
-import './Management_LeftSidebar.scss'
-import './Management_LSBScrollLayout.scss'
+import './ManagementPage.scss'
 
 //import resource string
-import { STR_LOGOUT_VN } from 'constants.js';
 
 //import for Redux
 import { bindActionCreators } from 'redux'
@@ -111,7 +108,6 @@ class ManagementPage extends Component {
             this.doc_count = this.props.accountInformation.documentCount;
             this.username = this.props.accountInformation.username;
             this.avatarURL = this.props.accountInformation.avatarURL;
-            // console.log(this.isGrantedPermissions(ContentManagementPermission.Management));
 
             return (
                 <div className="Management">
@@ -150,7 +146,6 @@ class ManagementPage extends Component {
                                                             <div className="margin_left_5px"> {this.doc_count}</div>
                                                         </div>
                                                     </div>
-                                                    {/* </div> */}
                                                 </div>
                                             </div >
 
@@ -305,23 +300,6 @@ class ManagementPage extends Component {
 
 
                                                 {/* Viet bai */}
-                                                {/* 
-                                                    // window.location.pathname === "/admin/create_post" ?
-                                                    //     <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                    //         to="/admin/create_post">
-                                                    //         <img alt="*"
-                                                    //             className="Primary_Menu_Item_Element"
-                                                    //             src={gray_nb_write_icon}
-                                                    //             id="user-managent-btn-element" />
-                                                    //         <div className="Vertical_Menu_Item_Text"  >
-                                                    //             Tạo bài viết mới
-                                                    //     </div>
-                                                    //     </Link>
-                                                    //     :
-                                                    // <Link className="Vertical_Menu_Item"
-
-                                                    // to="/admin/create_post"
-                                                // onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>*/}
                                                 <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/create_post"}>
                                                     <img alt="*" className="Primary_Menu_Item_Element"
                                                         src={gray_nb_write_icon}
@@ -331,34 +309,8 @@ class ManagementPage extends Component {
                                                         Tạo bài viết mới
                                                         </div>
                                                 </div>
-                                                {/* // </Link> */}
-                                                {/* } */}
 
                                                 {/* Upload tai lieu */}
-                                                {/* { 
-                                                    // window.location.pathname === "/admin/upload_doc" ?
-                                                    //     <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                    //         to="/admin/upload_doc">
-                                                    //         <img alt="*"
-                                                    //             className="Primary_Menu_Item_Element"
-                                                    //             src={gray_nb_upload_icon}
-                                                    //             id="upload-doc-btn-element" />
-                                                    //         <div className="Vertical_Menu_Item_Text"  >
-                                                    //             Upload tài liệu
-                                                    //     </div>
-                                                    //     </Link>
-                                                    //     :
-                                                    //     <Link className="Vertical_Menu_Item"
-                                                    //         to="/admin/upload_doc"
-                                                    //         onClick={() => this.handleOnNotAccountInformationMenuItemClick()}>
-                                                    //         <img alt="*" className="Primary_Menu_Item_Element"
-                                                    //             src={gray_nb_upload_icon}
-                                                    //             id="upload-doc-btn-element"
-                                                    //         />
-                                                    //         <div className="Vertical_Menu_Item_Text"  >
-                                                    //             Upload tài liệu
-                                                    //     </div>
-                                                    //     </Link>*/}
                                                 <div className="Vertical_Menu_Item" onClick={() => window.location.href = "/create_doc"}>
                                                     <img alt="*" className="Primary_Menu_Item_Element"
                                                         src={gray_nb_upload_icon}
@@ -368,8 +320,6 @@ class ManagementPage extends Component {
                                                         Upload tài liệu
                                                     </div>
                                                 </div>
-                                                {/* // } */}
-
                                             </div>
 
                                             <div id="page-management-vertical-menu-port-container" style={{ display: "none" }}>
@@ -391,28 +341,28 @@ class ManagementPage extends Component {
                                                     <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
                                                         <div className="margin_bottom_5px" />
                                                         {
-                                                            // (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                            //     && this.isGrantedPermissions(PostPermission.Approve))
-                                                            //     ?
-                                                            //     window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
-                                                            //         ?
-                                                            //         <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                            //             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
-                                                            //         >
-                                                            //             <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                            //                 Duyệt bài viết
-                                                            //             </div>
-                                                            //         </Link>
-                                                            //         :
-                                                            //         <Link className="Sub_Dropdown_Menu_Item"
-                                                            //             onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
-                                                            //             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
-                                                            //         >
-                                                            //             <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                            //                 Duyệt bài viết
-                                                            //              </div>
-                                                            //         </Link>
-                                                            //     : <></>
+                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
+                                                                && this.isGrantedPermissions(PostPermission.Approve))
+                                                                ?
+                                                                window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
+                                                                    ?
+                                                                    <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                                    >
+                                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                            Duyệt bài viết
+                                                                        </div>
+                                                                    </Link>
+                                                                    :
+                                                                    <Link className="Sub_Dropdown_Menu_Item"
+                                                                        onClick={() => this.handleOnNotAccountInformationMenuItemClick()}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                                    >
+                                                                        <div className="Sub_Dropdown_Menu_Item_Text" >
+                                                                            Duyệt bài viết
+                                                                         </div>
+                                                                    </Link>
+                                                                : <></>
                                                         }
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
@@ -440,7 +390,7 @@ class ManagementPage extends Component {
                                                                 :
                                                                 <></>
                                                         }
-                                                        {/* {
+                                                        {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(NotificationPermission.ViewAll))
                                                                 ?
@@ -464,7 +414,7 @@ class ManagementPage extends Component {
                                                                     </Link>
                                                                 :
                                                                 <></>
-                                                        } */}
+                                                        }
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(CategoryPermission.View))
@@ -533,7 +483,7 @@ class ManagementPage extends Component {
                                                 }
 
                                                 {/* Quan ly hoat dong: các báo cáo người dùng  */}
-                                                {/* {
+                                                {
                                                     (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                         && this.isGrantedPermissions(UserPermission.All))
                                                         ?
@@ -563,7 +513,7 @@ class ManagementPage extends Component {
                                                             </Link>
                                                         :
                                                         <></>
-                                                } */}
+                                                }
 
 
 
@@ -599,20 +549,21 @@ class ManagementPage extends Component {
                                                 }
 
                                                 {/* Thong ke */}
-                                                {/* {
-                                                 window.location.pathname === "/admin/analysis" ?
-                                                <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" to = "/admin/analysis_management">
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
-                                                <div className="Vertical_Menu_Item_Text"  >
-                                                    Thống kê
-                                                </div>
-                                                 </Link>:<Link className="Vertical_Menu_Item" to = "/admin/analysis_management">
-                                                <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_menu_item_element} id="users-managent-btn-element" />
-                                                <div className="Vertical_Menu_Item_Text"  >
-                                                    Thống kê
-                                                </div>
-                                                </div>
-                                                } */}
+                                                {
+                                                    window.location.pathname === "/admin/analysis" ?
+                                                        <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active" to="/admin/analysis_management">
+                                                            <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_icon} id="users-managent-btn-element" />
+                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                                Thống kê
+                                                            </div>
+                                                        </Link> :
+                                                        <Link className="Vertical_Menu_Item" to="/admin/analysis_management">
+                                                            <img alt="*" className="Primary_Menu_Item_Element" src={analysis_management_icon} id="users-managent-btn-element" />
+                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                                Thống kê
+                                                            </div>
+                                                        </Link>
+                                                }
                                             </div>
                                         </div >
                                     </ div >
@@ -623,8 +574,6 @@ class ManagementPage extends Component {
                             {/* Router Outlet */}
                             <div className="Management_Router_Outlet" >
                                 <Switch>
-
-
                                     <Route exact path="/admin" component={Management_AccountInformationManagement} />     {/* for admin */}
                                     <Route exact path="/admin/update_password" component={Management_AccountInformationManagement} />
                                     <Route exact path="/admin/docs_list" component={Management_MyDocList} />
@@ -648,9 +597,9 @@ class ManagementPage extends Component {
                                     <Route exact path="/admin/page_notification" component={Management_NotificationManagement} />
                                     <Route exact path="/admin/categories_management" component={Management_CategoriesManagement} />
                                     <Route exact path="/admin/user_management" component={Management_UserManagement} />
-                                    {/* <Route exact path="/admin/activity_management" component={ManagementPage} /> */}
+                                    <Route exact path="/admin/activity_management" component={ManagementPage} />
                                     <Route exact path="/admin/user_role_management" component={Management_UserRoleManagement} />
-                                    {/* <Route exact path="/admin/user_management/:id" component={ManagementPage} /> */}
+                                    <Route exact path="/admin/user_management/:id" component={ManagementPage} />
 
                                 </Switch>
                             </div>

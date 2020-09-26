@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import '../ManagementPage'
-import Management_Titlebar from '../management_components/Management_Titlebar/Management_Titlebar'
+import Management_Titlebar from 'component/management/management_components/Management_Titlebar/Management_Titlebar'
 import CustomModal from 'component/shared_components/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
 import gray_write_icon from 'assets/images/gray_write_icon.png'
@@ -65,9 +65,6 @@ class Management_AccountInformationManagement extends Component {
         this.isDisplayNameEmpty = false;
         this.isDisplayNameContainSpecialCharacters = false;
 
-
-
-
         this.updateInformation_DTO = {
             username: "",
             oldPasword: "",
@@ -119,9 +116,7 @@ class Management_AccountInformationManagement extends Component {
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
                         </div>
                 )
-            // ("*");
-            // (this.userID);
-
+         
             return (
                 <div>
 
@@ -139,13 +134,14 @@ class Management_AccountInformationManagement extends Component {
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src='https://i.imgur.com/SZJgL6C.jpg' ></img> */}
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
-                                  
-                                      <img className = "Account_Information_Avatar_Image" alt = "avatar" src = {this.avatarURL}/>
+
+                                        <img className="Account_Information_Avatar_Image" alt="avatar" src={this.avatarURL} />
                                         {/* <div className="margin_left_10px"></div> */}
 
                                         {/* <div>{this.props.</div> */}
                                     </div>
-                                    {/* <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div> */}
+                                    
+                                    <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
 
                                     <div className="margin_top_10px" />
 

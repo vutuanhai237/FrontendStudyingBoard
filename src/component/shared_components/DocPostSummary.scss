@@ -1,11 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rosario:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap");
-
-.DocPost_Summary_Item {
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');   
+.DocPost_Summary {
     position: relative;
     width: 100%;
     height: fit-content;
@@ -20,28 +14,26 @@
     border-top: 3px #eeeeee solid;
 }
 
-.DocPost_Summary_Item:hover {
+.DocPost_Summary:hover {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
     border: 1px white solid;
     border-top: 3px #5279db solid;
 }
 
-.DocPost_Summary_Item:active {
+.DocPost_Summary:active {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
     border-top: 3px #5279db solid;
 }
 
 //general summary item headbar
-.DocPost_Summary_Item_Header_1 {
+.DocPost_Summary_Author_Date_Metadata {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: fit-content;
     position: relative;
     height: fit-content;
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 500;
+    font-family: "BarlowCondensed-Medium";
     font-size: 18px;
     line-height: 20px;
     display: flex;
@@ -50,16 +42,14 @@
 }
 
 //requested summary item header
-.Requested_DocPost_Summary_Item_Header_2 {
+.Requested_DocPost_Summary_Header_2 {
     display: flex;
     justify-content: flex-start;
     width: 100%;
     height: fit-content;
     position: relative;
     height: fit-content;
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 600;
+    font-family: "BarlowCondensed-SemiBold";
     font-size: 16px;
     line-height: 20px;
     display: flex;
@@ -68,67 +58,64 @@
 }
 
 //Doc summary item header (contain time, semester, subject)
-.Doc_Category_Time_Semester_Subject_Header {
-    height: 1.5rem;
-    // margin-top: 5px;
+.Doc_Metadata_Header {
+    height: 1.1rem;
     display: flex;
 }
 
-.Doc_Category_Time_Semester_Subject_Icon {
+.Doc_Metadata_Icon {
     margin-top: 0.6rem;
     width: 0.5rem;
     height: 0.5rem;
     margin-right: 0.1rem;
 }
 
-.Doc_Category_Time_Semester_Subject_Text {
-    line-height: 1.5rem;
-    display: flex;
-    justify-content: flex-start;
-    height: fit-content;
-    position: relative;
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    color: #363636;
-    user-select: none;
-    margin-right: 0.6rem;
-}
+// .Doc_Metadata_Text {
+//     line-height: 1.5rem;
+//     display: flex;
+//     justify-content: flex-start;
+//     height: fit-content;
+//     position: relative;
+//     font-family: "BarlowCondensed-Medium";
+//     font-size: 12px;
+//     color: #363636;
+//     user-select: none;
+//     margin-right: 0.6rem;
+// }
 //General summary item header 1
-.DocPost_Summary_Item_Author_Link:hover {
+.DocPost_Summary_Author_Link:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.DocPost_Summary_Item_Author_Link:active {
+.DocPost_Summary_Author_Link:active {
     opacity: 60%;
     cursor: pointer;
 }
 
-.DocPost_Summary_Item_Requested_Date {
+.DocPost_Summary_Requested_Date {
     font-size: 16px;
 }
 
 //General summary item header 2
-.Requested_DocPost_Summary_Item_Category {
+.Requested_DocPost_Summary_Category {
     padding-left: 5px;
     color: #5279db;
 }
 
-.Requested_DocPost_Summary_Item_Category:hover {
+.Requested_DocPost_Summary_Category:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Requested_DocPost_Summary_Item_Category:active {
+.Requested_DocPost_Summary_Category:active {
     opacity: 60%;
 }
 
 //Doc summary item category header
 
 //Content
-.DocPost_Summary_Item_Main_Layout {
+.DocPost_Summary_Main_Layout {
     padding: 10px;
     padding-top: 0px;
 }
@@ -137,9 +124,7 @@
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
-    font-family: "Roboto Slab";
-    font-style: normal;
-    font-weight: 400;
+    font-family: "RobotoSlab-Regular";
     font-size: 24px;
     line-height: 32px;
     display: flex;
@@ -149,9 +134,7 @@
 
 .DocPost_Summary_Content {
     padding-left: 5px;
-    font-family: Sarabun;
-    font-style: normal;
-    font-weight: 300;
+    font-family: "Sarabun", sans-serif;
     font-size: 16px;
     line-height: 25px;
     display: flex;
@@ -167,9 +150,7 @@
     height: fit-content;
     position: relative;
     height: fit-content;
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 500;
+    font-family: "BarlowCondensed-Medium";
     font-size: 20px;
     line-height: 20px;
     display: flex;
@@ -211,7 +192,7 @@
     position: absolute;
 }
 
-.DocPost_Summary_Item_Footer {
+.DocPost_Summary_Footer {
     border-top: 1px #c4c4c4 solid;
     padding: 5px;
     display: flex;
@@ -248,22 +229,19 @@
 }
 
 .DocPost_Summary_Time_Semester_Subject_Text {
-    line-height: 1.5rem;
+    line-height: 1.1rem;
     display: flex;
     justify-content: flex-start;
     height: fit-content;
     position: relative;
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
+    font-family: "BarlowCondensed-SemiBold";
+    font-size: 12px;
     color: #363636;
     user-select: none;
     margin-right: 0.6rem;
 }
 
 // Post Reactionbar
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300&display=swap");
 
 .Post_Reaction_Bar {
     border-top: 1px #c4c4c4 solid;
@@ -297,9 +275,7 @@
 }
 
 .Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn_Layout .Post_Reaction_Bar_Like_Count {
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 600;
+    font-family: "Condensed-SemiBold";
     font-size: 18px;
     line-height: 22px;
     color: #363636;
@@ -328,9 +304,7 @@
 }
 
 .Post_Reaction_Bar .Post_Reaction_Bar_Save_Text {
-    font-family: "Barlow Condensed", sans-serif;
-    font-style: normal;
-    font-weight: 600;
+    font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 20px;
     color: #363636;
@@ -340,13 +314,14 @@
 .Post_Reaction_Bar_Comment_Btn_Layout {
     display: flex;
     padding-left: 15px;
-    font-family: "Barlow Condensed", sans-serif;
+    font-family: "BarlowCondensed-Medium";
     font-size: 18px;
     line-height: 20px;
     color: #363636;
     width: fit-content;
     user-select: none;
 }
+
 .Post_Reaction_Bar_Comment_Btn_Layout:hover {
     opacity: 80%;
     cursor: pointer;
@@ -355,9 +330,8 @@
 .Post_Reaction_Bar_Comment_Count {
     display: flex;
     padding-left: 5px;
-    font-family: "Barlow Condensed", sans-serif;
+    font-family: "BarlowCondensed-Medium";
     font-size: 18px;
-    font-weight: 300;
     line-height: 20px;
     color: #363636;
 }

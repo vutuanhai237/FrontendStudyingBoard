@@ -127,24 +127,23 @@ class Management_DocPreview extends Component {
                                         {this.title}
                                     </div>
 
-                                    <div className="DocPost_Detail_Category_Header">
-
-                                        <div className="Prefix_DocPost_Detail_Category"> </div>
-                                        <div className="DocPost_Detail_Category">
+                                    <div className="DocPost_Metadata_Header">
+                                        <div className="Prefix_DocPost_Category" />
+                                        <div className="DocPost_Category">
                                             {this.categoryName}
                                         </div>
-                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Metadata_Text">
                                             Môn học: &nbsp;
                                             {this.subject}
                                         </div>
-                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Metadata_Text">
                                             Học kỳ: &nbsp;
                                             {this.semesterName}
                                         </div >
-                                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                                        <div className="DocPost_Metadata_Text">
                                             Năm học: &nbsp;
                                             {this.year}
                                         </div>

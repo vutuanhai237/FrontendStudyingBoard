@@ -45,49 +45,45 @@ class DocSummaryItem extends Component {
 
         return (
 
-            <div className="DocPost_Summary_Item" >
-                <div className="DocPost_Summary_Item_Main_Layout">
-                    <div className="DocPost_Summary_Item_Header_1">
-                        <div className="DocPost_Summary_Item_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="DocPost_Summary" >
+                <div className="DocPost_Summary_Main_Layout">
+                    <div className="DocPost_Summary_Author_Date_Metadata">
+                        <div className="DocPost_Summary_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="DocPost_Summary_Item_Requested_Date">
+                        <div className="DocPost_Summary_Requested_Date">
                             {this.publishedDate}
                         </div>
                     </div>
 
-                    {/* <div className="Requested_DocPost_Summary_Item_Header_2">
+                    {/* <div className="Requested_DocPost_Summary_Header_2">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_DocPost_Summary_Item_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                    <div className="Requested_DocPost_Summary_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div> */}
 
-                    <div className="DocPost_Detail_Category_Header">
+                    <div className="DocPost_Metadata_Header">
 
-                        <div className="Prefix_DocPost_Detail_Category"> </div>
-                        <div className="DocPost_Detail_Category">
+                        <div className="Prefix_DocPost_Category" />
+                        <div className="DocPost_Category">
                             {this.categoryName}
                         </div>
-                        <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                        <div className="DocPost_Metadata_Text">
                             Môn học: &nbsp;
                         {this.subject}
                         </div>
-                        {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                        <div className="DocPost_Metadata_Text">
                             Học kỳ: &nbsp;
                         {this.semesterName}
-                        </div > */}
-                        {/* <img alt="*" className="DocPost_Detail_Time_Semester_Subject_Icon" src={gray_btn_element} /> */}
-                        {/* <div className="DocPost_Detail_Time_Semester_Subject_Text">
+                        </div >
+                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                        <div className="DocPost_Metadata_Text">
                             Năm học: &nbsp;
                             {this.year}
-                        </div> */}
-                    </div>
-
-                    <div className="Requested_Doc_Summary_Item_Header_3">
-                        {/* {this.props.title} */}
+                        </div>
                     </div>
 
                     <div className="DocPost_Summary_Title">
