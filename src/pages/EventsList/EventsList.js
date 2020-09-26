@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "/post/SummaryPost";
+import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
 import Paging from "components/common/Paging/Paging"
 class EventsList extends Component {
     constructor(props) {

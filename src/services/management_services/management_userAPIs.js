@@ -1,6 +1,6 @@
 import {
     managementGetAllUsers, managementGetAllRoles
-} from "redux-action/management_actions/management_userActions";
+} from "actions/management_actions/management_userActions";
 import { HOST, PORT } from 'constants/constants';
 import Cookies from 'js-cookie'
 

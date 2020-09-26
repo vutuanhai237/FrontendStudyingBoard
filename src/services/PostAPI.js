@@ -13,7 +13,7 @@ import {
     postGetPostNewActivities,
     postGetTags,
     postPostPost,
-} from "redux-action/PostAction.js";
+} from "actions/PostAction.js";
 import {
     HOST,
     PORT
@@ -336,15 +336,15 @@ export function getTagsByID(pid) {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //        
-        //     })
-        //     .catch(error => console.log('error', error));
+        fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
 
-        const result = tagList;
-        dispatch(postGetTags(result));
+            })
+            .catch(error => console.log('error', error));
+
+        // const result = tagList;
+        // dispatch(postGetTags(result));
     }
 }
 
@@ -358,16 +358,16 @@ export function getPostHighlights() {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/posts?type=highlights`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(JSON.parse(result));
-        // dispatch(postGetPostHighlights(JSON.parse(result)));
-        // })
-        // .catch(error => console.log('error', error));
+        fetch(`http://${PORT}/posts?type=highlights`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(JSON.parse(result));
+                dispatch(postGetPostHighlights(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
 
-        let result = highlightPostResults;
-        dispatch(postGetPostHighlights(result));
+        // let result = highlightPostResults;
+        // dispatch(postGetPostHighlights(result));
     }
 }
 
@@ -380,17 +380,17 @@ export function getPostNewActivities() {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/posts?type=newActivities`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(JSON.parse(result));
-        //         dispatch(postGetPostNewActivities(JSON.parse(result)));
-        //     })
-        //     .catch(error => console.log('error', error));
+        fetch(`http://${PORT}/posts?type=newActivities`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(JSON.parse(result));
+                dispatch(postGetPostNewActivities(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
 
 
-        let result = highlightPostResults;
-        dispatch(postGetPostHighlights(result));
+        // let result = highlightPostResults;
+        // dispatch(postGetPostHighlights(result));
     }
 }
 
@@ -403,15 +403,15 @@ export function getPostNewests() {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/posts?type=newest`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(JSON.parse(result));
-        //         dispatch(postGetPostNewests(JSON.parse(result)));
-        //     })
-        //     .catch(error => console.log('error', error));
-        let result = highlightPostResults;
-        dispatch(postGetPostNewests(result));
+        fetch(`http://${PORT}/posts?type=newest`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(JSON.parse(result));
+                dispatch(postGetPostNewests(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
+        // let result = highlightPostResults;
+        // dispatch(postGetPostNewests(result));
     }
 }
 
@@ -464,27 +464,26 @@ export function getIsLikePostByUID(uid, pid) {
             redirect: 'follow'
         };
 
-        //     fetch(`http://${PORT}/likedPosts?userID=${uid}`, requestOptions)
-        //         .then(response => response.text())
-        //         .then(result => {
+        fetch(`http://${PORT}/likedPosts?userID=${uid}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
 
-        //             const allPostLikeByUID = JSON.parse(result);
-        //             const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
-        //             console.log("Liked: " + isLiked)
-        //             dispatch(postGetIsLikePostByUID(isLiked));
-        //         })
-        //         .catch(error => console.log('error', error));
-        // }
-
-
-        // let result = ["1", "3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
-        // const allPostLikeByUID = result;
-        // const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
-        // console.log("Liked: " + isLiked)
-        const isLiked = true;
-        dispatch(postGetIsLikePostByUID(isLiked));
-
+                const allPostLikeByUID = JSON.parse(result);
+                const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
+                console.log("Liked: " + isLiked)
+                dispatch(postGetIsLikePostByUID(isLiked));
+            })
+            .catch(error => console.log('error', error));
     }
+
+
+    // let result = ["1", "3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
+    // const allPostLikeByUID = result;
+    // const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
+    // console.log("Liked: " + isLiked)
+    // const isLiked = true;
+    // dispatch(postGetIsLikePostByUID(isLiked));
+
 }
 
 
@@ -506,17 +505,17 @@ export function getPostCommentByID(pid) {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/postComments?postID=${pid}`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(JSON.parse(result))
-        //         dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
+        fetch(`http://${PORT}/postComments?postID=${pid}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(JSON.parse(result))
+                dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
 
-        //     })
+            })
 
-        //     .catch(error => console.log('error', error));
-        let result = [];
-        dispatch(postGetPostCommentByID(result));
+            .catch(error => console.log('error', error));
+        // let result = [];
+        // dispatch(postGetPostCommentByID(result));
     }
 }
 
@@ -527,22 +526,22 @@ export function getPostByID(uid, pid) {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/posts?id=${pid}`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
+        fetch(`http://${PORT}/posts?id=${pid}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
 
-        //         dispatch(postGetPostByID(JSON.parse(result)[0]));
-        //  this.getIsLikePostByUID(uid, pid);
-        //         this.getPostCommentByID(pid);
-        //         this.getTagsByID(pid);
-        //         console.log("Fetch post success!");
-        //     })
-        //     .catch(error => console.log('error', error));
-        let result = current_Post_Detail;
-        dispatch(postGetPostByID(result.postDTO));
-        this.getIsLikePostByUID(uid, pid);
-        this.getPostCommentByID(pid);
-        this.getTagsByID(pid);
+                dispatch(postGetPostByID(JSON.parse(result)[0]));
+                this.getIsLikePostByUID(uid, pid);
+                this.getPostCommentByID(pid);
+                this.getTagsByID(pid);
+                console.log("Fetch post success!");
+            })
+            .catch(error => console.log('error', error));
+        // let result = current_Post_Detail;
+        // dispatch(postGetPostByID(result.postDTO));
+        // this.getIsLikePostByUID(uid, pid);
+        // this.getPostCommentByID(pid);
+        // this.getTagsByID(pid);
 
     }
 }
@@ -554,15 +553,15 @@ export function getCategoriesPost() {
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/postCategories`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(JSON.parse(result))
-        //         dispatch(postGetCategoriesPost(JSON.parse(result)));
-        //     })  dispatch(postGetCategoriesPost(JSON.parse(result)));
-        //     .catch(error => console.log('error', error));
-        const result = [categoriesList[0], categoriesList[1], categoriesList[2], categoriesList[3], categoriesList[4]];
-        dispatch(postGetCategoriesPost(result));
+        fetch(`http://${PORT}/postCategories`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(JSON.parse(result))
+                dispatch(postGetCategoriesPost(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
+        // const result = [categoriesList[0], categoriesList[1], categoriesList[2], categoriesList[3], categoriesList[4]];
+        // dispatch(postGetCategoriesPost(result));
 
     }
 }
@@ -575,15 +574,15 @@ export function getSearchPost(filter) { //this API is also call when open all po
             redirect: 'follow'
         };
 
-        // fetch(`http://${PORT}/posts?${filter}`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(`http://${PORT}/posts?${filter}`)
-        //         dispatch(postGetSearchPost(JSON.parse(result)));
-        //     })
-        //     .catch(error => console.log('error', error));
-        let result = allPostsSummary;
-        dispatch(postGetSearchPost(result));
+        fetch(`http://${PORT}/posts?${filter}`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(`http://${PORT}/posts?${filter}`)
+                dispatch(postGetSearchPost(JSON.parse(result)));
+            })
+            .catch(error => console.log('error', error));
+        // let result = allPostsSummary;
+        // dispatch(postGetSearchPost(result));
 
     }
 }

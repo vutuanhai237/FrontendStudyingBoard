@@ -3,7 +3,7 @@ import {
     managementGetCurrentPreviewDocument,
     managementApproveADocument,
     managementGetAllUserDocList
-} from "redux-action/management_actions/management_docActions";
+} from "actions/management_actions/management_docActions";
 import { HOST, PORT } from 'constants/constants';
 import Cookies from 'js-cookie'
 
