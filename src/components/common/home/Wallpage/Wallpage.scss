@@ -1,0 +1,277 @@
+.Wallpage {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.Wallpage_BG {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.Wallpage_Content_Port {
+    top: 0px;
+    position: absolute;
+    padding-top: 10px;
+    padding-left: 4%;
+    padding-right: 4%;
+    height: 100%;
+}
+
+.Wallpage_Content {
+    top: 0px;
+    width: 100%;
+    position: relative;
+    height: auto;
+    display: flex;
+}
+
+.Wallpage_Left_Content {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: white;
+    height: 100%;
+    width: 28%;
+    box-shadow: 0px 5px 5px #c4c4c4;
+}
+
+.Wallpage_Image {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.Highlight_Transitionbar {
+    margin-top: 10px;
+    position: relative;
+    background: white;
+    width: 25%;
+    left: 5px;
+    display: flex;
+    margin-left: 28%;
+}
+
+.Highlight_Transitionbar_Item{
+    height: 5px;
+    width: 10px;
+    background: #5279db;
+}
+
+
+.Wallpage_Right_Content {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-left: 5px;
+    background: white;
+    height: auto;
+    width: 72%;
+    padding: 5px;
+    box-shadow: 0px 0px 10px #c4c4c4;
+}
+
+.Highlight_Title {
+    position: relative;
+    font-family: "BarlowSemiCondensed-BoldItalic";
+    font-size: 24px;
+    background: #5279db;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    color: white;
+    min-width: fit-content;
+}
+
+.Highlight_Title_Underline {
+    align-self: end;
+    height: 5px;
+    position: relative;
+    background: #5279db;
+    width: 100%;
+}
+
+.Highlight_Category_Metadata {
+    position: relative;
+    display: flex;
+    width: fit-content;
+}
+.Prefix_Highlight_Metadata {
+    width: 5px;
+    height: 22px;
+    background: #5279db;
+    margin-right: 5px;
+}
+.Highlight_Category {
+    background: #5279db;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 16px;
+    color: white;
+    height: 22px;
+    line-height: 20px;
+    width: fit-content;
+}
+
+.Highlight_Metadata {
+    margin-top: 20px;
+    display: flex;
+}
+
+.Highlight_Author_Link {
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    height: fit-content;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    color: #5279db;
+    user-select: none;
+}
+
+.Highlight_Author_Link:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.Highlight_Summary_Author_Link:active {
+    opacity: 60%;
+    cursor: pointer;
+}
+
+.Hightlight_Metadata_Icon {
+    margin-left: 20px;
+    margin-top: 9px;
+    width: 8px;
+    height: 8px;
+}
+.Highlight_Read_Time {
+    line-height: 22px;
+    margin-left: 2px;
+    font-size: 16px;
+    font-family: "BarlowCondensed-Medium";
+}
+
+.Highlight_Published_Date {
+    line-height: 22px;
+    font-size: 20px;
+    color: #5279db;
+    font-family: "BarlowCondensed-Medium";
+}
+
+.Highlight_Summary_Title {
+    margin-top: 5px;
+    padding-left: 10px;
+    font-size: 24px;
+    font-family: "RobotoSlab-Regular";
+    color: #363636;
+}
+
+.Highlight_Summary_Content {
+    height: 30%;
+    padding: 5px;
+    font-size: 16px;
+    font-family: "Sarabun-Regular";
+    color: #363636;
+}
+
+//For reaction bar
+
+.Highlight_Reaction_Bar {
+    border-top: 1px #c4c4c4 solid;
+
+    display: flex;
+    margin: auto;
+    width: 80%;
+    padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    height: fit-content;
+}
+
+//likeBtn
+.Highlight_Reaction_Bar_Like_Btn_Layout {
+    display: flex;
+}
+
+.Highlight_Reaction_Bar_Like_Btn {
+    width: 20px;
+    height: 20px;
+}
+.Highlight_Reaction_Bar_Like_Btn:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+.Highlight_Reaction_Bar_Like_Count {
+    font-family: "BarlowCondensed-SemiBold";
+    font-size: 18px;
+    line-height: 22px;
+    color: #363636;
+    margin-left: 5px;
+}
+
+//this port content saveBtn and comment Btn
+.Highlight_Reaction_Bar_Save_Comment_Btn_Layout {
+    display: flex;
+    width: 160px;
+}
+
+//saveBtn
+.Highlight_Reaction_Bar_Save_Btn_Layout {
+    width: 40px;
+    display: flex;
+    user-select: none;
+}
+.Highlight_Reaction_Bar_Save_Btn {
+    width: 20px;
+    height: 20px;
+}
+
+.Highlight_Reaction_Bar_Save_Btn:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.Highlight_Reaction_Bar_Save_Text {
+    font-family: "BarlowCondensed-SemiBold";
+    font-size: 18px;
+    line-height: 20px;
+    color: #363636;
+}
+
+//commentBtn
+.Highlight_Reaction_Bar_Comment_Btn_Layout {
+    display: flex;
+    padding-left: 15px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 18px;
+    line-height: 20px;
+    width: 120px;
+    color: #363636;
+    width: fit-content;
+    user-select: none;
+}
+
+.Highlight_Reaction_Bar_Comment_Btn_Layout:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+.Highlight_Reaction_Bar_Comment_Count {
+    display: flex;
+    padding-left: 5px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 18px;
+    line-height: 20px;
+    color: #363636;
+}

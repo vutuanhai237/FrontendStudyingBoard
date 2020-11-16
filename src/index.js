@@ -19,13 +19,17 @@ import 'assets/fonts/RobotoSlab-Regular.ttf'
 import 'assets/fonts/Rosario-Bold.ttf'
 import 'assets/fonts/Roboto-Regular.ttf'
 import 'assets/fonts/Roboto-Medium.ttf'
+import 'assets/fonts/Barlow-SemiBold.ttf'
+import 'assets/fonts/BarlowSemiCondensed-BoldItalic.ttf'
+import 'assets/fonts/Sarabun-Regular.ttf'
+import 'assets/fonts/BarlowSemiCondensed-Medium.ttf'
 
 import 'style.css'
 
 render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>    
+      <BrowserRouter>
         <Route component={App} />
       </BrowserRouter>
     </Provider>

@@ -1,0 +1,35 @@
+.Simple_Text_Input {
+    padding-left: 10px;
+    padding-top: 4px;
+    width: fit-content;
+    height: fit-content;
+    vertical-align: auto;
+    text-align: left;
+    background: white;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 1.1rem;
+    line-height: 90%;
+    color: #363636;
+    border: #c4c4c4 1px solid;
+    user-select: none;
+    min-width: 80px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+}
+
+.Simple_Text_Input:hover,
+.Simple_Text_Input:focus {
+    border: #5279db 1px solid;
+    cursor: text;
+    opacity: 90%;
+    border-radius: 5px;
+}
+
+.Simple_Text_Input:disabled {
+    background: #c4c4c4;
+    color: #363636;
+    cursor: text;
+    opacity: 90%;
+}
+

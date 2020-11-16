@@ -10,7 +10,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import SummaryDocument from "components/common/document/SummaryDocument/SummaryDocument";
 import { bindActionCreators } from 'redux';
 import { getTopDoc } from "services/DocAPI"
-import "./TopDoc.scss";
+
 class TopDoc extends Component {
     constructor(props) {
         super(props);
@@ -39,24 +39,29 @@ class TopDoc extends Component {
             display: this.state.isExpand,
         };
         return (
-            <div id="group-post">
-                <div onClick={this.changeStatePost.bind(this)}>
-                    <p className="title">TÀI LIỆU MỚI</p>
-                </div>
+            // <div id="group-post">
+            //     <div onClick={this.changeStatePost.bind(this)}>
+            //         <p className="title">TÀI LIỆU MỚI</p>
+            //     </div>
 
-                <Card.Body style={style} className="card-body">
-                    <Row>
-                        {topDoc.slice(0,3).map((item) => {
-                            return (
-                                <Col sm={12} md={4}>
-                                    <SummaryDocument
-                                        item={item}
-                                    ></SummaryDocument>
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </Card.Body>
+            //     <Card.Body style={style} className="card-body">
+            //         <Row>
+            //             {topDoc.slice(0,3).map((item) => {
+            //                 return (
+            //                     <Col sm={12} md={4}>
+            //                         <SummaryDocument
+            //                             item={item}
+            //                         ></SummaryDocument>
+            //                     </Col>
+            //                 );
+            //             })}
+            //         </Row>
+            //     </Card.Body>
+            // </div>
+            // <div className = "Home_"
+            <div className="flex_container">
+                <div className="Highlight_Title">TÀI LIỆU MỚI</div>
+                <div className="Highlight_Title_Underline"></div>
             </div>
         );
     }

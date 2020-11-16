@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
-import "./TopPost.scss";
+
 import { bindActionCreators } from "redux";
 import { getPostHighlights } from "services/PostAPI"
 class TopPost extends Component {
@@ -40,22 +40,10 @@ class TopPost extends Component {
             display: this.state.isExpand,
         };
         return (
-            <div id="group-post">
-                <div onClick={this.changeStatePost.bind(this)}>
-                    <p className="title">BÀI VIẾT HAY</p>
-                </div>
 
-                <Card.Body style={style} className="card-body">
-                    <Row>
-                        {highlights.map((item) => {
-                            return (
-                                <Col sm={12} md={4}>
-                                    <SummaryPost item={item}></SummaryPost>
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </Card.Body>
+            <div className="flex_container">
+                <div className="Highlight_Title">BÀI VIẾT HAY</div>
+                <div className="Highlight_Title_Underline"></div>
             </div>
         );
     }
@@ -74,3 +62,21 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(TopPost)
 );
+
+// <div id="group-post">
+//                 <div onClick={this.changeStatePost.bind(this)}>
+//                     <p className="title">BÀI VIẾT HAY</p>
+//                 </div>
+
+//                 <Card.Body style={style} className="card-body">
+//                     <Row>
+//                         {highlights.map((item) => {
+//                             return (
+//                                 <Col sm={12} md={4}>
+//                                     <SummaryPost item={item}></SummaryPost>
+//                                 </Col>
+//                             );
+//                         })}
+//                     </Row>
+//                 </Card.Body>
+//             </div>

@@ -1,0 +1,103 @@
+
+.Show_Layout_Bounding_Layout {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    // background: green;
+}
+
+.Account_Information_Bounding_Layout {
+    width: 60%;
+    padding: 5px;
+}
+
+.Account_Information_Layout {
+    border: 1px #c4c4c4 solid;
+    border-radius: 5px;
+    border-top: 5px solid #5279db;
+    // background: pink;
+    padding: 10px;
+    width: 100%;
+}
+
+.Account_Information_Update_Password_Layout {
+    border: 1px #c4c4c4 solid;
+    border-radius: 5px;
+    border-top: 5px solid #5279db;
+    width: 100%;
+}
+
+.Account_Information_Avatar_Layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Account_Information_Avatar_Image {
+    margin: auto;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+// Role and achivement port:
+.Account_Information_Role_Achivement_Layout {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Account_Information_Achivement_Layout {
+    user-select: none;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'BarlowCondensed-Medium';
+    font-size: 18px;
+    line-height: 30px;
+    color: #363636;
+    width: 100%;
+}
+
+.Account_Information_Achivement_Post_Doc_Count_Layout {
+    display: flex;
+    // width: 50%;
+    width: 200px;
+    justify-content: space-between;
+}
+
+//exclusive for update avatar
+.fileContainer p {
+    margin: auto;
+    text-align: center;
+    font-size: 16px !important;
+}
+
+.fileUploader .fileContainer .chooseFileButton {
+    background: #5279db !important;
+    font-family: "BarlowCondensed-Medium";
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 22px;
+    height: 25px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 80px;
+    border-radius: 5px !important;
+}
+
+.fileContainer .deleteImage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    background: #fe3a3a;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 24px !important;
+    width: 24px !important;
+    font-size: 12px !important;
+    height: 24px !important;
+}

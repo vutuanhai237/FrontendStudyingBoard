@@ -140,18 +140,18 @@ export function getCurrentUser() {
             headers: myHeaders,
             redirect: 'follow'
         };
-        fetch(`http://${PORT}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
+        // fetch(`http://${PORT}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
 
-            })
-            .catch(error => {
-                console.log('error', error);
-                dispatch(userGetCurrentUser(null, error.statusCode))
-            })
-        // let result = admin;
-        // dispatch(userGetCurrentUser(result.account, result.statusCode))
+        //     })
+        //     .catch(error => {
+        //         console.log('error', error);
+        //         dispatch(userGetCurrentUser(null, error.statusCode))
+        //     })
+        let result = admin;
+        dispatch(userGetCurrentUser(result.account, result.statusCode))
 
 
 

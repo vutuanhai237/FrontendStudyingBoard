@@ -1,6 +1,9 @@
 import React from "react";
 import './CustomModal.scss'
 
+ import 'styles/SimpleButton.scss'
+ 
+
 
 //delete icon
 // import gray_delete_icon from 'assets/images/gray_delete_icon.png'

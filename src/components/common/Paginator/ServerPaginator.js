@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import './Management_PostBrowser.scss'
+// import './PostBrowser.scss'
 import 'components/common/Paginator/Paginator.scss'
 
 

@@ -4,7 +4,7 @@ import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 const PermissionList = {
     ContentManagementPermission: {
         //this is permission to show "Quản trị" or :"Cộng tác" tab menu to approve or category
-        Management: { ContentManagement: "CONTENT_MANAGEMENT" } 
+        Management: { ContentManagement: "CONTENT_MANAGEMENT" }
     },
     DocumentPermission: {
 
@@ -29,7 +29,7 @@ const PermissionList = {
         Create: { PostCreate: "POST_CREATE" },  //gain this permission to write a post.
         Edit: { PostEdit: "POST_EDIT" }, //gain this permission to edit an uploaded post.
         Delete: { PostDelete: "POST_DELETE" }, //gain this permission to delete an uploaded post.
-        Approve: { PostApprove: "POST_APPROVE" }, 
+        Approve: { PostApprove: "POST_APPROVE" },
         Comment: { PostComment: "POST_COMMENT" },
         Like: { PostLike: "POST_LIKE" },
         Save: { PostSave: "POST_SAVE" },
@@ -182,6 +182,9 @@ const PermissionList = {
             NotificationUnsetAny: "NOTIFICATION_UNSET_ANY",
             NotificationViewAll: "NOTIFICATION_VIEW_ALL"
         }
+    }, StatisticPermission: //to view and manage all Statistic of page
+    {
+        View: { StatisticView: "Statistic_VIEW" }
     }
 }
 
@@ -325,5 +328,6 @@ export const {
     CategoryPermission,
     PostPermission,
     UserPermission,
-    ContentManagementPermission
+    ContentManagementPermission,
+    StatisticPermission
 } = PermissionList;

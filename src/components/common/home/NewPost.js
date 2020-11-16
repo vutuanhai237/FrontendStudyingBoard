@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
-import "./TopPost.scss";
+
 import { bindActionCreators } from "redux";
 import { getPostNewests } from "services/PostAPI"
 class NewPost extends Component {
@@ -35,27 +35,33 @@ class NewPost extends Component {
     }
 
     render() {
+
+
         const { newests } = this.props;
         const style = {
             display: this.state.isExpand,
         };
-        return (
-            <div id="group-post">
-                <div onClick={this.changeStatePost.bind(this)}>
-                    <p className="title">BÀI VIẾT MỚI</p>
-                </div>
 
-                <Card.Body style={style} className="card-body">
-                    <Row>
-                        {newests.map((item) => {
-                            return (
-                                <Col sm={12} md={4}>
-                                    <SummaryPost item={item}></SummaryPost>
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </Card.Body>
+
+
+        return (
+
+            <div>
+                <div className="flex_container">
+                    <div className="Home_Segment_Title">BÀI VIẾT MỚI</div>
+                    <div className="Home_Segment_Title_Underline"></div>
+                </div>
+                <div style = {{display: "flex"}}>
+                    <div className="Home_Item_Container">
+
+                    </div>
+                    <div className="Home_Item_Container">
+
+                    </div>
+                    <div className="Home_Item_Container">
+
+                    </div>
+                </div>
             </div>
         );
     }
@@ -74,3 +80,21 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(NewPost)
 );
+
+{/* <div id="group-post">
+                <div onClick={this.changeStatePost.bind(this)}>
+                    <p className="title">BÀI VIẾT MỚI</p>
+                </div>
+
+                <Card.Body style={style} className="card-body">
+                    <Row>
+                        {newests.map((item) => {
+                            return (
+                                <Col sm={12} md={4}>
+                                    <SummaryPost item={item}></SummaryPost>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                </Card.Body>
+            </div> */}
