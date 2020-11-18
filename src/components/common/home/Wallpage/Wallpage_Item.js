@@ -61,7 +61,7 @@ export default class WallPaper_Item extends Component {
                         <div className="Highlight_Title">NỔI BẬT</div>
                         <div className="Highlight_Title_Underline"></div>
                     </div>
-                    <div className="Highlight_Metadata justify_content_space_between">
+                    <div className="Highlight_Metadata justify-content-space-between">
                         <div className="flex_container">
                             <div className="Highlight_Category_Metadata">
                                 <div className="Prefix_Highlight_Metadata" />

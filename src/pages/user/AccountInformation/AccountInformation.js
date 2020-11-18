@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import '../AdminLayout'
-import Titlebar from 'components/management/Titlebar/Titlebar'
+import AdminLayout from 'pages/management/AdminLayout'
+import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
 import gray_write_icon from 'assets/images/gray_write_icon.png'
 import { PORT } from 'constants/constants'
 import './AccountInformation.scss'
-import 'styles/SimpleTextInput.scss'
+import 'styles/Form.scss'
 import './AIResponsiveLayout.scss'
 import { ClickAwayListener } from '@material-ui/core'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
@@ -112,18 +112,18 @@ class AccountInformation extends Component {
             let roles_Combobox =
                 this.roleList.map(role =>
                     this.roleID === role.id ?
-                        <div className="Activated_Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                        <div className="Dropdown_Combobox_Sub_Item" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
+                        <div className="activated-combo-box-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
+                        <div className="combo-box-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
                         </div>
                 )
-         
+
             return (
                 <div>
 
                     <Titlebar title="THÔNG TIN TÀI KHOẢN" />
 
-                    <div className="Show_Layout">
+                    <div className="left-side-bar-layout-content-container">
                         <div className="Show_Layout_Bounding_Layout">
 
 
@@ -141,10 +141,10 @@ class AccountInformation extends Component {
 
                                         {/* <div>{this.props.</div> */}
                                     </div>
-                                    
-                                    <div className="Simple_Blue_Button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
 
-                                    <div className="margin_top_10px" />
+                                    <div className="blue-button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
+
+                                    <div className="margin-top-10px" />
 
                                     <div className="flex_container">
                                         <div className="Simple_Gray_Label" style={{ lineHeight: "25px" }}>Role:</div>
@@ -153,7 +153,7 @@ class AccountInformation extends Component {
                                             <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
                                                 <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
                                                     <div style={{ position: "absolute", width: "200px" }}>
-                                                        <div className="Disable_Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox"}>
+                                                        <div className="disabled-combo-box" id={"user-role-parent-dropdown-combobox"}>
                                                             {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
                                                             <div className="flex_container">
                                                                 <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
@@ -170,10 +170,10 @@ class AccountInformation extends Component {
                                                         </div>
 
                                                         {this.isChangeRoleDropdownComboboxOpen ? (
-                                                            <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container"}>
+                                                            <div className="combo-box-container" id={"user-role-dropdown-combobox-container"}>
                                                                 {roles_Combobox}
-                                                                <div className="margin_bottom_5px" />
-                                                                <div className="margin_bottom_5px" />
+                                                                <div className="margin-bottom-5px" />
+                                                                <div className="margin-bottom-5px" />
                                                             </div>
                                                         ) : <div id={"user-role-dropdown-combobox-container"}></div>}
 
@@ -214,13 +214,13 @@ class AccountInformation extends Component {
                                                 < div className="Simple_Gray_Label Is_Form_Label">
                                                     Họ tên:
                                                 </div>
-                                                <input type="text" className="Simple_Text_Input"
+                                                <input type="text" className="form-input"
                                                     defaultValue={this.displayName} id="management-display-name-text-input"
                                                     onChange={(e) => this.handlerChangeUserDisplay(e)} />
-                                                <div className="Simple_Error_Label" hidden={!this.isDisplayNameEmpty} >
+                                                <div className="error-label" hidden={!this.isDisplayNameEmpty} >
                                                     *Tên không được để trống.
                                                 </div>
-                                                <div className="Simple_Error_Label" hidden={!this.isDisplayNameContainSpecialCharacters} >
+                                                <div className="error-label" hidden={!this.isDisplayNameContainSpecialCharacters} >
                                                     *Tên không được chứa các ký tự đặc biệt.
                                                 </div>
                                             </div>
@@ -229,22 +229,22 @@ class AccountInformation extends Component {
                                             <div className="Simple_Gray_Label Is_Form_Label">
                                                 Username:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.username} />
+                                            <input disabled type="text" className="form-input" defaultValue={this.username} />
 
                                             {/* Password */}
                                             <div className="Simple_Gray_Label Is_Form_Label">
                                                 Password:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" value={this.generatePassword()} />
+                                            <input disabled type="text" className="form-input" value={this.generatePassword()} />
 
                                             {/* Email */}
                                             <div className="Simple_Gray_Label Is_Form_Label">
                                                 Email:
                                             </div>
-                                            <input disabled type="text" className="Simple_Text_Input" defaultValue={this.email} />
+                                            <input disabled type="text" className="form-input" defaultValue={this.email} />
 
-                                            <div className="flex_container margin_top_10px" >
-                                                <button disabled={!this.canClickSaveInformation} className="Simple_Blue_Button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
+                                            <div className="flex_container margin-top-10px" >
+                                                <button disabled={!this.canClickSaveInformation} className="blue-button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
                                                     Lưu thay đổi
                                             </button>
                                             </div>
@@ -301,8 +301,8 @@ class AccountInformation extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.handlerCancelChangeRoleConfirmation()}>Cancel</button>
+                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="white-button" onClick={() => this.handlerCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 
                     {/* modal for veritfy update informartion */}
@@ -318,8 +318,8 @@ class AccountInformation extends Component {
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
                         <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
-                            <button className="Simple_White_Button" onClick={() => this.handlerCancelVerifyUpdateInformation()}>Cancel</button>
+                            <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
+                            <button className="white-button" onClick={() => this.handlerCancelVerifyUpdateInformation()}>Cancel</button>
                         </div>
                     </CustomModal>
 
@@ -349,8 +349,8 @@ class AccountInformation extends Component {
 
                                 <div className="Simple_Gray_Label">Xác nhận?</div>
                                 <div style={{ display: "flex" }}>
-                                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
-                                    <button className="Simple_White_Button" onClick={() => { this.isUpdateAvatarPopupOpen = false; this.setState({}) }}>Cancel</button>
+                                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
+                                    <button className="white-button" onClick={() => { this.isUpdateAvatarPopupOpen = false; this.setState({}) }}>Cancel</button>
                                 </div>
                             </div>
                             :
@@ -463,10 +463,10 @@ class AccountInformation extends Component {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + i;
             // (sub_dropdown_item_index_id);
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
-            sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";
+            sub_dropdown_item_index.className = "combo-box-option";
         }
 
-        sub_dropdown_item.className = "Activated_Dropdown_Combobox_Sub_Item";
+        sub_dropdown_item.className = "activated-combo-box-option";
         this.props.accountInformation.roleID = roleID;
 
         // open a confirmation popup

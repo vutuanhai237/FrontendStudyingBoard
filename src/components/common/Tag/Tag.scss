@@ -1,11 +1,11 @@
-.Root_Tag {
+.simple-tag {
     display: inline-block;
     height: 20px;
-    line-height: 18px;
+    line-height: 20px;
     position: relative;
-    margin: 0 10px 8px 0;
-    padding: 0 10px 0 10px;
-    background: #c4c4c4;
+    padding-left: 5px;
+    padding-right: 8px;
+    background: var(--gray);
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -13,40 +13,69 @@
     font-size: 12px;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
     text-decoration: none;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     font-weight: bold;
     margin-right: 15px;
     user-select: none;
 }
 
-.Root_Tag:hover {
-    background: #222 !important;
-}
-.Root_Tag:hover:after {
-    border-color: transparent transparent transparent #222 !important;
-}
-
-.Root_Tag:before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    right: 1px;
-    float: left;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: -1px -1px 2px #c4c4c4;
+.simple-tag:hover {
+    background: var(--gray);
+    opacity: 80%;
+    cursor: pointer;
 }
 
-.Root_Tag:after {
+.simple-tag:hover:after {
+    border-color: transparent transparent transparent var(--gray);
+    opacity: 80%
+}
+
+
+.simple-tag:after {
     content: "";
     position: absolute;
     top: 0;
     right: -10px;
     width: 0;
     height: 0;
-    border-color: transparent transparent transparent #c4c4c4;
+    border-color: transparent transparent transparent var(--gray);
     border-style: solid;
     border-width: 10px 0 10px 10px;
+}
+
+.tag-delete-btn {
+    margin-top: 3px;
+    width: 14px;
+    height: 14px;
+}
+
+.tag-delete-btn:hover {
+    background: var(--black);
+    opacity: 80%;
+    border-radius: 50%;
+}
+
+.close_8x8 {
+    margin-top: 3px;
+    margin-left: 4px;
+    width: 8px;
+    height: 8px;
+    position: relative;
+}
+
+.close_8x8:after {
+    content: '';
+    height: 8px;
+    border-left: 2px solid #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 2px;
+}
+
+.close_8x8:before {
+    content: '';
+    height: 8px;
+    border-left: 2px solid #fff;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 2px;
 }

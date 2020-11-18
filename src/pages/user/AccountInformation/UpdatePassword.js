@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import '../AdminLayout'
-import Titlebar from 'components/management/Titlebar/Titlebar'
+import 'pages/management/AdminLayout'
+import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { isContainSpecialCharacter } from 'utils/Utils'
 
@@ -70,11 +70,11 @@ class UpdatePassword extends Component {
 
                         {/* Current password */}
                         <div className="position_relative" >
-                            <div className="Simple_Gray_Label margin_top_10px">
+                            <div className="Simple_Gray_Label margin-top-10px">
                                 Mật khẩu hiện tại:
                                     </div>
-                            <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
-                            <div className="Simple_Error_Label" hidden={!this.isCurrentPasswordEmpty} >
+                            <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="form-input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
+                            <div className="error-label" hidden={!this.isCurrentPasswordEmpty} >
                                 *Mật khẩu hiện tại không được để trống.
                                     </div>
                         </div>
@@ -84,14 +84,14 @@ class UpdatePassword extends Component {
                             <div className="Simple_Gray_Label Is_Form_Label">
                                 Mật khẩu mới:
                                     </div>
-                            <input type="password" defaultValue="" autoComplete="off" placeholder="Nhập mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeNewPassword(e)} />
-                            <div className="Simple_Error_Label" hidden={!this.isNewPasswordEmpty} >
+                            <input type="password" defaultValue="" autoComplete="off" placeholder="Nhập mật khẩu mới ..." className="form-input" onChange={(e) => this.handlerChangeNewPassword(e)} />
+                            <div className="error-label" hidden={!this.isNewPasswordEmpty} >
                                 *Mật khẩu mới không được để trống.
                                     </div>
-                            <div className="Simple_Error_Label" hidden={!this.isNewPasswordLessThan6Characters} >
+                            <div className="error-label" hidden={!this.isNewPasswordLessThan6Characters} >
                                 *Mật khẩu mới không được ít hơn 6 ký tự.
                                     </div>
-                            <div className="Simple_Error_Label" hidden={this.isNewPasswordLessThan6Characters || !this.isNewPasswordContainSpecialCharacters} >
+                            <div className="error-label" hidden={this.isNewPasswordLessThan6Characters || !this.isNewPasswordContainSpecialCharacters} >
                                 *Mật khẩu mới không được chứa các ký tự đặc biệt.
                                     </div>
 
@@ -102,20 +102,20 @@ class UpdatePassword extends Component {
                             <div className="Simple_Gray_Label Is_Form_Label">
                                 Xác nhận mật khẩu:
                                 </div>
-                            <input type="password" autoComplete="off" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="Simple_Text_Input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
-                            <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordEmpty} >
+                            <input type="password" autoComplete="off" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="form-input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
+                            <div className="error-label" hidden={!this.isConfirmationPasswordEmpty} >
                                 *Mật khẩu xác nhận không được để trống.
                                     </div>
-                            <div className="Simple_Error_Label" hidden={!this.isConfirmationPasswordLessThan6Characters} >
+                            <div className="error-label" hidden={!this.isConfirmationPasswordLessThan6Characters} >
                                 *Mật khẩu xác nhận không được ít hơn 6 ký tự.
                                     </div>
-                            <div className="Simple_Error_Label" hidden={this.isConfirmationPasswordLessThan6Characters || !this.isConfirmationPasswordContainSpecialCharacters} >
+                            <div className="error-label" hidden={this.isConfirmationPasswordLessThan6Characters || !this.isConfirmationPasswordContainSpecialCharacters} >
                                 *Mật khẩu xác nhận không được chứa các ký tự đặc biệt.
                                     </div>
 
                         </div>
                         <div className="flex_container" >
-                            <button className="Simple_Blue_Button Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
+                            <button className="blue-button Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
                                 Xác nhận
                                     </button>
                         </div>
@@ -135,8 +135,8 @@ class UpdatePassword extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
+                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="white-button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 
                     {/* modal for notification anything */}

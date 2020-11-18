@@ -52,17 +52,55 @@
     font-family: "BarlowSemiCondensed-Medium";
     src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Medium.ttf);
 }
+
 @font-face {
     font-family: "Sarabun-Regular";
     src: local("Sarabun"), url(./assets/fonts/Sarabun-Regular.ttf) format("truetype");
 }
-.justify_content_space_between {
+
+:root {
+    --blue: #5279db;
+    --red: #fe3a3a;
+    --black: #363636;
+    --gray: #c4c4c4;
+    --green: #00fe3a;
+    --yellow: #fefe3a;
+}
+
+.justify-content-space-between {
     display: flex;
     justify-content: space-between;
 }
-.display_flex {
+
+.flex_container {
     display: flex;
 }
+
+
+.flex_container_center {
+    display: flex;
+    margin: auto;
+}
+
+.flex-container-end {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.flex_space_between_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.margin-bottom-5px {
+    margin-bottom: 5px;
+}
+
+.display-flex {
+    display: flex;
+}
+
 .text_align_right {
     text-align: right;
 }
@@ -115,7 +153,7 @@
     margin-top: 5px;
 }
 
-.margin_top_10px {
+.margin-top-10px {
     margin-top: 10px !important;
 }
 
@@ -138,12 +176,15 @@
 .margin_top_7px {
     margin-top: 7px;
 }
+
 .position_relative {
     position: relative;
 }
+
 .position_absolute {
     position: absolute;
 }
+
 .padding_3px {
     padding: 3px;
 }
@@ -159,14 +200,12 @@
 /* medium scroll bar */
 
 .medium-scroll::-webkit-scrollbar-track {
-    background: linear-gradient(
-        to right,
-        var(--scroll-track-color) 0%,
-        var(--scroll-track-color) 45%,
-        var(--scroll-color) 50%,
-        var(--body-bg-color) 61%,
-        var(--body-bg-color) 100%
-    );
+    background: linear-gradient(to right,
+            var(--scroll-track-color) 0%,
+            var(--scroll-track-color) 45%,
+            var(--scroll-color) 50%,
+            var(--body-bg-color) 61%,
+            var(--body-bg-color) 100%);
 }
 
 .medium-scroll::-webkit-scrollbar {

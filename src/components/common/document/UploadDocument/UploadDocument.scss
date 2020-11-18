@@ -1,0 +1,27 @@
+#create-document {
+    margin-left: 120px;
+    margin-right: 120px;
+    margin-top: 20px;
+}
+
+#create-document .title {
+    transition: all 0.5s;
+    color: black;
+    font-style: bold;
+    font-size: 20px;
+    font-weight: 900;
+    border-bottom: 0px solid black;
+}
+#create-document .title:hover {
+    transition: all 0.5s;
+    color: #5279db;
+    font-size: 22px;
+    border-bottom: 5px solid #5279db;
+}
+
+
+
+#create-document .dropdown-year {
+    margin-bottom: 30px;
+    margin-top: 10px;
+}

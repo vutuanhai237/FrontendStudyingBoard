@@ -1,23 +1,46 @@
 .Simple_Gray_Label {
     width: 100%;
     height: fit-content;
-    vertical-align: auto;
+    vertical-align: middle;
     text-align: left;
     font-family: 'BarlowCondensed-Medium';
     font-size: 1.1rem;
-    line-height: 100%;
+    line-height: 20px;
+    padding-top: 2x;
     color: #363636;
     user-select: none;
     min-width: 80px;
-    width: 100%;
     margin-bottom: 5px;
     margin-top: 2px;
 }
 
+.Simple_Gray_Label_Fit_Content_Right {
+    width: fit-content;
+    height: fit-content;
+    min-width: 80px;
+    text-align: right;
+    vertical-align: middle;
+    font-size: 1.1rem;
+    line-height: 20px;
+    padding-top: 3px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 1.1rem;
+    line-height: 100%;
+    color: #363636;
+    user-select: none;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+
 .Simple_Gray_Label_Fit_Content {
     width: fit-content;
     height: fit-content;
-    vertical-align: auto;
+    min-width: 80px;
+    vertical-align: middle;
+    font-size: 1.1rem;
+    line-height: 20px;
+    padding-top: 3px;
     text-align: left;
     font-family: "BarlowCondensed-Medium";
     font-size: 1.1rem;
@@ -44,7 +67,7 @@
     margin-top: 2px;
 }
 
-.Simple_Error_Label {
+.error-label {
     margin-top: 0.2rem;
     padding-left: 0.5rem;
     position: absolute;
@@ -54,7 +77,7 @@
     font-size: 0.7rem;
     text-align: right;
     line-height: 100%;
-    color: #fe3a3a;
+    color: var(--red);
     user-select: none;
     min-width: 80px;
     width: 100%;

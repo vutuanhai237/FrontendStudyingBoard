@@ -1,8 +1,8 @@
-/* eslint-disable react/jsx-pascal-case */
+
 
 import React, { Component } from 'react'
 import '../AdminLayout'
-import Titlebar from 'components/management/Titlebar/Titlebar'
+import Titlebar from 'components/common/Titlebar/Titlebar'
 import Paginator from 'components/common/Paginator/ClientPaginator'
 import UserItem from 'components/management/UserItem/UserItem'
 // import { ClickAwayListener } from '@material-ui/core'
@@ -70,7 +70,7 @@ class Statistic extends Component {
 
             // searchDropdown = this.roleFilterList.map(role =>
             //     this.roleNameFilter === role.UserGroupName ?
-            //         <div className="Activated_Dropdown_Combobox_Sub_Item"
+            //         <div className="activated-combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
             //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
@@ -80,7 +80,7 @@ class Statistic extends Component {
 
             //         </div>
             //         :
-            //         <div className="Dropdown_Combobox_Sub_Item"
+            //         <div className="combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
             //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
@@ -120,9 +120,9 @@ class Statistic extends Component {
 
             <div>
                 <Titlebar title="THỐNG KÊ" />
-                <div className="Show_Layout">
+                <div className="left-side-bar-layout-content-container">
 
-                    <div className="flex_container justify_content_space_between margin_top_10px"  >
+                    <div className="flex_container justify-content-space-between margin-top-10px"  >
                         <div className="Number_Of_Item">
                             Tổng số:
                             &nbsp;
@@ -150,7 +150,7 @@ class Statistic extends Component {
 
     handleDropDownMenuItemClick = (roleName) => {
         let sub_dropdown_item_index = document.getElementsByName("User_Role_Filter_Combobox_Item");
-        sub_dropdown_item_index.forEach.className = "Dropdown_Combobox_Sub_Item";
+        sub_dropdown_item_index.forEach.className = "combo-box-option";
         this.roleNameFilter = roleName;
         // if (roleName === "All") {
         //     this.currentInteractList = this.usersList;

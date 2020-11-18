@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import '../AdminLayout'
-import Titlebar from 'components/management/Titlebar/Titlebar'
+import Titlebar from 'components/common/Titlebar/Titlebar'
 import Paginator from 'components/common/Paginator/ClientPaginator'
 
 class PostApprovingPage extends Component {
@@ -304,7 +304,7 @@ class PostApprovingPage extends Component {
         return (
             <div>
                 <Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
-                <div className="Show_Layout">
+                <div className="left-side-bar-layout-content-container">
 
                     <div className="Number_Of_Item">
                         Tổng số:

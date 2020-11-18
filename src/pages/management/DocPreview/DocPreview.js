@@ -189,8 +189,8 @@ class DocPreview extends Component {
                                     <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe>
                                 </div>
                                 <div className="DocPost_Detail_Footer">
-                                    <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
-                                    {/* <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
+                                    <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
+                                    {/* <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
                                 </div>
                             </div>
                             :
@@ -209,8 +209,8 @@ class DocPreview extends Component {
                         text="Xác nhận từ chối tiếp nhận bài viết này?"
                         closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
                     >
-                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
+                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+                        <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
                     </CustomModal>
 
@@ -223,8 +223,8 @@ class DocPreview extends Component {
                         text="Xác nhận duyệt bài viết này?"
                         closeModal={() => { this.isApproveRequestedPopupOpen = false; this.setState({}); }}
                     >
-                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.handleCancelApproveRequestedPostConfirmation()}>Cancel</button>
+                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
+                        <button className="white-button" onClick={() => this.handleCancelApproveRequestedPostConfirmation()}>Cancel</button>
                     </CustomModal>
 
                     {/* modal for notification anything */}

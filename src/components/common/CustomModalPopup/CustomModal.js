@@ -73,7 +73,7 @@ export default class CustomModal extends React.Component {
 
                                 {(this.props.type === "alert_success" || this.props.type === "alert_fail") ?
                                     <div className="Custom_Modal_Footer">
-                                        <div className="Simple_Blue_Button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div>
+                                        <div className="blue-button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div>
                                     </div>
                                     : <></>
                                 }

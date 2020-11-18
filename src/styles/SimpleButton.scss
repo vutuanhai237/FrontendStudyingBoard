@@ -1,4 +1,4 @@
-.Simple_White_Button {
+.white-button {
     box-sizing: border-box;
     width: fit-content;
     height: 25px;
@@ -6,7 +6,7 @@
     text-align: center;
     border-radius: 5px;
     background: white;
-    font-family: "BarlowCondensed-Medium";
+    font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 22px;
     padding-left: 10px;
@@ -17,32 +17,32 @@
     min-width: 80px;
 }
 
-.Simple_White_Button:hover {
+.white-button:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Simple_White_Button:active {
+.white-button:active {
     background: #c4c4c4;
     cursor: pointer;
     opacity: 90%;
 }
 
-.Simple_White_Button:disabled {
+.white-button:disabled {
     background: #c4c4c4;
     color: white;
     cursor: pointer;
     opacity: 90%;
 }
 
-.Simple_Red_Button {
+.red-button {
     box-sizing: border-box;
     width: fit-content;
     height: 24px;
     vertical-align: auto;
     text-align: center;
     border-radius: 5px;
-    background: #fe3a3a;
+    background: var(--red);
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
     line-height: 22px;
@@ -54,24 +54,24 @@
     min-width: 80px;
 }
 
-.Simple_Red_Button:hover {
+.red-button:hover {
     cursor: pointer;
     opacity: 90%;
 }
 
-.Simple_Red_Button:active {
+.red-button:active {
     background: #c4c4c4;
     cursor: pointer;
     opacity: 90%;
 }
 
-.Simple_Red_Button:disabled {
+.red-button:disabled {
     background: #c4c4c4;
     cursor: pointer;
     opacity: 90%;
 }
 
-.Simple_Blue_Button {
+.blue-button {
     box-sizing: border-box;
     width: fit-content;
     height: 24px;
@@ -90,17 +90,17 @@
     min-width: 80px;
 }
 
-.Simple_Blue_Button:hover {
+.blue-button:hover {
     cursor: pointer;
     opacity: 90%;
 }
 
-.Simple_Blue_Button:active {
+.blue-button:active {
     background: #c4c4c4;
     cursor: pointer;
 }
 
-.Simple_Blue_Button:disabled {
+.blue-button:disabled {
     background: #c4c4c4;
     cursor: pointer;
 }
@@ -108,4 +108,8 @@
 .Is_Form_Button {
     margin: auto;
     margin-top: 1.2rem;
+}
+
+button:focus {
+    outline: none !important;
 }

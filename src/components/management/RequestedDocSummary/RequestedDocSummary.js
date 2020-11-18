@@ -79,8 +79,8 @@ class RequestedDocSummary extends Component {
 
                 </div>
                 <div className="DocPost_Summary_Footer">
-                    <div className="Simple_Blue_Button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
-                    <div className="Simple_Red_Button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
+                    <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
+                    <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                 </div>
 
                 {/* Popup for reject requested post */}
@@ -92,8 +92,8 @@ class RequestedDocSummary extends Component {
                     text="Xác nhận từ chối tiếp nhận bài viết này?"
                     closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
+                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+                    <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
                 </CustomModal>
 

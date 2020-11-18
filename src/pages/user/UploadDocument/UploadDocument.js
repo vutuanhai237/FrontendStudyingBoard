@@ -20,8 +20,8 @@ import {
     getCategoriesDoc,
     postDoc,
 } from "services/DocAPI.js"
-import "./CreateDocument.scss";
-class CreateDocument extends Component {
+import "./UploadDocument.scss";
+class UploadDocument extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,7 +40,7 @@ class CreateDocument extends Component {
                 semesterID: -1,
                 subjectID: -1,
             },
-            
+
             isUploading: false,
 
         };
@@ -58,7 +58,7 @@ class CreateDocument extends Component {
             this.statusPostDocCode = nextProps.statusPostDocCode;
             this.handleModal();
         }
-        
+
     }
     componentDidMount() {
         this.props.getCategoriesDoc();
@@ -84,7 +84,7 @@ class CreateDocument extends Component {
         })
     }
     handleUpload() {
-        
+
         console.log(this.state.doc);
         this.props.postDoc(this.state.doc);
         this.setState({
@@ -101,10 +101,10 @@ class CreateDocument extends Component {
     changeCurrentCategory(evt) {
         const { categories } = this.props;
         this.setState({
-            doc: { 
-                ...this.state.doc, 
-                currentCategory: evt, 
-                categoryID: categories.find(e => e.name === evt).id 
+            doc: {
+                ...this.state.doc,
+                currentCategory: evt,
+                categoryID: categories.find(e => e.name === evt).id
             }
         })
 
@@ -113,21 +113,21 @@ class CreateDocument extends Component {
     changeCurrentSemester(evt) {
         const { semesters } = this.props;
         this.setState({
-            doc: { 
-                ...this.state.doc, 
+            doc: {
+                ...this.state.doc,
                 currentSemester: evt,
-                semesterID: semesters.find(e => (e.semesterNo + " . " + e.academicYear) === evt).semesterId, 
+                semesterID: semesters.find(e => (e.semesterNo + " . " + e.academicYear) === evt).semesterId,
             }
         })
     }
 
     changeFileName() {
         this.setState({
-            doc: { 
-                ...this.state.doc, 
+            doc: {
+                ...this.state.doc,
                 title: this.refs.title.value,
                 summary: this.refs.summary.value,
-                
+
             }
         })
     }
@@ -135,10 +135,10 @@ class CreateDocument extends Component {
         const { subjects } = this.props;
 
         this.setState({
-            doc: { 
-                ...this.state.doc, 
+            doc: {
+                ...this.state.doc,
                 currentSubject: evt,
-                subjectID: subjects.find(e => e.subjectName === evt).subjectId, 
+                subjectID: subjects.find(e => e.subjectName === evt).subjectId,
             }
         })
     }
@@ -155,7 +155,7 @@ class CreateDocument extends Component {
             modalBody = <div>
                 <Modal.Body>
                     {this.state.modalMessage}
-                    </Modal.Body>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="success" href="/" onClick={this.handleClose}>
                         Đồng ý
@@ -189,14 +189,14 @@ class CreateDocument extends Component {
                         <InputGroup.Prepend>
                             <InputGroup.Text>Tên tài liệu</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl onChange={this.changeFileName} ref="title" placeholder="Nhập tên tài liệu" aria-label="Amount (to the nearest dollar)"/>
+                        <FormControl onChange={this.changeFileName} ref="title" placeholder="Nhập tên tài liệu" aria-label="Amount (to the nearest dollar)" />
                     </InputGroup>
 
                     <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text>Mô tả tài liệu</InputGroup.Text>
                         </InputGroup.Prepend>
-                        <FormControl ref="summary"placeholder="Nhập mô tả tài liệu" aria-label="Amount (to the nearest dollar)"/>
+                        <FormControl ref="summary" placeholder="Nhập mô tả tài liệu" aria-label="Amount (to the nearest dollar)" />
                     </InputGroup>
 
                     <Row>
@@ -279,4 +279,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCategoriesDoc,
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CreateDocument));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(UploadDocument));

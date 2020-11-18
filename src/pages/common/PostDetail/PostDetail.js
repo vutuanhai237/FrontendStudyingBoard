@@ -10,7 +10,7 @@ import CommentPosts from "components/common/post/CommentPosts/CommentPosts";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import Tags from "components/common/post/Tags/Tags";
+// import Tags from "components/common/post/Tags/Tags";
 import Cookies from 'js-cookie';
 import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "services/PostAPI";
 
@@ -63,7 +63,7 @@ class PostDetail extends Component {
                 <div>{currentPost.summary}</div>
                 <AuthorInfo item={currentPost} />
                 <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.content }} />
-                <Tags tags={tags} />
+                {/* <Tags tags={tags} /> */}
                 {footer}
                 <CommentPosts currentComments={currentComments} />
 

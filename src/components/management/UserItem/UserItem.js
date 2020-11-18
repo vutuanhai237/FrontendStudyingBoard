@@ -7,7 +7,7 @@ import dropdown_btn from 'assets/images/dropdown_icon.png'
 import icon_write from 'assets/images/icon_write.png'
 
 //combobox
-import 'components/common/CustomCombobox/CustomCombobox.scss'
+import 'components/common/Combobox/Combobox.scss'
 import 'styles/SimpleButton.scss'
 import 'styles/SimpleLabel.scss'
 
@@ -85,14 +85,14 @@ class UserItem extends Component {
 
             let roles_Combobox = this.roleList.map(role =>
                 this.roleID === role.UserGroupID ?
-                    <div className="Activated_Dropdown_Combobox_Sub_Item"
+                    <div className="activated-combo-box-option"
                         id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
                         value={getRoleNameByName(role.UserGroupName)}
                         key={role.UserGroupID}>
                         {getRoleNameByName(role.UserGroupName)}
                     </div>
                     :
-                    <div className="Dropdown_Combobox_Sub_Item"
+                    <div className="combo-box-option"
                         id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
                         value={role.UserGroupName}
                         key={role.UserGroupID}
@@ -136,7 +136,7 @@ class UserItem extends Component {
                                     <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 - this.userID }}>
                                         <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
                                             <div style={{ position: "absolute", width: "140px" }}>
-                                                <div className="Parent_Dropdown_Combobox" id={"user-role-parent-dropdown-combobox-" + this.userID}
+                                                <div className="combo-box" id={"user-role-parent-dropdown-combobox-" + this.userID}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
                                                     <div className="flex_container">
                                                         <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
@@ -151,10 +151,10 @@ class UserItem extends Component {
                                                 </div>
 
                                                 {this.isAnyChangeRoleDropdownComboboxOpen ? (
-                                                    <div className="Dropdown_Combobox_Container" id={"user-role-dropdown-combobox-container-" + this.userID}>
+                                                    <div className="combo-box-container" id={"user-role-dropdown-combobox-container-" + this.userID}>
                                                         {roles_Combobox}
-                                                        <div className="margin_bottom_5px" />
-                                                        <div className="margin_bottom_5px" />
+                                                        <div className="margin-bottom-5px" />
+                                                        <div className="margin-bottom-5px" />
                                                     </div>
                                                 ) : <div id={"user-role-dropdown-combobox-container-" + this.userID}></div>}
 
@@ -177,8 +177,8 @@ class UserItem extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
-                        <button className="Simple_White_Button" onClick={() => this.closeChangeRoleConfirmationPopup()}>Cancel</button>
+                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="white-button" onClick={() => this.closeChangeRoleConfirmationPopup()}>Cancel</button>
                     </CustomModal>
 
 
@@ -244,11 +244,11 @@ class UserItem extends Component {
         for (let i = 1; i <= this.roleList.length; i++) {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + i;
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
-            sub_dropdown_item_index.className = "Dropdown_Combobox_Sub_Item";
+            sub_dropdown_item_index.className = "combo-box-option";
         }
         console.log("**");
         console.log(roleID)
-        sub_dropdown_item.className = "Activated_Dropdown_Combobox_Sub_Item";
+        sub_dropdown_item.className = "activated-combo-box-option";
         this.role_post = roleID;
 
         //open a confirmation popup

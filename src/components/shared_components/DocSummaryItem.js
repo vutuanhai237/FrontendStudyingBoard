@@ -114,7 +114,7 @@ class DocSummaryItem extends Component {
                 <DocReactionBar></DocReactionBar>
 
                 <div className="DocPost_Summary_Continue_Reading_Layout">
-                    <div className="Simple_Blue_Button DocPost_Summary_Continue_Reading"
+                    <div className="blue-button DocPost_Summary_Continue_Reading"
                         onClick={() => { window.location.pathname = "/docs/" + this.id }}>
                         Đọc tiếp
                         </div>
@@ -130,8 +130,8 @@ class DocSummaryItem extends Component {
                     text="Xác nhận từ chối tiếp nhận bài viết này?"
                     closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
+                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+                    <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
                 </CustomModal>
 

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import '../AdminLayout'
-import Titlebar from 'components/management/Titlebar/Titlebar'
+import Titlebar from 'components/common/Titlebar/Titlebar'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './UserRoleManagement.scss'
 
@@ -50,7 +50,7 @@ class UserRoleManagement extends Component {
         return (
             <div>
                 <Titlebar title="QUẢN LÝ QUYỀN NGƯỜI DÙNG" />
-                <div className="Show_Layout">
+                <div className="left-side-bar-layout-content-container">
                     {/* Danh mục bài viết */}
                     <div className="Category_Type_Dropdown" id="management-post-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-categories-dropdown", "management-post-categories-container")}>
                         <div>
@@ -59,7 +59,7 @@ class UserRoleManagement extends Component {
                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                     </div>
 
-                    <div className="margin_top_10px"></div>
+                    <div className="margin-top-10px"></div>
 
                     <div className="Category_Type_Dropdown_Container" id="management-post-categories-container">
                         <div className="Category_Component_List">
@@ -89,9 +89,9 @@ class UserRoleManagement extends Component {
                                     </div>
                                 </ClickAwayListener>
                                 {/* <div className="Category_Buttons_Layout">
-                                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
-                                    <button className="Simple_White_Button margin_right_5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
-                                    <button className="Simple_Red_Button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>
+                                    <button className="blue-button margin_right_5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
+                                    <button className="white-button margin_right_5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
+                                    <button className="red-button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>
                                 </div> */}
                             </div>
                             <div style={{ height: "30px" }}></div>
@@ -109,14 +109,14 @@ class UserRoleManagement extends Component {
                 >
                     <div className="Custom_Modal_Body">
                         <div className="Simple_Gray_Label"> Tên quyền mới: </div>
-                        <input type="text" className="Simple_Text_Input" placeholder="Nhập tên quyền ..." />
+                        <input type="text" className="form-input" placeholder="Nhập tên quyền ..." />
                     </div>
 
                     <div className="Custom_Modal_Footer">
                         <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
-                            <button className="Simple_White_Button" onClick={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
+                            <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
+                            <button className="white-button" onClick={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
                 </CustomModal>
@@ -131,14 +131,14 @@ class UserRoleManagement extends Component {
                 >
                     <div className="Custom_Modal_Body">
                         <div className="Simple_Gray_Label"> Tên quyền: </div>
-                        <input type="text" className="Simple_Text_Input" defaultValue={this.selected_category_name} />
+                        <input type="text" className="form-input" defaultValue={this.selected_category_name} />
                     </div>
 
                     <div className="Custom_Modal_Footer">
                         <div className="Simple_Gray_Label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
-                            <button className="Simple_White_Button" onClick={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
+                            <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
+                            <button className="white-button" onClick={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
                 </CustomModal>
@@ -152,8 +152,8 @@ class UserRoleManagement extends Component {
                     open={this.isVerifyDeletePostCategoryPopupOpen}
                     closeModal={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="Simple_Blue_Button margin_right_5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
-                    <button className="Simple_White_Button" onClick={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
+                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
+                    <button className="white-button" onClick={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                 </CustomModal>
 
                 {/* Custom for notifing success */}

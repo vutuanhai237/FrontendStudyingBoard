@@ -148,7 +148,7 @@ class Header extends Component {
                                     <div className="Sub_Result_Port" id="quick-search-post-result-port">
                                         <div className="Sub_Result_Title">BÀI VIẾT</div>
                                         {quickSearchResult.post.map(result =>
-                                            <div className="display_flex margin_top_5px"><img className="Result_Image margin_right_5px" />
+                                            <div className="display-flex margin_top_5px"><img className="Result_Image margin_right_5px" />
                                                 <div className="Result_Title">{result}
                                                 </div>
                                             </div>)
@@ -157,7 +157,7 @@ class Header extends Component {
                                     <div className="Sub_Result_Port" id="quick-search-doc-result-port">
                                         <div className="Sub_Result_Title margin_top_5px">TÀI LIỆU</div>
                                         {quickSearchResult.doc.map(result =>
-                                            <div className="display_flex margin_top_5px">
+                                            <div className="display-flex margin_top_5px">
                                                 <img className="Result_Image margin_right_5px" />
                                                 <div className="Result_Title">{result}</div>
                                             </div>
@@ -167,7 +167,7 @@ class Header extends Component {
                                         <div className="Sub_Result_Title margin_top_5px ">TAGS</div>
 
                                         {quickSearchResult.tag.map(result =>
-                                            <div className="display_flex margin_top_5px">
+                                            <div className="display-flex margin_top_5px">
                                                 <img className="Result_Image margin_right_5px" />
                                                 <div className="Result_Title">{result}</div>
                                             </div>)
@@ -193,19 +193,19 @@ class Header extends Component {
                             <div className="Sub_Result_Port" id="quick-search-post-result-port" >
                                 <div className="Sub_Result_Title" > BÀI VIẾT </div>
                                 {quickSearchResult.post.map(result =>
-                                    <div className="display_flex margin_top_5px" >
+                                    <div className="display-flex margin_top_5px" >
                                         <img className="Result_Image margin_right_5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
                             <div className="Sub_Result_Port" id="quick-search-doc-result-port" >
                                 <div className="Sub_Result_Title margin_top_5px" > TÀI LIỆU </div> {quickSearchResult.doc.map(result =>
-                                    <div className="display_flex margin_top_5px" >
+                                    <div className="display-flex margin_top_5px" >
                                         <img className="Result_Image margin_right_5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
                             <div className="Sub_Result_Port margin_top_5px" id="quick-search-tag-result-port" >
                                 <div className="Sub_Result_Title margin_top_5px " > TAGS </div> {quickSearchResult.tag.map(result =>
-                                    <div className="display_flex margin_top_5px" >
+                                    <div className="display-flex margin_top_5px" >
                                         <img className="Result_Image margin_right_5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
@@ -228,7 +228,7 @@ class Header extends Component {
                         <div className="Header_End_Lv2" > <img className="Header_Image_Button"
                             src={upload_icon} />
                             <img className="Header_Image_Button" src={write_icon} />
-                            <button className="Simple_Blue_Button margin_auto min_width_fit_content" > Đăng nhập </button>
+                            <button className="blue-button margin_auto min_width_fit_content" > Đăng nhập </button>
                         </div>
                         <div className="Header_End_Lv2_Collapse"
                             onClick={this.state.isCollapsedUserMenuOpened ?
@@ -245,8 +245,8 @@ class Header extends Component {
 
                     <div className="Collapsed_User_Menu_Port" id="collapsed-user-menu-port" >
                         <div className="Collapsed_User_Menu" id="collapsed-user-menu" >
-                            <div className="justify_content_space_between" >
-                                <div className="display_flex" > <img className="Collapsed_User_Menu_Image_Button"
+                            <div className="justify-content-space-between" >
+                                <div className="display-flex" > <img className="Collapsed_User_Menu_Image_Button"
                                     src={upload_icon} />
                                     <div>
                                         <button className="Collapsed_User_Menu_Button" > Đăng nhập </button>
