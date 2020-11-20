@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import '../AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import Paginator from 'components/common/Paginator/ClientPaginator'
-import UserItem from 'components/management/UserItem/UserItem'
+import UserItem from 'components/user/UserItem'
 // import { ClickAwayListener } from '@material-ui/core'
 // import { getRoleNameByName, getRoleNameFilterByName } from 'utils/PermissionManagement'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
@@ -14,7 +14,7 @@ import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { management_getAllUsers, management_getAllRoles } from 'services/management_services/management_userAPIs'
+import { management_getAllUsers, management_getAllRoles } from 'services/authorized/userServices'
 
 class UserManagement extends Component {
     constructor(props) {

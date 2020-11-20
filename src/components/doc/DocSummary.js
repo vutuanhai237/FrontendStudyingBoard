@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
-import 'components/shared/DocPostDetail.scss'
+import 'components/shared/DocPostSummary.scss'
+import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
-class PostPreview extends Component {
+class DocSummary extends Component {
 
     constructor(props) {
         super(props);
@@ -29,7 +30,7 @@ class PostPreview extends Component {
         this.isRejectRequestedPopupOpen = false;
 
         this.state = {
-
+            // isRejectRequestedPopupOpen: false,
         }
     }
 
@@ -64,29 +65,6 @@ class PostPreview extends Component {
                         </div>
                     </div>
 
-                    <div className="DocPost_Metadata_Header">
-
-                        <img alt="*" className="Doc_Metadata_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Metadata_Text">
-                            Môn học: &nbsp;
-                        {this.subject}
-                        </div>
-                        <img alt="*" className="Doc_Metadata_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Metadata_Text">
-                            Học kỳ: &nbsp;
-                        {this.semester}
-                        </div >
-                        <img alt="*" className="Doc_Metadata_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Metadata_Text">
-                            Năm học: &nbsp;
-                        {this.year}
-                        </div>
-                    </div>
-
-                    <div className="Requested_Doc_Summary_Header_3">
-                        {/* {this.props.title} */}
-                    </div>
-
                     <div className="item-container-title">
                         {this.props.title}
                     </div>
@@ -99,13 +77,10 @@ class PostPreview extends Component {
                         <img alt="post" className="item-container-image" src={this.props.image}></img>
                     </div>
 
-                    {/* <div className="item-container_Requested_Tags_Layout">
-                        {tagsGroup}
-                    </div> */}
                 </div>
                 <div className="item-container_Footer">
                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
-                    {/* <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
+                    <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                 </div>
 
                 {/* Popup for reject requested post */}
@@ -128,7 +103,12 @@ class PostPreview extends Component {
     }
 
     navigateToAuthorPersonalPage = () => {
-        window.location.href = "/admin/user/" + this.authorID;
+        if (window.location.pathname.substring(0, 6) === "/admin") {
+            window.location.href = "/admin/user/" + this.authorID;
+            return;
+        }
+        if (window.location.pathname.substring(0, 5) === "/user")
+            window.location.href = "/user/" + this.authorID;
     }
 
     navigateToSameCategoryDocsPage = () => {
@@ -136,7 +116,13 @@ class PostPreview extends Component {
     }
 
     handlerPreviewRequestedPost = () => {
-        window.location.href = "/admin/doc_approving/" + this.id;
+        if (window.location.pathname.substring(0, 6) === "/admin") {
+            window.location.href = "/admin/doc_approving/" + this.id;
+            return;
+        }
+        if (window.location.pathname.substring(0, 5) === "/user")
+            window.location.href = "/user/doc_approving/" + this.id;
+
     }
 
     handlerRejectRequestedPost = () => {
@@ -157,4 +143,4 @@ class PostPreview extends Component {
 
 
 }
-export default  PostPreview;
+export default DocSummary;

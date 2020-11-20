@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import logo from 'assets/images/logo-bht.png';
 import { bindActionCreators } from 'redux';
-import { postRegister } from "services/UserAPI"
+import { postRegister } from "services/userServices"
 class RegisterForm extends React.Component {
     constructor(props) {
         super(props);

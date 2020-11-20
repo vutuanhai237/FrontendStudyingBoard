@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar'
-import DocSummaryItem from 'components/shared_components/DocSummaryItem'
+import DocSummaryItem from 'components/shared/DocSummaryItem'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
 
 //import for redux
-import { management_getAllNotApprovedDocuments, management_getAllUserDocList } from "services/management_services/management_docAPIs"
+import { management_getAllNotApprovedDocuments, management_getAllUserDocList } from "services/authorized/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -26,7 +26,7 @@ class Management_MyDocList extends Component {
 
     componentDidMount() {
 
-        this.props.management_getAllUserDocList(1);
+        this.props.getAllUserDocList(1);
     }
 
     //client
@@ -47,7 +47,7 @@ class Management_MyDocList extends Component {
                     id={myDoc.id}
                     authorName={myDoc.authorName}
                     authorID={myDoc.authorID}
-                    publishedDate={myDoc.documentPublishDtm}
+                    publishDate={myDoc.documentPublishDtm}
                     publishedTime={myDoc.myTime}
                     categoryName={myDoc.categoryName}
                     categoryID={myDoc.categoryID}

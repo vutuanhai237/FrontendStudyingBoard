@@ -10,7 +10,7 @@ import { isContainSpecialCharacter } from 'utils/Utils'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser, getLogout } from 'services/UserAPI'
+import { getCurrentUser, getLogout } from 'services/userServices'
 
 import Cookies from 'js-cookie'
 import { PORT } from 'constants/constants'

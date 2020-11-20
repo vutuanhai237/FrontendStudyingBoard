@@ -7,13 +7,13 @@ import {
     postPostComment,
     postPostSave,
     postDelUnLike,
-    postGetCategoriesPost,
+    get_PostCategories  ,
     postGetPostHighlights,
     postGetPostNewests,
     postGetPostNewActivities,
     postGetTags,
     postPostPost,
-} from "actions/PostAction.js";
+} from "actions/postAction.js";
 import {
     HOST,
     PORT
@@ -546,22 +546,25 @@ export function getPostByID(uid, pid) {
     }
 }
 
-export function getCategoriesPost() {
+
+//#region refactoring 
+
+export function getPostCategories() {
     return dispatch => {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postCategories`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result))
-                dispatch(postGetCategoriesPost(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = [categoriesList[0], categoriesList[1], categoriesList[2], categoriesList[3], categoriesList[4]];
-        // dispatch(postGetCategoriesPost(result));
+        // fetch(`http://${PORT}/post/categories`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(JSON.parse(result))
+        //         dispatch(postGetCategoriesPost(JSON.parse(result)));
+        //     })
+        //     .catch(error => console.log('error', error));
+        const result = [categoriesList[0], categoriesList[1], categoriesList[2], categoriesList[3], categoriesList[4]];
+        dispatch(get_PostCategories(result));
 
     }
 }

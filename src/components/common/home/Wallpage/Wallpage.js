@@ -11,7 +11,7 @@ import like_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import save_btn from 'assets/images/blue_bookmark_btn.png'
 
-import { highlightPostResults } from "services/PostAPI";
+import { highlightPostResults } from "services/postServices";
 
 class WallPaper extends Component {
 
@@ -102,7 +102,7 @@ class WallPaper extends Component {
                                         Danh mục 1
                                 </div>
                                 </div>
-                                <div className="gray-label_Fit_Content margin_left_5px">by</div>
+                                <div className="gray-label margin_left_5px">by</div>
                                 <div className="Highlight-author-link margin_left_5px" >
                                     {/* // onClick={() => this.navigateToAuthorPersonalPage()}> */}
 
@@ -110,12 +110,12 @@ class WallPaper extends Component {
                                  </div>
                                 <img alt="*" className="Hightlight_Metadata_Icon" src={btn_element} />
                                 <div className="Highlight_Read_Time">
-                                    {/* {this.publishedDate} */}
+                                    {/* {this.publishDate} */}
                                10 phút đọc
                                 </div>
                             </div>
                             <div className="Highlight_Published_Date">
-                                {/* {this.publishedDate} */}
+                                {/* {this.publishDate} */}
                                  20/10/2020
                             </div>
                         </div>

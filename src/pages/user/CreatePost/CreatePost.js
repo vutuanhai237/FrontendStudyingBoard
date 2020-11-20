@@ -5,7 +5,7 @@ import "./CreatePost.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { getCategoriesPost, postPost } from "services/PostAPI";
+import { getPostCategories, postPost } from "services/postServices";
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import ComboBox from 'components/common/Combobox/Combobox';
@@ -48,15 +48,15 @@ class CreatePost extends Component {
             categoryList: [
                 {
                     id: 1,
-                    value: "Danh muc 1"
+                    name: "Danh muc 1"
                 },
                 {
                     id: 2,
-                    value: "Danh muc 2"
+                    name: "Danh muc 2"
                 },
                 {
                     id: 3,
-                    value: "Danh muc 3"
+                    name: "Danh muc 3"
                 }
             ],
 
@@ -84,7 +84,7 @@ class CreatePost extends Component {
     }
 
     componentDidMount() {
-        this.props.getCategoriesPost();
+        this.props.getPostCategories();
     }
 
     handleModal = () => {
@@ -273,7 +273,7 @@ const mapStatetoProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCategoriesPost,
+    getPostCategories,
     postPost,
 }, dispatch);
 

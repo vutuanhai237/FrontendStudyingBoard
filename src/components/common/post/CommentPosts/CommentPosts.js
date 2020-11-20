@@ -17,8 +17,8 @@ import CommentPost from "components/common/post/CommentPost/CommentPost";
 
 import {
     postComment,
-} from "services/PostAPI"
-import { getPostCommentByID } from "services/PostAPI"
+} from "services/postServices"
+import { getPostCommentByID } from "services/postServices"
 import { bindActionCreators } from 'redux';
 class CommentPosts extends Component {
     constructor(props) {

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import avatar from 'assets/images/anh.jpg';
-import { getLogout } from "services/UserAPI"
+import { getLogout } from "services/userServices"
 import { redirect } from 'constants/constants'
 class LoginStatus extends Component {
     constructor(props) {

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import 'components/shared_components/DocPostDetail.scss'
-import 'components/shared_components/DPD_ResponsiveLayout.scss'
+import 'components/shared/DocPostDetail.scss'
+import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
-import { management_getCurrentPreviewDocument } from "services/management_services/management_docAPIs"
-import { getCurrentUser } from "services/UserAPI"
+import { management_getCurrentPreviewDocument } from "services/authorized/docServices"
+import { getCurrentUser } from "services/userServices"
 import { isGrantedPermissions, DocumentPermission } from "utils/PermissionManagement"
 
 import { bindActionCreators } from 'redux';

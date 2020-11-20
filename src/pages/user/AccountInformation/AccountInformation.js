@@ -22,8 +22,8 @@ import ImageUploader from 'react-images-upload'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from 'services/UserAPI'
-import { management_getAllRoles } from 'services/management_services/management_userAPIs'
+import { getCurrentUser } from 'services/userServices'
+import { management_getAllRoles } from 'services/authorized/userServices'
 
 //import for role config
 import { getRoleNameFilterByName } from 'utils/PermissionManagement'
@@ -183,7 +183,7 @@ class AccountInformation extends Component {
                                         </ClickAwayListener>
                                     </div>
 
-                                    <div className="margin_top_5px" />
+                                    <div className="margin-top-5px" />
 
                                     <div className="Account_Information_Achivement_Layout">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>

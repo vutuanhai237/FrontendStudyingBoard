@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import './DocPostSummary.scss'
-// import Tag from 'component/shared_components/Tag/Tag'
+// import Tag from 'component/shared/Tag/Tag'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 import DocReactionBar from './DocReactionBar'
@@ -21,7 +21,7 @@ class DocSummaryItem extends Component {
         this.subject = this.props.subjectName;
         this.title = this.props.title;
         this.content = this.props.summary;
-        this.publishedDate = this.props.publishedDate;
+        this.publishDate = this.props.publishDate;
         this.viewCount = this.props.viewCount;
         this.downloadCount = this.props.downloadCount;
         this.avartarUrl = this.props.title.authorAvatar;
@@ -45,20 +45,20 @@ class DocSummaryItem extends Component {
 
         return (
 
-            <div className="summary-item" >
-                <div className="summary-item-main-layout">
-                    <div className="summary-item-author-date-metadata">
-                        <div className="summary-item-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="item-container" >
+                <div className="item-container-main-layout">
+                    <div className="item-container-author-date-metadata">
+                        <div className="item-container-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="summary-item_Requested_Date">
-                            {this.publishedDate}
+                        <div className="item-container_Requested_Date">
+                            {this.publishDate}
                         </div>
                     </div>
 
-                    {/* <div className="Requested_summary-item_Header_2">
+                    {/* <div className="Requested_item-container_Header_2">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_summary-item_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                    <div className="Requested_item-container_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div> */}
@@ -86,16 +86,16 @@ class DocSummaryItem extends Component {
                         </div>
                     </div>
 
-                    <div className="summary-item-title">
+                    <div className="item-container-title">
                         {this.props.title}
                     </div>
 
-                    <div className="summary-item_Content">
+                    <div className="item-container-summary">
                         {this.props.content}
                     </div>
 
-                    {/* <div className="summary-item-image-layout">
-                        {/* <img alt="post" className="summary-item-image" src={this.props.image}></img> */}
+                    {/* <div className="item-container-image-layout">
+                        {/* <img alt="post" className="item-container-image" src={this.props.image}></img> */}
 
 
                     {/* </div> */}
@@ -106,15 +106,15 @@ class DocSummaryItem extends Component {
                         {this.fileName}
                     </div>
 
-                    {/* <div className="summary-item_Requested_Tags_Layout">
+                    {/* <div className="item-container_Requested_Tags_Layout">
                         {tagsGroup}
                     </div> */}
                 </div>
 
                 <DocReactionBar></DocReactionBar>
 
-                <div className="summary-item_Continue_Reading_Layout">
-                    <div className="blue-button summary-item_Continue_Reading"
+                <div className="item-container_Continue_Reading_Layout">
+                    <div className="blue-button item-container_Continue_Reading"
                         onClick={() => { window.location.pathname = "/docs/" + this.id }}>
                         Đọc tiếp
                         </div>

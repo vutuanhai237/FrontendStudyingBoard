@@ -6,7 +6,7 @@ import {
     docGetTopDoc,
     docGetSearchDoc,
     docGetDocByID,
-} from "actions/DocAction.js";
+} from "actions/docAction.js";
 import {
     HOST,
     PORT
@@ -15,7 +15,7 @@ import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
 //fake data import
-import { categoriesList } from "./PostAPI"
+import { categoriesList } from "./postServices"
 
 //#region Fake data: doc_v1's Category is "Đề thi", so it have some fields like semester or subject
 const doc_v1 = {

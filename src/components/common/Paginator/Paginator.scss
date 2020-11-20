@@ -66,9 +66,9 @@
     border: 1px white solid;
 }
 
-.First_Page,
-.Next_Page,
-.Prev_Page {
+.first-page,
+.next-page,
+.prev-page {
     margin-right: 4px;
     width: 40px;
     height: 26px;
@@ -85,7 +85,7 @@
     font-weight: 700;
 }
 
-.Last_Page {
+.last-page {
     width: 40px;
     height: 26px;
     border: 1px #5279db solid;
@@ -101,10 +101,10 @@
     font-weight: 700;
 }
 
-.First_Page:hover,
-.Next_Page:hover,
-.Prev_Page:hover,
-.Last_Page:hover {
+.first-page:hover,
+.next-page:hover,
+.prev-page:hover,
+.last-page:hover {
     background: #5279db;
     opacity: 60%;
     color: white;
@@ -112,10 +112,10 @@
     cursor: pointer;
 }
 
-.First_Page:active,
-.Next_Page:active,
-.Prev_Page:active,
-.Last_Page:active {
+.first-page:active,
+.next-page:active,
+.prev-page:active,
+.last-page:active {
     background: #5279db;
     color: white;
     box-shadow: 0px 0px 1px 1px white;
@@ -124,10 +124,10 @@
     opacity: 100%;
 }
 
-.First_Page:disabled,
-.Next_Page:disabled,
-.Prev_Page:disabled,
-.Last_Page:disabled {
+.first-page:disabled,
+.next-page:disabled,
+.prev-page:disabled,
+.last-page:disabled {
     background: #c4c4c4;
     color: white;
     box-shadow: 0px 0px 1px 1px white;

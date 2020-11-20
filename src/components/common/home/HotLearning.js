@@ -5,7 +5,7 @@ import { Row, Card, Col } from "react-bootstrap";
 import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
 
 import { bindActionCreators } from "redux";
-import { getPostNewests } from "services/PostAPI"
+import { getPostNewests } from "services/postServices"
 class NewPost extends Component {
     constructor(props) {
         super(props);

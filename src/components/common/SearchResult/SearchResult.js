@@ -11,7 +11,7 @@ import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
 import FilterPost from "components/common/post/FilterPost/FilterPost";
 import Paging from "components/common/Paging/Paging";
 import { bindActionCreators } from 'redux';
-import { getSearchPost } from "services/PostAPI"
+import { getSearchPost } from "services/postServices"
 class SearchResult extends Component {
     constructor(props) {
         super(props);

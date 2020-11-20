@@ -9,11 +9,11 @@ import {
     POST_GET_IS_LIKE_POST_BY_UID,
     POST_GET_TOP_POST,
     POST_DEL_POST_UNLIKE,
-    POST_GET_CATEGORIES_POST,
     POST_GET_POST_HIGHLIGHTS,
     POST_GET_POST_NEWESTS,
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
+    GET_POST_CATEGORIES,
 } from "constants/constants"
 
 // POST section
@@ -123,14 +123,16 @@ export function postGetPostNewActivities(newActivities) {
     }
 }
 
-export function postGetCategoriesPost(categories) {
+//
+export function get_PostCategories(categories) {
     return {
-        type: POST_GET_CATEGORIES_POST,
+        type: GET_POST_CATEGORIES,
         payload: { 
             categories: categories
         }
     }
 }
+//
 
 export function postGetPostByID(post) {
     return {

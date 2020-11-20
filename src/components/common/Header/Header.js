@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
-import { getCurrentUser } from "services/UserAPI"
+import { getCurrentUser } from "services/userServices"
 import { HOST, PORT } from 'constants/constants';
 
 import red_delete_icon from 'assets/images/red_delete_icon.png';
@@ -148,26 +148,26 @@ class Header extends Component {
                                     <div className="Sub_Result_Port" id="quick-search-post-result-port">
                                         <div className="Sub_Result_Title">BÀI VIẾT</div>
                                         {quickSearchResult.post.map(result =>
-                                            <div className="display-flex margin_top_5px"><img className="Result_Image margin-right-5px" />
+                                            <div className="display-flex margin-top-5px"><img className="Result_Image margin-right-5px" />
                                                 <div className="Result_Title">{result}
                                                 </div>
                                             </div>)
                                         }
                                     </div>
                                     <div className="Sub_Result_Port" id="quick-search-doc-result-port">
-                                        <div className="Sub_Result_Title margin_top_5px">TÀI LIỆU</div>
+                                        <div className="Sub_Result_Title margin-top-5px">TÀI LIỆU</div>
                                         {quickSearchResult.doc.map(result =>
-                                            <div className="display-flex margin_top_5px">
+                                            <div className="display-flex margin-top-5px">
                                                 <img className="Result_Image margin-right-5px" />
                                                 <div className="Result_Title">{result}</div>
                                             </div>
                                         )}
                                     </div>
-                                    <div className="Sub_Result_Port margin_top_5px" id="quick-search-tag-result-port">
-                                        <div className="Sub_Result_Title margin_top_5px ">TAGS</div>
+                                    <div className="Sub_Result_Port margin-top-5px" id="quick-search-tag-result-port">
+                                        <div className="Sub_Result_Title margin-top-5px ">TAGS</div>
 
                                         {quickSearchResult.tag.map(result =>
-                                            <div className="display-flex margin_top_5px">
+                                            <div className="display-flex margin-top-5px">
                                                 <img className="Result_Image margin-right-5px" />
                                                 <div className="Result_Title">{result}</div>
                                             </div>)
@@ -193,19 +193,19 @@ class Header extends Component {
                             <div className="Sub_Result_Port" id="quick-search-post-result-port" >
                                 <div className="Sub_Result_Title" > BÀI VIẾT </div>
                                 {quickSearchResult.post.map(result =>
-                                    <div className="display-flex margin_top_5px" >
+                                    <div className="display-flex margin-top-5px" >
                                         <img className="Result_Image margin-right-5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
                             <div className="Sub_Result_Port" id="quick-search-doc-result-port" >
-                                <div className="Sub_Result_Title margin_top_5px" > TÀI LIỆU </div> {quickSearchResult.doc.map(result =>
-                                    <div className="display-flex margin_top_5px" >
+                                <div className="Sub_Result_Title margin-top-5px" > TÀI LIỆU </div> {quickSearchResult.doc.map(result =>
+                                    <div className="display-flex margin-top-5px" >
                                         <img className="Result_Image margin-right-5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
-                            <div className="Sub_Result_Port margin_top_5px" id="quick-search-tag-result-port" >
-                                <div className="Sub_Result_Title margin_top_5px " > TAGS </div> {quickSearchResult.tag.map(result =>
-                                    <div className="display-flex margin_top_5px" >
+                            <div className="Sub_Result_Port margin-top-5px" id="quick-search-tag-result-port" >
+                                <div className="Sub_Result_Title margin-top-5px " > TAGS </div> {quickSearchResult.tag.map(result =>
+                                    <div className="display-flex margin-top-5px" >
                                         <img className="Result_Image margin-right-5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>

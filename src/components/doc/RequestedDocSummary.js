@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/shared_components/DocPostSummary.scss'
+import 'components/shared/DocPostSummary.scss'
 import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
@@ -47,38 +47,38 @@ class RequestedDocSummary extends Component {
 
         return (
 
-            <div className="summary-item" >
-                <div className="summary-item-main-layout">
-                    <div className="summary-item-author-date-metadata">
-                        <div className="summary-item-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="item-container" >
+                <div className="item-container-main-layout">
+                    <div className="item-container-author-date-metadata">
+                        <div className="item-container-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="summary-item_Requested_Date">
+                        <div className="item-container_Requested_Date">
                             {this.requestedDate}
                         </div>
                     </div>
 
-                    <div className="Requested_summary-item_Header_2">
+                    <div className="Requested_item-container_Header_2">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_summary-item_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                    <div className="Requested_item-container_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div>
 
-                    <div className="summary-item-title">
+                    <div className="item-container-title">
                         {this.props.title}
                     </div>
 
-                    <div className="summary-item_Content">
+                    <div className="item-container-summary">
                         {this.props.content}
                     </div>
 
-                    <div className="summary-item-image-layout">
-                        <img alt="post" className="summary-item-image" src={this.props.image}></img>
+                    <div className="item-container-image-layout">
+                        <img alt="post" className="item-container-image" src={this.props.image}></img>
                     </div>
 
                 </div>
-                <div className="summary-item_Footer">
+                <div className="item-container_Footer">
                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
                     <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                 </div>

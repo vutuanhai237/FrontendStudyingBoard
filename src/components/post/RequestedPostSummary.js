@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
 
-import 'components/shared_components/DocPostSummary.scss'
+import 'components/shared/DocPostSummary.scss'
 import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
-class RequestedDocSummary extends Component {
+class RequestedPostSummary extends Component {
 
     constructor(props) {
         super(props);
 
-        //type: isNormalItem
         this.id = this.props.id;
         this.authorName = this.props.authorName;
         this.authorID = this.props.authorID;
-
-        //for approving
-        this.publishDate = this.props.publishDate;
-        this.categoryName = this.props.categoryName;
+        this.requestedDate = this.props.requestedDate;
+        this.requestedTime = this.props.requestedTime;
+        this.requestedCategory = this.props.requestedCategory;
         this.requestedCategoryID = this.props.requestedCategoryID;
-
-        //post information
+        this.semester = this.props.semester;
+        this.year = this.props.year;
+        this.subject = this.props.subject;
         this.title = this.props.title;
         this.content = this.props.content;
         this.image = this.props.image;
@@ -28,7 +27,7 @@ class RequestedDocSummary extends Component {
         this.viewCount = this.props.viewCount;
         this.downCount = this.props.downCount;
 
-        //this.isRejectRequestedPopupOpen = false;
+        this.isRejectRequestedPopupOpen = false;
 
         this.state = {
             // isRejectRequestedPopupOpen: false,
@@ -45,39 +44,47 @@ class RequestedDocSummary extends Component {
     }
 
     render() {
+
         return (
 
-            <div className="summary-item" >
-                <div className="summary-item-main-layout">
-                    <div className="summary-item-author-date-metadata">
-                        <div className="summary-item" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="item-container" >
+                <div className="item-container-main-layout">
+                    <div className="item-container-author-date-metadata">
+                        <div className="item-container-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="summary-item-publish-date">
-                            {this.publishDate}
+                        <div className="item-container_Requested_Date">
+                            {this.requestedDate}
                         </div>
                     </div>
 
-                    <div className="summary-item-title">
+                    <div className="Requested_item-container_Header_2">
+                        vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
+                    <div className="Requested_item-container_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                            {this.requestedCategory}
+                        </div>
+                    </div>
+
+                    <div className="item-container-title">
                         {this.props.title}
                     </div>
 
-                    <div className="summary-item_Content">
+                    <div className="item-container-summary">
                         {this.props.content}
                     </div>
 
-                    <div className="summary-item-image-layout">
-                        <img alt="post" className="summary-item-image" src={this.props.image}></img>
+                    <div className="item-container-image-layout">
+                        <img alt="post" className="item-container-image" src={this.props.image}></img>
                     </div>
 
                 </div>
-                {/* <div className="summary-item_Footer">
+                <div className="item-container_Footer">
                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
                     <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
-                </div> */}
+                </div>
 
                 {/* Popup for reject requested post */}
-                {/* <CustomModal
+                <CustomModal
                     shadow={true}
                     type="confirmation"
                     open={this.isRejectRequestedPopupOpen}
@@ -88,17 +95,20 @@ class RequestedDocSummary extends Component {
                     <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
                     <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
-                </CustomModal> */}
+                </CustomModal>
 
 
             </div>
-
-
         );
     }
 
     navigateToAuthorPersonalPage = () => {
-        window.location.href = "/user/" + this.authorID;
+        if (window.location.pathname.substring(0, 6) === "/admin") {
+            window.location.href = "/admin/user/" + this.authorID;
+            return;
+        }
+        if (window.location.pathname.substring(0, 5) === "/user")
+            window.location.href = "/user/" + this.authorID;
     }
 
     navigateToSameCategoryDocsPage = () => {
@@ -133,4 +143,4 @@ class RequestedDocSummary extends Component {
 
 
 }
-export default RequestedDocSummary;
+export default RequestedPostSummary;

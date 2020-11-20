@@ -9,7 +9,7 @@ import { withRouter } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
 import SummaryDocument from "components/common/document/SummaryDocument/SummaryDocument";
 import { bindActionCreators } from 'redux';
-import { getTopDoc } from "services/DocAPI"
+import { getTopDoc } from "services/docServices"
 
 class TopDoc extends Component {
     constructor(props) {

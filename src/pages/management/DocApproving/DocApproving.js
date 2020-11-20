@@ -2,12 +2,12 @@
 import React, { Component } from 'react'
 import '../AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
-import RequestedDocSummaryItem from 'components/management/RequestedDocSummary/RequestedDocSummary'
+import RequestedDocSummary from 'components/doc/RequestedDocSummary'
 
 import Paginator from 'components/common/Paginator/ClientPaginator'
 
 //import for redux
-import { management_getAllNotApprovedDocuments } from "services/management_services/management_docAPIs"
+import { management_getAllNotApprovedDocuments } from "services/authorized/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -55,7 +55,7 @@ class DocApprovingPage extends Component {
             this.notApprovedDocumentsList = this.props.requestedDocs;
 
             summaryRequestedDocList = this.state.currentInteractList.map((requestedDoc) => (
-                < RequestedDocSummaryItem
+                < RequestedDocSummary
                     key={requestedDoc.id}
                     id={requestedDoc.id}
                     authorName={requestedDoc.authorName}
@@ -76,7 +76,7 @@ class DocApprovingPage extends Component {
                     //not need
                     publishDate={requestedDoc.documentPublishDtm}
 
-                ></RequestedDocSummaryItem >)
+                ></RequestedDocSummary >)
             )
         }
         return (

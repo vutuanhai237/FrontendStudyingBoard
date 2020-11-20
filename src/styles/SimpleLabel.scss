@@ -19,44 +19,8 @@
     padding-right: 5px;
 }
 
-.gray-label_Fit_Content_Right {
-    width: fit-content;
-    height: fit-content;
-    min-width: 80px;
-    text-align: right;
-    vertical-align: middle;
-    font-size: 1.1rem;
-    line-height: 20px;
-    padding-top: 3px;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 1.1rem;
-    line-height: 100%;
-    color: #363636;
-    user-select: none;
-    margin-bottom: 5px;
-    margin-top: 2px;
-}
 
-
-.gray-label_Fit_Content {
-    width: fit-content;
-    height: fit-content;
-    min-width: 80px;
-    vertical-align: middle;
-    font-size: 1.1rem;
-    line-height: 20px;
-    padding-top: 3px;
-    text-align: left;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 1.1rem;
-    line-height: 100%;
-    color: #363636;
-    user-select: none;
-    margin-bottom: 5px;
-    margin-top: 2px;
-}
-
-.Simple_Blue_Label {
+.blue-label {
     width: 100%;
     height: fit-content;
     vertical-align: auto;
@@ -86,6 +50,23 @@
     user-select: none;
     min-width: 80px;
     width: 100%;
+}
+
+.filter-label {
+    margin-top: 2px;
+    width: fit-content;
+    height: fit-content;
+    min-width: 80px;
+    vertical-align: middle;
+    font-size: 1.1rem;
+    line-height: 20px;
+    padding-top: 3px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 1.1rem;
+    line-height: 100%;
+    color: #363636;
+    user-select: none;
+    margin-bottom: 5px;
 }
 
 .Is_Form_Label {

@@ -26,7 +26,7 @@ import 'styles/SimpleLabel.scss'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from 'services/UserAPI'
+import { getCurrentUser } from 'services/userServices'
 
 //import for permission
 import {

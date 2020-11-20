@@ -13,7 +13,7 @@ import { ClickAwayListener } from '@material-ui/core';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { management_getAllUsers, management_getAllRoles } from 'services/management_services/management_userAPIs'
+import { management_getAllUsers, management_getAllRoles } from 'services/authorized/userServices'
 
 import { getRoleNameByName } from 'utils/PermissionManagement'
 

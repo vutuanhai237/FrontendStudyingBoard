@@ -1,7 +1,7 @@
 import {
     POST_GET_POST_BY_ID,
     POST_GET_SEARCH_POST,
-    POST_GET_CATEGORIES_POST,
+    GET_POST_CATEGORIES,
     POST_GET_TOP_POST,
     POST_GET_POST_COMMENT_BY_ID,
     POST_GET_IS_LIKE_POST_BY_UID,
@@ -31,7 +31,7 @@ function PostReducer(state = initialState, action) {
         case POST_POST_POST:
             return { ...state, statusPostPostCode: action.payload.statusPostPostCode }
         case POST_GET_TAGS_BY_ID:
-            
+
             return { ...state, tags: action.payload.tags }
         case POST_GET_POST_HIGHLIGHTS:
             console.log(action.payload.highlights)
@@ -46,8 +46,6 @@ function PostReducer(state = initialState, action) {
             return { ...state, currentPost: currentPost, isFetchSuccess: false };
         case POST_GET_SEARCH_POST:
             return { ...state, posts: action.payload.posts };
-        case POST_GET_CATEGORIES_POST:
-            return { ...state, categories: action.payload.categories };
         case POST_GET_TOP_POST:
             return { ...state, topPost: action.payload.topPost };
         case POST_GET_POST_COMMENT_BY_ID:
@@ -56,6 +54,10 @@ function PostReducer(state = initialState, action) {
             var currentPost = state.currentPost;
             currentPost.liked = action.payload.liked;
             return { ...state, currentPost: currentPost, isFetchSuccess: true };
+
+        //
+        case GET_POST_CATEGORIES:
+            return { ...state, categories: action.payload.categories };
         default:
             return state;
     }

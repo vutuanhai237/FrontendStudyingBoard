@@ -13,6 +13,20 @@ export function redirect(url) {
 }
 //#endregion
 
+// export const AppConsts = {
+//     // userManagement: {
+//     //     defaultAdminUserName: 'admin',
+//     // },
+//     // localization: {
+//     //     defaultLocalizationSourceName: 'L11_HelloWork',
+//     // },
+//     authorization: {
+//         encrptedAuthTokenName: 'enc_auth_token',
+//     },
+//     appBaseUrl: process.env.REACT_APP_APP_BASE_URL,
+//     remoteServiceBaseUrl: process.env.REACT_APP_REMOTE_SERVICE_BASE_URL,
+// };
+
 // home
 export const HOME_GET_TOP_DOC = "HOME_GET_TOP_DOC";
 export const HOME_GET_TOP_DOCUMENT = "HOME_GET_TOP_DOCUMENT";
@@ -34,8 +48,9 @@ export const DOC_GET_DOC_BY_ID = "DOC_GET_DOC_BY_ID";
 // post
 //// 1. For writer
 export const POST_POST_POST = "POST_POST_POST";
-export const POST_GET_CATEGORIES_POST = "POST_GET_CATEGORIES_POST";
+export const GET_POST_CATEGORIES = "GET_POST_CATEGORIES";
 export const POST_GET_HASHTAG = "POST_GET_HASHTAG";
+
 //// 2. For reader
 export const POST_POST_LIKE = "POST_POST_LIKE_POST";
 export const POST_POST_SAVE = "POST_POST_COMMENT_POST";
@@ -50,9 +65,6 @@ export const POST_GET_POST_HIGHLIGHTS = "POST_GET_POST_HIGHLIGHTS";
 export const POST_GET_POST_NEWESTS = "POST_GET_POST_NEWESTS";
 export const POST_GET_POST_NEW_ACTIVITIES = "POST_GET_POST_NEW_ACTIVITIES";
 export const POST_GET_TAGS_BY_ID = "POST_GET_TAGS_BY_ID";
-//resource string manage
-export const STR_LOGOUT_VN = "Đăng xuất"
-export const STR_LOGOUT_EN = "Logout"
 
 // user
 export const USER_POST_LOGIN = "USER_POST_LOGIN";
@@ -64,18 +76,20 @@ export const USER_GET_LOGOUT = "USER_GET_LOGOUT";
 //#region management exclusive constant
 
 //for document
-export const MANAGEMENT_GET_ALL_NOT_APPROVED_DOCUMENTS = "MANAGEMENT_GET_ALL_NOT_APPROVED_DOCUMENTS";
-export const MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL = "MANAGEMENT_GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL";
-export const MANAGEMENT_APPROVE_A_DOCUMENT = "MANAGEMENT_APPROVE_A_DOCUMENT";
+export const GET_ALL_NOT_APPROVED_DOCUMENTS = "GET_ALL_NOT_APPROVED_DOCUMENTS";
+export const GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL = "GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL";
+export const APPROVE_A_DOCUMENT = "APPROVE_A_DOCUMENT";
 
 //for user
-export const MANAGEMENT_GET_ALL_USERS = "MANAGEMENT_GET_ALL_USERS"
-export const MANAGEMENT_GET_ALL_ROLES = "MANAGEMENT_GET_ALL_ROLES"
-// export const MANAGEMENT_
+export const GET_ALL_USERS = "GET_ALL_USERS"
+export const GET_ALL_ROLES = "GET_ALL_ROLES"
+// export const 
 
 
 
-export const MANAGEMENT_GET_ALL_DOCS_OF_USER = "MANAGEMENT_GET_ALL_DOCS_OF_USER";
+export const GET_ALL_DOCS_OF_USER = "GET_ALL_DOCS_OF_USER";
+export const GET_USER_POSTS_LIST = "GET_USER_POSTS_LIST";
+
 //#endregion
 
 

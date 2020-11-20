@@ -14,21 +14,21 @@ export default class Combobox extends React.Component {
             isDropdownOpen: false,
             // selectedOption: {
             //     id: "",
-            //     value: ""
+            //     name: ""
             // }
         }
 
         this.selectedOption = {
             id: "",
-            value: ""
+            name: ""
         }
 
         this.placeHolder = "All";
-        //if you don't want to show placeHolder => assign value by "none". 
-        //=> it will show selected option have value equal to value of selectedOption ID
+        //if you don't want to show placeHolder => assign name by "none". 
+        //=> it will show selected option have name equal to name of selectedOption ID
         //placeHolder is not use as an option :)if use want to use an option default, assign placeHolder by none
 
-        //if you used selectedOption ID, please assign value of placeHolder by none 
+        //if you used selectedOption ID, please assign name of placeHolder by none 
 
         this.disabled = false; //if you want to disable combobox, you this.
 
@@ -41,7 +41,7 @@ export default class Combobox extends React.Component {
 
         this.selectedOption = {
             id: this.props.selectedOptionID,
-            value: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].value
+            name: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].name
         }
 
         console.log(this.selectedOption)
@@ -106,7 +106,7 @@ export default class Combobox extends React.Component {
 
         this.selectedOption = {
             id: id,
-            value: this.props.options.filter(item => item.id === id)[0].value
+            name: this.props.options.filter(item => item.id === id)[0].name
         }
 
 
@@ -126,24 +126,22 @@ export default class Combobox extends React.Component {
         if (this.selectedOption.id === "" && this.props.selectedOptionID)
             this.selectedOption = {
                 id: this.props.selectedOptionID,
-                value: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].value
+                name: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].name
             }
 
         let options = this.props.options.map(option =>
             this.selectedOption.id === option.id ?
                 <div className="activated-combo-box-option"
                     id={"combobox-option-" + this.props.id + "-" + option.id}
-                    value={option.id}
                     key={option.id}>
-                    {option.value}
+                    {option.name}
                 </div>
                 :
                 <div className="combo-box-option"
                     id={"combobox-option-" + this.props.id + "-" + option.id}
-                    value={option.id}
                     key={option.id}
                     onClick={() => this.handleOptionClick(option.id)}>
-                    {option.value}
+                    {option.name}
                 </div>
 
         )
@@ -165,11 +163,11 @@ export default class Combobox extends React.Component {
                                                     {this.selectedOption.id ?
                                                         <div>
                                                             {item.id === this.selectedOption.id //neu da chon roi thi se hien thi cac gia tri duoc chon trong bang cac option
-                                                                ? item.value
+                                                                ? item.name
                                                                 : ""}
                                                         </div> : <div>
                                                             {item.id === this.props.selectedOptionID //neu da chon roi thi se hien thi cac gia tri duoc chon trong bang cac option
-                                                                ? item.value
+                                                                ? item.name
                                                                 : ""}
                                                         </div>
                                                     }
@@ -178,12 +176,12 @@ export default class Combobox extends React.Component {
                                         }
                                         </div>
                                         :
-                                        !this.isAnyValueChanged ? //neu dung, khi co thay doi se chuyen thanh selected value
+                                        !this.isAnyValueChanged ? //neu dung, khi co thay doi se chuyen thanh selected name
                                             <div>
 
-                                                {!this.props.selectedOptionID && this.props.placeHolder === "none" ? this.props.options[0].value :
+                                                {!this.props.selectedOptionID && this.props.placeHolder === "none" ? this.props.options[0].name :
                                                     this.props.placeHolder}</div> :
-                                            this.selectedOption.value
+                                            this.selectedOption.name
                                     }
                                 </div>
                             </div>

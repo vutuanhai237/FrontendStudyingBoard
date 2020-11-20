@@ -3,7 +3,7 @@ import {
     userPostRegister,
     userGetCurrentUser,
     userGetLogout,
-} from "actions/UserAction.js";
+} from "actions/userAction.js";
 import {
     HOST,
     PORT

@@ -10,9 +10,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import {
-    getCategoriesPost,
+    getPostCategories,
     getSearchPost,
-} from "services/PostAPI"
+} from "services/postServices"
 class FilterPost extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +26,7 @@ class FilterPost extends Component {
     }
 
     componentDidMount() {
-        this.props.getCategoriesPost();
+        this.props.getPostCategories();
     }
     filterPost() {
         let filter = "";
@@ -87,7 +87,7 @@ const mapStatetoProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCategoriesPost,
+    getPostCategories,
     getSearchPost,
 }, dispatch);
 

@@ -8,7 +8,7 @@ import {
     getSubjects,
     getCategoriesDoc,
     postDoc,
-} from "services/DocAPI.js"
+} from "services/docServices"
 import "./UploadDocument.scss";
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
@@ -67,34 +67,34 @@ class UploadDocument extends Component {
             categoryList: [
                 {
                     id: 1,
-                    value: "Danh muc 1"
+                    name: "Danh muc 1"
                 },
                 {
                     id: 2,
-                    value: "Danh muc 2"
+                    name: "Danh muc 2"
                 },
                 {
                     id: 3,
-                    value: "Danh muc 3"
+                    name: "Danh muc 3"
                 }
             ],
             selectedOption: {
                 id: "",
-                value: ""
+                name: ""
             }
             ,
             subjectList: [
                 {
                     id: 1,
-                    value: "Mon hoc 1"
+                    name: "Mon hoc 1"
                 },
                 {
                     id: 2,
-                    value: "Mon hoc 2"
+                    name: "Mon hoc 2"
                 },
                 {
                     id: 3,
-                    value: "Mon hoc 3"
+                    name: "Mon hoc 3"
                 }
             ],
         };

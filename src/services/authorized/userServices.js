@@ -1,6 +1,6 @@
 import {
     managementGetAllUsers, managementGetAllRoles
-} from "actions/management_actions/management_userActions";
+} from "actions/authorized/userActions";
 import { HOST, PORT } from 'constants/constants';
 import Cookies from 'js-cookie'
 

@@ -147,11 +147,11 @@ class Paginator extends Component {
 
         return (
             <div className="Paginator" style={{ position: "absolute", bottom: this.props.config.bottom }}>
-                <div className="First_Page" onClick={() => { this.onClickPaginationElement(this.currentPage, "first"); this.props.config.changePage(1); }} > first</div>
-                <div className="Prev_Page" onClick={() => { this.onClickPaginationElement(this.currentPage, "prev"); this.props.config.changePage(this.currentPage); }}>Prev </div>
+                <div className="first-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "first"); this.props.config.changePage(1); }} > first</div>
+                <div className="prev-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "prev"); this.props.config.changePage(this.currentPage); }}>Prev </div>
                 {shownPages}
-                <div className="Next_Page" onClick={() => { this.onClickPaginationElement(this.currentPage, "next"); this.props.config.changePage(this.currentPage) }}> Next</div>
-                <div className="Last_Page" onClick={() => { this.onClickPaginationElement(this.currentPage, "last"); this.props.config.changePage(this.props.config.pageCount); }}>last </div>
+                <div className="next-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "next"); this.props.config.changePage(this.currentPage) }}> Next</div>
+                <div className="last-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "last"); this.props.config.changePage(this.props.config.pageCount); }}>last </div>
             </div>
         );
 

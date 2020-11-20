@@ -3,7 +3,7 @@ import {
     managementGetCurrentPreviewDocument,
     managementApproveADocument,
     managementGetAllUserDocList
-} from "actions/management_actions/management_docActions";
+} from "actions/authorized/docActions";
 import { HOST, PORT } from 'constants/constants';
 import Cookies from 'js-cookie'
 
@@ -186,6 +186,7 @@ export function management_getAllUserDocList(userID) { //this API to get all app
             headers: myHeaders,
             redirect: 'follow'
         };
+        
         fetch(`http://${PORT}/user/docs?uid=${userID}&approved=1&page=0`, requestOptions)
             .then(response => response.text())
             .then(

@@ -14,7 +14,7 @@ import {
     getSubjects,
     getCategoriesDoc,
     getSearchDoc,
-} from "services/DocAPI.js"
+} from "services/docServices"
 class FilterDocument extends Component {
     constructor(props) {
         super(props);

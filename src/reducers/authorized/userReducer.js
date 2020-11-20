@@ -1,6 +1,6 @@
 import {
-    MANAGEMENT_GET_ALL_USERS,
-    MANAGEMENT_GET_ALL_ROLES
+    GET_ALL_USERS,
+    GET_ALL_ROLES
 } from 'constants/constants'
 
 const allUsers = [
@@ -31,9 +31,9 @@ const initialState = {
 
 function management_docReducer(state = initialState, action) {
     switch (action.type) {
-        case MANAGEMENT_GET_ALL_USERS:
+        case GET_ALL_USERS:
             return { ...state, allUsers: action.payload }
-        case MANAGEMENT_GET_ALL_ROLES:
+        case GET_ALL_ROLES:
             return { ...state, allRoles: action.payload }
         default:
             {

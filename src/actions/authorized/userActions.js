@@ -1,11 +1,11 @@
 import {
-    MANAGEMENT_GET_ALL_USERS,
-    MANAGEMENT_GET_ALL_ROLES
+    GET_ALL_USERS,
+    GET_ALL_ROLES
 } from 'constants/constants'
 
 export function managementGetAllUsers(allUsers) {
     return {
-        type: MANAGEMENT_GET_ALL_USERS,
+        type: GET_ALL_USERS,
         payload: allUsers
     }
 }
@@ -13,7 +13,7 @@ export function managementGetAllUsers(allUsers) {
 export function managementGetAllRoles(allRoles) {
 
     return {
-        type: MANAGEMENT_GET_ALL_ROLES,
+        type: GET_ALL_ROLES,
         payload: allRoles
     }
 }

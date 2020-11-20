@@ -12,7 +12,7 @@ import { ClickAwayListener } from '@material-ui/core';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCategoriesDoc, getSubjects, getSemesters } from 'services/DocAPI'
+import { getCategoriesDoc, getSubjects, getSemesters } from 'services/docServices'
 
 
 //chuyen thanh chi xem nen chua co handle click cho cac item trong bang danh muc bai viet
@@ -112,7 +112,7 @@ class CategoryManagement extends Component {
                                     </div>
 
                                     <ClickAwayListener onClickAway={() => { this.closeAllPostCategoryListItemActivated() }}>
-                                        <div className="Category_Dropdown_Container  margin_top_5px" id="management-post-category-container">
+                                        <div className="Category_Dropdown_Container  margin-top-5px" id="management-post-category-container">
                                             <div className="Custom_Table_Layout">
                                                 <div className="Custom_Table_Header">
                                                     <div className="Custom_Table_20percents_Header">Mã danh mục</div>
@@ -149,7 +149,7 @@ class CategoryManagement extends Component {
                         </div>
 
                         <div className="Category_Type_Dropdown_Container" id="management-parent-doc-categories-container">
-                            <div className="Category_Component_List margin_top_5px">
+                            <div className="Category_Component_List margin-top-5px">
                                 <div className="Category_Component">
 
                                     {/* Danh sach cac danh muc tai lieu*/}
@@ -161,7 +161,7 @@ class CategoryManagement extends Component {
                                     </div>
 
                                     <ClickAwayListener onClickAway={() => { this.closeAllDocCategoryListItemActivated() }}>
-                                        <div className="Category_Dropdown_Container  margin_top_5px" id="management-doc-categories-container">
+                                        <div className="Category_Dropdown_Container  margin-top-5px" id="management-doc-categories-container">
                                             <div className="Custom_Table_Layout">
                                                 <div className="Custom_Table_Header">
                                                     <div className="Custom_Table_20percents_Header">Mã danh mục</div>
@@ -194,7 +194,7 @@ class CategoryManagement extends Component {
                                     </div>
 
                                     <ClickAwayListener onClickAway={() => { this.closeAllSubjectListItemActivated() }}>
-                                        <div className="Category_Dropdown_Container  margin_top_5px" id="management-doc-subjects-container">
+                                        <div className="Category_Dropdown_Container  margin-top-5px" id="management-doc-subjects-container">
                                             <div className="Custom_Table_Layout">
                                                 <div className="Custom_Table_Header">
                                                     <div className="Custom_Table_20percents_Header">Mã môn học</div>
@@ -227,7 +227,7 @@ class CategoryManagement extends Component {
                                     </div>
 
                                     <ClickAwayListener onClickAway={() => { this.closeAllSemesterListItemActivated() }}>
-                                        <div className="Category_Dropdown_Container  margin_top_5px" id="management-doc-semesters-container">
+                                        <div className="Category_Dropdown_Container  margin-top-5px" id="management-doc-semesters-container">
                                             <div className="Custom_Table_Layout">
                                                 <div className="Custom_Table_Header">
                                                     <div className="Custom_Table_20percents_Header">Mã học kỳ</div>

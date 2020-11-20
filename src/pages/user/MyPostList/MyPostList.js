@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar'
-import DocSummaryItem from 'components/shared_components/DocSummaryItem'
+import PostSummary from 'components/post/PostSummary'
 
 import Paginator from 'components/common/Paginator/ServerPaginator'
 
 //import for redux
-import { management_getAllUserDocList } from "services/management_services/management_docAPIs"
+import { getUserPostsList } from "services/authorized/postServices"
+import { getPostCategories } from "services/postServices"
+
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -15,19 +17,15 @@ import ComboBox from 'components/common/Combobox/Combobox';
 class MyPostList extends Component {
     constructor(props) {
         super();
+
         this.maxItemPerPage = 5;
-
-        this.userDocList = [];
-
-        this.state = {
-            currentInteractList: []
-        }
+        this.userPostsList = [];
 
         this.filter = [
-            { id: 1, value: "Tất cả" },
-            { id: 2, value: "Bài viết đã lưu" },
-            { id: 3, value: "Chưa phê duyệt" },
-            { id: 4, value: "Đã phê duyệt" }
+            { id: 1, name: "Tất cả" },
+            { id: 2, name: "Bài viết đã lưu" },
+            { id: 3, name: "Chưa phê duyệt" },
+            { id: 4, name: "Đã phê duyệt" }
         ]
 
         this.state = {
@@ -36,8 +34,12 @@ class MyPostList extends Component {
     }
 
     componentDidMount() {
+        //must implement: get filter, get doc, page change
+        //get filter
 
-        this.props.management_getAllUserDocList(1);
+
+        this.props.getUserPostsList(); //
+        this.props.getPostCategories()
     }
 
     //server
@@ -52,42 +54,45 @@ class MyPostList extends Component {
     }
 
     render() {
-        let myPostList = <></>; //sau nay se lam mot cai content loader.
+        let myPostsList = <></>; //sau nay se lam mot cai content loader.
         // console.log(this.state.currentInteractList);
-        if (this.props.userDocList) {
-            this.userDocList = this.props.userDocList;
+        console.log("AA");
+        console.log(this.props)
+        if (this.props.userPostsList) {
+            console.log("AA");
+            console.log(this.props)
+            this.userPostsList = this.props.userPostsList;
 
-            myPostList = this.state.currentInteractList.map((myPostItem) => (
-                < DocSummaryItem
+            myPostsList = this.props.userPostsList.map((myPostItem) => (
+                <PostSummary
                     key={myPostItem.id}
                     id={myPostItem.id}
                     authorName={myPostItem.authorName}
                     authorID={myPostItem.authorID}
-                    publishedDate={myPostItem.documentPublishDtm}
-                    publishedTime={myPostItem.myTime}
+                    publishDate={myPostItem.publishDate}
                     categoryName={myPostItem.categoryName}
                     categoryID={myPostItem.categoryID}
                     title={myPostItem.title}
-                    content={myPostItem.summary}
-                    subjectName={myPostItem.subjectName}
-                    subjectID={myPostItem.subjectID}
-                ></DocSummaryItem >)
+                    summary={myPostItem.summary}
+                    imageURL={myPostItem.imageURL}
+                    likedStatus={myPostItem.likedStatus}
+                    savedStatus={myPostItem.savedStatus}
+                ></PostSummary >)
             )
         }
         return (
             <div>
                 <Titlebar title="BÀI VIẾT CỦA TÔI" />
                 <div className="left-side-bar-layout-content-container">
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
 
-                        <div className="gray-label">
-                            Tổng số:
-                            <div style={{ width: "5px" }} />
-                            {this.userDocList.length}
+                        <div className="filter-label display-flex">
+                            <div className="margin-right-5px">Tổng số:</div>
+                            <div>{this.userPostsList.length}</div>
                         </div>
 
                         <div style={{ display: "flex" }}>
-                            <div className="gray-label">Bộ lọc:</div>
+                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
                             <div style={{ marginLeft: "5px" }}> <ComboBox
                                 options={this.filter}
                                 placeHolder="Chọn bộ lọc"
@@ -97,7 +102,9 @@ class MyPostList extends Component {
                         </div>
                     </div>
 
-                    {myPostList}
+
+
+                    {myPostsList}
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
@@ -113,13 +120,15 @@ class MyPostList extends Component {
 }
 
 const mapStatetoProps = (state) => {
+    console.log(state);
     return {
-        userDocList: state.management_doc.userDocList,
+        userPostsList: state.management_post.userPostsList,
+        postCategories: state.doc.categories
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    management_getAllUserDocList
+    getUserPostsList, getPostCategories
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(MyPostList));

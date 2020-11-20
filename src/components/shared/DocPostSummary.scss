@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');   
-.summary-item {
+.item-container {
     position: relative;
     width: 100%;
     height: fit-content;
@@ -14,19 +14,19 @@
     border-top: 3px #eeeeee solid;
 }
 
-.summary-item:hover {
+.item-container:hover {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
     border: 1px white solid;
     border-top: 3px #5279db solid;
 }
 
-.summary-item:active {
+.item-container:active {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
     border-top: 3px #5279db solid;
 }
 
 //general summary item headbar
-.summary-item-author-date-metadata {
+.item-container-author-date-metadata {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -42,7 +42,7 @@
 }
 
 //requested summary item header
-.Requested_summary-item_Header_2 {
+.Requested_item-container_Header_2 {
     display: flex;
     justify-content: flex-start;
     width: 100%;
@@ -83,44 +83,44 @@
 //     margin-right: 0.6rem;
 // }
 //General summary item header 1
-.summary-item-author-link:hover {
+.item-container-author-link:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.summary-item-author-link:active {
+.item-container-author-link:active {
     opacity: 60%;
     cursor: pointer;
 }
 
-.summary-item_Requested_Date {
+.item-container_Requested_Date {
     font-size: 16px;
 }
 
 //General summary item header 2
-.Requested_summary-item_Category {
+.Requested_item-container_Category {
     padding-left: 5px;
     color: #5279db;
 }
 
-.Requested_summary-item_Category:hover {
+.Requested_item-container_Category:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Requested_summary-item_Category:active {
+.Requested_item-container_Category:active {
     opacity: 60%;
 }
 
 //Doc summary item category header
 
 //Content
-.summary-item-main-layout {
+.item-container-main-layout {
     padding: 10px;
     padding-top: 0px;
 }
 
-.summary-item-title {
+.item-container-title {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -132,7 +132,7 @@
     color: #202020;
 }
 
-.summary-item_Content {
+.item-container-summary {
     padding-left: 5px;
     font-family: "Sarabun", sans-serif;
     font-size: 16px;
@@ -164,35 +164,35 @@
     cursor: pointer;
 }
 
-.summary-item-image-layout {
+.item-container-image-layout {
     display: flex;
     width: 100%;
     max-height: 200px;
 }
 
-.summary-item-image {
+.item-container-image {
     width: auto;
     max-height: 200px;
     margin: auto;
 }
 
-.summary-item_Tags_Layout {
+.item-container_Tags_Layout {
     margin-left: 5px;
     margin-top: 5px;
     display: flex;
 }
 
-.summary-item_Continue_Reading_Layout {
+.item-container_Continue_Reading_Layout {
     position: relative;
     height: 32px;
 }
 
-.summary-item_Continue_Reading {
+.item-container_Continue_Reading {
     right: 7px;
     position: absolute;
 }
 
-.summary-item_Footer {
+.item-container_Footer {
     border-top: 1px #c4c4c4 solid;
     padding: 5px;
     display: flex;
@@ -201,7 +201,7 @@
 }
 
 //no for approve
-.Prefix_summary-item_Category {
+.Prefix_item-container_Category {
     background: #5279db;
     width: 5px;
     border-top-left-radius: 3px;
@@ -209,7 +209,7 @@
     margin-right: 5px;
 }
 
-.summary-item_Category {
+.item-container_Category {
     height: 1.5rem;
     line-height: 1.5rem;
     background: #5279db;
@@ -221,14 +221,14 @@
     border-top-right-radius: 3px;
 }
 
-.summary-item_Time_Semester_Subject_Icon {
+.item-container_Time_Semester_Subject_Icon {
     margin-top: 0.6rem;
     width: 0.5rem;
     height: 0.5rem;
     margin-right: 0.1rem;
 }
 
-.summary-item_Time_Semester_Subject_Text {
+.item-container_Time_Semester_Subject_Text {
     line-height: 1.1rem;
     display: flex;
     justify-content: flex-start;
