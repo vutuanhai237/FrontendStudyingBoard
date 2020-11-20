@@ -120,7 +120,7 @@
     display: flex;
 }
 
-.Highlight_Author_Link {
+.Highlight-author-link {
     display: flex;
     justify-content: space-between;
     width: fit-content;
@@ -135,12 +135,12 @@
     user-select: none;
 }
 
-.Highlight_Author_Link:hover {
+.Highlight-author-link:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.Highlight_Summary_Author_Link:active {
+.Highlight_Summary-author-link:active {
     opacity: 60%;
     cursor: pointer;
 }

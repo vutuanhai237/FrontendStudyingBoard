@@ -115,7 +115,7 @@ class DocPreview extends Component {
                         {this.props.currentPreviewDocument ?
 
                             <div>
-                                <div className="DocPost_Detail_Main_Layout">
+                                <div className="DocPost_Detail-main-layout">
 
                                     <div className="DocPost_Detail_Title">
                                         {this.title}
@@ -194,7 +194,7 @@ class DocPreview extends Component {
                                 </div>
                             </div>
                             :
-                            <div className="padding_10px Simple_Gray_Label">
+                            <div className="padding_10px gray-label">
                                 Loading ...
                             </div>
                         }
@@ -209,7 +209,7 @@ class DocPreview extends Component {
                         text="Xác nhận từ chối tiếp nhận bài viết này?"
                         closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
                     >
-                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
                     </CustomModal>
@@ -223,7 +223,7 @@ class DocPreview extends Component {
                         text="Xác nhận duyệt bài viết này?"
                         closeModal={() => { this.isApproveRequestedPopupOpen = false; this.setState({}); }}
                     >
-                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
+                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.handleCancelApproveRequestedPostConfirmation()}>Cancel</button>
                     </CustomModal>
 

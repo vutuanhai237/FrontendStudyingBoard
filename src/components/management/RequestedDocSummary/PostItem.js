@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
 
-import 'components/shared_components/DocPostDetail.scss'
+import 'components/shared_components/DocPostSummary.scss'
+import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
-class PostPreview extends Component {
+class RequestedDocSummary extends Component {
 
     constructor(props) {
         super(props);
 
+        //type: isNormalItem
         this.id = this.props.id;
         this.authorName = this.props.authorName;
         this.authorID = this.props.authorID;
-        this.requestedDate = this.props.requestedDate;
-        this.requestedTime = this.props.requestedTime;
-        this.requestedCategory = this.props.requestedCategory;
+
+        //for approving
+        this.publishDate = this.props.publishDate;
+        this.categoryName = this.props.categoryName;
         this.requestedCategoryID = this.props.requestedCategoryID;
-        this.semester = this.props.semester;
-        this.year = this.props.year;
-        this.subject = this.props.subject;
+
+        //post information
         this.title = this.props.title;
         this.content = this.props.content;
         this.image = this.props.image;
@@ -26,10 +28,10 @@ class PostPreview extends Component {
         this.viewCount = this.props.viewCount;
         this.downCount = this.props.downCount;
 
-        this.isRejectRequestedPopupOpen = false;
+        //this.isRejectRequestedPopupOpen = false;
 
         this.state = {
-
+            // isRejectRequestedPopupOpen: false,
         }
     }
 
@@ -43,48 +45,17 @@ class PostPreview extends Component {
     }
 
     render() {
-
         return (
 
             <div className="summary-item" >
                 <div className="summary-item-main-layout">
                     <div className="summary-item-author-date-metadata">
-                        <div className="summary-item-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
+                        <div className="summary-item" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="summary-item_Requested_Date">
-                            {this.requestedDate}
+                        <div className="summary-item-publish-date">
+                            {this.publishDate}
                         </div>
-                    </div>
-
-                    <div className="Requested_summary-item_Header_2">
-                        vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_summary-item_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
-                            {this.requestedCategory}
-                        </div>
-                    </div>
-
-                    <div className="DocPost_Metadata_Header">
-
-                        <img alt="*" className="Doc_Metadata_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Metadata_Text">
-                            Môn học: &nbsp;
-                        {this.subject}
-                        </div>
-                        <img alt="*" className="Doc_Metadata_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Metadata_Text">
-                            Học kỳ: &nbsp;
-                        {this.semester}
-                        </div >
-                        <img alt="*" className="Doc_Metadata_Icon" src={gray_btn_element} />
-                        <div className="DocPost_Metadata_Text">
-                            Năm học: &nbsp;
-                        {this.year}
-                        </div>
-                    </div>
-
-                    <div className="Requested_Doc_Summary_Header_3">
-                        {/* {this.props.title} */}
                     </div>
 
                     <div className="summary-item-title">
@@ -99,17 +70,14 @@ class PostPreview extends Component {
                         <img alt="post" className="summary-item-image" src={this.props.image}></img>
                     </div>
 
-                    {/* <div className="summary-item_Requested_Tags_Layout">
-                        {tagsGroup}
-                    </div> */}
                 </div>
-                <div className="summary-item_Footer">
+                {/* <div className="summary-item_Footer">
                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
-                    {/* <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div> */}
-                </div>
+                    <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
+                </div> */}
 
                 {/* Popup for reject requested post */}
-                <CustomModal
+                {/* <CustomModal
                     shadow={true}
                     type="confirmation"
                     open={this.isRejectRequestedPopupOpen}
@@ -120,15 +88,17 @@ class PostPreview extends Component {
                     <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
                     <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
-                </CustomModal>
+                </CustomModal> */}
 
 
             </div>
+
+
         );
     }
 
     navigateToAuthorPersonalPage = () => {
-        window.location.href = "/admin/user/" + this.authorID;
+        window.location.href = "/user/" + this.authorID;
     }
 
     navigateToSameCategoryDocsPage = () => {
@@ -136,7 +106,13 @@ class PostPreview extends Component {
     }
 
     handlerPreviewRequestedPost = () => {
-        window.location.href = "/admin/doc_approving/" + this.id;
+        if (window.location.pathname.substring(0, 6) === "/admin") {
+            window.location.href = "/admin/doc_approving/" + this.id;
+            return;
+        }
+        if (window.location.pathname.substring(0, 5) === "/user")
+            window.location.href = "/user/doc_approving/" + this.id;
+
     }
 
     handlerRejectRequestedPost = () => {
@@ -157,4 +133,4 @@ class PostPreview extends Component {
 
 
 }
-export default  PostPreview;
+export default RequestedDocSummary;

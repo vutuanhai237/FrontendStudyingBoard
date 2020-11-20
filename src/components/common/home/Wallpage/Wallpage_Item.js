@@ -69,8 +69,8 @@ export default class WallPaper_Item extends Component {
                                     Danh mục 1
                                 </div>
                             </div>
-                            <div className="Simple_Gray_Label_Fit_Content margin_left_5px">by</div>
-                            <div className="Highlight_Author_Link margin_left_5px" >
+                            <div className="gray-label_Fit_Content margin_left_5px">by</div>
+                            <div className="Highlight-author-link margin_left_5px" >
                                 {/* // onClick={() => this.navigateToAuthorPersonalPage()}> */}
 
                                 {/* {this.authorName} */} Vũ Tuấn Hải

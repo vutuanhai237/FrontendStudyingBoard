@@ -148,7 +148,7 @@ class Header extends Component {
                                     <div className="Sub_Result_Port" id="quick-search-post-result-port">
                                         <div className="Sub_Result_Title">BÀI VIẾT</div>
                                         {quickSearchResult.post.map(result =>
-                                            <div className="display-flex margin_top_5px"><img className="Result_Image margin_right_5px" />
+                                            <div className="display-flex margin_top_5px"><img className="Result_Image margin-right-5px" />
                                                 <div className="Result_Title">{result}
                                                 </div>
                                             </div>)
@@ -158,7 +158,7 @@ class Header extends Component {
                                         <div className="Sub_Result_Title margin_top_5px">TÀI LIỆU</div>
                                         {quickSearchResult.doc.map(result =>
                                             <div className="display-flex margin_top_5px">
-                                                <img className="Result_Image margin_right_5px" />
+                                                <img className="Result_Image margin-right-5px" />
                                                 <div className="Result_Title">{result}</div>
                                             </div>
                                         )}
@@ -168,7 +168,7 @@ class Header extends Component {
 
                                         {quickSearchResult.tag.map(result =>
                                             <div className="display-flex margin_top_5px">
-                                                <img className="Result_Image margin_right_5px" />
+                                                <img className="Result_Image margin-right-5px" />
                                                 <div className="Result_Title">{result}</div>
                                             </div>)
                                         }
@@ -194,19 +194,19 @@ class Header extends Component {
                                 <div className="Sub_Result_Title" > BÀI VIẾT </div>
                                 {quickSearchResult.post.map(result =>
                                     <div className="display-flex margin_top_5px" >
-                                        <img className="Result_Image margin_right_5px" />
+                                        <img className="Result_Image margin-right-5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
                             <div className="Sub_Result_Port" id="quick-search-doc-result-port" >
                                 <div className="Sub_Result_Title margin_top_5px" > TÀI LIỆU </div> {quickSearchResult.doc.map(result =>
                                     <div className="display-flex margin_top_5px" >
-                                        <img className="Result_Image margin_right_5px" />
+                                        <img className="Result_Image margin-right-5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
                             <div className="Sub_Result_Port margin_top_5px" id="quick-search-tag-result-port" >
                                 <div className="Sub_Result_Title margin_top_5px " > TAGS </div> {quickSearchResult.tag.map(result =>
                                     <div className="display-flex margin_top_5px" >
-                                        <img className="Result_Image margin_right_5px" />
+                                        <img className="Result_Image margin-right-5px" />
                                         <div className="Result_Title" > {result} </div> </div>)
                                 } </div>
                         </div>

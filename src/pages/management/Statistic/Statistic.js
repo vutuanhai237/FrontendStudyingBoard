@@ -123,7 +123,7 @@ class Statistic extends Component {
                 <div className="left-side-bar-layout-content-container">
 
                     <div className="flex_container justify-content-space-between margin-top-10px"  >
-                        <div className="Number_Of_Item">
+                        <div className="number-of-item">
                             Tổng số:
                             &nbsp;
                             {this.usersList.length}

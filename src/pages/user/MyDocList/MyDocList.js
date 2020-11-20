@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import DocSummaryItem from 'components/shared_components/DocSummaryItem'
-
-import Paginator from 'components/common/Paginator/ClientPaginator'
+import Paginator from 'components/common/Paginator/ServerPaginator';
+import ComboBox from 'components/common/Combobox/Combobox';
 
 //import for redux
 import { management_getAllNotApprovedDocuments, management_getAllUserDocList } from "services/management_services/management_docAPIs"
@@ -69,7 +69,7 @@ class Management_MyDocList extends Component {
                 <Titlebar title="TÀI LIỆU CỦA TÔI" />
                 <div className="Management_Show_Layout">
 
-                    <div className="Number_Of_Item">
+                    <div className="number-of-item">
                         Tổng số:
                         <div style={{ width: "5px" }} />
                         {this.userDocList.length}

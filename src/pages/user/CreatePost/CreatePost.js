@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux';
 import { getCategoriesPost, postPost } from "services/PostAPI";
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
-import ComboBox from 'components/common/Combobox/Combobox'
+import ComboBox from 'components/common/Combobox/Combobox';
 
 class CreatePost extends Component {
     constructor(props) {
@@ -48,15 +48,15 @@ class CreatePost extends Component {
             categoryList: [
                 {
                     id: 1,
-                    categoryName: "Danh muc 1"
+                    value: "Danh muc 1"
                 },
                 {
                     id: 2,
-                    categoryName: "Danh muc 2"
+                    value: "Danh muc 2"
                 },
                 {
                     id: 3,
-                    categoryName: "Danh muc 3"
+                    value: "Danh muc 3"
                 }
             ],
 
@@ -105,11 +105,9 @@ class CreatePost extends Component {
         })
     }
 
-    changeCurrentCategory = (evt) => {
-        console.log(evt);
-        this.setState({
-            currentCategory: evt
-        })
+    onCategoryOptionChanged = (selectedOption) => {
+        console.log("Option category: ");
+        console.log(selectedOption)
     }
 
     handleUpload = () => {
@@ -135,7 +133,7 @@ class CreatePost extends Component {
         });
     }
 
-
+    //#region  tag region
     quickSearchTags = (e) => {
         console.log("quickSearchTag")
     }
@@ -171,6 +169,9 @@ class CreatePost extends Component {
         console.log(item)
     }
 
+    //#endregion
+
+    //
     handleEditorChange = (e) => {
         console.log(e.editor.getData());
         this.setState({
@@ -179,15 +180,8 @@ class CreatePost extends Component {
     };
 
     handleTitleChange = () => {
-        console.log("A");
         this.setState({
             title: this.refs.title.value,
-        })
-    }
-
-    handleImageURLChange() {
-        this.setState({
-            imageURL: this.refs.imageURL.value,
         })
     }
 
@@ -227,14 +221,7 @@ class CreatePost extends Component {
 
                 {/* Category */}
                 <div className="form-label-required">Danh mục:</div>
-
-                <ComboBox>
-                    {/* <ComboBoxOption>
-
-                    </ComboBoxOption>
-                    <ComboBoxOption>
-
-                    </ComboBoxOption> */}
+                <ComboBox id="create-post-category-combobox" options={this.state.categoryList} onOptionChanged={(selectedOption) => this.onCategoryOptionChanged(selectedOption)} placeHolder="Chọn danh mục">
                 </ComboBox>
 
                 {/* Tag */}

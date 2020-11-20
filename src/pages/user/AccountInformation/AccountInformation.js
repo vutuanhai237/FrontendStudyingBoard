@@ -130,7 +130,7 @@ class AccountInformation extends Component {
                             <div className="Account_Information_Bounding_Layout">
                                 <div className="Account_Information_Layout">
 
-                                    {/* <div className="Simple_Gray_Label">Avatar: </div> */}
+                                    {/* <div className="gray-label">Avatar: </div> */}
                                     <div className="Account_Information_Avatar_Layout">
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src='https://i.imgur.com/SZJgL6C.jpg' ></img> */}
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://drv.tw/~bht.cnpm.uit2@gmail.com/gd/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
@@ -147,7 +147,7 @@ class AccountInformation extends Component {
                                     <div className="margin-top-10px" />
 
                                     <div className="flex_container">
-                                        <div className="Simple_Gray_Label" style={{ lineHeight: "25px" }}>Role:</div>
+                                        <div className="gray-label" style={{ lineHeight: "25px" }}>Role:</div>
                                         <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
                                             <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
@@ -211,7 +211,7 @@ class AccountInformation extends Component {
                                         <div>
                                             {/* Display name */}
                                             <div className="position_relative">
-                                                < div className="Simple_Gray_Label Is_Form_Label">
+                                                < div className="gray-label Is_Form_Label">
                                                     Họ tên:
                                                 </div>
                                                 <input type="text" className="form-input"
@@ -226,19 +226,19 @@ class AccountInformation extends Component {
                                             </div>
 
                                             {/* Username */}
-                                            <div className="Simple_Gray_Label Is_Form_Label">
+                                            <div className="gray-label Is_Form_Label">
                                                 Username:
                                             </div>
                                             <input disabled type="text" className="form-input" defaultValue={this.username} />
 
                                             {/* Password */}
-                                            <div className="Simple_Gray_Label Is_Form_Label">
+                                            <div className="gray-label Is_Form_Label">
                                                 Password:
                                             </div>
                                             <input disabled type="text" className="form-input" value={this.generatePassword()} />
 
                                             {/* Email */}
-                                            <div className="Simple_Gray_Label Is_Form_Label">
+                                            <div className="gray-label Is_Form_Label">
                                                 Email:
                                             </div>
                                             <input disabled type="text" className="form-input" defaultValue={this.email} />
@@ -301,7 +301,7 @@ class AccountInformation extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.handlerCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 
@@ -316,9 +316,9 @@ class AccountInformation extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <div className="Simple_Gray_Label">Xác nhận?</div>
+                        <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
+                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
                             <button className="white-button" onClick={() => this.handlerCancelVerifyUpdateInformation()}>Cancel</button>
                         </div>
                     </CustomModal>
@@ -340,16 +340,16 @@ class AccountInformation extends Component {
                                 maxFileSize={5242880}
                                 singleImage={true}
                                 withPreview={true}
-                                labelClass="Simple_Gray_Label"
+                                labelClass="gray-label"
                             ></ImageUploader>
                         </div>
                         {this.isHaveAnyImageInFileLoader
                             ?
                             <div className="Custom_Modal_Footer">
 
-                                <div className="Simple_Gray_Label">Xác nhận?</div>
+                                <div className="gray-label">Xác nhận?</div>
                                 <div style={{ display: "flex" }}>
-                                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
+                                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
                                     <button className="white-button" onClick={() => { this.isUpdateAvatarPopupOpen = false; this.setState({}) }}>Cancel</button>
                                 </div>
                             </div>

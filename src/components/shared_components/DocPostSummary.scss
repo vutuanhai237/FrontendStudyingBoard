@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');   
-.DocPost_Summary {
+.summary-item {
     position: relative;
     width: 100%;
     height: fit-content;
@@ -14,19 +14,19 @@
     border-top: 3px #eeeeee solid;
 }
 
-.DocPost_Summary:hover {
+.summary-item:hover {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
     border: 1px white solid;
     border-top: 3px #5279db solid;
 }
 
-.DocPost_Summary:active {
+.summary-item:active {
     box-shadow: 0px 0px 5px 1px #c4c4c4;
     border-top: 3px #5279db solid;
 }
 
 //general summary item headbar
-.DocPost_Summary_Author_Date_Metadata {
+.summary-item-author-date-metadata {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -42,7 +42,7 @@
 }
 
 //requested summary item header
-.Requested_DocPost_Summary_Header_2 {
+.Requested_summary-item_Header_2 {
     display: flex;
     justify-content: flex-start;
     width: 100%;
@@ -83,44 +83,44 @@
 //     margin-right: 0.6rem;
 // }
 //General summary item header 1
-.DocPost_Summary_Author_Link:hover {
+.summary-item-author-link:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.DocPost_Summary_Author_Link:active {
+.summary-item-author-link:active {
     opacity: 60%;
     cursor: pointer;
 }
 
-.DocPost_Summary_Requested_Date {
+.summary-item_Requested_Date {
     font-size: 16px;
 }
 
 //General summary item header 2
-.Requested_DocPost_Summary_Category {
+.Requested_summary-item_Category {
     padding-left: 5px;
     color: #5279db;
 }
 
-.Requested_DocPost_Summary_Category:hover {
+.Requested_summary-item_Category:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Requested_DocPost_Summary_Category:active {
+.Requested_summary-item_Category:active {
     opacity: 60%;
 }
 
 //Doc summary item category header
 
 //Content
-.DocPost_Summary_Main_Layout {
+.summary-item-main-layout {
     padding: 10px;
     padding-top: 0px;
 }
 
-.DocPost_Summary_Title {
+.summary-item-title {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -132,7 +132,7 @@
     color: #202020;
 }
 
-.DocPost_Summary_Content {
+.summary-item_Content {
     padding-left: 5px;
     font-family: "Sarabun", sans-serif;
     font-size: 16px;
@@ -164,35 +164,35 @@
     cursor: pointer;
 }
 
-.DocPost_Summary_Image_Layout {
+.summary-item-image-layout {
     display: flex;
     width: 100%;
     max-height: 200px;
 }
 
-.DocPost_Summary_Image {
+.summary-item-image {
     width: auto;
     max-height: 200px;
     margin: auto;
 }
 
-.DocPost_Summary_Tags_Layout {
+.summary-item_Tags_Layout {
     margin-left: 5px;
     margin-top: 5px;
     display: flex;
 }
 
-.DocPost_Summary_Continue_Reading_Layout {
+.summary-item_Continue_Reading_Layout {
     position: relative;
     height: 32px;
 }
 
-.DocPost_Summary_Continue_Reading {
+.summary-item_Continue_Reading {
     right: 7px;
     position: absolute;
 }
 
-.DocPost_Summary_Footer {
+.summary-item_Footer {
     border-top: 1px #c4c4c4 solid;
     padding: 5px;
     display: flex;
@@ -201,7 +201,7 @@
 }
 
 //no for approve
-.Prefix_DocPost_Summary_Category {
+.Prefix_summary-item_Category {
     background: #5279db;
     width: 5px;
     border-top-left-radius: 3px;
@@ -209,7 +209,7 @@
     margin-right: 5px;
 }
 
-.DocPost_Summary_Category {
+.summary-item_Category {
     height: 1.5rem;
     line-height: 1.5rem;
     background: #5279db;
@@ -221,14 +221,14 @@
     border-top-right-radius: 3px;
 }
 
-.DocPost_Summary_Time_Semester_Subject_Icon {
+.summary-item_Time_Semester_Subject_Icon {
     margin-top: 0.6rem;
     width: 0.5rem;
     height: 0.5rem;
     margin-right: 0.1rem;
 }
 
-.DocPost_Summary_Time_Semester_Subject_Text {
+.summary-item_Time_Semester_Subject_Text {
     line-height: 1.1rem;
     display: flex;
     justify-content: flex-start;

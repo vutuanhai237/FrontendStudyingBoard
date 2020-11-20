@@ -123,13 +123,13 @@ class UserManagement extends Component {
                 <div className="left-side-bar-layout-content-container">
 
                     <div className="flex_container justify-content-space-between margin-top-10px"  >
-                        <div className="Number_Of_Item">
+                        <div className="number-of-item">
                             Tổng số:
                             &nbsp;
                             {this.usersList.length}
                         </div>
                         < div className="position_relative flex_container">
-                            {/* <div className="Simple_Gray_Label" style={{ paddingTop: "5px" }}>
+                            {/* <div className="gray-label" style={{ paddingTop: "5px" }}>
                                 Filter:
                             </div> */}
                             {/* &nbsp; */}

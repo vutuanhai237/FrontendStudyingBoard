@@ -45,20 +45,20 @@ class DocSummaryItem extends Component {
 
         return (
 
-            <div className="DocPost_Summary" >
-                <div className="DocPost_Summary_Main_Layout">
-                    <div className="DocPost_Summary_Author_Date_Metadata">
-                        <div className="DocPost_Summary_Author_Link" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="summary-item" >
+                <div className="summary-item-main-layout">
+                    <div className="summary-item-author-date-metadata">
+                        <div className="summary-item-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="DocPost_Summary_Requested_Date">
+                        <div className="summary-item_Requested_Date">
                             {this.publishedDate}
                         </div>
                     </div>
 
-                    {/* <div className="Requested_DocPost_Summary_Header_2">
+                    {/* <div className="Requested_summary-item_Header_2">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_DocPost_Summary_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                    <div className="Requested_summary-item_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div> */}
@@ -86,16 +86,16 @@ class DocSummaryItem extends Component {
                         </div>
                     </div>
 
-                    <div className="DocPost_Summary_Title">
+                    <div className="summary-item-title">
                         {this.props.title}
                     </div>
 
-                    <div className="DocPost_Summary_Content">
+                    <div className="summary-item_Content">
                         {this.props.content}
                     </div>
 
-                    {/* <div className="DocPost_Summary_Image_Layout">
-                        {/* <img alt="post" className="DocPost_Summary_Image" src={this.props.image}></img> */}
+                    {/* <div className="summary-item-image-layout">
+                        {/* <img alt="post" className="summary-item-image" src={this.props.image}></img> */}
 
 
                     {/* </div> */}
@@ -106,15 +106,15 @@ class DocSummaryItem extends Component {
                         {this.fileName}
                     </div>
 
-                    {/* <div className="DocPost_Summary_Requested_Tags_Layout">
+                    {/* <div className="summary-item_Requested_Tags_Layout">
                         {tagsGroup}
                     </div> */}
                 </div>
 
                 <DocReactionBar></DocReactionBar>
 
-                <div className="DocPost_Summary_Continue_Reading_Layout">
-                    <div className="blue-button DocPost_Summary_Continue_Reading"
+                <div className="summary-item_Continue_Reading_Layout">
+                    <div className="blue-button summary-item_Continue_Reading"
                         onClick={() => { window.location.pathname = "/docs/" + this.id }}>
                         Đọc tiếp
                         </div>
@@ -130,7 +130,7 @@ class DocSummaryItem extends Component {
                     text="Xác nhận từ chối tiếp nhận bài viết này?"
                     closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
                     <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
 
                 </CustomModal>

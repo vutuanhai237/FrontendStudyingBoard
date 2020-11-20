@@ -47,10 +47,10 @@ const App = () => {
                     <Route exact path="/search/:keywork" component={Search} />
 
                     <Route exact path="/user" component={UserLayout} />{/* for user and collab */}
-                    <Route exact path="/user/update_password" component={AdminLayout} />
-                    <Route exact path="/user/docs_list" component={AdminLayout} />
-                    <Route exact path="/user/posts_list" component={AdminLayout} />
-                    <Route exact path="/user/notification" component={AdminLayout} />
+                    <Route exact path="/user/update_password" component={UserLayout} />
+                    <Route exact path="/user/docs_list" component={UserLayout} />
+                    <Route exact path="/user/posts_list" component={UserLayout} />
+                    <Route exact path="/user/notification" component={UserLayout} />
 
                     {/* Admin and collab page content management */}
                     {/* for admin */}

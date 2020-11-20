@@ -9,9 +9,14 @@
     padding-top: 1px;
     padding-bottom: 1px;
     border-radius: 5px;
+    position: relative;
+    min-width: 240px;
+    width: fit-content;
+    user-select: none;
 }
 
 .combo-box-option {
+    position: relative;
     box-sizing: border-box;
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
@@ -20,9 +25,11 @@
     user-select: none;
     border-right: 4px white solid;
     border-radius: 5px;
+    z-index: 2;
 }
 
 .activated-combo-box-option {
+    position: relative;
     box-sizing: border-box;
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
@@ -34,10 +41,12 @@
     background: #dedede !important;
     cursor: pointer;
     border-right: 3px #5279db solid;
+    z-index: 2;
 }
 
-.combo-box-container {
+.dropdown-container {
     margin-top: 5px;
+    position: absolute;
     border: 1px #eeeeee solid;
     border-bottom: 3px #5279db solid;
     border-radius: 5px;
@@ -45,8 +54,10 @@
     display: none;
     user-select: none;
     padding: 5px;
-    width: 100%;
+    min-width: 240px;
+    width: fit-content;
     background: white;
+    z-index: 1;
 }
 
 .combo-box:hover,
@@ -62,7 +73,7 @@
     cursor: pointer;
 }
 
-.disabled-combo-box{
+.disabled-combo-box {
     background: #c4c4c4;
     user-select: none;
     display: flex;
@@ -73,4 +84,22 @@
     padding-top: 1px;
     padding-bottom: 1px;
     border-radius: 5px;
+}
+
+.dropdown-icon {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+
+}
+
+.combo-box-text {
+    box-sizing: border-box;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 1.1rem;
+    color: #363636;
+    padding-left: 0.35rem;
+    text-decoration: none !important;
+    outline: 0px;
 }

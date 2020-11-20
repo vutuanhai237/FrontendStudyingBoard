@@ -129,8 +129,8 @@ class CategoryManagement extends Component {
                                         </div>
                                     </ClickAwayListener>
                                     <div className="Category_Buttons_Layout">
-                                        <button className="blue-button margin_right_5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
-                                        <button className="white-button margin_right_5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
+                                        <button className="blue-button margin-right-5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
+                                        <button className="white-button margin-right-5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
                                         <button className="red-button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>
                                     </div>
                                 </div>
@@ -178,8 +178,8 @@ class CategoryManagement extends Component {
                                             </div>
 
                                             {/* <div className="Category_Buttons_Layout" >
-                                            <div className="blue-button margin_right_5px">Thêm</div>
-                                            <div className="white-button margin_right_5px">Sửa</div>
+                                            <div className="blue-button margin-right-5px">Thêm</div>
+                                            <div className="white-button margin-right-5px">Sửa</div>
                                             <div className="red-button">Xóa</div>
                                         </div> */}
                                         </div>
@@ -211,8 +211,8 @@ class CategoryManagement extends Component {
                                             </div>
 
                                             {/* <div className="Category_Buttons_Layout" >
-                                            <div className="blue-button margin_right_5px">Thêm</div>
-                                            <div className="white-button margin_right_5px">Sửa</div>
+                                            <div className="blue-button margin-right-5px">Thêm</div>
+                                            <div className="white-button margin-right-5px">Sửa</div>
                                             <div className="red-button">Xóa</div>
                                         </div> */}
                                         </div>
@@ -246,8 +246,8 @@ class CategoryManagement extends Component {
                                             </div>
 
                                             <div className="Category_Buttons_Layout" >
-                                                <div className="blue-button margin_right_5px">Thêm</div>
-                                                <div className="white-button margin_right_5px">Sửa</div>
+                                                <div className="blue-button margin-right-5px">Thêm</div>
+                                                <div className="white-button margin-right-5px">Sửa</div>
                                                 <div className="red-button">Xóa</div>
                                             </div>
                                         </div>
@@ -267,14 +267,14 @@ class CategoryManagement extends Component {
                         closeModal={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}); }}
                     >
                         <div className="Custom_Modal_Body">
-                            <div className="Simple_Gray_Label"> Tên danh mục mới: </div>
+                            <div className="gray-label"> Tên danh mục mới: </div>
                             <input type="text" className="form-input" placeholder="Nhập tên danh mục ..." />
                         </div>
 
                         <div className="Custom_Modal_Footer">
-                            <div className="Simple_Gray_Label">Xác nhận?</div>
+                            <div className="gray-label">Xác nhận?</div>
                             <div style={{ display: "flex" }}>
-                                <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
+                                <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
                                 <button className="white-button" onClick={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                             </div>
                         </div>
@@ -289,14 +289,14 @@ class CategoryManagement extends Component {
                         closeModal={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}); }}
                     >
                         <div className="Custom_Modal_Body">
-                            <div className="Simple_Gray_Label"> Tên danh mục: </div>
+                            <div className="gray-label"> Tên danh mục: </div>
                             <input type="text" className="form-input" defaultValue={this.selected_category_name} />
                         </div>
 
                         <div className="Custom_Modal_Footer">
-                            <div className="Simple_Gray_Label">Xác nhận?</div>
+                            <div className="gray-label">Xác nhận?</div>
                             <div style={{ display: "flex" }}>
-                                <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
+                                <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
                                 <button className="white-button" onClick={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                             </div>
                         </div>
@@ -311,7 +311,7 @@ class CategoryManagement extends Component {
                         open={this.isVerifyDeletePostCategoryPopupOpen}
                         closeModal={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}); }}
                     >
-                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
+                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                     </CustomModal>
 

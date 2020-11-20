@@ -66,11 +66,11 @@ class UpdatePassword extends Component {
                     {/* <div className="Account_Information_Bounding_Layout"> */}
                     <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
 
-                        <div className="Simple_Gray_Label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
+                        <div className="gray-label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
 
                         {/* Current password */}
                         <div className="position_relative" >
-                            <div className="Simple_Gray_Label margin-top-10px">
+                            <div className="gray-label margin-top-10px">
                                 Mật khẩu hiện tại:
                                     </div>
                             <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="form-input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
@@ -81,7 +81,7 @@ class UpdatePassword extends Component {
 
                         {/* New password */}
                         <div className="position_relative" >
-                            <div className="Simple_Gray_Label Is_Form_Label">
+                            <div className="gray-label Is_Form_Label">
                                 Mật khẩu mới:
                                     </div>
                             <input type="password" defaultValue="" autoComplete="off" placeholder="Nhập mật khẩu mới ..." className="form-input" onChange={(e) => this.handlerChangeNewPassword(e)} />
@@ -99,7 +99,7 @@ class UpdatePassword extends Component {
 
                         {/* Confirm new password */}
                         <div className="position_relative" >
-                            <div className="Simple_Gray_Label Is_Form_Label">
+                            <div className="gray-label Is_Form_Label">
                                 Xác nhận mật khẩu:
                                 </div>
                             <input type="password" autoComplete="off" defaultValue="" placeholder="Nhập lại mật khẩu mới ..." className="form-input" onChange={(e) => this.handlerChangeConfirmationPassword(e)} />
@@ -135,7 +135,7 @@ class UpdatePassword extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 

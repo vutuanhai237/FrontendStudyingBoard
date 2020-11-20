@@ -92,12 +92,12 @@ class NotificationManagement extends Component {
                                 </ClickAwayListener>
                                 <div className="Category_Buttons_Layout flex_container justify-content-md-between">
                                     <div>
-                                        <button className="blue-button margin_right_5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
+                                        <button className="blue-button margin-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
                                         <button className="white-button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>
                                     </div>
                                     <div>
-                                        <button className="blue-button margin_right_5px" onClick={() => this.handlerClickAddNotification()}>Thêm</button>
-                                        <button className="white-button margin_right_5px" disabled={!this.state.canClickEditNotification} onClick={() => this.handlerClickEditNotification()}>Sửa</button>
+                                        <button className="blue-button margin-right-5px" onClick={() => this.handlerClickAddNotification()}>Thêm</button>
+                                        <button className="white-button margin-right-5px" disabled={!this.state.canClickEditNotification} onClick={() => this.handlerClickEditNotification()}>Sửa</button>
                                         <button className="red-button" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerClickDeleteNotification()}>Xóa</button>
                                     </div>
                                 </div>
@@ -118,14 +118,14 @@ class NotificationManagement extends Component {
                     closeModal={() => { this.isAddNotificationPopupOpen = false; this.setState({}); }}
                 >
                     <div className="Custom_Modal_Body">
-                        <div className="Simple_Gray_Label"> Nội dung thông báo: </div>
+                        <div className="gray-label"> Nội dung thông báo: </div>
                         <input type="text" className="form-input" placeholder="Nhập tên thông báo ..." />
                     </div>
 
                     <div className="Custom_Modal_Footer">
-                        <div className="Simple_Gray_Label">Xác nhận?</div>
+                        <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
+                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
                             <button className="white-button" onClick={() => { this.isAddNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
@@ -140,14 +140,14 @@ class NotificationManagement extends Component {
                     closeModal={() => { this.isEditNotificationPopupOpen = false; this.setState({}); }}
                 >
                     <div className="Custom_Modal_Body">
-                        <div className="Simple_Gray_Label"> Tên thông báo: </div>
+                        <div className="gray-label"> Tên thông báo: </div>
                         <input type="text" className="form-input" defaultValue={this.selected_category_name} />
                     </div>
 
                     <div className="Custom_Modal_Footer">
-                        <div className="Simple_Gray_Label">Xác nhận?</div>
+                        <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
+                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
                             <button className="white-button" onClick={() => { this.isEditNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ class NotificationManagement extends Component {
                     open={this.isVerifyDeleteNotificationPopupOpen}
                     closeModal={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="blue-button margin_right_5px" onClick={() => this.handlerVerifyDeleteNotificationConfirmation()}>OK</button>
+                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyDeleteNotificationConfirmation()}>OK</button>
                     <button className="white-button" onClick={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
                 </CustomModal>
 

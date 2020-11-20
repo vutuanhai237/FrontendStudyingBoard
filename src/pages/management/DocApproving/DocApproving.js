@@ -84,7 +84,7 @@ class DocApprovingPage extends Component {
                 <Titlebar title="PHÊ DUYỆT TÀI LIỆU" />
                 <div className="left-side-bar-layout-content-container">
 
-                    <div className="Number_Of_Item">
+                    <div className="number-of-item">
                         Tổng số:
                         <div style={{ width: "5px" }} />
                         {this.notApprovedDocumentsList.length}

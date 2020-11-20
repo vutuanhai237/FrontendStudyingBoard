@@ -85,7 +85,7 @@ class AdminLayout extends Component {
                     {window.onscroll = () => this.scrollFunction()}
 
                     {/* Body Area */}
-                    <div className="Main_Layout">
+                    <div className="left-side-bar-layout">
                         {/* Left Sidebar */}
                         <Router>
                             <div>

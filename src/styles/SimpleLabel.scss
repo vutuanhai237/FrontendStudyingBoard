@@ -1,20 +1,25 @@
-.Simple_Gray_Label {
-    width: 100%;
+.gray-label {
+    margin-top: 10px;
+    width: fit-content;
+    // background: green;
     height: fit-content;
+    min-width: 80px;
+    // text-align: right;
     vertical-align: middle;
-    text-align: left;
-    font-family: 'BarlowCondensed-Medium';
     font-size: 1.1rem;
     line-height: 20px;
-    padding-top: 2x;
+    padding-top: 3px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 1.1rem;
+    line-height: 100%;
     color: #363636;
     user-select: none;
-    min-width: 80px;
     margin-bottom: 5px;
-    margin-top: 2px;
+    // margin-top: 2px;
+    padding-right: 5px;
 }
 
-.Simple_Gray_Label_Fit_Content_Right {
+.gray-label_Fit_Content_Right {
     width: fit-content;
     height: fit-content;
     min-width: 80px;
@@ -33,7 +38,7 @@
 }
 
 
-.Simple_Gray_Label_Fit_Content {
+.gray-label_Fit_Content {
     width: fit-content;
     height: fit-content;
     min-width: 80px;
