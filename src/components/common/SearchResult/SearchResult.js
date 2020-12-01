@@ -7,11 +7,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
-import FilterPost from "components/common/post/FilterPost/FilterPost";
-import Paging from "components/common/Paging/Paging";
 import { bindActionCreators } from 'redux';
-import { getSearchPost } from "services/postServices"
 class SearchResult extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +26,7 @@ class SearchResult extends Component {
         this.setState({
             keywork: keywork,
         })
-        this.props.getSearchPost(`title=${keywork}`);
+        // this.props.getSearchPost(`title=${keywork}`);
 
 
     }
@@ -55,14 +51,13 @@ class SearchResult extends Component {
                         {
                             posts.map(item => {
                                 return <Col sm={12} md={6}>
-                                    <SummaryPost item={item}></SummaryPost>
+                                    {/* <SummaryPost item={item}></SummaryPost> */}
                                 </Col>
                             })
                         }
 
                     </Row>
                 </Card.Body>
-                <Paging type="posts"></Paging>
             </div>
         );
     }
@@ -74,7 +69,7 @@ const mapStateToProps = (state) => {
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getSearchPost,
+    // getSearchPost,
 }, dispatch);
 
 

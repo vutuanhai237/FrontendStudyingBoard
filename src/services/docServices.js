@@ -2,7 +2,6 @@ import {
     docPostDoc,
     docGetCategoriesDoc,
     docGetSubjects,
-    docGetSemesters,
     docGetTopDoc,
     docGetSearchDoc,
     docGetDocByID,
@@ -30,7 +29,7 @@ const doc_v1 = {
         "authorID": 1,
         "authorAvatar": 'https://image.shutterstock.com/image-photo/butterfly-grass-on-meadow-night-260nw-1111729556.jpg',
         "categoryID": 1,
-        "categoryName": "Đề thi",
+        "category": "Đề thi",
         "subjectID": 1,
         "subjectName": "Nhập môn lập trình",
         "viewCount": 3,
@@ -54,7 +53,7 @@ const doc_v2 = {
         "authorID": 1,
         "authorAvatar": 'https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg',
         "categoryID": 9,
-        "categoryName": "Sách",
+        "category": "Sách",
         // "subjectID": 1,
         // "subjectName": "",
         "viewCount": 3,
@@ -77,30 +76,7 @@ const doc_v3 = {
         "authorID": 1,
         "authorAvatar": 'https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg',
         "categoryID": 11,
-        "categoryName": "Slide ôn tập",
-        // "subjectID": 1,
-        // "subjectName": "",
-        "viewCount": 3,
-        "downloadCount": 0,
-        "fileName": "Slide ôn tập nhập môn mạch số năm 2017 - 2018 - BHT Công nghệ phần mềm",
-        // "semesterId": 1,
-        // "semesterName": "HK1 * 2016-2017"
-    }
-}
-
-const doc_v4 = {
-    "statusCode": 15,
-    "statusMessage": "Get resource success!",
-    "documentDTO": {
-        "id": 4,
-        "url": "bom",
-        "title": "",
-        "summary": "",
-        "authorName": "Huỳnh Thị Kim Thảo",
-        "authorID": 1,
-        "authorAvatar": 'https://www.uu.se/digitalAssets/805/c_805646-l_1-k_image.jpg',
-        "categoryID": 11,
-        "categoryName": "Slide ôn tập",
+        "category": "Slide ôn tập",
         // "subjectID": 1,
         // "subjectName": "",
         "viewCount": 3,
@@ -161,24 +137,6 @@ export function getCategoriesDoc() {
     }
 }
 
-export function getSemesters() {
-    return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch(`http://${PORT}/semesters`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetSemesters(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = [categoriesList[16], categoriesList[17], categoriesList[18]];
-        // dispatch(docGetSemesters(result));
-    }
-}
-
 export function getSubjects() {
     return dispatch => {
         var requestOptions = {
@@ -191,7 +149,7 @@ export function getSubjects() {
             .then(result => {
                 dispatch(docGetSubjects(JSON.parse(result)));
             })
-        .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error));
         // const result = [categoriesList[19], categoriesList[20], categoriesList[21], categoriesList[22]];
         // dispatch(docGetSubjects(result));
 

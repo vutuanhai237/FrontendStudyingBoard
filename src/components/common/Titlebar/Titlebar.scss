@@ -1,16 +1,16 @@
 /* Menu bar */
-.Horizontal_Menu_Bar {
+.title-bar {
     display: flex;
-    border-bottom: 5px #5279db solid;
+    border-bottom: 5px var(--blue) solid;
     width: 100%;
     user-select: none;
 }
 
-.Horizontal_Menu_Bar .Horizontal_Menu_Item {
+.title-bar .Horizontal_Menu_Item {
     width: fit-content;
     padding-right: 20px;
     padding-left: 20px;
-  font-family: "BarlowCondensed-Medium";
+    font-family: "BarlowCondensed-Medium";
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -18,19 +18,7 @@
     user-select: none;
 }
 
-.Horizontal_Menu_Item_Notification {
-    position: relative;
-    top: -15px;
-    right: 0px;
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: #5279db;
-    color: white;
-    border: 2px solid white;
-}
-
-.Horizontal_Menu_Bar .First_Horizontal_Menu_Item {
+.title-bar .First_Horizontal_Menu_Item {
     user-select: none;
     width: fit-content;
     padding-right: 20px;
@@ -41,20 +29,20 @@
     color: #363636;
 }
 
-.Horizontal_Menu_Bar .First_Horizontal_Menu_Item:hover {
+.title-bar .First_Horizontal_Menu_Item:hover {
     color: white;
-    background: #5279db;
+    background: var(--blue);
     padding-left: 20px;
     cursor: pointer;
 }
 
-.Horizontal_Menu_Bar .Horizontal_Menu_Item:hover {
+.title-bar .Horizontal_Menu_Item:hover {
     color: white;
-    background: #5279db;
+    background: var(--blue);
     cursor: pointer;
 }
 
-.Horizontal_Menu_Bar .Horizontal_Menu_Item:active {
+.title-bar .Horizontal_Menu_Item:active {
     background: #c4c4c4;
     cursor: pointer;
 }
@@ -67,5 +55,5 @@
     line-height: 35px;
     width: 100%;
     text-align: center;
-    color: #5279db;
+    color: var(--blue);
 }

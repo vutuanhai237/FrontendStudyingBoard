@@ -2,7 +2,7 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
     GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
     APPROVE_A_DOCUMENT,
-    GET_ALL_DOCS_OF_USER
+    GET_MY_DOCUMENTS
 } from 'constants/constants'
 
 const requestedDocs = [
@@ -40,9 +40,9 @@ function management_docReducer(state = initialState, action) {
                 return { ...state, currentDocumentApprovedStatus: action.payload }
             }
 
-        case GET_ALL_DOCS_OF_USER:
+        case GET_MY_DOCUMENTS:
             {
-                return { ...state, userDocList: action.payload }
+                return { ...state, myDocuments: action.payload }
             }
 
         default:

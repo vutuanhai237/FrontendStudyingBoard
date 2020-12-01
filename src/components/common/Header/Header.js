@@ -86,7 +86,7 @@ class Header extends Component {
         };
 
         return (
-            // <div className="Header_Wrapper"  >
+            <div className="Header_Wrapper"  >
                 <div className="Header" id="header" >
 
                     {/* Begin lv1: contain logo and searchbar */}
@@ -263,7 +263,7 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-            // </div>
+            </div>
         );
     }
 

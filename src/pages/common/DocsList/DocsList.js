@@ -1,61 +1,136 @@
-// Document by VTH
-// function: shows the list of document in ducment page.
-// props from parent: none
-// state: none
-// dependency component: summary document, paging, filter
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { Row, Card, Col } from "react-bootstrap";
-import SummaryDoc from "components/common/document/SummaryDocument/SummaryDocument";
-import FilterDoc from "components/common/document/FilterDocument/FilterDocument";
-import Paging from "components/common/Paging/Paging";
-import { getSearchDoc } from "services/docServices"
-import { bindActionCreators } from 'redux';
+/* eslint-disable react/jsx-pascal-case */
+import React, { Component } from 'react'
+import Titlebar from 'components/common/Titlebar/Titlebar'
+import PostSummary from 'components/post/PostSummary'
+import Paginator from 'components/common/Paginator/ServerPaginator'
+import 'pages/styles/BlankLayout.scss'
+import { postSummaryType } from 'components/post/PostSummary'
 
-class ListDoc extends Component {
+//import for redux
+import { getPostsList } from "services/postServices"
+import { getPostCategories } from "services/postServices"
+
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import ComboBox from 'components/common/Combobox/Combobox';
+
+
+class PostsList extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            current_page: 1,
-        };
+        super();
+
+        this.maxItemPerPage = 5;
+        this.userPostsList = [];
+
+        this.filter = [
+            { id: 1, name: "Tất cả" },
+            { id: 2, name: "Chưa phê duyệt" },
+            { id: 3, name: "Đã phê duyệt" },
+            { id: 4, name: "Cần xem lại" }
+        ]
+
+    }
+
+    componentDidMount() {
+        //must implement: get filter, get doc, page change
+        //get filter
+
+        this.props.getPostsList(); //
+        this.props.getPostCategories()
+    }
+
+    //server
+    onPageChange = (pageNumber) => {
+
+    }
+
+    //
+    onFilterOptionChanged = (selectedOption) => {
+        console.log("Filter search: ")
+        console.log(selectedOption);
     }
 
     render() {
-        const { searchDocs } = this.props;
+        let myPostsList = <></>; //sau nay se lam mot cai content loader.
+        console.log("*");
+        console.log(this.props);
+
+        if (this.props.postsList) {
+
+            this.postsList = this.props.postsList;
+
+            myPostsList = this.props.postsList.map((postItem) => (
+                <PostSummary
+                    type = {postSummaryType.normal}
+                    key={postItem.id}
+                    id={postItem.id}
+                    authorName={postItem.authorName}
+                    authorID={postItem.authorID}
+                    publishedDtm={postItem.publishedDtm}
+                    category={postItem.category}
+                    categoryID={postItem.categoryID}
+                    title={postItem.title}
+                    summary={postItem.summary}
+                    imageURL={postItem.imageURL}
+                    likedStatus={postItem.likedStatus}
+                    savedStatus={postItem.savedStatus}
+                    readingTime={postItem.readingTime}
+                    likes={3} //
+                    commentCount={4} //
+                    approveStatus={false}
+
+                ></PostSummary >)
+            )
+        }
         return (
-            <div id="group-post">
-                <div>
-                    <p style={{ marginTop: "20px" }} className="title">DANH SÁCH TÀI LIỆU</p>
+            <div className="blank-layout">
+                <Titlebar title="BÀI VIẾT" />
+                <div className="blank-layout-container">
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+
+                        <div className="filter-label display-flex">
+                            <div className="margin-right-5px">Tổng số:</div>
+                            <div>{this.userPostsList.length}</div>
+                        </div>
+
+                        <div style={{ display: "flex" }}>
+                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <ComboBox
+                                    options={this.filter}
+                                    placeHolder="Chọn bộ lọc"
+                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                    id="my-post-list-search-filter-combobox"
+                                ></ComboBox></div>
+                        </div>
+                    </div>
+
+                    {myPostsList}
+
+                    <Paginator config={{
+                        changePage: (pageNumber) => this.onPageChange(pageNumber),
+                        maxItemPerPage: this.maxItemPerPage,
+                        numPagesShown: 5,
+                        bottom: "31px"
+                    }}
+                    />
                 </div>
-                <FilterDoc />
-                <Card.Body id="card-body">
-                    <Row>
-                        {searchDocs.map((item) => {
-                            return (
-                                <Col sm={12} md={6}>
-                                    <SummaryDoc
-                                        item={item}
-                                    ></SummaryDoc>
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </Card.Body>
-                <Paging type="documents"></Paging>
             </div>
         );
     }
 }
 
 const mapStatetoProps = (state) => {
+    console.log(state)
     return {
-        searchDocs: state.doc.searchDocs
+        postsList: state.post.posts,
+        postCategories: state.post.categories
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getSearchDoc
+    getPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(ListDoc));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(PostsList));

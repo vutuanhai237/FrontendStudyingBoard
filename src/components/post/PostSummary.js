@@ -5,131 +5,200 @@ import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
+import liked_btn from 'assets/images/liked_btn.png'
+import unliked_btn from 'assets/images/unliked_btn.png'
+import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
+import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
+import { Link } from 'react-router-dom'
+
 class PostSummary extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.id = this.props.id;
-        this.authorName = this.props.authorName;
-        this.authorID = this.props.authorID;
+    this.id = this.props.id;
+    this.authorName = this.props.authorName;
+    this.authorID = this.props.authorID;
 
-        this.publishDate = this.props.publishDate;
-        this.categoryName = this.props.categoryName;
-        this.requestedCategoryID = this.props.requestedCategoryID;
+    this.publishedDtm = this.props.publishedDtm;
+    this.category = this.props.category;
+    this.requestedCategoryID = this.props.requestedCategoryID;
 
-        this.title = this.props.title;
-        this.content = this.props.content;
-        this.image = this.props.image;
-        this.tags = this.props.tags;
-        this.viewCount = this.props.viewCount;
-        this.downCount = this.props.downCount;
+    this.title = this.props.title;
+    this.content = this.props.content;
+    this.image = this.props.image;
+    this.tags = this.props.tags;
 
-        //this.isRejectRequestedPopupOpen = false;
+    this.isLiked = false;
+    this.isSaved = false;
+  }
 
-        this.state = {
-            // isRejectRequestedPopupOpen: false,
-        }
+  componentDidMount() {
+
+  }
+
+  getFirstImage() {
+
+  }
+
+  //#region handle like, unlike buttons
+  toggleLikeImage = () => {
+    this.isLiked = !this.isLiked;
+    this.setState({});
+  }
+
+  toggleSaveImage = () => {
+    this.isSaved = !this.isSaved;
+    this.setState({});
+  }
+  //#endregion
+
+  //#region edit, delete button
+  onDeleteBtnClick = () => {
+
+  }
+
+  onEditBtnClick = () => {
+
+  }
+  //#endregion
+
+  render() {
+
+    //#region like, unlike buttons
+
+    //initiate some element
+    let likeBtn = <div></div>;
+    let saveBtn = <div></div>;
+
+    //render likeBtn
+    if (!this.isLiked) {
+      likeBtn = <img className="like-btn" src={liked_btn} onClick={this.toggleLikeImage}></img>
+    }
+    else {
+      likeBtn = <img className="like-btn" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
     }
 
-
-    componentDidMount() {
-
+    //render saveBtn
+    if (!this.isSaved) {
+      saveBtn = <img className="save-btn" src={full_blue_bookmark_btn}></img>
+    }
+    else {
+      saveBtn = <img className="save-btn" src={gray_bookmark_btn} ></img>
     }
 
-    getFirstImage() {
+    //#endregion
 
-    }
+    return (
+      <div className="summary-container" >
+        <div className="summary-normal-metadata-container" >
+          <div className="display-flex">
 
-    render() {
-        return (
-
-            <div className="item-container" >
-                <div className="item-container-main-layout">
-
-
-                    <div className="item-container-author-date-metadata">
-                        <div className="item-container" onClick={() => this.navigateToAuthorPersonalPage()}>
-                            {this.authorName}
-                        </div>
-                        <div className="item-container-publish-date">
-                            {this.publishDate}
-                        </div>
-                    </div>
-
-                    <div className="item-container-title">
-                        {this.props.title}
-                    </div>
-
-                    <div className="item-container-summary">
-                        {this.props.content}
-                    </div>
-
-                    {/* <div className="item-container-image-layout">
-                        <img alt="post" className="item-container-image" src={this.props.image}></img>
-                    </div> */}
-
-                </div>
-                {/* <div className="item-container_Footer">
-                    <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
-                    <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
-                </div> */}
-
-                {/* Popup for reject requested post */}
-                {/* <CustomModal
-                    shadow={true}
-                    type="confirmation"
-                    open={this.isRejectRequestedPopupOpen}
-                    title="Xác nhận?"
-                    text="Xác nhận từ chối tiếp nhận bài viết này?"
-                    closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
-                >
-                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                    <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
-
-                </CustomModal> */}
-
-
+            <div className="display-flex">
+              <div className="prefix-normal-category" />
+              <div className="normal-category">
+                {this.props.category}
+              </div>
             </div>
 
+            <div className="metadata-gray-label">bởi</div>
+            <div className="link-label" onClick={() => this.navigateToAuthorPersonalPage()}>
+              {this.props.authorName}
+            </div>
 
-        );
+            <div className="display-flex" >
+              <img alt="*" className="metadata-icon" src={gray_btn_element} />
+              <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
+                {this.props.publishedDtm}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="summary-title">
+          {this.props.title}
+        </div>
+        <div className="display-flex" style={{ marginLeft: "15px", marginTop: "-8px" }} >
+          <img alt="*" className="metadata-icon" src={gray_btn_element} />
+          <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
+            {this.props.readingTime} phút đọc
+                        </div>
+        </div>
+        <div className="summary-summary">
+          {this.props.summary}
+        </div>
+
+        <div className="summary-reaction-bar" style={{ right: "5px" }}>
+          <div className="display-flex">
+            <div> {likeBtn}</div>
+            <div className="like-count">{this.props.likes}</div>
+          </div>
+
+          <div className="display-flex">
+            <div className="btn-text-container" onClick={this.toggleSaveImage}>
+              <div>{saveBtn}</div>
+              <div className="save-text">{this.isSaved ? "Lưu" : "Huỷ"}</div>
+            </div>
+            <div className="comment-count-layout">
+              <div className="comment-text">
+                Bình luận
+              </div>
+              <div style={{ paddingLeft: "5px" }}>
+                {this.props.commentCount}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="justify-content-space-between margin-top-5px">
+          <Link>
+            <div className="link-label margin-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
+              Đọc tiếp ...
+            </div>
+          </Link>
+
+          {this.props.type === postSummaryType.mySelf ?
+
+            <div className="display-flex" >
+              <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.onEditBtnClick()}>Chỉnh sửa</div>
+              <div className="red-button" onClick={() => { this.onDeleteBtnClick() }}>Xoá</div>
+            </div>
+            :
+            <></>
+          }
+
+        </div>
+      </div >
+    );
+  }
+
+  handlerPreviewRequestedPost = () => {
+    if (window.location.pathname.substring(0, 6) === "/admin") {
+      window.location.href = "/admin/doc_approving/" + this.id;
+      return;
     }
+    if (window.location.pathname.substring(0, 5) === "/user")
+      window.location.href = "/user/doc_approving/" + this.id;
 
-    navigateToAuthorPersonalPage = () => {
-        window.location.href = "/user/" + this.authorID;
-    }
+  }
 
-    navigateToSameCategoryDocsPage = () => {
-        window.location.href = "/docs/category?id=" + this.requestedCategoryID;
-    }
+  handlerRejectRequestedPost = () => {
+    this.isRejectRequestedPopupOpen = true;
+    this.setState({});
+  }
 
-    handlerPreviewRequestedPost = () => {
-        if (window.location.pathname.substring(0, 6) === "/admin") {
-            window.location.href = "/admin/doc_approving/" + this.id;
-            return;
-        }
-        if (window.location.pathname.substring(0, 5) === "/user")
-            window.location.href = "/user/doc_approving/" + this.id;
+  handleCancelRejectRequestedPostConfirmation = () => {
+    this.isRejectRequestedPopupOpen = false;
+    this.setState({});
+  }
 
-    }
+  handlerVerifyRejectRequestedPostConfirmation = () => {
+    this.isRejectRequestedPopupOpen = false;
+    this.setState({});
+  }
 
-    handlerRejectRequestedPost = () => {
-        this.isRejectRequestedPopupOpen = true;
-        this.setState({});
-    }
-
-    handleCancelRejectRequestedPostConfirmation = () => {
-        this.isRejectRequestedPopupOpen = false;
-        this.setState({});
-    }
-
-    handlerVerifyRejectRequestedPostConfirmation = () => {
-        this.isRejectRequestedPopupOpen = false;
-        this.setState({});
-    }
-
-
+  // likePost() { }
 
 }
 export default PostSummary;
+
+export const postSummaryType = { approving: "APPROVING", normal: "NORMAL", mySelf: "MY_SELF" }

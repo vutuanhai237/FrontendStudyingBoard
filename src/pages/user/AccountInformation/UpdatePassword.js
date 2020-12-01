@@ -66,7 +66,7 @@ class UpdatePassword extends Component {
                     {/* <div className="Account_Information_Bounding_Layout"> */}
                     <form onSubmit={(e) => this.handlerUpdatePassword(e)} autoComplete="off" >
 
-                        <div className="gray-label " style={{ textAlign: "center", color: "#5279db", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
+                        <div className="gray-label " style={{ textAlign: "center", color: "var(--blue)", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
 
                         {/* Current password */}
                         <div className="position_relative" >
@@ -114,7 +114,7 @@ class UpdatePassword extends Component {
                                     </div>
 
                         </div>
-                        <div className="flex_container" >
+                        <div className="display-flex" >
                             <button className="blue-button Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
                                 Xác nhận
                                     </button>

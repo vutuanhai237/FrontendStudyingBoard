@@ -12,7 +12,7 @@ import unliked_btn from 'assets/images/unliked_btn.png'
 import save_btn from 'assets/images/blue_bookmark_btn.png'
 
 //demo only 
-import { highlightPostResults } from "services/postServices";
+import { getHighlightPosts } from "services/postServices";
 
 export default class WallPaper_Item extends Component {
 
@@ -22,7 +22,7 @@ export default class WallPaper_Item extends Component {
             "isLiked": "false",
             "isSaved": "false",
         }
-        this.likeCount = this.props.likeCount;
+        this.likes = this.props.likes;
     }
 
     toggleLikeImage = () => {
@@ -57,32 +57,32 @@ export default class WallPaper_Item extends Component {
 
                 <div className="Wallpage_Right_Content">
 
-                    <div className="flex_container">
+                    <div className="display-flex">
                         <div className="Highlight_Title">NỔI BẬT</div>
                         <div className="Highlight_Title_Underline"></div>
                     </div>
                     <div className="Highlight_Metadata justify-content-space-between">
-                        <div className="flex_container">
-                            <div className="Highlight_Category_Metadata">
-                                <div className="Prefix_Highlight_Metadata" />
-                                <div className="Highlight_Category">
+                        <div className="display-flex">
+                            <div className="Highlight-category_Metadata">
+                                <div className="prefix-Highlight_Metadata" />
+                                <div className="Highlight-category">
                                     Danh mục 1
                                 </div>
                             </div>
-                            <div className="gray-label margin_left_5px">by</div>
-                            <div className="Highlight-author-link margin_left_5px" >
+                            <div className="gray-label margin-left-5px">by</div>
+                            <div className="Highlight-author-link margin-left-5px" >
                                 {/* // onClick={() => this.navigateToAuthorPersonalPage()}> */}
 
                                 {/* {this.authorName} */} Vũ Tuấn Hải
                                  </div>
                             <img alt="*" className="Hightlight_Metadata_Icon" src={btn_element} />
                             <div className="Highlight_Read_Time">
-                                {/* {this.publishDate} */}
+                                {/* {this.publishedDtm} */}
                                10 phút đọc
                                 </div>
                         </div>
                         <div className="Highlight_Published_Date">
-                            {/* {this.publishDate} */}
+                            {/* {this.publishedDtm} */}
                                  20/10/2020
                             </div>
                     </div>
@@ -101,20 +101,20 @@ Thật ra thì ở bất kì thời đại nào, con người vẫn đều tồ�
                     <div className="Highlight_Reaction_Bar">
                         <div className="Highlight_Reaction_Bar_Like_Btn_Layout">
                             <img class="Highlight_Reaction_Bar_Like_Btn" src={this.state.isLiked ? like_btn : unliked_btn} onClick={() => this.toggleLikeImage()}></img>
-                            <div className="Highlight_Reaction_Bar_Like_Count">{this.state.isLiked ? this.props.likeCount + 1 : this.props.likeCount}</div>
+                            <div className="Highlight_Reaction_Bar_Like_Count">{this.state.isLiked ? this.props.likes + 1 : this.props.likes}</div>
                         </div>
 
-                        <div className="Highlight_Reaction_Bar_Save_Comment_Btn_Layout">
-                            <div className="Highlight_Reaction_Bar_Save_Btn_Layout">
-                                <img class="Highlight_Reaction_Bar_Save_Btn" src={this.state.isSaved ? save_btn : full_blue_bookmark_btn} onClick={() => this.toggleSaveImage()}></img>
+                        <div className="Highlight_Reaction_Bar-save-comment-count-layout">
+                            <div className="Highlight_Reaction_Bar-save-btn-layout">
+                                <img class="Highlight_Reaction_Bar-save-btn" src={this.state.isSaved ? save_btn : full_blue_bookmark_btn} onClick={() => this.toggleSaveImage()}></img>
 
                                 <div className="Highlight_Reaction_Bar_Save_Text"> {this.state.isSaved ? "Lưu" : "Huỷ"} </div>
                             </div>
-                            <div className="Highlight_Reaction_Bar_Comment_Btn_Layout">
+                            <div className="Highlight_Reaction_Bar-comment-count-layout">
                                 <div className="Highlight_Reaction_Bar_Comment_Text">
                                     Bình luận
                                 </div>
-                                <div className="Highlight_Reaction_Bar_Comment_Count">
+                                <div className="Highlight_Reaction_Bar-comment-count">
                                     {this.props.commentCount}
                                 </div>
                             </div>
@@ -142,7 +142,7 @@ Thật ra thì ở bất kì thời đại nào, con người vẫn đều tồ�
 //                 <Col />
 //                 <Col>
 //                     <p style={{ display: "inline" }}>
-//                         {item.publishDate}
+//                         {item.publishedDtm}
 //                     </p>
 //                 </Col>
 //                 <Col />

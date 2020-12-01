@@ -2,7 +2,7 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
     GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
     APPROVE_A_DOCUMENT,
-    GET_USER_POSTS_LIST
+    GET_MY_POSTS
 } from 'constants/constants'
 
 const requestedPosts = [
@@ -34,9 +34,8 @@ function authorized_postReducer(state = initialState, action) {
                 return { ...state, currentPostApprovedStatus: action.payload }
             }
 
-        case GET_USER_POSTS_LIST:
+        case GET_MY_POSTS:
             {
-                console.log("S1")
                 console.log(action.payload)
                 return { ...state, userPostsList: action.payload }
                 break;
@@ -44,7 +43,6 @@ function authorized_postReducer(state = initialState, action) {
 
         default:
             {
-                console.log("S2")
                 return state;
             }
     }

@@ -1,8 +1,8 @@
 import {
-    managementGetAllNotApprovedDocuments,
+    get_NotApprovedDocumentsList,
     managementGetCurrentPreviewDocument,
     managementApproveADocument,
-    get_UserPostsList
+    get_MyPostsList
 } from "actions/authorized/postActions";
 import { HOST, PORT } from 'constants/constants';
 // import Cookies from 'js-cookie'
@@ -12,13 +12,13 @@ import { HOST, PORT } from 'constants/constants';
 // import FormData from 'form-data';
 const post_v1 = {
     "id": 3,
-    "title": "some text",
-    "authorName": "some text",
-    "publishDate": "some text",
+    "title": "Cách sử dụng SVG trong front end",
+    "authorName": "Vu Tuan Hai",
+    "publishedDtm": "22/12/2020",
     "readingTime": 0,
-    "categoryName": "some text",
+    "category": "Danh muc 1",
     "summary": "some text",
-    "likeCount": 80,
+    "likes": 80,
     "commentCount": 11,
     "authorID": 42,
     "categoryID": 21,
@@ -30,11 +30,11 @@ const post_v2 = {
     "id": 45,
     "title": "some text",
     "authorName": "some text",
-    "publishDate": "some text",
+    "publishedDtm": "some text",
     "readingTime": 22,
-    "categoryName": "some text",
+    "category": "some text",
     "summary": "some text",
-    "likeCount": 65,
+    "likes": 65,
     "commentCount": 69,
     "authorID": 46,
     "categoryID": 69,
@@ -51,7 +51,7 @@ const post_v4 = {
 
 }
 
-// export function management_getAllNotApprovedDocuments() {
+// export function getNotApprovedDocumentsList() {
 //     return dispatch => {
 
 //         var myHeaders = new Headers();
@@ -66,12 +66,12 @@ const post_v4 = {
 //         //     .then(response => response.text())
 //         //     .then(result => {
 //         //         console.log(result);
-//         //         dispatch(managementGetAllNotApprovedDocuments(JSON.parse(result).shortDocs))
+//         //         dispatch(get_NotApprovedDocumentsList(JSON.parse(result).shortDocs))
 //         //     })
 
 //         //     .catch(error => console.log('error', error));
 //         const result = [post_v1.documentDTO, post_v2.documentDTO, post_v3.documentDTO, post_v4.documentDTO];
-//         dispatch(managementGetAllNotApprovedDocuments(result));
+//         dispatch(get_NotApprovedDocumentsList(result));
 
 //     }
 
@@ -126,7 +126,7 @@ const post_v4 = {
 
 // }
 
-export function getUserPostsList() { //this API to get all approved document of a specific user.
+export function getMyPostsList() { //this API to get all approved document of a specific user.
     return dispatch => {
 
         var myHeaders = new Headers();
@@ -140,11 +140,11 @@ export function getUserPostsList() { //this API to get all approved document of 
         // fetch(`http://${PORT}/user/docs?uid=${userID}&approved=1&page=0`, requestOptions)
         //     .then(response => response.text())
         //     .then(
-        //         result => dispatch(managementGetAllUserDocList(JSON.parse(result))
+        //         result => dispatch(get_MyDocuments(JSON.parse(result))
         //         ))
         //     .catch(error => console.log('error', error))
         let result = [post_v1, post_v2];
-        dispatch(get_UserPostsList(result));
+        dispatch(get_MyPostsList(result));
     }
 
 }

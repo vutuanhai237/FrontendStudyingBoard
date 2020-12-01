@@ -6,10 +6,10 @@
     background: white;
     border-bottom: 3px #c4c4c4 solid;
     width: 100%;
-    box-shadow: 0px 5px 20px #c4c4c4;
+    box-shadow: 0px 0px 5px #c4c4c4;
     min-width: 320px;
     height: fit-content;
-    line-height: 0px;
+    
 }
 
 .Header {
@@ -19,11 +19,12 @@
     width: 100%;
     justify-content: space-between;
     max-width: 1300px;
+    background: white;
 }
 
 .Search_Box_Text_Field::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #5279db;
+    color: var(--blue);
     opacity: 1;
     /* Firefox */
 }
@@ -66,7 +67,7 @@
     width: 100%;
     justify-content: flex-end;
     box-sizing: border-box;
-    background: #5279db;
+    background: var(--blue);
 }
 
 //lon hon 992
@@ -263,7 +264,7 @@
 }
 
 .Header_Menu_Item:hover {
-    border-bottom: #5279db 3px solid;
+    border-bottom: var(--blue) 3px solid;
     cursor: pointer;
     color: #606060;
 }
@@ -328,7 +329,7 @@
 
 .Collapsed_User_Menu_Item:hover {
     cursor: pointer;
-    border-right: #5279db 3px solid;
+    border-right: var(--blue) 3px solid;
     background: #dddddd;
 }
 
@@ -346,7 +347,7 @@
     height: 24px;
     vertical-align: auto;
     border-radius: 5px;
-    background: #5279db;
+    background: var(--blue);
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
     line-height: 22px;

@@ -57,7 +57,7 @@
 .Highlight_Transitionbar_Item{
     height: 5px;
     width: 10px;
-    background: #5279db;
+    background: var(--blue);
 }
 
 
@@ -76,7 +76,7 @@
     position: relative;
     font-family: "BarlowSemiCondensed-BoldItalic";
     font-size: 24px;
-    background: #5279db;
+    background: var(--blue);
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
@@ -88,23 +88,23 @@
     align-self: end;
     height: 5px;
     position: relative;
-    background: #5279db;
+    background: var(--blue);
     width: 100%;
 }
 
-.Highlight_Category_Metadata {
+.Highlight-category_Metadata {
     position: relative;
     display: flex;
     width: fit-content;
 }
-.Prefix_Highlight_Metadata {
+.prefix-Highlight_Metadata {
     width: 5px;
     height: 22px;
-    background: #5279db;
+    background: var(--blue);
     margin-right: 5px;
 }
-.Highlight_Category {
-    background: #5279db;
+.Highlight-category {
+    background: var(--blue);
     padding-left: 5px;
     padding-right: 5px;
     font-family: "BarlowCondensed-Medium";
@@ -131,7 +131,7 @@
     font-size: 18px;
     line-height: 22px;
     display: flex;
-    color: #5279db;
+    color: var(--blue);
     user-select: none;
 }
 
@@ -161,7 +161,7 @@
 .Highlight_Published_Date {
     line-height: 22px;
     font-size: 20px;
-    color: #5279db;
+    color: var(--blue);
     font-family: "BarlowCondensed-Medium";
 }
 
@@ -221,23 +221,23 @@
 }
 
 //this port content saveBtn and comment Btn
-.Highlight_Reaction_Bar_Save_Comment_Btn_Layout {
+.Highlight_Reaction_Bar-save-comment-count-layout {
     display: flex;
     width: 160px;
 }
 
 //saveBtn
-.Highlight_Reaction_Bar_Save_Btn_Layout {
+.Highlight_Reaction_Bar-save-btn-layout {
     width: 40px;
     display: flex;
     user-select: none;
 }
-.Highlight_Reaction_Bar_Save_Btn {
+.Highlight_Reaction_Bar-save-btn {
     width: 20px;
     height: 20px;
 }
 
-.Highlight_Reaction_Bar_Save_Btn:hover {
+.Highlight_Reaction_Bar-save-btn:hover {
     opacity: 80%;
     cursor: pointer;
 }
@@ -250,7 +250,7 @@
 }
 
 //commentBtn
-.Highlight_Reaction_Bar_Comment_Btn_Layout {
+.Highlight_Reaction_Bar-comment-count-layout {
     display: flex;
     padding-left: 15px;
     font-family: "BarlowCondensed-Medium";
@@ -262,12 +262,12 @@
     user-select: none;
 }
 
-.Highlight_Reaction_Bar_Comment_Btn_Layout:hover {
+.Highlight_Reaction_Bar-comment-count-layout:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.Highlight_Reaction_Bar_Comment_Count {
+.Highlight_Reaction_Bar-comment-count {
     display: flex;
     padding-left: 5px;
     font-family: "BarlowCondensed-Medium";

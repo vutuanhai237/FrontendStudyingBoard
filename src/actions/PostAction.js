@@ -4,12 +4,12 @@ import {
     POST_POST_SAVE,
     POST_POST_COMMENT,
     POST_GET_POST_BY_ID,
-    POST_GET_SEARCH_POST,
+    GET_POSTS_LIST,
     POST_GET_POST_COMMENT_BY_ID,
     POST_GET_IS_LIKE_POST_BY_UID,
     POST_GET_TOP_POST,
     POST_DEL_POST_UNLIKE,
-    POST_GET_POST_HIGHLIGHTS,
+    GET_HIGHLIGHT_POSTS,
     POST_GET_POST_NEWESTS,
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
@@ -96,9 +96,9 @@ export function postGetIsLikePostByUID(liked) {
 
 
 // POSTS section
-export function postGetPostHighlights(highlights) {
+export function get_HighlightPosts(highlights) {
     return {
-        type: POST_GET_POST_HIGHLIGHTS,
+        type: GET_HIGHLIGHT_POSTS,
         payload: { 
             highlights: highlights
         }
@@ -144,9 +144,9 @@ export function postGetPostByID(post) {
 }
 
 
-export function postGetSearchPost(posts) {
+export function get_PostsList(posts) {
     return {
-        type: POST_GET_SEARCH_POST,
+        type: GET_POSTS_LIST,
         payload: { 
             posts: posts
         }

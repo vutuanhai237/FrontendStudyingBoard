@@ -19,17 +19,6 @@ class Paginator extends Component {
     }
 
     componentDidMount() {
-
-        //initial array of page you want to render
-        // if (this.props.config.pageCount < this.props.config.numPagesShown) {
-        //     this.state.arrayShownPages.splice(0, this.state.arrayShownPages.length);
-        //     for (let i = 1; i <= this.props.config.pageCount; i++) {
-        //         this.state.arrayShownPages.push(i);
-        //     }
-        // }
-        // console.log(this.props.config.pageCount);
-        // this.setState({});
-
     }
 
     // UI/UX when click on the pagination item

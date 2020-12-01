@@ -15,9 +15,10 @@ import Search from "pages/common/SearchResult/SearchResult";
 
 
 //user
-import CreatePost from "pages/user/CreatePost/CreatePost";
-import CreateDoc from "pages/user/UploadDocument/UploadDocument";
 import UserLayout from "pages/user/UserLayout"
+
+//common
+import BlankLayout from "pages/common/BlankLayout"
 
 //management
 import DocPreview from 'pages/management/DocPreview/DocPreview' // se duoc bo di, admin va cong tac vien muon preview thi tai thong qua link roi xem tren may.
@@ -29,7 +30,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => {
 
     return (
-        <div style={{ minWidth: "320px", width: "100%" }}>
+        <div style={{ minWidth: "320px", width: "100%", background: "var(--white)" }}>
+
             <Header />
             <div style={{ height: "65px" }}></div>
             <Router>
@@ -37,45 +39,47 @@ const App = () => {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/create_post" component={UserLayout} />
-                    <Route exact path="/upload_doc" component={UserLayout} />
-                    <Route exact path="/posts" component={PostsList} />
+                    <Route exact path="/posts" component={BlankLayout} />
+                    <Route exact path="/documents" component={BlankLayout} />
                     <Route exact path="/posts/:id" component={PostDetail} />
-                    <Route exact path="/docs" component={DocsList} />
-                    <Route exact path="/docs/:id" component={DocDetail} />
+                    <Route exact path="/documents/:id" component={DocDetail} />
                     <Route exact path="/events" component={EventsList} />
                     <Route exact path="/search/:keywork" component={Search} />
 
-                    <Route exact path="/user" component={UserLayout} />{/* for user and collab */}
-                    <Route exact path="/user/update_password" component={UserLayout} />
-                    <Route exact path="/user/docs_list" component={UserLayout} />
-                    <Route exact path="/user/posts_list" component={UserLayout} />
-                    <Route exact path="/user/notification" component={UserLayout} />
+                    {/* user layout */}
+                    <Route path="/user">
 
-                    {/* Admin and collab page content management */}
-                    {/* for admin */}
-                    <Route exact path="/admin" component={AdminLayout} />
-                    <Route exact path="/admin/post_approving" component={AdminLayout} />
-                    <Route exact path="/admin/post_approving/:id" />
-                    <Route exact path="/admin/doc_approving" component={AdminLayout} />
-                    <Route exact path="/admin/doc_approving/:id" component={DocPreview} />
+                        {/* for user + only */}
+                        <Route exact path="" component={UserLayout} />
+                        <Route exact path="/update_password" component={UserLayout} />
+                        <Route exact path="/my_docs" component={UserLayout} />
+                        <Route exact path="/my_posts" component={UserLayout} />
+                        <Route exact path="/notification" component={UserLayout} />
 
-                    {/* for collab */}
-                    <Route exact path="/user/post_approving" component={AdminLayout} />
-                    <Route exact path="/user/post_approving/:id" component={DocPreview} />
-                    <Route exact path="/user/doc_approving" component={AdminLayout} />
-                    <Route exact path="/user/doc_approving/:id" component={DocPreview} />
+                        {/* for collaborator + only */}
+                        <Route exact path="/post_approving" component={AdminLayout} />
+                        <Route exact path="/post_approving/:id" component={DocPreview} />
+                        <Route exact path="/doc_approving" component={AdminLayout} />
+                        <Route exact path="/doc_approving/:id" component={DocPreview} />
+                    </Route>
+                    <Route exact path="/create_post" component={UserLayout} />
+                    <Route exact path="/upload_doc" component={UserLayout} />
 
                     {/* for admin only */}
-                    <Route exact path="/admin/page_notification" component={AdminLayout} />
-                    <Route exact path="/admin/categories_management" component={AdminLayout} />
-                    <Route exact path="/admin/user_management" component={AdminLayout} />
-                    <Route exact path="/admin/activity_management" component={AdminLayout} />
-                    <Route exact path="/admin/user_role_management" component={AdminLayout} />
-                    <Route exact path="/admin/user_management/:id" component={AdminLayout} />
-                    <Route exact path="/admin/statistic_management" component={AdminLayout} />
-
-
+                    <Route path="/admin">
+                        <Route exact path="/post_approving" component={AdminLayout} />
+                        <Route exact path="/post_approving/:id" />
+                        <Route exact path="/doc_approving" component={AdminLayout} />
+                        <Route exact path="/doc_approving/:id" component={DocPreview} />
+                        <Route exact path="/page_notification" component={AdminLayout} />
+                        <Route exact path="/categories_management" component={AdminLayout} />
+                        <Route exact path="/user_management" component={AdminLayout} />
+                        <Route exact path="/activity_management" component={AdminLayout} />
+                        <Route exact path="/user_role_management" component={AdminLayout} />
+                        <Route exact path="/user_management/:id" component={AdminLayout} />
+                        <Route exact path="/statistic_management" component={AdminLayout} />
+                    </Route>
+                    
                 </Switch>
                 <div className="App"></div>
             </Router >

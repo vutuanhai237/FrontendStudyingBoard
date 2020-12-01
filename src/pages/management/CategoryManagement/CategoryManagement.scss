@@ -11,7 +11,7 @@
     font-size: 18px;
     line-height: 30px;
     text-align: left;
-    color: #5279db;
+    color: var(--blue);
 }
 
 .Custom_Table_Layout {
@@ -20,7 +20,7 @@
     font-size: 18px;
     line-height: 30px;
     text-align: left;
-    color: #5279db;
+    color: var(--blue);
 }
 
 .Custom_Table_Header {
@@ -31,9 +31,9 @@
     text-align: left;
     color: white;
     display: flex;
-    background: #5279db;
+    background: var(--blue);
     user-select: none;
-    border: 1px #5279db solid;
+    border: 1px var(--blue) solid;
     border-bottom: white 1px solid;
 }
 
@@ -43,12 +43,12 @@
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 30px;
-    border: 1px solid #5279db;
+    border: 1px solid var(--blue);
     text-align: center;
 }
 
 .Custom_Table_80percents_Header {
-    border: 1px #5279db solid;
+    border: 1px var(--blue) solid;
     border-left: 1px solid white;
     width: 80%;
     text-align: center;
@@ -137,13 +137,13 @@
 .Category_Type_Dropdown {
     width: 100%;
     min-width: 250px;
-    border-bottom: 3px solid #5279db;
+    border-bottom: 3px solid var(--blue);
     font-family: 'BarlowCondensed-SemiBold';
     font-size: 18px;
     line-height: 28px;
     height: 30px;
     text-align: left;
-    color: #5279db;
+    color: var(--blue);
     display: flex;
     justify-content: space-between;
     padding-left: 1%;
@@ -171,7 +171,7 @@
     line-height: 28px;
     height: 30px;
     text-align: left;
-    color: #5279db;
+    color: var(--blue);
     display: flex;
     justify-content: space-between;
     padding-left: 1%;
@@ -190,7 +190,7 @@
     font-size: 18px;
     line-height: 30px;
     text-align: left;
-    color: #5279db;
+    color: var(--blue);
 }
 
 .Category_Dropdown_Container {

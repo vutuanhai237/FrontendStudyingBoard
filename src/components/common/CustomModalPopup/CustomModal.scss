@@ -24,8 +24,8 @@
 }
 
 .Custom_Modal_Wrapper {
-    border-top: #5279db 3px solid;
-    border-bottom: #5279db 3px solid;
+    border-top: var(--blue) 3px solid;
+    border-bottom: var(--blue) 3px solid;
     z-index: 1000000001;
     background: white;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
@@ -86,7 +86,7 @@
     padding-top: 0.5em;
     line-height: 1em;
     border-bottom: 1px solid #c4c4c4;
-    color: #5279db;
+    color: var(--blue);
     margin: auto;
     justify-content: space-between;
 }

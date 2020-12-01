@@ -14,7 +14,7 @@
 .Account_Information_Layout {
     border: 1px #c4c4c4 solid;
     border-radius: 5px;
-    border-top: 5px solid #5279db;
+    border-top: 5px solid var(--blue);
     // background: pink;
     padding: 10px;
     width: 100%;
@@ -23,7 +23,7 @@
 .Account_Information_Update_Password_Layout {
     border: 1px #c4c4c4 solid;
     border-radius: 5px;
-    border-top: 5px solid #5279db;
+    border-top: 5px solid var(--blue);
     width: 100%;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .fileUploader .fileContainer .chooseFileButton {
-    background: #5279db !important;
+    background: var(--blue) !important;
     font-family: "BarlowCondensed-Medium";
     font-weight: 600 !important;
     font-size: 16px !important;

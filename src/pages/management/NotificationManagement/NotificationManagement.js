@@ -77,7 +77,7 @@ class NotificationManagement extends Component {
                                         </div>
 
                                         {this.state.notificationList.map(item =>
-                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
+                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-summary-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
                                                 <div className="Custom_Table_Item_20percents">{item.id}</div>
                                                 <div className="Custom_Table_Item_80percents">
                                                     {item.title}
@@ -90,7 +90,7 @@ class NotificationManagement extends Component {
 
                                     </div>
                                 </ClickAwayListener>
-                                <div className="Category_Buttons_Layout flex_container justify-content-md-between">
+                                <div className="Category_Buttons_Layout display-flex justify-content-md-between">
                                     <div>
                                         <button className="blue-button margin-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
                                         <button className="white-button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>
@@ -214,7 +214,7 @@ class NotificationManagement extends Component {
             all_item[i].className = "Custom_Table_Item";
         }
 
-        let category_item = document.getElementById("management-post-category-item-" + id);
+        let category_item = document.getElementById("management-post-category-summary-" + id);
         category_item.className = "Custom_Table_Item_Activated";
 
         this.selected_category_id = id;

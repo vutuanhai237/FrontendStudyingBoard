@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import 'components/shared/DocPostDetail.scss'
-import 'components/shared/DPD_ResponsiveLayout.scss'
+// import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
@@ -35,7 +35,7 @@ class DocDetail extends Component {
         this.authorID = "authorID";
         this.requestedDate = "requestedDate";
         this.requestedTime = "requestedTime";
-        this.categoryName = "categoryName";
+        this.category = "category";
         this.categoryID = "categoryID";
         this.semesterName = "semesterName";
         this.year = "year";
@@ -81,7 +81,7 @@ class DocDetail extends Component {
                 this.id = this.document.id;
                 this.authorName = this.document.authorName;
                 this.authorID = this.document.authorID;
-                this.categoryName = this.document.categoryName;
+                this.category = this.document.category;
                 this.categoryID = this.document.categoryID;
                 this.semesterName = this.document.semesterName;
                 this.semesterID = this.document.semesterID;
@@ -99,80 +99,72 @@ class DocDetail extends Component {
             return (
                 <div>
                     <div className="DocPost_Detail" >
-                        {this.props.document ?
+                        {/* {this.props.document ? */}
 
-                            <div>
-                                <div className="DocPost_Detail-main-layout">
+                        <div>
+                            <div className="DocPost_Detail-main-layout">
 
-                                    <div className="DocPost_Detail_Title">
-                                        {this.title}
+                                <div className="DocPost_Detail_Title">
+                                    {this.title}
+                                </div>
+
+                                <div className="DocPost_Metadata_Header">
+
+                                    <div className="prefix-normal-category"> </div>
+                                    <div className="normal-category">
+                                        {this.category}
                                     </div>
-
-                                    <div className="DocPost_Metadata_Header">
-
-                                        <div className="Prefix_DocPost_Category"> </div>
-                                        <div className="DocPost_Category">
-                                            {this.categoryName}
-                                        </div>
-                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
-                                        <div className="DocPost_Metadata_Text">
-                                            Môn học: &nbsp;
+                                    <img alt="*" className="metadata-icon" src={gray_btn_element} />
+                                    <div className="DocPost_Metadata_Text">
+                                        Môn học: &nbsp;
                                             {this.subject}
-                                        </div>
-                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
-                                        <div className="DocPost_Metadata_Text">
-                                            Học kỳ: &nbsp;
-                                            {this.semesterName}
-                                        </div >
-                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
-                                        <div className="DocPost_Metadata_Text">
-                                            Năm học: &nbsp;
-                                            {this.year}
-                                        </div>
-                                    </div>
-
-                                    <div className="DocPost_User_Infor_Header">
-                                        <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" />
-                                        <div style={{ flexDirection: "vertical" }}>
-                                            <div className="DocPost_Detail_User_Infor_Display_Name">{this.authorName}</div>
-                                            <div className="DocPost_Detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="DocPost_Detail_Content">
-                                        {this.content}
-                                    </div>
-
-                                    <div className="Doc_Summary_File_Name"
-                                        onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}>
-                                        {this.fileName}
                                     </div>
 
                                 </div>
 
-                                <div className="Doc_Detail_View_Count_Doc_Count">
-                                    <div className="View_Count">lượt xem: {this.viewCount}</div>
-                                    <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
-                                        <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
-                                        <div style={{ marginLeft: "5px" }}>
-                                            {this.downloadCount}
-                                        </div>
+                                <div className="DocPost_User_Infor_Header">
+                                    <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" />
+                                    <div style={{ flexDirection: "vertical" }}>
+                                        <div className="DocPost_Detail_User_Infor_Display_Name">{this.authorName}</div>
+                                        <div className="DocPost_Detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
                                     </div>
                                 </div>
-                                <div className="Document_Live_Preview">
 
-                                    <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe>
-
+                                <div className="DocPost_Detail_Content">
+                                    {this.content}
                                 </div>
-                                {/* <div className="DocPost_Detail_Footer">
+
+                                <div className="Doc_Summary_File_Name"
+                                    onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}>
+                                    {this.fileName}
+                                </div>
+
+                            </div>
+
+                            <div className="Doc_Detail_View_Count_Doc_Count">
+                                <div className="View_Count">lượt xem: {this.viewCount}</div>
+                                <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
+                                    <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
+                                    <div style={{ marginLeft: "5px" }}>
+                                        {this.downloadCount}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="Document_Live_Preview">
+
+                                <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe>
+
+                            </div>
+                            {/* <div className="DocPost_Detail_Footer">
                                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
                                     <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                                 </div> */}
-                            </div> :
+                        </div>
+                        {/* :
                             <div className="padding_10px gray-label">
                                 Loading ...
                             </div>
-                        }
+                        } */}
                     </div>
 
                     {/* Popup for reject requested post */}

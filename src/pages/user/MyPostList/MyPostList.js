@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar'
-import PostSummary from 'components/post/PostSummary'
+import PostSummary, { postSummaryType } from 'components/post/PostSummary'
 
 import Paginator from 'components/common/Paginator/ServerPaginator'
 
 //import for redux
-import { getUserPostsList } from "services/authorized/postServices"
+import { getMyPostsList } from "services/authorized/postServices"
 import { getPostCategories } from "services/postServices"
 
 import { bindActionCreators } from 'redux';
@@ -23,22 +23,18 @@ class MyPostList extends Component {
 
         this.filter = [
             { id: 1, name: "Tất cả" },
-            { id: 2, name: "Bài viết đã lưu" },
-            { id: 3, name: "Chưa phê duyệt" },
-            { id: 4, name: "Đã phê duyệt" }
+            { id: 2, name: "Chưa phê duyệt" },
+            { id: 3, name: "Đã phê duyệt" },
+            { id: 4, name: "Cần xem lại" }
         ]
 
-        this.state = {
-
-        }
     }
 
     componentDidMount() {
         //must implement: get filter, get doc, page change
         //get filter
 
-
-        this.props.getUserPostsList(); //
+        this.props.getMyPostsList(); //
         this.props.getPostCategories()
     }
 
@@ -56,27 +52,31 @@ class MyPostList extends Component {
     render() {
         let myPostsList = <></>; //sau nay se lam mot cai content loader.
         // console.log(this.state.currentInteractList);
-        console.log("AA");
-        console.log(this.props)
+
         if (this.props.userPostsList) {
-            console.log("AA");
-            console.log(this.props)
+
             this.userPostsList = this.props.userPostsList;
 
             myPostsList = this.props.userPostsList.map((myPostItem) => (
                 <PostSummary
+                    type={postSummaryType.mySelf}
                     key={myPostItem.id}
                     id={myPostItem.id}
                     authorName={myPostItem.authorName}
                     authorID={myPostItem.authorID}
-                    publishDate={myPostItem.publishDate}
-                    categoryName={myPostItem.categoryName}
+                    publishedDtm={myPostItem.publishedDtm}
+                    category={myPostItem.category}
                     categoryID={myPostItem.categoryID}
                     title={myPostItem.title}
                     summary={myPostItem.summary}
                     imageURL={myPostItem.imageURL}
                     likedStatus={myPostItem.likedStatus}
                     savedStatus={myPostItem.savedStatus}
+                    readingTime={myPostItem.readingTime}
+                    likes={3} //
+                    commentCount={4} //
+                    approveStatus={false}
+
                 ></PostSummary >)
             )
         }
@@ -93,16 +93,15 @@ class MyPostList extends Component {
 
                         <div style={{ display: "flex" }}>
                             <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
-                            <div style={{ marginLeft: "5px" }}> <ComboBox
-                                options={this.filter}
-                                placeHolder="Chọn bộ lọc"
-                                onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
-                                id="my-post-list-search-filter-combobox"
-                            ></ComboBox></div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <ComboBox
+                                    options={this.filter}
+                                    placeHolder="Chọn bộ lọc"
+                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                    id="my-post-list-search-filter-combobox"
+                                ></ComboBox></div>
                         </div>
                     </div>
-
-
 
                     {myPostsList}
 
@@ -128,7 +127,7 @@ const mapStatetoProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getUserPostsList, getPostCategories
+    getMyPostsList, getPostCategories
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(MyPostList));

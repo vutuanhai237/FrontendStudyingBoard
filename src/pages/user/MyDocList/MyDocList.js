@@ -1,32 +1,34 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar'
-import DocSummaryItem from 'components/shared/DocSummaryItem'
+import DocSummary from 'components/doc/DocSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
 
 //import for redux
-import { management_getAllNotApprovedDocuments, management_getAllUserDocList } from "services/authorized/docServices"
+import { getMyDocuments } from "services/authorized/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-class Management_MyDocList extends Component {
+class MyDocuments extends Component {
     constructor(props) {
         super();
         this.maxItemPerPage = 5;
 
-        this.userDocList = [];
+        this.myDocuments = [];
 
-        this.state = {
-            currentInteractList: []
-        }
-
+        this.filter = [
+            { id: 1, name: "Tất cả" },
+            { id: 2, name: "Chưa phê duyệt" },
+            { id: 3, name: "Đã phê duyệt" },
+            { id: 4, name: "Cần xem lại" }
+        ]
     }
 
     componentDidMount() {
-
-        this.props.getAllUserDocList(1);
+        this.props.getMyDocuments();
+        // this.props.getDocCategory();
     }
 
     //client
@@ -35,51 +37,63 @@ class Management_MyDocList extends Component {
     }
 
     render() {
-        let summaryMyDocList = <></>; //sau nay se lam mot cai content loader.
-        // console.log(this.state.currentInteractList);
-        if (this.props.userDocList) {
-            this.userDocList = this.props.userDocList;
 
-            console.log(this.userDocList)
-            summaryMyDocList = this.state.currentInteractList.map((myDoc) => (
-                < DocSummaryItem
+        let myDocumentsList = <></>;
+
+        console.log("^^^"); console.log(this.props);
+        if (this.props.myDocuments) {
+            this.myDocuments = this.props.myDocuments;
+
+            myDocumentsList = this.myDocuments.map((myDoc) => (
+                < DocSummary
                     key={myDoc.id}
                     id={myDoc.id}
                     authorName={myDoc.authorName}
                     authorID={myDoc.authorID}
-                    publishDate={myDoc.documentPublishDtm}
-                    publishedTime={myDoc.myTime}
-                    categoryName={myDoc.categoryName}
+                    publishedDtm={myDoc.publishedDtm}
+                    category={myDoc.category}
                     categoryID={myDoc.categoryID}
                     title={myDoc.title}
-                    content={myDoc.summary}
-                    viewCount={myDoc.viewCount}
-                    downloadCount={myDoc.downloadCount}
-                    subjectName={myDoc.subjectName}
+                    views={myDoc.views}
+                    downloads={myDoc.downloads}
+                    subject={myDoc.subject}
                     subjectID={myDoc.subjectID}
-                    // lost
-                    semesterName={myDoc.semester}
-                    year={myDoc.year}
+                    likes={myDoc.likes}
+                    dislikes={myDoc.dislikes}
+                    description={myDoc.description}
+                    imageURL={myDoc.imageURL}
 
-                ></DocSummaryItem >)
+
+                ></DocSummary >)
             )
         }
         return (
             <div>
                 <Titlebar title="TÀI LIỆU CỦA TÔI" />
-                <div className="Management_Show_Layout">
+                <div className="left-side-bar-layout-content-container">
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
 
-                    <div className="number-of-item">
-                        Tổng số:
-                        <div style={{ width: "5px" }} />
-                        {this.userDocList.length}
+                        <div className="filter-label display-flex">
+                            <div className="margin-right-5px">Tổng số:</div>
+                            <div>{this.myDocuments.length}</div>
+                        </div>
+
+                        <div style={{ display: "flex" }}>
+                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <ComboBox
+                                    options={this.filter}
+                                    placeHolder="Chọn bộ lọc"
+                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                    id="my-doc-list-search-filter-combobox"
+                                ></ComboBox></div>
+                        </div>
                     </div>
 
-                    {summaryMyDocList}
+                    {myDocumentsList}
 
                     <Paginator config={{
-                        changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
-                        rawData: [...this.userDocList],
+                        changePage: (pageNumber) => this.onPageChange(pageNumber),
                         maxItemPerPage: this.maxItemPerPage,
                         numPagesShown: 5,
                         bottom: "31px"
@@ -92,14 +106,15 @@ class Management_MyDocList extends Component {
 }
 
 const mapStatetoProps = (state) => {
+    console.log("****");
     console.log(state);
     return {
-        userDocList: state.management_doc.userDocList,
+        myDocuments: state.management_doc.myDocuments,
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    management_getAllUserDocList
+    getMyDocuments
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Management_MyDocList));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(MyDocuments));

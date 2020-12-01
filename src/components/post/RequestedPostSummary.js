@@ -47,38 +47,38 @@ class RequestedPostSummary extends Component {
 
         return (
 
-            <div className="item-container" >
-                <div className="item-container-main-layout">
-                    <div className="item-container-author-date-metadata">
-                        <div className="item-container-author-link" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <div className="summary-container" >
+                <div className="summary-main-layout">
+                    <div className="summary-normal-metadata-container">
+                        <div className="author-linkauthor-link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
-                        <div className="item-container_Requested_Date">
+                        <div className="requested-date">
                             {this.requestedDate}
                         </div>
                     </div>
 
-                    <div className="Requested_item-container_Header_2">
+                    <div className="summary-request-metadata-container">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
-                    <div className="Requested_item-container_Category" onClick={() => this.navigateToSameCategoryDocsPage()}>
+                    <div className="requested-category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div>
 
-                    <div className="item-container-title">
+                    <div className="summary-title">
                         {this.props.title}
                     </div>
 
-                    <div className="item-container-summary">
+                    <div className="summary-summary">
                         {this.props.content}
                     </div>
 
-                    <div className="item-container-image-layout">
-                        <img alt="post" className="item-container-image" src={this.props.image}></img>
+                    <div className="author-image-link-layout">
+                        <img alt="post" className="author-image-link" src={this.props.image}></img>
                     </div>
 
                 </div>
-                <div className="item-container_Footer">
+                <div className="summary-container_Footer">
                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
                     <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                 </div>

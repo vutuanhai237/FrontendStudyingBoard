@@ -86,14 +86,14 @@ class UserItem extends Component {
             let roles_Combobox = this.roleList.map(role =>
                 this.roleID === role.UserGroupID ?
                     <div className="activated-combo-box-option"
-                        id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
+                        id={"user-role-dropdown-combobox-sub-summary-" + this.userID + "-" + role.UserGroupID}
                         value={getRoleNameByName(role.UserGroupName)}
                         key={role.UserGroupID}>
                         {getRoleNameByName(role.UserGroupName)}
                     </div>
                     :
                     <div className="combo-box-option"
-                        id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
+                        id={"user-role-dropdown-combobox-sub-summary-" + this.userID + "-" + role.UserGroupID}
                         value={role.UserGroupName}
                         key={role.UserGroupID}
                         onClick={() => this.handleDropDownMenuItemClick(role.UserGroupID)}>
@@ -138,7 +138,7 @@ class UserItem extends Component {
                                             <div style={{ position: "absolute", width: "140px" }}>
                                                 <div className="combo-box" id={"user-role-parent-dropdown-combobox-" + this.userID}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
-                                                    <div className="flex_container">
+                                                    <div className="display-flex">
                                                         <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
 
                                                             {this.roleList ?
@@ -238,11 +238,11 @@ class UserItem extends Component {
 
     handleDropDownMenuItemClick = (roleID) => {
         //change current UI
-        let item_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + roleID;
+        let item_id = "user-role-dropdown-combobox-sub-summary-" + this.userID + "-" + roleID;
         let sub_dropdown_item = document.getElementById(item_id);
 
         for (let i = 1; i <= this.roleList.length; i++) {
-            let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + i;
+            let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-summary-" + this.userID + "-" + i;
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "combo-box-option";
         }

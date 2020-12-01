@@ -9,10 +9,10 @@
 
 #create-post .title:hover {
     transition: all 0.5s;
-    color: #5279db;
+    color: var(--blue);
     font-size: 28px;
 
-    border-bottom: 5px solid #5279db;
+    border-bottom: 5px solid var(--blue);
 }
 
 #create-post #enter-title,

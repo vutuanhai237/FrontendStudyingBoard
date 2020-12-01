@@ -108,14 +108,14 @@ class AdminLayout extends Component {
                                                 <div className="Achivement_Layout">
                                                     <div className="Achivement_Score">Scrore: {this.score}</div>
                                                     <div className="Achivement_Post_Doc_Count_Layout">
-                                                        <div className="flex_container width_50_percents">
+                                                        <div className="display-flex width_50_percents">
                                                             <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                            <div className="margin_left_5px">{post_count}</div>
+                                                            <div className="margin-left-5px">{post_count}</div>
                                                         </div>
 
-                                                        <div className="flex_container width_50_percents">
+                                                        <div className="display-flex width_50_percents">
                                                             <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                            <div className="margin_left_5px"> {doc_count}</div>
+                                                            <div className="margin-left-5px"> {doc_count}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,10 +141,10 @@ class AdminLayout extends Component {
                                                 <div hidden={!this.isGrantedPermissions(ContentManagementPermission.Management)}>
                                                     <div className="Parent_Dropdown_Menu_Item"
                                                         id="page-managent-parent-menu-item"
-                                                        onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-admin-dropdown-btn-element", "page-admin-menu-item-container")}>
-                                                        <div className="flex_container">
+                                                        onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-summary-text", "page-admin-dropdown-btn-element", "page-admin-menu-summary-container")}>
+                                                        <div className="display-flex">
                                                             <img alt="*" className="Primary_Menu_Item_Element" src={content_management_icon} id="page-managent-btn-element" />
-                                                            <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-item-text">
+                                                            <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-summary-text">
                                                                 Quản lý nội dung
                                                             </div>
                                                         </div>
@@ -152,7 +152,7 @@ class AdminLayout extends Component {
                                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-admin-dropdown-btn-element" />
                                                     </div>
 
-                                                    <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
+                                                    <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-summary-container">
                                                         <div className="margin-bottom-5px" />
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
@@ -252,7 +252,7 @@ class AdminLayout extends Component {
                                                                 : <></>
                                                         }
                                                         <div className="margin-bottom-5px" />
-                                                        <div className="decoration_underline " />
+                                                        <div className="decoration-underline " />
                                                         <div className="margin-bottom-5px" />
                                                         <div className="margin-bottom-5px" />
                                                     </div>
@@ -400,7 +400,7 @@ class AdminLayout extends Component {
 
 
                             {/* Router Outlet */}
-                            <div className="Router_Outlet" >
+                            <div className="left-sidebar-layout-router-outlet" >
                                 <Switch>
                                     {/* Admin and collab page content admin */}
                                     {/* for admin */}

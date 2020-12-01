@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import 'components/shared/DocPostDetail.scss'
-import 'components/shared/DPD_ResponsiveLayout.scss'
+// import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
@@ -33,7 +33,7 @@ class DocPreview extends Component {
         this.authorID = "authorID";
         this.requestedDate = "requestedDate";
         this.requestedTime = "requestedTime";
-        this.categoryName = "categoryName";
+        this.category = "category";
         this.categoryID = "categoryID";
         this.semesterName = "semesterName";
         this.year = "year";
@@ -94,7 +94,7 @@ class DocPreview extends Component {
                 this.id = this.currentPreviewDocument.id;
                 this.authorName = this.currentPreviewDocument.authorName;
                 this.authorID = this.currentPreviewDocument.authorID;
-                this.categoryName = this.currentPreviewDocument.categoryName;
+                this.category = this.currentPreviewDocument.category;
                 this.categoryID = this.currentPreviewDocument.categoryID;
                 this.semesterName = this.currentPreviewDocument.semesterName;
                 this.semesterID = this.currentPreviewDocument.semesterID;
@@ -122,21 +122,21 @@ class DocPreview extends Component {
                                     </div>
 
                                     <div className="DocPost_Metadata_Header">
-                                        <div className="Prefix_DocPost_Category" />
-                                        <div className="DocPost_Category">
-                                            {this.categoryName}
+                                        <div className="prefix-normal-category" />
+                                        <div className="normal-category">
+                                            {this.category}
                                         </div>
-                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                                        <img alt="*" className="metadata-icon" src={gray_btn_element} />
                                         <div className="DocPost_Metadata_Text">
                                             Môn học: &nbsp;
                                             {this.subject}
                                         </div>
-                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                                        <img alt="*" className="metadata-icon" src={gray_btn_element} />
                                         <div className="DocPost_Metadata_Text">
                                             Học kỳ: &nbsp;
                                             {this.semesterName}
                                         </div >
-                                        <img alt="*" className="DocPost_Metadata_Icon" src={gray_btn_element} />
+                                        <img alt="*" className="metadata-icon" src={gray_btn_element} />
                                         <div className="DocPost_Metadata_Text">
                                             Năm học: &nbsp;
                                             {this.year}

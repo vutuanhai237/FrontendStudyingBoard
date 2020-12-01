@@ -6,7 +6,7 @@ class Titlebar extends Component {
         return (
             <div className="Horizontal_Menu_Layout">
                 {/* Menu bar */}
-                <div className="Horizontal_Menu_Bar">
+                <div className="title-bar">
                     <div className="Main_Title">{this.props.title}</div>
                 </div>
             </div>

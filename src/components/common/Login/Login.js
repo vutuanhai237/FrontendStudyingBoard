@@ -39,7 +39,13 @@ class LoginForm extends React.Component {
         e.preventDefault();
         this.setState({ password: this.password.current.value })
     }
+
+
+
     login() {
+        let token = "eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0";
+        localStorage.setItem('token', token);
+
         const account = {
             username: this.state.username,
             password: this.state.password,
@@ -137,13 +143,13 @@ class LoginForm extends React.Component {
                         <p className="title text-center">ĐĂNG NHẬP</p>
                         <br />
                         <Form.Group className="email-input" controlId="formBasicEmail">
-                            <Form.Control onChange={this.handleUsernameChange} type="text" placeholder="Nhập username" ref={this.username}/>
+                            <Form.Control onChange={this.handleUsernameChange} type="text" placeholder="Nhập username" ref={this.username} />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Control onChange={this.handlePasswordChange} type="password" placeholder="Nhập mật khẩu" ref={this.password}/>
+                            <Form.Control onChange={this.handlePasswordChange} type="password" placeholder="Nhập mật khẩu" ref={this.password} />
                         </Form.Group>
                         <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Ghi nhớ đăng nhập"/>
+                            <Form.Check type="checkbox" label="Ghi nhớ đăng nhập" />
                         </Form.Group>
                         <Button className="btn-block" onClick={this.login}>
                             Đăng nhập
@@ -153,7 +159,7 @@ class LoginForm extends React.Component {
                                 Hoặc xem với tư cách khách &#128526;
                             </p>
                         </Link>
-                        
+
                         <Row className="pt-3">
                             <Col className="btn-register">
                                 <Button onClick={this.register} className="btn-block" >

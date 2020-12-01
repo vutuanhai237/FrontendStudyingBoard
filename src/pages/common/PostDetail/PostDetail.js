@@ -3,9 +3,6 @@ import {
     Button,
     Modal
 } from "react-bootstrap";
-import AuthorInfo from "components/common/post/AuthorInfo/AuthorInfo";
-import FooterSummaryPost from "components/common/post/FooterSummaryPost/FooterSummaryPost";
-import CommentPosts from "components/common/post/CommentPosts/CommentPosts";
 
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -54,18 +51,18 @@ class PostDetail extends Component {
         if (this.props.currentPost === undefined || this.props.currentPost === null) return (<></>)
         console.log(this.props.currentPost);
         const { currentPost, currentComments, tags } = this.props;
-        let footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
+        // let footer = <FooterSummaryPost isSummary={false} item={currentPost} />;
 
         return (
             <div id="create-post">
                 {console.log(currentPost.content)}
                 <p className="title">{currentPost.title}</p>
                 <div>{currentPost.summary}</div>
-                <AuthorInfo item={currentPost} />
+                {/* <AuthorInfo item={currentPost} /> */}
                 <div id="contentPost" dangerouslySetInnerHTML={{ __html: currentPost.content }} />
                 {/* <Tags tags={tags} /> */}
-                {footer}
-                <CommentPosts currentComments={currentComments} />
+                {/* {footer} */}
+                {/* <CommentPosts currentComments={currentComments} /> */}
 
                 {/* Modal for something */}
                 <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>

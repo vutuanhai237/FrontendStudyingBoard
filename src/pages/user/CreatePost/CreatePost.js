@@ -118,7 +118,7 @@ class CreatePost extends Component {
             content: this.state.content,
             authorID: account.id,
             categoryID: (categories.find(e => e.title === this.state.currentCategory)).id,
-            categoryName: this.state.currentCategory,
+            category: this.state.currentCategory,
             tags: this.state.tags,
         }
         this.props.postPost(post);

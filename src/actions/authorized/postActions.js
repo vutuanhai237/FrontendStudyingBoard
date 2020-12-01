@@ -2,10 +2,10 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
     GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
     APPROVE_A_DOCUMENT,
-    GET_USER_POSTS_LIST
+    GET_MY_POSTS
 } from "constants/constants"
 
-export function managementGetAllNotApprovedDocuments(requestedDocs) {
+export function get_NotApprovedDocumentsList(requestedDocs) {
     return {
         type: GET_ALL_NOT_APPROVED_DOCUMENTS,
         payload: requestedDocs,
@@ -30,9 +30,9 @@ export function managementGetAllNotApprovedDocuments(requestedDocs) {
 
 
 
-export function get_UserPostsList(userPostsList) {
+export function get_MyPostsList(userPostsList) {
     return {
-        type: GET_USER_POSTS_LIST,
+        type: GET_MY_POSTS,
         payload: userPostsList,
     }
 }

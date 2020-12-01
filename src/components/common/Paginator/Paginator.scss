@@ -1,27 +1,27 @@
-
 .Paginator {
     user-select: none;
     display: flex;
     background: white;
+    
+    
 }
 
 .Deactivated_Page {
     background: white;
     width: 26px;
     height: 26px;
-    border: 1px #5279db solid;
+    border: 1px var(--blue) solid;
     border-radius: 4px;
-    color: #5279db;
+    color: var(--blue);
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-size: 20;
-    font-weight: 700;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 20px;
 }
 
 .Deactivated_Page:hover {
-    background: #5279db;
+    background: var(--blue);
     opacity: 60%;
     color: white;
     box-shadow: 0px 0px 1px 1px white;
@@ -30,15 +30,15 @@
 
 .Deactivated_Page:active {
     border: 1px white solid;
-    background: #5279db;
+    background: var(--blue);
     opacity: 100%;
 }
 
 .Activated_Page {
-    background: #5279db;
+    background: var(--blue);
     width: 26px;
     height: 26px;
-    border: 1px #5279db solid;
+    border: 1px var(--blue) solid;
     border-radius: 4px;
     color: white;
     line-height: 22px;
@@ -50,7 +50,7 @@
 }
 
 .Activated_Page:hover {
-    background: #5279db;
+    background: var(--blue);
     opacity: 60%;
     color: white;
     box-shadow: 0px 0px 1px 1px white;
@@ -58,7 +58,7 @@
 }
 
 .Activated_Page:active {
-    background: #5279db;
+    background: var(--blue);
     opacity: 60%;
     color: white;
     box-shadow: 0px 0px 1px 1px white;
@@ -72,11 +72,11 @@
     margin-right: 4px;
     width: 40px;
     height: 26px;
-    border: 1px #5279db solid;
+    border: 1px var(--blue) solid;
     border-radius: 4px;
     background: white;
-    border: 1px #5279db solid;
-    color: #5279db;
+    border: 1px var(--blue) solid;
+    color: var(--blue);
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
@@ -88,11 +88,11 @@
 .last-page {
     width: 40px;
     height: 26px;
-    border: 1px #5279db solid;
+    border: 1px var(--blue) solid;
     border-radius: 4px;
     background: white;
-    border: 1px #5279db solid;
-    color: #5279db;
+    border: 1px var(--blue) solid;
+    color: var(--blue);
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
@@ -105,7 +105,7 @@
 .next-page:hover,
 .prev-page:hover,
 .last-page:hover {
-    background: #5279db;
+    background: var(--blue);
     opacity: 60%;
     color: white;
     box-shadow: 0px 0px 1px 1px white;
@@ -116,7 +116,7 @@
 .next-page:active,
 .prev-page:active,
 .last-page:active {
-    background: #5279db;
+    background: var(--blue);
     color: white;
     box-shadow: 0px 0px 1px 1px white;
     cursor: pointer;

@@ -26,7 +26,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "12:30:40",
                         "contentURL": "contentURL",
-                        "likeCount": 30,
+                        "likes": 30,
                         "commentCount": 50,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -46,7 +46,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -65,7 +65,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -84,7 +84,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -104,7 +104,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -123,7 +123,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -143,7 +143,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -163,7 +163,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "12:30:40",
                         "contentURL": "contentURL",
-                        "likeCount": 30,
+                        "likes": 30,
                         "commentCount": 50,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -183,7 +183,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -202,7 +202,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -221,7 +221,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -241,7 +241,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [
@@ -260,7 +260,7 @@ class PostApprovingPage extends Component {
                         "requestedDate": "requested Date",
                         "requestedTime": "requested Time",
                         "contentURL": "contentURL",
-                        "likeCount": 40,
+                        "likes": 40,
                         "commentCount": 0,
                         "firstImageURL": 'https://imgur.com/inBsikg.png',
                         "tags": [

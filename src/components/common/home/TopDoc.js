@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
-import SummaryDocument from "components/common/document/SummaryDocument/SummaryDocument";
+// import SummaryDocument from "components/common/document/SummaryDocument/SummaryDocument";
 import { bindActionCreators } from 'redux';
 import { getTopDoc } from "services/docServices"
 
@@ -59,7 +59,7 @@ class TopDoc extends Component {
             //     </Card.Body>
             // </div>
             // <div className = "Home_"
-            <div className="flex_container">
+            <div className="display-flex">
                 <div className="Highlight_Title">TÀI LIỆU MỚI</div>
                 <div className="Highlight_Title_Underline"></div>
             </div>

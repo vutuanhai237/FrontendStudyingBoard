@@ -112,8 +112,8 @@ class AccountInformation extends Component {
             let roles_Combobox =
                 this.roleList.map(role =>
                     this.roleID === role.id ?
-                        <div className="activated-combo-box-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                        <div className="combo-box-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
+                        <div className="activated-combo-box-option" id={"user-role-dropdown-combobox-sub-summary-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
+                        <div className="combo-box-option" id={"user-role-dropdown-combobox-sub-summary-" + role.id} value={role.role} key={role.id}
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
                         </div>
                 )
@@ -137,7 +137,7 @@ class AccountInformation extends Component {
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
 
                                         <img className="Account_Information_Avatar_Image" alt="avatar" src={this.avatarURL} />
-                                        {/* <div className="margin_left_10px"></div> */}
+                                        {/* <div className="margin-left-10px"></div> */}
 
                                         {/* <div>{this.props.</div> */}
                                     </div>
@@ -146,7 +146,7 @@ class AccountInformation extends Component {
 
                                     <div className="margin-top-10px" />
 
-                                    <div className="flex_container">
+                                    <div className="display-flex">
                                         <div className="gray-label" style={{ lineHeight: "25px" }}>Role:</div>
                                         <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
@@ -155,7 +155,7 @@ class AccountInformation extends Component {
                                                     <div style={{ position: "absolute", width: "200px" }}>
                                                         <div className="disabled-combo-box" id={"user-role-parent-dropdown-combobox"}>
                                                             {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
-                                                            <div className="flex_container">
+                                                            <div className="display-flex">
                                                                 <div className="Vertical_Menu_Item_Text" id={"user-role-parent-dropdown-combobox-text"}>
                                                                     {
                                                                         this.roleList.map(role =>
@@ -188,13 +188,13 @@ class AccountInformation extends Component {
                                     <div className="Account_Information_Achivement_Layout">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Layout">
-                                            <div className="flex_container width_50_percents">
+                                            <div className="display-flex width_50_percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                <div className="margin_left_5px">{this.postCount}</div>
+                                                <div className="margin-left-5px">{this.postCount}</div>
                                             </div>
-                                            <div className="flex_container width_50_percents">
+                                            <div className="display-flex width_50_percents">
                                                 <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                <div className="margin_left_5px"> {this.documentCount}</div>
+                                                <div className="margin-left-5px"> {this.documentCount}</div>
                                             </div>
                                         </div>
                                     </div >
@@ -243,7 +243,7 @@ class AccountInformation extends Component {
                                             </div>
                                             <input disabled type="text" className="form-input" defaultValue={this.email} />
 
-                                            <div className="flex_container margin-top-10px" >
+                                            <div className="display-flex margin-top-10px" >
                                                 <button disabled={!this.canClickSaveInformation} className="blue-button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
                                                     Lưu thay đổi
                                             </button>
@@ -456,11 +456,11 @@ class AccountInformation extends Component {
 
     handleDropDownMenuItemClick = (roleID) => {
         //change current UI
-        let item_id = "user-role-dropdown-combobox-sub-item-" + roleID;
+        let item_id = "user-role-dropdown-combobox-sub-summary-" + roleID;
         let sub_dropdown_item = document.getElementById(item_id);
 
         for (let i = 0; i < this.roleList.length; i++) {
-            let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + i;
+            let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-summary-" + i;
             // (sub_dropdown_item_index_id);
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "combo-box-option";

@@ -23,13 +23,6 @@ export function docGetCategoriesDoc(categories) {
     }
 }
 
-export function docGetSemesters(semesters) {
-    return {
-        type: DOC_GET_SEMESTERS,
-        payload: semesters,
-    }
-}
-
 export function docGetSubjects(subjects) {
     return {
         type: DOC_GET_SUBJECTS,

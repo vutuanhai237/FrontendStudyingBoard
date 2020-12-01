@@ -2,10 +2,10 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
     GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
     APPROVE_A_DOCUMENT,
-    GET_ALL_DOCS_OF_USER
+    GET_MY_DOCUMENTS
 } from "constants/constants"
 
-export function managementGetAllNotApprovedDocuments(requestedDocs) {
+export function get_NotApprovedDocumentsList(requestedDocs) {
     return {
         type: GET_ALL_NOT_APPROVED_DOCUMENTS,
         payload: requestedDocs,
@@ -30,9 +30,9 @@ export function managementApproveADocument(requestedDoc) {
 
 
 
-export function managementGetAllUserDocList(allUserDocList) {
+export function get_MyDocuments(myDocuments) {
     return {
-        type: GET_ALL_DOCS_OF_USER,
-        payload: allUserDocList,
+        type: GET_MY_DOCUMENTS,
+        payload: myDocuments,
     }
 }

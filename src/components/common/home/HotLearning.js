@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
-
 import { bindActionCreators } from "redux";
 import { getPostNewests } from "services/postServices"
 class NewPost extends Component {
@@ -35,7 +33,7 @@ class NewPost extends Component {
             display: this.state.isExpand,
         };
         return (
-            <div className="flex_container">
+            <div className="display-flex">
                 <div className="Highlight_Title">BÀI HỌC NỔI BẬT</div>
                 <div className="Highlight_Title_Underline"></div>
             </div>

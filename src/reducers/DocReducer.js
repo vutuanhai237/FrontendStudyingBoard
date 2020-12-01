@@ -18,12 +18,12 @@ const fakeDocuments = [
         authorName: "Hải",
         authorID: 0,
         categoryID: 0,
-        categoryName: "Slide",
+        category: "Slide",
         subjectID: 0,
         subjectName: "NMLT",
         viewCount: 100,
         downloadCount: 1000,
-        publishDate: "21/01/2020",
+        publishedDtm: "21/01/2020",
         imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
     {
@@ -34,12 +34,12 @@ const fakeDocuments = [
         authorName: "string",
         authorID: 0,
         categoryID: 0,
-        categoryName: "string",
+        category: "string",
         subjectID: 0,
         subjectName: "string",
         viewCount: 0,
         downloadCount: 0,
-        publishDate: "string",
+        publishedDtm: "string",
         imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
     {
@@ -50,12 +50,12 @@ const fakeDocuments = [
         authorName: "string",
         authorID: 0,
         categoryID: 0,
-        categoryName: "string",
+        category: "string",
         subjectID: 0,
         subjectName: "string",
         viewCount: 0,
         downloadCount: 0,
-        publishDate: "string",
+        publishedDtm: "string",
         imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
 ]

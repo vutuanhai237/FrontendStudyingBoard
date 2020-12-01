@@ -22,7 +22,7 @@
   margin: 0 30px;
   margin-top: 30px;
   font-size: 35px;
-  background: #5279db;
+  background: var(--blue);
   animation: animate1 2.6s infinite linear;
 }
 .carousel span:nth-child(1) {

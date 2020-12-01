@@ -10,8 +10,6 @@ var store = createStore(
         window.devToolsExtension ? window.devToolsExtension() : f => f)
 );
 store.subscribe(() => {
-    //var str = store.getState();
-
 })
 
 

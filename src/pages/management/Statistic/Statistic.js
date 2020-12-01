@@ -72,7 +72,7 @@ class Statistic extends Component {
             //     this.roleNameFilter === role.UserGroupName ?
             //         <div className="activated-combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
+            //             id={"role-filter-dropdown-combobox-sub-summary-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
             //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}
             //             key={role.UserGroupID}>
@@ -82,7 +82,7 @@ class Statistic extends Component {
             //         :
             //         <div className="combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
+            //             id={"role-filter-dropdown-combobox-sub-summary-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
             //             key={role.UserGroupID}
             //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}>
@@ -122,7 +122,7 @@ class Statistic extends Component {
                 <Titlebar title="THỐNG KÊ" />
                 <div className="left-side-bar-layout-content-container">
 
-                    <div className="flex_container justify-content-space-between margin-top-10px"  >
+                    <div className="display-flex justify-content-space-between margin-top-10px"  >
                         <div className="number-of-item">
                             Tổng số:
                             &nbsp;

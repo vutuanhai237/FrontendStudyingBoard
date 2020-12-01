@@ -1,126 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');   
-.item-container {
+.summary-container {
     position: relative;
     width: 100%;
     height: fit-content;
     margin: auto;
+    padding: 10px;
+    padding-bottom: 10px;
     margin-bottom: 10px;
-    padding-top: 5px;
-    border-radius: 2px;
     background-repeat: no-repeat;
-    border: 1px #c4c4c4 solid;
+    border: 1px var(--gray) solid;
     max-width: 1000px;
     border-radius: 5px;
-    border-top: 3px #eeeeee solid;
+    user-select: none;
+    // box-shadow: 0px 0px 4px 1px #c4c4c4;
+    border-bottom: 2px var(--gray) solid;
 }
 
-.item-container:hover {
-    box-shadow: 0px 0px 5px 1px #c4c4c4;
-    border: 1px white solid;
-    border-top: 3px #5279db solid;
-}
+.summary-container:hover,
+.summary-container:active {
+    // border: 1px var(--blue) solid;
+    border-bottom: 2px var(--blue) solid;
 
-.item-container:active {
-    box-shadow: 0px 0px 5px 1px #c4c4c4;
-    border-top: 3px #5279db solid;
+    // border: 1px white solid;
 }
 
 //general summary item headbar
-.item-container-author-date-metadata {
+.summary-normal-metadata-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: fit-content;
-    position: relative;
-    height: fit-content;
+    height: 20px;
+    line-height: 20px;
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
-    line-height: 20px;
-    display: flex;
-    color: #5279db;
-    user-select: none;
+    color: var(--blue);
 }
 
 //requested summary item header
-.Requested_item-container_Header_2 {
+.summary-request-metadata-container {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    height: fit-content;
+    height: 20px;
     position: relative;
-    height: fit-content;
     font-family: "BarlowCondensed-SemiBold";
     font-size: 16px;
-    line-height: 20px;
+    line-height: 1.0em;
     display: flex;
     color: #363636;
     user-select: none;
+
 }
 
-//Doc summary item header (contain time, semester, subject)
+.metadata-gray-label {
+    line-height: 1.0em;
+    display: flex;
+    justify-content: flex-start;
+    height: 20px;
+    padding-top: 2px;
+    position: relative;
+    font-family: "BarlowCondensed-Regular";
+    font-size: 16px;
+    color: #363636;
+    user-select: none;
+    margin-right: 5px;
+}
+
+// .top-right-menu-port {
+//     top: -4px;
+//     left: 4px;
+//     width: 24px;
+//     height: 24px;
+//     position: relative;
+//     background: white;
+//     border: 0px;
+//     border-radius: 5px;
+//     display: flex;
+//     padding: 4px;
+//     cursor: pointer;
+// }
+
+
+// .top-right-menu-port:hover {
+//     // box-shadow: 0px 0px 5px 1px #c4c4c4;
+//     // border: 1px white solid;
+//     background: #eeeeee;
+// }
+
+// .top-right-menu-port:active {
+//     background: #c4c4c4;
+// }
+
+// .top-right-menu-btn {
+//     // background: pink;
+//     position: relative;
+// }
+
+// .top-right-menu-container {
+//     box-shadow: 0px 0px 2px 1px #c4c4c4;
+//     position: absolute;
+//     top: 35px;
+//     display: none;
+//     background: white;
+//     width: 80px;
+//     right: 8px;
+//     padding: 5px;
+//     font-family: "BarlowCondensed-SemiBold";
+//     font-size: 16px;
+//     line-height: 1.0em;
+//     border-radius: 5px;
+
+// }
+
+//Doc summary item header (contain time)
+
 .Doc_Metadata_Header {
     height: 1.1rem;
     display: flex;
 }
 
-.Doc_Metadata_Icon {
-    margin-top: 0.6rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-right: 0.1rem;
+.metadata-icon {
+    margin-top: 7px;
+    width: 8px;
+    height: 8px;
 }
 
-// .Doc_Metadata_Text {
-//     line-height: 1.5rem;
-//     display: flex;
-//     justify-content: flex-start;
-//     height: fit-content;
-//     position: relative;
-//     font-family: "BarlowCondensed-Medium";
-//     font-size: 12px;
-//     color: #363636;
-//     user-select: none;
-//     margin-right: 0.6rem;
-// }
-//General summary item header 1
-.item-container-author-link:hover {
+//author
+.link-label {
+    margin-top: 1px;
+    width: fit-content;
+    display: flex;
+    height: fit-content;
+    position: relative;
+    height: 20px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 18px;
+    line-height: 18px;
+    color: var(--blue);
+    user-select: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.link-label:hover {
     opacity: 80%;
-    cursor: pointer;
 }
 
-.item-container-author-link:active {
+.link-label:active {
     opacity: 60%;
-    cursor: pointer;
 }
 
-.item-container_Requested_Date {
+.summary-container-requested-date {
     font-size: 16px;
 }
 
 //General summary item header 2
-.Requested_item-container_Category {
+.requested-category {
     padding-left: 5px;
-    color: #5279db;
+    color: var(--blue);
 }
 
-.Requested_item-container_Category:hover {
+.requested-category:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.Requested_item-container_Category:active {
+.requested-category:active {
     opacity: 60%;
 }
 
-//Doc summary item category header
-
 //Content
-.item-container-main-layout {
-    padding: 10px;
-    padding-top: 0px;
-}
-
-.item-container-title {
+.summary-title {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -132,14 +181,15 @@
     color: #202020;
 }
 
-.item-container-summary {
+.summary-summary {
     padding-left: 5px;
-    font-family: "Sarabun", sans-serif;
+    font-family: "Sarabun-Regular";
     font-size: 16px;
     line-height: 25px;
     display: flex;
     align-items: center;
     color: #363636;
+    margin-top: 10px;
 }
 
 .Doc_Summary_File_Name {
@@ -152,9 +202,9 @@
     height: fit-content;
     font-family: "BarlowCondensed-Medium";
     font-size: 20px;
-    line-height: 20px;
+    line-height: 1.0em;
     display: flex;
-    color: #5279db;
+    color: var(--blue);
     user-select: none;
 }
 
@@ -164,71 +214,74 @@
     cursor: pointer;
 }
 
-.item-container-image-layout {
+.author-image-link-layout {
     display: flex;
     width: 100%;
     max-height: 200px;
 }
 
-.item-container-image {
+.author-image-link {
     width: auto;
     max-height: 200px;
     margin: auto;
 }
 
-.item-container_Tags_Layout {
+.summary-container_Tags_Layout {
     margin-left: 5px;
     margin-top: 5px;
     display: flex;
 }
 
-.item-container_Continue_Reading_Layout {
+.summary-continue-reading-layout {
     position: relative;
     height: 32px;
 }
 
-.item-container_Continue_Reading {
+.summary-continue-reading {
     right: 7px;
     position: absolute;
 }
 
-.item-container_Footer {
+.summary-container_Footer {
     border-top: 1px #c4c4c4 solid;
     padding: 5px;
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    height: 20px;
 }
 
 //no for approve
-.Prefix_item-container_Category {
-    background: #5279db;
-    width: 5px;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    margin-right: 5px;
-}
-
-.item-container_Category {
-    height: 1.5rem;
-    line-height: 1.5rem;
-    background: #5279db;
+.normal-category {
+    font-family: "BarlowCondensed-Medium";
+    font-size: 16px;
+    vertical-align: middle;
+    height: 20px;
+    line-height: 18px;
+    background: var(--blue);
     color: white;
     padding-left: 5px;
     padding-right: 5px;
-    margin-right: 10px;
-    border-bottom-right-radius: 3px;
-    border-top-right-radius: 3px;
+    margin-right: 5px;
+    user-select: none;
+    cursor: pointer;
 }
 
-.item-container_Time_Semester_Subject_Icon {
+.prefix-normal-category {
+    background: var(--blue);
+    width: 3px;
+    margin-right: 2px;
+    height: 20px;
+}
+
+.summary-container_Time_Semester_Subject_Icon {
     margin-top: 0.6rem;
     width: 0.5rem;
     height: 0.5rem;
     margin-right: 0.1rem;
 }
 
-.item-container_Time_Semester_Subject_Text {
+.summary-container_Time_Semester_Subject_Text {
     line-height: 1.1rem;
     display: flex;
     justify-content: flex-start;
@@ -243,75 +296,123 @@
 
 // Post Reactionbar
 
-.Post_Reaction_Bar {
+.summary-reaction-bar {
     border-top: 1px #c4c4c4 solid;
-   
     display: flex;
     margin: auto;
-    width: 80%;
-    padding-top: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 15px;
     justify-content: space-between;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
     height: fit-content;
 }
 
-//likeBtn
-.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn_Layout {
-    display: flex;
-}
-
-.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn {
-    width: 20px;
+//like, dislike bar
+.like-dislike-bar {
+    width: 80px;
     height: 20px;
+    // background: pink;
 }
 
-.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn:hover {
+.doc-like-dislike-btn {
+    width: 16px;
+    height: 16px;
+    margin-top: -4px;
     cursor: pointer;
+}
+
+.doc-like-dislike-btn:hover {
     opacity: 80%;
 }
 
-.Post_Reaction_Bar .Post_Reaction_Bar_Like_Btn_Layout .Post_Reaction_Bar_Like_Count {
-    font-family: "Condensed-SemiBold";
-    font-size: 18px;
-    line-height: 22px;
+.doc-like-dislike-count {
+    font-family: "BarlowCondensed-Medium";
+    font-size: 16px;
+    margin-top: 2px;
+    line-height: 20px;
     color: #363636;
     margin-left: 5px;
 }
 
-//this port content saveBtn and comment Btn
-.Post_Reaction_Bar .Post_Reaction_Bar_Save_Comment_Btn_Layout {
-    display: flex;
+.rate-percent-bar {
+    width: 100%;
+    background: var(--gray);
+    height: 3px;
+    margin-top: -2px;
+    position: relative;
+
 }
 
-//saveBtn
-.Post_Reaction_Bar_Save_Btn_Layout {
-    display: flex;
-    user-select: none;
+.like-rate-percent {
+    position: absolute;
+    background: var(--blue);
+    height: 3px;
 }
 
-.Post_Reaction_Bar .Post_Reaction_Bar_Save_Btn {
+//likeBtn for post
+.summary-reaction-bar .like-btn {
     width: 20px;
     height: 20px;
+    margin-top: -4px;
 }
 
-.Post_Reaction_Bar .Post_Reaction_Bar_Save_Btn:hover {
-    opacity: 80%;
+.summary-reaction-bar .like-btn:hover {
     cursor: pointer;
+    opacity: 80%;
 }
 
-.Post_Reaction_Bar .Post_Reaction_Bar_Save_Text {
+
+//like, dislikeBtn for doc:
+.summary-reaction-bar .like-btn {
+    width: 20px;
+    height: 20px;
+    margin-top: -4px;
+}
+
+.summary-reaction-bar .like-btn:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.summary-reaction-bar .like-count {
+    font-family: "BarlowCondensed-SemiBold";
+    font-size: 18px;
+    margin-top: 2px;
+    line-height: 20px;
+    color: #363636;
+    margin-left: 5px;
+}
+
+
+//saveBtn
+
+.summary-reaction-bar .save-btn {
+    margin-top: -2px;
+    width: 18px;
+    height: 18px;
+}
+
+.summary-reaction-bar .save-text {
+    margin-top: 2px;
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 20px;
     color: #363636;
 }
 
+.btn-text-container {
+    display: flex;
+}
+
+.btn-text-container:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
+
+
 //commentBtn
-.Post_Reaction_Bar_Comment_Btn_Layout {
+.comment-count-layout {
     display: flex;
     padding-left: 15px;
     font-family: "BarlowCondensed-Medium";
@@ -320,18 +421,44 @@
     color: #363636;
     width: fit-content;
     user-select: none;
+    margin-top: 2px;
 }
 
-.Post_Reaction_Bar_Comment_Btn_Layout:hover {
+.comment-count-layout:hover,
+.download-count-layout:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.Post_Reaction_Bar_Comment_Count {
+.view-count-layout,
+.view-count {
     display: flex;
-    padding-left: 5px;
-    font-family: "BarlowCondensed-Medium";
+    padding-left: 15px;
+    font-family: "BarlowCondensed-Regular";
     font-size: 18px;
     line-height: 20px;
     color: #363636;
+    width: fit-content;
+    user-select: none;
+    margin-top: 2px;
+}
+
+.download-count-layout {
+    display: flex;
+    padding-left: 15px;
+    font-family: "BarlowCondensed-Regular";
+    font-size: 18px;
+    line-height: 20px;
+    color: #363636;
+    width: fit-content;
+    user-select: none;
+    margin-top: 2px;
+}
+
+
+.download-btn {
+    // margin-left: -3px;
+    margin-top: 2px;
+    width: 18px;
+    height: 18px;
 }

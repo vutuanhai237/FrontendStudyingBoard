@@ -7,10 +7,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row, Card, Col } from "react-bootstrap";
-import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
-
 import { bindActionCreators } from "redux";
-import { getPostHighlights } from "services/postServices"
+import { getHighlightPosts } from "services/postServices"
 class TopPost extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +18,7 @@ class TopPost extends Component {
     }
 
     componentDidMount() {
-        this.props.getPostHighlights();
+        this.props.getHighlightPosts();
     }
     changeStatePost() {
         if (this.state.isExpand === "block") {
@@ -41,7 +39,7 @@ class TopPost extends Component {
         };
         return (
 
-            <div className="flex_container">
+            <div className="display-flex">
                 <div className="Highlight_Title">BÀI VIẾT HAY</div>
                 <div className="Highlight_Title_Underline"></div>
             </div>
@@ -56,7 +54,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getPostHighlights,
+    getHighlightPosts,
 }, dispatch);
 
 export default withRouter(

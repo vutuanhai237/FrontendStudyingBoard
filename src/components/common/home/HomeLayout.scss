@@ -2,7 +2,7 @@
   position: relative;
   font-family: "BarlowSemiCondensed-BoldItalic";
   font-size: 24px;
-  background: #5279db;
+  background: var(--blue);
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
@@ -14,7 +14,7 @@
   align-self: end;
   height: 5px;
   position: relative;
-  background: #5279db;
+  background: var(--blue);
   width: 100%;
 }
 

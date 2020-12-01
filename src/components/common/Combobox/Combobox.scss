@@ -5,10 +5,13 @@
     justify-content: space-between;
     padding-right: 10px;
     color: white;
-    box-shadow: 0px 1px 0px 0px #eeeeee;
+    box-shadow: 0px 2px 0px 0px #eeeeee;
     padding-top: 1px;
     padding-bottom: 1px;
     border-radius: 5px;
+    border-left: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
+
     position: relative;
     min-width: 240px;
     width: fit-content;
@@ -40,7 +43,7 @@
     border-radius: 5px;
     background: #dedede !important;
     cursor: pointer;
-    border-right: 3px #5279db solid;
+    border-right: 3px var(--blue) solid;
     z-index: 2;
 }
 
@@ -48,7 +51,7 @@
     margin-top: 5px;
     position: absolute;
     border: 1px #eeeeee solid;
-    border-bottom: 3px #5279db solid;
+    border-bottom: 3px var(--blue) solid;
     border-radius: 5px;
     box-shadow: 0px 0px 2px 0px #eeeeee;
     display: none;
@@ -64,7 +67,7 @@
 .combo-box-option:hover {
     background: #eeeeee !important;
     cursor: pointer;
-    border-right: 3px #5279db solid;
+    border-right: 3px var(--blue) solid;
 }
 
 .combo-box:active,

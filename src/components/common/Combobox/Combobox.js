@@ -61,8 +61,9 @@ export default class Combobox extends React.Component {
         if (dropdown_container.style.display === "block") {
             dropdown_container.style.display = "none";
             parent_menu_item.style.background = "white";
+            parent_menu_item.style.borderRight = "var(--grayish) 1px solid";
             parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "#363636";
+            show_text.style.color = "var(--black)";
             dropdown_element.src = dropdown_btn;
         }
         this.setState({})
@@ -81,12 +82,14 @@ export default class Combobox extends React.Component {
             parent_menu_item.style.background = "white";
             show_text.style.color = "#363636";
             dropdown_element.src = dropdown_btn;
+            parent_menu_item.style.borderRight = "1px solid var(--grayish)";
         }
         else {
-            parent_menu_item.style.background = "#5279db"
+            parent_menu_item.style.background = "var(--white)"
+            parent_menu_item.style.borderRight = "3px solid var(--blue)"
             dropdown_container.style.display = "block";
-            show_text.style.color = "white";
-            dropdown_element.src = white_dropdown_btn;
+            show_text.style.color = "var(--black)";
+            dropdown_element.src = dropdown_btn;
         }
 
 
@@ -111,8 +114,9 @@ export default class Combobox extends React.Component {
 
 
         //pass to parent
-        this.props.onOptionChanged(this.selectedOption);
-
+        if (this.props.onOptionChanged)
+            this.props.onOptionChanged(this.selectedOption);
+        else console.log('error', "Please implement onOptionChanged() of Combobox!");
         combobox_option.className = "activated-combo-box-option";
         this.isAnyValueChanged = true;
         this.closeAllOption();
@@ -154,7 +158,7 @@ export default class Combobox extends React.Component {
                         {/* select */}
                         <div className="combo-box" id={"combobox-" + this.props.id}
                             onClick={(e) => this.handleComboboxClick(e, "combobox-" + this.props.id, "combobox-text-" + this.props.id, "combobox-btn-element-" + this.props.id, "dropdown-container-" + this.props.id)}>
-                            <div className="flex_container">
+                            <div className="display-flex">
                                 <div className="combo-box-text" id={"combobox-text-" + this.props.id}>
                                     {this.props.placeHolder === "none" ? //neu khong dung placeHolder
                                         <div>{

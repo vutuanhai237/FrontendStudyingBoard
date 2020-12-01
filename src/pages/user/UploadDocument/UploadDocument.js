@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import {
-    getSemesters,
+  
     getSubjects,
     getCategoriesDoc,
     postDoc,
@@ -117,7 +117,7 @@ class UploadDocument extends Component {
     }
     componentDidMount() {
         this.props.getCategoriesDoc();
-        this.props.getSemesters();
+     
         this.props.getSubjects();
     }
 
@@ -310,7 +310,7 @@ class UploadDocument extends Component {
 
                         {/* Button */}
                         <div className="margin-top-10px display-flex">
-                            <button className="blue-button margin_auto" >Đăng bài</button>
+                            <button className="blue-button margin_auto" >Upload</button>
                         </div>
 
                     </div>
@@ -420,7 +420,7 @@ const mapStatetoProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getSemesters,
+ 
     getSubjects,
     postDoc,
     getCategoriesDoc,

@@ -1,26 +1,13 @@
-.normal-container {
-    position: relative;
-    width: 100%;
-    height: fit-content;
-    margin: 0px;
-    padding: 0px;
-}
-
-/* Header Area */
-
-.Header {
-    top: 0px;
-    left: 0px;
-}
-
 /* Body Layout*/
 
-.Router_Outlet {
+.left-sidebar-layout-router-outlet {
     padding-left: 10px;
     width: 100%;
+    background: var(--white);
 }
 
 .left-side-bar-layout {
+    background: var(--white);
     margin: auto;
     margin-top: 20px;
     position: relative;
@@ -53,13 +40,13 @@
 }
 
 
-.decoration_underline {
+.decoration-underline {
     height: 3px;
     width: 100%;
-    background: #5279db;
+    background: var(--blue);
 }
 
-.gray_thin_decoration_underline {
+.gray_thin_decoration-underline {
     height: 1px;
     width: 100%;
     background: #eeeeee;
@@ -73,20 +60,6 @@
     color: #363636;
 }
 
-.Icon_Size_24_x_24 {
-    width: 24px;
-    height: 24px;
-}
-
-//for left side bar
-a {
-    text-decoration: none;
-    text-decoration-style: unset;
-}
-
-a:hover {
-    text-decoration: none;
-}
 
 /*This port contain Management info and vertical menu below Management info*/
 
@@ -135,7 +108,7 @@ a:hover {
     line-height: 20px;
     font-family: "RobotoSlab-Bold";
     align-items: center;
-    color: #5279db;
+    color: var(--blue);
 }
 
 .Info_Layout .Gmail {
@@ -153,14 +126,14 @@ a:hover {
 }
 
 .Own_Role_Layout {
-    border-top: 0.35rem #5279db solid;
+    border-top: 0.35rem var(--blue) solid;
     width: 100%;
     border-bottom: 1px solid #c4c4c4;
     font-family: "BarlowCondensed-SemiBold";
     font-size: 22px;
     line-height: 30px;
     text-align: center;
-    color: #5279db;
+    color: var(--blue);
     border-left: 1px solid #c4c4c4;
     border-right: 1px solid #c4c4c4;
 }
@@ -358,7 +331,7 @@ a:hover {
 .Sub_Dropdown_Menu_Item:hover {
     background: #eeeeee;
     cursor: pointer;
-    border-right: 4px #5279db solid;
+    border-right: 4px var(--gray) solid;
 }
 
 .Parent_Dropdown_Menu_Item:active,
@@ -366,7 +339,7 @@ a:hover {
 .Sub_Dropdown_Menu_Item:active {
     background: #dedede;
     border: none;
-    border-right: 4px #5279db solid;
+    border-right: 4px var(--blue) solid;
     cursor: pointer;
     outline: none;
 }
@@ -387,7 +360,7 @@ a:hover {
     cursor: pointer;
     outline: 0px;
     box-sizing: border-box;
-    border-right: 4px #5279db solid;
+    border-right: 4px var(--blue) solid;
 }
 
 .Avatar_Layout {

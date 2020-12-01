@@ -1,83 +1,146 @@
-// Document by VTH
-// function: shows the list of posts in post page.
-// props from parent: none
-// state: none
-// dependency component: summary post, paging, filter
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { Row, Card, Col, Pagination } from "react-bootstrap";
-import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
-import FilterPost from "components/common/post/FilterPost/FilterPost";
-import Paging from "components/common/Paging/Paging";
+/* eslint-disable react/jsx-pascal-case */
+import React, { Component } from 'react'
+import Titlebar from 'components/common/Titlebar/Titlebar'
+import PostSummary from 'components/post/PostSummary'
+import Paginator from 'components/common/Paginator/ServerPaginator'
+import 'pages/styles/BlankLayout.scss'
+import { postSummaryType } from 'components/post/PostSummary'
+
+//import for redux
+import { getPostsList } from "services/postServices"
+import { getPostCategories } from "services/postServices"
+
 import { bindActionCreators } from 'redux';
-import { getSearchPost, getPostCategories } from "services/postServices"
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import ComboBox from 'components/common/Combobox/Combobox';
+
+
 class PostsList extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            current_page: 1,
-        }
+        super();
+
+        this.maxItemPerPage = 5;
+        this.userPostsList = [];
+
+        this.categoryFilter = [
+            { id: 1, name: "Tất cả" },
+            { id: 2, name: "Chưa phê duyệt" },
+            { id: 3, name: "Đã phê duyệt" },
+            { id: 4, name: "Cần xem lại" }
+        ]
+
+        this.timeFilter = [
+            { id: 1, name: "Mới nhất" },
+            { id: 2, name: "Cũ nhất" }
+        ]
+
     }
 
     componentDidMount() {
-        this.props.getSearchPost("page=1");
+        //must implement: get filter, get doc, page change
+        //get filter
+
+        this.props.getPostsList(); //
+        this.props.getPostCategories()
+    }
+
+    //server
+    onPageChange = (pageNumber) => {
 
     }
 
-    handleNewPage(number) {
-        this.setState({
-            current_page: number,
-        })
+    //
+    onFilterOptionChanged = (selectedOption) => {
+        console.log("Filter search: ")
+        console.log(selectedOption);
     }
+
     render() {
-        let paginItems = [];
-        for (let number = 1; number <= 5; number++) {
-            paginItems.push(
-                <Pagination.Item onClick={() => { this.handleNewPage(number) }} key={number} active={number === this.state.current_page}>
-                    {number}
-                </Pagination.Item>,
-            );
+        let postsList = <></>;
+        if (this.props.postsList) {
+
+            this.postsList = this.props.postsList;
+
+            postsList = this.props.postsList.map((postItem) => (
+                <PostSummary
+                    type={postSummaryType.normal}
+                    key={postItem.id}
+                    id={postItem.id}
+                    authorName={postItem.authorName}
+                    authorID={postItem.authorID}
+                    publishedDtm={postItem.publishedDtm}
+                    category={postItem.category}
+                    categoryID={postItem.categoryID}
+                    title={postItem.title}
+                    summary={postItem.summary}
+                    imageURL={postItem.imageURL}
+                    likedStatus={postItem.likedStatus}
+                    savedStatus={postItem.savedStatus}
+                    readingTime={postItem.readingTime}
+                    likes={3} //
+                    commentCount={4} //
+                    approveStatus={false}
+
+                ></PostSummary >)
+            )
         }
-
-
         return (
-            <div id="group-post">
-                <div>
-                    <p style={{ marginTop: "20px" }} className="title">DANH SÁCH BÀI VIẾT</p>
-                </div>
-                <FilterPost />
-                <Card.Body id="card-body">
-                    <Row>
-                        {
-                            this.props.posts.map(item => {
-                                return <Col sm={12} md={6}>
-                                    <SummaryPost item={item}></SummaryPost>
-                                </Col>
-                            })
-                        }
+            <div className="blank-layout">
+                <Titlebar title="BÀI VIẾT" />
+                <div className="blank-layout-container">
+                    <div className="margin-top-10px" />
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                        <div style={{ display: "flex" }}>
+                            <div className="filter-label text-align-right margin-right-5px">Thời gian:</div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <ComboBox
+                                    options={this.timeFilter}
+                                    placeHolder="Chọn bộ lọc"
+                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                    id="post-list-time-filter-combobox"
+                                ></ComboBox></div>
+                        </div>
 
-                    </Row>
-                </Card.Body>
-                <Pagination>{paginItems}</Pagination>
+                        <div style={{ display: "flex" }}>
+                            <div className="filter-label text-align-right margin-right-5px">Danh mục:</div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <ComboBox
+                                    options={this.categoryFilter}
+                                    placeHolder="Chọn danh mục"
+                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                    id="my-post-list-category-filter-combobox"
+                                ></ComboBox></div>
+                        </div>
+
+                    </div>
+                    <div className="margin-top-10px" />
+
+                    {postsList}
+
+                    <Paginator config={{
+                        changePage: (pageNumber) => this.onPageChange(pageNumber),
+                        maxItemPerPage: this.maxItemPerPage,
+                        numPagesShown: 5,
+                        bottom: "31px"
+                    }}
+                    />
+                </div>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStatetoProps = (state) => {
+    console.log(state)
     return {
-        posts: state.post.posts,
-        categories: state.post.categories,
+        postsList: state.post.posts,
+        postCategories: state.post.categories
     };
-};
+}
+
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getSearchPost,
-    getPostCategories,
+    getPostsList, getPostCategories
 }, dispatch);
 
-
-export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(PostsList)
-);
-
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(PostsList));

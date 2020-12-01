@@ -7,7 +7,7 @@ import RequestedDocSummary from 'components/doc/RequestedDocSummary'
 import Paginator from 'components/common/Paginator/ClientPaginator'
 
 //import for redux
-import { management_getAllNotApprovedDocuments } from "services/authorized/docServices"
+import { getNotApprovedDocumentsList } from "services/authorized/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -27,12 +27,12 @@ class DocApprovingPage extends Component {
                     "authorName": "phucnh",
                     "authorID": 1,
                     "categoryID": 1,
-                    "categoryName": "De thi",
+                    "category": "De thi",
                     "subjectID": 1,
                     "subjectName": "Nh?p môn l?p trình",
                     "viewCount": 0,
                     "downloadCount": 0,
-                    "documentPublishDtm": "Jul 13, 2020"
+                    "documentpublishedDtm": "Jul 13, 2020"
                 }],
             currentInteractList: []
         }
@@ -40,7 +40,7 @@ class DocApprovingPage extends Component {
     }
 
     componentDidMount() {
-        this.props.management_getAllNotApprovedDocuments();
+        this.props.getNotApprovedDocumentsList();
     }
 
     //client
@@ -62,7 +62,7 @@ class DocApprovingPage extends Component {
                     authorID={requestedDoc.authorID}
                     requestedDate={requestedDoc.requestedDate}
                     requestedTime={requestedDoc.requestedTime}
-                    requestedCategory={requestedDoc.categoryName}
+                    requestedCategory={requestedDoc.category}
                     requestedCategoryID={requestedDoc.categoryID}
                     title={requestedDoc.title}
                     content={requestedDoc.summary}
@@ -74,7 +74,7 @@ class DocApprovingPage extends Component {
                     semester={requestedDoc.semester}
                     year={requestedDoc.year}
                     //not need
-                    publishDate={requestedDoc.documentPublishDtm}
+                    publishedDtm={requestedDoc.documentpublishedDtm}
 
                 ></RequestedDocSummary >)
             )
@@ -114,7 +114,7 @@ const mapStatetoProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    management_getAllNotApprovedDocuments
+    getNotApprovedDocumentsList
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(DocApprovingPage));
