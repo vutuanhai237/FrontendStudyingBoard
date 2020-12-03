@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export function isContainSpecialCharacter(str) {
     return /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
 }
@@ -12,13 +10,37 @@ export function generateHiddenPassword(password) {
 
 }
 
-//For assign token to API for requesting 
-export function appendAuthorizationToken(token) {
-    if (token) {
-        axios.default.headers.common['Authorization'] = `Bearer ${token}`;
+// search parameter manipulation 
+export function getSearchParamByName(name) {
+    let query = window.location.search.substring(1);
+    let vars = query.split("&");
+    for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=");
+        if (pair[0] === name) {
+            return pair[1];
+        }
     }
-    else {
-        delete axios.defaults.headers.common['Authorization'];
-    }
+    return null;
 }
 
+export function setSearchParam(name, value) {
+    let query = window.location.search.substring(1);
+    let vars = query.split("&");
+    let newQuery = "";
+    for (let i = 0; i < vars.length; i++) {
+        let pair = vars[i].split("=");
+        if (pair[0] === name) {
+            if (i === vars.length - 1) {
+                newQuery = newQuery + pair[0] + "=" + value;
+            }
+            else {
+                newQuery += newQuery + pair[0] + "=" + value + "&";
+            }
+        } else
+            if (i === vars.length - 1)
+                newQuery += newQuery + vars[i];
+            else
+                newQuery += newQuery + vars[i] + "&";
+    }
+    window.location.search = newQuery;
+}

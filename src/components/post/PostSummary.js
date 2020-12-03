@@ -117,7 +117,7 @@ class PostSummary extends Component {
         <div className="summary-title">
           {this.props.title}
         </div>
-        <div className="display-flex" style={{ marginLeft: "15px", marginTop: "-8px" }} >
+        <div className="display-flex" style={{ marginTop: "-10px" }} >
           <img alt="*" className="metadata-icon" src={gray_btn_element} />
           <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
             {this.props.readingTime} phút đọc
@@ -128,33 +128,35 @@ class PostSummary extends Component {
         </div>
 
         <div className="summary-reaction-bar" style={{ right: "5px" }}>
-          <div className="display-flex">
-            <div> {likeBtn}</div>
-            <div className="like-count">{this.props.likes}</div>
-          </div>
+          <div className="display-flex ">
+            <div className="display-flex">
+              <div> {likeBtn}</div>
+              <div className="like-count">{this.props.likes}</div>
+            </div>
 
-          <div className="display-flex">
-            <div className="btn-text-container" onClick={this.toggleSaveImage}>
-              <div>{saveBtn}</div>
-              <div className="save-text">{this.isSaved ? "Lưu" : "Huỷ"}</div>
-            </div>
-            <div className="comment-count-layout">
-              <div className="comment-text">
-                Bình luận
+            <div className="display-flex">
+              <div className="btn-text-container" onClick={this.toggleSaveImage}>
+                <div>{saveBtn}</div>
+                <div className="save-text">{this.isSaved ? "Lưu" : "Huỷ"}</div>
               </div>
-              <div style={{ paddingLeft: "5px" }}>
-                {this.props.commentCount}
+              <div className="comment-count-layout">
+                <div className="comment-text">
+                  Bình luận
+              </div>
+                <div style={{ paddingLeft: "5px" }}>
+                  {this.props.comments}
+                </div>
               </div>
             </div>
           </div>
+          <div className="link-label margin-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
+            Đọc tiếp ...
+            </div>
         </div>
 
-        <div className="justify-content-space-between margin-top-5px">
-          <Link>
-            <div className="link-label margin-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
-              Đọc tiếp ...
-            </div>
-          </Link>
+        <div className="justify-content-space-between">
+
+
 
           {this.props.type === postSummaryType.mySelf ?
 

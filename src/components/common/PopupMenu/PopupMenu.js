@@ -12,27 +12,12 @@ export default class Combobox extends React.Component {
 
         this.state = {
             isDropdownOpen: false,
-            // selectedOption: {
-            //     id: "",
-            //     name: ""
-            // }
         }
 
         this.selectedOption = {
             id: "",
             name: ""
         }
-
-        this.placeHolder = "All";
-        //if you don't want to show placeHolder => assign name by "none". 
-        //=> it will show selected option have name equal to name of selectedOption ID
-        //placeHolder is not use as an option :)if use want to use an option default, assign placeHolder by none
-
-        //if you used selectedOption ID, please assign name of placeHolder by none 
-
-        this.disabled = false; //if you want to disable combobox, you this.
-
-
 
     }
 
@@ -47,7 +32,7 @@ export default class Combobox extends React.Component {
         console.log(this.selectedOption)
     }
 
-    closeAllOption = () => {
+    closeMenu = () => {
         let parent_id = "combobox-" + this.props.id;
         let show_text_id = "combobox-text-" + this.props.id;
         let dropdown_element_id = "combobox-btn-element-" + this.props.id;
@@ -69,7 +54,7 @@ export default class Combobox extends React.Component {
         this.setState({})
     }
 
-    handleComboboxClick = (e, combobox_id, combobox_text_id, dropdown_element_id, container_id) => {
+    handleMenuClick = (e, combobox_id, combobox_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
 
         let parent_menu_item = document.getElementById(combobox_id);
@@ -93,7 +78,7 @@ export default class Combobox extends React.Component {
         this.setState({ isDropdownOpen: true });
     }
 
-    handleOptionClick = (id) => {
+    handleMenuItemClick = (id) => {
         let item_id = "combobox-option-" + this.props.id + "-" + id;
         let combobox_option = document.getElementById(item_id);
 
@@ -148,12 +133,12 @@ export default class Combobox extends React.Component {
 
         return (
             <div style={{ position: "relative", display: "flex", minWidth: "240px", width: "fit-content" }} >
-                < ClickAwayListener onClickAway={() => { this.closeAllOption() }}>
+                < ClickAwayListener onClickAway={() => { this.closeMenu() }}>
                     {/* <div style={{ width: "100%" }}> */}
                     <div>
                         {/* select */}
                         <div className="combo-box" id={"combobox-" + this.props.id}
-                            onClick={(e) => this.handleComboboxClick(e, "combobox-" + this.props.id, "combobox-text-" + this.props.id, "combobox-btn-element-" + this.props.id, "dropdown-container-" + this.props.id)}>
+                            onClick={(e) => this.handleMenuClick(e, "combobox-" + this.props.id, "combobox-text-" + this.props.id, "combobox-btn-element-" + this.props.id, "dropdown-container-" + this.props.id)}>
                             <div className="display-flex">
                                 <div className="combo-box-text" id={"combobox-text-" + this.props.id}>
                                     {this.props.placeHolder === "none" ? //neu khong dung placeHolder

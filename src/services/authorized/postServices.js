@@ -44,11 +44,37 @@ const post_v2 = {
 }
 
 const post_v3 = {
-
+    "id": 48,
+    "title": "some text",
+    "authorName": "some text",
+    "publishedDtm": "some text",
+    "readingTime": 22,
+    "category": "some text",
+    "summary": "some text",
+    "likes": 65,
+    "commentCount": 69,
+    "authorID": 46,
+    "categoryID": 69,
+    "imageURL": "some text",
+    "likedStatus": true,
+    "savedStatus": true
 }
 
 const post_v4 = {
-
+    "id": 44,
+    "title": "some text",
+    "authorName": "some text",
+    "publishedDtm": "some text",
+    "readingTime": 22,
+    "category": "some text",
+    "summary": "some text",
+    "likes": 65,
+    "commentCount": 69,
+    "authorID": 46,
+    "categoryID": 69,
+    "imageURL": "some text",
+    "likedStatus": true,
+    "savedStatus": true
 }
 
 // export function getNotApprovedDocumentsList() {
@@ -126,7 +152,8 @@ const post_v4 = {
 
 // }
 
-export function getMyPostsList() { //this API to get all approved document of a specific user.
+// export default function postAPI() {
+export function getMyPostsList(page = 1, category = "") { //this API to get all approved document of a specific user.
     return dispatch => {
 
         var myHeaders = new Headers();
@@ -143,11 +170,9 @@ export function getMyPostsList() { //this API to get all approved document of a 
         //         result => dispatch(get_MyDocuments(JSON.parse(result))
         //         ))
         //     .catch(error => console.log('error', error))
-        let result = [post_v1, post_v2];
+        let result = page === 1 ? [post_v1, post_v2] : [post_v3, post_v4];
         dispatch(get_MyPostsList(result));
     }
-
 }
-
-
+// }
 

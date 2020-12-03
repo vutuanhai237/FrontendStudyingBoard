@@ -6,7 +6,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Row, Card, Col } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { getPostNewests } from "services/postServices"
 class NewPost extends Component {
@@ -65,9 +64,9 @@ class NewPost extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        newests: state.post.newests,
+        newests:store.post.newests,
     };
 };
 
@@ -76,6 +75,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(NewPost)
+    connect(mapStoreToProps, mapDispatchToProps)(NewPost)
 );
 

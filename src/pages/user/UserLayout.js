@@ -21,6 +21,7 @@ import CreatePost from 'pages/user/CreatePost/CreatePost'
 //import scss
 import '../styles/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
+import '../styles/Layout.scss'
 
 //import for Redux
 import { bindActionCreators } from 'redux'
@@ -33,17 +34,6 @@ import {
   StatisticPermission,
   getRoleNameByName,
   isGrantedPermissions
-} from 'utils/PermissionManagement'
-
-import {
-  DocumentPermission,
-  PostPermission,
-  ContentManagementPermission,
-  NotificationPermission,
-  CategoryPermission,
-  UserPermission,
-  ActivityPermission,
-  RolePermission
 } from 'utils/PermissionManagement'
 
 class AdminLayout extends Component {
@@ -226,12 +216,12 @@ class AdminLayout extends Component {
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to={"/user/my_posts"}>
+                                to={"/user/my_posts?page=1"}>
                                 Bài viết của tôi
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to="/user/my_posts"
+                                to="/user/my_posts?page=1"
                                 onClick={() => this.setState({})}>
                                 Bài viết của tôi
                                                         </Link>
@@ -240,12 +230,12 @@ class AdminLayout extends Component {
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to="/user/saved_posts">
+                                to="/user/saved_posts?page=1">
                                 Bài viết đã lưu
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to={"/user/saved_posts"}
+                                to={"/user/saved_posts?page=1"}
                                 onClick={() => this.setState({})}>
                                 Bài viết đã lưu
                                                         </Link>
@@ -299,12 +289,12 @@ class AdminLayout extends Component {
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to={"/user/my_docs"}>
+                                to={"/user/my_docs?page=1"}>
                                 Tài liệu của tôi
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to={"/user/my_docs"}
+                                to={"/user/my_docs?page=1"}
                                 onClick={() => this.setState({})}>
                                 Tài liệu của tôi
                                                         </Link>
@@ -466,10 +456,10 @@ class AdminLayout extends Component {
 
 
 //#region for redux
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
   // (state);
   return {
-    accountInformation: state.user.account
+    accountInformation: store.user.account
   };
 }
 
@@ -479,5 +469,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 // const
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(AdminLayout));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(AdminLayout));
 //#endregion

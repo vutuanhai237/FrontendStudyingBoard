@@ -106,10 +106,9 @@ class DocApprovingPage extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    console.log(state);
+const mapStoreToProps = (store) => {
     return {
-        requestedDocs: state.management_doc.requestedDocs,
+        requestedDocs: store.management_doc.requestedDocs,
     };
 }
 
@@ -117,4 +116,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getNotApprovedDocumentsList
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(DocApprovingPage));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(DocApprovingPage));

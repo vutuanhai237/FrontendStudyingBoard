@@ -34,11 +34,11 @@ function authorized_postReducer(state = initialState, action) {
                 return { ...state, currentPostApprovedStatus: action.payload }
             }
 
+        //get my post
         case GET_MY_POSTS:
             {
                 console.log(action.payload)
-                return { ...state, userPostsList: action.payload }
-                break;
+                return { ...state, myPostsList: action.payload }
             }
 
         default:

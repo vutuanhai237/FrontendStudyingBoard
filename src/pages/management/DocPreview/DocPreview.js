@@ -340,10 +340,10 @@ class DocPreview extends Component {
 
 }
 
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        currentPreviewDocument: state.management_doc.currentPreviewDocument,
-        accountInformation: state.user.account
+        currentPreviewDocument: store.management_doc.currentPreviewDocument,
+        accountInformation: store.user.account
     };
 }
 
@@ -352,4 +352,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(DocPreview));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(DocPreview));

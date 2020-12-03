@@ -1,55 +1,53 @@
-.Paginator {
+.custom-paginator {
     user-select: none;
     display: flex;
     background: white;
-    
-    
+    padding-top: 10px;
+    border-top: 2px var(--gray) solid;
+    margin-top: 20px;
+    font-family: "BarlowCondensed-Semibold";
+    font-size: 18px;
 }
 
-.Deactivated_Page {
+.deactivated-page {
     background: white;
-    width: 26px;
-    height: 26px;
-    border: 1px var(--blue) solid;
+    width: 24px;
+    height: 24px;
+    border: 1px var(--gray) solid;
     border-radius: 4px;
     color: var(--blue);
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 20px;
 }
 
-.Deactivated_Page:hover {
-    background: var(--blue);
+.deactivated-page:hover {
+    background: var(--gray);
     opacity: 60%;
     color: white;
     box-shadow: 0px 0px 1px 1px white;
     cursor: pointer;
 }
 
-.Deactivated_Page:active {
+.deactivated-page:active {
     border: 1px white solid;
-    background: var(--blue);
+    background: var(--gray);
     opacity: 100%;
 }
 
-.Activated_Page {
+.activated-page {
     background: var(--blue);
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     border: 1px var(--blue) solid;
     border-radius: 4px;
     color: white;
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-size: 20;
-    font-weight: 700;
 }
 
-.Activated_Page:hover {
+.activated-page:hover {
     background: var(--blue);
     opacity: 60%;
     color: white;
@@ -57,7 +55,7 @@
     cursor: pointer;
 }
 
-.Activated_Page:active {
+.activated-page:active {
     background: var(--blue);
     opacity: 60%;
     color: white;
@@ -71,34 +69,25 @@
 .prev-page {
     margin-right: 4px;
     width: 40px;
-    height: 26px;
-    border: 1px var(--blue) solid;
+    height: 24px;
     border-radius: 4px;
     background: white;
-    border: 1px var(--blue) solid;
+    border: 1px var(--gray) solid;
     color: var(--blue);
     line-height: 22px;
     text-align: center;
-    margin-right: 4px;
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-size: 20;
-    font-weight: 700;
 }
 
 .last-page {
     width: 40px;
-    height: 26px;
-    border: 1px var(--blue) solid;
+    height: 24px;
+    border: 1px var(--gray) solid;
     border-radius: 4px;
     background: white;
-    border: 1px var(--blue) solid;
     color: var(--blue);
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-size: 20;
-    font-weight: 700;
 }
 
 .first-page:hover,

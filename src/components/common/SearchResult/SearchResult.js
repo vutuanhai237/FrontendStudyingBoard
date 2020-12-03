@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Row, Card, Col } from "react-bootstrap";
+
 import { bindActionCreators } from 'redux';
 class SearchResult extends Component {
     constructor(props) {
@@ -45,27 +45,14 @@ class SearchResult extends Component {
                 <div>
                     {title}
                 </div>
-
-                <Card.Body id="card-body">
-                    <Row>
-                        {
-                            posts.map(item => {
-                                return <Col sm={12} md={6}>
-                                    {/* <SummaryPost item={item}></SummaryPost> */}
-                                </Col>
-                            })
-                        }
-
-                    </Row>
-                </Card.Body>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        posts: state.post.posts,
+        posts:store.post.posts,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -74,6 +61,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(SearchResult)
+    connect(mapStoreToProps, mapDispatchToProps)(SearchResult)
 );
 

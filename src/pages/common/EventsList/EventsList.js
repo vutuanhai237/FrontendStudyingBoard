@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Row, Card, Col } from "react-bootstrap";
+
 // import SummaryPost from "components/common/post/SummaryPost/SummaryPost";
 class EventsList extends Component {
     constructor(props) {
@@ -25,28 +25,17 @@ class EventsList extends Component {
                 <div>
                     <p className="title">DANH SÁCH SỰ KIỆN</p>
                 </div>
-                <Card.Body id="card-body">
-                    <Row>
-                        {
-                            events.map(item => {
-                                return <Col sm={12} md={6}>
-                                    {/* <SummaryPost item={item}></SummaryPost> */}
-                                </Col>
-                            })
-                        }
 
-                    </Row>
-                </Card.Body>
 
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
+const mapStoreToProps = (store) => {
     return {
 
-        events: state.post.events,
+        events:store.post.events,
 
     };
 
@@ -59,4 +48,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventsList));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(EventsList));

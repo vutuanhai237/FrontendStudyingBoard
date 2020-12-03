@@ -499,10 +499,10 @@ class AdminLayout extends Component {
 
 
 //#region for redux
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
     // (state);
     return {
-        accountInformation: state.user.account
+        accountInformation: store.user.account
     };
 }
 
@@ -512,5 +512,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 // const
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(AdminLayout));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(AdminLayout));
 //#endregion

@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Row, Col, Card } from "react-bootstrap";
+// import { Row, Col, Card } from "react-bootstrap";
 // import SummaryDocument from "components/common/document/SummaryDocument/SummaryDocument";
 import { bindActionCreators } from 'redux';
 import { getTopDoc } from "services/docServices"
@@ -67,9 +67,9 @@ class TopDoc extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        topDoc: state.doc.topDoc,
+        topDoc:store.doc.topDoc,
     };
 }
 
@@ -77,4 +77,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getTopDoc
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(TopDoc));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(TopDoc));

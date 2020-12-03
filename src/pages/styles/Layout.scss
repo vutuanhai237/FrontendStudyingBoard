@@ -6,4 +6,11 @@
   padding: 0px;
 }
 
-/* Header Area */
+.two-element-filter-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+  border-bottom: 2px var(--gray) solid;
+}

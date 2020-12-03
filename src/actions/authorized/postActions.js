@@ -30,9 +30,9 @@ export function get_NotApprovedDocumentsList(requestedDocs) {
 
 
 
-export function get_MyPostsList(userPostsList) {
+export function get_MyPostsList(myPostsList) {
     return {
         type: GET_MY_POSTS,
-        payload: userPostsList,
+        payload: myPostsList,
     }
 }

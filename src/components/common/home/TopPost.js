@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Row, Card, Col } from "react-bootstrap";
+
 import { bindActionCreators } from "redux";
 import { getHighlightPosts } from "services/postServices"
 class TopPost extends Component {
@@ -47,9 +47,9 @@ class TopPost extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        highlights: state.post.highlights,
+        highlights: store.post.highlights,
     };
 };
 
@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(TopPost)
+    connect(mapStoreToProps, mapDispatchToProps)(TopPost)
 );
 
 // <div id="group-post">

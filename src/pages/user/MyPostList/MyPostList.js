@@ -13,13 +13,14 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
+import { getSearchParamByName, setSearchParam } from 'utils/Utils'
 
+//Sample URL: http://localhost:3000/user/my_posts?page=3&category=1
 class MyPostList extends Component {
     constructor(props) {
         super();
 
-        this.maxItemPerPage = 5;
-        this.userPostsList = [];
+        this.myPostsList = [];
 
         this.filter = [
             { id: 1, name: "Tất cả" },
@@ -28,55 +29,55 @@ class MyPostList extends Component {
             { id: 4, name: "Cần xem lại" }
         ]
 
+        this.state = { isLoading: true };
+
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         //must implement: get filter, get doc, page change
         //get filter
 
-        this.props.getMyPostsList(); //
+        this.props.getMyPostsList();
         this.props.getPostCategories()
     }
 
-    //server
+    //server paginator
     onPageChange = (pageNumber) => {
-
+        console.log(setSearchParam("page", pageNumber));
     }
 
-    //
+    //combobox
     onFilterOptionChanged = (selectedOption) => {
-        console.log("Filter search: ")
         console.log(selectedOption);
+
     }
 
     render() {
-        let myPostsList = <></>; //sau nay se lam mot cai content loader.
-        // console.log(this.state.currentInteractList);
+        //sau nay se lam mot cai content loader.
+        let myPostsList = <></>;
+        console.log(this.props);
 
-        if (this.props.userPostsList) {
+        if (this.props.myPostsList) {
 
-            this.userPostsList = this.props.userPostsList;
-
-            myPostsList = this.props.userPostsList.map((myPostItem) => (
+            myPostsList = this.props.myPostsList.map((postItem) => (
                 <PostSummary
                     type={postSummaryType.mySelf}
-                    key={myPostItem.id}
-                    id={myPostItem.id}
-                    authorName={myPostItem.authorName}
-                    authorID={myPostItem.authorID}
-                    publishedDtm={myPostItem.publishedDtm}
-                    category={myPostItem.category}
-                    categoryID={myPostItem.categoryID}
-                    title={myPostItem.title}
-                    summary={myPostItem.summary}
-                    imageURL={myPostItem.imageURL}
-                    likedStatus={myPostItem.likedStatus}
-                    savedStatus={myPostItem.savedStatus}
-                    readingTime={myPostItem.readingTime}
-                    likes={3} //
-                    commentCount={4} //
+                    key={postItem.id}
+                    id={postItem.id}
+                    authorName={postItem.authorName}
+                    authorID={postItem.authorID}
+                    publishedDtm={postItem.publishedDtm}
+                    category={postItem.category}
+                    categoryID={postItem.categoryID}
+                    title={postItem.title}
+                    summary={postItem.summary}
+                    imageURL={postItem.imageURL}
+                    likedStatus={postItem.likedStatus}
+                    savedStatus={postItem.savedStatus}
+                    readingTime={postItem.readingTime}
+                    likes={postItem.likes}
+                    comments={postItem.commentCount}
                     approveStatus={false}
-
                 ></PostSummary >)
             )
         }
@@ -84,22 +85,22 @@ class MyPostList extends Component {
             <div>
                 <Titlebar title="BÀI VIẾT CỦA TÔI" />
                 <div className="left-side-bar-layout-content-container">
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-
-                        <div className="filter-label display-flex">
-                            <div className="margin-right-5px">Tổng số:</div>
-                            <div>{this.userPostsList.length}</div>
-                        </div>
-
+                    <div className="two-element-filter-container">
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                            <div className="filter-label text-align-right margin-right-5px">Danh mục:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.filter}
-                                    placeHolder="Chọn bộ lọc"
+                                    placeHolder="Chọn danh mục"
                                     onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
                                     id="my-post-list-search-filter-combobox"
-                                ></ComboBox></div>
+                                ></ComboBox>
+                            </div>
+                        </div>
+
+                        <div className="filter-label display-flex">
+                            <div className="margin-right-5px">Tổng số:</div>
+                            <div>{this.myPostsList.length}</div>
                         </div>
                     </div>
 
@@ -107,9 +108,8 @@ class MyPostList extends Component {
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5,
-                        bottom: "31px"
+                        pageCount: 20,
+                        numPagesShown: 5
                     }}
                     />
                 </div>
@@ -118,11 +118,11 @@ class MyPostList extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    console.log(state);
+const mapStoreToProps = (store) => {
     return {
-        userPostsList: state.management_post.userPostsList,
-        postCategories: state.doc.categories
+        myPostsList: store.management_post.myPostsList,
+        postCategories: store.doc.categories, 
+        // postLoading:store.
     };
 }
 
@@ -130,4 +130,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(MyPostList));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(MyPostList));

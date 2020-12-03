@@ -29,7 +29,7 @@ class Paginator extends Component {
         //     //ko sao dau
         //     this.pageCount = Math.floor(this.rawData.length / this.maxItemPerPage) + 1;
         // }
-        
+
         // console.log(this.rawData.length);
 
         // //initial array of page you want to render
@@ -188,30 +188,30 @@ class Paginator extends Component {
                     this.currentInteractList.push(this.rawData[i])
             }
             this.props.config.changePage(this.currentInteractList)
-            
+
             this.isTheFirstTimeLoaded = false;
         }
         //#endregion
 
         let shownPages = this.arrayShownPages.map(page_number =>
-            <div className="Page_Item" id={page_number} key={page_number} >
+            <div className="custom-page-item" id={page_number} key={page_number} >
                 {
                     page_number !== this.currentPage
                         ?
                         <div>
                             {
                                 page_number !== "..." ?
-                                    < div className="Deactivated_Page" onClick={() => { this.props.config.changePage(this.currentInteractList); this.onClickPaginationElement(page_number, "") }}>
+                                    < div className="deactivated-page" onClick={() => { this.props.config.changePage(this.currentInteractList); this.onClickPaginationElement(page_number, "") }}>
                                         {page_number}
                                     </div>
                                     :
-                                    < div className="Deactivated_Page" >
+                                    < div className="deactivated-page" >
                                         {page_number}
                                     </div>
                             }
                         </div>
                         :
-                        <div className="Activated_Page" onClick={() => this.onClickPaginationElement(page_number, "")}>
+                        <div className="activated-page" onClick={() => this.onClickPaginationElement(page_number, "")}>
                             {page_number}
                         </div>
                 }
@@ -219,7 +219,7 @@ class Paginator extends Component {
         );
 
         return (
-            <div className="Paginator" style={{ position: "absolute", bottom: this.props.config.bottom }}>
+            <div className="custom-paginator" >
                 <div className="first-page" onClick={() => { this.props.config.changePage(this.currentInteractList); this.onClickPaginationElement(this.currentPage, "first") }} > first</div>
                 <div className="prev-page" onClick={() => { this.props.config.changePage(this.currentInteractList); this.onClickPaginationElement(this.currentPage, "prev") }}>Prev </div>
                 {shownPages}

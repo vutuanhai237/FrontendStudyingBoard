@@ -539,12 +539,10 @@ class CategoryManagement extends Component {
 
 
 //#region for Redux
-const mapStatetoProps = (state) => {
-    console.log(state.doc);
+const mapStoreToProps = (store) => {
     return {
-        categoryList: state.doc.categories,
-        subjectList: state.doc.subjects,
-        semesterList: state.doc.semesters
+        categoryList:store.doc.categories,
+        subjectList:store.doc.subjects,
     };
 }
 
@@ -554,5 +552,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CategoryManagement));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(CategoryManagement));
 //#endregion

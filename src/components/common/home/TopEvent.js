@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Row, Card, Col } from "react-bootstrap";
+
 import { getPostNewActivities } from "services/postServices";
 import { bindActionCreators } from "redux";
 
@@ -45,9 +45,9 @@ class TopEvent extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        newActivities: state.post.newActivities,
+        newActivities: store.post.newActivities,
     };
 };
 
@@ -56,5 +56,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(TopEvent)
+    connect(mapStoreToProps, mapDispatchToProps)(TopEvent)
 );

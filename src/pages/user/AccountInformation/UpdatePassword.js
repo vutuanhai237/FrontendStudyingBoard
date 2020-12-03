@@ -398,10 +398,10 @@ class UpdatePassword extends Component {
 }
 
 //#region for Redux
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
     // (state);
     return {
-        accountInformation: state.user.account
+        accountInformation: store.user.account
     };
 }
 
@@ -409,5 +409,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser, getLogout
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(UpdatePassword));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(UpdatePassword));
  //#endregion

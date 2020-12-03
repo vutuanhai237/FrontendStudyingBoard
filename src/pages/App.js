@@ -48,20 +48,13 @@ const App = () => {
 
                     {/* user layout */}
                     <Route path="/user">
-
-                        {/* for user + only */}
                         <Route exact path="" component={UserLayout} />
                         <Route exact path="/update_password" component={UserLayout} />
                         <Route exact path="/my_docs" component={UserLayout} />
                         <Route exact path="/my_posts" component={UserLayout} />
                         <Route exact path="/notification" component={UserLayout} />
-
-                        {/* for collaborator + only */}
-                        <Route exact path="/post_approving" component={AdminLayout} />
-                        <Route exact path="/post_approving/:id" component={DocPreview} />
-                        <Route exact path="/doc_approving" component={AdminLayout} />
-                        <Route exact path="/doc_approving/:id" component={DocPreview} />
                     </Route>
+
                     <Route exact path="/create_post" component={UserLayout} />
                     <Route exact path="/upload_doc" component={UserLayout} />
 
@@ -80,6 +73,10 @@ const App = () => {
                         <Route exact path="/statistic_management" component={AdminLayout} />
                     </Route>
                     
+                    <Route path="/collab">
+                        <Route exact path="/post_approving" component={AdminLayout} />
+                        <Route exact path="/doc_approving" component={AdminLayout} />
+                    </Route>
                 </Switch>
                 <div className="App"></div>
             </Router >

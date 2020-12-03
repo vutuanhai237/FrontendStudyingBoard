@@ -82,7 +82,7 @@ class LoginStatus extends Component {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
         
     };
@@ -93,5 +93,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(LoginStatus)
+    connect(mapStoreToProps, mapDispatchToProps)(LoginStatus)
 );

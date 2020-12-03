@@ -370,9 +370,9 @@ class Header extends Component {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStoreToProps = (store) => {
     return {
-        account: state.user.account,
+        account: store.user.account,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -380,5 +380,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(Header)
+    connect(mapStoreToProps, mapDispatchToProps)(Header)
 );

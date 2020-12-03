@@ -295,12 +295,10 @@ class DocDetail extends Component {
 
 }
 
-const mapStatetoProps = (state) => {
-    console.log("*");
-    console.log(state);
+const mapStoreToProps = (store) => {
     return {
-        document: state.doc.document,
-        accountInformation: state.user.account
+        document: store.doc.document,
+        accountInformation: store.user.account
     };
 }
 
@@ -309,4 +307,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(DocDetail));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(DocDetail));

@@ -21,7 +21,7 @@ class PostsList extends Component {
         super();
 
         this.maxItemPerPage = 5;
-        this.userPostsList = [];
+        this.myPostsList = [];
 
         this.filter = [
             { id: 1, name: "Tất cả" },
@@ -91,7 +91,7 @@ class PostsList extends Component {
 
                         <div className="filter-label display-flex">
                             <div className="margin-right-5px">Tổng số:</div>
-                            <div>{this.userPostsList.length}</div>
+                            <div>{this.postsList.length}</div>
                         </div>
 
                         <div style={{ display: "flex" }}>
@@ -121,11 +121,11 @@ class PostsList extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    console.log(state)
+const mapStoreToProps = (store) => {
+    
     return {
-        postsList: state.post.posts,
-        postCategories: state.post.categories
+        postsList:store.post.posts,
+        postCategories: store.post.categories
     };
 }
 
@@ -133,4 +133,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(PostsList));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(PostsList));

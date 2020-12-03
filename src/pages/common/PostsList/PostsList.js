@@ -21,7 +21,7 @@ class PostsList extends Component {
         super();
 
         this.maxItemPerPage = 5;
-        this.userPostsList = [];
+        this.postsList = [];
 
         this.categoryFilter = [
             { id: 1, name: "Tất cả" },
@@ -131,11 +131,11 @@ class PostsList extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    console.log(state)
+const mapStoreToProps = (store) => {
+    console.log(store)
     return {
-        postsList: state.post.posts,
-        postCategories: state.post.categories
+        postsList: store.post.posts,
+        postCategories: store.post.categories
     };
 }
 
@@ -143,4 +143,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(PostsList));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(PostsList));

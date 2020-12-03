@@ -11,11 +11,7 @@ export default class Combobox extends React.Component {
         this.isAnyValueChanged = false; //will become true if you choose an option
 
         this.state = {
-            isDropdownOpen: false,
-            // selectedOption: {
-            //     id: "",
-            //     name: ""
-            // }
+            isDropdownOpen: false
         }
 
         this.selectedOption = {

@@ -31,10 +31,11 @@ class MyDocuments extends Component {
         // this.props.getDocCategory();
     }
 
-    //client
-    onPageChangeClient = (currentInteractList) => {
-        this.setState({ currentInteractList: currentInteractList })
+    //server
+    onPageChange = (pageNumber) => {
+
     }
+
 
     render() {
 
@@ -94,9 +95,8 @@ class MyDocuments extends Component {
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5,
-                        bottom: "31px"
+                        pageCount: 20,
+                        numPagesShown: 5
                     }}
                     />
                 </div>
@@ -105,11 +105,9 @@ class MyDocuments extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    console.log("****");
-    console.log(state);
+const mapStoreToProps = (store) => {
     return {
-        myDocuments: state.management_doc.myDocuments,
+        myDocuments: store.management_doc.myDocuments,
     };
 }
 
@@ -117,4 +115,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyDocuments
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(MyDocuments));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(MyDocuments));

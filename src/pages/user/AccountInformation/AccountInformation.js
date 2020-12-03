@@ -634,12 +634,12 @@ class AccountInformation extends Component {
 }
 
 //#region for Redux
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
     // (state);
     // console.log(state);
     return {
-        roleList: state.management_user.allRoles,
-        accountInformation: state.user.account
+        roleList: store.management_user.allRoles,
+        accountInformation: store.user.account
     };
 }
 
@@ -647,5 +647,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser, management_getAllRoles
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(AccountInformation));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(AccountInformation));
  //#endregion

@@ -199,11 +199,11 @@ class Statistic extends Component {
 }
 
 //#region for Redux
-const mapStatetoProps = (state) => {
+const mapStoreToProps = (store) => {
 
     return {
-        userList: state.management_user.allUsers.accounts,
-        roleList: state.management_user.allRoles
+        userList: store.management_user.allUsers.accounts,
+        roleList: store.management_user.allRoles
     };
 }
 
@@ -211,5 +211,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     management_getAllUsers, management_getAllRoles
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Statistic));
+export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(Statistic));
 //#endregion

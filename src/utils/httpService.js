@@ -18,9 +18,6 @@ http.interceptors.request.use(
     if (!!abp.auth.getToken()) {
       config.headers.common['Authorization'] = 'Bearer ' + abp.auth.getToken();
     }
-
-    config.headers.common['.AspNetCore.Culture'] = abp.utils.getCookieValue('Abp.Localization.CultureName');
-    config.headers.common['Abp.TenantId'] = abp.multiTenancy.getTenantIdCookie();
     config.headers.common['Access-Control-Allow-Origin'] = "*";
     config.headers.common['crossdomain'] = true;
     return config;
