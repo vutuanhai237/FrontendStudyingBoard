@@ -41,9 +41,9 @@ class NewPost extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        newests:store.post.newests,
+        newests:state.post.newests,
     };
 };
 
@@ -52,6 +52,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(NewPost)
+    connect(mapStateToProps, mapDispatchToProps)(NewPost)
 );
 

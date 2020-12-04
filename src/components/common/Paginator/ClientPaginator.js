@@ -33,12 +33,12 @@ class Paginator extends Component {
         // console.log(this.rawData.length);
 
         // //initial array of page you want to render
-        // if (this.pageCount < this.props.config.numPagesShown) {
+        // if (this.pageCount < this.props.config.numShownPage) {
         //     this.arrayShownPages.splice(0, this.arrayShownPages.length);
         //     for (let i = 1; i <= this.pageCount; i++) {
         //         this.arrayShownPages.push(i);
         //     }
-        //     // for (let i = this.props.config.numPagesShown; i > this.pageCount; i--) {
+        //     // for (let i = this.props.config.numShownPage; i > this.pageCount; i--) {
         //     //     this.arrayShownPages.push("...");
         //     // }
         // }
@@ -83,7 +83,7 @@ class Paginator extends Component {
 
         //handler page click
 
-        if (!(this.pageCount < this.props.config.numPagesShown)) {
+        if (!(this.pageCount < this.props.config.numShownPage)) {
             switch (page_number) {
                 //set number of page in the midde => update array shown pages
                 case 1:
@@ -167,12 +167,12 @@ class Paginator extends Component {
             }
 
             //initial array of page you want to render
-            if (this.pageCount < this.props.config.numPagesShown) {
+            if (this.pageCount < this.props.config.numShownPage) {
                 this.arrayShownPages.splice(0, this.arrayShownPages.length);
                 for (let i = 1; i <= this.pageCount; i++) {
                     this.arrayShownPages.push(i);
                 }
-                // for (let i = this.props.config.numPagesShown; i > this.pageCount; i--) {
+                // for (let i = this.props.config.numShownPage; i > this.pageCount; i--) {
                 //     this.arrayShownPages.push("...");
                 // }
             }

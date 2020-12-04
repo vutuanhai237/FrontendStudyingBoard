@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/shared/DocPostDetail.scss'
+import 'components/styles/DocPostDetail.scss'
 // import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
@@ -295,10 +295,10 @@ class DocDetail extends Component {
 
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        document: store.doc.document,
-        accountInformation: store.user.account
+        document: state.doc.document,
+        accountInformation: state.user.account
     };
 }
 
@@ -307,4 +307,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(DocDetail));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocDetail));

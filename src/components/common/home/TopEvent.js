@@ -45,9 +45,9 @@ class TopEvent extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        newActivities: store.post.newActivities,
+        newActivities: state.post.newActivities,
     };
 };
 
@@ -56,5 +56,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(TopEvent)
+    connect(mapStateToProps, mapDispatchToProps)(TopEvent)
 );

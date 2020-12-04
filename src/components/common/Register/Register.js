@@ -251,9 +251,9 @@ class RegisterForm extends React.Component {
         );
     }
 }
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        statusRegisterCode: store.user.statusRegisterCode,
+        statusRegisterCode: state.user.statusRegisterCode,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -262,5 +262,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(RegisterForm)
+    connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
 );

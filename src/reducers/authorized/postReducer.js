@@ -1,35 +1,27 @@
 import {
-    GET_ALL_NOT_APPROVED_DOCUMENTS,
-    GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
-    APPROVE_A_DOCUMENT,
+    GET_ALL_NOT_APPROVED_POSTS,
+    APPROVE_A_POST,
     GET_MY_POSTS
 } from 'constants/constants'
 
-const requestedPosts = [
-]
-
-
-// const userPostsList = [
-// ]
-
-
 const initialState = {
-    requestedPosts: requestedPosts,
-    // userPostsList: userPostsList
+    requestedPosts: [],
+    myPostsList: [],
+    isMyPostListLoading: false,
+    isRequestedPostsLoading: false
+
 }
 
 function authorized_postReducer(state = initialState, action) {
     switch (action.type) {
-        case GET_ALL_NOT_APPROVED_DOCUMENTS:
+
+        //get all not approved post
+        case GET_ALL_NOT_APPROVED_POSTS:
             {
                 return { ...state, requestedPosts: action.payload };
             }
 
-        case GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL: {
-            return { ...state, currentPreviewPost: action.payload }
-        }
-
-        case APPROVE_A_DOCUMENT:
+        case APPROVE_A_POST:
             {
                 return { ...state, currentPostApprovedStatus: action.payload }
             }

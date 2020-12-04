@@ -32,10 +32,10 @@ class EventsList extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
 
-        events:store.post.events,
+        events:state.post.events,
 
     };
 
@@ -48,4 +48,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(EventsList));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventsList));

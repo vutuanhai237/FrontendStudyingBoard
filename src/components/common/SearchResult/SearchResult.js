@@ -50,9 +50,9 @@ class SearchResult extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        posts:store.post.posts,
+        posts:state.post.posts,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -61,6 +61,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(SearchResult)
+    connect(mapStateToProps, mapDispatchToProps)(SearchResult)
 );
 

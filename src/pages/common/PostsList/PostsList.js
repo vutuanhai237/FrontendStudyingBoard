@@ -121,7 +121,7 @@ class PostsList extends Component {
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
                         maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5,
+                        numShownPage: 5,
                         bottom: "31px"
                     }}
                     />
@@ -131,11 +131,11 @@ class PostsList extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
-    console.log(store)
+const mapStateToProps = (state) => {
+   
     return {
-        postsList: store.post.posts,
-        postCategories: store.post.categories
+        postsList: state.post.posts,
+        postCategories: state.post.categories
     };
 }
 
@@ -143,4 +143,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(PostsList));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsList));

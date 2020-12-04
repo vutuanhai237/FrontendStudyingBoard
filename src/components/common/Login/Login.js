@@ -180,9 +180,9 @@ class LoginForm extends React.Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        statusLoginCode: store.user.statusLoginCode,
+        statusLoginCode: state.user.statusLoginCode,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -192,5 +192,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(LoginForm)
+    connect(mapStateToProps, mapDispatchToProps)(LoginForm)
 );

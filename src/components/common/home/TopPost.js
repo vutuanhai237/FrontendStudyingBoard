@@ -47,9 +47,9 @@ class TopPost extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        highlights: store.post.highlights,
+        highlights: state.post.highlights,
     };
 };
 
@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch);
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(TopPost)
+    connect(mapStateToProps, mapDispatchToProps)(TopPost)
 );
 
 // <div id="group-post">

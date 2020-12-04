@@ -5,7 +5,7 @@ import {
     userGetLogout,
 } from "actions/userAction.js";
 import {
-    HOST,
+    // HOST,
     PORT
 } from 'constants/constants';
 import FormData from 'form-data';

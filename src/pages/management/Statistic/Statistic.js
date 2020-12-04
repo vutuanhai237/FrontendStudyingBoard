@@ -136,7 +136,7 @@ class Statistic extends Component {
                                 changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
                                 rawData: this.usersList,
                                 maxItemPerPage: this.maxItemPerPage,
-                                numPagesShown: 5,
+                                numShownPage: 5,
                                 bottom: "31px"
                             }}
                             />
@@ -199,11 +199,11 @@ class Statistic extends Component {
 }
 
 //#region for Redux
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
 
     return {
-        userList: store.management_user.allUsers.accounts,
-        roleList: store.management_user.allRoles
+        userList: state.management_user.allUsers.accounts,
+        roleList: state.management_user.allRoles
     };
 }
 
@@ -211,5 +211,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     management_getAllUsers, management_getAllRoles
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(Statistic));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Statistic));
 //#endregion

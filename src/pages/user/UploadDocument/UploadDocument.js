@@ -410,11 +410,11 @@ class UploadDocument extends Component {
 }
 
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        categories: store.doc.categories,
-        subjects: store.doc.subjects,
-        statusPostDocCode: store.doc.statusPostDocCode,
+        categories: state.doc.categories,
+        subjects: state.doc.subjects,
+        statusPostDocCode: state.doc.statusPostDocCode,
     };
 }
 
@@ -425,4 +425,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCategoriesDoc,
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(UploadDocument));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UploadDocument));

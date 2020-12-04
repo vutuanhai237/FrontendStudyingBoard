@@ -24,23 +24,35 @@ export function getSearchParamByName(name) {
 }
 
 export function setSearchParam(name, value) {
-    let query = window.location.search.substring(1);
-    let vars = query.split("&");
-    let newQuery = "";
-    for (let i = 0; i < vars.length; i++) {
-        let pair = vars[i].split("=");
-        if (pair[0] === name) {
-            if (i === vars.length - 1) {
-                newQuery = newQuery + pair[0] + "=" + value;
-            }
-            else {
-                newQuery += newQuery + pair[0] + "=" + value + "&";
-            }
-        } else
-            if (i === vars.length - 1)
-                newQuery += newQuery + vars[i];
-            else
-                newQuery += newQuery + vars[i] + "&";
+    if (window.location.search) {
+        let query = window.location.search.substring(1);
+        let vars = query.split("&");
+        let newQuery = "";
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split("=");
+            if (pair[0] === name) {
+                if (i === vars.length - 1) {
+                    newQuery = newQuery + pair[0] + "=" + value;
+                }
+                else {
+                    newQuery += newQuery + pair[0] + "=" + value + "&";
+                }
+            } else
+                if (i === vars.length - 1)
+                    newQuery += newQuery + vars[i];
+                else
+                    newQuery += newQuery + vars[i] + "&";
+        }
+
+        if (window.history.pushState) {
+            let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?${newQuery}`;
+            window.history.pushState({ path: newurl }, '', newurl);
+        }
+        return;
     }
-    window.location.search = newQuery;
+
+    if (window.history.pushState) {
+        let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?${name}=${value}`;
+        window.history.pushState({ path: newurl }, '', newurl);
+    }
 }

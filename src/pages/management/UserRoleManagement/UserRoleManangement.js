@@ -277,11 +277,11 @@ class UserRoleManagement extends Component {
 
 
 //#region for Redux
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
 
     return {
-        // userList: store.management_user.allUsers.accounts,
-        roleList: store.management_user.allRoles
+        // userList: state.management_user.allUsers.accounts,
+        roleList: state.management_user.allRoles
     };
 }
 
@@ -289,5 +289,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     management_getAllUsers, management_getAllRoles
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(UserRoleManagement));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserRoleManagement));
 //#endregion

@@ -67,9 +67,9 @@ class TopDoc extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        topDoc:store.doc.topDoc,
+        topDoc:state.doc.topDoc,
     };
 }
 
@@ -77,4 +77,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getTopDoc
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(TopDoc));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TopDoc));

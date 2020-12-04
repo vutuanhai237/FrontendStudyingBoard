@@ -88,33 +88,6 @@ export function getNotApprovedDocumentsList() {
 }
 
 //Code Status: 
-//13 - Permission deny
-//14 - Resource Not Found
-//15 - Get Resource Successfully
-export function management_getCurrentPreviewDocument(previewDoc_ID) {
-    return dispatch => {
-        let myHeaders = new Headers();
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-        console.log("API has been called!");
-        // fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-        //     .then(response =>
-        //         response.json())
-        //     .then(result => {
-        //         console.log(result);
-        //         dispatch(managementGetCurrentPreviewDocument(result));
-        //     }
-        //     )
-        //     .catch(error => console.log('error', error));
-        const result = doc_v3;
-        dispatch(managementGetCurrentPreviewDocument(result));
-
-    }
-}
 
 export function management_approveADocument(docID) {
     return dispatch => {

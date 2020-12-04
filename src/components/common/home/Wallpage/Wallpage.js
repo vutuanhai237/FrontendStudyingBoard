@@ -182,9 +182,9 @@ Thật ra thì ở bất kì thời đại nào, con người vẫn đều tồ�
 
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        newActivities: store.post.newActivities,
+        newActivities: state.post.newActivities,
     };
 };
 
@@ -193,7 +193,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(
-    connect(mapStoreToProps, mapDispatchToProps)(WallPaper)
+    connect(mapStateToProps, mapDispatchToProps)(WallPaper)
 );
 
 // <Carousel className="carousel">

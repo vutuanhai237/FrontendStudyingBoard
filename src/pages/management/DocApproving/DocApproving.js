@@ -96,7 +96,7 @@ class DocApprovingPage extends Component {
                         changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
                         rawData: [...this.notApprovedDocumentsList],
                         maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5,
+                        numShownPage: 5,
                         bottom: "31px"
                     }}
                     />
@@ -106,9 +106,9 @@ class DocApprovingPage extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        requestedDocs: store.management_doc.requestedDocs,
+        requestedDocs: state.management_doc.requestedDocs,
     };
 }
 
@@ -116,4 +116,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getNotApprovedDocumentsList
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(DocApprovingPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocApprovingPage));

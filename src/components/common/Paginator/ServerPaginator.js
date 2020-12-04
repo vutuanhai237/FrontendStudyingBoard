@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import './PostBrowser.scss'
+import { setSearchParam } from 'utils/Utils'
 import 'components/common/Paginator/Paginator.scss'
 
 
@@ -8,7 +8,7 @@ class Paginator extends Component {
         super(props);
 
         this.maxItemPerPage = 10; //số lượng tối đa item mỗi page
-        this.numPageShown = 5; //số page được show trên thanh paginator, mặc định là 5, hiện tại chưa cho đổi.
+        this.numShownPage = 5; //số page được show trên thanh paginator, mặc định là 5, hiện tại chưa cho đổi.
         this.pageCount = 0;
         this.currentPage = 1;
         this.arrayShownPages = [1, 2, 3, 4, 5]; //define which number will be output
@@ -20,9 +20,8 @@ class Paginator extends Component {
     // UI/UX when click on the pagination item
     onClickPaginationElement = (page_number, action) => {
 
-        console.log(page_number);
         let arrayShownPages = this.arrayShownPages;
-
+        page_number = parseInt(page_number);
         //handler action
         switch (action) {
             case "first":
@@ -43,48 +42,47 @@ class Paginator extends Component {
                 break;
         }
 
-        if (!(this.props.config.pageCount < this.props.config.numPagesShown)) {
+        //neu page count > so page duoc show
+        if (this.props.config.pageCount >= this.numShownPage) {
             //handler page click
+            arrayShownPages.splice(0, arrayShownPages.length);
+
             switch (page_number) {
                 //set number of page in the midde => update array shown pages
                 case 1:
-                    arrayShownPages.splice(0, arrayShownPages.length);
-                    arrayShownPages.push(page_number);
-                    for (let i = 1; i < arrayShownPages.length; i++) {
-                        arrayShownPages.push(page_number + i);
-                    }
+                    for (let i = page_number; i <= page_number + this.numShownPage - 1; i++)
+                        arrayShownPages.push(i);
                     break;
                 case 2:
-                    arrayShownPages.splice(0, arrayShownPages.length);
-                    arrayShownPages.push(page_number - 1);
-                    arrayShownPages.push(page_number);
-                    arrayShownPages.push(page_number + 1);
-                    arrayShownPages.push(page_number + 2);
-                    arrayShownPages.push(page_number + 3);
+                    for (let i = page_number - 1; i <= page_number + this.numShownPage - 2; i++)
+                        arrayShownPages.push(i);
+                    break;
+                case 4:
+                    for (let i = page_number - 3; i <= page_number + this.numShownPage - 4; i++)
+                        arrayShownPages.push(i);
                     break;
                 case this.props.config.pageCount:
-                    arrayShownPages.splice(0, arrayShownPages.length);
-                    arrayShownPages.push(page_number - 4);
-                    arrayShownPages.push(page_number - 3);
-                    arrayShownPages.push(page_number - 2);
-                    arrayShownPages.push(page_number - 1);
-                    arrayShownPages.push(page_number);
+                    for (let i = page_number - (this.numShownPage - 1); i <= page_number; i++)
+                        arrayShownPages.push(i);
                     break;
                 case this.props.config.pageCount - 1:
-                    arrayShownPages.splice(0, arrayShownPages.length);
-                    arrayShownPages.push(page_number - 3);
-                    arrayShownPages.push(page_number - 2);
-                    arrayShownPages.push(page_number - 1);
-                    arrayShownPages.push(page_number);
-                    arrayShownPages.push(page_number + 1);
+                    for (let i = page_number - (this.numShownPage - 2); i <= page_number + 1; i++)
+                        arrayShownPages.push(i);
+                    break;
+                case this.props.config.pageCount - 2:
+                case this.props.config.pageCount - 3:
+                    for (let i = this.props.config.pageCount - (this.numShownPage - 1); i <= this.props.config.pageCount; i++)
+                        arrayShownPages.push(i);
                     break;
                 default:
                     {
-                        if (this.props.config.pageCount <= 5) {
-                            break;
+                        if (this.props.config.pageCount <= 6) {
+                            for (let i = 1; i <= this.props.config.pageCount; i++) {
+                                arrayShownPages.push(i);
+                            }
                         }
                         else {
-                            arrayShownPages.splice(0, arrayShownPages.length);
+
                             arrayShownPages.push(page_number - 2);
                             arrayShownPages.push(page_number - 1);
                             arrayShownPages.push(page_number);
@@ -94,22 +92,39 @@ class Paginator extends Component {
                     }
             }
         }
+
+
         //clear current list then add what we need
         this.currentPage = page_number;
-        this.setState({});
+
+        if (action !== "first_load") {
+            this.setState({});
+        }
 
     }
 
     render() {
 
-        if (!this.props.config.numPagesShown) {
-            this.config.numPageShown = 5;
-        }
+
 
         let arrayShownPages = this.arrayShownPages;
-        
         if (this.props.config) {
-            if (this.props.config.pageCount < this.props.config.numPagesShown) {
+            if (this.numShownPage > this.props.config.pageCount) {
+                this.numShownPage = this.props.config.pageCount;
+            }
+            //kiem tra xem gia tri truyen vao tu url co lon hon so page hay khong, neu lon hon thi lay so lon nhat
+            if (this.props.config.currentPage < this.props.config.pageCount) {
+                this.currentPage = this.props.config.currentPage;
+                //neu so page nho hon 0 => chuyen sang trang 1
+                if (this.currentPage <= 0) setSearchParam('page', 1);
+            }
+            else {
+                this.currentPage = this.props.config.pageCount;
+                setSearchParam('page', this.currentPage);
+            }
+
+            //neu so page nho hon so page duoc hien thi => hien so page nho hon
+            if (this.props.config.pageCount < this.numShownPage) {
                 arrayShownPages.splice(0, arrayShownPages.length);
                 for (let i = 1; i <= this.props.config.pageCount; i++) {
                     arrayShownPages.push(i);
@@ -118,9 +133,13 @@ class Paginator extends Component {
             else {
                 if (this.currentPage === 1) {
                     arrayShownPages.splice(0, arrayShownPages.length);
-                    for (let i = 1; i <= this.props.config.numPagesShown; i++) {
+                    for (let i = 1; i <= this.numShownPage; i++) {
                         arrayShownPages.push(i);
                     }
+                }
+
+                else {
+                    this.onClickPaginationElement(this.currentPage, "first_load");
                 }
             }
 
@@ -141,12 +160,44 @@ class Paginator extends Component {
             return (
 
                 <div className="custom-paginator" >
-                    <div className="first-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "first"); this.props.config.changePage(1); }} > first</div>
-                    <div className="prev-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "prev"); this.props.config.changePage(this.currentPage); }}>Prev </div>
-                    {shownPages}
-                    <div className="next-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "next"); this.props.config.changePage(this.currentPage) }}> Next</div>
-                    <div className="last-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "last"); this.props.config.changePage(this.props.config.pageCount); }}>last </div>
-                </div>
+
+                    {/* prev */}
+                    {this.currentPage !== 1 ?
+                        <div className="prev-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "prev"); this.props.config.changePage(this.currentPage); }}>Prev </div>
+                        : <div className="disabled-page" >Prev </div>
+                    }
+
+                    {/* first */}
+                    {this.currentPage > 4 && this.props.config.pageCount > 6 ?
+                        <>
+                            <div className="first-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "first"); this.props.config.changePage(1); }} > 1</div>
+                            <div style={{ marginRight: "4px" }}>...</div>
+                        </>
+                        : <></>
+
+                    }
+
+                    {/* 5 page item */}
+                    { shownPages}
+
+                    {/* last */}
+                    {
+                        (((this.currentPage < this.props.config.pageCount - 3 && this.props.config.pageCount !== 7)
+                            || (this.currentPage < this.props.config.pageCount - 2 && this.props.config.pageCount === 7)
+                        ) && this.props.config.pageCount > 6) ?
+                            <>
+                                <div style={{ marginRight: "4px" }}>...</div>
+                                <div className="last-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "last"); this.props.config.changePage(this.props.config.pageCount); }}>{this.props.config.pageCount} </div>
+                            </> : <></>
+                    }
+
+                    {/* next */}
+                    {this.currentPage !== this.props.config.pageCount ?
+                        <div className="next-page" onClick={() => { this.onClickPaginationElement(this.currentPage, "next"); this.props.config.changePage(this.currentPage) }}> Next</div>
+                        :
+                        <div className="disabled-page" > Next</div>
+                    }
+                </div >
 
             );
         }

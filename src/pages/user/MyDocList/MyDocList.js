@@ -96,7 +96,7 @@ class MyDocuments extends Component {
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
                         pageCount: 20,
-                        numPagesShown: 5
+                        numShownPage: 5
                     }}
                     />
                 </div>
@@ -105,9 +105,9 @@ class MyDocuments extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        myDocuments: store.management_doc.myDocuments,
+        myDocuments: state.management_doc.myDocuments,
     };
 }
 
@@ -115,4 +115,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyDocuments
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(MyDocuments));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyDocuments));

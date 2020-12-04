@@ -72,10 +72,10 @@ class BlankLayout extends Component {
 }
 
 //#region for redux
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     // (state);
     return {
-        accountInformation: store.user.account
+        accountInformation: state.user.account
     };
 }
 
@@ -83,5 +83,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(BlankLayout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BlankLayout));
 //#endregion

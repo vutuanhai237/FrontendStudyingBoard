@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/shared/DocPostSummary.scss'
+import 'components/styles/DocPostSummary.scss'
 import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 
@@ -99,25 +99,25 @@ class DocSummary extends Component {
 
     //render likeBtn
     if (!this.isLiked) {
-      likeBtn = <img className="doc-like-dislike-btn" src={liked_btn} onClick={this.onLikeBtnClick}></img>
+      likeBtn = <img className="doc-like-dislike-btn" alt="like" src={liked_btn} onClick={this.onLikeBtnClick}></img>
     }
     else {
-      likeBtn = <img className="doc-like-dislike-btn" src={unliked_btn} onClick={this.onLikeBtnClick} ></img>
+      likeBtn = <img className="doc-like-dislike-btn" alt="like" src={unliked_btn} onClick={this.onLikeBtnClick} ></img>
     }
 
     //render dislikeBtn
     if (!this.isDisliked) {
-      dislikeBtn = <img className="doc-like-dislike-btn" src={dislike_btn} onClick={this.onDislikeBtnClick}></img>
+      dislikeBtn = <img className="doc-like-dislike-btn" alt="dislike" src={dislike_btn} onClick={this.onDislikeBtnClick}></img>
     }
     else {
-      dislikeBtn = <img className="doc-like-dislike-btn" src={undislike_btn} onClick={this.onDislikeBtnClick} ></img>
+      dislikeBtn = <img className="doc-like-dislike-btn" alt="dislike" src={undislike_btn} onClick={this.onDislikeBtnClick} ></img>
     }
 
     if (!this.props.id) {
       this.isFirstTimeLoaded = false;
     }
     else {
-      if (this.isFirstTimeLoaded = false) {
+      if (this.isFirstTimeLoaded === false) {
         this.isDisliked = this.props.isDisliked;
         this.isLiked = this.props.isLiked;
         this.likes = this.props.likes;

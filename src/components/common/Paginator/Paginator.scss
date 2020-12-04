@@ -7,11 +7,15 @@
     margin-top: 20px;
     font-family: "BarlowCondensed-Semibold";
     font-size: 18px;
+    justify-content: flex-end;
 }
 
 .deactivated-page {
     background: white;
-    width: 24px;
+    width: fit-content;
+    min-width: 24px;
+    padding-left: 4px;
+    padding-right: 4px;
     height: 24px;
     border: 1px var(--gray) solid;
     border-radius: 4px;
@@ -37,14 +41,35 @@
 
 .activated-page {
     background: var(--blue);
-    width: 24px;
+    width: fit-content;
     height: 24px;
+    padding-left: 4px;
+    padding-right: 4px;
+    min-width: 24px;
     border: 1px var(--blue) solid;
     border-radius: 4px;
     color: white;
     line-height: 22px;
     text-align: center;
     margin-right: 4px;
+}
+
+.disabled-page {
+    background: #c4c4c4;
+    height: 24px;
+    border: 1px var(--gray) solid;
+    border-radius: 4px;
+    color: var(--blue);
+    line-height: 22px;
+    text-align: center;
+    margin-right: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 18px;
+    color: var(--black);
+    cursor:not-allowed;
+    opacity: 60%;
 }
 
 .activated-page:hover {
@@ -64,7 +89,6 @@
     border: 1px white solid;
 }
 
-.first-page,
 .next-page,
 .prev-page {
     margin-right: 4px;
@@ -76,11 +100,16 @@
     color: var(--blue);
     line-height: 22px;
     text-align: center;
+    font-family: "BarlowCondensed-Medium";
+    font-size: 18px;
 }
 
+.first-page,
 .last-page {
-    width: 40px;
+    min-width: 24px;
     height: 24px;
+    padding-left: 4px;
+    padding-right: 4px;
     border: 1px var(--gray) solid;
     border-radius: 4px;
     background: white;

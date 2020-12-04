@@ -320,7 +320,7 @@ class PostApprovingPage extends Component {
                         // changePage: (page_number) => this.onPageChangeServer(page_number), //server   
                         pageCount: this.state.pageCount, //server
                         maxItemPerPage: this.maxItemPerPage,
-                        numPagesShown: 5,
+                        numShownPage: 5,
                         bottom: "31px"
                     }}
                     />

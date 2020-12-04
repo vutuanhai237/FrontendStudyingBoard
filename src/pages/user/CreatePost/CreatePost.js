@@ -264,11 +264,11 @@ class CreatePost extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        categories: store.post.categories,
-        account: store.user.account,
-        statusPostPostCode: store.post.statusPostPostCode,
+        categories: state.post.categories,
+        account: state.user.account,
+        statusPostPostCode: state.post.statusPostPostCode,
     };
 }
 
@@ -277,7 +277,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     postPost,
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(CreatePost));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePost));
 
 
 

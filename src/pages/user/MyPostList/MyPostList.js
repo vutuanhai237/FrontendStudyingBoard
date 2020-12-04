@@ -43,7 +43,8 @@ class MyPostList extends Component {
 
     //server paginator
     onPageChange = (pageNumber) => {
-        console.log(setSearchParam("page", pageNumber));
+        setSearchParam("page", pageNumber);
+        this.setState({});
     }
 
     //combobox
@@ -55,7 +56,6 @@ class MyPostList extends Component {
     render() {
         //sau nay se lam mot cai content loader.
         let myPostsList = <></>;
-        console.log(this.props);
 
         if (this.props.myPostsList) {
 
@@ -108,8 +108,8 @@ class MyPostList extends Component {
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        pageCount: 20,
-                        numPagesShown: 5
+                        pageCount: 1200,
+                        currentPage: getSearchParamByName('page')
                     }}
                     />
                 </div>
@@ -118,11 +118,11 @@ class MyPostList extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        myPostsList: store.management_post.myPostsList,
-        postCategories: store.doc.categories, 
-        // postLoading:store.
+        myPostsList: state.management_post.myPostsList,
+        postCategories: state.doc.categories,
+        // postLoading:state.
     };
 }
 
@@ -130,4 +130,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(MyPostList));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyPostList));

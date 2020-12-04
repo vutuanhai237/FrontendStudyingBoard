@@ -1,6 +1,5 @@
 import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
-    GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
     APPROVE_A_DOCUMENT,
     GET_MY_POSTS
 } from "constants/constants"
@@ -12,13 +11,6 @@ export function get_NotApprovedDocumentsList(requestedDocs) {
     }
 }
 
-
-// export function managementGetCurrentPreviewDocument(requestedDoc) {
-//     return {
-//         type: GET_CURRENT_NOT_APPROVED_DOCUMENT_DETAIL,
-//         payload: requestedDoc,
-//     }
-// }
 
 
 // export function managementApproveADocument(requestedDoc) {

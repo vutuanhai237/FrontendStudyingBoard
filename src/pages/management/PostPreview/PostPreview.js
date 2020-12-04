@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/shared/DocPostDetail.scss'
+import 'components/styles/DocPostDetail.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
@@ -157,4 +157,4 @@ class PostPreview extends Component {
 
 
 }
-export default  PostPreview;
+export default PostPreview;

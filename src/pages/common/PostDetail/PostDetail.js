@@ -86,11 +86,11 @@ class PostDetail extends Component {
     }
 }
 
-const mapStoreToProps = (store) => {
+const mapStateToProps = (state) => {
     return {
-        currentPost:store.post.currentPost,
-        currentComments:store.post.currentComments,
-        tags:store.post.tags,
+        currentPost:state.post.currentPost,
+        currentComments:state.post.currentComments,
+        tags:state.post.tags,
     };
 }
 
@@ -102,4 +102,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 }, dispatch);
 
-export default withRouter(connect(mapStoreToProps, mapDispatchToProps)(PostDetail));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail));
