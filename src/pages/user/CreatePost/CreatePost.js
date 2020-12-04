@@ -5,7 +5,7 @@ import "./CreatePost.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { getPostCategories, postPost } from "services/postServices";
+import { getPostCategories } from "redux/services/postCategoryServices";
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import ComboBox from 'components/common/Combobox/Combobox';
@@ -157,7 +157,7 @@ class CreatePost extends Component {
         console.log(item)
 
         tempTags = tempTags.filter(_item => _item.content !== item.content);
-        console.log("**");
+
         console.log(tempTags);
         this.setState({
             tags: tempTags,
@@ -250,7 +250,7 @@ class CreatePost extends Component {
             <div>
                 <Titlebar title="TẠO BÀI VIẾT MỚI" />
 
-                <div id="create-post" class="left-side-bar-layout-content-container">
+                <div id="create-post" className="left-side-bar-layout-content-container">
 
                     <div className="flex-container-end">
                     </div>
@@ -274,7 +274,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostCategories,
-    postPost,
+    // postPost,
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePost));

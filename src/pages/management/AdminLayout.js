@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import 'constants/constants.js'
 
 // import resource image, icon
 import dropdown_btn from 'assets/images/dropdown_icon.png'
@@ -32,7 +31,7 @@ import 'styles/SimpleLabel.scss'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from 'services/userServices'
+import { getCurrentUser } from 'redux/services/userServices'
 
 //import for permission
 import {

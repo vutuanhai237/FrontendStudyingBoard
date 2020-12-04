@@ -105,8 +105,6 @@ class Paginator extends Component {
 
     render() {
 
-
-
         let arrayShownPages = this.arrayShownPages;
         if (this.props.config) {
             if (this.numShownPage > this.props.config.pageCount) {

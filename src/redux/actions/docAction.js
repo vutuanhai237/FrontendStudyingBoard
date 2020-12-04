@@ -7,7 +7,12 @@ import {
     DOC_POST_UP_VIEW_DOC,
     DOC_GET_TOP_DOC,
     DOC_GET_DOC_BY_ID,
-} from "constants/constants"
+
+    //
+    GET_ALL_NOT_APPROVED_DOCUMENTS,
+    APPROVE_A_DOCUMENT,
+    GET_MY_DOCUMENTS
+} from "../constants.js"
 
 export function docPostDoc(statusPostDocCode) {
     return {
@@ -56,5 +61,27 @@ export function docGetDocByID(idPost) {
     return {
         type: DOC_GET_DOC_BY_ID,
         payload: idPost
+    }
+}
+
+//
+export function get_NotApprovedDocumentsList(requestedDocs) {
+    return {
+        type: GET_ALL_NOT_APPROVED_DOCUMENTS,
+        payload: requestedDocs,
+    }
+}
+
+export function managementApproveADocument(requestedDoc) {
+    return {
+        type: APPROVE_A_DOCUMENT,
+        payload: requestedDoc,
+    }
+}
+
+export function get_MyDocuments(myDocuments) {
+    return {
+        type: GET_MY_DOCUMENTS,
+        payload: myDocuments,
     }
 }

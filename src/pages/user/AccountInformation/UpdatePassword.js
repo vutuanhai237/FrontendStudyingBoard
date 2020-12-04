@@ -10,10 +10,10 @@ import { isContainSpecialCharacter } from 'utils/Utils'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser, getLogout } from 'services/userServices'
+import { getCurrentUser, getLogout } from 'redux/services/userServices'
 
 import Cookies from 'js-cookie'
-import { PORT } from 'constants/constants'
+import { PORT } from 'constants.js'
 
 class UpdatePassword extends Component {
     constructor(props) {

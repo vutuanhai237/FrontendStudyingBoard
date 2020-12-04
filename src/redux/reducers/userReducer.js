@@ -3,13 +3,37 @@ import {
     USER_POST_REGISTER,
     USER_GET_CURRENT_USER,
     USER_GET_LOGOUT,
-} from 'constants/constants'
+    GET_ALL_USERS,
+    GET_ALL_ROLES
+} from '../constants.js'
+
+const allUsers = [
+
+]
+
+const allRoles =
+    [
+        {
+            "UserGroupID": 1,
+            "UserGroupName": "ADMIN"
+        },
+        {
+            "UserGroupID": 2,
+            "UserGroupName": "COLLABORATOR"
+        },
+        {
+            "UserGroupID": 3,
+            "UserGroupName": "USER"
+        }
+    ]
 
 const initialState = {
     account: null,
     statusLoginCode: 0,
     statusLogoutCode: 0,
     statusRegisterCode: 0,
+    allUsers: allUsers,
+    allRoles: allRoles
 }
 
 function UserReducer(state = initialState, action) {
@@ -32,7 +56,7 @@ function UserReducer(state = initialState, action) {
                 ...state,
                 statusRegisterCode: action.payload.statusRegisterCode,
             }
-        case USER_GET_CURRENT_USER:      
+        case USER_GET_CURRENT_USER:
             if (action.payload.account === null || typeof action.payload.account === 'undefined') {
                 return {
                     ...state,
@@ -50,10 +74,22 @@ function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 statusLogoutCode: action.payload.statusLogoutCode,
-            }
+            };
+        case GET_ALL_USERS:
+            return { ...state, allUsers: action.payload }
+        case GET_ALL_ROLES:
+            return { ...state, allRoles: action.payload }
         default:
-            return state;
+            {
+                return state;
+                // return initialState;
+            }
+
     }
 }
 
 export default UserReducer;
+
+
+
+

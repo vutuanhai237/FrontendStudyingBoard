@@ -1,9 +1,14 @@
 //loader
 .loader-container {
   width: 100%;
-  height: 100%;
+  height: 50vh;
   margin: auto;
   position: relative;
+  opacity: 60%;
+  display: flex;
+  background: var(--grayish);
+  border-radius: 5px
+
 }
 
 @keyframes loader-qqa1psw9t4 {
@@ -37,7 +42,7 @@
   height: 200px;
   display: inline-block;
   overflow: hidden;
-  background: #ffffff;
+
 }
 
 .loader-qqa1psw9t4 {

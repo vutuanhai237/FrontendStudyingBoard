@@ -6,8 +6,8 @@ import PostSummary, { postSummaryType } from 'components/post/PostSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator'
 
 //import for redux
-import { getMyPostsList } from "services/authorized/postServices"
-import { getPostCategories } from "services/postServices"
+import { getMyPostsList } from "redux/services/postServices"
+import { getPostCategories } from "redux/services/postCategoryServices"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
@@ -15,12 +15,12 @@ import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
 import { getSearchParamByName, setSearchParam } from 'utils/Utils'
 
+import Loader from 'components/common/Loader/Loader'
+
 //Sample URL: http://localhost:3000/user/my_posts?page=3&category=1
 class MyPostList extends Component {
     constructor(props) {
         super();
-
-        this.myPostsList = [];
 
         this.filter = [
             { id: 1, name: "Tất cả" },
@@ -29,45 +29,49 @@ class MyPostList extends Component {
             { id: 4, name: "Cần xem lại" }
         ]
 
-        this.state = { isLoading: true };
-
+        this.myPostsList = <></>
     }
 
     async componentDidMount() {
-        //must implement: get filter, get doc, page change
-        //get filter
 
-        this.props.getMyPostsList();
+        //get filter
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+
+        this.props.getMyPostsList(page, category);
         this.props.getPostCategories()
     }
 
     //server paginator
     onPageChange = (pageNumber) => {
         setSearchParam("page", pageNumber);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyPostsList(page, category);
         this.setState({});
     }
 
     //combobox
     onFilterOptionChanged = (selectedOption) => {
-        console.log(selectedOption);
-
+        setSearchParam("category", selectedOption.id);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyPostsList(page, category);
+        this.setState({});
     }
 
     render() {
-        //sau nay se lam mot cai content loader.
-        let myPostsList = <></>;
 
-        if (this.props.myPostsList) {
-
-            myPostsList = this.props.myPostsList.map((postItem) => (
+        if (!this.props.isListLoading) {
+            this.myPostsList = this.props.myPostsList.map((postItem) => (
                 <PostSummary
                     type={postSummaryType.mySelf}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}
                     authorID={postItem.authorID}
-                    publishedDtm={postItem.publishedDtm}
-                    category={postItem.category}
+                    publishDtm={postItem.publishDtm}
+                    category={postItem.categoryName}
                     categoryID={postItem.categoryID}
                     title={postItem.title}
                     summary={postItem.summary}
@@ -81,6 +85,11 @@ class MyPostList extends Component {
                 ></PostSummary >)
             )
         }
+
+        // if (this.props.categories){
+        //     this.
+        // }
+
         return (
             <div>
                 <Titlebar title="BÀI VIẾT CỦA TÔI" />
@@ -90,6 +99,7 @@ class MyPostList extends Component {
                             <div className="filter-label text-align-right margin-right-5px">Danh mục:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
+                                    selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
                                     options={this.filter}
                                     placeHolder="Chọn danh mục"
                                     onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
@@ -100,11 +110,18 @@ class MyPostList extends Component {
 
                         <div className="filter-label display-flex">
                             <div className="margin-right-5px">Tổng số:</div>
-                            <div>{this.myPostsList.length}</div>
+
+                            {!this.props.isListLoading ?
+                                <div> {this.props.myPostsList.length}</div>
+                                : <div>0</div>
+                            }
                         </div>
                     </div>
 
-                    {myPostsList}
+                    {this.props.isListLoading ?
+                        < Loader /> :
+                        <>{this.myPostsList}</>
+                    }
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
@@ -113,16 +130,18 @@ class MyPostList extends Component {
                     }}
                     />
                 </div>
-            </div>
+            </div >
         );
     }
 }
 
 const mapStateToProps = (state) => {
+    // console.log(state);
     return {
-        myPostsList: state.management_post.myPostsList,
-        postCategories: state.doc.categories,
-        // postLoading:state.
+        myPostsList: state.post.myPosts.data,
+        postCategories: state.post.categories,
+        isListLoading: state.post.myPosts.isLoading,
+        // isCategoryLoading: state.
     };
 }
 

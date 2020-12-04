@@ -18,7 +18,7 @@ import { ClickAwayListener } from '@material-ui/core';
 import { getRoleNameByName, getRoleNamebyID } from 'utils/PermissionManagement'
 
 import Cookies from 'js-cookie'
-import { PORT } from 'constants/constants'
+import { PORT } from 'constants.js'
 
 class UserItem extends Component {
 
@@ -246,8 +246,6 @@ class UserItem extends Component {
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
             sub_dropdown_item_index.className = "combo-box-option";
         }
-        console.log("**");
-        console.log(roleID)
         sub_dropdown_item.className = "activated-combo-box-option";
         this.role_post = roleID;
 

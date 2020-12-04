@@ -5,11 +5,16 @@ import {
     docGetTopDoc,
     docGetSearchDoc,
     docGetDocByID,
-} from "actions/docAction.js";
+    get_NotApprovedDocumentsList,
+    managementGetCurrentPreviewDocument,
+    managementApproveADocument,
+    get_MyDocuments
+} from "redux/actions/docAction.js";
+
 import {
-    // HOST,
+    HOST,
     PORT
-} from 'constants/constants';
+} from 'constants.js';
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
@@ -207,3 +212,80 @@ export function getDocumentByID(id) {
         // dispatch(docGetDocByID(result));
     }
 }
+
+
+// import FormData from 'form-data';
+
+export function getNotApprovedDocumentsList() {
+    return dispatch => {
+
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        // fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => {
+        //         console.log(result);
+        //         dispatch(get_NotApprovedDocumentsList(JSON.parse(result).shortDocs))
+        //     })
+
+        //     .catch(error => console.log('error', error));
+        const result = [doc_v1, doc_v2, doc_v3];
+        dispatch(get_NotApprovedDocumentsList(result));
+
+    }
+
+}
+
+//Code Status: 
+
+export function management_approveADocument(docID) {
+    return dispatch => {
+
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        fetch(`http://${PORT}/admin/docs/approved?id =${docID}&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+            .then(response => response.text())
+            .then(
+                result => dispatch(managementApproveADocument(JSON.parse(result).shortDocs))
+            )
+            .catch(error => console.log('error', error));
+    }
+
+}
+
+export function getMyDocuments(userID) { //this API to get all approved document of a specific user.
+    return dispatch => {
+
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        // fetch(`http://${PORT}/user/docs?uid=${userID}&approved=1&page=0`, requestOptions)
+        //     .then(response => response.text())
+        //     .then(
+        //         result => dispatch(get_MyDocuments(JSON.parse(result))
+        //         ))
+        //     .catch(error => console.log('error', error))
+        const result = [doc_v1, doc_v2, doc_v3];
+        dispatch(get_MyDocuments(result));
+    }
+
+}
+
+
+

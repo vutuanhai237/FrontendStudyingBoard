@@ -7,7 +7,7 @@ import RequestedDocSummary from 'components/doc/RequestedDocSummary'
 import Paginator from 'components/common/Paginator/ClientPaginator'
 
 //import for redux
-import { getNotApprovedDocumentsList } from "services/authorized/docServices"
+import { getNotApprovedDocumentsList } from "redux/services/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -32,7 +32,7 @@ class DocApprovingPage extends Component {
                     "subjectName": "Nh?p môn l?p trình",
                     "viewCount": 0,
                     "downloadCount": 0,
-                    "documentpublishedDtm": "Jul 13, 2020"
+                    "documentpublishDtm": "Jul 13, 2020"
                 }],
             currentInteractList: []
         }
@@ -74,7 +74,7 @@ class DocApprovingPage extends Component {
                     semester={requestedDoc.semester}
                     year={requestedDoc.year}
                     //not need
-                    publishedDtm={requestedDoc.documentpublishedDtm}
+                    publishDtm={requestedDoc.documentpublishDtm}
 
                 ></RequestedDocSummary >)
             )
@@ -108,7 +108,7 @@ class DocApprovingPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        requestedDocs: state.management_doc.requestedDocs,
+        requestedDocs: state.doc.requestedDocs,
     };
 }
 

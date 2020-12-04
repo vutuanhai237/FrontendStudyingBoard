@@ -6,7 +6,7 @@ import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
 import gray_write_icon from 'assets/images/gray_write_icon.png'
-import { PORT } from 'constants/constants'
+import { PORT } from 'constants.js'
 import './AccountInformation.scss'
 import 'styles/Form.scss'
 import './AIResponsiveLayout.scss'
@@ -22,8 +22,8 @@ import ImageUploader from 'react-images-upload'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from 'services/userServices'
-import { management_getAllRoles } from 'services/authorized/userServices'
+import { getCurrentUser } from 'redux/services/userServices'
+import { management_getAllRoles } from 'redux/services/userServices'
 
 //import for role config
 import { getRoleNameFilterByName } from 'utils/PermissionManagement'
@@ -340,7 +340,7 @@ class AccountInformation extends Component {
                                 maxFileSize={5242880}
                                 singleImage={true}
                                 withPreview={true}
-                                labelClass="gray-label"
+                                labelclassName ="gray-label"
                             ></ImageUploader>
                         </div>
                         {this.isHaveAnyImageInFileLoader
@@ -638,7 +638,7 @@ const mapStateToProps = (state) => {
     // (state);
     // console.log(state);
     return {
-        roleList: state.management_user.allRoles,
+        roleList: state.user.allRoles,
         accountInformation: state.user.account
     };
 }

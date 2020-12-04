@@ -8,7 +8,7 @@ import {
     getSubjects,
     getCategoriesDoc,
     postDoc,
-} from "services/docServices"
+} from "redux/services/docServices"
 import "./UploadDocument.scss";
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
@@ -264,7 +264,7 @@ class UploadDocument extends Component {
             <div>
                 <Titlebar title="UPLOAD TÀI LIỆU" />
 
-                <div id="create-post" class="left-side-bar-layout-content-container">
+                <div id="create-post" className ="left-side-bar-layout-content-container">
 
                     <div className="flex-container-end">
                     </div>

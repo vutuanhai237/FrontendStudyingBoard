@@ -3,9 +3,9 @@ import { Form, Button, Col, Modal, Image } from "react-bootstrap";
 import "./Register.scss";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import logo from 'assets/images/logo-bht.png';
+import logo from 'assets/images/round_logo.png';
 import { bindActionCreators } from 'redux';
-import { postRegister } from "services/userServices"
+import { postRegister } from "redux/services/userServices"
 class RegisterForm extends React.Component {
     constructor(props) {
         super(props);

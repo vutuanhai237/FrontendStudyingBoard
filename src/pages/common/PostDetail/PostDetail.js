@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 // import Tags from "components/common/post/Tags/Tags";
 import Cookies from 'js-cookie';
-import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "services/postServices";
+import { getPostByID, getPostCommentByID, getIsLikePostByUID, getTagsByID } from "redux/services/postServices";
 
 class PostDetail extends Component {
     constructor(props) {

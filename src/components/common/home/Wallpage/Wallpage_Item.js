@@ -12,7 +12,7 @@ import unliked_btn from 'assets/images/unliked_btn.png'
 import save_btn from 'assets/images/blue_bookmark_btn.png'
 
 //demo only 
-import { getHighlightPosts } from "services/postServices";
+import { getHighlightPosts } from "redux/services/postServices";
 
 export default class WallPaper_Item extends Component {
 
@@ -77,12 +77,12 @@ export default class WallPaper_Item extends Component {
                                  </div>
                             <img alt="*" className="Hightlight_Metadata_Icon" src={btn_element} />
                             <div className="Highlight_Read_Time">
-                                {/* {this.publishedDtm} */}
+                                {/* {this.publishDtm} */}
                                10 phút đọc
                                 </div>
                         </div>
                         <div className="Highlight_Published_Date">
-                            {/* {this.publishedDtm} */}
+                            {/* {this.publishDtm} */}
                                  20/10/2020
                             </div>
                     </div>
@@ -100,13 +100,13 @@ Thật ra thì ở bất kì thời đại nào, con người vẫn đều tồ�
 
                     <div className="Highlight_Reaction_Bar">
                         <div className="Highlight_Reaction_Bar_Like_Btn_Layout">
-                            <img class="Highlight_Reaction_Bar_Like_Btn" src={this.state.isLiked ? like_btn : unliked_btn} onClick={() => this.toggleLikeImage()}></img>
+                            <img className ="Highlight_Reaction_Bar_Like_Btn" src={this.state.isLiked ? like_btn : unliked_btn} onClick={() => this.toggleLikeImage()}></img>
                             <div className="Highlight_Reaction_Bar_Like_Count">{this.state.isLiked ? this.props.likes + 1 : this.props.likes}</div>
                         </div>
 
                         <div className="Highlight_Reaction_Bar-save-comment-count-layout">
                             <div className="Highlight_Reaction_Bar-save-btn-layout">
-                                <img class="Highlight_Reaction_Bar-save-btn" src={this.state.isSaved ? save_btn : full_blue_bookmark_btn} onClick={() => this.toggleSaveImage()}></img>
+                                <img className ="Highlight_Reaction_Bar-save-btn" src={this.state.isSaved ? save_btn : full_blue_bookmark_btn} onClick={() => this.toggleSaveImage()}></img>
 
                                 <div className="Highlight_Reaction_Bar_Save_Text"> {this.state.isSaved ? "Lưu" : "Huỷ"} </div>
                             </div>
@@ -142,7 +142,7 @@ Thật ra thì ở bất kì thời đại nào, con người vẫn đều tồ�
 //                 <Col />
 //                 <Col>
 //                     <p style={{ display: "inline" }}>
-//                         {item.publishedDtm}
+//                         {item.publishDtm}
 //                     </p>
 //                 </Col>
 //                 <Col />

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import 'constants/constants.js'
 // import resource image, icon
 
 //import resource string
@@ -18,7 +17,7 @@ import DocsList from "pages/common/DocsList/DocsList"
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser } from 'services/userServices'
+import { getCurrentUser } from 'redux/services/userServices'
 
 class BlankLayout extends Component {
     constructor(props) {

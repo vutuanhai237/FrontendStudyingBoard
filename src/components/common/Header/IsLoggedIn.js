@@ -6,8 +6,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import avatar from 'assets/images/anh.jpg';
-import { getLogout } from "services/userServices"
-import { redirect } from 'constants/constants'
+import { getLogout } from "redux/services/userServices"
+import { redirect } from 'constants.js'
 class LoginStatus extends Component {
     constructor(props) {
         super(props);

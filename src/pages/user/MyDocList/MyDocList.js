@@ -6,7 +6,7 @@ import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
 
 //import for redux
-import { getMyDocuments } from "services/authorized/docServices"
+import { getMyDocuments } from "redux/services/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -51,7 +51,7 @@ class MyDocuments extends Component {
                     id={myDoc.id}
                     authorName={myDoc.authorName}
                     authorID={myDoc.authorID}
-                    publishedDtm={myDoc.publishedDtm}
+                    publishDtm={myDoc.publishDtm}
                     category={myDoc.category}
                     categoryID={myDoc.categoryID}
                     title={myDoc.title}
@@ -107,7 +107,7 @@ class MyDocuments extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        myDocuments: state.management_doc.myDocuments,
+        myDocuments: state.doc.myDocuments,
     };
 }
 

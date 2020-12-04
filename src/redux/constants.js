@@ -1,33 +1,3 @@
-//#region general constant
-
-//#region general config
-// global
-export const HOST = "bhtweb.herokuapp.com"
-export const PORT = "localhost:8080/bhtweb"
-export function redirect(url) {
-    const createHistory = require("history").createBrowserHistory;
-    let history = createHistory();
-    history.push(url);
-    let pathUrl = window.location.href;
-    window.location.href = pathUrl;
-}
-//#endregion
-
-// export const AppConsts = {
-//     // userManagement: {
-//     //     defaultAdminUserName: 'admin',
-//     // },
-//     // localization: {
-//     //     defaultLocalizationSourceName: 'L11_HelloWork',
-//     // },
-//     authorization: {
-//         encrptedAuthTokenName: 'enc_auth_token',
-//     },
-//     appBaseUrl: process.env.REACT_APP_APP_BASE_URL,
-//     remoteServiceBaseUrl: process.env.REACT_APP_REMOTE_SERVICE_BASE_URL,
-// };
-
-// home
 export const HOME_GET_TOP_DOC = "HOME_GET_TOP_DOC";
 export const HOME_GET_TOP_DOCUMENT = "HOME_GET_TOP_DOCUMENT";
 export const HOME_GET_ACCOUNT_INFO = "HOME_GET_ACCOUNT_INFO";
@@ -48,7 +18,6 @@ export const DOC_GET_DOC_BY_ID = "DOC_GET_DOC_BY_ID";
 // post
 //// 1. For writer
 export const POST_POST_POST = "POST_POST_POST";
-export const GET_POST_CATEGORIES = "GET_POST_CATEGORIES";
 export const POST_GET_HASHTAG = "POST_GET_HASHTAG";
 
 //// 2. For reader
@@ -84,17 +53,21 @@ export const APPROVE_A_DOCUMENT = "APPROVE_A_DOCUMENT";
 export const GET_ALL_NOT_APPROVED_POSTS = "GET_ALL_NOT_APPROVED_POSTS";
 export const APPROVE_A_POST = "APPROVE_A_POSTS";
 
-//for user
+//
 export const GET_ALL_USERS = "GET_ALL_USERS"
 export const GET_ALL_ROLES = "GET_ALL_ROLES"
 // export const 
 
+//my posts list:
+export const GET_MY_POSTS_REQUEST = "GET_MY_POSTS_REQUEST";
+export const GET_MY_POSTS_SUCCESS = "GET_MY_POSTS_SUCCESS";
+export const GET_MY_POSTS_FAILURE = "GET_MY_POSTS_FAILURE";
+
+//post category: 
+export const GET_POST_CATEGORIES_REQUEST = "GET_POST_CATEGORIES_REQUEST";
+export const GET_POST_CATEGORIES_SUCCESS = "GET_POST_CATEGORIES_SUCCESS";
+export const GET_POST_CATEGORIES_FAILURE = "GET_POST_CATEGORIES_FAILURE";
 
 
 export const GET_MY_DOCUMENTS = "GET_MY_DOCUMENTS";
-export const GET_MY_POSTS = "GET_MY_POSTS";
-
 //#endregion
-
-
-

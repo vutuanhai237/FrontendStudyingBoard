@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./Login.scss";
-import logo from 'assets/images/logo-bht.png';
-import { postLogin, getCurrentUser } from "services/userServices";
-import { redirect } from 'constants/constants';
+import logo from 'assets/images/round_logo.png';
+import { postLogin, getCurrentUser } from "redux/services/userServices";
+import { redirect } from 'constants.js';
 import { bindActionCreators } from 'redux';
 class LoginForm extends React.Component {
     constructor(props) {

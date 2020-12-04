@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import { Nav, Navbar } from "react-bootstrap";
 import logo from 'assets/images/logo.png';
 import upload_icon from 'assets/images/icon_upload.png';
 import write_icon from 'assets/images/icon_write.png';
-import { Redirect } from "react-router-dom";
 import "./Header.scss";
 import "styles/SimpleButton.scss";
 import LoginStatus from "./IsLoggedIn";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
-import { getCurrentUser } from "services/userServices"
-import { HOST, PORT } from 'constants/constants';
+import { getCurrentUser } from "redux/services/userServices"
+
 
 import red_delete_icon from 'assets/images/red_delete_icon.png';
 import search_icon from 'assets/images/search_icon.png';
@@ -70,13 +67,13 @@ class Header extends Component {
 
         //for login
         let loginStatus;
-        if (this.state.account === null) {
-            loginStatus = <Nav.Link className="menu-item"
-                href="/login" > Đăng nhập </Nav.Link>
-        } else {
-            loginStatus = <LoginStatus account={this.state.account} id="login"
-                className="float-right" />
-        }
+        // if (this.state.account === null) {
+        //     loginStatus = <Nav.Link className="menu-item"
+        //         href="/login" > Đăng nhập </Nav.Link>
+        // } else {
+        //     loginStatus = <LoginStatus account={this.state.account} id="login"
+        //         className="float-right" />
+        // }
 
         //for quick search
         let quickSearchResult = {
@@ -234,10 +231,10 @@ class Header extends Component {
                             onClick={this.state.isCollapsedUserMenuOpened ?
                                 () => this.handleCloseCollapsedUserMenu()
                                 : () => this.handleOpenCollapsedUserMenu()} >
-                            <div class="Menu_Icon" >
-                                <div class="Menu_Icon_Part" />
-                                <div class="Menu_Icon_Part" />
-                                <div class="Menu_Icon_Part" />
+                            <div className="Menu_Icon" >
+                                <div className="Menu_Icon_Part" />
+                                <div className="Menu_Icon_Part" />
+                                <div className="Menu_Icon_Part" />
                             </div>
                         </div>
 

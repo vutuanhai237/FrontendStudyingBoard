@@ -12,7 +12,7 @@ import { ClickAwayListener } from '@material-ui/core';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCategoriesDoc, getSubjects } from 'services/docServices'
+import { getCategoriesDoc, getSubjects } from 'redux/services/docServices'
 
 
 //chuyen thanh chi xem nen chua co handle click cho cac item trong bang danh muc bai viet

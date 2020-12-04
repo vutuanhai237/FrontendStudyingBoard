@@ -5,10 +5,10 @@ import 'components/styles/DocPostDetail.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 
-import { management_getCurrentPreviewDocument } from "services/authorized/docServices"
-import { getCurrentUser } from "services/userServices"
+import { management_getCurrentPreviewDocument } from "redux/services/docServices"
+import { getCurrentUser } from "redux/services/userServices"
 import { isGrantedPermissions, DocumentPermission } from "utils/PermissionManagement"
-import { getDocumentByID } from "services/docServices"
+import { getDocumentByID } from "redux/services/docServices"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 
 import gray_download_icon from 'assets/images/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'
-import { PORT } from 'constants/constants'
+import { PORT } from 'constants.js'
 import Cookies from 'js-cookie'
 
 //import for pdf viewer:

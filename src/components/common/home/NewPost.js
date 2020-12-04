@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { getPostNewests } from "services/postServices"
+import { getPostNewests } from "redux/services/postServices"
 class NewPost extends Component {
     constructor(props) {
         super(props);

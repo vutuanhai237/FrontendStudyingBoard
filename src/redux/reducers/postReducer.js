@@ -1,7 +1,6 @@
 import {
     POST_GET_POST_BY_ID,
     GET_POSTS_LIST,
-    GET_POST_CATEGORIES,
     POST_GET_TOP_POST,
     POST_GET_POST_COMMENT_BY_ID,
     POST_GET_IS_LIKE_POST_BY_UID,
@@ -10,7 +9,17 @@ import {
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
     POST_POST_POST,
-} from 'constants/constants'
+
+    //
+    GET_ALL_NOT_APPROVED_POSTS,
+    APPROVE_A_POST,
+
+    //
+    GET_MY_POSTS_REQUEST,
+    GET_MY_POSTS_SUCCESS,
+    GET_MY_POSTS_FAILURE,
+
+} from '../constants.js'
 
 const initialState = {
     posts: [],
@@ -24,6 +33,14 @@ const initialState = {
     newests: [],
     tags: [],
     statusPostPostCode: 0,
+
+    //my posts
+    myPosts: {
+        isLoading: false,
+        data: [],
+        error: ""
+    }
+
 };
 
 function PostReducer(state = initialState, action) {
@@ -56,8 +73,32 @@ function PostReducer(state = initialState, action) {
             return { ...state, currentPost: currentPost, isFetchSuccess: true };
 
         //
-        case GET_POST_CATEGORIES:
-            return { ...state, categories: action.payload.categories };
+
+        //get all not approved post
+        case GET_ALL_NOT_APPROVED_POSTS:
+            {
+                return { ...state, requestedPosts: action.payload };
+            }
+
+        case APPROVE_A_POST:
+            {
+                return { ...state, currentPostApprovedStatus: action.payload }
+            }
+
+        //get my post
+        case GET_MY_POSTS_REQUEST:
+            return {
+                ...state, myPosts: { isLoading: true }
+            };
+        case GET_MY_POSTS_SUCCESS:
+            {
+                return { ...state, myPosts: { isLoading: false, data: action.payload, error: '' } }
+            }
+        case GET_MY_POSTS_FAILURE:
+            {
+                return { ...state, myPosts: { isLoading: false, error: action.payload, data: [] } }
+            }
+
         default:
             return state;
     }

@@ -7,8 +7,8 @@ import 'pages/styles/BlankLayout.scss'
 import { postSummaryType } from 'components/post/PostSummary'
 
 //import for redux
-import { getPostsList } from "services/postServices"
-import { getPostCategories } from "services/postServices"
+import { getPostsList } from "redux/services/postServices"
+import { getPostCategories } from "redux/services/postCategoryServices"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
@@ -67,7 +67,7 @@ class PostsList extends Component {
                     id={postItem.id}
                     authorName={postItem.authorName}
                     authorID={postItem.authorID}
-                    publishedDtm={postItem.publishedDtm}
+                    publishDtm={postItem.publishDtm}
                     category={postItem.category}
                     categoryID={postItem.categoryID}
                     title={postItem.title}

@@ -14,7 +14,7 @@ import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { management_getAllUsers, management_getAllRoles } from 'services/authorized/userServices'
+import { management_getAllUsers, management_getAllRoles } from 'redux/services/userServices'
 
 class UserManagement extends Component {
     constructor(props) {
@@ -239,8 +239,8 @@ class UserManagement extends Component {
 const mapStateToProps = (state) => {
     
     return {
-        userList: state.management_user.allUsers.accounts,
-        roleList: state.management_user.allRoles
+        userList: state.user.allUsers.accounts,
+        roleList: state.user.allRoles
     };
 }
 

@@ -7,8 +7,14 @@ import {
     DOC_GET_TOP_DOC,
     DOC_POST_DOC,
     DOC_POST_UP_VIEW_DOC,
-    DOC_POST_UP_DOWNLOAD_DOC
-} from 'constants/constants'
+    DOC_POST_UP_DOWNLOAD_DOC,
+
+    // 
+    GET_ALL_NOT_APPROVED_DOCUMENTS,
+    GET_MY_DOCUMENTS,
+    APPROVE_A_DOCUMENT
+
+} from '../constants.js'
 const fakeDocuments = [
     {
         id: 0,
@@ -23,7 +29,7 @@ const fakeDocuments = [
         subjectName: "NMLT",
         viewCount: 100,
         downloadCount: 1000,
-        publishedDtm: "21/01/2020",
+        publishDtm: "21/01/2020",
         imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
     {
@@ -39,7 +45,7 @@ const fakeDocuments = [
         subjectName: "string",
         viewCount: 0,
         downloadCount: 0,
-        publishedDtm: "string",
+        publishDtm: "string",
         imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
     {
@@ -55,7 +61,7 @@ const fakeDocuments = [
         subjectName: "string",
         viewCount: 0,
         downloadCount: 0,
-        publishedDtm: "string",
+        publishDtm: "string",
         imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
     },
 ]
@@ -89,9 +95,20 @@ function DocReducer(state = initialState, action) {
             return { ...state };
         case DOC_POST_UP_DOWNLOAD_DOC:
             return { ...state };
-        case DOC_GET_DOC_BY_ID: {
-            return { ...state, document: action.payload }
-        }
+        case DOC_GET_DOC_BY_ID:
+            return { ...state, document: action.payload };
+
+
+        case GET_ALL_NOT_APPROVED_DOCUMENTS:
+            return { ...state, requestedDocuments: action.payload };
+        case APPROVE_A_DOCUMENT:
+            return { ...state, currentDocumentApprovedStatus: action.payload }
+
+        //my post
+        case GET_MY_DOCUMENTS:
+            return { ...state, myDocuments: action.payload }
+
+
         default:
             return state;
     }

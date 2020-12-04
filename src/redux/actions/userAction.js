@@ -3,8 +3,25 @@ import {
     USER_POST_REGISTER,
     USER_GET_CURRENT_USER,
     USER_GET_LOGOUT,
-} from 'constants/constants'
+    GET_ALL_USERS,
+    GET_ALL_ROLES
+} from '../constants.js'
 
+
+export function managementGetAllUsers(allUsers) {
+    return {
+        type: GET_ALL_USERS,
+        payload: allUsers
+    }
+}
+
+export function managementGetAllRoles(allRoles) {
+
+    return {
+        type: GET_ALL_ROLES,
+        payload: allRoles
+    }
+}
 export function userPostLogin(account, statusLoginCode) {
     return {
         type: USER_POST_LOGIN,

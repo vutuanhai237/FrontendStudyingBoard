@@ -37,14 +37,7 @@ export default class Combobox extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.selectedOptionID) return;
 
-        this.selectedOption = {
-            id: this.props.selectedOptionID,
-            name: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].name
-        }
-
-        console.log(this.selectedOption)
     }
 
     closeAllOption = () => {
@@ -104,7 +97,7 @@ export default class Combobox extends React.Component {
         }
 
         this.selectedOption = {
-            id: id,
+            id: parseInt(id),
             name: this.props.options.filter(item => item.id === id)[0].name
         }
 
@@ -123,11 +116,12 @@ export default class Combobox extends React.Component {
 
     render() {
 
-        if (this.selectedOption.id === "" && this.props.selectedOptionID)
+        if (this.selectedOption.id === "" && this.props.selectedOptionID) {
             this.selectedOption = {
                 id: this.props.selectedOptionID,
-                name: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].name
+                name: this.props.options.filter(item => item.id === parseInt(this.props.selectedOptionID))[0].name
             }
+        }
 
         let options = this.props.options.map(option =>
             this.selectedOption.id === option.id ?
@@ -149,7 +143,6 @@ export default class Combobox extends React.Component {
         return (
             <div style={{ position: "relative", display: "flex", minWidth: "240px", width: "fit-content" }} >
                 < ClickAwayListener onClickAway={() => { this.closeAllOption() }}>
-                    {/* <div style={{ width: "100%" }}> */}
                     <div>
                         {/* select */}
                         <div className="combo-box" id={"combobox-" + this.props.id}
@@ -178,10 +171,23 @@ export default class Combobox extends React.Component {
                                         :
                                         !this.isAnyValueChanged ? //neu dung, khi co thay doi se chuyen thanh selected name
                                             <div>
-
-                                                {!this.props.selectedOptionID && this.props.placeHolder === "none" ? this.props.options[0].name :
-                                                    this.props.placeHolder}</div> :
-                                            this.selectedOption.name
+                                                {(!this.props.selectedOptionID && this.props.placeHolder === "none") ?
+                                                    <div>
+                                                        {
+                                                            this.props.selectedOptionID ?
+                                                                this.selectedOption.name
+                                                                : this.props.options[0].name
+                                                        }</div>
+                                                    :
+                                                    <div>
+                                                        {this.props.selectedOptionID ?
+                                                            this.selectedOption.name
+                                                            : this.props.placeHolder
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                            : this.selectedOption.name
                                     }
                                 </div>
                             </div>

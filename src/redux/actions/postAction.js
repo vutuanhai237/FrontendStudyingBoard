@@ -13,14 +13,19 @@ import {
     POST_GET_POST_NEWESTS,
     POST_GET_POST_NEW_ACTIVITIES,
     POST_GET_TAGS_BY_ID,
-    GET_POST_CATEGORIES,
-} from "constants/constants"
+    GET_ALL_NOT_APPROVED_DOCUMENTS,
+
+    APPROVE_A_DOCUMENT,
+    GET_MY_POSTS_REQUEST,
+    GET_MY_POSTS_SUCCESS,
+    GET_MY_POSTS_FAILURE
+} from "../constants.js"
 
 // POST section
 export function postPostPost(statusPostPostCode) {
     return {
         type: POST_POST_POST,
-        payload: { 
+        payload: {
             statusPostPostCode: statusPostPostCode
         }
     }
@@ -29,7 +34,7 @@ export function postPostPost(statusPostPostCode) {
 export function postGetTags(tags) {
     return {
         type: POST_GET_TAGS_BY_ID,
-        payload: { 
+        payload: {
             tags: tags
         }
     }
@@ -38,7 +43,7 @@ export function postGetTags(tags) {
 export function postPostLike(statusPostLikeCode) {
     return {
         type: POST_POST_LIKE,
-        payload: { 
+        payload: {
             statusPostLikeCode: statusPostLikeCode
         }
     }
@@ -47,7 +52,7 @@ export function postPostLike(statusPostLikeCode) {
 export function delPostUnlike(statusPostUnLikeCode) {
     return {
         type: POST_DEL_POST_UNLIKE,
-        payload: { 
+        payload: {
             statusPostUnLikeCode: statusPostUnLikeCode
         }
     }
@@ -57,7 +62,7 @@ export function delPostUnlike(statusPostUnLikeCode) {
 export function postPostSave(statusPostSaveCode) {
     return {
         type: POST_POST_SAVE,
-        payload: { 
+        payload: {
             statusPostSaveCode: statusPostSaveCode
         }
     }
@@ -66,7 +71,7 @@ export function postPostSave(statusPostSaveCode) {
 export function postPostComment(statusPostCommentCode) {
     return {
         type: POST_POST_COMMENT,
-        payload: { 
+        payload: {
             statusPostCommentCode: statusPostCommentCode
         }
     }
@@ -99,7 +104,7 @@ export function postGetIsLikePostByUID(liked) {
 export function get_HighlightPosts(highlights) {
     return {
         type: GET_HIGHLIGHT_POSTS,
-        payload: { 
+        payload: {
             highlights: highlights
         }
     }
@@ -108,7 +113,7 @@ export function get_HighlightPosts(highlights) {
 export function postGetPostNewests(newests) {
     return {
         type: POST_GET_POST_NEWESTS,
-        payload: { 
+        payload: {
             newests: newests
         }
     }
@@ -117,27 +122,17 @@ export function postGetPostNewests(newests) {
 export function postGetPostNewActivities(newActivities) {
     return {
         type: POST_GET_POST_NEW_ACTIVITIES,
-        payload: { 
+        payload: {
             newActivities: newActivities
         }
     }
 }
 
-//
-export function get_PostCategories(categories) {
-    return {
-        type: GET_POST_CATEGORIES,
-        payload: { 
-            categories: categories
-        }
-    }
-}
-//
 
 export function postGetPostByID(post) {
     return {
         type: POST_GET_POST_BY_ID,
-        payload: { 
+        payload: {
             post: post
         }
     }
@@ -147,7 +142,7 @@ export function postGetPostByID(post) {
 export function get_PostsList(posts) {
     return {
         type: GET_POSTS_LIST,
-        payload: { 
+        payload: {
             posts: posts
         }
     }
@@ -156,9 +151,44 @@ export function get_PostsList(posts) {
 export function postGetTopPost(topPost) {
     return {
         type: POST_GET_TOP_POST,
-        payload: { 
+        payload: {
             topPost: topPost
         }
+    }
+}
+
+export function get_NotApprovedDocumentsList(requestedDocs) {
+    return {
+        type: GET_ALL_NOT_APPROVED_DOCUMENTS,
+        payload: requestedDocs,
+    }
+}
+
+// export function managementApproveADocument(requestedDoc) {
+//     return {
+//         type: APPROVE_A_DOCUMENT,
+//         payload: requestedDoc,
+//     }
+// }
+
+//my post
+export function get_MyPostsRequest() {
+    return {
+        type: GET_MY_POSTS_REQUEST,
+    }
+}
+
+export function get_MyPostsSuccess(data) {
+    return {
+        type: GET_MY_POSTS_SUCCESS,
+        payload: data
+    }
+}
+
+export function get_MyPostsFailure(error) {
+    return {
+        type: GET_MY_POSTS_FAILURE,
+        payload: error
     }
 }
 

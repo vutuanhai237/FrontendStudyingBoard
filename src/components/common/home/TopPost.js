@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { bindActionCreators } from "redux";
-import { getHighlightPosts } from "services/postServices"
+import { getHighlightPosts } from "redux/services/postServices"
 class TopPost extends Component {
     constructor(props) {
         super(props);

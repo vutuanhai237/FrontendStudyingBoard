@@ -27,7 +27,7 @@ class DocSummary extends Component {
     this.authorName = this.props.authorName;
     this.authorID = this.props.authorID;
 
-    this.publishedDtm = this.props.publishedDtm;
+    this.publishDtm = this.props.publishDtm;
     this.category = this.props.category;
     this.requestedCategoryID = this.props.requestedCategoryID;
 
@@ -147,7 +147,7 @@ class DocSummary extends Component {
             <div className="display-flex" >
               <img alt="*" className="metadata-icon" src={gray_btn_element} />
               <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
-                {this.props.publishedDtm}
+                {this.props.publishDtm}
               </div>
             </div>
           </div>
