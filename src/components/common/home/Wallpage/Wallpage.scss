@@ -33,7 +33,7 @@
     background: white;
     height: 100%;
     width: 28%;
-    box-shadow: 0px 5px 5px #c4c4c4;
+    box-shadow: 0px 5px 5px var(--gray);
 }
 
 .Wallpage_Image {
@@ -69,7 +69,7 @@
     height: auto;
     width: 72%;
     padding: 5px;
-    box-shadow: 0px 0px 10px #c4c4c4;
+    box-shadow: 0px 0px 10px var(--gray);
 }
 
 .Highlight_Title {
@@ -140,7 +140,7 @@
     cursor: pointer;
 }
 
-.Highlight_Summary-author-link:active {
+.Highlight_item-author-link:active {
     opacity: 60%;
     cursor: pointer;
 }
@@ -170,7 +170,7 @@
     padding-left: 10px;
     font-size: 24px;
     font-family: "RobotoSlab-Regular";
-    color: #363636;
+    color: var(--black);
 }
 
 .Highlight_Summary_Content {
@@ -178,13 +178,13 @@
     padding: 5px;
     font-size: 16px;
     font-family: "Sarabun-Regular";
-    color: #363636;
+    color: var(--black);
 }
 
 //For reaction bar
 
 .Highlight_Reaction_Bar {
-    border-top: 1px #c4c4c4 solid;
+    border-top: 1px var(--gray) solid;
 
     display: flex;
     margin: auto;
@@ -216,12 +216,12 @@
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 22px;
-    color: #363636;
+    color: var(--black);
     margin-left: 5px;
 }
 
 //this port content saveBtn and comment Btn
-.Highlight_Reaction_Bar-save-comment-count-layout {
+.Highlight_Reaction_Bar-save-comment-count-container {
     display: flex;
     width: 160px;
 }
@@ -246,23 +246,23 @@
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 20px;
-    color: #363636;
+    color: var(--black);
 }
 
 //commentBtn
-.Highlight_Reaction_Bar-comment-count-layout {
+.Highlight_Reaction_Bar-comment-count-container {
     display: flex;
     padding-left: 15px;
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
     line-height: 20px;
     width: 120px;
-    color: #363636;
+    color: var(--black);
     width: fit-content;
     user-select: none;
 }
 
-.Highlight_Reaction_Bar-comment-count-layout:hover {
+.Highlight_Reaction_Bar-comment-count-container:hover {
     opacity: 80%;
     cursor: pointer;
 }
@@ -273,5 +273,5 @@
     font-family: "BarlowCondensed-Medium";
     font-size: 18px;
     line-height: 20px;
-    color: #363636;
+    color: var(--black);
 }

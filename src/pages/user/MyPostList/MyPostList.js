@@ -1,23 +1,23 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import Titlebar from 'components/common/Titlebar/Titlebar'
-import PostSummary, { postSummaryType } from 'components/post/PostSummary'
-
-import Paginator from 'components/common/Paginator/ServerPaginator'
+import Titlebar from 'components/common/Titlebar/Titlebar';
+import PostSummary from 'components/post/PostSummary';
+import {summaryItemType} from 'constants.js';
+import Paginator from 'components/common/Paginator/ServerPaginator';
 
 //import for redux
-import { getMyPostsList } from "redux/services/postServices"
-import { getPostCategories } from "redux/services/postCategoryServices"
+import { getMyPostsList } from "redux/services/postServices";
+import { getPostCategories } from "redux/services/postCategoryServices";
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
-import { getSearchParamByName, setSearchParam } from 'utils/Utils'
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/Utils'
 
 import Loader from 'components/common/Loader/Loader'
 
-//Sample URL: http://localhost:3000/user/my_posts?page=3&category=1
+//Sample URL: http://localhost:3000/user/my-posts?page=3&category=1
 class MyPostList extends Component {
     constructor(props) {
         super();
@@ -33,13 +33,13 @@ class MyPostList extends Component {
     }
 
     async componentDidMount() {
+        this.props.getPostCategories()
 
         //get filter
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
 
         this.props.getMyPostsList(page, category);
-        this.props.getPostCategories()
     }
 
     //server paginator
@@ -61,11 +61,12 @@ class MyPostList extends Component {
     }
 
     render() {
+        // console.log(this.filter);
 
         if (!this.props.isListLoading) {
             this.myPostsList = this.props.myPostsList.map((postItem) => (
                 <PostSummary
-                    type={postSummaryType.mySelf}
+                    type={summaryItemType.mySelf}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}
@@ -79,16 +80,21 @@ class MyPostList extends Component {
                     likedStatus={postItem.likedStatus}
                     savedStatus={postItem.savedStatus}
                     readingTime={postItem.readingTime}
-                    likes={postItem.likes}
+                    likes={postItem.likeCount}
                     comments={postItem.commentCount}
-                    approveStatus={false}
+                    approveStatus={postItem.approveStatus}
                 ></PostSummary >)
             )
         }
 
-        // if (this.props.categories){
-        //     this.
-        // }
+        if (!this.props.isCategoryLoading && this.props.postCategories.length !== 0) {
+
+            // console.log("*")
+            this.filter = this.props.postCategories;
+        }
+        // console.log(this.filter);
+        // console.log(!this.props.isCategoryLoading && this.props.postCategories.length === 0)
+        // console.log(this.props.postCategories)
 
         return (
             <div>
@@ -96,7 +102,7 @@ class MyPostList extends Component {
                 <div className="left-side-bar-layout-content-container">
                     <div className="two-element-filter-container">
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right margin-right-5px">Danh mục:</div>
+                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
@@ -139,9 +145,9 @@ const mapStateToProps = (state) => {
     // console.log(state);
     return {
         myPostsList: state.post.myPosts.data,
-        postCategories: state.post.categories,
+        postCategories: state.post_category.categories.data,
         isListLoading: state.post.myPosts.isLoading,
-        // isCategoryLoading: state.
+        isCategoryLoading: state.post_category.categories.isLoading
     };
 }
 

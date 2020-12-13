@@ -85,7 +85,7 @@
     font-size: 18px;
     padding-top: 0.5em;
     line-height: 1em;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid var(--gray);
     color: var(--blue);
     margin: auto;
     justify-content: space-between;
@@ -112,7 +112,7 @@
     // height: 70%;
     // display: flex;
     // justify-content: start;
-    // border-bottom: 1px #c4c4c4 solid;
+    // border-bottom: 1px var(--gray) solid;
     padding: 10px;
     display: flex;
 }
@@ -121,7 +121,7 @@
     height: 100px;
     width: auto;
     padding: 15px;
-    border: 3px solid #c4c4c4;
+    border: 3px solid var(--gray);
     border-radius: 5px;
 }
 
@@ -136,13 +136,13 @@
     position: relative;
     font-family: "BarlowCondensed-Medium";
     line-height: 1em;
-    color: #363636;
+    color: var(--black);
     padding: 10px;
 }
 
 //Footer area
 .Custom_Modal_Footer {
-    border-top: 1px solid #c4c4c4;
+    border-top: 1px solid var(--gray);
     display: flex;
     justify-content: flex-end;
     background: white;

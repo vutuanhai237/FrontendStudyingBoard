@@ -72,7 +72,7 @@ class UserManagement extends Component {
             //     this.roleNameFilter === role.UserGroupName ?
             //         <div className="activated-combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-summary-" + role.UserGroupName}
+            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
             //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}
             //             key={role.UserGroupID}>
@@ -82,7 +82,7 @@ class UserManagement extends Component {
             //         :
             //         <div className="combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-summary-" + role.UserGroupName}
+            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
             //             key={role.UserGroupID}
             //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}>
@@ -142,7 +142,7 @@ class UserManagement extends Component {
                                                 <div className="combo-box" id={"role-filter-parent-dropdown-combobox"}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "role-filter-parent-dropdown-combobox", "role-filter-parent-dropdown-combobox-text", "role-filter-dropdown-btn-element", "role-filter-dropdown-combobox-container")}>
                                                     <div className="display-flex">
-                                                        <div className="Vertical_Menu_Item_Text" id={"role-filter-parent-dropdown-combobox-text"}>
+                                                        <div className="side-bar-menu-item-text" id={"role-filter-parent-dropdown-combobox-text"}>
                                                             {this.roleList ?
                                                                 getRoleNameFilterByName(this.roleNameFilter)
                                                                 : ""
@@ -219,7 +219,7 @@ class UserManagement extends Component {
             dropdown_container.style.display = "none";
             parent_menu_item.style.background = "white";
             parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "#363636";
+            show_text.style.color = "var(--black)";
             dropdown_element.src = dropdown_btn;
         }
         if (dropdown_container.style.display !== "block") {

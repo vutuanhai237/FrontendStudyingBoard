@@ -18,14 +18,14 @@
     min-width: 400px;
     display: flex;
     margin-bottom: 20px;
-    box-shadow: 0px 0px 5px 0px #c4c4c4;
+    box-shadow: 0px 0px 5px 0px var(--gray);
     padding: 10px;
 }
 
 .left-side-bar-layout-content-container {
     width: 100%;
     height: fit-content;
-    border: #c4c4c4 solid 1px;
+    border: var(--gray) solid 1px;
     border-top: 0px;
     padding: 10px;
     min-height: 700px;
@@ -49,7 +49,7 @@
 .gray_thin_decoration-underline {
     height: 1px;
     width: 100%;
-    background: #eeeeee;
+    background: var(--grayish);
 }
 
 .number-of-item {
@@ -57,7 +57,7 @@
     font-family: "BarlowCondensed-SemiBold";
     display: flex;
     font-size: 16;
-    color: #363636;
+    color: var(--black);
 }
 
 
@@ -85,7 +85,7 @@
     border-top: 1px;
     border-right: 1px;
     border-bottom: 1px;
-    border-color: #c4c4c4;
+    border-color: var(--gray);
     border-style: solid;
     height: fit-content;
     box-sizing: border-box;
@@ -118,7 +118,7 @@
     font-size: 16px;
     line-height: 22px;
     align-items: center;
-    color: #363636;
+    color: var(--black);
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
@@ -128,14 +128,14 @@
 .Own_Role_Layout {
     border-top: 0.35rem var(--blue) solid;
     width: 100%;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid var(--gray);
     font-family: "BarlowCondensed-SemiBold";
     font-size: 22px;
     line-height: 30px;
     text-align: center;
     color: var(--blue);
-    border-left: 1px solid #c4c4c4;
-    border-right: 1px solid #c4c4c4;
+    border-left: 1px solid var(--gray);
+    border-right: 1px solid var(--gray);
 }
 
 .Achivement_Layout {
@@ -145,11 +145,11 @@
     font-size: 18px;
     line-height: 30px;
     width: 150px;
-    color: #363636;
+    color: var(--black);
     margin-left: 10px;
     height: 80px;
-    border-bottom: 3px #c4c4c4 solid;
-    border-top: 3px #c4c4c4 solid;
+    border-bottom: 3px var(--gray) solid;
+    border-top: 3px var(--gray) solid;
     padding-bottom: 5px;
 }
 
@@ -175,7 +175,7 @@
     border-left: 1px;
     border-right: 1px;
     border-bottom: 1px;
-    border-color: #c4c4c4;
+    border-color: var(--gray);
     border-top: 2px #dddddd;
     border-style: solid;
     height: 460px;
@@ -183,8 +183,8 @@
 
 .Tab_Menu {
     width: 100%;
-    border-right: 1px #c4c4c4 solid;
-    border-left: 1px #c4c4c4 solid;
+    border-right: 1px var(--gray) solid;
+    border-left: 1px var(--gray) solid;
     display: flex;
 }
 
@@ -205,7 +205,7 @@
     margin: auto;
     padding: 4px;
     width: 100%;
-    color: #363636;
+    color: var(--black);
 }
 
 .Activated_Tab_Menu_Item_Layout {
@@ -220,7 +220,7 @@
 }
 
 .Tab_Menu_Item_Layout:hover {
-    background: #eeeeee;
+    background: var(--grayish);
 }
 
 .Tab_Menu_Item {
@@ -243,10 +243,10 @@
     box-sizing: border-box;
     display: flex;
     font-family: "BarlowCondensed-Medium";
-    color: #363636;
+    color: var(--black);
     user-select: none;
     text-decoration: none;
-    box-shadow: 0px 1px 0px 0px #eeeeee;
+    box-shadow: 0px 1px 0px 0px var(--grayish);
     padding-top: 1px;
     padding-bottom: 1px;
     margin-top: 0.35rem;
@@ -269,11 +269,11 @@
     width: 90%;
 }
 
-.Vertical_Menu_Item_Text {
+.side-bar-menu-item-text {
     box-sizing: border-box;
     font-family: "BarlowCondensed-Medium";
     font-size: 1.1rem;
-    color: #363636;
+    color: var(--black);
     padding-left: 0.35rem;
     text-decoration: none !important;
     outline: 0px;
@@ -299,7 +299,7 @@
     justify-content: space-between;
     padding-right: 10px;
     color: white;
-    box-shadow: 0px 1px 0px 0px #eeeeee;
+    box-shadow: 0px 1px 0px 0px var(--grayish);
     margin-top: 0.35rem;
     margin-bottom: 1px;
 }
@@ -314,7 +314,7 @@
     box-sizing: border-box;
     font-family: "BarlowCondensed-Medium";
     font-size: 1.02rem;
-    color: #363636;
+    color: var(--black);
     padding-left: 10%;
     user-select: none;
     display: flex;
@@ -329,7 +329,7 @@
 .Parent_Dropdown_Menu_Item:hover,
 .Vertical_Menu_Item:hover,
 .Sub_Dropdown_Menu_Item:hover {
-    background: #eeeeee;
+    background: var(--grayish);
     cursor: pointer;
     border-right: 4px var(--gray) solid;
 }
@@ -344,7 +344,7 @@
     outline: none;
 }
 
-.Primary_Menu_Item_Element {
+.side-bar-primary-menu-item-icon {
     margin-left: 0.35rem;
     margin-top: 0.35rem;
     width: 1.2rem;

@@ -9,7 +9,10 @@ import liked_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
 import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
-import { Link } from 'react-router-dom'
+import PopupMenu from 'components/common/PopupMenu/PopupMenu'
+import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
+import 'styles/SimpleLabel.scss'
+import { summaryItemType } from 'constants.js'
 
 class PostSummary extends Component {
 
@@ -31,6 +34,17 @@ class PostSummary extends Component {
 
     this.isLiked = false;
     this.isSaved = false;
+
+    this.normalMenuItemList = [
+      { id: 3, name: "Báo cáo", icon: trash_icon },
+    ]
+
+    this.mySelfMenuItemList = [
+      { id: 1, name: "Xoá", icon: trash_icon },
+      { id: 2, name: "Chỉnh sửa", icon: trash_icon },
+      { id: 3, name: "Báo cáo", icon: trash_icon },
+    ]
+
   }
 
   componentDidMount() {
@@ -70,28 +84,44 @@ class PostSummary extends Component {
     //initiate some element
     let likeBtn = <div></div>;
     let saveBtn = <div></div>;
+    let approveLabel = <div></div>
+
+    // this.props.type === summaryItemType.mySelf
 
     //render likeBtn
     if (!this.isLiked) {
-      likeBtn = <img className="like-btn" src={liked_btn} onClick={this.toggleLikeImage}></img>
+      likeBtn = <img className="like-btn" alt="like" src={liked_btn} onClick={this.toggleLikeImage}></img>
     }
     else {
-      likeBtn = <img className="like-btn" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
+      likeBtn = <img className="like-btn" alt="like" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
     }
 
     //render saveBtn
     if (!this.isSaved) {
-      saveBtn = <img className="save-btn" src={full_blue_bookmark_btn}></img>
+      saveBtn = <img className="save-btn" alt="dislike" src={full_blue_bookmark_btn}></img>
     }
     else {
-      saveBtn = <img className="save-btn" src={gray_bookmark_btn} ></img>
+      saveBtn = <img className="save-btn" alt="dislike" src={gray_bookmark_btn} ></img>
     }
 
     //#endregion
 
+    if (this.props.approveStatus === 1)
+      approveLabel =
+        <div className="display-flex" >
+          <div className="metadata-light-black-label"> - </div>
+          <div className="red-border-label">PENDING</div>
+        </div >
+    else
+      approveLabel =
+        <div className="display-flex">
+          <div className="metadata-light-black-label"> - </div>
+          <div className="blue-border-label">APPROVED</div>
+        </div>
+
     return (
-      <div className="summary-container" >
-        <div className="summary-normal-metadata-container" >
+      <div className="item-container" >
+        <div className="item-normal-metadata-container" >
           <div className="display-flex">
 
             <div className="display-flex">
@@ -101,48 +131,61 @@ class PostSummary extends Component {
               </div>
             </div>
 
-            <div className="metadata-gray-label">bởi</div>
+            <div className="metadata-light-black-label">bởi</div>
             <div className="link-label" onClick={() => this.navigateToAuthorPersonalPage()}>
               {this.props.authorName}
             </div>
 
-            <div className="display-flex" >
-              <img alt="*" className="metadata-icon" src={gray_btn_element} />
-              <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
-                {this.props.publishDtm}
-              </div>
-            </div>
+            {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.app ?
+              <>{approveLabel}</> : <></>}
           </div>
+
+          {this.props.type === summaryItemType.mySelf &&
+            <PopupMenu items={this.mySelfMenuItemList} id={`post-item-popup-menu-${this.props.id}`} />
+          }
+          {(this.props.type === summaryItemType.normal || !this.props.type) &&
+            <PopupMenu items={this.normalMenuItemList} id={`post-item-popup-menu-${this.props.id}`} />
+          }
+
         </div>
-        <div className="summary-title">
+        <div className="item-title">
           {this.props.title}
         </div>
-        <div className="display-flex" style={{ marginTop: "-10px" }} >
-          <img alt="*" className="metadata-icon" src={gray_btn_element} />
-          <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
-            {this.props.readingTime} phút đọc
+        <div className="display-flex" style={{ marginTop: "-10px" }}>
+          <div className="display-flex"  >
+            <img alt="*" className="metadata-icon" src={gray_btn_element} />
+            <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
+              {this.props.readingTime} phút đọc
                         </div>
+          </div>
+
+          <div className="display-flex" >
+            <img alt="*" className="metadata-icon" src={gray_btn_element} />
+            <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
+              {this.props.publishDtm}
+            </div>
+          </div>
+
         </div>
-        <div className="summary-summary">
+
+        <div className="item-summary">
           {this.props.summary}
         </div>
 
-        <div className="summary-reaction-bar" style={{ right: "5px" }}>
-          <div className="display-flex ">
+        <div className="item-reaction-bar">
+          <div className="display-flex margin-top-5px">
             <div className="display-flex">
               <div> {likeBtn}</div>
               <div className="like-count">{this.props.likes}</div>
             </div>
 
             <div className="display-flex">
-              <div className="btn-text-container" onClick={this.toggleSaveImage}>
+              <div className="save-text-container" onClick={this.toggleSaveImage}>
                 <div>{saveBtn}</div>
-                <div className="save-text">{this.isSaved ? "Lưu" : "Huỷ"}</div>
+                {this.isSaved ? "Lưu" : "Huỷ"}
               </div>
-              <div className="comment-count-layout">
-                <div className="comment-text">
-                  Bình luận
-              </div>
+              <div className="comment-count-container">
+                Bình luận
                 <div style={{ paddingLeft: "5px" }}>
                   {this.props.comments}
                 </div>
@@ -154,11 +197,9 @@ class PostSummary extends Component {
             </div>
         </div>
 
-        <div className="justify-content-space-between">
-
-
-
-          {this.props.type === postSummaryType.mySelf ?
+        {/* for implement approve item */}
+        {/* <div className="justify-content-space-between">
+          {this.props.type === summaryItemType.mySelf ?
 
             <div className="display-flex" >
               <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.onEditBtnClick()}>Chỉnh sửa</div>
@@ -168,18 +209,18 @@ class PostSummary extends Component {
             <></>
           }
 
-        </div>
+        </div> */}
       </div >
     );
   }
 
   handlerPreviewRequestedPost = () => {
     if (window.location.pathname.substring(0, 6) === "/admin") {
-      window.location.href = "/admin/doc_approving/" + this.id;
+      window.location.href = "/admin/doc-approving/" + this.id;
       return;
     }
     if (window.location.pathname.substring(0, 5) === "/user")
-      window.location.href = "/user/doc_approving/" + this.id;
+      window.location.href = "/user/doc-approving/" + this.id;
 
   }
 
@@ -203,4 +244,3 @@ class PostSummary extends Component {
 }
 export default PostSummary;
 
-export const postSummaryType = { approving: "APPROVING", normal: "NORMAL", mySelf: "MY_SELF" }

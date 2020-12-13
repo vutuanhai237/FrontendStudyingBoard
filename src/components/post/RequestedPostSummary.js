@@ -47,9 +47,9 @@ class RequestedPostSummary extends Component {
 
         return (
 
-            <div className="summary-container" >
-                <div className="summary-main-layout">
-                    <div className="summary-normal-metadata-container">
+            <div className="item-container" >
+                <div className="item-main-layout">
+                    <div className="item-normal-metadata-container">
                         <div className="author-linkauthor-link" onClick={() => this.navigateToAuthorPersonalPage()}>
                             {this.authorName}
                         </div>
@@ -58,18 +58,18 @@ class RequestedPostSummary extends Component {
                         </div>
                     </div>
 
-                    <div className="summary-request-metadata-container">
+                    <div className="item-request-metadata-container">
                         vào lúc {this.requestedTime} đã yêu cầu phê duyệt một tài liệu trong danh mục
                     <div className="requested-category" onClick={() => this.navigateToSameCategoryDocsPage()}>
                             {this.requestedCategory}
                         </div>
                     </div>
 
-                    <div className="summary-title">
+                    <div className="item-title">
                         {this.props.title}
                     </div>
 
-                    <div className="summary-summary">
+                    <div className="item-summary">
                         {this.props.content}
                     </div>
 
@@ -78,7 +78,7 @@ class RequestedPostSummary extends Component {
                     </div>
 
                 </div>
-                <div className="summary-container_Footer">
+                <div className="item-container_Footer">
                     <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
                     <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
                 </div>
@@ -117,11 +117,11 @@ class RequestedPostSummary extends Component {
 
     handlerPreviewRequestedPost = () => {
         if (window.location.pathname.substring(0, 6) === "/admin") {
-            window.location.href = "/admin/doc_approving/" + this.id;
+            window.location.href = "/admin/doc-approving/" + this.id;
             return;
         }
         if (window.location.pathname.substring(0, 5) === "/user")
-            window.location.href = "/user/doc_approving/" + this.id;
+            window.location.href = "/user/doc-approving/" + this.id;
 
     }
 

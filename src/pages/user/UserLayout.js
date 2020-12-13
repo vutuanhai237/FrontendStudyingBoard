@@ -122,13 +122,13 @@ class AdminLayout extends Component {
                       <div style={{ display: "block" }}>
                         {/* Quan ly tai khoan menu item*/}
                         <div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
-                          onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-summary-text", "account-admin-dropdown-btn-element", "account-admin-menu-summary-container")
+                          onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-admin-dropdown-btn-element", "account-admin-menu-item-container")
                           }>
                           <div className="display-flex">
-                            <img alt="*" className="Primary_Menu_Item_Element"
+                            <img alt="*" className="side-bar-primary-menu-item-icon"
                               src={account_management_icon} />
-                            <div className="Vertical_Menu_Item_Text"
-                              id="account-managent-parent-menu-summary-text">
+                            <div className="side-bar-menu-item-text"
+                              id="account-managent-parent-menu-item-text">
                               {"Tài khoản"}
                             </div>
                           </div>
@@ -138,7 +138,7 @@ class AdminLayout extends Component {
                         </div >
 
                         <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container"
-                          id="account-admin-menu-summary-container">
+                          id="account-admin-menu-item-container">
                           <div className="margin-bottom-5px"></div>
                           {window.location.pathname === "/user" ?
                             < Link className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
@@ -151,16 +151,16 @@ class AdminLayout extends Component {
                            </Link>
                           }
 
-                          {window.location.pathname === "/user/update_password"
+                          {window.location.pathname === "/user/update-password"
                             ?
                             <Link
                               className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                              to="/user/update_password">
+                              to="/user/update-password">
                               Cập nhật mật khẩu
                             </Link>
                             :
                             <Link className="Sub_Dropdown_Menu_Item"
-                              to="/user/update_password"
+                              to="/user/update-password"
                               onClick={() => this.setState({})}>
                               Cập nhật mật khẩu
                             </Link>
@@ -190,37 +190,37 @@ class AdminLayout extends Component {
                           <div className="Parent_Dropdown_Menu_Item" id="user-post-managent-parent-menu-item"
                             onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e,
                               "user-post-management-parent-menu-item",
-                              "user-post-management-parent-menu-summary-text",
+                              "user-post-management-parent-menu-item-text",
                               "user-post-management-dropdown-btn-element",
-                              "user-post-management-menu-summary-container")
+                              "user-post-management-menu-item-container")
                             }>
                             <div className="display-flex">
-                              <img alt="*" className="Primary_Menu_Item_Element"
+                              <img alt="*" className="side-bar-primary-menu-item-icon"
                                 src={gray_nb_write_icon} />
-                              <div className="Vertical_Menu_Item_Text"
-                                id="user-post-managent-parent-menu-summary-text">
+                              <div className="side-bar-menu-item-text"
+                                id="user-post-managent-parent-menu-item-text">
                                 {"Bài viết"}
                               </div>
                             </div>
                             <img alt="v" className="Dropdown_Btn_Element"
                               src={dropdown_btn}
-                              id="user-post-managent-parent-menu-summary-text" />
+                              id="user-post-managent-parent-menu-item-text" />
                           </div >
 
 
                           <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container"
-                            id="user-post-management-menu-summary-container">
+                            id="user-post-management-menu-item-container">
                             <div className="margin-bottom-5px"></div>
-                            {window.location.pathname === "/user/my_posts"
+                            {window.location.pathname === "/user/my-posts"
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to={"/user/my_posts?page=1&category=1"}>
+                                to={"/user/my-posts?page=1&category=1"}>
                                 Bài viết của tôi
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to="/user/my_posts?page=1&category=1"
+                                to="/user/my-posts?page=1&category=1"
                                 onClick={() => this.setState({})}>
                                 Bài viết của tôi
                                                         </Link>
@@ -240,16 +240,16 @@ class AdminLayout extends Component {
                                                         </Link>
                             }
 
-                            {window.location.pathname === "/create_post"
+                            {window.location.pathname === "/create-post"
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to={"/create_post"}>
+                                to={"/create-post"}>
                                 Tạo bài viết mới
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to={"/create_post"}
+                                to={"/create-post"}
                                 onClick={() => this.setState({})}>
                                 Tạo bài viết mới
                                                         </Link>
@@ -264,52 +264,52 @@ class AdminLayout extends Component {
                           <div className="Parent_Dropdown_Menu_Item" id="user-doc-managent-parent-menu-item"
                             onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e,
                               "user-doc-management-parent-menu-item",
-                              "user-doc-management-parent-menu-summary-text",
+                              "user-doc-management-parent-menu-item-text",
                               "user-doc-management-dropdown-btn-element",
-                              "user-doc-management-menu-summary-container")
+                              "user-doc-management-menu-item-container")
                             }>
                             <div className="display-flex">
-                              <img alt="*" className="Primary_Menu_Item_Element"
+                              <img alt="*" className="side-bar-primary-menu-item-icon"
                                 src={gray_nb_write_icon} />
-                              <div className="Vertical_Menu_Item_Text"
-                                id="user-doc-managent-parent-menu-summary-text">
+                              <div className="side-bar-menu-item-text"
+                                id="user-doc-managent-parent-menu-item-text">
                                 {"Tài liệu"}
                               </div>
                             </div>
                             <img alt="v" className="Dropdown_Btn_Element"
                               src={dropdown_btn}
-                              id="user-doc-managent-parent-menu-summary-text" />
+                              id="user-doc-managent-parent-menu-item-text" />
                           </div >
 
                           <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container"
-                            id="user-doc-management-menu-summary-container">
+                            id="user-doc-management-menu-item-container">
                             <div className="margin-bottom-5px"></div>
-                            {window.location.pathname === "/user/my_docs"
+                            {window.location.pathname === "/user/my-docs"
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to={"/user/my_docs?page=1&category=1"}>
+                                to={"/user/my-docs?page=1&category=1"}>
                                 Tài liệu của tôi
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to={"/user/my_docs?page=1&category=1"}
+                                to={"/user/my-docs?page=1&category=1"}
                                 onClick={() => this.setState({})}>
                                 Tài liệu của tôi
                                                         </Link>
                             }
 
 
-                            {window.location.pathname === "/upload_doc"
+                            {window.location.pathname === "/upload-doc"
                               ?
                               <Link
                                 className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
-                                to={"/upload_doc"}>
+                                to={"/upload-doc"}>
                                 Upload tài liệu
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to={"/upload_doc"}
+                                to={"/upload-doc"}
                                 onClick={() => this.setState({})}>
                                 Upload tài liệu
                                                         </Link>
@@ -320,45 +320,45 @@ class AdminLayout extends Component {
                         </div>
                       </div>
                       {/* 
-                        {window.location.pathname === "/create_post" ?
+                        {window.location.pathname === "/create-post" ?
                           < Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                            to={"/create_post"}
+                            to={"/create-post"}
                           >
-                            <img alt="*" className="Primary_Menu_Item_Element" src={gray_nb_write_icon} />
-                            <div className="Vertical_Menu_Item_Text"  >
+                            <img alt="*" className="side-bar-primary-menu-item-icon" src={gray_nb_write_icon} />
+                            <div className="side-bar-menu-item-text"  >
                               Tạo bài viết mới</div>
                           </Link>
                           :
                           <Link className="Vertical_Menu_Item"
-                            to={"/create_post"}
+                            to={"/create-post"}
                             onClick={() => this.setState({})}>
-                            <img alt="*" className="Primary_Menu_Item_Element"
+                            <img alt="*" className="side-bar-primary-menu-item-icon"
                               src={gray_nb_write_icon}
                             />
-                            <div className="Vertical_Menu_Item_Text"  >
+                            <div className="side-bar-menu-item-text"  >
                               Tạo bài viết mới
                                                     </div>
                           </Link>
                         } */}
 
                       {/* Viet bai */}
-                      {/* {window.location.pathname === "/upload_doc" ?
+                      {/* {window.location.pathname === "/upload-doc" ?
                           < Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                            to={"/upload_doc"}
+                            to={"/upload-doc"}
                           >
 
-                            <img alt="*" className="Primary_Menu_Item_Element" src={gray_nb_upload_icon} />
-                            <div className="Vertical_Menu_Item_Text"  >
+                            <img alt="*" className="side-bar-primary-menu-item-icon" src={gray_nb_upload_icon} />
+                            <div className="side-bar-menu-item-text"  >
                               Upload tài liệu</div>
                           </Link>
                           :
                           <Link className="Vertical_Menu_Item"
-                            to={"/upload_doc"}
+                            to={"/upload-doc"}
                             onClick={() => this.setState({})}>
-                            <img alt="*" className="Primary_Menu_Item_Element"
+                            <img alt="*" className="side-bar-primary-menu-item-icon"
                               src={gray_nb_upload_icon}
                             />
-                            <div className="Vertical_Menu_Item_Text"  >
+                            <div className="side-bar-menu-item-text"  >
                               Upload tài liệu
                                                          </div>
                           </Link>
@@ -372,11 +372,11 @@ class AdminLayout extends Component {
               <div className="left-sidebar-layout-router-outlet" >
                 <Switch>
                   <Route exact path="/user" component={AccountInformation} />
-                  <Route exact path="/user/update_password" component={AccountInformation} />
-                  <Route exact path="/user/my_docs" component={MyDocList} />
-                  <Route exact path="/user/my_posts" component={MyPostList} />
-                  <Route exact path="/create_post" component={CreatePost} />
-                  <Route exact path="/upload_doc" component={UploadDoc} />
+                  <Route exact path="/user/update-password" component={AccountInformation} />
+                  <Route exact path="/user/my-docs" component={MyDocList} />
+                  <Route exact path="/user/my-posts" component={MyPostList} />
+                  <Route exact path="/create-post" component={CreatePost} />
+                  <Route exact path="/upload-doc" component={UploadDoc} />
                 </Switch>
               </div>
             </Router>

@@ -140,10 +140,10 @@ class AdminLayout extends Component {
                                                 <div hidden={!this.isGrantedPermissions(ContentManagementPermission.Management)}>
                                                     <div className="Parent_Dropdown_Menu_Item"
                                                         id="page-managent-parent-menu-item"
-                                                        onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-summary-text", "page-admin-dropdown-btn-element", "page-admin-menu-summary-container")}>
+                                                        onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-admin-dropdown-btn-element", "page-admin-menu-item-container")}>
                                                         <div className="display-flex">
-                                                            <img alt="*" className="Primary_Menu_Item_Element" src={content_management_icon} id="page-managent-btn-element" />
-                                                            <div className="Vertical_Menu_Item_Text" id="page-managent-parent-menu-summary-text">
+                                                            <img alt="*" className="side-bar-primary-menu-item-icon" src={content_management_icon} id="page-managent-btn-element" />
+                                                            <div className="side-bar-menu-item-text" id="page-managent-parent-menu-item-text">
                                                                 Quản lý nội dung
                                                             </div>
                                                         </div>
@@ -151,16 +151,16 @@ class AdminLayout extends Component {
                                                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-admin-dropdown-btn-element" />
                                                     </div>
 
-                                                    <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-summary-container">
+                                                    <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
                                                         <div className="margin-bottom-5px" />
                                                         {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(PostPermission.Approve))
                                                                 ?
-                                                                window.location.pathname === "/admin/post_approving" || window.location.pathname === "/user/post_approving"
+                                                                window.location.pathname === "/admin/post-approving" || window.location.pathname === "/user/post-approving"
                                                                     ?
                                                                     <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post-approving" : "/user/post-approving"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                                             Duyệt bài viết
@@ -169,7 +169,7 @@ class AdminLayout extends Component {
                                                                     :
                                                                     <Link className="Sub_Dropdown_Menu_Item"
                                                                         onClick={() => this.setState({})}
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post_approving" : "/user/post_approving"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post-approving" : "/user/post-approving"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
                                                                             Duyệt bài viết
@@ -181,10 +181,10 @@ class AdminLayout extends Component {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(DocumentPermission.Approve))
                                                                 ?
-                                                                window.location.pathname === "/admin/doc_approving" || window.location.pathname === "/user/doc_approving"
+                                                                window.location.pathname === "/admin/doc-approving" || window.location.pathname === "/user/doc-approving"
                                                                     ?
                                                                     <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/doc_approving" : "/user/doc_approving"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/doc-approving" : "/user/doc-approving"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                                             Duyệt tài liệu
@@ -192,7 +192,7 @@ class AdminLayout extends Component {
                                                                     </Link>
                                                                     :
                                                                     <Link className="Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/doc_approving" : "/user/doc_approving"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/doc-approving" : "/user/doc-approving"}
                                                                         onClick={() => this.setState({})}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
@@ -206,10 +206,10 @@ class AdminLayout extends Component {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(NotificationPermission.ViewAll))
                                                                 ?
-                                                                window.location.pathname === "/admin/page_notification" || window.location.pathname === "/user/page_notification"
+                                                                window.location.pathname === "/admin/page-notification" || window.location.pathname === "/user/page-notification"
                                                                     ?
                                                                     <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/page_notification" : "/user/page_notification"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/page-notification" : "/user/page-notification"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                                             Thông báo trang
@@ -217,7 +217,7 @@ class AdminLayout extends Component {
                                                                     </Link>
                                                                     :
                                                                     <Link className="Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/page_notification" : "/user/page_notification"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/page-notification" : "/user/page-notification"}
                                                                         onClick={() => this.setState({})}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
@@ -231,10 +231,10 @@ class AdminLayout extends Component {
                                                             (this.isGrantedPermissions(ContentManagementPermission.Management)
                                                                 && this.isGrantedPermissions(CategoryPermission.View))
                                                                 ?
-                                                                window.location.pathname === "/admin/categories_management" || window.location.pathname === "/user/categories_management"
+                                                                window.location.pathname === "/admin/categories-management" || window.location.pathname === "/user/categories-management"
                                                                     ?
                                                                     <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/categories_management" : "/user/categories_management"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/categories-management" : "/user/categories-management"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                                             Quản lý danh mục
@@ -242,7 +242,7 @@ class AdminLayout extends Component {
                                                                     </Link>
                                                                     :
                                                                     <Link className="Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/categories_management" : "/user/categories_management"}
+                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/categories-management" : "/user/categories-management"}
                                                                         onClick={() => this.setState({})}>
                                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                                             Quản lý danh mục
@@ -260,30 +260,30 @@ class AdminLayout extends Component {
                                                 {/* Quan ly nguoi dung */}
                                                 {(this.isGrantedPermissions(ContentManagementPermission.Management)
                                                     && this.isGrantedPermissions(UserPermission.All))
-                                                    ? window.location.pathname === "/admin/user_management" || window.location.pathname === "/user/user_management"
+                                                    ? window.location.pathname === "/admin/user-management" || window.location.pathname === "/user/user-management"
                                                         ?
                                                         <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                                                            to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/user_management" : "/user/user_management"}
+                                                            to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/user-management" : "/user/user-management"}
 
                                                         >
                                                             <img alt="*"
-                                                                className="Primary_Menu_Item_Element"
+                                                                className="side-bar-primary-menu-item-icon"
                                                                 src={user_management_icon}
                                                                 id="user-managent-btn-element" />
-                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                            <div className="side-bar-menu-item-text"  >
                                                                 Quản lý người dùng
                                                         </div>
                                                         </Link>
                                                         :
                                                         <Link className="Vertical_Menu_Item"
-                                                            to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/user_management" : "/user/user_management"}
+                                                            to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/user-management" : "/user/user-management"}
 
                                                             onClick={() => this.setState({})}>
-                                                            <img alt="*" className="Primary_Menu_Item_Element"
+                                                            <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                 src={user_management_icon}
                                                                 id="user-managent-btn-element"
                                                             />
-                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                            <div className="side-bar-menu-item-text"  >
                                                                 Quản lý người dùng
                                                     </div>
                                                         </Link>
@@ -300,10 +300,10 @@ class AdminLayout extends Component {
                                                             <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
                                                                 to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/activity_management" : "/user/activity_management"}
                                                             >
-                                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                                <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                     src={activity_management_icon}
                                                                     id="activity-managent-btn-element" />
-                                                                <div className="Vertical_Menu_Item_Text"  >
+                                                                <div className="side-bar-menu-item-text"  >
                                                                     Quản lý hoạt động
                                                     </div>
                                                             </Link>
@@ -311,11 +311,11 @@ class AdminLayout extends Component {
                                                             <Link className="Vertical_Menu_Item"
                                                                 to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/activity_management" : "/user/activity_management"}
                                                                 onClick={() => this.setState({})}>
-                                                                <img alt="*" className="Primary_Menu_Item_Element"
+                                                                <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                     src={activity_management_icon}
                                                                     id="activity-managent-btn-element"
                                                                 />
-                                                                <div className="Vertical_Menu_Item_Text"  >
+                                                                <div className="side-bar-menu-item-text"  >
                                                                     Quản lý hoạt động
                                                      </div>
                                                             </Link>
@@ -334,11 +334,11 @@ class AdminLayout extends Component {
                                                         <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
                                                             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/user_role_management" : "/user/user_role_management"}
                                                         >
-                                                            <img alt="*" className="Primary_Menu_Item_Element"
+                                                            <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                 src={user_role_management_icon}
                                                             // id="user-role-managent-btn-element"
                                                             />
-                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                            <div className="side-bar-menu-item-text"  >
                                                                 Quản lý quyền truy cập
                                                     </div>
                                                         </Link>
@@ -346,11 +346,11 @@ class AdminLayout extends Component {
                                                         <Link className="Vertical_Menu_Item"
                                                             to="/admin/user_role_management"
                                                             onClick={() => this.setState({})}>
-                                                            <img alt="*" className="Primary_Menu_Item_Element"
+                                                            <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                 src={user_role_management_icon}
                                                             // id="user-role-managent-btn-element"
                                                             />
-                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                            <div className="side-bar-menu-item-text"  >
                                                                 Quản lý quyền truy cập
                                                     </div>
                                                         </Link>
@@ -367,11 +367,11 @@ class AdminLayout extends Component {
                                                         <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
                                                             to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/Statistic_management" : "/user/Statistic_management"}
                                                         >
-                                                            <img alt="*" className="Primary_Menu_Item_Element"
+                                                            <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                 src={statistic_management_icon}
                                                             // id="user-role-managent-btn-element"
                                                             />
-                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                            <div className="side-bar-menu-item-text"  >
                                                                 Thống kê
                                                     </div>
                                                         </Link>
@@ -379,11 +379,11 @@ class AdminLayout extends Component {
                                                         <Link className="Vertical_Menu_Item"
                                                             to="/admin/Statistic_management"
                                                             onClick={() => this.setState({})}>
-                                                            <img alt="*" className="Primary_Menu_Item_Element"
+                                                            <img alt="*" className="side-bar-primary-menu-item-icon"
                                                                 src={statistic_management_icon}
                                                             // id="user-role-managent-btn-element"
                                                             />
-                                                            <div className="Vertical_Menu_Item_Text"  >
+                                                            <div className="side-bar-menu-item-text"  >
                                                                 Thống kê
                                                     </div>
                                                         </Link>
@@ -404,20 +404,20 @@ class AdminLayout extends Component {
                                     {/* Admin and collab page content admin */}
                                     {/* for admin */}
                                     <Route exact path="/admin" component={PostApprovingPage} />
-                                    <Route exact path="/admin/post_approving" component={PostApprovingPage} />
-                                    <Route exact path="/admin/doc_approving" component={DocApprovingPage} />
+                                    <Route exact path="/admin/post-approving" component={PostApprovingPage} />
+                                    <Route exact path="/admin/doc-approving" component={DocApprovingPage} />
 
                                     {/* for collab */}
-                                    <Route exact path="/user/post_approving" component={PostApprovingPage} />
-                                    <Route exact path="/user/doc_approving" component={DocApprovingPage} />
+                                    <Route exact path="/user/post-approving" component={PostApprovingPage} />
+                                    <Route exact path="/user/doc-approving" component={DocApprovingPage} />
 
                                     {/* for admin only */}
-                                    <Route exact path="/admin/page_notification" component={NotificationManagement} />
-                                    <Route exact path="/admin/categories_management" component={CategoryManagement} />
-                                    <Route exact path="/admin/user_management" component={UserManagement} />
+                                    <Route exact path="/admin/page-notification" component={NotificationManagement} />
+                                    <Route exact path="/admin/categories-management" component={CategoryManagement} />
+                                    <Route exact path="/admin/user-management" component={UserManagement} />
                                     <Route exact path="/admin/activity_management" component={AdminLayout} />
                                     <Route exact path="/admin/user_role_management" component={UserRoleManagement} />
-                                    <Route exact path="/admin/user_management/:id" component={AdminLayout} />
+                                    <Route exact path="/admin/user-management/:id" component={AdminLayout} />
                                     <Route exact path="/admin/statistic_management" component={Statistic} />
 
                                 </Switch>

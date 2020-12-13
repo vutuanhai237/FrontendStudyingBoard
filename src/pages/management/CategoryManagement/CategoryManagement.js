@@ -120,7 +120,7 @@ class CategoryManagement extends Component {
                                                 </div>
 
                                                 {this.state.postCategoriesList.map(item =>
-                                                    <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-summary-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.name)} >
+                                                    <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerPostCategoryItemClick(e, item.id, item.name)} >
                                                         <div className="Custom_Table_Item_20percents">{item.id}</div>
                                                         <div className="Custom_Table_Item_80percents">{item.title}</div>
                                                     </div>
@@ -169,7 +169,7 @@ class CategoryManagement extends Component {
                                                 </div>
                                                 <div className="Custom_Table_Layout" >
                                                     {this.documentCategoriesList.map(item =>
-                                                        <div className="Custom_Table_Item" name="Document-category_Custom_Table_Item" key={item.id} id={'management-doc-category-summary-' + item.id} onClick={(e) => this.handerDocCategoryItemClick(e, item.id, item.name)}>
+                                                        <div className="Custom_Table_Item" name="Document-category_Custom_Table_Item" key={item.id} id={'management-doc-category-item-' + item.id} onClick={(e) => this.handerDocCategoryItemClick(e, item.id, item.name)}>
                                                             <div className="Custom_Table_Item_20percents">{item.id}</div>
                                                             <div className="Custom_Table_Item_80percents">{item.name}</div>
                                                         </div>
@@ -202,7 +202,7 @@ class CategoryManagement extends Component {
                                                 </div>
                                                 <div className="Custom_Table_Layout">
                                                     {this.documentSubjectList.map(item =>
-                                                        <div className="Custom_Table_Item" name="Subject_Custom_Table_Item" key={item.subjectId} id={'management-subject-summary-' + item.subjectId} onClick={(e) => this.handerSubjectItemClick(e, item.subjectId, item.subjectName)}>
+                                                        <div className="Custom_Table_Item" name="Subject_Custom_Table_Item" key={item.subjectId} id={'management-subject-item-' + item.subjectId} onClick={(e) => this.handerSubjectItemClick(e, item.subjectId, item.subjectName)}>
                                                             <div className="Custom_Table_Item_20percents">{item.subjectId}</div>
                                                             <div className="Custom_Table_Item_80percents">{item.subjectName}</div>
                                                         </div>
@@ -236,7 +236,7 @@ class CategoryManagement extends Component {
                                                 </div>
                                                 <div className="Custom_Table_Layout">
                                                     {this.documentSemesterList.map(item =>
-                                                        <div className="Custom_Table_Item" key={item.semesterId} name="Semester_Custom_Table_Item" id={'management-semester-summary-' + item.semesterId} onClick={(e) => this.handerSemesterItemClick(e, item.semesterId, item.semesterNo)}>
+                                                        <div className="Custom_Table_Item" key={item.semesterId} name="Semester_Custom_Table_Item" id={'management-semester-item-' + item.semesterId} onClick={(e) => this.handerSemesterItemClick(e, item.semesterId, item.semesterNo)}>
                                                             <div className="Custom_Table_Item_20percents">{item.semesterId}</div>
                                                             <div className="Custom_Table_Item_40percents">{item.semesterNo}</div>
                                                             <div className="Custom_Table_Item_40percents">{item.academicYear}</div>
@@ -369,7 +369,7 @@ class CategoryManagement extends Component {
             all_item[i].className = "Custom_Table_Item";
         }
 
-        let category_item = document.getElementById("management-post-category-summary-" + id);
+        let category_item = document.getElementById("management-post-category-item-" + id);
         // category_item.className
         category_item.className = "Custom_Table_Item_Activated";
 
@@ -447,7 +447,7 @@ class CategoryManagement extends Component {
             all_item[i].className = "Custom_Table_Item";
         }
 
-        let category_item = document.getElementById("management-doc-category-summary-" + id);
+        let category_item = document.getElementById("management-doc-category-item-" + id);
         // category_item.className
         category_item.className = "Custom_Table_Item_Activated";
 
@@ -478,7 +478,7 @@ class CategoryManagement extends Component {
             all_item[i].className = "Custom_Table_Item";
         }
 
-        let category_item = document.getElementById("management-subject-summary-" + id);
+        let category_item = document.getElementById("management-subject-item-" + id);
         // category_item.className
         category_item.className = "Custom_Table_Item_Activated";
 
@@ -510,7 +510,7 @@ class CategoryManagement extends Component {
             all_item[i].className = "Custom_Table_Item";
         }
 
-        let category_item = document.getElementById("management-semester-summary-" + id);
+        let category_item = document.getElementById("management-semester-item-" + id);
         // category_item.className
         category_item.className = "Custom_Table_Item_Activated";
 

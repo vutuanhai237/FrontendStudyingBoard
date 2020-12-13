@@ -50,7 +50,7 @@
 
 @font-face {
     font-family: "BarlowSemiCondensed-Medium";
-    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Medium.ttf);
+    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Medium.ttf) format("truetype");
 }
 
 @font-face {
@@ -65,7 +65,14 @@
     --gray: #c4c4c4;
     --green: #00fe3a;
     --yellow: #fefe3a;
-    --grayish: #fafafa;
+    --grayish: #eeeeee;
+    --light-gray: #fafafa;
+    --light-black: #6b6b6b;
+}
+
+img {
+    color: var(--light-black);
+    font: 14px "BarlowSemiCondensed-Medium";
 }
 
 .justify-content-space-between {

@@ -35,13 +35,13 @@ export function setSearchParam(name, value) {
                     newQuery = newQuery + pair[0] + "=" + value;
                 }
                 else {
-                    newQuery += newQuery + pair[0] + "=" + value + "&";
+                    newQuery = newQuery + pair[0] + "=" + value + "&";
                 }
             } else
                 if (i === vars.length - 1)
-                    newQuery += newQuery + vars[i];
+                    newQuery = newQuery + vars[i];
                 else
-                    newQuery += newQuery + vars[i] + "&";
+                    newQuery = newQuery + vars[i] + "&";
         }
 
         if (window.history.pushState) {
@@ -55,4 +55,12 @@ export function setSearchParam(name, value) {
         let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?${name}=${value}`;
         window.history.pushState({ path: newurl }, '', newurl);
     }
+}
+
+export function navigateWithoutReload(pathname) {
+    if (window.history.pushState) {
+        let newurl = window.location.protocol + "//" + window.location.host + pathname;
+        window.history.pushState({ path: newurl }, '', newurl);
+    }
+
 }

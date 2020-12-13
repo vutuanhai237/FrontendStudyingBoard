@@ -137,13 +137,13 @@ Thật ra thì ở bất kì thời đại nào, con người vẫn đều tồ�
                                 <div className="Highlight_Reaction_Bar_Like_Count">{this.state.isLiked ? this.likes + 1 : this.likes}</div>
                             </div>
 
-                            <div className="Highlight_Reaction_Bar-save-comment-count-layout">
+                            <div className="Highlight_Reaction_Bar-save-comment-count-container">
                                 <div className="Highlight_Reaction_Bar-save-btn-layout">
                                     <img className ="Highlight_Reaction_Bar-save-btn" src={this.state.isSaved ? save_btn : full_blue_bookmark_btn} onClick={() => this.toggleSaveImage()}></img>
 
                                     <div className="Highlight_Reaction_Bar_Save_Text"> {this.state.isSaved ? "Lưu" : "Huỷ"} </div>
                                 </div>
-                                <div className="Highlight_Reaction_Bar-comment-count-layout">
+                                <div className="Highlight_Reaction_Bar-comment-count-container">
                                     <div className="Highlight_Reaction_Bar_Comment_Text">
                                         Bình luận
                                 </div>

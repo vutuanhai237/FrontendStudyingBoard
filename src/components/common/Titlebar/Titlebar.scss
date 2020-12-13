@@ -14,7 +14,7 @@
     font-size: 20px;
     display: flex;
     align-items: center;
-    color: #363636;
+    color: var(--black);
     user-select: none;
 }
 
@@ -26,7 +26,7 @@
     font-size: 20px;
     display: flex;
     align-items: center;
-    color: #363636;
+    color: var(--black);
 }
 
 .title-bar .First_Horizontal_Menu_Item:hover {
@@ -43,7 +43,7 @@
 }
 
 .title-bar .Horizontal_Menu_Item:active {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
 }
 

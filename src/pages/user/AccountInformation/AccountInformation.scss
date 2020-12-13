@@ -12,7 +12,7 @@
 }
 
 .Account_Information_Layout {
-    border: 1px #c4c4c4 solid;
+    border: 1px var(--gray) solid;
     border-radius: 5px;
     border-top: 5px solid var(--blue);
     // background: pink;
@@ -21,7 +21,7 @@
 }
 
 .Account_Information_Update_Password_Layout {
-    border: 1px #c4c4c4 solid;
+    border: 1px var(--gray) solid;
     border-radius: 5px;
     border-top: 5px solid var(--blue);
     width: 100%;
@@ -54,7 +54,7 @@
     font-family: 'BarlowCondensed-Medium';
     font-size: 18px;
     line-height: 30px;
-    color: #363636;
+    color: var(--black);
     width: 100%;
 }
 

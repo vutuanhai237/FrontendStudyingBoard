@@ -11,8 +11,8 @@
     line-height: 22px;
     padding-left: 10px;
     padding-right: 10px;
-    color: #363636;
-    border: #c4c4c4 1px solid;
+    color: var(--black);
+    border: var(--gray) 1px solid;
     user-select: none;
     min-width: 80px;
 }
@@ -23,13 +23,13 @@
 }
 
 .white-button:active {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
     opacity: 90%;
 }
 
 .white-button:disabled {
-    background: #c4c4c4;
+    background: var(--gray);
     color: white;
     cursor: pointer;
     opacity: 90%;
@@ -60,13 +60,13 @@
 }
 
 .red-button:active {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
     opacity: 90%;
 }
 
 .red-button:disabled {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
     opacity: 90%;
 }
@@ -96,12 +96,12 @@
 }
 
 .blue-button:active {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
 }
 
 .blue-button:disabled {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
 }
 

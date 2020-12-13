@@ -1,10 +1,8 @@
 import React from "react";
 import { ClickAwayListener } from '@material-ui/core';
-import dropdown_btn from 'assets/images/dropdown_icon.png';
-import white_dropdown_btn from 'assets/images/white_dropdown_icon.png';
-import "./Combobox.scss"
+import "./PopupMenu.scss"
 
-export default class Combobox extends React.Component {
+export default class PopupMenu extends React.Component {
     constructor(props) {
         super(props);
 
@@ -14,7 +12,7 @@ export default class Combobox extends React.Component {
             isDropdownOpen: false,
         }
 
-        this.selectedOption = {
+        this.selectedItem = {
             id: "",
             name: ""
         }
@@ -22,170 +20,138 @@ export default class Combobox extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.selectedOptionID) return;
+        if (!this.props.selectedItemID) return;
 
-        this.selectedOption = {
-            id: this.props.selectedOptionID,
-            name: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].name
+        this.selectedItem = {
+            id: this.props.selectedItemID,
+            name: this.props.items.filter(item => item.id === this.props.selectedItemID)[0].name
         }
 
-        console.log(this.selectedOption)
+        console.log(this.selectedItem)
     }
 
     closeMenu = () => {
-        let parent_id = "combobox-" + this.props.id;
-        let show_text_id = "combobox-text-" + this.props.id;
-        let dropdown_element_id = "combobox-btn-element-" + this.props.id;
-        let container_id = "dropdown-container-" + this.props.id;
+        let parent_id = "popup-menu-" + this.props.id;
+
+        let container_id = "popup-menu-dropdown-" + this.props.id;
 
         let parent_menu_item = document.getElementById(parent_id);
-        let dropdown_element = document.getElementById(dropdown_element_id);
-        let show_text = document.getElementById(show_text_id);
-        let dropdown_container = document.getElementById(container_id);
+        let dropdown = document.getElementById(container_id);
 
-        if (dropdown_container.style.display === "block") {
-            dropdown_container.style.display = "none";
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
             parent_menu_item.style.background = "white";
-            parent_menu_item.style.borderRight = "var(--gray) 1px solid";
             parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "var(--black)";
-            dropdown_element.src = dropdown_btn;
         }
         this.setState({})
     }
 
-    handleMenuClick = (e, combobox_id, combobox_text_id, dropdown_element_id, container_id) => {
+    handlePopupMenuClick = (e, popup_menu_id, dropdown_id, dropdown_container_id) => {
         e.preventDefault();
 
-        let parent_menu_item = document.getElementById(combobox_id);
-        let dropdown_element = document.getElementById(dropdown_element_id);
-        let show_text = document.getElementById(combobox_text_id);
-        let dropdown_container = document.getElementById(container_id);
+        let popup_menu = document.getElementById(popup_menu_id);
+        let dropdown = document.getElementById(dropdown_id);
 
-        if (dropdown_container.style.display === "block") {
-            dropdown_container.style.display = "none";
-            dropdown_element.src = dropdown_btn;
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+            popup_menu.style.background = "white";
+
         }
         else {
-            parent_menu_item.style.background = "var(--white)"
-            parent_menu_item.style.borderRight = "3px solid var(--blue)"
-            dropdown_container.style.display = "block";
-            dropdown_element.src = dropdown_btn;
+            popup_menu.style.background = "var(--grayish)";
+            dropdown.style.display = "block";
+            dropdown.style.left = "-136px";
+
         }
 
-
+        // console.log(dropdown_container.style.width);
         //cho nay can them vao mot doan xu ly cho props
         this.setState({ isDropdownOpen: true });
     }
 
     handleMenuItemClick = (id) => {
-        let item_id = "combobox-option-" + this.props.id + "-" + id;
-        let combobox_option = document.getElementById(item_id);
-
-        for (let i = 1; i <= this.props.options; i++) {
-            let combobox_option_index_id = "combobox-option-" + this.props.id + "-" + this.props.options[i].id;
-            let combobox_option_index = document.getElementById(combobox_option_index_id);
-            combobox_option_index.className = "combo-box-option";
-        }
-
-        this.selectedOption = {
+        this.selectedItem = {
             id: id,
-            name: this.props.options.filter(item => item.id === id)[0].name
+            name: this.props.items.filter(item => item.id === id)[0].name
         }
-
 
         //pass to parent
-        if (this.props.onOptionChanged)
-            this.props.onOptionChanged(this.selectedOption);
-        else console.log('error', "Please implement onOptionChanged() of Combobox!");
-        combobox_option.className = "activated-combo-box-option";
+        console.log(this.props.onMenuItemClick)
+        if (this.props.onMenuItemClick)
+            this.props.onMenuItemClick(this.selectedItem);
+        else console.log('error', "Please implement onMenuItemClick() of PopupMenu!");
         this.isAnyValueChanged = true;
-        this.closeAllOption();
+        this.closeAllItem();
         this.setState({});
-
-
     }
 
     render() {
 
-        if (this.selectedOption.id === "" && this.props.selectedOptionID)
-            this.selectedOption = {
-                id: this.props.selectedOptionID,
-                name: this.props.options.filter(item => item.id === this.props.selectedOptionID)[0].name
+        if (this.selectedItem.id === "" && this.props.selectedItemID)
+            this.selectedItem = {
+                id: this.props.selectedItemID,
+                name: this.props.items.filter(item => item.id === this.props.selectedItemID)[0].name
             }
 
-        let options = this.props.options.map(option =>
-            this.selectedOption.id === option.id ?
-                <div className="activated-combo-box-option"
-                    id={"combobox-option-" + this.props.id + "-" + option.id}
-                    key={option.id}>
-                    {option.name}
-                </div>
-                :
-                <div className="combo-box-option"
-                    id={"combobox-option-" + this.props.id + "-" + option.id}
-                    key={option.id}
-                    onClick={() => this.handleOptionClick(option.id)}>
-                    {option.name}
-                </div>
-
+        let items = this.props.items.map(menu_item =>
+            <div className="popup-menu-item"
+                id={"popup-menu-menu_item-" + this.props.id + "-" + menu_item.id}
+                key={menu_item.id}
+                onClick={() => this.handleMenuItemClick(menu_item.id)}>
+                {menu_item.name}
+            </div>
         )
 
         return (
-            <div style={{ position: "relative", display: "flex", minWidth: "240px", width: "fit-content" }} >
+            <div style={{ position: "relative", display: "flex" }} >
                 < ClickAwayListener onClickAway={() => { this.closeMenu() }}>
-                    {/* <div style={{ width: "100%" }}> */}
                     <div>
-                        {/* select */}
-                        <div className="combo-box" id={"combobox-" + this.props.id}
-                            onClick={(e) => this.handleMenuClick(e, "combobox-" + this.props.id, "combobox-text-" + this.props.id, "combobox-btn-element-" + this.props.id, "dropdown-container-" + this.props.id)}>
+                        <div className="popup-menu" id={"popup-menu-" + this.props.id}
+                            onClick={(e) => this.handlePopupMenuClick(e, "popup-menu-" + this.props.id, "popup-menu-dropdown-" + this.props.id, "popup-menu-dropdown-container-" + this.props.id)}>
                             <div className="display-flex">
-                                <div className="combo-box-text" id={"combobox-text-" + this.props.id}>
-                                    {this.props.placeHolder === "none" ? //neu khong dung placeHolder
-                                        <div>{
-                                            this.props.options.map(item =>
-                                                <div>
-                                                    {this.selectedOption.id ?
-                                                        <div>
-                                                            {item.id === this.selectedOption.id //neu da chon roi thi se hien thi cac gia tri duoc chon trong bang cac option
-                                                                ? item.name
-                                                                : ""}
-                                                        </div> : <div>
-                                                            {item.id === this.props.selectedOptionID //neu da chon roi thi se hien thi cac gia tri duoc chon trong bang cac option
-                                                                ? item.name
-                                                                : ""}
-                                                        </div>
-                                                    }
-                                                </div>
-                                            )
-                                        }
-                                        </div>
-                                        :
-                                        !this.isAnyValueChanged ? //neu dung, khi co thay doi se chuyen thanh selected name
+                                {this.props.placeHolder === "none" ? //neu khong dung placeHolder
+                                    <div>{
+                                        this.props.items.map(item =>
                                             <div>
-
-                                                {!this.props.selectedOptionID && this.props.placeHolder === "none" ? this.props.options[0].name :
-                                                    this.props.placeHolder}</div> :
-                                            this.selectedOption.name
+                                                {this.selectedItem.id ?
+                                                    <div>
+                                                        {item.id === this.selectedItem.id //neu da chon roi thi se hien thi cac gia tri duoc chon trong bang cac option
+                                                            ? item.name
+                                                            : ""}
+                                                    </div> : <div>
+                                                        {item.id === this.props.selectedItemID //neu da chon roi thi se hien thi cac gia tri duoc chon trong bang cac option
+                                                            ? item.name
+                                                            : ""}
+                                                    </div>
+                                                }
+                                            </div>
+                                        )
                                     }
-                                </div>
-                            </div>
+                                    </div>
+                                    :
+                                    !this.isAnyValueChanged ? //neu dung, khi co thay doi se chuyen thanh selected name
+                                        <div>
 
-                            {/* dropdown-icon */}
-                            <img alt="v" className="Dropdown_Btn_Element" style={{ marginLeft: "10px", userSelect: "none" }} src={dropdown_btn} id={"combobox-btn-element-" + this.props.id} />
+                                            {!this.props.selectedItemID && this.props.placeHolder === "none" ? this.props.items[0].name :
+                                                this.props.placeHolder}</div> :
+                                        this.selectedItem.name
+                                }
+                            </div>
                         </div>
 
                         {/* dropdown */}
+
                         {this.state.isDropdownOpen ? (
-                            <div className="dropdown-container" id={"dropdown-container-" + this.props.id}>
-                                {options}
-                                <div className="margin-bottom-5px" />
-                                <div className="margin-bottom-5px" />
+                            <div className="popup-menu-dropdown" id={"popup-menu-dropdown-" + this.props.id}>
+                                {items}
+                                {/* <div className="margin-bottom-5px" /> */}
                             </div>
-                        ) : <div id={"dropdown-container-" + this.props.id}></div>}
+                        ) : <div id={"popup-menu-dropdown-" + this.props.id}></div>}
                     </div>
                 </ClickAwayListener >
             </div >
         );
     }
 }
+
+export const PopupMenuLocationType = { topLeft: "TOP_LEFT", topRight: "TOP_RIGHT", bottomLeft: "BOTTOM_LEFT", bottomRight: "BOTTOM_RIGHT" }

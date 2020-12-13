@@ -77,7 +77,7 @@ class NotificationManagement extends Component {
                                         </div>
 
                                         {this.state.notificationList.map(item =>
-                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-summary-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
+                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
                                                 <div className="Custom_Table_Item_20percents">{item.id}</div>
                                                 <div className="Custom_Table_Item_80percents">
                                                     {item.title}
@@ -214,7 +214,7 @@ class NotificationManagement extends Component {
             all_item[i].className = "Custom_Table_Item";
         }
 
-        let category_item = document.getElementById("management-post-category-summary-" + id);
+        let category_item = document.getElementById("management-post-category-item-" + id);
         category_item.className = "Custom_Table_Item_Activated";
 
         this.selected_category_id = id;

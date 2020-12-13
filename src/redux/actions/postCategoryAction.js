@@ -5,7 +5,7 @@ import {
 } from "../constants.js"
 
 //my post
-export function get_MyPostsRequest() {
+export function get_PostCategoriesRequest() {
     return {
         type: GET_POST_CATEGORIES_REQUEST,
     }
@@ -18,7 +18,7 @@ export function get_PostCategoriesSuccess(data) {
     }
 }
 
-export function get_MyPostsFailure(error) {
+export function get_PostCategoriesFailure(error) {
     return {
         type: GET_POST_CATEGORIES_FAILURE,
         payload: error

@@ -23,148 +23,6 @@ import Cookies from 'js-cookie';
 
 //#region Fake data region
 
-export const categoriesList = [ //this fake data contain catefory of all table related to category like semester, subject, ...
-    //for post
-    {
-        "id": 1,
-        "category": "Ngôn ngữ lập trình"
-    },
-    {
-        "id": 2,
-        "category": "Kiến thức môn học"
-    },
-    {
-        "id": 3,
-        "category": "Hỏi đáp"
-    },
-    {
-        "id": 4,
-        "category": "Công nghệ mới"
-    },
-    {
-        "id": 5,
-        "category": "Hoạt động trang"
-    },
-
-    //for doc: categories and year, semester ("Đề thi" only) and subject (redesign)
-    {
-        "id": 6,
-        "category": "Đề thi",
-    },
-    {
-        "id": 7,
-        "category": "Khóa luận"
-    },
-    {
-        "id": 8,
-        "category": "Giáo trình"
-    },
-    {
-        "id": 9,
-        "category": "Sách"
-    },
-    {
-        "id": 10,
-        "category": "Slide bài giảng"
-    },
-    {
-        "id": 11,
-        "category": "Slide ôn tập"
-    },
-
-    {
-        "id": 20,
-        "subjectName": "Đại số tuyến tính"
-    },
-
-    //about subject: redesign the database 
-    {
-        "id": 21,
-        "subjectName": "Giải tích 1"
-    },
-    {
-        "id": 22,
-        "subjectName": "Lập trình hướng đối tượng"
-    },
-    {
-        "id": 23,
-        "subjectName": "Nhập môn mạng máy tính"
-    },
-    {
-        "id": 24,
-        "subjectName": "Cấu trúc dữ liệu và giải thuật"
-    }
-
-]
-
-const tagList = ["C++", "Java", "Cẩm nang", "Lập trình Di động", "Đinh hướng nghề nghiệp", "Than vãn"]
-
-const post_v1 = {
-    "id": 3,
-    "title": "Cách sử dụng SVG trong front end",
-    "authorName": "Vu Tuan Hai",
-    "publishDtm": "22/12/2020",
-    "readingTime": 0,
-    "category": "Danh muc 1",
-    "summary": "some text",
-    "likes": 80,
-    "commentCount": 11,
-    "authorID": 42,
-    "categoryID": 21,
-    "imageURL": "some text",
-    "likedStatus": true,
-    "savedStatus": true
-}
-const post_v2 = {
-    "id": 45,
-    "title": "some text",
-    "authorName": "some text",
-    "publishDtm": "some text",
-    "readingTime": 22,
-    "category": "some text",
-    "summary": "some text",
-    "likes": 65,
-    "commentCount": 69,
-    "authorID": 46,
-    "categoryID": 69,
-    "imageURL": "some text",
-    "likedStatus": true,
-    "savedStatus": true
-}
-
-const post_v3 = {
-    "id": 48,
-    "title": "some text",
-    "authorName": "some text",
-    "publishDtm": "some text",
-    "readingTime": 22,
-    "category": "some text",
-    "summary": "some text",
-    "likes": 65,
-    "commentCount": 69,
-    "authorID": 46,
-    "categoryID": 69,
-    "imageURL": "some text",
-    "likedStatus": true,
-    "savedStatus": true
-}
-
-const post_v4 = {
-    "id": 44,
-    "title": "some text",
-    "authorName": "some text",
-    "publishDtm": "some text",
-    "readingTime": 22,
-    "category": "some text",
-    "summary": "some text",
-    "likes": 65,
-    "commentCount": 69,
-    "authorID": 46,
-    "categoryID": 69,
-    "imageURL": "some text",
-    "likedStatus": true,
-    "savedStatus": true
-}
 
 
 //#endregion
@@ -490,8 +348,8 @@ export function getPostsList(filter) { //this API is also call when open all pos
         //         dispatch(postGetSearchPost(JSON.parse(result)));
         //     })
         //     .catch(error => console.log('error', error));
-        let result = [post_v1, post_v2, post_v3, post_v4];
-        dispatch(get_PostsList(result));
+        // let result = [post_v1, post_v2, post_v3, post_v4];
+        // dispatch(get_PostsList(result));
 
     }
 }
@@ -579,6 +437,7 @@ export function getPostsList(filter) { //this API is also call when open all pos
 // my post
 export function getMyPostsList(page = 1, category = "") { //this API to get all approved document of a specific user.
     return dispatch => {
+            
         dispatch(get_MyPostsRequest());
 
         var myHeaders = new Headers();
@@ -587,19 +446,24 @@ export function getMyPostsList(page = 1, category = "") { //this API to get all 
             headers: myHeaders,
             redirect: 'follow'
         };
-        // fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts?page=${page}&category=${category}`, requestOptions)
 
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
+        fetch('https://5fca2bc63c1c220016441d27.mockapi.io/category', requestOptions)
             .then(response => response.text())
             .then(
                 result => {
-                    dispatch(get_MyPostsSuccess(JSON.parse(result)));
+                    // dispatch(get_MyPostsSuccess(JSON.parse(result)));
+                    fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
+                        .then(response => response.text())
+                        .then(
+                            result => {
+                                dispatch(get_MyPostsSuccess(JSON.parse(result)));
+                            }
+                        )
+                        .catch(error => {
+                            console.log(error); dispatch(get_MyPostsFailure(error))
+                        })
                 }
             )
-            .catch(error => {
-                console.log(error); dispatch(get_MyPostsFailure(error))
-            })
-
         // let result = page === 1 ? [post_v1, post_v2] : [post_v3, post_v4];
         // setTimeout(() =>
         //     dispatch(get_MyPostsSuccess(result)), 2000

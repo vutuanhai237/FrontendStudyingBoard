@@ -1,10 +1,8 @@
 .gray-label {
     margin-top: 10px;
     width: fit-content;
-    // background: green;
     height: fit-content;
     min-width: 80px;
-    // text-align: right;
     vertical-align: middle;
     font-size: 1.1rem;
     line-height: 20px;
@@ -12,10 +10,9 @@
     font-family: "BarlowCondensed-Medium";
     font-size: 1.1rem;
     line-height: 100%;
-    color: #363636;
+    color: var(--black);
     user-select: none;
     margin-bottom: 5px;
-    // margin-top: 2px;
     padding-right: 5px;
 }
 
@@ -59,16 +56,43 @@
     min-width: 80px;
     vertical-align: middle;
     font-size: 1.1rem;
-    line-height: 20px;
     padding-top: 3px;
     font-family: "BarlowCondensed-Medium";
-    font-size: 1.1rem;
     line-height: 100%;
-    color: #363636;
+    color: var(--black);
     user-select: none;
     margin-bottom: 5px;
 }
 
 .Is_Form_Label {
     margin-top: 1.0rem;
+}
+
+.color-border-label {
+    width: fit-content;
+    height: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
+    vertical-align: middle;
+    font-size: 16px;
+    border-radius: 4px;
+    text-align: center;
+    font-family: "BarlowCondensed-SemiBold";
+    line-height: 100%;
+    user-select: none;
+}
+
+.red-border-label {
+    @extend .color-border-label;
+    border: 1px solid var(--red);
+    color: var(--red);
+
+}
+
+
+.blue-border-label {
+    @extend .color-border-label;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+
 }

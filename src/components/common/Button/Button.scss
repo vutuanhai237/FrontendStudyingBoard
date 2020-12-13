@@ -22,13 +22,13 @@
 }
 
 .custom-button:active {
-    background: #c4c4c4;
+    background: var(--gray);
     cursor: pointer;
     opacity: 90%;
 }
 
 .custom-button:disabled {
-    background: #c4c4c4;
+    background: var(--gray);
     color: white;
     cursor: pointer;
     opacity: 90%;

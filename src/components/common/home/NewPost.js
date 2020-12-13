@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { getPostNewests } from "redux/services/postServices"
+import demo from 'assets/images/Untitled-1.png'
+
 class NewPost extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +42,6 @@ class NewPost extends Component {
         };
 
 
-
         return (
 
             <div>
@@ -49,7 +50,7 @@ class NewPost extends Component {
                     <div className="Home_Segment_Title_Underline"></div>
                 </div>
                 <div style = {{display: "flex"}}>
-                    <div className="Home_Item_Container">
+                    {/* <div className="Home_Item_Container">
 
                     </div>
                     <div className="Home_Item_Container">
@@ -57,7 +58,8 @@ class NewPost extends Component {
                     </div>
                     <div className="Home_Item_Container">
 
-                    </div>
+                    </div> */}
+                    <img src = {demo} ></img>
                 </div>
             </div>
         );

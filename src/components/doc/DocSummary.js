@@ -128,8 +128,8 @@ class DocSummary extends Component {
     }
 
     return (
-      <div className="summary-container" >
-        <div className="summary-normal-metadata-container" >
+      <div className="item-container" >
+        <div className="item-normal-metadata-container" >
           <div className="display-flex">
 
             <div className="display-flex">
@@ -139,34 +139,34 @@ class DocSummary extends Component {
               </div>
             </div>
 
-            <div className="metadata-gray-label">bởi</div>
+            <div className="metadata-light-black-label">bởi</div>
             <div className="link-label" onClick={() => this.navigateToAuthorPersonalPage()}>
               {this.props.authorName}
             </div>
 
             <div className="display-flex" >
               <img alt="*" className="metadata-icon" src={gray_btn_element} />
-              <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
+              <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
                 {this.props.publishDtm}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="summary-title">
+        <div className="item-title">
           {this.props.title}
         </div>
         <div className="display-flex" style={{ marginLeft: "15px", marginTop: "-8px" }} >
           <img alt="*" className="metadata-icon" src={gray_btn_element} />
-          <div className="metadata-gray-label" style={{ marginLeft: "2px" }}>
+          <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
             {this.props.subject}
           </div>
         </div>
-        <div className="summary-summary">
+        <div className="item-summary">
           {this.props.description}
         </div>
 
-        <div className="summary-reaction-bar" style={{ right: "5px" }}>
+        <div className="item-reaction-bar" style={{ right: "5px" }}>
           <div className="like-dislike-bar">
 
             {/* 2 button */}
@@ -185,16 +185,16 @@ class DocSummary extends Component {
 
             {/* rate bar */}
             <div className="rate-percent-bar">
-              <div className="like-rate-percent" id={'document-summary-like-percents-' + this.props.id} />
+              <div className="like-rate-percent" id={'document-item-like-percents-' + this.props.id} />
             </div>
           </div>
 
           <div className="display-flex">
 
-            <div className="comment-count-layout">
-              <div className="comment-text">
+            <div className="comment-count-container">
+            
                 Bình luận
-              </div>
+             
               <div className="comment-count">
                 {this.props.commentCount}
               </div>
@@ -229,7 +229,7 @@ class DocSummary extends Component {
         </div>
 
         {/* approving */}
-        {/* <div className="summary-container_Footer">
+        {/* <div className="item-container_Footer">
           <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerPreviewRequestedPost()}>Xem trước</div>
           <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
         </div> */}
@@ -260,9 +260,9 @@ class DocSummary extends Component {
   calculateBar = () => {
 
     if (this.likes === this.dislikes) {
-      console.log(document.getElementByID('document-summary-like-percents-' + this.props.id))
-      if (document.getElementById('document-summary-like-percents-' + this.props.id))
-        document.getElementById('document-summary-like-percents-' + this.props.id).style.width = "50%";
+      console.log(document.getElementByID('document-item-like-percents-' + this.props.id))
+      if (document.getElementById('document-item-like-percents-' + this.props.id))
+        document.getElementById('document-item-like-percents-' + this.props.id).style.width = "50%";
       return;
     }
     else {
@@ -270,9 +270,9 @@ class DocSummary extends Component {
       //Simple math to calculate percentages
       let total = this.likes + this.dislikes;
       percentageLikes = (this.likes / total) * 100;
-      if (document.getElementById('document-summary-like-percents-' + this.props.id))
+      if (document.getElementById('document-item-like-percents-' + this.props.id))
         //We need to apply the widths to our elements
-        document.getElementById('document-summary-like-percents-' + this.props.id).style.width = percentageLikes.toString() + "%";
+        document.getElementById('document-item-like-percents-' + this.props.id).style.width = percentageLikes.toString() + "%";
     }
 
   }
@@ -287,11 +287,11 @@ class DocSummary extends Component {
 
   handlerPreviewRequestedPost = () => {
     if (window.location.pathname.substring(0, 6) === "/admin") {
-      window.location.href = "/admin/doc_approving/" + this.id;
+      window.location.href = "/admin/doc-approving/" + this.id;
       return;
     }
     if (window.location.pathname.substring(0, 5) === "/user")
-      window.location.href = "/user/doc_approving/" + this.id;
+      window.location.href = "/user/doc-approving/" + this.id;
 
   }
 

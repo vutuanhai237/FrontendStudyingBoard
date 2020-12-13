@@ -1,15 +1,18 @@
 import {
-    get_PostCategoriesSuccess
+    get_PostCategoriesSuccess,
+    get_PostCategoriesRequest,
+    get_PostCategoriesFailure
 } from "redux/actions/postCategoryAction.js";
 
-import {
-    PORT
-} from '../constants.js';
-import FormData from 'form-data';
-import Cookies from 'js-cookie';
+// import {
+//     PORT
+// } from '../constants.js';
 
 export function getPostCategories() {
     return dispatch => {
+
+        dispatch(get_PostCategoriesRequest());
+
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
@@ -18,13 +21,14 @@ export function getPostCategories() {
         fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/category`, requestOptions)
             .then(response => response.text())
             .then(result => {
-
+                console.log(result);
                 dispatch(get_PostCategoriesSuccess(JSON.parse(result)));
             })
-            .catch(error => console.log('error', error));
-        // const result = [categoriesList[0], categoriesList[1], categoriesList[2], categoriesList[3], categoriesList[4]];
-        // dispatch(get_PostCategories(result));
-
+            .catch(error => {
+                console.log(error);
+                dispatch(get_PostCategoriesFailure(error))
+            });
+     
     }
 }
 

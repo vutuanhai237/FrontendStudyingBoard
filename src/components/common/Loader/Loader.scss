@@ -6,7 +6,7 @@
   position: relative;
   opacity: 60%;
   display: flex;
-  background: var(--grayish);
+  background: var(--light-gray);
   border-radius: 5px
 
 }
@@ -21,11 +21,11 @@
   }
 
   12.625% {
-    background: #c4c4c4
+    background: var(--gray)
   }
 
   100% {
-    background: #c4c4c4
+    background: var(--gray)
   }
 }
 
@@ -33,7 +33,7 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  background: #c4c4c4;
+  background: var(--gray);
   animation: loader-qqa1psw9t4 1s linear infinite;
 }
 

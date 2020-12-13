@@ -9,11 +9,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import { getCurrentUser } from "redux/services/userServices"
-
+import { navigateWithoutReload } from "utils/Utils"
 
 import red_delete_icon from 'assets/images/red_delete_icon.png';
 import search_icon from 'assets/images/search_icon.png';
-import { ClickAwayListener } from '@material-ui/core'
+import { ClickAwayListener } from '@material-ui/core';
+import Tag from "components/common/Tag/Tag";
 
 
 class Header extends Component {
@@ -63,40 +64,86 @@ class Header extends Component {
         this.handleCancelQuickSearch();
     }
 
+
     render() {
 
-        //for login
-        let loginStatus;
-        // if (this.state.account === null) {
-        //     loginStatus = <Nav.Link className="menu-item"
-        //         href="/login" > Đăng nhập </Nav.Link>
-        // } else {
-        //     loginStatus = <LoginStatus account={this.state.account} id="login"
-        //         className="float-right" />
-        // }
-
-        //for quick search
-        let quickSearchResult = {
-            post: ["Post 1", "Post 2", "Post 3"],
-            doc: ["Doc 1", "Doc 2", "Doc 3"],
-            tag: ["Tag 1", "Tag 2", "Tag 3"]
+        let quickSearchResultData = {
+            post: [
+                { "id": 1, name: "Post 1" },
+                { "id": 2, name: "Post 2" },
+                { "id": 3, name: "Post 3" }
+            ],
+            doc: [
+                { "id": 1, name: "Doc 1" },
+                { "id": 2, name: "Doc 2" },
+                { "id": 3, name: "Doc 3" }
+            ],
+            tag: [
+                { "id": 1, name: "tag 1" },
+                { "id": 2, name: "tag 2" },
+                { "id": 3, name: "tag 3" }
+            ]
         };
 
+        let quickSearchResultView = <div>
+            <div className="sub-result-container" id="quick-search-post-result-port">
+                <div className="qs-type-title">BÀI VIẾT</div>
+                {quickSearchResultData.post.map(result =>
+                    <div className="display-flex margin-top-5px">
+                        <img alt="" className="qs-result-image margin-right-5px" />
+                        <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-post?id=${result.id}&page=1`)}>{result.name}
+                        </div>
+                    </div>)
+                }
+            </div>
+
+            <div className="sub-result-container" id="quick-search-doc-result-port">
+                <div className="qs-type-title margin-top-5px">TÀI LIỆU</div>
+                {quickSearchResultData.doc.map(result =>
+                    <div className="display-flex margin-top-5px">
+                        <img className="qs-result-image margin-right-5px" alt="" />
+                        <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-doc?id=${result.id}&page=1`)}>{result.name}</div>
+                    </div>
+                )}
+            </div>
+
+            <div className="sub-result-container" id="quick-search-tag-result-port">
+                <div className="qs-type-title margin-top-5px ">TAGS</div>
+                <div className="display-flex margin-top-5px">
+                    {quickSearchResultData.tag.map(result =>
+                        <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} onTagClick={() => navigateWithoutReload(`/search-tag?id=${result.id}&page=1`)} />
+                    )
+                    }
+                </div>
+            </div>
+        </div >;
+
+
         return (
-            <div className="Header_Wrapper"  >
-                <div className="Header" id="header" >
+            <div className="header-container"  >
+                <div className="header" id="header" >
 
                     {/* Begin lv1: contain logo and searchbar */}
                     {/* Begin lv2: searchbar */}
-                    <div className="Header_Begin_Lv1" >
-                        <div className="Header_Begin_Lv2" id="header-begin-lv2" >
-                            <img className="App_Logo" src={logo} alt="logo" />
+                    <div className="header-begin-lv1" >
+                        <img className="app-logo" src={logo} alt="logo" />
+
+                        <div className="header-menu-bar" >
+                            <div className="header-menu-item" > TÀI LIỆU </div>
+                            <div className="header-menu-item" > BÀI VIẾT </div>
+                            <div className="header-menu-item" > HỌC TẬP </div>
+                            <div className="header-menu-item" > HỎI ĐÁP </div>
+                            <div className="header-menu-item" > QUẢN LÝ </div>
+                        </div>
+
+                        <div className="header-begin-lv2" id="header-begin-lv2" >
+
                             {/* Duoi 576 */}
-                            <div className="Search_Box_Port_Small" >
-                                <form className="Search_Box_Inner_Port" autoComplete="off" onSubmit={(e) => this.handleSearch(e.target.value)} >
-                                    <input className="Search_Box_Text_Field" id="search-box-text-field-small" type="text" placeholder="Search..." onChange={() => this.handleQuickSearch()} />
-                                    <div className="Search_Image_Button_Port"
-                                        id="search-image-button-port" > <img className="Search_Image_Button"
+                            {/* <div className="sb-container-small" >
+                                <form className="sb-text-field-container" autoComplete="off" onSubmit={(e) => this.handleSearch(e.target.value)} >
+                                    <input className="sb-text-field" id="search-box-text-field-small" type="text" placeholder="Search..." onChange={() => this.handleQuickSearch()} />
+                                    <div className="search-image-container"
+                                        id="search-image-button-container" > <img className="search-image-button"
                                             src={search_icon}
                                             alt="*"
                                             onClick={
@@ -107,126 +154,81 @@ class Header extends Component {
                             </div>
 
                             {/* 576 -> 992 */}
-                            <div className="Search_Box_Port_Normal" >
-                                <form className="Search_Box_Inner_Port"
-                                    autoComplete="off"
-                                    onSubmit={(e) => this.handleSearch(e.target.value)} >
-                                    <input className="Search_Box_Text_Field" id="search-box-text-field-normal"
-                                        type="text"
-                                        placeholder="SearchA..."
-                                        onChange={() => this.handleQuickSearch()} />
-                                    <div className="Search_Image_Button_Port" id="search-image-button-port" ><img className="Search_Image_Button" src={search_icon} alt="*" onClick={(e) => this.handleSearch(e.target.value)} />
+                            <div className="qs-container-normal">
+                                <div className="sb-container-normal" >
+                                    <div className="sb-text-field-container">
+                                        <input className="sb-text-field"
+                                            id="sb-text-field-normal"
+                                            type="text" placeholder="Search..."
+                                            onChange={() => this.showQuickSearchNormalContainer()} />
+                                        <div className="search-image-container"
+                                            id="search-image-button-container" > <img className="search-image-button"
+                                                src={search_icon}
+                                                alt="*"
+                                                onClick={
+                                                    (e) => this.handleSearch(e.target.value)}
+                                            />
+                                        </div>
                                     </div>
-                                </form >
+                                </div>
+
+                                <ClickAwayListener onClickAway={() => this.handleClickAwayQuickSearchResult()}>
+                                    <div className="qsr-container-normal" id="qsr-container-normal">
+                                        <div className="qssr-container" id="qssr-container" >
+                                            <div className="Cancel_Button_Port" id="qs-cancel-button-container" >
+                                                <img className="Cancel_Button" alt=""
+                                                    id="qs-cancel-button" onClick={() => { this.handleCancelQuickSearch() }} src={red_delete_icon} />
+                                            </div>
+                                            {quickSearchResultView}
+                                        </div>
+                                    </div>
+                                </ClickAwayListener>
                             </div>
 
                             {/*> 992 */}
-                            <div className="Search_Box_Port_Big" >
-                                <form className="Search_Box_Inner_Port" autoComplete="off" onSubmit={(e) => this.handleSearch(e.target.value)} >
-                                    <input className="Search_Box_Text_Field" id="search-box-text-field-small" type="text" placeholder="Search..." onChange={() => this.handleQuickSearch()} />
-                                    <div className="Search_Image_Button_Port"
-                                        id="search-image-button-port" > <img className="Search_Image_Button"
-                                            src={search_icon}
-                                            alt="*"
-                                            onClick={
-                                                (e) => this.handleSearch(e.target.value)}
-                                        />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <ClickAwayListener onClickAway={() => this.handleClickAwayQuickSearchResult()}>
-                            <div className="Result_Port" id="quick-search-result-port">
-                                <div className="Sub_Result_Port_Container" id="quick-search-sub-result-port-container" >
-                                    <div className="Cancel_Button_Port" id="quick-search-cancel-button-port" >
-                                        <img className="Cancel_Button" id="quick-search-cancel-button" onClick={() => { this.handleCancelQuickSearch() }} src={red_delete_icon} />
-                                    </div>
-                                    <div className="Sub_Result_Port" id="quick-search-post-result-port">
-                                        <div className="Sub_Result_Title">BÀI VIẾT</div>
-                                        {quickSearchResult.post.map(result =>
-                                            <div className="display-flex margin-top-5px"><img className="Result_Image margin-right-5px" />
-                                                <div className="Result_Title">{result}
-                                                </div>
-                                            </div>)
-                                        }
-                                    </div>
-                                    <div className="Sub_Result_Port" id="quick-search-doc-result-port">
-                                        <div className="Sub_Result_Title margin-top-5px">TÀI LIỆU</div>
-                                        {quickSearchResult.doc.map(result =>
-                                            <div className="display-flex margin-top-5px">
-                                                <img className="Result_Image margin-right-5px" />
-                                                <div className="Result_Title">{result}</div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="Sub_Result_Port margin-top-5px" id="quick-search-tag-result-port">
-                                        <div className="Sub_Result_Title margin-top-5px ">TAGS</div>
-
-                                        {quickSearchResult.tag.map(result =>
-                                            <div className="display-flex margin-top-5px">
-                                                <img className="Result_Image margin-right-5px" />
-                                                <div className="Result_Title">{result}</div>
-                                            </div>)
-                                        }
+                            <div className="qs-container-big">
+                                <div className="sb-container-big" >
+                                    <div className="sb-text-field-container">
+                                        <input className="sb-text-field"
+                                            id="sb-text-field-big"
+                                            type="text" placeholder="Search..."
+                                            onChange={() => this.showQuickSearchBigContainer()} />
+                                        <div className="search-image-container"
+                                            id="search-image-button-container" > <img className="search-image-button"
+                                                src={search_icon}
+                                                alt="*"
+                                                onClick={
+                                                    (e) => this.handleSearch(e.target.value)}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </ClickAwayListener>
-                    </div>
 
-                    {/* 
-                <ClickAwayListener onClickAway={
-                    () => this.handleClickAwayQuickSearchResult()} >
-                    <div className="Result_Port_Normal" id="quick-search-result-port" >
-                        <div className="Sub_Result_Port_Container"
-                            id="quick-search-sub-result-port-container" >
-                            <div className="Cancel_Button_Port"
-                                id="quick-search-cancel-button-port" > <img className="Cancel_Button" id="quick-search-cancel-button"
-                                    onClick={() => { this.handleCancelQuickSearch() }}
-                                    src={red_delete_icon}
-                                />
+                                <ClickAwayListener onClickAway={() => this.handleClickAwayQuickSearchResult()}>
+                                    <div className="qsr-container-big" id="qsr-container-big">
+                                        <div className="qssr-container" id="qssr-container" >
+                                            <div className="Cancel_Button_Port" id="qs-cancel-button-container" >
+                                                <img className="Cancel_Button" alt=""
+                                                    id="qs-cancel-button" onClick={() => { this.handleCancelQuickSearch() }} src={red_delete_icon} />
+                                            </div>
+                                            {quickSearchResultView}
+                                        </div>
+                                    </div>
+                                </ClickAwayListener>
                             </div>
-                            <div className="Sub_Result_Port" id="quick-search-post-result-port" >
-                                <div className="Sub_Result_Title" > BÀI VIẾT </div>
-                                {quickSearchResult.post.map(result =>
-                                    <div className="display-flex margin-top-5px" >
-                                        <img className="Result_Image margin-right-5px" />
-                                        <div className="Result_Title" > {result} </div> </div>)
-                                } </div>
-                            <div className="Sub_Result_Port" id="quick-search-doc-result-port" >
-                                <div className="Sub_Result_Title margin-top-5px" > TÀI LIỆU </div> {quickSearchResult.doc.map(result =>
-                                    <div className="display-flex margin-top-5px" >
-                                        <img className="Result_Image margin-right-5px" />
-                                        <div className="Result_Title" > {result} </div> </div>)
-                                } </div>
-                            <div className="Sub_Result_Port margin-top-5px" id="quick-search-tag-result-port" >
-                                <div className="Sub_Result_Title margin-top-5px " > TAGS </div> {quickSearchResult.tag.map(result =>
-                                    <div className="display-flex margin-top-5px" >
-                                        <img className="Result_Image margin-right-5px" />
-                                        <div className="Result_Title" > {result} </div> </div>)
-                                } </div>
                         </div>
                     </div>
-                </ClickAwayListener> */}
 
-
-
+                    {/*  */}
                     <div className="Header_End_Lv1">
-                        <div className="Header_Menu_Item_Container" >
-                            <div className="Header_Menu_Item" > TÀI LIỆU </div>
-                            <div className="Header_Menu_Item" > BÀI VIẾT </div>
-                            <div className="Header_Menu_Item" > HỌC TẬP </div>
-                            <div className="Header_Menu_Item" > HỎI ĐÁP </div>
-                            <div className="Header_Menu_Item" > QUẢN LÝ </div>
 
-                        </div>
-
-                        <div className="Header_End_Lv2" > <img className="Header_Image_Button"
-                            src={upload_icon} />
-                            <img className="Header_Image_Button" src={write_icon} />
+                        {/* Tao bai viet, tai khoan, upload */}
+                        <div className="Header_End_Lv2" > <img className="Header_Image_Button" alt="" src={upload_icon} />
+                            <img className="Header_Image_Button" src={write_icon} alt="" />
                             <button className="blue-button margin_auto min_width_fit_content" > Đăng nhập </button>
                         </div>
+
+                        {/* Collapse menu cho noi dung tren */}
                         <div className="Header_End_Lv2_Collapse"
                             onClick={this.state.isCollapsedUserMenuOpened ?
                                 () => this.handleCloseCollapsedUserMenu()
@@ -240,11 +242,10 @@ class Header extends Component {
 
                     </div>
 
-                    <div className="Collapsed_User_Menu_Port" id="collapsed-user-menu-port" >
+                    {/* <div className="Collapsed_User_Menu_Port" id="collapsed-user-menu-port" >
                         <div className="Collapsed_User_Menu" id="collapsed-user-menu" >
                             <div className="justify-content-space-between" >
-                                <div className="display-flex" > <img className="Collapsed_User_Menu_Image_Button"
-                                    src={upload_icon} />
+                                <div className="display-flex" > <img className="Collapsed_User_Menu_Image_Button" src={upload_icon} alt="" />
                                     <div>
                                         <button className="Collapsed_User_Menu_Button" > Đăng nhập </button>
                                     </div>
@@ -258,27 +259,22 @@ class Header extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-            </div>
+            </div >
         );
     }
 
     //reach when click X or click over of quick search result
     handleCancelQuickSearch = () => {
-        let quickSearchResultPort = document.getElementById("quick-search-result-port");
-        let quickSearchCancelButton = document.getElementById("quick-search-cancel-button");
-        let quickSearchSubResultPortContainer = document.getElementById("quick-search-sub-result-port-container");
-        let quickSearchSubResultPortsHTMLColection = document.getElementsByClassName("Sub_Result_Port");
-        quickSearchResultPort.style.padding = "0px";
-        quickSearchResultPort.style.height = "0px";
-        quickSearchResultPort.style.borderTop = "0px";
-        quickSearchSubResultPortContainer.style.padding = "0px";
-        quickSearchSubResultPortContainer.style.height = "0px";
-        quickSearchSubResultPortContainer.style.borderRadius = "0px";
-        document.getElementById("quick-search-sub-result-port-container").style.overflow = "hidden";
-        document.getElementById("quick-search-cancel-button-port").style.display = "none";
+        if (document.getElementById("qsr-container-big"))
+            document.getElementById("qsr-container-big").style.display = "none";
+        if (document.getElementById("qsr-container-normal"))
+            document.getElementById("qsr-container-normal").style.display = "none";
 
+        let quickSearchSubResultPortsHTMLColection = document.getElementsByClassName("sub-result-container");
+
+        document.getElementById("qs-cancel-button-container").style.display = "none";
         this.setState({ isQuickSearchShow: false });
         Array.from(quickSearchSubResultPortsHTMLColection).forEach(item => item.style.display = "none");
     }
@@ -287,7 +283,7 @@ class Header extends Component {
 
         let collapsedMenuPort = document.getElementById("collapsed-user-menu-port");
         let collapsedMenu = document.getElementById("collapsed-user-menu");
-        collapsedMenu.style.width = document.getElementById("search-image-button-port").offsetWidth + document.getElementById("search-box-text-field-small").offsetWidth + "px";
+        collapsedMenu.style.width = document.getElementById("search-image-button-container").offsetWidth + document.getElementById("search-box-text-field-small").offsetWidth + "px";
 
         collapsedMenuPort.style.height = "30vh";
         collapsedMenu.style.height = "28vh";
@@ -319,7 +315,8 @@ class Header extends Component {
         this.setState({ isCollapsedUserMenuOpened: false });
     }
 
-    handleSearch = (keyword) => {
+    handleSearch = (e, keyword) => {
+        e.preventDefault();
         console.log(keyword);
         if (keyword.length === 0) return;
 
@@ -327,42 +324,91 @@ class Header extends Component {
 
     // reach when text in search box change
     handleQuickSearch = () => {
-        //  if search box is empty => return from call API
-        let searchBoxTextField;
-        if (window.innerWidth >= 768)
-            searchBoxTextField = document.getElementById("search-box-text-field-normal");
-        else
-            searchBoxTextField = document.getElementById("search-box-text-field-small");
-        if (searchBoxTextField.value.length === 0) return;
+
+        // //  if search box is empty => return from call API
+        // let searchBoxTextField;
+
+        // if (window.innerWidth >= 768)
+        //     searchBoxTextField = document.getElementById("search-box-text-field-normal");
+        // else
+        //     searchBoxTextField = document.getElementById("search-box-text-field-small");
+
+        // if (searchBoxTextField.value.length === 0) return;
+
+
+
+
+        // document.getElementById("qssr-container").style.height = "100px";
+
+        // // if result is showing => skip
+        // if (!this.state.isQuickSearchShow) {
+
+        //     document.getElementById("qsr-container").style.borderTop = "1px var(--gray) solid";
+        //     // document.getElementById("qsr-container").style.padding = "5px";
+        //     document.getElementById("qs-cancel-button").style.display = "flex";
+        //     // document.getElementById("qssr-container").style.padding = "6px";
+        //     Array.from(document.getElementsByClassName("sub-result-container")).forEach(item => item.style.display = "flex");
+
+        //     this.setState({
+        //         isQuickSearchShow: true
+        //     });
+
+        //     document.getElementById("qs-cancel-button-container").style.display = "flex";
+        //     // document.getElementById("qssr-container").style.borderRadius = "5px";
+        // }
+
+        // //  if screen width is small than 768 => search result port's width will be equal to search port else equal to 100% 
+        // if (window.innerWidth >= 992) {
+        //     document.getElementById("qsr-container").style.marginTop = "50px";
+
+        //     document.getElementById("qsr-container").style.width = document.getElementById("search-image-button-container").offsetWidth + document.getElementById("sb-text-field-big").offsetWidth + "px";
+        //     document.getElementById("qsr-container").style.marginLeft = document.getElementById("sb-text-field-big").getBoundingClientRect().left - 5 + "px";
+        //     document.getElementById("qsr-container").style.height = "50vh";
+        //     document.getElementById("qssr-container").style.height = "fit-content";
+
+        // }
+        // else
+        //     if (window.innerWidth >= 768) {
+
+        //         document.getElementById("qsr-container").style.width = document.getElementById("search-image-button-container").offsetWidth + document.getElementById("search-box-text-field-normal").offsetWidth + "px";
+        //         document.getElementById("qsr-container").style.marginLeft = document.getElementById("search-box-text-field-normal").getBoundingClientRect().left + "px";
+        //         document.getElementById("qsr-container").style.height = "50vh";
+        //         document.getElementById("qssr-container").style.height = "48vh";
+
+        //     } else {
+        //         document.getElementById("qssr-container").style.height = window.innerHeight - document.getElementById("header-begin-lv2").offsetHeight - 11 + "px";
+        //         document.getElementById("qsr-container").style.height = window.innerHeight - document.getElementById("header-begin-lv2").offsetHeight - 10 + "px";
+        //         document.getElementById("qsr-container").style.width = "100%";
+        //     }
+        // document.getElementById("qssr-container").style.overflow = "scroll";
+        // document.getElementById("qssr-container").style.overflowX = "hidden";
+
+    }
+
+    showQuickSearchNormalContainer = () => {
+
+    }
+
+    showQuickSearchBigContainer = () => {
+        let searchBoxTextField = document.getElementById("sb-text-field-big");
+
+        //neu gia tri la rong thi khong hien ket qua
+        if (searchBoxTextField.value.length === 0) { this.handleCancelQuickSearch(); return; }
+
+        let qsrContainer = document.getElementById("qsr-container-big");
+        qsrContainer.style.display = "block";
 
         // if result is showing => skip
         if (!this.state.isQuickSearchShow) {
-            document.getElementById("quick-search-result-port").style.borderTop = "1px #c4c4c4 solid";
-            document.getElementById("quick-search-result-port").style.padding = "5px";
-            document.getElementById("quick-search-cancel-button").style.display = "flex";
-            document.getElementById("quick-search-sub-result-port-container").style.padding = "6px";
-            Array.from(document.getElementsByClassName("Sub_Result_Port")).forEach(item => item.style.display = "flex");
+            document.getElementById("qs-cancel-button").style.display = "none";
+            document.getElementById("qs-cancel-button-container").style.display = "none";
+            Array.from(document.getElementsByClassName("sub-result-container")).forEach(item => item.style.display = "flex");
+
             this.setState({
                 isQuickSearchShow: true
             });
-            document.getElementById("quick-search-cancel-button-port").style.display = "flex";
-            document.getElementById("quick-search-sub-result-port-container").style.borderRadius = "5px";
-        }
 
-        //  if screen width is small than 768 => search result port's width will be equal to search port else equal to 100%    
-        if (window.innerWidth >= 768) {
-            document.getElementById("quick-search-result-port").style.width = document.getElementById("search-image-button-port").offsetWidth + document.getElementById("search-box-text-field-normal").offsetWidth + "px";
-            document.getElementById("quick-search-result-port").style.marginLeft = document.getElementById("search-box-text-field-normal").getBoundingClientRect().left + "px";
-            console.log(document.getElementById("search-box-text-field-normal"));
-            document.getElementById("quick-search-result-port").style.height = "50vh";
-            document.getElementById("quick-search-sub-result-port-container").style.height = "48vh";
-        } else {
-            document.getElementById("quick-search-sub-result-port-container").style.height = window.innerHeight - document.getElementById("header-begin-lv2").offsetHeight - 11 + "px";
-            document.getElementById("quick-search-result-port").style.height = window.innerHeight - document.getElementById("header-begin-lv2").offsetHeight - 10 + "px";
-            document.getElementById("quick-search-result-port").style.width = "100%";
         }
-        document.getElementById("quick-search-sub-result-port-container").style.overflow = "scroll";
-        document.getElementById("quick-search-sub-result-port-container").style.overflowX = "hidden";
     }
 
 }

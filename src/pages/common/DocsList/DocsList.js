@@ -4,7 +4,7 @@ import Titlebar from 'components/common/Titlebar/Titlebar'
 import PostSummary from 'components/post/PostSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator'
 import 'pages/styles/BlankLayout.scss'
-import { postSummaryType } from 'components/post/PostSummary'
+import { summaryItemType } from 'constants.js'
 
 //import for redux
 import { getPostsList } from "redux/services/postServices"
@@ -62,7 +62,7 @@ class PostsList extends Component {
 
             myPostsList = this.props.postsList.map((postItem) => (
                 <PostSummary
-                    type = {postSummaryType.normal}
+                    type = {summaryItemType.normal}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}

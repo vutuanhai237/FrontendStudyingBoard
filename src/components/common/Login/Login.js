@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Modal, Image, Row, Col } from "react-bootstrap";
+// import { Form, Button, Modal, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -99,7 +99,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
+                {/*                  <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
                     <Modal.Header closeButton>
                         <Modal.Title contained-modal-title-vcenter="true">
                             Thông báo
@@ -174,8 +174,10 @@ class LoginForm extends React.Component {
                             </Col>
                         </Row>
                     </Form>
-                </div>
+
             </div>
+                    */}
+            </div >
         );
     }
 }

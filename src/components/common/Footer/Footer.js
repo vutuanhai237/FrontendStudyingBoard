@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
 import logo from 'assets/images/logo.png'
 import "./Footer.scss"
 
@@ -8,7 +7,7 @@ class Footer extends Component {
         return (
             <div id="footer">
                 <hr></hr>
-                <Row>
+                {/* <Row>
                     <Col id="logo" sm={4} md={2}>
                         <img
                             src={logo}
@@ -47,8 +46,8 @@ class Footer extends Component {
 
                 </Row>
                 <Row>
-                    {/* <HeadAnimation /> */}
-                </Row>
+                    //  <HeadAnimation /> 
+                </Row> */}
                 <hr></hr>
             </div>
 

@@ -72,7 +72,7 @@ class Statistic extends Component {
             //     this.roleNameFilter === role.UserGroupName ?
             //         <div className="activated-combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-summary-" + role.UserGroupName}
+            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
             //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}
             //             key={role.UserGroupID}>
@@ -82,7 +82,7 @@ class Statistic extends Component {
             //         :
             //         <div className="combo-box-option"
             //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-summary-" + role.UserGroupName}
+            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
             //             key={role.UserGroupID}
             //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}>
@@ -182,7 +182,7 @@ class Statistic extends Component {
             dropdown_container.style.display = "none";
             parent_menu_item.style.background = "white";
             parent_menu_item.style.paddingLeft = "0px";
-            show_text.style.color = "#363636";
+            show_text.style.color = "var(--black)";
             dropdown_element.src = dropdown_btn;
         }
         if (dropdown_container.style.display !== "block") {

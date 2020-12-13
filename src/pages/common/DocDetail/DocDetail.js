@@ -226,7 +226,7 @@ class DocDetail extends Component {
 
         //neu khong la admin => home
         if (window.location.pathname.substring(0, 6) === "/admin" && this.roleName === "ADMIN")
-            return <>{window.location.pathname = "admin/user_management/" + this.authorID}</>;
+            return <>{window.location.pathname = "admin/user-management/" + this.authorID}</>;
 
         //neu la admin => admin
         if (window.location.pathname.substring(0, 5) === "/user" && this.roleName === "COLLABORATOR")

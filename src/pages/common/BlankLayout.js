@@ -34,24 +34,13 @@ class BlankLayout extends Component {
 
         if (this.props.accountInformation !== null && this.props.accountInformation !== undefined) {
 
-            let { roleName, score, post_count, doc_count, username, avatarURL } = this.props.accountInformation;
-
-            //#region  navigation region
-            //#endregion
-
             return (
                 <div className="normal-container">
                     <Router>
-                        {/* Body Area */}
-                        {/* <div className="blank-layout">
-                        </div> */}
-
-                        {/* Router Outlet */}
                         <div className="blank-layout-router-outlet" >
                             <Switch>
                                 <Route exact path="/posts" component={PostsList} />
                                 <Route exact path="/documents" component={DocsList} />
-                                
                             </Switch>
                         </div>
                     </Router>
