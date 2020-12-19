@@ -11,30 +11,31 @@ import Login from "pages/common/Login/Login";
 import Register from "pages/common/Register/Register";
 import Header from "components/common/Header/Header";
 import Footer from "components/common/Footer/Footer";
-import SearchLayout from "pages/common/SearchLayout";
-import SearchTagLayout from "pages/common/SearchTagLayout";
+import SearchLayout from "layouts/SearchLayout";
+import SearchTagLayout from "layouts/SearchTagLayout";
 
 //user
-import UserLayout from "pages/user/UserLayout"
+import UserLayout from "layouts/UserLayout"
 
 //common
-import BlankLayout from "pages/common/BlankLayout"
+import BlankLayout from "layouts/NormalBlankLayout"
 
 //management
 import DocPreview from 'pages/management/DocPreview/DocPreview' // se duoc bo di, admin va cong tac vien muon preview thi tai thong qua link roi xem tren may.
-import AdminLayout from 'pages/management/AdminLayout'
+import AdminLayout from 'layouts/AdminLayout'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// import 
+// import
 const App = () => {
 
     return (
-        <div style={{ minWidth: "320px", width: "100%", background: "var(--white)" }}>
-
-            <Header />
-            <div style={{ height: "65px" }}></div>
+        <div style={{ minWidth: "320px", width: "100%", background: "white" }}>
             <Router>
+                <Header />
+                <div id = "header" style={{ height: "65px" }}></div>
+
+
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import '../AdminLayout'
+import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import RequestedDocSummary from 'components/doc/RequestedDocSummary'
 

@@ -12,23 +12,3 @@ export function redirect(url) {
     let pathUrl = window.location.href;
     window.location.href = pathUrl;
 }
-
-//#endregion
-// export const AppConsts = {
-//     // userManagement: {
-//     //     defaultAdminUserName: 'admin',
-//     // },
-//     // localization: {
-//     //     defaultLocalizationSourceName: 'L11_HelloWork',
-//     // },
-//     authorization: {
-//         encrptedAuthTokenName: 'enc_auth_token',
-//     },
-//     appBaseUrl: process.env.REACT_APP_APP_BASE_URL,
-//     remoteServiceBaseUrl: process.env.REACT_APP_REMOTE_SERVICE_BASE_URL,
-// };
-
-// home
-
-
-

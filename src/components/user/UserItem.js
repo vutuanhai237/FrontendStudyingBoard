@@ -15,7 +15,7 @@ import 'styles/SimpleLabel.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 
 import { ClickAwayListener } from '@material-ui/core';
-import { getRoleNameByName, getRoleNamebyID } from 'utils/PermissionManagement'
+import { getRoleNameByName, getRoleNamebyID } from 'utils/permissionUtils'
 
 import Cookies from 'js-cookie'
 import { PORT } from 'constants.js'

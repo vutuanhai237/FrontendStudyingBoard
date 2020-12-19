@@ -338,7 +338,7 @@
 }
 
 //commentBtn
-.comment-count-container {
+.post-comment-count-container {
     display: flex;
     padding-left: 15px;
     font-family: "BarlowCondensed-Medium";
@@ -350,7 +350,12 @@
 
 }
 
-.comment-count-container:hover,
+.doc-comment-count-container {
+    @extend .post-comment-count-container;
+    margin-top: 3px;
+}
+
+.post-comment-count-container:hover,
 .download-count-layout:hover {
     opacity: 80%;
     cursor: pointer;
@@ -366,7 +371,7 @@
     color: var(--black);
     width: fit-content;
     user-select: none;
-    margin-top: 2px;
+    margin-top: 3px;
 }
 
 .download-count-layout {

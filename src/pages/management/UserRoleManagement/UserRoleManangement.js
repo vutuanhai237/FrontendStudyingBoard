@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import '../AdminLayout'
+import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './UserRoleManagement.scss'
@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { management_getAllUsers, management_getAllRoles } from 'redux/services/userServices'
 
-import { getRoleNameByName } from 'utils/PermissionManagement'
+import { getRoleNameByName } from 'utils/permissionUtils'
 
 class UserRoleManagement extends Component {
     constructor(props) {

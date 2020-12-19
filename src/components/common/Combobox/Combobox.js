@@ -1,7 +1,7 @@
 import React from "react";
 import { ClickAwayListener } from '@material-ui/core';
 import dropdown_btn from 'assets/images/dropdown_icon.png';
-import white_dropdown_btn from 'assets/images/white_dropdown_icon.png';
+// import white_dropdown_btn from 'assets/images/white_dropdown_icon.png';
 import "./Combobox.scss"
 
 export default class Combobox extends React.Component {
@@ -12,10 +12,6 @@ export default class Combobox extends React.Component {
 
         this.state = {
             isDropdownOpen: false,
-            // selectedOption: {
-            //     id: "",
-            //     name: ""
-            // }
         }
 
         this.selectedOption = {
@@ -67,7 +63,7 @@ export default class Combobox extends React.Component {
 
         let parent_menu_item = document.getElementById(combobox_id);
         let dropdown_element = document.getElementById(dropdown_element_id);
-        let show_text = document.getElementById(combobox_text_id);
+        // let show_text = document.getElementById(combobox_text_id);
         let dropdown_container = document.getElementById(container_id);
 
         if (dropdown_container.style.display === "block") {

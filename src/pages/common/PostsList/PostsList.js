@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import PostSummary from 'components/post/PostSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator'
-import 'pages/styles/BlankLayout.scss'
+import 'layouts/Layout.scss'
 import { summaryItemType } from 'constants.js'
 
 //import for redux
@@ -86,9 +86,9 @@ class PostsList extends Component {
             )
         }
         return (
-            <div className="blank-layout">
+            <div className = "nm-bl-layout">
                 <Titlebar title="BÀI VIẾT" />
-                <div className="blank-layout-container">
+                <div className="layout-container">
                     <div className="margin-top-10px" />
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
                         <div style={{ display: "flex" }}>
@@ -132,7 +132,7 @@ class PostsList extends Component {
 }
 
 const mapStateToProps = (state) => {
-   
+
     return {
         postsList: state.post.posts,
         postCategories: state.post.categories

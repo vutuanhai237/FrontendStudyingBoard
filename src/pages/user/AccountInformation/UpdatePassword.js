@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import 'pages/management/AdminLayout'
+import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import { isContainSpecialCharacter } from 'utils/Utils'
+import { isContainSpecialCharacter } from 'utils/utils'
 
 //import for Redux
 import { bindActionCreators } from 'redux'

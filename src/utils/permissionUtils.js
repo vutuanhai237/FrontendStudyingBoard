@@ -1,12 +1,9 @@
-import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
-
-
 const PermissionList = {
-    ContentManagementPermission: {
-        //this is permission to show "Quản trị" or :"Cộng tác" tab menu to approve or category
-        Management: { ContentManagement: "CONTENT_MANAGEMENT" }
+    ContentManagement: {
+        Collaborator: { Collaborator: "COLLABORATOR" },
+        Admin: { Admin: "ADMIN" }
     },
-    DocumentPermission: {
+    Document: {
 
         Upload: { DocumentUpload: "DOCUMENT_UPLOAD" }, //gain this permission to upload a document.
         Edit: { DocumentEdit: "DOCUMENT_EDIT" }, //gain this permission to edit information of an uploaded document.
@@ -24,7 +21,7 @@ const PermissionList = {
             DocumentPreview: "DOCUMENT_PREVIEW"
         }
     },
-    PostPermission:
+    Post:
     {
         Create: { PostCreate: "POST_CREATE" },  //gain this permission to write a post.
         Edit: { PostEdit: "POST_EDIT" }, //gain this permission to edit an uploaded post.
@@ -44,8 +41,7 @@ const PermissionList = {
             PostSave: "POST_SAVE"
         }
     },
-
-    CategoryPermission: {
+    Category: {
 
         View: { CategoryView: "CATEGORY_VIEW" },
         All: {
@@ -59,7 +55,7 @@ const PermissionList = {
             SemesterCategoryAdd: "SEMESTER_CATEGORY_ADD",
             SemesterCategoryEdit: "SEMESTER_CATEGORY_EDIT",
         },
-        DocCategoryPermission: {
+        DocCategory: {
             Add: { DocCategoryAdd: "DOC_CATEGORY_ADD" },
             Edit: { DocCategoryEdit: "DOC_CATEGORY_EDIT" },
             All: {
@@ -67,7 +63,7 @@ const PermissionList = {
                 DocCategoryEdit: "DOC_CATEGORY_EDIT"
             }
         },
-        PostCategoryPermission:
+        PostCategory:
         {
             Add: { PostCategoryAdd: "POST_CATEGORY_ADD" },
             Edit: { PostCategoryEdit: "POST_CATEGORY_EDIT" },
@@ -93,9 +89,8 @@ const PermissionList = {
                 SemesterCategoryEdit: "SEMESTER_CATEGORY_EDIT",
             }
         },
-    }
-    ,
-    RolePermission:
+    },
+    Role:
     {
         Add: { RoleAdd: "ROLE_ADD" },
         Edit: { RoleEdit: "ROLE_EDIT" },
@@ -106,8 +101,7 @@ const PermissionList = {
             RoleDelete: "ROLE_DELETE",
         }
     },
-
-    ActivityPermission:
+    Activity:
     {
         View: { ActivityView: "ACTIVITY_VIEW" },
         // Add: { ActivityAdd: "ACTIVITY_ADD" },
@@ -122,7 +116,7 @@ const PermissionList = {
             ActivityApprove: "ACTIVITY_APPROVE"
         }
     },
-    UserPermission: //interact to list of all user in the system, or another user
+    User: //interact to list of all user in the system, or another user
     {
         View: { UserView: "USER_VIEW" },
         Edit: { USerEdit: "USER_EDIT" },
@@ -148,7 +142,7 @@ const PermissionList = {
             UserReport: "USER_REPORT"
         }
     },
-    AccountPermission: //interact to own account
+    Account: //interact to own account
     {
         Edit: { AccountEdit: "ACCOUNT_EDIT" },
         ChangePass: { AccountChangePass: "ACCOUNT_CHANGE_PASS" },
@@ -165,7 +159,7 @@ const PermissionList = {
             AccountPreviewPost: "ACCOUNT_PREVIEW_POST"
         }
     },
-    NotificationPermission: //interact to own account
+    Notification: //interact to own account
     {
         Edit: { NotificationEdit: "NOTIFICATION_EDIT" },
         Add: { NotificationAdd: "NOTIFICATION_ADD" },
@@ -182,7 +176,8 @@ const PermissionList = {
             NotificationUnsetAny: "NOTIFICATION_UNSET_ANY",
             NotificationViewAll: "NOTIFICATION_VIEW_ALL"
         }
-    }, StatisticPermission: //to view and manage all Statistic of page
+    },
+    Statistic: //to view and manage all Statistic of page
     {
         View: { StatisticView: "Statistic_VIEW" }
     }
@@ -235,20 +230,6 @@ export const isGrantedPermissions = function (permissionList) {
     return false;
 }
 
-
-
-// export function isGrantedSpecificPermissionByRoleId(permission, roleId) {
-
-// }
-
-// export function isGrantedPermissions(...listPermissionName) {
-
-// }
-
-// export function isGrantedPermissionsById(...listPermissionName) {
-
-// }
-
 export function logAllPermissionByRoleName(roleName) {
     if (roleName === "ADMIN") {
         console.log(ADMIN);
@@ -268,42 +249,43 @@ export function logAllPermissionByRoleName(roleName) {
 
 //config:
 const ADMIN = {
-    ...PermissionList.ContentManagementPermission.Management,
-    ...PermissionList.AccountPermission.All,
-    ...PermissionList.DocumentPermission.All,
-    ...PermissionList.PostPermission.All,
-    ...PermissionList.ActivityPermission.All,
-    ...PermissionList.CategoryPermission.All,
-    ...PermissionList.RolePermission.All,
-    ...PermissionList.UserPermission.All,
-    ...PermissionList.NotificationPermission.All
+    ...PermissionList.ContentManagement.Admin,
+    ...PermissionList.Account.All,
+    ...PermissionList.Document.All,
+    ...PermissionList.Post.All,
+    ...PermissionList.Activity.All,
+    ...PermissionList.Category.All,
+    ...PermissionList.Role.All,
+    ...PermissionList.User.All,
+    ...PermissionList.Notification.All
 
-}
-
-const USER = {
-    ...PermissionList.DocumentPermission.Upload,
-    ...PermissionList.DocumentPermission.Download,
-    ...PermissionList.AccountPermission.All,
-    ...PermissionList.PostPermission.Comment,
-    ...PermissionList.PostPermission.Save,
-    ...PermissionList.PostPermission.Like,
-    ...PermissionList.PostPermission.Create,
 }
 
 const COLLABORATOR = {
-    ...PermissionList.AccountPermission.All,
-    ...PermissionList.ContentManagementPermission.Management,
-    ...PermissionList.DocumentPermission.Upload,
-    ...PermissionList.DocumentPermission.Download,
-    ...PermissionList.DocumentPermission.Approve,
-    ...PermissionList.DocumentPermission.Preview,
-    ...PermissionList.PostPermission.Comment,
-    ...PermissionList.PostPermission.Save,
-    ...PermissionList.PostPermission.Like,
-    ...PermissionList.PostPermission.Create,
-    ...PermissionList.PostPermission.Approve,
-    ...PermissionList.PostPermission.Preview,
+    ...PermissionList.Account.All,
+    ...PermissionList.ContentManagement.Collaborator,
+    ...PermissionList.Document.Upload,
+    ...PermissionList.Document.Download,
+    ...PermissionList.Document.Approve,
+    ...PermissionList.Document.Preview,
+    ...PermissionList.Post.Comment,
+    ...PermissionList.Post.Save,
+    ...PermissionList.Post.Like,
+    ...PermissionList.Post.Create,
+    ...PermissionList.Post.Approve,
+    ...PermissionList.Post.Preview,
 }
+
+const USER = {
+    ...PermissionList.Document.Upload,
+    ...PermissionList.Document.Download,
+    ...PermissionList.Account.All,
+    ...PermissionList.Post.Comment,
+    ...PermissionList.Post.Save,
+    ...PermissionList.Post.Like,
+    ...PermissionList.Post.Create,
+}
+
 
 const getPermissionOfRoleByRoleName = function (roleName) {
     switch (roleName) {
@@ -320,14 +302,14 @@ const getPermissionOfRoleByRoleName = function (roleName) {
 }
 
 export const {
-    AccountPermission,
-    DocumentPermission,
-    ActivityPermission,
-    NotificationPermission,
-    RolePermission,
-    CategoryPermission,
-    PostPermission,
-    UserPermission,
-    ContentManagementPermission,
-    StatisticPermission
+    Account,
+    Document,
+    Activity,
+    Notification,
+    Role,
+    Category,
+    Post,
+    User,
+    ContentManagement,
+    Statistic
 } = PermissionList;

@@ -1,23 +1,39 @@
 import React, { Component } from "react";
-import logo from 'assets/images/logo.png';
-import upload_icon from 'assets/images/icon_upload.png';
-import write_icon from 'assets/images/icon_write.png';
-import "./Header.scss";
-import "styles/SimpleButton.scss";
-import LoginStatus from "./IsLoggedIn";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
-import { getCurrentUser } from "redux/services/userServices"
-import { navigateWithoutReload } from "utils/Utils"
+import { Link } from 'react-router-dom';
+import { ClickAwayListener } from '@material-ui/core';
 
+//utils
+import { routers } from 'router.config'
+import { ContentManagement } from 'utils/permissionUtils'
+
+//styles
+import "./Header.scss";
+import "styles/SimpleButton.scss";
+
+//resource
 import red_delete_icon from 'assets/images/red_delete_icon.png';
 import search_icon from 'assets/images/search_icon.png';
-import { ClickAwayListener } from '@material-ui/core';
+import logo from 'assets/images/logo.png';
+import upload_icon from 'assets/images/icon_upload.png';
+import write_icon from 'assets/images/icon_write.png';
+
+//components
+import BaseComponent from 'utils/baseComponent'
 import Tag from "components/common/Tag/Tag";
+import LoginStatus from "./IsLoggedIn";
+import BlankLayout from "layouts/NormalBlankLayout"
+import AdminLayout from "layouts/AdminLayout"
+import Home from "pages/common/Home/Home"
+
+//services (to call API)
+import { getCurrentUser } from "redux/services/userServices"
+import { logoRouter, headerMenuRouter, searchRouter } from "router.config"
 
 
-class Header extends Component {
+class Header extends BaseComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -91,8 +107,8 @@ class Header extends Component {
                 {quickSearchResultData.post.map(result =>
                     <div className="display-flex margin-top-5px">
                         <img alt="" className="qs-result-image margin-right-5px" />
-                        <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-post?id=${result.id}&page=1`)}>{result.name}
-                        </div>
+                        {/* <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-post?id=${result.id}&page=1`)}>{result.name} */}
+                        {/* </div> */}
                     </div>)
                 }
             </div>
@@ -101,8 +117,8 @@ class Header extends Component {
                 <div className="qs-type-title margin-top-5px">TÀI LIỆU</div>
                 {quickSearchResultData.doc.map(result =>
                     <div className="display-flex margin-top-5px">
-                        <img className="qs-result-image margin-right-5px" alt="" />
-                        <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-doc?id=${result.id}&page=1`)}>{result.name}</div>
+                        {/* <img className="qs-result-image margin-right-5px" alt="" />
+                        <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-doc?id=${result.id}&page=1`)}>{result.name}</div> */}
                     </div>
                 )}
             </div>
@@ -110,10 +126,10 @@ class Header extends Component {
             <div className="sub-result-container" id="quick-search-tag-result-port">
                 <div className="qs-type-title margin-top-5px ">TAGS</div>
                 <div className="display-flex margin-top-5px">
-                    {quickSearchResultData.tag.map(result =>
-                        <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} onTagClick={() => navigateWithoutReload(`/search-tag?id=${result.id}&page=1`)} />
+                    {/* {quickSearchResultData.tag.map(result =>
+                        // <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} onTagClick={() => navigateWithoutReload(`/search-tag?id=${result.id}&page=1`)} />
                     )
-                    }
+                    } */}
                 </div>
             </div>
         </div >;
@@ -126,14 +142,13 @@ class Header extends Component {
                     {/* Begin lv1: contain logo and searchbar */}
                     {/* Begin lv2: searchbar */}
                     <div className="header-begin-lv1" >
-                        <img className="app-logo" src={logo} alt="logo" />
-
+                        <Link to={logoRouter.path} className="mi-w-fit-content">
+                            <img className="app-logo " src={logo} alt="logo" />
+                        </Link>
                         <div className="header-menu-bar" >
-                            <div className="header-menu-item" > TÀI LIỆU </div>
-                            <div className="header-menu-item" > BÀI VIẾT </div>
-                            <div className="header-menu-item" > HỌC TẬP </div>
-                            <div className="header-menu-item" > HỎI ĐÁP </div>
-                            <div className="header-menu-item" > QUẢN LÝ </div>
+                            {headerMenuRouter.map(item => {
+                                return <Link to={item.path} className="header-menu-item" > {item.label} </Link>
+                            })}
                         </div>
 
                         <div className="header-begin-lv2" id="header-begin-lv2" >
@@ -225,7 +240,7 @@ class Header extends Component {
                         {/* Tao bai viet, tai khoan, upload */}
                         <div className="Header_End_Lv2" > <img className="Header_Image_Button" alt="" src={upload_icon} />
                             <img className="Header_Image_Button" src={write_icon} alt="" />
-                            <button className="blue-button margin_auto min_width_fit_content" > Đăng nhập </button>
+                            <button className="blue-button margin_auto mi-w-fit-content" > Đăng nhập </button>
                         </div>
 
                         {/* Collapse menu cho noi dung tren */}

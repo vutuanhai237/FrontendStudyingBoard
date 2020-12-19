@@ -7,7 +7,7 @@ import gray_btn_element from 'assets/images/gray_btn_element.png'
 
 import { management_getCurrentPreviewDocument } from "redux/services/docServices"
 import { getCurrentUser } from "redux/services/userServices"
-import { isGrantedPermissions, DocumentPermission } from "utils/PermissionManagement"
+import { isGrantedPermissions, Document } from "utils/permissionUtils"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
@@ -72,7 +72,7 @@ class DocPreview extends Component {
             this.roleName = this.props.accountInformation.roleName;
 
             // neu khong co quyen preview => khong cho preview
-            if (!this.isGrantedPermissions(DocumentPermission.Preview))
+            if (!this.isGrantedPermissions(Document.Preview))
                 return <>{window.location.pathname = "/"}</>;
 
             //neu khong la admin => home

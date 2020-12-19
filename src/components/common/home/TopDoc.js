@@ -69,7 +69,7 @@ class TopDoc extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        topDoc:state.doc.topDoc,
+        topDoc:state.document.topDoc,
     };
 }
 

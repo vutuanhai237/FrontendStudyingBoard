@@ -1,7 +1,5 @@
 import {
-    DOC_GET_CATEGORIES_DOC,
     DOC_GET_SUBJECTS,
-    DOC_GET_SEMESTERS,
     DOC_GET_DOC_BY_ID,
     DOC_GET_SEARCH_DOC,
     DOC_GET_TOP_DOC,
@@ -9,80 +7,44 @@ import {
     DOC_POST_UP_VIEW_DOC,
     DOC_POST_UP_DOWNLOAD_DOC,
 
-    // 
+    // MY DOC
+    GET_MY_DOCUMENTS_REQUEST,
+    GET_MY_DOCUMENTS_SUCCESS,
+    GET_MY_DOCUMENTS_FAILURE,
+
+    //DOCUMENT SEARCH RESULT
+    GET_DOCUMENT_SEARCH_RESULT_REQUEST,
+    GET_DOCUMENT_SEARCH_RESULT_SUCCESS,
+    GET_DOCUMENT_SEARCH_RESULT_FAILURE,
+
     GET_ALL_NOT_APPROVED_DOCUMENTS,
-    GET_MY_DOCUMENTS,
     APPROVE_A_DOCUMENT
 
 } from '../constants.js'
-const fakeDocuments = [
-    {
-        id: 0,
-        url: "/1",
-        title: "What the fuck is this",
-        summary: "Hello Friends, In this video i am going to show you how to make Heart Falling Animation effects using html, css3 Animation Keyframes property and i use font awesome heart icon. Any questions about this video so please comment or email.",
-        authorName: "Hải",
-        authorID: 0,
-        categoryID: 0,
-        category: "Slide",
-        subjectID: 0,
-        subjectName: "NMLT",
-        viewCount: 100,
-        downloadCount: 1000,
-        publishDtm: "21/01/2020",
-        imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
-    },
-    {
-        id: 0,
-        url: "/1",
-        title: "B",
-        summary: "string",
-        authorName: "string",
-        authorID: 0,
-        categoryID: 0,
-        category: "string",
-        subjectID: 0,
-        subjectName: "string",
-        viewCount: 0,
-        downloadCount: 0,
-        publishDtm: "string",
-        imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
-    },
-    {
-        id: 0,
-        url: "/1",
-        title: "C",
-        summary: "string",
-        authorName: "string",
-        authorID: 0,
-        categoryID: 0,
-        category: "string",
-        subjectID: 0,
-        subjectName: "string",
-        viewCount: 0,
-        downloadCount: 0,
-        publishDtm: "string",
-        imageURL: 'https://icdn.dantri.com.vn/thumb_w/640/2020/01/24/00-1579884195136.jpg'
-    },
-]
 
 const initialState = {
-    documents: fakeDocuments,
+    documents: [],
     categories: [],
-    semesters: [],
-    subjects: [],
     topDoc: [],
     searchDocs: [],
     currentFilterSemester: "",
     statusPostDocCode: 0,
+
+    documentSearchResult: {
+        isLoading: false,
+        data: [],
+        error: ""
+    },
+
+    myDocuments: {
+        isLoading: false,
+        data: [],
+        error: ""
+    }
 }
 
 function DocReducer(state = initialState, action) {
     switch (action.type) {
-        case DOC_GET_CATEGORIES_DOC:
-            return { ...state, categories: action.payload };
-        case DOC_GET_SEMESTERS:
-            return { ...state, semesters: action.payload };
         case DOC_GET_SUBJECTS:
             return { ...state, subjects: action.payload };
         case DOC_GET_TOP_DOC:
@@ -105,8 +67,35 @@ function DocReducer(state = initialState, action) {
             return { ...state, currentDocumentApprovedStatus: action.payload }
 
         //my post
-        case GET_MY_DOCUMENTS:
-            return { ...state, myDocuments: action.payload }
+        case GET_MY_DOCUMENTS_REQUEST:
+            return {
+                ...state, myDocuments: { isLoading: true }
+            };
+        case GET_MY_DOCUMENTS_SUCCESS:
+            {
+                return { ...state, myDocuments: { isLoading: false, data: action.payload, error: '' } }
+            }
+        case GET_MY_DOCUMENTS_FAILURE:
+            {
+                return { ...state, myDocuments: { isLoading: false, error: action.payload, data: [] } }
+            }
+
+        //document search result 
+        //my post
+        case GET_DOCUMENT_SEARCH_RESULT_REQUEST:
+            return {
+                ...state, documentSearchResult: { isLoading: true }
+            };
+        case GET_DOCUMENT_SEARCH_RESULT_SUCCESS:
+            {
+                return { ...state, documentSearchResult: { isLoading: false, data: action.payload, error: '' } }
+            }
+        case GET_DOCUMENT_SEARCH_RESULT_FAILURE:
+            {
+                return { ...state, documentSearchResult: { isLoading: false, error: action.payload, data: [] } }
+            }
+
+
 
 
         default:

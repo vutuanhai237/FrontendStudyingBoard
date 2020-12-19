@@ -10,7 +10,14 @@ import {
     get_PostsList,
 
     //my post
-    get_MyPostsRequest, get_MyPostsSuccess, get_MyPostsFailure
+    get_MyPostsRequest,
+    get_MyPostsSuccess,
+    get_MyPostsFailure,
+
+    //post search result 
+    get_PostSearchResultRequest,
+    get_PostSearchResultSuccess,
+    get_PostSearchResultFailure
 } from "redux/actions/postAction.js";
 
 import {
@@ -58,7 +65,7 @@ export function postPost(post) {
             "tags": tags,
         });
 
-        var formdata = new FormData();
+        // var formdata = new FormData();
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -437,7 +444,7 @@ export function getPostsList(filter) { //this API is also call when open all pos
 // my post
 export function getMyPostsList(page = 1, category = "") { //this API to get all approved document of a specific user.
     return dispatch => {
-            
+
         dispatch(get_MyPostsRequest());
 
         var myHeaders = new Headers();
@@ -447,26 +454,40 @@ export function getMyPostsList(page = 1, category = "") { //this API to get all 
             redirect: 'follow'
         };
 
-        fetch('https://5fca2bc63c1c220016441d27.mockapi.io/category', requestOptions)
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
             .then(response => response.text())
             .then(
                 result => {
-                    // dispatch(get_MyPostsSuccess(JSON.parse(result)));
-                    fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
-                        .then(response => response.text())
-                        .then(
-                            result => {
-                                dispatch(get_MyPostsSuccess(JSON.parse(result)));
-                            }
-                        )
-                        .catch(error => {
-                            console.log(error); dispatch(get_MyPostsFailure(error))
-                        })
+                    dispatch(get_MyPostsSuccess(JSON.parse(result)));
                 }
             )
-        // let result = page === 1 ? [post_v1, post_v2] : [post_v3, post_v4];
-        // setTimeout(() =>
-        //     dispatch(get_MyPostsSuccess(result)), 2000
-        // )
+            .catch(error => {
+                console.log(error); dispatch(get_MyPostsFailure(error))
+            })
     }
 }
+
+export function getPostSearchResult(page = 1, category = "", searchTerm = "") {
+    return dispatch => {
+        dispatch(get_PostSearchResultRequest());
+
+        var myHeaders = new Headers();
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+                    dispatch(get_PostSearchResultSuccess(JSON.parse(result)));
+                }
+            )
+            .catch(error => {
+                console.log(error); dispatch(get_PostSearchResultFailure(error))
+            })
+    }
+}
+

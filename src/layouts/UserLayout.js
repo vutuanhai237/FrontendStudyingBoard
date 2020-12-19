@@ -18,9 +18,9 @@ import UploadDoc from 'pages/user/UploadDocument/UploadDocument'
 import CreatePost from 'pages/user/CreatePost/CreatePost'
 
 //import scss
-import '../styles/LeftSidebarLayout.scss'
+import 'layouts/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
-import '../styles/Layout.scss'
+import 'layouts/Layout.scss'
 
 //import for Redux
 import { bindActionCreators } from 'redux'
@@ -30,10 +30,10 @@ import { getCurrentUser } from 'redux/services/userServices'
 
 //import for permission
 import {
-  StatisticPermission,
+  Statistic,
   getRoleNameByName,
   isGrantedPermissions
-} from 'utils/PermissionManagement'
+} from 'utils/permissionUtils'
 
 class AdminLayout extends Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class AdminLayout extends Component {
       //     window.location.pathname = "/admin";
 
       return (
-        <div className="normal-container">
+        <div className="pr-layout">
           {/* Xu ly su kien cuon tro chuot */}
           {window.onscroll = () => this.scrollFunction()}
 
@@ -220,7 +220,7 @@ class AdminLayout extends Component {
                                                         </Link>
                               :
                               <Link className="Sub_Dropdown_Menu_Item"
-                                to="/user/my-posts?page=1&category=1"
+                                to={"/user/my-posts?page=1&category=1"}
                                 onClick={() => this.setState({})}>
                                 Bài viết của tôi
                                                         </Link>
@@ -319,50 +319,7 @@ class AdminLayout extends Component {
                           </div>
                         </div>
                       </div>
-                      {/* 
-                        {window.location.pathname === "/create-post" ?
-                          < Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                            to={"/create-post"}
-                          >
-                            <img alt="*" className="side-bar-primary-menu-item-icon" src={gray_nb_write_icon} />
-                            <div className="side-bar-menu-item-text"  >
-                              Tạo bài viết mới</div>
-                          </Link>
-                          :
-                          <Link className="Vertical_Menu_Item"
-                            to={"/create-post"}
-                            onClick={() => this.setState({})}>
-                            <img alt="*" className="side-bar-primary-menu-item-icon"
-                              src={gray_nb_write_icon}
-                            />
-                            <div className="side-bar-menu-item-text"  >
-                              Tạo bài viết mới
-                                                    </div>
-                          </Link>
-                        } */}
 
-                      {/* Viet bai */}
-                      {/* {window.location.pathname === "/upload-doc" ?
-                          < Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
-                            to={"/upload-doc"}
-                          >
-
-                            <img alt="*" className="side-bar-primary-menu-item-icon" src={gray_nb_upload_icon} />
-                            <div className="side-bar-menu-item-text"  >
-                              Upload tài liệu</div>
-                          </Link>
-                          :
-                          <Link className="Vertical_Menu_Item"
-                            to={"/upload-doc"}
-                            onClick={() => this.setState({})}>
-                            <img alt="*" className="side-bar-primary-menu-item-icon"
-                              src={gray_nb_upload_icon}
-                            />
-                            <div className="side-bar-menu-item-text"  >
-                              Upload tài liệu
-                                                         </div>
-                          </Link>
-                        } */}
                     </div>
                   </div >
                 </ div >

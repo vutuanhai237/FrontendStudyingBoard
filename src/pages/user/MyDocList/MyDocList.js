@@ -1,15 +1,23 @@
 /* eslint-disable react/jsx-pascal-case */
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import React, { Component } from 'react'
+
+//services
+import { getMyDocumentsList } from "redux/services/docServices"
+import { getDocCategories } from "redux/services/docCategoryServices"
+
+//utils
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/utils'
+import { summaryItemType } from 'constants.js'
+
+//components
+import Loader from "components/common/Loader/Loader"
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import DocSummary from 'components/doc/DocSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
-
-//import for redux
-import { getMyDocuments } from "redux/services/docServices"
-import { bindActionCreators } from 'redux';
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 
 class MyDocuments extends Component {
     constructor(props) {
@@ -26,47 +34,65 @@ class MyDocuments extends Component {
         ]
     }
 
-    componentDidMount() {
-        this.props.getMyDocuments();
-        // this.props.getDocCategory();
+    async componentDidMount() {
+        this.props.getDocCategories()
+
+        //get filter
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+
+        this.props.getMyDocumentsList(page, category);
     }
 
-    //server
+    //server paginator
     onPageChange = (pageNumber) => {
-
+        setSearchParam("page", pageNumber);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyDocumentsList(page, category);
+        this.setState({});
     }
 
+    //combobox
+    onFilterOptionChanged = (selectedOption) => {
+        setSearchParam("category", selectedOption.id);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyDocumentsList(page, category);
+        this.setState({});
+    }
 
     render() {
 
         let myDocumentsList = <></>;
 
-        console.log("^^^"); console.log(this.props);
-        if (this.props.myDocuments) {
-            this.myDocuments = this.props.myDocuments;
+        if (!this.props.isListLoading) {
+            if (this.props.myDocuments) {
+                this.myDocuments = this.props.myDocuments;
 
-            myDocumentsList = this.myDocuments.map((myDoc) => (
-                < DocSummary
-                    key={myDoc.id}
-                    id={myDoc.id}
-                    authorName={myDoc.authorName}
-                    authorID={myDoc.authorID}
-                    publishDtm={myDoc.publishDtm}
-                    category={myDoc.category}
-                    categoryID={myDoc.categoryID}
-                    title={myDoc.title}
-                    views={myDoc.views}
-                    downloads={myDoc.downloads}
-                    subject={myDoc.subject}
-                    subjectID={myDoc.subjectID}
-                    likes={myDoc.likes}
-                    dislikes={myDoc.dislikes}
-                    description={myDoc.description}
-                    imageURL={myDoc.imageURL}
+                myDocumentsList = this.myDocuments.map((myDoc) => (
+                    < DocSummary
+                        type={summaryItemType.mySelf}
+                        key={myDoc.id}
+                        id={myDoc.id}
+                        authorName={myDoc.authorName}
+                        authorID={myDoc.authorID}
+                        publishDtm={myDoc.publishDtm}
+                        category={myDoc.category}
+                        categoryID={myDoc.categoryID}
+                        title={myDoc.title}
+                        views={myDoc.views}
+                        downloads={myDoc.downloads}
+                        subject={myDoc.subject}
+                        subjectID={myDoc.subjectID}
+                        likes={myDoc.likes}
+                        dislikes={myDoc.dislikes}
+                        description={myDoc.description}
+                        imageURL={myDoc.imageURL}
 
-
-                ></DocSummary >)
-            )
+                    ></DocSummary >)
+                )
+            }
         }
         return (
             <div>
@@ -84,14 +110,17 @@ class MyDocuments extends Component {
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.filter}
-                                    placeHolder="Chọn bộ lọc"
+                                    selectedOptionID={1}
                                     onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
                                     id="my-doc-list-search-filter-combobox"
                                 ></ComboBox></div>
                         </div>
                     </div>
-
-                    {myDocumentsList}
+                    {this.props.isListLoading ?
+                        < Loader /> :
+                        <>  {myDocumentsList}
+                        </>
+                    }
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
@@ -106,13 +135,16 @@ class MyDocuments extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("***", state);
     return {
-        myDocuments: state.doc.myDocuments,
+        myDocuments: state.document.myDocuments.data,
+        isListLoading: state.document.myDocuments.isLoading,
+        isCategoryLoading: state.doc_category.categories.isLoading
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getMyDocuments
+    getMyDocumentsList, getDocCategories
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyDocuments));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { setSearchParam } from 'utils/Utils'
+import { setSearchParam } from 'utils/utils'
 import 'components/common/Paginator/Paginator.scss'
 
 

@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 
-import 'components/styles/DocPostSummary.scss'
-import 'styles/SimpleButton.scss'
-import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-
+//resource
 import gray_btn_element from 'assets/images/gray_btn_element.png'
 import liked_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import dislike_btn from 'assets/images/dislike_btn.png'
 import undislike_btn from 'assets/images/undislike_btn.png'
-import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
-import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
-import menu_icon from 'assets/images/menu-icon.png'
 import download_btn from 'assets/images/gray_download_icon.png'
+import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
+import { summaryItemType } from 'constants.js'
 
-import CustomButton from 'components/common/Button/Button'
+//styles
+import 'components/styles/DocPostSummary.scss'
+import 'styles/SimpleButton.scss'
 
-// 
+//components
+import PopupMenu from 'components/common/PopupMenu/PopupMenu'
+import CustomModal from 'components/common/CustomModalPopup/CustomModal'
+
 
 class DocSummary extends Component {
 
@@ -36,21 +37,14 @@ class DocSummary extends Component {
     this.image = this.props.image;
     this.tags = this.props.tags;
 
-    this.componentTypes = { approving: "APPROVING", normal: "NORMAL", mySelf: "MY_SELF" }
+    this.normalMenuItemList = [
+      { id: 3, name: "Báo cáo", icon: trash_icon },
+    ]
 
-    this.isFirstTimeLoaded = false;
-
-    this.type = this.componentTypes.mySelf;
-
-    this.rightTopMenuOptions = [
-      {
-        id: "1",
-        name: "Chỉnh sửa"
-      },
-      {
-        id: "2",
-        name: "Xoá"
-      }
+    this.mySelfMenuItemList = [
+      { id: 1, name: "Xoá", icon: trash_icon },
+      { id: 2, name: "Chỉnh sửa", icon: trash_icon },
+      { id: 3, name: "Báo cáo", icon: trash_icon },
     ]
   }
 
@@ -113,19 +107,20 @@ class DocSummary extends Component {
       dislikeBtn = <img className="doc-like-dislike-btn" alt="dislike" src={undislike_btn} onClick={this.onDislikeBtnClick} ></img>
     }
 
-    if (!this.props.id) {
-      this.isFirstTimeLoaded = false;
-    }
-    else {
-      if (this.isFirstTimeLoaded === false) {
-        this.isDisliked = this.props.isDisliked;
-        this.isLiked = this.props.isLiked;
-        this.likes = this.props.likes;
-        this.dislikes = this.props.dislikes;
-        this.isFirstTimeLoaded = true;
-        this.calculateBar();
-      }
-    }
+    let approveLabel = <></>;
+
+    if (this.props.approveStatus === 1)
+      approveLabel =
+        <div className="display-flex" >
+          <div className="metadata-light-black-label"> - </div>
+          <div className="red-border-label">PENDING</div>
+        </div >
+    else
+      approveLabel =
+        <div className="display-flex">
+          <div className="metadata-light-black-label"> - </div>
+          <div className="blue-border-label">APPROVED</div>
+        </div>
 
     return (
       <div className="item-container" >
@@ -144,89 +139,92 @@ class DocSummary extends Component {
               {this.props.authorName}
             </div>
 
-            <div className="display-flex" >
-              <img alt="*" className="metadata-icon" src={gray_btn_element} />
-              <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
-                {this.props.publishDtm}
-              </div>
-            </div>
+            {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.approving ?
+              <>{approveLabel}</> : <></>}
           </div>
-        </div>
 
+          {this.props.type === summaryItemType.mySelf &&
+            <PopupMenu items={this.mySelfMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
+          }
+          {(this.props.type === summaryItemType.normal || !this.props.type) &&
+            <PopupMenu items={this.normalMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
+          }
+
+        </div>
         <div className="item-title">
           {this.props.title}
         </div>
-        <div className="display-flex" style={{ marginLeft: "15px", marginTop: "-8px" }} >
-          <img alt="*" className="metadata-icon" src={gray_btn_element} />
-          <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
-            {this.props.subject}
+        <div className="display-flex" style={{ marginTop: "-10px" }}>
+          <div className="display-flex" >
+            <img alt="*" className="metadata-icon" src={gray_btn_element} />
+            <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
+              {this.props.publishDtm}
+            </div>
           </div>
+          <div className="display-flex" >
+            <img alt="*" className="metadata-icon" src={gray_btn_element} />
+            <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
+              lượt xem
+              <div style={{ marginLeft: "5px" }}>
+                {this.props.views}
+              </div>
+            </div>
+          </div>
+
         </div>
+
         <div className="item-summary">
           {this.props.description}
         </div>
 
         <div className="item-reaction-bar" style={{ right: "5px" }}>
-          <div className="like-dislike-bar">
-
-            {/* 2 button */}
-            <div className="justify-content-space-between">
-              <div className="display-flex">
-                <div> {likeBtn}</div>
-                <div className="doc-like-dislike-count">{this.props.likes}</div>
-              </div>
-
-              <div className="display-flex">
-                <div> {dislikeBtn}</div>
-                <div className="doc-like-dislike-count">{this.props.dislikes}</div>
-              </div>
-            </div>
-
-
-            {/* rate bar */}
-            <div className="rate-percent-bar">
-              <div className="like-rate-percent" id={'document-item-like-percents-' + this.props.id} />
-            </div>
-          </div>
-
           <div className="display-flex">
 
-            <div className="comment-count-container">
-            
-                Bình luận
-             
-              <div className="comment-count">
-                {this.props.commentCount}
+            <div className="like-dislike-bar">
+
+              {/* 2 button */}
+              <div className="justify-content-space-between">
+                <div className="display-flex">
+                  <div> {likeBtn}</div>
+                  <div className="doc-like-dislike-count">{this.props.likes}</div>
+                </div>
+
+                <div className="display-flex">
+                  <div> {dislikeBtn}</div>
+                  <div className="doc-like-dislike-count">{this.props.dislikes}</div>
+                </div>
+              </div>
+
+              {/* rate bar */}
+              <div className="rate-percent-bar">
+                <div className="like-rate-percent" id={'document-item-like-percents-' + this.props.id} />
               </div>
             </div>
-            <div className="view-count-layout">
-              lượt xem
-              <div style={{ width: "5px" }}></div>
-              {this.props.views}
-            </div>
-            <div className="download-count-layout">
-              <img src={download_btn} alt="^" className="download-btn"></img>
-              <div style={{ width: "2px" }}></div>
-              {this.props.downloads}
+
+            <div className="display-flex">
+              <div className="doc-comment-count-container">
+                Bình luận
+                <div className="comment-count">
+                  {this.props.commentCount}
+                </div>
+              </div>
+
+              <div className="download-count-layout">
+                <img src={download_btn} alt="^" className="download-btn"></img>
+                <div style={{ width: "2px" }}></div>
+                {this.props.downloads}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="justify-content-space-between margin-top-10px">
           <div className="link-label">
             Đọc tiếp ...
-            </div>
-          <div className="display-flex">
-            {/* 
-          <CustomButton text="Chỉnh sửa" color="blue" onBtnClick={this.onEditBtnClick}></CustomButton>
-          <div style={{ width: "10px" }} />
-          <CustomButton text="Xoá" color="red" onBtnClick={this.onDeleteBtnClick} ></CustomButton> */}
-
-            <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.handlerPreviewRequestedPost()}>Chỉnh sửa</div>
-            <div className="red-button" onClick={() => { this.handlerRejectRequestedPost() }}>Xoá</div>
-
           </div>
+
         </div>
+        {/* <div className="justify-content-space-between margin-top-10px">
+
+        </div> */}
 
         {/* approving */}
         {/* <div className="item-container_Footer">
@@ -235,19 +233,26 @@ class DocSummary extends Component {
         </div> */}
 
         {/* Popup for reject requested post */}
-        {/* <CustomModal
-                    shadow={true}
-                    type="confirmation"
-                    open={this.isRejectRequestedPopupOpen}
-                    title="Xác nhận?"
-                    text="Xác nhận từ chối tiếp nhận bài viết này?"
-                    closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
-                >
-                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                    <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
+        <CustomModal
+          shadow={true}
+          type="confirmation"
+          open={this.isRejectRequestedPopupOpen}
+          title="Xác nhận?"
+          text="Xác nhận từ chối tiếp nhận bài viết này?"
+          closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
+        >
+          <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+          <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
+        </CustomModal>
 
-                </CustomModal> */}
+        <CustomModal shadow={true}
+          type="custom"
+          open={this.isReportPopupOpen}
+          title="Báo cáo vi phạm"
+          closeModal={() => { this.isReportPopupOpen = false; this.setState({}); }}
+        >
 
+        </CustomModal>
 
       </div >
 

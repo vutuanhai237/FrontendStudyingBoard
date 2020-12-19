@@ -82,7 +82,7 @@ img {
 
 a {
     text-decoration: none;
-    text-decoration-style: unset;
+    outline: none;
 }
 
 a:hover {
@@ -218,7 +218,7 @@ a:hover {
     display: none;
 }
 
-.min_width_fit_content {
+.mi-w-fit-content {
     min-width: fit-content;
 }
 

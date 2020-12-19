@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import resource string
 
 //import scss
-import '../styles/LeftSidebarLayout.scss'
+import 'layouts/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
 
 //import components
@@ -15,14 +15,9 @@ import SearchDoc from 'pages/common/SearchResult/SearchDoc'
 import SearchPost from 'pages/common/SearchResult/SearchPost'
 
 //import for Redux
-import { bindActionCreators } from 'redux'
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { getCurrentUser } from 'redux/services/userServices'
-import Titlebar from 'components/common/Titlebar/Titlebar'
 import "components/common/Titlebar/Titlebar.scss"
-import "../styles/BlankLayout.scss"
-import "../styles/SearchLayout.scss"
+import "layouts/Layout.scss"
+import "layouts/SearchLayout.scss"
 
 export default class SearchLayout extends Component {
     constructor(props) {
@@ -33,7 +28,7 @@ export default class SearchLayout extends Component {
 
     render() {
         return (
-            <div className="normal-container" >
+            <div className="pr-layout" >
                 <div className="search-layout">
                     <Router>
                         <div className="Horizontal_Menu_Bar">
@@ -69,11 +64,11 @@ export default class SearchLayout extends Component {
                         </div>
                         <div className="margin-top-10px" />
 
-                        <div className="blank-layout-router-outlet" >
+                        <div className="nm-bl-layout-router-outlet" >
                             <Switch>
                                 <Route exact path="/search-tag" component={SearchTag} />
                                 <Route exact path="/search-post" component={SearchPost} />
-                                <Route exact path="/search-doc" component={SearchPost} />
+                                <Route exact path="/search-doc" component={SearchDoc} />
                             </Switch>
                         </div>
                     </Router>

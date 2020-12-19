@@ -5,21 +5,18 @@ import TopDocument from "components/common/home/TopDoc";
 import TopEvent from "components/common/home/TopEvent";
 import NewPost from "components/common/home/NewPost"
 import "./Home.scss";
-import "components/common/home/HomeLayout.scss"
 
 class Home extends Component {
     render() {
         return (
-            <div className="HomePage">
+            <div className="pr-layout">
                 <WallPage />
-                <div className="HomePage_Content">
+                <div className="home-page-container">
                     <NewPost />
                     <TopEvent />
                     <TopPost />
                     <TopDocument />
                 </div>
-
-
             </div>
         );
     }

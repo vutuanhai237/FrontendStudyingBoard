@@ -3,7 +3,6 @@ import {
     GET_POSTS_LIST,
     POST_GET_TOP_POST,
     POST_GET_POST_COMMENT_BY_ID,
-    POST_GET_IS_LIKE_POST_BY_UID,
     GET_HIGHLIGHT_POSTS,
     POST_GET_POST_NEWESTS,
     POST_GET_POST_NEW_ACTIVITIES,
@@ -14,10 +13,16 @@ import {
     GET_ALL_NOT_APPROVED_POSTS,
     APPROVE_A_POST,
 
-    //
+    //my post
     GET_MY_POSTS_REQUEST,
     GET_MY_POSTS_SUCCESS,
     GET_MY_POSTS_FAILURE,
+
+    //search post 
+    GET_POST_SEARCH_RESULT_REQUEST,
+    GET_POST_SEARCH_RESULT_SUCCESS,
+    GET_POST_SEARCH_RESULT_FAILURE
+
 
 } from '../constants.js'
 
@@ -33,6 +38,12 @@ const initialState = {
     newests: [],
     tags: [],
     statusPostPostCode: 0,
+
+    postSearchResult: {
+        isLoading: false,
+        data: [],
+        error: ""
+    },
 
     //my posts
     myPosts: {
@@ -67,12 +78,7 @@ function PostReducer(state = initialState, action) {
             return { ...state, topPost: action.payload.topPost };
         case POST_GET_POST_COMMENT_BY_ID:
             return { ...state, currentComments: action.payload.comments };
-        case POST_GET_IS_LIKE_POST_BY_UID:
-            var currentPost = state.currentPost;
-            currentPost.liked = action.payload.liked;
-            return { ...state, currentPost: currentPost, isFetchSuccess: true };
 
-        //
 
         //get all not approved post
         case GET_ALL_NOT_APPROVED_POSTS:
@@ -95,6 +101,20 @@ function PostReducer(state = initialState, action) {
                 return { ...state, myPosts: { isLoading: false, data: action.payload, error: '' } }
             }
         case GET_MY_POSTS_FAILURE:
+            {
+                return { ...state, myPosts: { isLoading: false, error: action.payload, data: [] } }
+            }
+
+        //get post search result
+        case GET_POST_SEARCH_RESULT_REQUEST:
+            return {
+                ...state, postSearchResult: { isLoading: true }
+            };
+        case GET_POST_SEARCH_RESULT_SUCCESS:
+            {
+                return { ...state, postSearchResult: { isLoading: false, data: action.payload, error: '' } }
+            }
+        case GET_POST_SEARCH_RESULT_FAILURE:
             {
                 return { ...state, myPosts: { isLoading: false, error: action.payload, data: [] } }
             }

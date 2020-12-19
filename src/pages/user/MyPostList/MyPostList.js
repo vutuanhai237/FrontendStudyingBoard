@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
-import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/Utils'
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/utils'
 
 import Loader from 'components/common/Loader/Loader'
 

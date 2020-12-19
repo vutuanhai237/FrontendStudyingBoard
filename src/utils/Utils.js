@@ -58,9 +58,9 @@ export function setSearchParam(name, value) {
 }
 
 export function navigateWithoutReload(pathname) {
-    if (window.history.pushState) {
-        let newurl = window.location.protocol + "//" + window.location.host + pathname;
-        window.history.pushState({ path: newurl }, '', newurl);
-    }
-
+    // if (window.history.pushState) {
+    //     let newurl = window.location.protocol + "//" + window.location.host + pathname;
+    //     window.history.pushState({ path: newurl }, '', newurl);
+    // }
+    window.location.href= pathname;
 }

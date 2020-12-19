@@ -13,16 +13,16 @@ import user_role_management_icon from 'assets/images/user_role_management_icon.p
 import statistic_management_icon from 'assets/images/statistic_management_icon.png'
 
 //management 
-import Statistic from './Statistic/Statistic';
-import UserRoleManagement from './UserRoleManagement/UserRoleManangement';
-import NotificationManagement from './NotificationManagement/NotificationManagement';
-import CategoryManagement from './CategoryManagement/CategoryManagement';
-import UserManagement from './UserManagement/UserManagement';
-import DocApprovingPage from './DocApproving/DocApproving';
-import PostApprovingPage from './PostApprovingPage/PostApprovingPage';
+import Statistic from 'pages/management/Statistic/Statistic';
+import UserRoleManagement from 'pages/management/UserRoleManagement/UserRoleManangement';
+import NotificationManagement from 'pages/management/NotificationManagement/NotificationManagement';
+import CategoryManagement from 'pages/management/CategoryManagement/CategoryManagement';
+import UserManagement from 'pages/management/UserManagement/UserManagement';
+import DocApprovingPage from 'pages/management/DocApproving/DocApproving';
+import PostApprovingPage from 'pages/management/PostApprovingPage/PostApprovingPage';
 
 //import scss
-import '../styles/LeftSidebarLayout.scss'
+import 'layouts/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
 
 //import resource string
@@ -35,21 +35,20 @@ import { getCurrentUser } from 'redux/services/userServices'
 
 //import for permission
 import {
-    StatisticPermission,
     getRoleNameByName,
     isGrantedPermissions
-} from 'utils/PermissionManagement'
+} from 'utils/permissionUtils'
 
 import {
-    DocumentPermission,
-    PostPermission,
-    ContentManagementPermission,
-    NotificationPermission,
-    CategoryPermission,
-    UserPermission,
-    ActivityPermission,
-    RolePermission
-} from 'utils/PermissionManagement'
+    Document,
+    Post,
+    ContentManagement,
+    Notification,
+    Category,
+    User,
+    Activity,
+    Role
+} from 'utils/permissionUtils'
 
 class AdminLayout extends Component {
     constructor(props) {
@@ -79,7 +78,7 @@ class AdminLayout extends Component {
                 window.location.pathname = "/admin";
 
             return (
-                <div className="normal-container">
+                <div className="pr-layout" style={{ background: "green" }}>
                     {/* Xu ly su kien cuon tro chuot */}
                     {window.onscroll = () => this.scrollFunction()}
 
@@ -137,7 +136,7 @@ class AdminLayout extends Component {
                                         < div className="Vertical_Menu_Layout"  >
                                             <div>
                                                 {/* Quản lý nội dung */}
-                                                <div hidden={!this.isGrantedPermissions(ContentManagementPermission.Management)}>
+                                                <div hidden={!this.isGrantedPermissions(ContentManagement.Management)}>
                                                     <div className="Parent_Dropdown_Menu_Item"
                                                         id="page-managent-parent-menu-item"
                                                         onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-admin-dropdown-btn-element", "page-admin-menu-item-container")}>
@@ -154,8 +153,8 @@ class AdminLayout extends Component {
                                                     <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
                                                         <div className="margin-bottom-5px" />
                                                         {
-                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                                && this.isGrantedPermissions(PostPermission.Approve))
+                                                            (this.isGrantedPermissions(ContentManagement.Management)
+                                                                && this.isGrantedPermissions(Post.Approve))
                                                                 ?
                                                                 window.location.pathname === "/admin/post-approving" || window.location.pathname === "/user/post-approving"
                                                                     ?
@@ -178,8 +177,8 @@ class AdminLayout extends Component {
                                                                 : <></>
                                                         }
                                                         {
-                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                                && this.isGrantedPermissions(DocumentPermission.Approve))
+                                                            (this.isGrantedPermissions(ContentManagement.Management)
+                                                                && this.isGrantedPermissions(Document.Approve))
                                                                 ?
                                                                 window.location.pathname === "/admin/doc-approving" || window.location.pathname === "/user/doc-approving"
                                                                     ?
@@ -203,8 +202,8 @@ class AdminLayout extends Component {
                                                                 <></>
                                                         }
                                                         {
-                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                                && this.isGrantedPermissions(NotificationPermission.ViewAll))
+                                                            (this.isGrantedPermissions(ContentManagement.Management)
+                                                                && this.isGrantedPermissions(Notification.ViewAll))
                                                                 ?
                                                                 window.location.pathname === "/admin/page-notification" || window.location.pathname === "/user/page-notification"
                                                                     ?
@@ -228,8 +227,8 @@ class AdminLayout extends Component {
                                                                 <></>
                                                         }
                                                         {
-                                                            (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                                && this.isGrantedPermissions(CategoryPermission.View))
+                                                            (this.isGrantedPermissions(ContentManagement.Management)
+                                                                && this.isGrantedPermissions(Category.View))
                                                                 ?
                                                                 window.location.pathname === "/admin/categories-management" || window.location.pathname === "/user/categories-management"
                                                                     ?
@@ -258,8 +257,8 @@ class AdminLayout extends Component {
                                                 </div>
 
                                                 {/* Quan ly nguoi dung */}
-                                                {(this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                    && this.isGrantedPermissions(UserPermission.All))
+                                                {(this.isGrantedPermissions(ContentManagement.Management)
+                                                    && this.isGrantedPermissions(User.All))
                                                     ? window.location.pathname === "/admin/user-management" || window.location.pathname === "/user/user-management"
                                                         ?
                                                         <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
@@ -293,8 +292,8 @@ class AdminLayout extends Component {
 
                                                 {/* Quan ly hoat dong: các báo cáo người dùng  */}
                                                 {
-                                                    (this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                        && this.isGrantedPermissions(UserPermission.All))
+                                                    (this.isGrantedPermissions(ContentManagement.Management)
+                                                        && this.isGrantedPermissions(User.All))
                                                         ? window.location.pathname === "/admin/activity_management" || window.location.pathname === "/user/activity_management"
                                                             ?
                                                             <Link className="Vertical_Menu_Item Main_Interactive_Menu_Item_Active"
@@ -326,8 +325,8 @@ class AdminLayout extends Component {
 
 
                                                 {/* Quan lý quyền truy cập: role */}
-                                                {(this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                    && this.isGrantedPermissions(RolePermission.All))
+                                                {(this.isGrantedPermissions(ContentManagement.Management)
+                                                    && this.isGrantedPermissions(Role.All))
                                                     ?
                                                     window.location.pathname === "/admin/user_role_management" || window.location.pathname === "/user/user_role_management"
                                                         ?
@@ -359,8 +358,8 @@ class AdminLayout extends Component {
                                                 }
 
                                                 {/* Thong ke */}
-                                                {(this.isGrantedPermissions(ContentManagementPermission.Management)
-                                                    && this.isGrantedPermissions(RolePermission.All))
+                                                {(this.isGrantedPermissions(ContentManagement.Management)
+                                                    && this.isGrantedPermissions(Role.All))
                                                     ?
                                                     window.location.pathname === "/admin/Statistic_management" || window.location.pathname === "/user/Statistic_management"
                                                         ?

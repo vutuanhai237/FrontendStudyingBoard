@@ -136,7 +136,7 @@ class PostSummary extends Component {
               {this.props.authorName}
             </div>
 
-            {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.app ?
+            {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.approving ?
               <>{approveLabel}</> : <></>}
           </div>
 
@@ -184,7 +184,7 @@ class PostSummary extends Component {
                 <div>{saveBtn}</div>
                 {this.isSaved ? "Lưu" : "Huỷ"}
               </div>
-              <div className="comment-count-container">
+              <div className="post-comment-count-container">
                 Bình luận
                 <div style={{ paddingLeft: "5px" }}>
                   {this.props.comments}

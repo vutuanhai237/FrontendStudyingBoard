@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import Tag from "components/common/Tag/Tag"
-import { getMyPostsList } from "redux/services/postServices"
+import { getPostSearchResult } from "redux/services/postServices"
 import { getPostCategories } from "redux/services/postCategoryServices"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
-import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/Utils'
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/utils'
 import Paginator from 'components/common/Paginator/ServerPaginator'
 import PostSummary from 'components/post/PostSummary'
 import Loader from 'components/common/Loader/Loader'
-import {summaryItemType} from 'constants.js'
+import { summaryItemType } from 'constants.js'
 
 class SearchPostByTag extends Component {
     constructor(props) {
         super(props);
 
-        this.postsList = <></>
+        this.postSearchResult = <></>;
         this.categoryFilters = [
             { id: 1, name: "Tất cả" },
             { id: 2, name: "Danh mục 1" },
@@ -35,7 +35,9 @@ class SearchPostByTag extends Component {
     async componentDidMount() {
 
         let page = getSearchParamByName('page');
-        this.props.getMyPostsList(page); //api khác, tìm bằng tag
+        let category = getSearchParamByName('category');
+        let searchTerm = getSearchParamByName('q'); //querry
+        this.props.getPostSearchResult(page ? page : 1, category ? category : "", searchTerm ? searchTerm : ""); //api khác, tìm bằng tag
     }
 
     //server paginator
@@ -49,7 +51,7 @@ class SearchPostByTag extends Component {
     render() {
 
         if (!this.props.isListLoading) {
-            this.myPostsList = this.props.myPostsList.map((postItem) => (
+            this.postSearchResult = this.props.postSearchResult.map((postItem) => (
                 <PostSummary
                     type={summaryItemType.normal}
                     key={postItem.id}
@@ -104,7 +106,7 @@ class SearchPostByTag extends Component {
                 {
                     this.props.isListLoading ?
                         < Loader /> :
-                        <>{this.myPostsList}</>
+                        <>{this.postSearchResult}</>
                 }
 
                 < Paginator config={{
@@ -120,15 +122,15 @@ class SearchPostByTag extends Component {
 const mapStateToProps = (state) => {
     console.log(state);
     return {
-        myPostsList: state.post.myPosts.data,
+        postSearchResult: state.post.postSearchResult.data,
         postCategories: state.post_category.categories.data,
-        isListLoading: state.post.myPosts.isLoading,
+        isListLoading: state.post.postSearchResult.isLoading,
         isCategoryLoading: state.post_category.categories.isLoading
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getMyPostsList, getPostCategories
+    getPostSearchResult, getPostCategories
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPostByTag));

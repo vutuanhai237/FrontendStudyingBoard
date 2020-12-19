@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import '../AdminLayout'
+import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './CategoryManagement.scss'
@@ -12,8 +12,7 @@ import { ClickAwayListener } from '@material-ui/core';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCategoriesDoc, getSubjects } from 'redux/services/docServices'
-
+import { getDocCategories } from "redux/services/docCategoryServices";
 
 //chuyen thanh chi xem nen chua co handle click cho cac item trong bang danh muc bai viet
 class CategoryManagement extends Component {
@@ -68,8 +67,8 @@ class CategoryManagement extends Component {
     }
 
     componentDidMount() {
-        this.props.getCategoriesDoc();
-        this.props.getSubjects();
+        this.props.getDocCategories();
+        
 
     }
 
@@ -541,15 +540,13 @@ class CategoryManagement extends Component {
 //#region for Redux
 const mapStateToProps = (state) => {
     return {
-        categoryList:state.doc.categories,
-        subjectList:state.doc.subjects,
+        categoryList: state.doc.categories,
+        subjectList: state.doc.subjects,
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCategoriesDoc,
-    getSubjects,
-
+    getDocCategories,
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryManagement));

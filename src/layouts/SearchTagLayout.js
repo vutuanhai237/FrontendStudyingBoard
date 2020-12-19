@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import resource string
 
 //import scss
-import '../styles/LeftSidebarLayout.scss'
+import 'layouts/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
 
 //import components
@@ -17,12 +17,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getCurrentUser } from 'redux/services/userServices'
-// import Titlebar from 'components/common/Titlebar/Titlebar'
+
 import Tag from 'components/common/Tag/Tag'
 import "components/common/Titlebar/Titlebar.scss"
-import "../styles/BlankLayout.scss"
-import "../styles/SearchLayout.scss"
-import "../styles/SearchTagLayout.scss"
+import "layouts/Layout.scss"
+import "layouts/SearchLayout.scss"
+import "layouts/SearchTagLayout.scss"
 
 export default class SearchLayout extends Component {
     constructor(props) {
@@ -51,7 +51,7 @@ export default class SearchLayout extends Component {
 
     render() {
         return (
-            <div className="normal-container" >
+            <div className="pr-layout" >
                 <div className="search-layout">
 
                     <div className="Searching_Tag">

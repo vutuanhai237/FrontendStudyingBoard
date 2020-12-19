@@ -7,7 +7,7 @@ import gray_btn_element from 'assets/images/gray_btn_element.png'
 
 import { management_getCurrentPreviewDocument } from "redux/services/docServices"
 import { getCurrentUser } from "redux/services/userServices"
-import { isGrantedPermissions, DocumentPermission } from "utils/PermissionManagement"
+import { isGrantedPermissions, Document } from "utils/permissionUtils"
 import { getDocumentByID } from "redux/services/docServices"
 
 import { bindActionCreators } from 'redux';
@@ -297,7 +297,7 @@ class DocDetail extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        document: state.doc.document,
+        document: state.document.document,
         accountInformation: state.user.account
     };
 }

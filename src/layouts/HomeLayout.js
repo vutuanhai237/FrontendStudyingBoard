@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //import resource string
 
 //import scss
-import '../styles/LeftSidebarLayout.scss'
+import 'layouts/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
 
 //import components
@@ -35,9 +35,9 @@ class BlankLayout extends Component {
         if (this.props.accountInformation !== null && this.props.accountInformation !== undefined) {
 
             return (
-                <div className="normal-container">
+                <div className="pr-layout">
                     <Router>
-                        <div className="blank-layout-router-outlet" >
+                        <div className="nm-bl-layout-router-outlet" >
                             <Switch>
                                 <Route exact path="/posts" component={PostsList} />
                                 <Route exact path="/documents" component={DocsList} />

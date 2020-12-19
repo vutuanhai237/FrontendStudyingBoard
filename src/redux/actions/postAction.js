@@ -16,9 +16,17 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
 
     APPROVE_A_DOCUMENT,
+
+    //my post
     GET_MY_POSTS_REQUEST,
     GET_MY_POSTS_SUCCESS,
-    GET_MY_POSTS_FAILURE
+    GET_MY_POSTS_FAILURE,
+
+    //post search result
+    GET_POST_SEARCH_RESULT_REQUEST,
+    GET_POST_SEARCH_RESULT_SUCCESS,
+    GET_POST_SEARCH_RESULT_FAILURE
+    
 } from "../constants.js"
 
 // POST section
@@ -192,3 +200,24 @@ export function get_MyPostsFailure(error) {
     }
 }
 
+//post search result
+export function get_PostSearchResultRequest() {
+    return {
+        type: GET_POST_SEARCH_RESULT_REQUEST
+    }
+}
+
+export function get_PostSearchResultSuccess(data) {
+    return {
+        type: GET_POST_SEARCH_RESULT_SUCCESS, payload: data
+    }
+}
+
+
+
+export function get_PostSearchResultFailure(error) {
+    return {
+        type: GET_POST_SEARCH_RESULT_FAILURE, 
+        payload: error
+    }
+}

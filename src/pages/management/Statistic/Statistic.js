@@ -1,7 +1,7 @@
 
 
 import React, { Component } from 'react'
-import '../AdminLayout'
+import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import Paginator from 'components/common/Paginator/ClientPaginator'
 import UserItem from 'components/user/UserItem'

@@ -4,9 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import {
-  
     getSubjects,
-    getCategoriesDoc,
     postDoc,
 } from "redux/services/docServices"
 import "./UploadDocument.scss";
@@ -14,6 +12,8 @@ import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import ComboBox from 'components/common/Combobox/Combobox';
 import CKEditor from "ckeditor4-react";
+
+import {getDocCategories} from "redux/services/docCategoryServices";
 
 class UploadDocument extends Component {
     constructor(props) {
@@ -100,10 +100,6 @@ class UploadDocument extends Component {
         };
 
 
-        // this.statusPostDocCode = 0;
-        // this.handleClose = this.handleClose.bind(this);
-        // this.changeUploadFileName = this.changeUploadFileName.bind(this);
-        // this.changeFileName = this.changeFileName.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -116,76 +112,11 @@ class UploadDocument extends Component {
 
     }
     componentDidMount() {
-        this.props.getCategoriesDoc();
-     
+        this.props.getDocCategories();
+
         this.props.getSubjects();
     }
 
-    // handleModal() {
-    //     console.log(this.statusPostDocCode)
-    //     if (this.statusPostDocCode !== 18) {
-    //         this.setState({
-    //             modalShow: true,
-    //             modalMessage: "Tải lên thất bại",
-    //         });
-    //     } else {
-    //         this.setState({
-    //             modalShow: true,
-    //             modalMessage: "Tải lên thành công",
-    //         });
-    //     }
-    //     this.setState({
-    //         isUploading: false,
-    //     })
-    // }
-    // handleUpload() {
-
-    //     console.log(this.state.doc);
-    //     this.props.postDoc(this.state.doc);
-    //     this.setState({
-    //         isUploading: true,
-    //     })
-    // }
-
-    // handleClose() {
-    //     this.setState({
-    //         modalShow: false,
-    //     });
-    // }
-
-    // changeCurrentCategory(evt) {
-    //     const { categories } = this.props;
-    //     this.setState({
-    //         doc: {
-    //             ...this.state.doc,
-    //             currentCategory: evt,
-    //             categoryID: categories.find(e => e.name === evt).id
-    //         }
-    //     })
-
-    // }
-
-    // changeFileName() {
-    //     this.setState({
-    //         doc: {
-    //             ...this.state.doc,
-    //             title: this.refs.title.value,
-    //             summary: this.refs.summary.value,
-
-    //         }
-    //     })
-    // }
-    // changeCurrentSubject(evt) {
-    //     const { subjects } = this.props;
-
-    //     this.setState({
-    //         doc: {
-    //             ...this.state.doc,
-    //             currentSubject: evt,
-    //             subjectID: subjects.find(e => e.subjectName === evt).subjectId,
-    //         }
-    //     })
-    // }
 
     changeUploadFileName(evt) {
         this.setState({
@@ -237,34 +168,12 @@ class UploadDocument extends Component {
     //#endregion
 
     render() {
-        const { categories, semesters, subjects } = this.props;
-        //var modalBody = null;
-        // if (this.statusPostDocCode === 18) {
-        //     modalBody = <div>
-        //         <Modal.Body>
-        //             {this.state.modalMessage}
-        //         </Modal.Body>
-        //         <Modal.Footer>
-        //             <Button variant="success" href="/" onClick={this.handleClose}>
-        //                 Đồng ý
-        //                 </Button>
-        //         </Modal.Footer>
-        //     </div>
-        // } else {
-        //     modalBody = <div>
-        //         <Modal.Body>{this.state.modalMessage}</Modal.Body>
-        //         <Modal.Footer>
-        //             <Button variant="danger" onClick={this.handleClose}>
-        //                 Đồng ý
-        //             </Button>
-        //         </Modal.Footer>
-        //     </div>
-        // }
+        const { categories } = this.props;
         return (
             <div>
                 <Titlebar title="UPLOAD TÀI LIỆU" />
 
-                <div id="create-post" className ="left-side-bar-layout-content-container">
+                <div id="create-post" className="left-side-bar-layout-content-container">
 
                     <div className="flex-container-end">
                     </div>
@@ -319,92 +228,6 @@ class UploadDocument extends Component {
 
                 </div>
             </div >
-
-            // <div id="create-post">
-            //     <Modal centered show={this.state.modalShow} onHide={this.handleClose} animation={false}>
-            //         <Modal.Header closeButton>
-            //             <Modal.Title contained-modal-title-vcenter>
-            //                 Thông báo
-            //             </Modal.Title>
-            //         </Modal.Header>
-            //         {modalBody}
-            //     </Modal>
-
-            //     <p className="title">UPLOAD TÀI LIỆU</p>
-            //     <Form>
-            //         <InputGroup className="mb-3">
-            //             <InputGroup.Prepend>
-            //                 <InputGroup.Text>Tên tài liệu</InputGroup.Text>
-            //             </InputGroup.Prepend>
-            //             <FormControl onChange={this.changeFileName} ref="title" placeholder="Nhập tên tài liệu" aria-label="Amount (to the nearest dollar)" />
-            //         </InputGroup>
-
-            //         <InputGroup className="mb-3">
-            //             <InputGroup.Prepend>
-            //                 <InputGroup.Text>Mô tả tài liệu</InputGroup.Text>
-            //             </InputGroup.Prepend>
-            //             <FormControl ref="summary" placeholder="Nhập mô tả tài liệu" aria-label="Amount (to the nearest dollar)" />
-            //         </InputGroup>
-
-            //         <Row>
-            //             <Col>
-            //                 <DropdownButton title={this.state.doc.currentCategory}>
-            //                     {categories.map((item) => {
-            //                         return (
-            //                             <Dropdown.Item onSelect={(evt) => this.changeCurrentCategory(evt)} eventKey={item.name}>
-            //                                 {item.name}
-            //                             </Dropdown.Item>
-            //                         );
-            //                     })}
-            //                 </DropdownButton>
-            //             </Col>
-            //         </Row>
-            //         <Row>
-            //             <Col>
-            //                 <DropdownButton title={this.state.doc.currentSubject}>
-            //                     {subjects.map((item) => {
-            //                         return (
-            //                             <Dropdown.Item onSelect={(evt) => this.changeCurrentSubject(evt)} eventKey={item.subjectName}>
-            //                                 {item.subjectName}
-            //                             </Dropdown.Item>
-            //                         );
-            //                     })}
-            //                 </DropdownButton>
-            //             </Col>
-            //         </Row>
-            //         <Row>
-            //             <Col>
-            //                 <DropdownButton title={this.state.doc.currentSemester}>
-            //                     {semesters.map((item) => {
-            //                         return (
-            //                             <Dropdown.Item onSelect={(evt) => this.changeCurrentSemester(evt)} eventKey={item.semesterNo + " . " + item.academicYear}>
-            //                                 {item.semesterNo + " . " + item.academicYear}
-            //                             </Dropdown.Item>
-            //                         );
-            //                     })}
-            //                 </DropdownButton>
-            //             </Col>
-            //         </Row>
-
-            //         <br className="mb-1"></br>
-            //         <Row className="browser-upload">
-            //             <Col>
-            //                 <Form.File id="formcheck-api-custom" onChange={this.changeUploadFileName} custom>
-            //                     <Form.File.Input onChange={this.changeUploadFileName} isValid />
-            //                     <Form.File.Label data-browse="Tải lên">
-            //                         {this.state.uploadFileName}
-            //                     </Form.File.Label>
-            //                 </Form.File>
-
-            //             </Col>
-            //         </Row>
-
-            //         <br></br>
-            //         <Button block className="btn-submit" variant="success" onClick={this.handleUpload.bind(this)}>
-            //             Tải lên
-            //         </Button>
-            //     </Form>
-            // </div>
         );
     }
 }
@@ -412,17 +235,15 @@ class UploadDocument extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.doc.categories,
-        subjects: state.doc.subjects,
-        statusPostDocCode: state.doc.statusPostDocCode,
+        categories: state.doc_category.categories
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
- 
+
     getSubjects,
     postDoc,
-    getCategoriesDoc,
+    getDocCategories,
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UploadDocument));

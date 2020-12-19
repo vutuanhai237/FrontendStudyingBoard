@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import AdminLayout from 'pages/management/AdminLayout'
+import AdminLayout from 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
@@ -15,7 +15,7 @@ import dropdown_btn from 'assets/images/dropdown_icon.png'
 import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UpdatePassword from './UpdatePassword'
-import { isContainSpecialCharacter } from 'utils/Utils'
+import { isContainSpecialCharacter } from 'utils/utils'
 import ImageUploader from 'react-images-upload'
 
 //import for Redux
@@ -26,7 +26,7 @@ import { getCurrentUser } from 'redux/services/userServices'
 import { management_getAllRoles } from 'redux/services/userServices'
 
 //import for role config
-import { getRoleNameFilterByName } from 'utils/PermissionManagement'
+import { getRoleNameFilterByName } from 'utils/permissionUtils'
 
 import Cookies from 'js-cookie'
 
