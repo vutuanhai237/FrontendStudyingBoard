@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { setSearchParam } from 'utils/utils'
+import { setSearchParam } from 'utils/urlUtils'
 import 'components/common/Paginator/Paginator.scss'
 
 
@@ -11,7 +11,7 @@ class Paginator extends Component {
         this.numShownPage = 5; //số page được show trên thanh paginator, mặc định là 5, hiện tại chưa cho đổi.
         this.pageCount = 0;
         this.currentPage = 1;
-        this.arrayShownPages = [1, 2, 3, 4, 5]; //define which number will be output
+        this.arrayShownPages = [1, 2, 3, 4, 5, 6, 7]; //define which number will be output
     }
 
     componentDidMount() {
@@ -22,6 +22,10 @@ class Paginator extends Component {
 
         let arrayShownPages = this.arrayShownPages;
         page_number = parseInt(page_number);
+        if (this.arrayShownPages === [NaN, NaN, NaN, NaN, NaN]) {
+            this.arrayShownPages = [1, 2, 3, 4, 5, 6, 7]
+        }
+
         //handler action
         switch (action) {
             case "first":
@@ -41,6 +45,8 @@ class Paginator extends Component {
             default:
                 break;
         }
+
+
 
         //neu page count > so page duoc show
         if (this.props.config.pageCount >= this.numShownPage) {
@@ -76,18 +82,20 @@ class Paginator extends Component {
                     break;
                 default:
                     {
+                        console.log("%");
                         if (this.props.config.pageCount <= 6) {
                             for (let i = 1; i <= this.props.config.pageCount; i++) {
                                 arrayShownPages.push(i);
                             }
                         }
                         else {
-
-                            arrayShownPages.push(page_number - 2);
-                            arrayShownPages.push(page_number - 1);
-                            arrayShownPages.push(page_number);
-                            arrayShownPages.push(page_number + 1);
-                            arrayShownPages.push(page_number + 2);
+                            if (!isNaN(page_number)) {
+                                arrayShownPages.push(page_number - 2);
+                                arrayShownPages.push(page_number - 1);
+                                arrayShownPages.push(page_number);
+                                arrayShownPages.push(page_number + 1);
+                                arrayShownPages.push(page_number + 2);
+                            }
                         }
                     }
             }
@@ -96,6 +104,7 @@ class Paginator extends Component {
 
         //clear current list then add what we need
         this.currentPage = page_number;
+
 
         if (action !== "first_load") {
             this.setState({});

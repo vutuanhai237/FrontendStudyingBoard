@@ -1,62 +1,70 @@
 import React, { Component } from "react";
 import Tag from "components/common/Tag/Tag"
-import { getMyDocumentsList } from "redux/services/docServices"
+import { getDocumentSearchResult } from "redux/services/docServices"
 import { getDocCategories } from "redux/services/docCategoryServices"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
-import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/utils'
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/urlUtils'
 import Paginator from 'components/common/Paginator/ServerPaginator'
 import DocSummary from 'components/doc/DocSummary'
 import Loader from 'components/common/Loader/Loader'
 import { summaryItemType } from 'constants.js'
 
-class SearchDoc extends Component {
+class SearchDocument extends Component {
     constructor(props) {
         super(props);
 
-        this.documentResult = [];
+        this.documentSearchResult = [];
 
-        this.filter = [
+        this.categoryFilters = [
             { id: 1, name: "Tất cả" },
-            { id: 2, name: "Chưa phê duyệt" },
-            { id: 3, name: "Đã phê duyệt" },
-            { id: 4, name: "Cần xem lại" }
+            { id: 2, name: "Danh mục 1" },
+            { id: 3, name: "Danh mục 2" },
+            { id: 4, name: "Danh mục 3" }
+        ]
+        this.timeFilters = [
+            { id: 1, name: "Mới nhất" },
+            { id: 2, name: "Cũ nhất" },
+            { id: 3, name: "7 ngày qua" },
+            { id: 4, name: "Hôm nay" }
         ]
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.props.getDocCategories();
-
+        let searchTerm = getSearchParamByName('q'); //querry
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
 
-        this.props.getMyDocumentsList(page, category); //api khác, tìm bằng tag
+        this.props.getDocumentSearchResult(page, category, searchTerm) //api khác, tìm bằng tag
     }
 
     //server paginator
     onPageChange = (pageNumber) => {
         setSearchParam("page", pageNumber);
+        let searchTerm = getSearchParamByName('q'); //querry
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
-        this.props.getMyDocumentsList(page, category);
+        this.props.getDocumentSearchResult(page ? page : 1, category ? category : "", searchTerm ? searchTerm : "");
         this.setState({});
     }
 
     //combobox
     onFilterOptionChanged = (selectedOption) => {
         setSearchParam("category", selectedOption.id);
+        let searchTerm = getSearchParamByName('q'); //querry
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
-        this.props.getMyDocumentsList(page, category);
+        this.props.getDocumentsSearchResult(page ? page : 1, category ? category : "", searchTerm ? searchTerm : "");
         this.setState({});
     }
     render() {
 
         if (!this.props.isListLoading) {
-            this.myDocumentsList = this.props.myDocumentsList.map((documentItem) => (
+            this.documentSearchResult = this.props.documentsList.map((documentItem) => (
                 <DocSummary
                     type={summaryItemType.normal}
                     key={documentItem.id}
@@ -80,37 +88,52 @@ class SearchDoc extends Component {
         }
         return (
             <div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
 
-                    <div className="filter-label display-flex">
-                        <div className="margin-right-5px">Tổng số:</div>
-                        <div>{this.myDocuments.length}</div>
-                    </div>
 
+                <div className="two-element-filter-container">
                     <div style={{ display: "flex" }}>
-                        <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                        <div className="filter-label text-align-right margin-right-5px">Thời gian:</div>
                         <div style={{ marginLeft: "5px" }}>
                             <ComboBox
-                                options={this.filter}
-                                selectedOptionID={1}
+                                // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                                options={this.timeFilters}
+                                placeHolder="Chọn thời gian"
                                 onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
-                                id="search-doc-result-search-filter-combobox"
-                            ></ComboBox></div>
+                                id="search-doc-time-filter-combobox"
+                            ></ComboBox>
+                        </div>
+                    </div>
+                    <div style={{ display: "flex" }}>
+                        <div className="filter-label text-align-right margin-right-5px">Danh mục:</div>
+                        <div style={{ marginLeft: "5px" }}>
+                            <ComboBox
+                                // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                                options={this.categoryFilters}
+                                placeHolder="Chọn danh mục"
+                                onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                id="search-doc-category-filter-combobox"
+                            ></ComboBox>
+                        </div>
                     </div>
                 </div>
+
                 <div>
                     {
                         this.props.isListLoading ?
                             < Loader /> :
-                            <>{this.myDocumentsList}</>
+                            <div>
+                                <div className="gray-label margin-bottom-10px"> Tổng số kết quả: {"20"}  </div>
+                                <div className="list-item-container">{this.documentSearchResult}</div>
+                            </div>
                     }
 
                     < Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        pageCount: 7,
+                        pageCount: 1200,
                         currentPage: getSearchParamByName('page')
                     }} />
                 </div>
+
             </div>
         );
     }
@@ -119,15 +142,15 @@ class SearchDoc extends Component {
 const mapStateToProps = (state) => {
     console.log(state);
     return {
-        myDocumentsList: state.document.myDocuments.data,
+        documentsList: state.document.documentSearchResult.data,
         docCategories: state.doc_category.categories.data,
-        isListLoading: state.document.myDocuments.isLoading,
+        isListLoading: state.document.documentSearchResult.isLoading,
         isCategoryLoading: state.doc_category.categories.isLoading
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getMyDocumentsList, getDocCategories
+    getDocumentSearchResult, getDocCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocSummary));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchDocument));

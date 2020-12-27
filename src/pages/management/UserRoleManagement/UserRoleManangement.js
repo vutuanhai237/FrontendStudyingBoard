@@ -69,10 +69,10 @@ class UserRoleManagement extends Component {
                                 </div> */}
                                 <ClickAwayListener onClickAway={() => { this.closeAllPostCategoryListItemActivated() }}>
 
-                                    <div className="Custom_Table_Layout">
-                                        <div className="Custom_Table_Header">
-                                            <div className="Custom_Table_20percents_Header">Mã quyền</div>
-                                            <div className="Custom_Table_80percents_Header">Tên quyền - Quyền tương ứng</div>
+                                    <div className="custom-table-layout">
+                                        <div className="custom-table-header">
+                                            <div className="custom-table-20percents-column">Mã quyền</div>
+                                            <div className="custom-table-80percents-column">Tên quyền - Quyền tương ứng</div>
                                         </div>
                                         {this.props.roleList ?
                                             <> {

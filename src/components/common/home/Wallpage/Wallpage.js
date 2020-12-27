@@ -1,38 +1,60 @@
 import React, { Component } from "react";
-
+import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
-import "./Wallpage.scss";
+//resources
 import wallpage_bg from 'assets/images/white_bg.jpg'
-import btn_element from 'assets/images/btn_element.png'
 import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
-import like_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
-import save_btn from 'assets/images/blue_bookmark_btn.png'
+import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
+import liked_btn from 'assets/images/liked_btn.png'
+import gray_btn_element from 'assets/images/gray_btn_element.png'
+import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
 
-import { getHighlightPosts } from "redux/services/postServices";
+//components
+import PopupMenu from 'components/common/PopupMenu/PopupMenu'
+import Loader from 'components/common/Loader/Loader'
+
+//styles
+import 'styles/SimpleLabel.scss'
+import "./Wallpage.scss";
+import 'components/styles/DocPostSummary.scss'
+
+//constants
+import { summaryItemType } from 'constants.js'
+
+//services
+import { getHighlightPostsList } from "redux/services/postServices";
 
 class WallPaper extends Component {
 
     constructor(props) {
         super(props);
-        // this.props = highlightPostResults;
         this.state = {
-            slideIndex: 0,
-            slideIndexLength: 0,
             isLiked: false,
             isSaved: true
         }
-        this.isTheFirstTimeLoaded = false;
-        this.likes = 3;
-        this.commentCount = 10;
+
+        this.slideID = 0;
+        this.slideIndex = 0;
+        this.slideIndexLength = 3;
+
+        this.isLiked = false;
+        this.isSaved = false;
+
+        this.normalMenuItemList = [
+            { id: 3, name: "Báo cáo", icon: trash_icon },
+        ]
 
     }
 
     componentDidMount() {
+        this.props.getHighlightPostsList();
+
         let intervalID = setInterval(
-            this.showSlides(), 3000
+            this.showSlides, 5000
         );
 
         this.setState({ intervalID: intervalID })
@@ -55,121 +77,175 @@ class WallPaper extends Component {
     }
 
     showSlides = () => {
+        if (this.props.isLoadDone) {
+            for (let i = 0; i < this.props.highlightPostsList.length; i++) {
+                let slide = document.getElementById("current-highlight-" + this.props.highlightPostsList[i].id);
+                slide.style.display = "none"
 
-        for (let i = 0; i < this.state.slideIndexLength; i++) {
-            let slide = document.getElementById("current_highlight_" + i);
-            slide.style.display = "none"
+                console.log(slide.style.display)
+            }
+
+            if (this.slideIndex === this.slideIndexLength - 1) {
+                this.slideIndex = 0;
+            }
+            else {
+                this.slideIndex = this.slideIndex + 1;
+            }
+
+            this.slideID = this.props.highlightPostsList[this.slideIndex].id;
+
+            document.getElementById("current-highlight-" + this.slideID).style.display = "block";
+            this.setState({});
         }
 
-        if (this.state.slideIndex === this.state.slideIndexLength - 1) {
-            this.setState({ slideIndex: 0 })
-        }
-        else {
-            this.setState({ slideIndex: this.state.slideIndex + 1 })
-        }
-        let slide = document.getElementById("current_highlight_" + this.state.slideIndex);
-        slide.style.display = "block";
     }
 
 
 
     render() {
-        const newActivities = [{ "id": 1 }, { "id": 2 }, { "id": 3 }];
-   
-        let hightlightList = newActivities.map((item, index) => {
-            return <div id={"current_highlight_" + index}
-                style={{ display: "none" }}
-            >
-                <div className="Wallpage_Content">
-                    <div className="Wallpage_Left_Content">
-                        <img className="Wallpage_Image" alt="" src={"https://i.pinimg.com/originals/01/3a/b1/013ab1e5228096b6f5623cb53eb0dc4f.jpg"} />
-                    </div>
+        //initiate some element
 
-                    <div className="Wallpage_Right_Content">
+        let likeBtn = <div></div>;
+        let saveBtn = <div></div>;
+        let approveLabel = <div></div>
 
-                        <div className="display-flex">
-                            <div className="Highlight_Title">NỔI BẬT</div>
-                            <div className="Highlight_Title_Underline"></div>
-                        </div>
-                        <div className="Highlight_Metadata justify-content-space-between">
-                            <div className="display-flex">
-                                <div className="Highlight-category_Metadata">
-                                    <div className="prefix-Highlight_Metadata" />
-                                    <div className="Highlight-category">
-                                        Danh mục 1
-                                </div>
-                                </div>
-                                <div className="gray-label margin-left-5px">by</div>
-                                <div className="Highlight-author-link margin-left-5px" >
-                                    {/* // onClick={() => this.navigateToAuthorPersonalPage()}> */}
+        if (!this.isLiked) {
+            likeBtn = <img className="like-btn" alt="like" src={liked_btn} onClick={this.toggleLikeImage}></img>
+        }
+        else {
+            likeBtn = <img className="like-btn" alt="like" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
+        }
 
-                                    {/* {this.authorName} */} Vũ Tuấn Hải
-                                 </div>
-                                <img alt="*" className="Hightlight_Metadata_Icon" src={btn_element} />
-                                <div className="Highlight_Read_Time">
-                                    {/* {this.publishDtm} */}
-                               10 phút đọc
-                                </div>
-                            </div>
-                            <div className="Highlight_Published_Date">
-                                {/* {this.publishDtm} */}
-                                 20/10/2020
-                            </div>
+        //render saveBtn
+        if (!this.isSaved) {
+            saveBtn = <img className="save-btn" alt="dislike" src={full_blue_bookmark_btn}></img>
+        }
+        else {
+            saveBtn = <img className="save-btn" alt="dislike" src={gray_bookmark_btn} ></img>
+        }
+        let highlightList;
+        let highlightTransitionbar;
+
+        if (!this.props.isLoading) {
+            highlightList = this.props.highlightPostsList.map((item) => {
+                return <div id={"current-highlight-" + item.id}
+                    style={{
+                        display: "none"
+                    }}
+                >
+                    <div className="Wallpage_Content">
+
+                        <div className="Wallpage_Left_Content">
+                            <img className="Wallpage_Image" alt="" src={"https://i.pinimg.com/originals/01/3a/b1/013ab1e5228096b6f5623cb53eb0dc4f.jpg"} />
                         </div>
 
-                        <div className="Highlight_Summary_Title">
-                            {/* {this.props.title} */}
-Loop inside React JSX
-
-                        </div>
-
-
-                        <div className="Highlight_Summary_Content">
-                            {/* {this.props.content} */}
-                            I realize and understand why this isn't valid JSX, since JSX maps to function calls. However, coming from template land and being new to JSX, I am unsure how I would achieve the above (adding a component multiple times).       </div>
-
-                        <div className="Highlight_Reaction_Bar">
-                            <div className="Highlight_Reaction_Bar_Like_Btn_Layout">
-                                <img className="Highlight_Reaction_Bar_Like_Btn" src={this.state.isLiked ? like_btn : unliked_btn} onClick={() => this.toggleLikeImage()}></img>
-                                <div className="Highlight_Reaction_Bar_Like_Count">{this.state.isLiked ? this.likes + 1 : this.likes}</div>
+                        <div className="Wallpage_Right_Content">
+                            <div className="display-flex margin-bottom-8px" >
+                                <div className="Highlight_Title">NỔI BẬT</div>
+                                <div className="Highlight_Title_Underline"></div>
                             </div>
+                            <div className="highlight-item-container" >
+                                <div className="item-normal-metadata-container" >
+                                    <div className="display-flex">
 
-                            <div className="Highlight_Reaction_Bar-save-comment-count-container">
-                                <div className="Highlight_Reaction_Bar-save-btn-layout">
-                                    <img className="Highlight_Reaction_Bar-save-btn" src={this.state.isSaved ? save_btn : full_blue_bookmark_btn} onClick={() => this.toggleSaveImage()}></img>
+                                        <div className="display-flex">
+                                            <div className="prefix-normal-category" />
+                                            <div className="normal-category">
+                                                {item.category}
+                                            </div>
+                                        </div>
 
-                                    <div className="Highlight_Reaction_Bar_Save_Text"> {this.state.isSaved ? "Lưu" : "Huỷ"} </div>
-                                </div>
-                                <div className="Highlight_Reaction_Bar-comment-count-container">
-                                    <div className="Highlight_Reaction_Bar_Comment_Text">
-                                        Bình luận
-                                </div>
-                                    <div className="Highlight_Reaction_Bar-comment-count">
-                                        {this.commentCount}
+                                        <div className="metadata-light-black-label">bởi</div>
+                                        <Link className="link-label" to={/user/}>
+                                            {item.authorName}
+                                        </Link>
+
+                                        {item.type === summaryItemType.mySelf || item.type === summaryItemType.approving ?
+                                            <>{approveLabel}</> : <></>}
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
+                                    {item.type === summaryItemType.mySelf &&
+                                        <PopupMenu items={this.mySelfMenuItemList} id={`highlight-post-popup-menu-${item.id}`} />
+                                    }
+                                    {(item.type === summaryItemType.normal || !item.type) &&
+                                        <PopupMenu items={this.normalMenuItemList} id={`highlight-post-popup-menu-${item.id}`} />
+                                    }
+
+                                </div>
+                                <div className="item-title">
+                                    {item.title}
+                                </div>
+                                <div className="display-flex" style={{ marginTop: "-10px" }}>
+                                    <div className="display-flex"  >
+                                        <img alt="*" className="metadata-icon" src={gray_btn_element} />
+                                        <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
+                                            {item.readingTime} phút đọc
+                                    </div>
+                                    </div>
+
+                                    <div className="display-flex" >
+                                        <img alt="*" className="metadata-icon" src={gray_btn_element} />
+                                        <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
+                                            {item.publishDtm}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div className="item-summary">
+                                    {item.summary}
+                                </div>
+
+                                <div className="item-reaction-bar">
+                                    <div className="display-flex margin-top-5px">
+                                        <div className="display-flex">
+                                            <div> {likeBtn}</div>
+                                            <div className="like-count">{item.likes}</div>
+                                        </div>
+
+                                        <div className="display-flex">
+                                            <div className="save-text-container" onClick={this.toggleSaveImage}>
+                                                <div>{saveBtn}</div>
+                                                {this.isSaved ? "Lưu" : "Huỷ"}
+                                            </div>
+                                            <div className="post-comment-count-container">
+                                                Bình luận
+                                          <div style={{ paddingLeft: "5px" }}>
+                                                    {item.comments}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="link-label margin-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + item.id }}>
+                                        Đọc tiếp ...
+                                 </div>
+                                </div>
+
+
+                            </div >
+                        </div>
                     </div>
                 </div>
-            </div>
-        });
+            });
 
-        let highlightTransitionbar = newActivities.map((item, index) =>
-            <div className="Highlight_Transitionbar_Item">
+            highlightTransitionbar = this.props.highlightPostsList.map((item, index) =>
+                <div className="Highlight_Transitionbar_Item">
 
-            </div>
-        )
-
+                </div>
+            )
+        }
         return (
             <div className="Wallpage">
-                <img className="Wallpage_BG" src={wallpage_bg} alt="wall_page" />
+                {/* <img className="Wallpage_BG" src={wallpage_bg} alt="wall_page" /> */}
                 <div className="Wallpage_Content_Port">
-                    {hightlightList}
-                    <div className="Highlight_Transitionbar">
+                    {this.props.isLoading ?
+                        <Loader />
+                        : <> {highlightList} </>
+                    }
+
+                    {/* <div className="Highlight_Transitionbar">
                         {highlightTransitionbar}
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -180,15 +256,18 @@ Loop inside React JSX
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        newActivities: state.post.newActivities,
+        highlightPostsList: state.post.highlightPosts.data,
+        isLoading: state.post.highlightPosts.isLoading,
+        isLoadDone: state.post.highlightPosts.isLoadDone,
+        error: state.post.highlightPosts.error
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-};
-
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getHighlightPostsList
+}, dispatch);
 export default withRouter(
     connect(mapStateToProps, mapDispatchToProps)(WallPaper)
 );

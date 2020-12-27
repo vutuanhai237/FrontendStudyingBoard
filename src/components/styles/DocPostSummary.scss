@@ -1,17 +1,18 @@
+
 .item-container {
     position: relative;
-    width: 100%;
     height: fit-content;
     margin: auto;
     padding: 10px;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    background: white;
     background-repeat: no-repeat;
     border: 1px var(--gray) solid;
     max-width: 1000px;
     user-select: none;
     border-bottom: 1px var(--gray) solid;
+    margin-bottom: 10px;
 }
+
 
 //general summary item headbar
 .item-normal-metadata-container {
@@ -138,24 +139,23 @@
     // margin-top: 10px;
 }
 
-.Doc_Summary_File_Name {
+.doc-file-name {
     width: fit-content;
     margin-left: 5px;
     display: flex;
     justify-content: flex-start;
     height: fit-content;
     position: relative;
-    height: fit-content;
     font-family: "BarlowCondensed-Medium";
     font-size: 20px;
     line-height: 1.0em;
-    display: flex;
     color: var(--blue);
     user-select: none;
+    margin-top: 5px;
 }
 
-.Doc_Summary_File_Name:hover,
-.Doc_Summary_File_Name:active {
+.doc-file-name:hover,
+.doc-file-name:active {
     opacity: 80%;
     cursor: pointer;
 }

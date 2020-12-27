@@ -70,10 +70,10 @@ class NotificationManagement extends Component {
 
                                 <ClickAwayListener onClickAway={() => { this.closeAllNotificationListItemActivated() }}>
 
-                                    <div className="Custom_Table_Layout">
-                                        <div className="Custom_Table_Header">
-                                            <div className="Custom_Table_20percents_Header">Mã thông báo</div>
-                                            <div className="Custom_Table_80percents_Header">Nội dung thông báo</div>
+                                    <div className="custom-table-layout">
+                                        <div className="custom-table-header">
+                                            <div className="custom-table-20percents-column">Mã thông báo</div>
+                                            <div className="custom-table-80percents-column">Nội dung thông báo</div>
                                         </div>
 
                                         {this.state.notificationList.map(item =>
@@ -84,7 +84,7 @@ class NotificationManagement extends Component {
 
 
                                                 </div>
-                                                {/* <img className ="Current_Notification_Icon" alt="V" hidden={item.isCurrentNotification} src={done_icon} /> */}
+                                              
                                             </div>
                                         )}
 

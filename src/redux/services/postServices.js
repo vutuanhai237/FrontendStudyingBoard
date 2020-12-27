@@ -9,15 +9,26 @@ import {
     get_HighlightPosts,
     get_PostsList,
 
+
+    //highlight posts 
+    get_HighlightPostsListRequest,
+    get_HighlightPostsListSuccess,
+    get_HighlightPostsListFailure,
+
     //my post
     get_MyPostsRequest,
     get_MyPostsSuccess,
     get_MyPostsFailure,
 
+    //posts list 
+    get_PostsListRequest,
+    get_PostsListSuccess,
+    get_PostsListFailure,
+
     //post search result 
     get_PostSearchResultRequest,
     get_PostSearchResultSuccess,
-    get_PostSearchResultFailure
+    get_PostSearchResultFailure,
 } from "redux/actions/postAction.js";
 
 import {
@@ -340,27 +351,6 @@ export function getPostByID(uid, pid) {
 
 //#region refactoring 
 
-
-export function getPostsList(filter) { //this API is also call when open all post link with filter is all
-    return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        // fetch(`http://${PORT}/posts?${filter}`, requestOptions)
-        //     .then(response => response.text())
-        //     .then(result => {
-        //         console.log(`http://${PORT}/posts?${filter}`)
-        //         dispatch(postGetSearchPost(JSON.parse(result)));
-        //     })
-        //     .catch(error => console.log('error', error));
-        // let result = [post_v1, post_v2, post_v3, post_v4];
-        // dispatch(get_PostsList(result));
-
-    }
-}
-
 // import Cookies from 'js-cookie'
 // import 
 
@@ -421,6 +411,7 @@ export function getPostsList(filter) { //this API is also call when open all pos
 //     }
 // }
 
+
 // export function management_approveADocument(docID) {
 //     return dispatch => {
 
@@ -439,7 +430,32 @@ export function getPostsList(filter) { //this API is also call when open all pos
 //             .catch(error => console.log('error', error));
 //     }
 
-// }
+// }s
+
+export function getHighlightPostsList() {
+    return dispatch => {
+
+        dispatch(get_HighlightPostsListRequest());
+
+        var myHeaders = new Headers();
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+    
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/highlight`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+                   dispatch(get_HighlightPostsListSuccess(JSON.parse(result)));
+                }
+            )
+            .catch(error => {
+                console.log(error); dispatch(get_HighlightPostsListFailure(error))
+            })
+    }
+}
 
 // my post
 export function getMyPostsList(page = 1, category = "") { //this API to get all approved document of a specific user.
@@ -467,6 +483,33 @@ export function getMyPostsList(page = 1, category = "") { //this API to get all 
     }
 }
 
+//posts list
+export function getPostsList(page = 1, category = "", searchTerm = "") {
+    return dispatch => {
+
+        dispatch(get_PostsListRequest(page, category, searchTerm));
+
+        var myHeaders = new Headers();
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+                    dispatch(get_PostsListSuccess(JSON.parse(result)));
+                }
+            )
+            .catch(error => {
+                console.log(error); dispatch(get_PostsListFailure(error))
+            })
+    }
+}
+
+//posts search result
 export function getPostSearchResult(page = 1, category = "", searchTerm = "") {
     return dispatch => {
         dispatch(get_PostSearchResultRequest());

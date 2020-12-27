@@ -1,20 +1,25 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import Titlebar from 'components/common/Titlebar/Titlebar'
-import PostSummary from 'components/post/PostSummary'
-import Paginator from 'components/common/Paginator/ServerPaginator'
-import 'layouts/Layout.scss'
-import { summaryItemType } from 'constants.js'
-
-//import for redux
-import { getPostsList } from "redux/services/postServices"
-import { getPostCategories } from "redux/services/postCategoryServices"
-
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import ComboBox from 'components/common/Combobox/Combobox';
 
+//styles
+import 'layouts/Layout.scss'
+
+//utils
+import { summaryItemType } from 'constants.js'
+import { getSearchParamByName, setSearchParam } from 'utils/urlUtils'
+//services
+import { getPostsList } from "redux/services/postServices"
+import { getPostCategories } from "redux/services/postCategoryServices"
+
+//components
+import ComboBox from 'components/common/Combobox/Combobox';
+import Titlebar from 'components/common/Titlebar/Titlebar'
+import PostSummary from 'components/post/PostSummary'
+import Paginator from 'components/common/Paginator/ServerPaginator'
+import Loader from 'components/common/Loader/Loader'
 
 class PostsList extends Component {
     constructor(props) {
@@ -38,26 +43,36 @@ class PostsList extends Component {
     }
 
     componentDidMount() {
-        //must implement: get filter, get doc, page change
-        //get filter
-
-        this.props.getPostsList(); //
         this.props.getPostCategories()
+
+        //get filter
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+
+        this.props.getPostsList(page, category);
     }
 
-    //server
+    //server paginator
     onPageChange = (pageNumber) => {
-
+        setSearchParam("page", pageNumber);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getPostsList(page, category);
+        this.setState({});
     }
 
-    //
+    //combobox
     onFilterOptionChanged = (selectedOption) => {
-        console.log("Filter search: ")
-        console.log(selectedOption);
+        setSearchParam("category", selectedOption.id);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getPostsList(page, category);
+        this.setState({});
     }
 
     render() {
-        let postsList = <></>;
+
+        let postsList;
         if (this.props.postsList) {
 
             this.postsList = this.props.postsList;
@@ -86,9 +101,9 @@ class PostsList extends Component {
             )
         }
         return (
-            <div className = "nm-bl-layout">
+            <div className="nm-bl-layout">
                 <Titlebar title="BÀI VIẾT" />
-                <div className="layout-container">
+                <div className="layout-decoration">
                     <div className="margin-top-10px" />
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
                         <div style={{ display: "flex" }}>
@@ -116,13 +131,16 @@ class PostsList extends Component {
                     </div>
                     <div className="margin-top-10px" />
 
-                    {postsList}
+                    {this.props.isListLoading ?
+                        < Loader /> :
+                        <>{postsList}</>
+                    }
+
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        maxItemPerPage: this.maxItemPerPage,
-                        numShownPage: 5,
-                        bottom: "31px"
+                        pageCount: 30,
+                        currentPage: getSearchParamByName('page')
                     }}
                     />
                 </div>
@@ -134,8 +152,10 @@ class PostsList extends Component {
 const mapStateToProps = (state) => {
 
     return {
-        postsList: state.post.posts,
-        postCategories: state.post.categories
+        postsList: state.post.postsList.data,
+        postCategories: state.post_category.categories.data,
+        isListLoading: state.post.postsList.isLoading,
+        isCategoryLoading: state.post_category.categories.isLoading
     };
 }
 

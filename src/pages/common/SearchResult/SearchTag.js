@@ -27,7 +27,9 @@ class SearchTag extends Component {
     render() {
 
         return (
+
             <div className="margin-top-10px">
+                
                 {this.state.tags.map(item =>
                     <Tag isReadOnly={true} tag={item} onTagClick={(id) => this.navigateToSeachByTag(id)} />
                 )

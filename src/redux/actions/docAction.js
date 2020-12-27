@@ -10,10 +10,20 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS,
     APPROVE_A_DOCUMENT,
 
+    //new documents
+    GET_NEW_DOCUMENTS_LIST_REQUEST,
+    GET_NEW_DOCUMENTS_LIST_SUCCESS,
+    GET_NEW_DOCUMENTS_LIST_FAILURE,
+
     //my documents
     GET_MY_DOCUMENTS_REQUEST,
     GET_MY_DOCUMENTS_SUCCESS,
     GET_MY_DOCUMENTS_FAILURE,
+
+    //documents list
+    GET_DOCUMENTS_LIST_REQUEST,
+    GET_DOCUMENTS_LIST_SUCCESS,
+    GET_DOCUMENTS_LIST_FAILURE,
 
     //document search results
     GET_DOCUMENT_SEARCH_RESULT_REQUEST,
@@ -45,19 +55,6 @@ export function docPostUpViewDoc(idDoc) {
 
 
 
-export function docGetTopDoc(page) {
-    return {
-        type: DOC_GET_TOP_DOC,
-        payload: page
-    }
-}
-
-export function docGetSearchDoc(docs) {
-    return {
-        type: DOC_GET_SEARCH_DOC,
-        payload: docs,
-    }
-}
 export function docGetDocByID(idPost) {
     return {
         type: DOC_GET_DOC_BY_ID,
@@ -80,6 +77,27 @@ export function managementApproveADocument(requestedDoc) {
     }
 }
 
+//new document
+export function get_NewDocumentsListRequest() {
+    return {
+        type: GET_NEW_DOCUMENTS_LIST_REQUEST,
+    }
+}
+
+export function get_NewDocumentsListSuccess(data) {
+    return {
+        type: GET_NEW_DOCUMENTS_LIST_SUCCESS,
+        payload: data
+    }
+}
+
+export function get_NewDocumentsListFailure(error) {
+    return {
+        type: GET_NEW_DOCUMENTS_LIST_FAILURE,
+        payload: error
+    }
+}
+
 //my documents
 export function get_MyDocumentsRequest() {
     return {
@@ -97,6 +115,27 @@ export function get_MyDocumentsSuccess(data) {
 export function get_MyDocumentsFailure(error) {
     return {
         type: GET_MY_DOCUMENTS_FAILURE,
+        payload: error
+    }
+}
+
+//documents list
+export function get_DocumentsListRequest() {
+    return {
+        type: GET_DOCUMENTS_LIST_REQUEST,
+    }
+}
+
+export function get_DocumentsListSuccess(data) {
+    return {
+        type: GET_DOCUMENTS_LIST_SUCCESS,
+        payload: data
+    }
+}
+
+export function get_DocumentsListFailure(error) {
+    return {
+        type: GET_DOCUMENTS_LIST_FAILURE,
         payload: error
     }
 }

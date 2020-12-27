@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ClickAwayListener } from '@material-ui/core';
 
 //utils
@@ -30,7 +30,7 @@ import Home from "pages/common/Home/Home"
 
 //services (to call API)
 import { getCurrentUser } from "redux/services/userServices"
-import { logoRouter, headerMenuRouter, searchRouter } from "router.config"
+import { logoRouter, headerMenuRouters } from "router.config"
 
 
 class Header extends BaseComponent {
@@ -43,7 +43,7 @@ class Header extends BaseComponent {
             isCollapsedUserMenuOpened: false,
         }
         this.isHaveClickAwayQuickSearhResult = false;// dung de kiem tra neu bam ra ngoai search result lan 1
-
+        this.keyWord = "";
     }
 
     componentDidMount() {
@@ -80,6 +80,9 @@ class Header extends BaseComponent {
         this.handleCancelQuickSearch();
     }
 
+    onSearchTextFieldChange = (e) => {
+        this.keyWord = e.target.value;
+    }
 
     render() {
 
@@ -101,38 +104,41 @@ class Header extends BaseComponent {
             ]
         };
 
-        let quickSearchResultView = <div>
-            <div className="sub-result-container" id="quick-search-post-result-port">
-                <div className="qs-type-title">BÀI VIẾT</div>
-                {quickSearchResultData.post.map(result =>
-                    <div className="display-flex margin-top-5px">
-                        <img alt="" className="qs-result-image margin-right-5px" />
-                        {/* <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-post?id=${result.id}&page=1`)}>{result.name} */}
-                        {/* </div> */}
-                    </div>)
-                }
-            </div>
-
-            <div className="sub-result-container" id="quick-search-doc-result-port">
-                <div className="qs-type-title margin-top-5px">TÀI LIỆU</div>
-                {quickSearchResultData.doc.map(result =>
-                    <div className="display-flex margin-top-5px">
-                        {/* <img className="qs-result-image margin-right-5px" alt="" />
-                        <div className="qsr-title" onClick={() => navigateWithoutReload(`/search-doc?id=${result.id}&page=1`)}>{result.name}</div> */}
-                    </div>
-                )}
-            </div>
-
-            <div className="sub-result-container" id="quick-search-tag-result-port">
-                <div className="qs-type-title margin-top-5px ">TAGS</div>
-                <div className="display-flex margin-top-5px">
-                    {/* {quickSearchResultData.tag.map(result =>
-                        // <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} onTagClick={() => navigateWithoutReload(`/search-tag?id=${result.id}&page=1`)} />
-                    )
-                    } */}
+        let quickSearchResultView =
+            <div>
+                <div className="sub-result-container" id="quick-search-post-result-port">
+                    <div className="qs-type-title">BÀI VIẾT</div>
+                    {quickSearchResultData.post.map(result =>
+                        <div className="display-flex margin-top-5px">
+                            <img alt="" className="qs-result-image margin-right-5px" />
+                            <Link className="qsr-title" to={`/posts/${result.id}`}>{result.name}</Link>
+                        </div>)
+                    }
                 </div>
-            </div>
-        </div >;
+
+                <div className="sub-result-container" id="quick-search-doc-result-port">
+                    <div className="qs-type-title margin-top-5px">TÀI LIỆU</div>
+                    {quickSearchResultData.doc.map(result =>
+                        <div className="display-flex margin-top-5px">
+                            <img className="qs-result-image margin-right-5px" alt="" />
+                            <Link className="qsr-title" to={`/documents/${result.id}`}>{result.name}</Link>
+                        </div>
+                    )}
+                </div>
+
+                <div className="sub-result-container" id="quick-search-tag-result-port">
+                    <div className="qs-type-title margin-top-5px ">TAGS</div>
+                    <div className="display-flex margin-top-5px">
+                        {quickSearchResultData.tag.map(result =>
+                            <Link to={`/search-tag/${result.id}/post?page=1`} className="display-flex">
+                                <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} />
+                            </Link>
+                        )
+                        }
+                    </div>
+                </div>
+            </div >;
+
 
 
         return (
@@ -143,11 +149,12 @@ class Header extends BaseComponent {
                     {/* Begin lv2: searchbar */}
                     <div className="header-begin-lv1" >
                         <Link to={logoRouter.path} className="mi-w-fit-content">
-                            <img className="app-logo " src={logo} alt="logo" />
+                            <img className="app-logo" src={logo} alt="logo" />
                         </Link>
+
                         <div className="header-menu-bar" >
-                            {headerMenuRouter.map(item => {
-                                return <Link to={item.path} className="header-menu-item" > {item.label} </Link>
+                            {headerMenuRouters.map(item => {
+                                return <NavLink exact activeClassName="activated-header-menu-item" to={item.path} className="header-menu-item" > {item.label} </NavLink>
                             })}
                         </div>
 
@@ -207,15 +214,25 @@ class Header extends BaseComponent {
                                         <input className="sb-text-field"
                                             id="sb-text-field-big"
                                             type="text" placeholder="Search..."
-                                            onChange={() => this.showQuickSearchBigContainer()} />
-                                        <div className="search-image-container"
-                                            id="search-image-button-container" > <img className="search-image-button"
-                                                src={search_icon}
-                                                alt="*"
-                                                onClick={
-                                                    (e) => this.handleSearch(e.target.value)}
-                                            />
-                                        </div>
+                                            onChange={(e) => { this.showQuickSearchBigContainer(); this.onSearchTextFieldChange(e) }} />
+
+                                        {this.keyWord === "" ?
+                                            <div className="search-image-container" id="search-image-button-container">
+                                                <img className="search-image-button"
+                                                    src={search_icon}
+                                                    alt="*"
+                                                />
+                                            </div>
+                                            :
+                                            <Link className="search-image-container"
+                                                id="search-image-button-container" to={`search-post?q=${this.keyWord}&page=1&category=1`}>
+                                                <img className="search-image-button"
+                                                    src={search_icon}
+                                                    alt="*"
+                                                />
+
+                                            </Link>
+                                        }
                                     </div>
                                 </div>
 
@@ -330,12 +347,7 @@ class Header extends BaseComponent {
         this.setState({ isCollapsedUserMenuOpened: false });
     }
 
-    handleSearch = (e, keyword) => {
-        e.preventDefault();
-        console.log(keyword);
-        if (keyword.length === 0) return;
 
-    }
 
     // reach when text in search box change
     handleQuickSearch = () => {

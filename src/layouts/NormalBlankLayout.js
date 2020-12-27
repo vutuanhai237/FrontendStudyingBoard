@@ -10,7 +10,9 @@ import 'styles/SimpleLabel.scss'
 
 //import components
 import PostsList from "pages/common/PostsList/PostsList"
-import DocsList from "pages/common/DocsList/DocsList"
+import DocumentsList from "pages/common/DocumentsList/DocumentsList"
+import DocumentDetail from "pages/common/DocumentDetail/DocumentDetail"
+import PostDetail from "pages/common/PostDetail/PostDetail"
 
 //import for Redux
 import { bindActionCreators } from 'redux'
@@ -39,7 +41,10 @@ class BlankLayout extends Component {
                         <div className="nm-bl-layout-router-outlet" >
                             <Switch>
                                 <Route exact path="/posts" component={PostsList} />
-                                <Route exact path="/documents" component={DocsList} />
+                                <Route exact path="/documents" component={DocumentsList} />
+                                <Route exact path="/documents/:id" component={DocumentDetail} />
+                                <Route exact path="/posts/:id" component={PostDetail} />
+
                             </Switch>
                         </div>
                     </Router>

@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import {
-    getSubjects,
     postDoc,
 } from "redux/services/docServices"
 import "./UploadDocument.scss";
@@ -240,8 +239,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-
-    getSubjects,
     postDoc,
     getDocCategories,
 }, dispatch);

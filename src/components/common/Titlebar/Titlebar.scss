@@ -18,23 +18,6 @@
     user-select: none;
 }
 
-.title-bar .First_Horizontal_Menu_Item {
-    user-select: none;
-    width: fit-content;
-    padding-right: 20px;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    color: var(--black);
-}
-
-.title-bar .First_Horizontal_Menu_Item:hover {
-    color: white;
-    background: var(--blue);
-    padding-left: 20px;
-    cursor: pointer;
-}
 
 .title-bar .Horizontal_Menu_Item:hover {
     color: white;

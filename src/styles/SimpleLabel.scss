@@ -2,9 +2,8 @@
     margin-top: 10px;
     width: fit-content;
     height: fit-content;
-    min-width: 80px;
+    // min-width: 80px;
     vertical-align: middle;
-    font-size: 1.1rem;
     line-height: 20px;
     padding-top: 3px;
     font-family: "BarlowCondensed-Medium";
@@ -15,6 +14,30 @@
     margin-bottom: 5px;
     padding-right: 5px;
 }
+
+.gray-normal-label {
+    width: fit-content;
+    height: fit-content;
+    min-width: 80px;
+    vertical-align: middle;
+    font-size: 1.2rem;
+    line-height: fit-content;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    font-family: "BarlowCondensed-Medium";
+    line-height: 100%;
+    color: var(--black);
+    user-select: none;
+    margin-bottom: 5px;
+    padding-right: 5px;
+}
+
+
+.light-black-normal-label {
+   @extend .gray-normal-label;
+   color: var(--light-black);
+}
+
 
 
 .blue-label {
@@ -53,7 +76,7 @@
     margin-top: 2px;
     width: fit-content;
     height: fit-content;
-    min-width: 80px;
+    // min-width: 80px; 
     vertical-align: middle;
     font-size: 1.1rem;
     padding-top: 3px;
@@ -94,5 +117,12 @@
     @extend .color-border-label;
     border: 1px solid var(--blue);
     color: var(--blue);
+
+}
+
+.green-border-label {
+    @extend .color-border-label;
+    border: 1px solid var(--blue);
+    color: var(--green);
 
 }

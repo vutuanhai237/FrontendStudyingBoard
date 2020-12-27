@@ -1,77 +1,159 @@
 /* eslint-disable react/jsx-pascal-case */
+/* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react'
-import 'layouts/AdminLayout'
-import Titlebar from 'components/common/Titlebar/Titlebar'
-import Paginator from 'components/common/Paginator/ClientPaginator'
+import Titlebar from 'components/common/Titlebar/Titlebar';
+import PostSummary from 'components/post/PostSummary';
+import { summaryItemType } from 'constants.js';
+import Paginator from 'components/common/Paginator/ServerPaginator';
+
+//import for redux
+import { getMyPostsList } from "redux/services/postServices";
+import { getPostCategories } from "redux/services/postCategoryServices";
+
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import ComboBox from 'components/common/Combobox/Combobox';
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/urlUtils'
+
+import Loader from 'components/common/Loader/Loader'
 
 class PostApprovingPage extends Component {
-    constructor({ routeConfig }) {
+    constructor(props) {
         super();
-        this.isManagementBrowserPost = true;
-        this.maxItemPerPage = 2;
-        this.apiPrefix = "/api/v1/browser_post/";
-        // this.pageCount = 0;
-        this.state = {
-            requestedPosts:
-                [
-                ],
-            currentInteractList: [],
-            page_number: 1,
-            pageCount: 0
 
-        }
+        this.filter = [
+            { id: 1, name: "Tất cả" },
+            { id: 2, name: "Chưa phê duyệt" },
+            { id: 3, name: "Đã phê duyệt" },
+            { id: 4, name: "Cần xem lại" }
+        ]
+
+        this.postsList = <></>
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        this.props.getPostCategories()
 
-        // this.pageCount = 4;
-        this.setState({
-            currentInteractList: this.state.requestedPosts
-        })
-    
+        //get filter
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+
+        this.props.getMyPostsList(page, category);
     }
 
-
-    //client
-    onPageChangeClient = (currentInteractList) => {
-        this.setState({ currentInteractList: currentInteractList })
+    //server paginator
+    onPageChange = (pageNumber) => {
+        setSearchParam("page", pageNumber);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyPostsList(page, category);
+        this.setState({});
     }
 
-    //client
-    onPageChangeServer = (page_number) => {
-        console.log(page_number)
-        this.setState({ page_number: page_number })
+    //combobox
+    onFilterOptionChanged = (selectedOption) => {
+        setSearchParam("category", selectedOption.id);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyPostsList(page, category);
+        this.setState({});
+    }
 
+    //combobox
+    onFilterOptionChanged = (selectedOption) => {
+        setSearchParam("category", selectedOption.id);
+        let page = getSearchParamByName('page');
+        let category = getSearchParamByName('category');
+        this.props.getMyDocumentsList(page, category);
+        this.setState({});
     }
 
     render() {
-       
+        if (!this.props.isListLoading) {
+            this.postsList = this.props.postsList.map((postItem) => (
+                <PostSummary
+                    type={summaryItemType.approving}
+                    key={postItem.id}
+                    id={postItem.id}
+                    authorName={postItem.authorName}
+                    authorID={postItem.authorID}
+                    publishDtm={postItem.publishDtm}
+                    category={postItem.categoryName}
+                    categoryID={postItem.categoryID}
+                    title={postItem.title}
+                    summary={postItem.summary}
+                    imageURL={postItem.imageURL}
+                    likedStatus={postItem.likedStatus}
+                    savedStatus={postItem.savedStatus}
+                    readingTime={postItem.readingTime}
+                    likes={postItem.likeCount}
+                    comments={postItem.commentCount}
+                    approveStatus={postItem.approveStatus}
+                ></PostSummary >)
+            )
+        }
+
+        if (!this.props.isCategoryLoading && this.props.postCategories.length !== 0) {
+
+            this.filter = this.props.postCategories;
+        }
         return (
             <div>
-                <Titlebar title="PHÊ DUYỆT BÀI VIẾT" />
+                <Titlebar title="QUẢN LÝ BÀI VIẾT" />
                 <div className="left-side-bar-layout-content-container">
+                    <div className="two-element-filter-container">
+                        <div style={{ display: "flex" }}>
+                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                            <div style={{ marginLeft: "5px" }}>
+                                <ComboBox
+                                    selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                                    options={this.filter}
+                                    placeHolder="Chọn danh mục"
+                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                    id="my-post-list-search-filter-combobox"
+                                ></ComboBox>
+                            </div>
+                        </div>
 
-                    <div className="number-of-item">
-                        Tổng số:
-                        <div style={{ width: "5px" }} />
-                        {this.state.requestedPosts.length}
+                        <div className="filter-label display-flex">
+                            <div className="margin-right-5px">Tổng số:</div>
+
+                            {!this.props.isListLoading ?
+                                <div> {this.props.postsList.length}</div>
+                                : <div>0</div>
+                            }
+                        </div>
                     </div>
 
-                    {/* {summaryRequestedPostList} */}
+                    {this.props.isListLoading ?
+                        < Loader /> :
+                        <>{this.postsList}</>
+                    }
 
                     <Paginator config={{
-                        changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList), //client
-                        rawData: this.state.requestedPosts, //client
-                        // changePage: (page_number) => this.onPageChangeServer(page_number), //server   
-                        pageCount: this.state.pageCount, //server
-                        maxItemPerPage: this.maxItemPerPage,
-                        numShownPage: 5,
-                        bottom: "31px"
+                        changePage: (pageNumber) => this.onPageChange(pageNumber),
+                        pageCount: 1200,
+                        currentPage: getSearchParamByName('page')
                     }}
                     />
                 </div>
-            </div>
+            </div >
         );
     }
 }
-export default PostApprovingPage;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        postsList: state.post.myPosts.data,
+        postCategories: state.post_category.categories.data,
+        isListLoading: state.post.myPosts.isLoading,
+        isCategoryLoading: state.post_category.categories.isLoading
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getMyPostsList, getPostCategories
+}, dispatch);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostApprovingPage));

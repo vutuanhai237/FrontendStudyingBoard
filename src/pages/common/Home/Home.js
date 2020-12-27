@@ -3,16 +3,17 @@ import WallPage from "components/common/home/Wallpage/Wallpage";
 import TopPost from "components/common/home/TopPost";
 import TopDocument from "components/common/home/TopDoc";
 import TopEvent from "components/common/home/TopEvent";
-import NewPost from "components/common/home/NewPost"
+import NewDocumentsList from "components/common/home/NewDocumentsList"
 import "./Home.scss";
+import "layouts/Layout.scss"
 
 class Home extends Component {
     render() {
         return (
-            <div className="pr-layout">
+            <div className="">
                 <WallPage />
-                <div className="home-page-container">
-                    <NewPost />
+                <div className="lg-bl-layout">
+                    <NewDocumentsList />
                     <TopEvent />
                     <TopPost />
                     <TopDocument />

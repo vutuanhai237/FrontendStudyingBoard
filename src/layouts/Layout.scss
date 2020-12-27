@@ -12,8 +12,14 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  padding-bottom: 15px;
-  border-bottom: 2px var(--gray) solid;
+  padding-bottom: 10px;
+  border-bottom: 1px var(--gray) solid;
+}
+
+.list-item-container {
+  background: var(--light-gray);
+  padding: 10px;
+  padding-bottom: 5px;
 }
 
 .nm-bl-layout-router-outlet {
@@ -22,11 +28,16 @@
 }
 
 //normal blank layout
+.lg-bl-layout {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
 .nm-bl-layout {
   width: 100%;
   max-width: 880px;
   margin: auto;
-
 }
 
 //small blank layout
@@ -37,12 +48,12 @@
 
 }
 
-.layout-container--- {
+.layout-decoration {
   width: 100%;
   padding: 10px;
   border: 1px var(--gray) solid;
   border-top: none;
   box-shadow: 0px 5px 5px 0px var(--grayish);
   background: white;
-  min-height: 150vh;
+  min-height: 120vh;
 }

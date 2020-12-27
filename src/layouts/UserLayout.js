@@ -7,12 +7,12 @@ import dropdown_btn from 'assets/images/dropdown_icon.png'
 import gray_write_icon from 'assets/images/gray_write_icon.png'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
 import account_management_icon from 'assets/images/account_management_icon.png'
-import gray_nb_upload_icon from 'assets/images/gray_nb_upload_icon.png'
+// import gray_nb_upload_icon from 'assets/images/gray_nb_upload_icon.png'
 import gray_nb_write_icon from 'assets/images/gray_nb_write_icon.png'
 
 //import pages
 import AccountInformation from 'pages/user/AccountInformation/AccountInformation';
-import MyDocList from 'pages/user/MyDocList/MyDocList';
+import MyDocumentsList from 'pages/user/MyDocumentsList/MyDocumentsList';
 import MyPostList from 'pages/user/MyPostList/MyPostList';
 import UploadDoc from 'pages/user/UploadDocument/UploadDocument'
 import CreatePost from 'pages/user/CreatePost/CreatePost'
@@ -330,7 +330,7 @@ class AdminLayout extends Component {
                 <Switch>
                   <Route exact path="/user" component={AccountInformation} />
                   <Route exact path="/user/update-password" component={AccountInformation} />
-                  <Route exact path="/user/my-docs" component={MyDocList} />
+                  <Route exact path="/user/my-docs" component={MyDocumentsList} />
                   <Route exact path="/user/my-posts" component={MyPostList} />
                   <Route exact path="/create-post" component={CreatePost} />
                   <Route exact path="/upload-doc" component={UploadDoc} />

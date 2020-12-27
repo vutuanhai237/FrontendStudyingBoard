@@ -78,7 +78,7 @@ class AdminLayout extends Component {
                 window.location.pathname = "/admin";
 
             return (
-                <div className="pr-layout" style={{ background: "green" }}>
+                <div className="pr-layout" >
                     {/* Xu ly su kien cuon tro chuot */}
                     {window.onscroll = () => this.scrollFunction()}
 
@@ -162,7 +162,7 @@ class AdminLayout extends Component {
                                                                         to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post-approving" : "/user/post-approving"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                            Duyệt bài viết
+                                                                            Quản lý bài viết
                                                                 </div>
                                                                     </Link>
                                                                     :
@@ -171,7 +171,7 @@ class AdminLayout extends Component {
                                                                         to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/post-approving" : "/user/post-approving"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                            Duyệt bài viết
+                                                                            Quản lý bài viết
                                                                  </div>
                                                                     </Link>
                                                                 : <></>
@@ -186,7 +186,7 @@ class AdminLayout extends Component {
                                                                         to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/doc-approving" : "/user/doc-approving"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text">
-                                                                            Duyệt tài liệu
+                                                                            Quản lý tài liệu
                                                          </div>
                                                                     </Link>
                                                                     :
@@ -195,7 +195,7 @@ class AdminLayout extends Component {
                                                                         onClick={() => this.setState({})}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >
-                                                                            Duyệt tài liệu
+                                                                            Quản lý tài liệu
                                                             </div>
                                                                     </Link>
                                                                 :
@@ -208,7 +208,7 @@ class AdminLayout extends Component {
                                                                 window.location.pathname === "/admin/page-notification" || window.location.pathname === "/user/page-notification"
                                                                     ?
                                                                     <Link className="Main_Interactive_Menu_Item_Active Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/page-notification" : "/user/page-notification"}
+                                                                        to={"/admin/page-notification"}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text">
                                                                             Thông báo trang
@@ -216,7 +216,7 @@ class AdminLayout extends Component {
                                                                     </Link>
                                                                     :
                                                                     <Link className="Sub_Dropdown_Menu_Item"
-                                                                        to={window.location.pathname.substring(0, 6) === "/admin" ? "/admin/page-notification" : "/user/page-notification"}
+                                                                        to={"/admin/page-notification"}
                                                                         onClick={() => this.setState({})}
                                                                     >
                                                                         <div className="Sub_Dropdown_Menu_Item_Text" >

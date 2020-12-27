@@ -4,7 +4,6 @@ import {
     POST_POST_SAVE,
     POST_POST_COMMENT,
     POST_GET_POST_BY_ID,
-    GET_POSTS_LIST,
     POST_GET_POST_COMMENT_BY_ID,
     POST_GET_IS_LIKE_POST_BY_UID,
     POST_GET_TOP_POST,
@@ -15,18 +14,28 @@ import {
     POST_GET_TAGS_BY_ID,
     GET_ALL_NOT_APPROVED_DOCUMENTS,
 
-    APPROVE_A_DOCUMENT,
+    // APPROVE_A_DOCUMENT,
+
+    //highlight posts 
+    GET_HIGHLIGHT_POSTS_LIST_REQUEST,
+    GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
+    GET_HIGHLIGHT_POSTS_LIST_FAILURE,
 
     //my post
     GET_MY_POSTS_REQUEST,
     GET_MY_POSTS_SUCCESS,
     GET_MY_POSTS_FAILURE,
 
-    //post search result
+    //pots list
+    GET_POSTS_LIST_REQUEST,
+    GET_POSTS_LIST_SUCCESS,
+    GET_POSTS_LIST_FAILURE,
+
+    //post search result & post list
     GET_POST_SEARCH_RESULT_REQUEST,
     GET_POST_SEARCH_RESULT_SUCCESS,
     GET_POST_SEARCH_RESULT_FAILURE
-    
+
 } from "../constants.js"
 
 // POST section
@@ -146,16 +155,6 @@ export function postGetPostByID(post) {
     }
 }
 
-
-export function get_PostsList(posts) {
-    return {
-        type: GET_POSTS_LIST,
-        payload: {
-            posts: posts
-        }
-    }
-}
-
 export function postGetTopPost(topPost) {
     return {
         type: POST_GET_TOP_POST,
@@ -179,7 +178,29 @@ export function get_NotApprovedDocumentsList(requestedDocs) {
 //     }
 // }
 
-//my post
+//highlight posts 
+export function get_HighlightPostsListRequest() {
+    return {
+        type: GET_HIGHLIGHT_POSTS_LIST_REQUEST,
+    }
+}
+
+export function get_HighlightPostsListSuccess(data) {
+    console.log("S");
+    return {
+        type: GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
+        payload: data
+    }
+}
+
+export function get_HighlightPostsListFailure(error) {
+    return {
+        type: GET_HIGHLIGHT_POSTS_LIST_FAILURE,
+        payload: error
+    }
+}
+
+//my posts
 export function get_MyPostsRequest() {
     return {
         type: GET_MY_POSTS_REQUEST,
@@ -200,6 +221,20 @@ export function get_MyPostsFailure(error) {
     }
 }
 
+//posts list 
+export function get_PostsListRequest() {
+    return { type: GET_POSTS_LIST_REQUEST }
+}
+
+export function get_PostsListSuccess(data) {
+    return { type: GET_POSTS_LIST_SUCCESS, payload: data }
+}
+
+export function get_PostsListFailure(error) {
+    return { type: GET_POSTS_LIST_FAILURE, error: error }
+}
+
+
 //post search result
 export function get_PostSearchResultRequest() {
     return {
@@ -213,11 +248,9 @@ export function get_PostSearchResultSuccess(data) {
     }
 }
 
-
-
 export function get_PostSearchResultFailure(error) {
     return {
-        type: GET_POST_SEARCH_RESULT_FAILURE, 
+        type: GET_POST_SEARCH_RESULT_FAILURE,
         payload: error
     }
 }

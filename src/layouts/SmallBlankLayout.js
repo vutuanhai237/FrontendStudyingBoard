@@ -10,8 +10,6 @@ import 'layouts/LeftSidebarLayout.scss'
 import 'styles/SimpleLabel.scss'
 
 //import components
-import PostsList from "pages/common/PostsList/PostsList"
-import DocsList from "pages/common/DocsList/DocsList"
 
 //import for Redux
 import { bindActionCreators } from 'redux'
@@ -39,8 +37,7 @@ class BlankLayout extends Component {
                     <Router>
                         <div className="nm-bl-layout-router-outlet" >
                             <Switch>
-                                <Route exact path="/posts" component={PostsList} />
-                                <Route exact path="/documents" component={DocsList} />
+                              
                             </Switch>
                         </div>
                     </Router>

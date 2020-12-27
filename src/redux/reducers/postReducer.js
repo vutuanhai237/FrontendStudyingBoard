@@ -1,6 +1,6 @@
+import { faLessThan } from '@fortawesome/free-solid-svg-icons';
 import {
     POST_GET_POST_BY_ID,
-    GET_POSTS_LIST,
     POST_GET_TOP_POST,
     POST_GET_POST_COMMENT_BY_ID,
     GET_HIGHLIGHT_POSTS,
@@ -12,6 +12,18 @@ import {
     //
     GET_ALL_NOT_APPROVED_POSTS,
     APPROVE_A_POST,
+
+
+    //highlight posts list
+
+    GET_HIGHLIGHT_POSTS_LIST_REQUEST,
+    GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
+    GET_HIGHLIGHT_POSTS_LIST_FAILURE,
+
+    //post list
+    GET_POSTS_LIST_SUCCESS,
+    GET_POSTS_LIST_REQUEST,
+    GET_POSTS_LIST_FAILURE,
 
     //my post
     GET_MY_POSTS_REQUEST,
@@ -39,7 +51,8 @@ const initialState = {
     tags: [],
     statusPostPostCode: 0,
 
-    postSearchResult: {
+    //search post: use for search post and post list
+    postsList: {
         isLoading: false,
         data: [],
         error: ""
@@ -48,6 +61,14 @@ const initialState = {
     //my posts
     myPosts: {
         isLoading: false,
+        data: [],
+        error: ""
+    },
+
+    //highlight posts list
+    highlightPosts: {
+        isLoading: false,
+        isLoadDone: false,
         data: [],
         error: ""
     }
@@ -72,8 +93,7 @@ function PostReducer(state = initialState, action) {
             var currentPost = action.payload.post;
             currentPost.liked = false;
             return { ...state, currentPost: currentPost, isFetchSuccess: false };
-        case GET_POSTS_LIST:
-            return { ...state, posts: action.payload.posts };
+
         case POST_GET_TOP_POST:
             return { ...state, topPost: action.payload.topPost };
         case POST_GET_POST_COMMENT_BY_ID:
@@ -89,6 +109,21 @@ function PostReducer(state = initialState, action) {
         case APPROVE_A_POST:
             {
                 return { ...state, currentPostApprovedStatus: action.payload }
+            }
+
+        //get highlight posts list
+
+        case GET_HIGHLIGHT_POSTS_LIST_REQUEST:
+            return {
+                ...state, highlightPosts: { isLoading: true, isLoadDone: false }
+            };
+        case GET_HIGHLIGHT_POSTS_LIST_SUCCESS:
+            {
+                return { ...state, highlightPosts: { isLoading: false, isLoadDone: true, data: action.payload, error: '' } }
+            }
+        case GET_HIGHLIGHT_POSTS_LIST_FAILURE:
+            {
+                return { ...state, highlightPosts: { isLoading: false, isLoadDone: true, error: action.payload, data: [] } }
             }
 
         //get my post
@@ -107,16 +142,19 @@ function PostReducer(state = initialState, action) {
 
         //get post search result
         case GET_POST_SEARCH_RESULT_REQUEST:
+        case GET_POSTS_LIST_REQUEST:
             return {
-                ...state, postSearchResult: { isLoading: true }
+                ...state, postsList: { isLoading: true }
             };
         case GET_POST_SEARCH_RESULT_SUCCESS:
+        case GET_POSTS_LIST_SUCCESS:
             {
-                return { ...state, postSearchResult: { isLoading: false, data: action.payload, error: '' } }
+                return { ...state, postsList: { isLoading: false, data: action.payload, error: '' } }
             }
         case GET_POST_SEARCH_RESULT_FAILURE:
+        case GET_POSTS_LIST_FAILURE:
             {
-                return { ...state, myPosts: { isLoading: false, error: action.payload, data: [] } }
+                return { ...state, postsList: { isLoading: false, error: action.payload, data: [] } }
             }
 
         default:

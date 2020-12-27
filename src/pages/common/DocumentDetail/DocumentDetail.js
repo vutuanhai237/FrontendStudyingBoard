@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/styles/DocPostDetail.scss'
+import 'components/styles/DocPostSummary.scss'
 // import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/gray_btn_element.png'
@@ -18,11 +18,13 @@ import gray_download_icon from 'assets/images/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'
 import { PORT } from 'constants.js'
 import Cookies from 'js-cookie'
+import PopupMenu from 'components/common/PopupMenu/PopupMenu'
+
 
 //import for pdf viewer:
 
 
-class DocDetail extends Component {
+class DocumentDetail extends Component {
 
     constructor(props) {
         super(props);
@@ -41,7 +43,15 @@ class DocDetail extends Component {
         this.year = "year";
         this.subject = "subject";
         this.title = "Sức mạnh của người hướng nội";
-        this.content = "Chúc mừng sinh nhật anh Đông!";
+        this.content = `This book is so much more than I had originally anticipated when beginning to outline it
+            in October 2007. It started out simple: I was going to talk about the 1980s and everything
+        that influenced me like comics, television, movies and videogames.I started by writing
+        down what videogames I felt were notable enough that I played in that decade and found
+        out I had well over 100. I decided to keep going and write all of them down that were
+        released through October 2007(when I started this book) and found out I had well over
+        500 total.It dawned on me that the idea of covering comics, television and movies
+        needed to be passed over.I also started planning on how to split all those games up and
+        decided on doing so via decades.`;
         this.image = "image";
         this.tags = "tags";
         this.uploadedTime = "22-08-2020";
@@ -56,27 +66,47 @@ class DocDetail extends Component {
         this.isAnyFailedAlertPopupOpen = false;
         this.isAnySuccessAlertPopupOpen = false;
 
+        this.normalMenuItemList = [
+            // { id: 3, name: "Báo cáo", icon: trash_icon },
+            { id: 3, name: "Báo cáo" },
+        ]
+
+
     }
 
     componentDidMount() {
-        this.fetchCurrentNotApprovedDocument();
+        // this.fetchCurrentNotApprovedDocument();
     }
 
-    fetchCurrentNotApprovedDocument = () => {
-        this.documentID = this.props.match.params.id;
-        this.props.getDocumentByID(this.documentID);
-        this.props.getCurrentUser();
+    onLikeBtnClick = () => {
+
+        // this.props.likeDocument(this.id);
+        this.dislikes = this.isDisliked ? this.dislikes-- : this.dislikes;
+        this.isDisliked = false;
+        this.isLiked = !this.isLiked;
+        this.likes++;
+        this.calculateBar();
+        this.setState({});
     }
+
+    onDislikeBtnClick = () => {
+
+        // this.props.dislikeDocument(this.id);
+        this.likes = this.isLiked ? this.likes-- : this.likes;
+        this.isLiked = false;
+        this.isDisliked = !this.isDisliked;
+        this.dislikes++;
+        this.calculateBar();
+        this.setState({});
+    }
+
 
     render() {
 
-        console.log(this.props);
 
         if (this.props.accountInformation) {
 
             if (this.props.document) {
-                if (this.props.document.statusCode === 14)
-                    return <>Không tìm thấy tài nguyên {window.location.href = "/"}</>;
                 this.document = this.props.document.documentDTO;
                 this.id = this.document.id;
                 this.authorName = this.document.authorName;
@@ -98,13 +128,11 @@ class DocDetail extends Component {
 
             return (
                 <div>
-                    <div className="DocPost_Detail" >
-                        {/* {this.props.document ? */}
-
+                    <div className="doc-post-detail" >
                         <div>
-                            <div className="DocPost_Detail-main-layout">
+                            <div className="doc-post-detail-main-layout">
 
-                                <div className="DocPost_Detail_Title">
+                                <div className="doc-post-detail_Title">
                                     {this.title}
                                 </div>
 
@@ -114,27 +142,31 @@ class DocDetail extends Component {
                                     <div className="normal-category">
                                         {this.category}
                                     </div>
-                                    <img alt="*" className="metadata-icon" src={gray_btn_element} />
+                                    {/* <img alt="*" className="metadata-icon" src={gray_btn_element} />
                                     <div className="DocPost_Metadata_Text">
                                         Môn học: &nbsp;
                                             {this.subject}
-                                    </div>
+                                    </div> */}
 
                                 </div>
 
-                                <div className="DocPost_User_Infor_Header">
-                                    <img src={this.avartarUrl} alt="avatar" className="DocPost_Detail_User_Infor_Avatar" />
-                                    <div style={{ flexDirection: "vertical" }}>
-                                        <div className="DocPost_Detail_User_Infor_Display_Name">{this.authorName}</div>
-                                        <div className="DocPost_Detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
+                                <div className="doc-post-detail-user-info-header">
+                                    <div className="display-flex">
+                                        <img src={this.avartarUrl} alt="avatar" className="doc-post-detail_User_Infor_Avatar" />
+                                        <div style={{ flexDirection: "vertical" }}>
+                                            <div className="doc-post-detail_User_Infor_Display_Name">{this.authorName}</div>
+                                            <div className="doc-post-detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
+                                        </div>
                                     </div>
+                                    <PopupMenu items={this.normalMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
+
                                 </div>
 
-                                <div className="DocPost_Detail_Content">
+                                <div className="doc-post-detail_Content">
                                     {this.content}
                                 </div>
 
-                                <div className="Doc_Summary_File_Name"
+                                <div className="doc-file-name"
                                     onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}>
                                     {this.fileName}
                                 </div>
@@ -152,20 +184,76 @@ class DocDetail extends Component {
                             </div>
                             <div className="Document_Live_Preview">
 
-                                <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe>
-
+                                {/* <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe> */}
+                                <iframe src={"https://drive.google.com/file/d/0B1HXnM1lBuoqMzVhZjcwNTAtZWI5OS00ZDg3LWEyMzktNzZmYWY2Y2NhNWQx/preview?hl=en"} width="100%" height="100%"></iframe>
                             </div>
-                            {/* <div className="DocPost_Detail_Footer">
-                                    <div className="blue-button" style={{ marginRight: "5px", fontSize: "16px" }} onClick={() => this.handlerApproveRequestedPost()}>Duyệt</div>
-                                    <div className="red-button" style={{ fontSize: "16px" }} onClick={() => { this.handlerRejectRequestedPost() }}>Từ chối</div>
-                                </div> */}
                         </div>
-                        {/* :
-                            <div className="padding_10px gray-label">
-                                Loading ...
-                            </div>
-                        } */}
                     </div>
+
+
+                    <div class="comments-container">
+                        <ul id="comments-list" class="comments-list">
+                            <li>
+                                <div class="comment-main-level">
+                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="" /></div>
+
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="">Nguyễn Văn Đông</a></h6>
+
+                                        </div>
+                                        <div class="comment-content">
+                                            Mọi người thấy bài viết này như thế nào?                                           </div>
+                                    </div>
+                                </div>
+
+                                <ul class="comments-list reply-list">
+                                    <li>
+                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="" /></div>
+                                        <div class="comment-box">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name"><a href="">Lưu Biêu Nghị</a></h6>
+
+                                            </div>
+                                            <div class="comment-content">
+                                                Hay nhưng mà nên có bản dịch nữa bạn, chưa ghi nguồn.
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="" /></div>
+                                        <div class="comment-box">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name by-author"><a href="">Nguyễn Văn Đông</a></h6>
+
+                                            </div>
+                                            <div class="comment-content">
+                                                Ok, bạn
+                                                              </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <div class="comment-main-level">
+                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="" />
+
+                                    </div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name"><a href="">Lưu Biêu Nghị</a></h6>
+                                        </div>
+                                        <div class="comment-content">
+                                            À, có một chỗ sai kìa bạn
+                                     </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
 
                     {/* Popup for reject requested post */}
                     <CustomModal
@@ -216,6 +304,7 @@ class DocDetail extends Component {
                     </CustomModal>
 
                 </div >
+
             );
         }
 
@@ -307,4 +396,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getCurrentUser
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocDetail));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocumentDetail));

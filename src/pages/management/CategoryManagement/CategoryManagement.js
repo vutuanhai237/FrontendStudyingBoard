@@ -68,7 +68,7 @@ class CategoryManagement extends Component {
 
     componentDidMount() {
         this.props.getDocCategories();
-        
+
 
     }
 
@@ -112,10 +112,10 @@ class CategoryManagement extends Component {
 
                                     <ClickAwayListener onClickAway={() => { this.closeAllPostCategoryListItemActivated() }}>
                                         <div className="Category_Dropdown_Container  margin-top-5px" id="management-post-category-container">
-                                            <div className="Custom_Table_Layout">
-                                                <div className="Custom_Table_Header">
-                                                    <div className="Custom_Table_20percents_Header">Mã danh mục</div>
-                                                    <div className="Custom_Table_80percents_Header">Tên danh mục</div>
+                                            <div className="custom-table-layout">
+                                                <div className="custom-table-header">
+                                                    <div className="custom-table-20percents-column">Mã danh mục</div>
+                                                    <div className="custom-table-80percents-column">Tên danh mục</div>
                                                 </div>
 
                                                 {this.state.postCategoriesList.map(item =>
@@ -161,12 +161,12 @@ class CategoryManagement extends Component {
 
                                     <ClickAwayListener onClickAway={() => { this.closeAllDocCategoryListItemActivated() }}>
                                         <div className="Category_Dropdown_Container  margin-top-5px" id="management-doc-categories-container">
-                                            <div className="Custom_Table_Layout">
-                                                <div className="Custom_Table_Header">
-                                                    <div className="Custom_Table_20percents_Header">Mã danh mục</div>
-                                                    <div className="Custom_Table_80percents_Header">Tên danh mục</div>
+                                            <div className="custom-table-layout">
+                                                <div className="custom-table-header">
+                                                    <div className="custom-table-20percents-column">Mã danh mục</div>
+                                                    <div className="custom-table-80percents-column">Tên danh mục</div>
                                                 </div>
-                                                <div className="Custom_Table_Layout" >
+                                                <div className="custom-table-layout" >
                                                     {this.documentCategoriesList.map(item =>
                                                         <div className="Custom_Table_Item" name="Document-category_Custom_Table_Item" key={item.id} id={'management-doc-category-item-' + item.id} onClick={(e) => this.handerDocCategoryItemClick(e, item.id, item.name)}>
                                                             <div className="Custom_Table_Item_20percents">{item.id}</div>
@@ -184,73 +184,8 @@ class CategoryManagement extends Component {
                                         </div>
                                     </ClickAwayListener>
 
-                                    {/* Danh sach cac mon hoc */}
-                                    <div className="Category_Dropdown margin_top_15px" id="management-doc-subjects-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-doc-subjects-dropdown", "management-doc-subjects-container")}>
-                                        <div className="Category_Dropdown_Title">
-                                            Danh sách môn học:
-                                        </div>
-                                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
-                                    </div>
 
-                                    <ClickAwayListener onClickAway={() => { this.closeAllSubjectListItemActivated() }}>
-                                        <div className="Category_Dropdown_Container  margin-top-5px" id="management-doc-subjects-container">
-                                            <div className="Custom_Table_Layout">
-                                                <div className="Custom_Table_Header">
-                                                    <div className="Custom_Table_20percents_Header">Mã môn học</div>
-                                                    <div className="Custom_Table_80percents_Header">Tên môn học</div>
-                                                </div>
-                                                <div className="Custom_Table_Layout">
-                                                    {this.documentSubjectList.map(item =>
-                                                        <div className="Custom_Table_Item" name="Subject_Custom_Table_Item" key={item.subjectId} id={'management-subject-item-' + item.subjectId} onClick={(e) => this.handerSubjectItemClick(e, item.subjectId, item.subjectName)}>
-                                                            <div className="Custom_Table_Item_20percents">{item.subjectId}</div>
-                                                            <div className="Custom_Table_Item_80percents">{item.subjectName}</div>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
 
-                                            {/* <div className="Category_Buttons_Layout" >
-                                            <div className="blue-button margin-right-5px">Thêm</div>
-                                            <div className="white-button margin-right-5px">Sửa</div>
-                                            <div className="red-button">Xóa</div>
-                                        </div> */}
-                                        </div>
-                                    </ClickAwayListener>
-
-                                    {/* Danh sach cac hoc ky */}
-                                    <div className="Category_Dropdown margin_top_15px" id="management-doc-semesters-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-doc-semesters-dropdown", "management-doc-semesters-container")}>
-                                        <div className="Category_Dropdown_Title">
-                                            Danh sách học kỳ:
-                                        </div>
-                                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
-                                    </div>
-
-                                    <ClickAwayListener onClickAway={() => { this.closeAllSemesterListItemActivated() }}>
-                                        <div className="Category_Dropdown_Container  margin-top-5px" id="management-doc-semesters-container">
-                                            <div className="Custom_Table_Layout">
-                                                <div className="Custom_Table_Header">
-                                                    <div className="Custom_Table_20percents_Header">Mã học kỳ</div>
-                                                    <div className="Custom_Table_40percents_Header">Học kỳ</div>
-                                                    <div className="Custom_Table_40percents_Header">Năm học</div>
-                                                </div>
-                                                <div className="Custom_Table_Layout">
-                                                    {this.documentSemesterList.map(item =>
-                                                        <div className="Custom_Table_Item" key={item.semesterId} name="Semester_Custom_Table_Item" id={'management-semester-item-' + item.semesterId} onClick={(e) => this.handerSemesterItemClick(e, item.semesterId, item.semesterNo)}>
-                                                            <div className="Custom_Table_Item_20percents">{item.semesterId}</div>
-                                                            <div className="Custom_Table_Item_40percents">{item.semesterNo}</div>
-                                                            <div className="Custom_Table_Item_40percents">{item.academicYear}</div>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-
-                                            <div className="Category_Buttons_Layout" >
-                                                <div className="blue-button margin-right-5px">Thêm</div>
-                                                <div className="white-button margin-right-5px">Sửa</div>
-                                                <div className="red-button">Xóa</div>
-                                            </div>
-                                        </div>
-                                    </ClickAwayListener>
                                 </div>
                             </div>
                         </div>
@@ -470,78 +405,14 @@ class CategoryManagement extends Component {
         });
     }
 
-    handerSubjectItemClick = (e, id, name) => {
-        let all_item = document.getElementsByName("Subject_Custom_Table_Item");
-
-        for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Custom_Table_Item";
-        }
-
-        let category_item = document.getElementById("management-subject-item-" + id);
-        // category_item.className
-        category_item.className = "Custom_Table_Item_Activated";
-
-        this.selected_category_id = id;
-        // this.selected_category_name = name;
-
-        this.setState({
-            canClickDeleteSubject: true,
-            canClickEditSubject: true
-        });
-    }
-
-    closeAllSubjectListItemActivated = () => {
-        let all_item = document.getElementsByName("Subject_Custom_Table_Item");
-        for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Custom_Table_Item";
-        }
-        this.setState({
-            canClickDeleteSubject: false,
-            canClickEditSubject: false
-        });
-    }
-
-
-    handerSemesterItemClick = (e, id, name) => {
-        let all_item = document.getElementsByName("Semester_Custom_Table_Item");
-
-        for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Custom_Table_Item";
-        }
-
-        let category_item = document.getElementById("management-semester-item-" + id);
-        // category_item.className
-        category_item.className = "Custom_Table_Item_Activated";
-
-        this.selected_category_id = id;
-        // this.selected_category_name = name;
-
-        this.setState({
-            canClickDeleteSemester: true,
-            canClickEditSemester: true
-        });
-    }
-
-    closeAllSemesterListItemActivated = () => {
-        let all_item = document.getElementsByName("Semester_Custom_Table_Item");
-        for (let i = 0; i < all_item.length; i++) {
-            all_item[i].className = "Custom_Table_Item";
-        }
-        this.setState({
-            canClickDeleteSemester: false,
-            canClickEditSemester: false
-        });
-    }
-    //#endregion
-
 }
 
 
 //#region for Redux
 const mapStateToProps = (state) => {
     return {
-        categoryList: state.doc.categories,
-        subjectList: state.doc.subjects,
+        categoryList: state.doc_categories,
+     
     };
 }
 

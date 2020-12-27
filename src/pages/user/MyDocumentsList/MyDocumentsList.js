@@ -19,12 +19,12 @@ import DocSummary from 'components/doc/DocSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
 
-class DocApprovingPage extends Component {
+class MyDocumentsList extends Component {
     constructor(props) {
         super();
         this.maxItemPerPage = 5;
 
-        this.documents = [];
+        this.myDocuments = [];
 
         this.filter = [
             { id: 1, name: "Tất cả" },
@@ -64,45 +64,45 @@ class DocApprovingPage extends Component {
 
     render() {
 
-        let documentsList = <></>;
+        let myDocumentsList = <></>;
 
         if (!this.props.isListLoading) {
-            this.documents = this.props.documents;
+            if (this.props.myDocuments) {
+                this.myDocuments = this.props.myDocuments;
 
-            documentsList = this.documents.map((documentItem => (
-                < DocSummary
-                    type={summaryItemType.approving}
-                    key={documentItem.id}
-                    id={documentItem.id}
-                    authorName={documentItem.authorName}
-                    authorID={documentItem.authorID}
-                    publishDtm={documentItem.publishDtm}
-                    category={documentItem.category}
-                    categoryID={documentItem.categoryID}
-                    title={documentItem.title}
-                    views={documentItem.views}
-                    downloads={documentItem.downloads}
-                    subject={documentItem.subject}
-                    subjectID={documentItem.subjectID}
-                    likes={documentItem.likes}
-                    dislikes={documentItem.dislikes}
-                    description={documentItem.description}
-                    imageURL={documentItem.imageURL}
+                myDocumentsList = this.myDocuments.map((myDoc) => (
+                    < DocSummary
+                        type={summaryItemType.mySelf}
+                        key={myDoc.id}
+                        id={myDoc.id}
+                        authorName={myDoc.authorName}
+                        authorID={myDoc.authorID}
+                        publishDtm={myDoc.publishDtm}
+                        category={myDoc.category}
+                        categoryID={myDoc.categoryID}
+                        title={myDoc.title}
+                        views={myDoc.views}
+                        downloads={myDoc.downloads}
+                        subject={myDoc.subject}
+                        subjectID={myDoc.subjectID}
+                        likes={myDoc.likes}
+                        dislikes={myDoc.dislikes}
+                        description={myDoc.description}
+                        imageURL={myDoc.imageURL}
 
-                ></DocSummary >)
-            ))
+                    ></DocSummary >)
+                )
+            }
         }
-
-
         return (
             <div>
-                <Titlebar title="QUẢN LÝ TÀI LIỆU" />
+                <Titlebar title="TÀI LIỆU CỦA TÔI" />
                 <div className="left-side-bar-layout-content-container">
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
 
                         <div className="filter-label display-flex">
                             <div className="margin-right-5px">Tổng số:</div>
-                            <div>{this.documents.length}</div>
+                            <div>{this.myDocuments.length}</div>
                         </div>
 
                         <div style={{ display: "flex" }}>
@@ -118,14 +118,14 @@ class DocApprovingPage extends Component {
                     </div>
                     {this.props.isListLoading ?
                         < Loader /> :
-                        <>  {documentsList}
+                        <>  {myDocumentsList}
                         </>
                     }
 
                     <Paginator config={{
-                        changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        pageCount: 10,
-                        currentPage: getSearchParamByName('page')
+                       changePage: (pageNumber) => this.onPageChange(pageNumber),
+                       pageCount: 10,
+                       currentPage: getSearchParamByName('page')
                     }}
                     />
                 </div>
@@ -135,9 +135,9 @@ class DocApprovingPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-
+    console.log("***", state);
     return {
-        documents: state.document.myDocuments.data,
+        myDocuments: state.document.myDocuments.data,
         isListLoading: state.document.myDocuments.isLoading,
         isCategoryLoading: state.doc_category.categories.isLoading
     };
@@ -147,4 +147,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyDocumentsList, getDocCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocApprovingPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyDocumentsList));

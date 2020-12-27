@@ -12,16 +12,18 @@
     min-height: 100vh;
 }
 
+
 .Horizontal_Menu_Bar {
     position: relative;
     display: flex;
     width: 100%;
-    // background: green;
-    border-bottom: 1px var(--gray) solid;
+    border: 1px var(--blue) solid;
     margin: auto;
+    // border-radius: 5px;
 }
 
 .Horizontal_Menu_Item {
+    padding-bottom: 3px;
     width: fit-content;
     padding-right: 10px;
     padding-left: 10px;
@@ -31,15 +33,19 @@
     align-items: center;
     color: var(--black);
     user-select: none;
-    border-bottom: 3px var(--white) solid;
-
 }
 
-.Horizontal_Menu_Item:hover,
-.Activated_Horizontal_Menu_Item {
+.Horizontal_Menu_Item:hover {
     color: var(--blue);
-    border-bottom: 3px var(--blue) solid;
+    background: var(--grayish);
     cursor: pointer;
+    opacity: 80%;
+}
+
+.Activated_Horizontal_Menu_Item {
+    cursor: pointer;
+    background: var(--blue);
+    color: white;
 }
 
 .Horizontal_Menu_Item:active {

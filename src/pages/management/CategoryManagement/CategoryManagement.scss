@@ -14,7 +14,7 @@
     color: var(--blue);
 }
 
-.Custom_Table_Layout {
+.custom-table-layout {
     width: 100%;
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
@@ -23,7 +23,7 @@
     color: var(--blue);
 }
 
-.Custom_Table_Header {
+.custom-table-header {
     width: 100%;
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
@@ -37,7 +37,7 @@
     border-bottom: white 1px solid;
 }
 
-.Custom_Table_20percents_Header {
+.custom-table-20percents-column {
     width: 20%;
     text-align: center;
     font-family: "BarlowCondensed-SemiBold";
@@ -47,7 +47,7 @@
     text-align: center;
 }
 
-.Custom_Table_80percents_Header {
+.custom-table-80percents-column {
     border: 1px var(--blue) solid;
     border-left: 1px solid white;
     width: 80%;

@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import React, { Component } from 'react'
 
 //services
-import { getMyDocumentsList } from "redux/services/docServices"
+import { getDocumentsList } from "redux/services/docServices"
 import { getDocCategories } from "redux/services/docCategoryServices"
 
 //utils
-import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/utils'
+import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/urlUtils'
 import { summaryItemType } from 'constants.js'
 
 //components
@@ -19,12 +19,12 @@ import DocSummary from 'components/doc/DocSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
 
-class MyDocuments extends Component {
+class DocumentsList extends Component {
     constructor(props) {
         super();
         this.maxItemPerPage = 5;
 
-        this.myDocuments = [];
+        this.documentsList = [];
 
         this.filter = [
             { id: 1, name: "Tất cả" },
@@ -34,14 +34,14 @@ class MyDocuments extends Component {
         ]
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.props.getDocCategories()
 
         //get filter
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
 
-        this.props.getMyDocumentsList(page, category);
+        this.props.getDocumentsList(page, category);
     }
 
     //server paginator
@@ -49,7 +49,7 @@ class MyDocuments extends Component {
         setSearchParam("page", pageNumber);
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
-        this.props.getMyDocumentsList(page, category);
+        this.props.getDocumentsList(page, category);
         this.setState({});
     }
 
@@ -58,51 +58,51 @@ class MyDocuments extends Component {
         setSearchParam("category", selectedOption.id);
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
-        this.props.getMyDocumentsList(page, category);
+        this.props.getDocumentsList(page, category);
         this.setState({});
     }
 
     render() {
 
-        let myDocumentsList = <></>;
+        let documentsList = <></>;
 
         if (!this.props.isListLoading) {
-            if (this.props.myDocuments) {
-                this.myDocuments = this.props.myDocuments;
+            if (this.props.documentsList) {
+                this.documentsList = this.props.documentsList;
 
-                myDocumentsList = this.myDocuments.map((myDoc) => (
+                documentsList = this.documentsList.map((documentItem) => (
                     < DocSummary
-                        type={summaryItemType.mySelf}
-                        key={myDoc.id}
-                        id={myDoc.id}
-                        authorName={myDoc.authorName}
-                        authorID={myDoc.authorID}
-                        publishDtm={myDoc.publishDtm}
-                        category={myDoc.category}
-                        categoryID={myDoc.categoryID}
-                        title={myDoc.title}
-                        views={myDoc.views}
-                        downloads={myDoc.downloads}
-                        subject={myDoc.subject}
-                        subjectID={myDoc.subjectID}
-                        likes={myDoc.likes}
-                        dislikes={myDoc.dislikes}
-                        description={myDoc.description}
-                        imageURL={myDoc.imageURL}
+                        type={summaryItemType.normal}
+                        key={documentItem.id}
+                        id={"document-item" + documentItem.id}
+                        authorName={documentItem.authorName}
+                        authorID={documentItem.authorID}
+                        publishDtm={documentItem.publishDtm}
+                        category={documentItem.category}
+                        categoryID={documentItem.categoryID}
+                        title={documentItem.title}
+                        views={documentItem.views}
+                        downloads={documentItem.downloads}
+                        subject={documentItem.subject}
+                        subjectID={documentItem.subjectID}
+                        likes={documentItem.likes}
+                        dislikes={documentItem.dislikes}
+                        description={documentItem.description}
+                        imageURL={documentItem.imageURL}
 
                     ></DocSummary >)
                 )
             }
         }
         return (
-            <div>
-                <Titlebar title="TÀI LIỆU CỦA TÔI" />
+            <div className="nm-bl-layout">
+                <Titlebar title="TÀI LIỆU" />
                 <div className="left-side-bar-layout-content-container">
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
 
                         <div className="filter-label display-flex">
                             <div className="margin-right-5px">Tổng số:</div>
-                            <div>{this.myDocuments.length}</div>
+                            <div>{this.documentsList.length}</div>
                         </div>
 
                         <div style={{ display: "flex" }}>
@@ -115,17 +115,18 @@ class MyDocuments extends Component {
                                     id="my-doc-list-search-filter-combobox"
                                 ></ComboBox></div>
                         </div>
+
                     </div>
                     {this.props.isListLoading ?
                         < Loader /> :
-                        <>  {myDocumentsList}
+                        <>  {documentsList}
                         </>
                     }
 
                     <Paginator config={{
                         changePage: (pageNumber) => this.onPageChange(pageNumber),
                         pageCount: 20,
-                        numShownPage: 5
+                        currentPage: getSearchParamByName('page')
                     }}
                     />
                 </div>
@@ -135,16 +136,16 @@ class MyDocuments extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("***", state);
+    console.log(state);
     return {
-        myDocuments: state.document.myDocuments.data,
-        isListLoading: state.document.myDocuments.isLoading,
+        documentsList: state.document.documentSearchResult.data,
+        isListLoading: state.document.documentSearchResult.isLoading,
         isCategoryLoading: state.doc_category.categories.isLoading
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getMyDocumentsList, getDocCategories
+    getDocumentsList, getDocCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyDocuments));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocumentsList));

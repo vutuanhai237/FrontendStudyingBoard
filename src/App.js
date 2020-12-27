@@ -2,10 +2,10 @@ import React from "react";
 
 //common
 import Home from "pages/common/Home/Home";
-import PostsList from "pages/common/PostsList/PostsList";
+//import PostsList from "pages/common/PostsList/PostsList";
 import PostDetail from "pages/common/PostDetail/PostDetail";
-import DocsList from "pages/common/DocsList/DocsList";
-import DocDetail from "pages/common/DocDetail/DocDetail";
+//import DocumentsList from "pages/common/DocumentsList/DocumentsList";
+import DocDetail from "pages/common/DocumentDetail/DocumentDetail";
 import EventsList from "pages/common/EventsList/EventsList";
 import Login from "pages/common/Login/Login";
 import Register from "pages/common/Register/Register";
@@ -18,10 +18,9 @@ import SearchTagLayout from "layouts/SearchTagLayout";
 import UserLayout from "layouts/UserLayout"
 
 //common
-import BlankLayout from "layouts/NormalBlankLayout"
+import NormalBlankLayout from "layouts/NormalBlankLayout"
 
 //management
-import DocPreview from 'pages/management/DocPreview/DocPreview' // se duoc bo di, admin va cong tac vien muon preview thi tai thong qua link roi xem tren may.
 import AdminLayout from 'layouts/AdminLayout'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -33,15 +32,15 @@ const App = () => {
         <div style={{ minWidth: "320px", width: "100%", background: "white" }}>
             <Router>
                 <Header />
-                <div id = "header" style={{ height: "65px" }}></div>
+                <div id="header" style={{ height: "65px" }}></div>
 
 
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/posts" component={BlankLayout} />
-                    <Route exact path="/documents" component={BlankLayout} />
+                    <Route exact path="/posts" component={NormalBlankLayout} />
+                    <Route exact path="/documents" component={NormalBlankLayout} />
                     <Route exact path="/posts/:id" component={PostDetail} />
                     <Route exact path="/documents/:id" component={DocDetail} />
                     <Route exact path="/events" component={EventsList} />
@@ -69,10 +68,10 @@ const App = () => {
 
                     {/* for admin only */}
                     <Route path="/admin">
+                        <Route exact path="" component={AdminLayout} />
                         <Route exact path="/post-approving" component={AdminLayout} />
                         <Route exact path="/post-approving/:id" />
                         <Route exact path="/doc-approving" component={AdminLayout} />
-                        <Route exact path="/doc-approving/:id" component={DocPreview} />
                         <Route exact path="/page-notification" component={AdminLayout} />
                         <Route exact path="/categories-management" component={AdminLayout} />
                         <Route exact path="/user-management" component={AdminLayout} />

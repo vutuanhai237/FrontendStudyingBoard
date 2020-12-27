@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
 
-import 'components/styles/DocPostSummary.scss'
 import 'styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import gray_btn_element from 'assets/images/gray_btn_element.png'
+import { Link } from 'react-router-dom'
 
+//resources
+import gray_btn_element from 'assets/images/gray_btn_element.png'
 import liked_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
 import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
-import PopupMenu from 'components/common/PopupMenu/PopupMenu'
 import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
+import 'components/styles/DocPostSummary.scss'
+
+//styles
 import 'styles/SimpleLabel.scss'
+
+//constants
 import { summaryItemType } from 'constants.js'
+
+//components
+import PopupMenu from 'components/common/PopupMenu/PopupMenu'
 
 class PostSummary extends Component {
 
@@ -132,9 +140,9 @@ class PostSummary extends Component {
             </div>
 
             <div className="metadata-light-black-label">bởi</div>
-            <div className="link-label" onClick={() => this.navigateToAuthorPersonalPage()}>
+            <Link className="link-label" to={/user/}>
               {this.props.authorName}
-            </div>
+            </Link>
 
             {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.approving ?
               <>{approveLabel}</> : <></>}
@@ -211,6 +219,7 @@ class PostSummary extends Component {
 
         </div> */}
       </div >
+
     );
   }
 

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import { isContainSpecialCharacter } from 'utils/utils'
+import { isContainSpecialCharacter } from 'utils/urlUtils'
 
 //import for Redux
 import { bindActionCreators } from 'redux'

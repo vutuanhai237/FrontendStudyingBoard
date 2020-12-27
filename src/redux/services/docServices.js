@@ -8,15 +8,25 @@ import {
     managementGetCurrentPreviewDocument,
     managementApproveADocument,
 
+    get_NewDocumentsListRequest,
+    get_NewDocumentsListSuccess,
+    get_NewDocumentsListFailure,
+
     //my documents
     get_MyDocumentsRequest,
     get_MyDocumentsSuccess,
     get_MyDocumentsFailure,
 
+    //documents list
+    get_DocumentsListRequest,
+    get_DocumentsListSuccess,
+    get_DocumentsListFailure,
+
     //document search result
     get_DocumentSearchResultRequest,
     get_DocumentSearchResultSuccess,
     get_DocumentSearchResultFailure,
+
 
 
 
@@ -59,109 +69,30 @@ export function postDoc(doc) {
     }
 }
 
-export function getSubjects() {
-    return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch(`http://${PORT}/subjects`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetSubjects(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = [categoriesList[19], categoriesList[20], categoriesList[21], categoriesList[22]];
-        // dispatch(docGetSubjects(result));
-
-    }
-}
-
 export function getTopDoc() {
     return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
 
-        fetch(`http://${PORT}/docs/goodDoc?limit=3`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetTopDoc(JSON.parse(result).shortDocs));
-            })
-            .catch(error => console.log('error', error));
-        // let result = [doc_v1.documentDTO, doc_v2.documentDTO, doc_v3.documentDTO];
-        // dispatch(docGetTopDoc(result));
     }
 }
 
-export function getSearchDoc(filter) {
-    return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch(`http://${PORT}/docs/search?${filter}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                dispatch(docGetSearchDoc(JSON.parse(result).shortDocs));
-            })
-            .catch(error => console.log('error', error));
-    }
-}
 export function getDocumentByID(id) {
     return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
 
-        fetch(`http://${PORT}/docs/detail?id=${id}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result)
-                dispatch(docGetDocByID(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // const result = doc_v1;
-        // dispatch(docGetDocByID(result));
     }
 }
-
-
-// import FormData from 'form-data';
 
 export function getNotApprovedDocumentsList() {
     return dispatch => {
-
-        // var myHeaders = new Headers();
-
-        // var requestOptions = {
-        //     method: 'GET',
-        //     headers: myHeaders,
-        //     redirect: 'follow'
-        // };
-
-        // // fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-        // //     .then(response => response.text())
-        // //     .then(result => {
-        // //         console.log(result);
-        // //         dispatch(get_NotApprovedDocumentsList(JSON.parse(result).shortDocs))
-        // //     })
-
-        // //     .catch(error => console.log('error', error));
-        // const result = [doc_v1, doc_v2, doc_v3];
-        // dispatch(get_NotApprovedDocumentsList(result));
-
     }
-
 }
 
-//Code Status: 
-
 export function management_approveADocument(docID) {
+    return dispatch => {
+
+    }
+}
+
+export function get_NewDocumentsList() {
     return dispatch => {
 
         var myHeaders = new Headers();
@@ -171,14 +102,74 @@ export function management_approveADocument(docID) {
             headers: myHeaders,
             redirect: 'follow'
         };
-        fetch(`http://${PORT}/admin/docs/approved?id =${docID}&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        dispatch(get_NewDocumentsListRequest());
+
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myDocuments`, requestOptions)
             .then(response => response.text())
             .then(
-                result => dispatch(managementApproveADocument(JSON.parse(result).shortDocs))
+                result => {
+                    dispatch(get_NewDocumentsListSuccess(JSON.parse(result)));
+                }
             )
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                console.log(error);
+                dispatch(get_NewDocumentsListFailure(JSON.parse(error))); //
+            })
     }
+}
 
+export function getDocumentsList(page = 1, category = "", searchTerm = "") { //this API to get all approved document of a specific user.
+    return dispatch => {
+
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        dispatch(get_DocumentsListRequest());
+
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myDocuments`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+                    dispatch(get_DocumentsListSuccess(JSON.parse(result)));
+                }
+            )
+            .catch(error => {
+                console.log(error);
+                dispatch(get_DocumentsListFailure(JSON.parse(error))); //
+            })
+
+    }
+}
+
+export function getDocumentSearchResult(page = 1, category = "", searchTerm = "") { //this API to get all approved document of a specific user.
+    return dispatch => {
+        console.log("A");
+
+        var myHeaders = new Headers();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        dispatch(get_DocumentSearchResultRequest());
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myDocuments`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+                    dispatch(get_DocumentSearchResultSuccess(JSON.parse(result)));
+                }
+            )
+            .catch(error => {
+                console.log(error);
+                dispatch(get_DocumentSearchResultFailure(JSON.parse(error))); //
+            })
+
+    }
 }
 
 export function getMyDocumentsList(page = 1, category = "") { //this API to get all approved document of a specific user.
