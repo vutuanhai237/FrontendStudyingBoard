@@ -222,7 +222,7 @@ class DocSummary extends Component {
           </div>
 
         </div>
-        {/* <div className="justify-content-space-between margin-top-10px">
+        {/* <div className="justify-content-space-between mg-top-10px">
 
         </div> */}
 
@@ -241,7 +241,7 @@ class DocSummary extends Component {
           text="Xác nhận từ chối tiếp nhận bài viết này?"
           closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
         >
-          <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
+          <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
           <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
         </CustomModal>
 

@@ -1,42 +1,65 @@
 import React, { Component } from "react";
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom'
+
+//
+import { getSearchParamByName } from 'utils/urlUtils';
+import { getTagSearchResult } from 'redux/services/tagServices'
 import Tag from "components/common/Tag/Tag"
+import Loader from "components/common/Loader/Loader";
+import 'styles/SimpleLabel.scss';
+
 class SearchTag extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tags:
-                [
-                    {
-                        id: 1,
-                        content: "tag1"
-                    },
-                    {
-                        id: 2,
-                        content: "tag2"
-                    },
-                    {
-                        id: 3,
-                        content: "tag2"
-                    }
-                ],
-        }
+        this.tagSearchResult = [];
     }
 
-    navigateToSeachByTag = (id) => { window.location.pathname = `search-tag/${id}/post` }
-
+    componentDidMount() {
+        let searchTerm = getSearchParamByName('q');
+        this.props.getTagSearchResult(searchTerm);
+    }
     render() {
 
         return (
 
-            <div className="margin-top-10px">
-                
-                {this.state.tags.map(item =>
-                    <Tag isReadOnly={true} tag={item} onTagClick={(id) => this.navigateToSeachByTag(id)} />
-                )
+            <div className="mg-top-10px">
+
+                {!this.props.isListLoading ?
+                    <div>
+                        <div className="gray-label" >Tổng số kết quả: {this.props.itemCount}</div>
+                        <div className="decoration-line margin-bottom-10px"></div>
+                        {
+                            this.props.tagsList.map(item =>
+                                <Link to={`/tags/${item.id}/post`} >
+                                    <Tag isReadOnly={true} tag={item} />
+                                </Link>
+                            )
+                        }
+
+                    </div>
+                    :
+                    <Loader />
                 }
             </div>
         );
     }
 }
 
-export default SearchTag;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        tagsList: state.tag.tagSearchResult.data,
+        itemCount: state.tag.tagSearchResult.itemCount,
+        isListLoading: state.tag.tagSearchResult.isLoading,
+        error: state.tag.tagSearchResult.error
+    };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    getTagSearchResult
+}, dispatch);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchTag));

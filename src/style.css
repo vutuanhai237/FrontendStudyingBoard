@@ -166,27 +166,23 @@ a:hover {
     background: green;
 }
 
-.margin-left-5px {
+.mg-left-5px {
     margin-left: 5px;
 }
 
-.margin-left-10px {
+.mg-left-10px {
     width: 10px;
 }
 
-.margin-right-5px {
+.mg-right-5px {
     margin-right: 5px;
 }
 
-.margin-right-10px {
-    margin-right: 10px;
-}
-
-.margin-top-5px {
+.mg-top-5px {
     margin-top: 5px;
 }
 
-.margin-top-10px {
+.mg-top-10px {
     margin-top: 10px !important;
 }
 
@@ -228,6 +224,13 @@ a:hover {
 
 .mi-w-fit-content {
     min-width: fit-content;
+}
+
+/* border bottom */
+.decoration-line {
+    height: 1px;
+    width: 100%;
+    background: var(--gray);
 }
 
 /* medium scroll bar */

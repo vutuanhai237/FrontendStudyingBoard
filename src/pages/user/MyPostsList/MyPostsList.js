@@ -18,7 +18,7 @@ import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 
 import Loader from 'components/common/Loader/Loader'
 
 //Sample URL: http://localhost:3000/user/my-posts?page=3&category=1
-class MyPostList extends Component {
+class MyPostsList extends Component {
     constructor(props) {
         super();
 
@@ -102,7 +102,7 @@ class MyPostList extends Component {
                 <div className="left-side-bar-layout-content-container">
                     <div className="two-element-filter-container">
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                            <div className="filter-label text-align-right mg-right-5px">Bộ lọc:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
@@ -115,7 +115,7 @@ class MyPostList extends Component {
                         </div>
 
                         <div className="filter-label display-flex">
-                            <div className="margin-right-5px">Tổng số:</div>
+                            <div className="mg-right-5px">Tổng số:</div>
 
                             {!this.props.isListLoading ?
                                 <div> {this.props.myPostsList.length}</div>
@@ -155,4 +155,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyPostList));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyPostsList));

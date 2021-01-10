@@ -39,17 +39,7 @@ import {
 } from '../constants.js'
 
 const initialState = {
-    posts: [],
-    topPost: [],
-    currentPost: {},
-    currentComments: [],
-    isFetchSuccess: false,
-    categories: [],
-    highlights: [],
-    newActivities: [],
-    newests: [],
-    tags: [],
-    statusPostPostCode: 0,
+  
 
     //search post: use for search post and post list
     postsList: {

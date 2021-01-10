@@ -1,15 +1,3 @@
-export function isContainSpecialCharacter(str) {
-    return /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
-}
-
-export function isValidGmail(str) {
-
-}
-
-export function generateHiddenPassword(password) {
-
-}
-
 // search parameter manipulation 
 export function getSearchParamByName(name) {
     let query = window.location.search.substring(1);
@@ -57,10 +45,13 @@ export function setSearchParam(name, value) {
     }
 }
 
-export function navigateWithoutReload(pathname) {
-    // if (window.history.pushState) {
-    //     let newurl = window.location.protocol + "//" + window.location.host + pathname;
-    //     window.history.pushState({ path: newurl }, '', newurl);
-    // }
-    window.location.href= pathname;
+export function isSearchParamHasValue(searchParam, values) {
+    let value = getSearchParamByName(searchParam);
+
+    for (let i = 0; i <= values.length; i++) {
+        if (value === values[i])
+            return true;
+    }
+    return false;
 }
+

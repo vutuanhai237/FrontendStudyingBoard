@@ -13,7 +13,7 @@ import gray_nb_write_icon from 'assets/images/gray_nb_write_icon.png'
 //import pages
 import AccountInformation from 'pages/user/AccountInformation/AccountInformation';
 import MyDocumentsList from 'pages/user/MyDocumentsList/MyDocumentsList';
-import MyPostList from 'pages/user/MyPostList/MyPostList';
+import MyPostsList from 'pages/user/MyPostsList/MyPostsList';
 import UploadDoc from 'pages/user/UploadDocument/UploadDocument'
 import CreatePost from 'pages/user/CreatePost/CreatePost'
 
@@ -54,14 +54,6 @@ class AdminLayout extends Component {
 
       let { roleName, score, post_count, doc_count, username, avatarURL } = this.props.accountInformation;
 
-      // //neu khong la admin va co tinh vao domain cua admin=> home
-      // if (window.location.pathname.substring(0, 6) === "/admin" && roleName !== "ADMIN")
-      //     window.location.pathname = "/"; //401 error
-
-      // //neu la admin va co tinh vao trang quan ly cua user => admin
-      // if (window.location.pathname.substring(0, 5) === "/user" && roleName === "ADMIN")
-      //     window.location.pathname = "/admin";
-
       return (
         <div className="pr-layout">
           {/* Xu ly su kien cuon tro chuot */}
@@ -93,12 +85,12 @@ class AdminLayout extends Component {
                           <div className="Achivement_Post_Doc_Count_Layout">
                             <div className="display-flex width_50_percents">
                               <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                              <div className="margin-left-5px">{post_count}</div>
+                              <div className="mg-left-5px">{post_count}</div>
                             </div>
 
                             <div className="display-flex width_50_percents">
                               <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                              <div className="margin-left-5px"> {doc_count}</div>
+                              <div className="mg-left-5px"> {doc_count}</div>
                             </div>
                           </div>
                         </div>
@@ -331,7 +323,7 @@ class AdminLayout extends Component {
                   <Route exact path="/user" component={AccountInformation} />
                   <Route exact path="/user/update-password" component={AccountInformation} />
                   <Route exact path="/user/my-docs" component={MyDocumentsList} />
-                  <Route exact path="/user/my-posts" component={MyPostList} />
+                  <Route exact path="/user/my-posts" component={MyPostsList} />
                   <Route exact path="/create-post" component={CreatePost} />
                   <Route exact path="/upload-doc" component={UploadDoc} />
                 </Switch>

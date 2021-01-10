@@ -122,7 +122,7 @@ class UserManagement extends Component {
                 <Titlebar title="QUẢN LÝ NGƯỜI DÙNG" />
                 <div className="left-side-bar-layout-content-container">
 
-                    <div className="display-flex justify-content-space-between margin-top-10px"  >
+                    <div className="display-flex justify-content-space-between mg-top-10px"  >
                         <div className="number-of-item">
                             Tổng số:
                             &nbsp;

@@ -15,7 +15,7 @@ import dropdown_btn from 'assets/images/dropdown_icon.png'
 import white_dropdown_btn from 'assets/images/white_dropdown_icon.png'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UpdatePassword from './UpdatePassword'
-import { isContainSpecialCharacter } from 'utils/urlUtils'
+import { isContainSpecialCharacter } from 'utils/stringUtils'
 import ImageUploader from 'react-images-upload'
 
 //import for Redux
@@ -137,14 +137,14 @@ class AccountInformation extends Component {
                                         {/* <img className="Account_Information_Avatar_Image" alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + ".png'} ></img> */}
 
                                         <img className="Account_Information_Avatar_Image" alt="avatar" src={this.avatarURL} />
-                                        {/* <div className="margin-left-10px"></div> */}
+                                        {/* <div className="mg-left-10px"></div> */}
 
                                         {/* <div>{this.props.</div> */}
                                     </div>
 
                                     <div className="blue-button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
 
-                                    <div className="margin-top-10px" />
+                                    <div className="mg-top-10px" />
 
                                     <div className="display-flex">
                                         <div className="gray-label" style={{ lineHeight: "25px" }}>Role:</div>
@@ -183,18 +183,18 @@ class AccountInformation extends Component {
                                         </ClickAwayListener>
                                     </div>
 
-                                    <div className="margin-top-5px" />
+                                    <div className="mg-top-5px" />
 
                                     <div className="Account_Information_Achivement_Layout">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Layout">
                                             <div className="display-flex width_50_percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                <div className="margin-left-5px">{this.postCount}</div>
+                                                <div className="mg-left-5px">{this.postCount}</div>
                                             </div>
                                             <div className="display-flex width_50_percents">
                                                 <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                <div className="margin-left-5px"> {this.documentCount}</div>
+                                                <div className="mg-left-5px"> {this.documentCount}</div>
                                             </div>
                                         </div>
                                     </div >
@@ -243,7 +243,7 @@ class AccountInformation extends Component {
                                             </div>
                                             <input disabled type="text" className="form-input" defaultValue={this.email} />
 
-                                            <div className="display-flex margin-top-10px" >
+                                            <div className="display-flex mg-top-10px" >
                                                 <button disabled={!this.canClickSaveInformation} className="blue-button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
                                                     Lưu thay đổi
                                             </button>
@@ -301,7 +301,7 @@ class AccountInformation extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.handlerCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 
@@ -318,7 +318,7 @@ class AccountInformation extends Component {
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
                         <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
+                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyUpdateInformation()}>OK</button>
                             <button className="white-button" onClick={() => this.handlerCancelVerifyUpdateInformation()}>Cancel</button>
                         </div>
                     </CustomModal>
@@ -349,7 +349,7 @@ class AccountInformation extends Component {
 
                                 <div className="gray-label">Xác nhận?</div>
                                 <div style={{ display: "flex" }}>
-                                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
+                                    <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyUpdateAvatarConfirmation()}>OK</button>
                                     <button className="white-button" onClick={() => { this.isUpdateAvatarPopupOpen = false; this.setState({}) }}>Cancel</button>
                                 </div>
                             </div>

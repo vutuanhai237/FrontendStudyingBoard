@@ -6,31 +6,7 @@
     user-select: none;
 }
 
-.title-bar .Horizontal_Menu_Item {
-    width: fit-content;
-    padding-right: 20px;
-    padding-left: 20px;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    color: var(--black);
-    user-select: none;
-}
-
-
-.title-bar .Horizontal_Menu_Item:hover {
-    color: white;
-    background: var(--blue);
-    cursor: pointer;
-}
-
-.title-bar .Horizontal_Menu_Item:active {
-    background: var(--gray);
-    cursor: pointer;
-}
-
-.Main_Title {
+.main-title {
     font-family: Cambria;
     font-style: normal;
     font-weight: bold;

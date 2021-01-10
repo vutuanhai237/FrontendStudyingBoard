@@ -197,7 +197,7 @@ class WallPaper extends Component {
                                 </div>
 
                                 <div className="item-reaction-bar">
-                                    <div className="display-flex margin-top-5px">
+                                    <div className="display-flex mg-top-5px">
                                         <div className="display-flex">
                                             <div> {likeBtn}</div>
                                             <div className="like-count">{item.likes}</div>
@@ -216,7 +216,7 @@ class WallPaper extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="link-label margin-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + item.id }}>
+                                    <div className="link-label mg-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + item.id }}>
                                         Đọc tiếp ...
                                  </div>
                                 </div>

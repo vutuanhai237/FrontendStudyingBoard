@@ -4,10 +4,10 @@ import './Titlebar.scss'
 class Titlebar extends Component {
     render() {
         return (
-            <div className="Horizontal_Menu_Layout">
+            <div className="h-menu-layout">
                 {/* Menu bar */}
                 <div className="title-bar">
-                    <div className="Main_Title">{this.props.title}</div>
+                    <div className="main-title">{this.props.title}</div>
                 </div>
             </div>
         );

@@ -101,12 +101,12 @@ class DocApprovingPage extends Component {
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
 
                         <div className="filter-label display-flex">
-                            <div className="margin-right-5px">Tổng số:</div>
+                            <div className="mg-right-5px">Tổng số:</div>
                             <div>{this.documents.length}</div>
                         </div>
 
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right margin-right-5px">Bộ lọc:</div>
+                            <div className="filter-label text-align-right mg-right-5px">Bộ lọc:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.filter}

@@ -21,10 +21,10 @@ import { getCurrentUser } from 'redux/services/userServices'
 import Tag from 'components/common/Tag/Tag'
 import "components/common/Titlebar/Titlebar.scss"
 import "layouts/Layout.scss"
-import "layouts/SearchLayout.scss"
+import "layouts/SearchPage.scss"
 import "layouts/SearchTagLayout.scss"
 
-export default class SearchLayout extends Component {
+export default class SearchTagLayout extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,48 +47,46 @@ export default class SearchLayout extends Component {
 
     }
 
-    navigateToSeachByTag = (id) => { window.location.pathname = `search-tag/${id}/post` }
-
     render() {
         return (
-            <div className="pr-layout" >
-                <div className="search-layout">
-
-                    <div className="Searching_Tag">
-                        Tag: Đại học
-                   </div>
-
-                    <div className="display-flex">
-                        <div className="search-tag-side-bar">
-                            Tag liên quan:
-                            <div className="margin-top-10px">
-                                {this.state.tags.map(item =>
-                                    <Tag isReadOnly={true} tag={item} onTagClick={(id) => this.navigateToSeachByTag(id)} />
-                                )
-                                }
+            <Router>
+                <div className="pr-layout" >
+                    <div className="search-layout">
+                        <div className="Searching_Tag">
+                            Tag: Đại học
                             </div>
-                        </div>
-                        <div style={{ position: 'relative', width: "100%" }}>
-
-                            <div className="Horizontal_Menu_Bar">
-                                <div className="Horizontal_Menu_Item">Bài viết</div>
-                                <div className="Horizontal_Menu_Item">Tài liệu</div>
-                                <div className="Horizontal_Menu_Item">Học tập</div>
-                            </div>
-
-                            <Router>
-                                <div className="search-tag-router-outlet" >
-                                    <Switch>
-                                        <Route exact path="/search-tag/:id/post" component={SearchPostByTag} />
-                                        {/* <Route exact path="/search-tag/:id/docs" component={SearchTag} /> */}
-                                    </Switch>
+                        <div className="display-flex">
+                            <div className="search-tag-side-bar">
+                                Tag liên quan:
+                            <div className="mg-top-10px">
+                                    {this.state.tags.map(item =>
+                                        <Tag isReadOnly={true} tag={item} onTagClick={(id) => this.navigateToSeachByTag(id)} />
+                                    )
+                                    }
                                 </div>
-                            </Router>
+                            </div>
+                            <div style={{ position: 'relative', width: "100%" }}>
 
-                        </div >
+                                <div className="h-menu-bar">
+                                    <div className="h-menu-item">Bài viết</div>
+                                    <div className="h-menu-item">Tài liệu</div>
+                                    <div className="h-menu-item">Học tập</div>
+                                </div>
+
+                                <div className="search-tag-router-outlet" >
+                                    {this.props.children}
+                                    {/* <Switch>
+                                        <Route exact path="/tags/:id/post" component={SearchPostByTag} />
+                                    </Switch> */}
+                                    {/* <Route exact path="/search-tag/:id/docs" component={SearchTag} /> */}
+                                </div>
+
+                            </div >
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Router>
+
         );
     }
 

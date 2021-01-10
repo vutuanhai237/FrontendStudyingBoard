@@ -108,12 +108,12 @@ class AdminLayout extends Component {
                                                     <div className="Achivement_Post_Doc_Count_Layout">
                                                         <div className="display-flex width_50_percents">
                                                             <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
-                                                            <div className="margin-left-5px">{post_count}</div>
+                                                            <div className="mg-left-5px">{post_count}</div>
                                                         </div>
 
                                                         <div className="display-flex width_50_percents">
                                                             <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
-                                                            <div className="margin-left-5px"> {doc_count}</div>
+                                                            <div className="mg-left-5px"> {doc_count}</div>
                                                         </div>
                                                     </div>
                                                 </div>

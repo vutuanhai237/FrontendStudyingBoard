@@ -156,9 +156,14 @@ class PostSummary extends Component {
           }
 
         </div>
-        <div className="item-title">
-          {this.props.title}
-        </div>
+
+        {/* title */}
+        <Link to = {"/posts/"+ this.id}>
+          <div className="item-title">
+            {this.props.title}
+          </div>
+        </Link>
+
         <div className="display-flex" style={{ marginTop: "-10px" }}>
           <div className="display-flex"  >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
@@ -181,7 +186,7 @@ class PostSummary extends Component {
         </div>
 
         <div className="item-reaction-bar">
-          <div className="display-flex margin-top-5px">
+          <div className="display-flex mg-top-5px">
             <div className="display-flex">
               <div> {likeBtn}</div>
               <div className="like-count">{this.props.likes}</div>
@@ -200,7 +205,7 @@ class PostSummary extends Component {
               </div>
             </div>
           </div>
-          <div className="link-label margin-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
+          <div className="link-label mg-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
             Đọc tiếp ...
             </div>
         </div>

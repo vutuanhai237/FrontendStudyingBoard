@@ -59,7 +59,7 @@ class UserRoleManagement extends Component {
                         <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
                     </div>
 
-                    <div className="margin-top-10px"></div>
+                    <div className="mg-top-10px"></div>
 
                     <div className="Category_Type_Dropdown_Container" id="management-post-categories-container">
                         <div className="Category_Component_List">
@@ -89,8 +89,8 @@ class UserRoleManagement extends Component {
                                     </div>
                                 </ClickAwayListener>
                                 {/* <div className="Category_Buttons_Layout">
-                                    <button className="blue-button margin-right-5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
-                                    <button className="white-button margin-right-5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
+                                    <button className="blue-button mg-right-5px" onClick={() => this.handlerClickAddPostCategory()}>Thêm</button>
+                                    <button className="white-button mg-right-5px" disabled={!this.state.canClickEditPostCategory} onClick={() => this.handlerClickEditPostCategory()}>Sửa</button>
                                     <button className="red-button" disabled={!this.state.canClickDeletePostCategory} onClick={() => this.handlerClickDeletePostCategory()}>Xóa</button>
                                 </div> */}
                             </div>
@@ -115,7 +115,7 @@ class UserRoleManagement extends Component {
                     <div className="Custom_Modal_Footer">
                         <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
+                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyAddNewPostCategoryConfirmation()}>OK</button>
                             <button className="white-button" onClick={() => { this.isAddPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ class UserRoleManagement extends Component {
                     <div className="Custom_Modal_Footer">
                         <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
+                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyEditPostCategoryConfirmation()}>OK</button>
                             <button className="white-button" onClick={() => { this.isEditPostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
@@ -152,7 +152,7 @@ class UserRoleManagement extends Component {
                     open={this.isVerifyDeletePostCategoryPopupOpen}
                     closeModal={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
+                    <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyDeletePostCategoryConfirmation()}>OK</button>
                     <button className="white-button" onClick={() => { this.isVerifyDeletePostCategoryPopupOpen = false; this.setState({}) }}>Cancel</button>
                 </CustomModal>
 

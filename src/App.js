@@ -11,7 +11,7 @@ import Login from "pages/common/Login/Login";
 import Register from "pages/common/Register/Register";
 import Header from "components/common/Header/Header";
 import Footer from "components/common/Footer/Footer";
-import SearchLayout from "layouts/SearchLayout";
+import SearchPage from "layouts/SearchPage";
 import SearchTagLayout from "layouts/SearchTagLayout";
 
 //user
@@ -24,6 +24,14 @@ import NormalBlankLayout from "layouts/NormalBlankLayout"
 import AdminLayout from 'layouts/AdminLayout'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import SearchPostByTag from "pages/common/SearchResult/SearchPostByTag";
+import AccountInformation from "pages/user/AccountInformation/AccountInformation";
+import UpdatePassword from "pages/user/AccountInformation/UpdatePassword";
+import MyDocumentsList from "pages/user/MyDocumentsList/MyDocumentsList";
+import MyPostsList from "pages/user/MyPostsList/MyPostsList";
+import SearchTag from "pages/common/SearchResult/SearchTag";
+import SearchPost from "pages/common/SearchResult/SearchPost";
+import SearchDocument from "pages/common/SearchResult/SearchDocument";
 
 // import
 const App = () => {
@@ -33,7 +41,6 @@ const App = () => {
             <Router>
                 <Header />
                 <div id="header" style={{ height: "65px" }}></div>
-
 
                 <Switch>
                     <Route exact path="/" component={Home} />
@@ -46,21 +53,28 @@ const App = () => {
                     <Route exact path="/events" component={EventsList} />
 
                     {/* Search Tag */}
-                    <Route exact path="/search-tag" component={SearchLayout} />
-                    <Route exact path="/search-tag/:id/post" component={SearchTagLayout} />
-                    <Route exact path="/search-tag/:id/doc" component={SearchTagLayout} />
-                    <Route exact path="/search-post/" component={SearchLayout} />
-                    <Route exact path="/search-doc/" component={SearchLayout} />
+                    <Route path="/tags/:id/">
+                        <SearchTagLayout>
+                            <Switch>
+                                <Route exact path="/tags/:id/post" component={SearchPostByTag} />
+                                {/* <Route exact path="/:id/doc" component={} /> */}
+                            </Switch>
+                        </SearchTagLayout>
+                    </Route>
 
 
 
                     {/* user layout */}
-                    <Route path="/user">
-                        <Route exact path="" component={UserLayout} />
-                        <Route exact path="/update-password" component={UserLayout} />
-                        <Route exact path="/my-docs" component={UserLayout} />
-                        <Route exact path="/my-posts" component={UserLayout} />
-                        <Route exact path="/notification" component={UserLayout} />
+                    <Route path="/user/:path? ">
+                        <UserLayout>
+                            <Switch>
+                                <Route exact path="/user" component={AccountInformation} />
+                                <Route exact path="/user/update-password" component={UpdatePassword} />
+                                <Route exact path="/user/my-docs" component={MyDocumentsList} />
+                                <Route exact path="/user/my-posts" component={MyPostsList} />
+                                {/* <Route exact path="/user/notification" component={UserLayout} /> */}
+                            </Switch>
+                        </UserLayout>
                     </Route>
 
                     <Route exact path="/create-post" component={UserLayout} />
@@ -85,6 +99,9 @@ const App = () => {
                         <Route exact path="/post-approving" component={AdminLayout} />
                         <Route exact path="/doc-approving" component={AdminLayout} />
                     </Route>
+
+                    <Route path = "/search" exact component = {SearchPage}/>
+                    
                 </Switch>
                 <div className="App"></div>
             </Router >

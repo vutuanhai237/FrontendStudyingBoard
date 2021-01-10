@@ -81,6 +81,7 @@ class Header extends BaseComponent {
     }
 
     onSearchTextFieldChange = (e) => {
+
         this.keyWord = e.target.value;
     }
 
@@ -88,19 +89,19 @@ class Header extends BaseComponent {
 
         let quickSearchResultData = {
             post: [
-                { "id": 1, name: "Post 1" },
-                { "id": 2, name: "Post 2" },
-                { "id": 3, name: "Post 3" }
+                { "id": 1, name: "Post 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                { "id": 2, name: "Post 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                { "id": 3, name: "Post 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
             ],
             doc: [
-                { "id": 1, name: "Doc 1" },
-                { "id": 2, name: "Doc 2" },
-                { "id": 3, name: "Doc 3" }
+                { "id": 1, name: "Doc 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                { "id": 2, name: "Doc 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                { "id": 3, name: "Doc 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
             ],
             tag: [
-                { "id": 1, name: "tag 1" },
-                { "id": 2, name: "tag 2" },
-                { "id": 3, name: "tag 3" }
+                { "id": 1, name: "firefox", description: "Since all the cool kids are doing it, here is our year-end recap of the best" },
+                { "id": 2, name: "design-pattern", description: "Trong công nghệ phần mềm, một mẫu thiết kế design pattern là một giải pháp tổng thể cho các vấn đề chung trong thiết kế phần mềm" },
+                { "id": 3, name: "react-js", description: "React.JS là một thư viện Javascript dùng để xây dựng giao diện người dùng. Với cá nhân tôi cũng như nhận xét chung của cộng đồng về ReactJS thì nó nhanh, dễ học và vui." }
             ]
         };
 
@@ -109,28 +110,28 @@ class Header extends BaseComponent {
                 <div className="sub-result-container" id="quick-search-post-result-port">
                     <div className="qs-type-title">BÀI VIẾT</div>
                     {quickSearchResultData.post.map(result =>
-                        <div className="display-flex margin-top-5px">
-                            <img alt="" className="qs-result-image margin-right-5px" />
+                        <div className="display-flex mg-top-5px">
+                            <img alt="" className="qs-result-image mg-right-5px" />
                             <Link className="qsr-title" to={`/posts/${result.id}`}>{result.name}</Link>
                         </div>)
                     }
                 </div>
 
                 <div className="sub-result-container" id="quick-search-doc-result-port">
-                    <div className="qs-type-title margin-top-5px">TÀI LIỆU</div>
+                    <div className="qs-type-title mg-top-5px">TÀI LIỆU</div>
                     {quickSearchResultData.doc.map(result =>
-                        <div className="display-flex margin-top-5px">
-                            <img className="qs-result-image margin-right-5px" alt="" />
+                        <div className="display-flex mg-top-5px">
+                            <img className="qs-result-image mg-right-5px" alt="" />
                             <Link className="qsr-title" to={`/documents/${result.id}`}>{result.name}</Link>
                         </div>
                     )}
                 </div>
 
                 <div className="sub-result-container" id="quick-search-tag-result-port">
-                    <div className="qs-type-title margin-top-5px ">TAGS</div>
-                    <div className="display-flex margin-top-5px">
+                    <div className="qs-type-title mg-top-5px ">TAGS</div>
+                    <div className="display-flex mg-top-5px">
                         {quickSearchResultData.tag.map(result =>
-                            <Link to={`/search-tag/${result.id}/post?page=1`} className="display-flex">
+                            <Link to={`/tags/${result.id}/post?page=1`} className="display-flex">
                                 <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} />
                             </Link>
                         )
@@ -139,9 +140,19 @@ class Header extends BaseComponent {
                 </div>
             </div >;
 
+        let searchButton = <></>;
 
+
+        // <Link className="search-image-container"
+        //     id="search-image-button-container" to={`/search?q=${this.keyWord}&type=post&page=1&category=1`}>
+        //     <img className="search-image-button"
+        //         src={search_icon}
+        //         alt="*"
+        //     />
+        // </Link>
 
         return (
+
             <div className="header-container"  >
                 <div className="header" id="header" >
 
@@ -224,14 +235,10 @@ class Header extends BaseComponent {
                                                 />
                                             </div>
                                             :
-                                            <Link className="search-image-container"
-                                                id="search-image-button-container" to={`search-post?q=${this.keyWord}&page=1&category=1`}>
-                                                <img className="search-image-button"
-                                                    src={search_icon}
-                                                    alt="*"
-                                                />
 
-                                            </Link>
+                                            { searchButton }
+
+
                                         }
                                     </div>
                                 </div>
@@ -345,71 +352,6 @@ class Header extends BaseComponent {
         Array.from(document.getElementsByClassName("Collapsed_User_Menu_Button")).forEach(item => item.style.display = "none");
 
         this.setState({ isCollapsedUserMenuOpened: false });
-    }
-
-
-
-    // reach when text in search box change
-    handleQuickSearch = () => {
-
-        // //  if search box is empty => return from call API
-        // let searchBoxTextField;
-
-        // if (window.innerWidth >= 768)
-        //     searchBoxTextField = document.getElementById("search-box-text-field-normal");
-        // else
-        //     searchBoxTextField = document.getElementById("search-box-text-field-small");
-
-        // if (searchBoxTextField.value.length === 0) return;
-
-
-
-
-        // document.getElementById("qssr-container").style.height = "100px";
-
-        // // if result is showing => skip
-        // if (!this.state.isQuickSearchShow) {
-
-        //     document.getElementById("qsr-container").style.borderTop = "1px var(--gray) solid";
-        //     // document.getElementById("qsr-container").style.padding = "5px";
-        //     document.getElementById("qs-cancel-button").style.display = "flex";
-        //     // document.getElementById("qssr-container").style.padding = "6px";
-        //     Array.from(document.getElementsByClassName("sub-result-container")).forEach(item => item.style.display = "flex");
-
-        //     this.setState({
-        //         isQuickSearchShow: true
-        //     });
-
-        //     document.getElementById("qs-cancel-button-container").style.display = "flex";
-        //     // document.getElementById("qssr-container").style.borderRadius = "5px";
-        // }
-
-        // //  if screen width is small than 768 => search result port's width will be equal to search port else equal to 100% 
-        // if (window.innerWidth >= 992) {
-        //     document.getElementById("qsr-container").style.marginTop = "50px";
-
-        //     document.getElementById("qsr-container").style.width = document.getElementById("search-image-button-container").offsetWidth + document.getElementById("sb-text-field-big").offsetWidth + "px";
-        //     document.getElementById("qsr-container").style.marginLeft = document.getElementById("sb-text-field-big").getBoundingClientRect().left - 5 + "px";
-        //     document.getElementById("qsr-container").style.height = "50vh";
-        //     document.getElementById("qssr-container").style.height = "fit-content";
-
-        // }
-        // else
-        //     if (window.innerWidth >= 768) {
-
-        //         document.getElementById("qsr-container").style.width = document.getElementById("search-image-button-container").offsetWidth + document.getElementById("search-box-text-field-normal").offsetWidth + "px";
-        //         document.getElementById("qsr-container").style.marginLeft = document.getElementById("search-box-text-field-normal").getBoundingClientRect().left + "px";
-        //         document.getElementById("qsr-container").style.height = "50vh";
-        //         document.getElementById("qssr-container").style.height = "48vh";
-
-        //     } else {
-        //         document.getElementById("qssr-container").style.height = window.innerHeight - document.getElementById("header-begin-lv2").offsetHeight - 11 + "px";
-        //         document.getElementById("qsr-container").style.height = window.innerHeight - document.getElementById("header-begin-lv2").offsetHeight - 10 + "px";
-        //         document.getElementById("qsr-container").style.width = "100%";
-        //     }
-        // document.getElementById("qssr-container").style.overflow = "scroll";
-        // document.getElementById("qssr-container").style.overflowX = "hidden";
-
     }
 
     showQuickSearchNormalContainer = () => {

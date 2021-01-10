@@ -92,12 +92,12 @@ class NotificationManagement extends Component {
                                 </ClickAwayListener>
                                 <div className="Category_Buttons_Layout display-flex justify-content-md-between">
                                     <div>
-                                        <button className="blue-button margin-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
+                                        <button className="blue-button mg-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
                                         <button className="white-button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>
                                     </div>
                                     <div>
-                                        <button className="blue-button margin-right-5px" onClick={() => this.handlerClickAddNotification()}>Thêm</button>
-                                        <button className="white-button margin-right-5px" disabled={!this.state.canClickEditNotification} onClick={() => this.handlerClickEditNotification()}>Sửa</button>
+                                        <button className="blue-button mg-right-5px" onClick={() => this.handlerClickAddNotification()}>Thêm</button>
+                                        <button className="white-button mg-right-5px" disabled={!this.state.canClickEditNotification} onClick={() => this.handlerClickEditNotification()}>Sửa</button>
                                         <button className="red-button" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerClickDeleteNotification()}>Xóa</button>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@ class NotificationManagement extends Component {
                     <div className="Custom_Modal_Footer">
                         <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
+                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
                             <button className="white-button" onClick={() => { this.isAddNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ class NotificationManagement extends Component {
                     <div className="Custom_Modal_Footer">
                         <div className="gray-label">Xác nhận?</div>
                         <div style={{ display: "flex" }}>
-                            <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
+                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
                             <button className="white-button" onClick={() => { this.isEditNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ class NotificationManagement extends Component {
                     open={this.isVerifyDeleteNotificationPopupOpen}
                     closeModal={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}); }}
                 >
-                    <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyDeleteNotificationConfirmation()}>OK</button>
+                    <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyDeleteNotificationConfirmation()}>OK</button>
                     <button className="white-button" onClick={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
                 </CustomModal>
 

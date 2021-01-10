@@ -104,10 +104,10 @@ class PostsList extends Component {
             <div className="nm-bl-layout">
                 <Titlebar title="BÀI VIẾT" />
                 <div className="layout-decoration">
-                    <div className="margin-top-10px" />
+                    <div className="mg-top-10px" />
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right margin-right-5px">Thời gian:</div>
+                            <div className="filter-label text-align-right mg-right-5px">Thời gian:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.timeFilter}
@@ -118,7 +118,7 @@ class PostsList extends Component {
                         </div>
 
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right margin-right-5px">Danh mục:</div>
+                            <div className="filter-label text-align-right mg-right-5px">Danh mục:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.categoryFilter}
@@ -129,7 +129,7 @@ class PostsList extends Component {
                         </div>
 
                     </div>
-                    <div className="margin-top-10px" />
+                    <div className="mg-top-10px" />
 
                     {this.props.isListLoading ?
                         < Loader /> :

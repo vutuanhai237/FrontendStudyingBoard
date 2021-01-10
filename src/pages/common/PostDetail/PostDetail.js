@@ -170,7 +170,7 @@ class PostDetail extends Component {
 
                             <div className="Doc_Detail_View_Count_Doc_Count">
                                 <div className="gray-label">Bình luận: {this.viewCount}</div>
-                                <div className="gray-label margin-left-5px">lượt xem: {this.viewCount}</div>
+                                <div className="gray-label mg-left-5px">lượt xem: {this.viewCount}</div>
                                 {/* <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
                                     <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
                                     <div style={{ marginLeft: "5px" }}>

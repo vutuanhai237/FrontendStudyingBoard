@@ -113,7 +113,7 @@ class UserItem extends Component {
                         < div style={{ display: "flex", justifyContent: "space-between" }}>
                             <div className="User_Item_Name">{this.name}</div>
                             {/* <div className="User_Item_Edit_Btn" onClick={() => { window.location.href = "/management/users_management/" + this.userID }}>
-                                <img alt="edit" className="User_Item_Edit_Btn_Element margin-right-5px" src={icon_write} />
+                                <img alt="edit" className="User_Item_Edit_Btn_Element mg-right-5px" src={icon_write} />
                                 <div className="gray-label" style={{ paddingTop: "2px" }}>Chỉnh sửa</div>
                             </div> */}
                         </div>
@@ -177,7 +177,7 @@ class UserItem extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.closeChangeRoleConfirmationPopup()}>Cancel</button>
                     </CustomModal>
 

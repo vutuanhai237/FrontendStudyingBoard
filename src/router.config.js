@@ -27,18 +27,11 @@ export const headerMenuRouters = [
   { path: "/collab", exact: true, title: "Cộng tác viên", label: "CỘNG TÁC", permission: [ContentManagement.Collaborator], component: AdminLayout },
 ]
 
-export const searchRouters = [
-  { path: "/search-post", exact: true, title: "Tìm kiếm bài viết", label: "Bài viết", permission: [] },
-  { path: "/search-doc", exact: true, title: "Tìm kiếm tài liệu", label: "Tài liệu", permission: [] },
-  { path: "/search-course", exact: true, title: "Tìm kiếm khoá học", label: "Khoá học", permission: [] },
-  { path: "/search-tag", exact: true, title: "Tìm kiếm tag", label: "Tags", permission: [] }
-]
-
 //tag search
 export const tagSearchRouters = [
-  { path: "/search-tag/:id/posts", exact: true, title: "Tìm kiếm bài viết", label: "Bài viết", permission: [] },
-  { path: "/search-tag/:id/documents", exact: true, title: "Tìm kiếm tài liệu", label: "Tài liệu", permission: [] },
-  { path: "/search-tag/:id/courses", exact: true, title: "Tìm kiếm khoá học", label: "Khoá học", permission: [] },
+  { path: "/tags/:id/posts", exact: true, title: "Tìm kiếm bài viết", label: "Bài viết", permission: [] },
+  { path: "/tags/:id/documents", exact: true, title: "Tìm kiếm tài liệu", label: "Tài liệu", permission: [] },
+  { path: "/tags/:id/courses", exact: true, title: "Tìm kiếm khoá học", label: "Khoá học", permission: [] },
 ]
 
 export const userRouters = [
@@ -55,7 +48,6 @@ export const appRouter =
   [
     logoRouter,
     ...headerMenuRouters,
-    ...searchRouters,
     ...tagSearchRouters,
     ...userRouters,
     { path: "/posts", exact: true, title: "Bài viết", label: "", permision: [] },

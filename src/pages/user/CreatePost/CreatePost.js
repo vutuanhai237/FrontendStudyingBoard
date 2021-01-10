@@ -201,7 +201,7 @@ class CreatePost extends Component {
                 <input ref="title" placeholder="Nhập tiêu đề bài viết ..." onChange={this.handleTitleChange} type="text" className="form-input"></input>
 
                 {/* CKEditor */}
-                <div className="margin-top-10px" />
+                <div className="mg-top-10px" />
                 <div className="form-label-required">Nội dung:</div>
                 <CKEditor
 
@@ -232,14 +232,14 @@ class CreatePost extends Component {
                 </div>
                 <div className="form-tip-label" on>Có thể nhập tối đa 5 tag.</div>
 
-                <div className="margin-top-10px">
+                <div className="mg-top-10px">
                     {this.state.tags.map(item =>
                         <Tag isReadOnly={false} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
                     )}
                 </div>
 
                 {/* Button */}
-                <div className="margin-top-10px display-flex">
+                <div className="mg-top-10px display-flex">
                     <button className="blue-button margin_auto" >Đăng bài</button>
                 </div>
 

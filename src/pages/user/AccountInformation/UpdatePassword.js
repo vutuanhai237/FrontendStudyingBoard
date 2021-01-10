@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import 'layouts/AdminLayout'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import { isContainSpecialCharacter } from 'utils/urlUtils'
+import { isContainSpecialCharacter } from 'utils/stringUtils'
 
 //import for Redux
 import { bindActionCreators } from 'redux'
@@ -70,7 +70,7 @@ class UpdatePassword extends Component {
 
                         {/* Current password */}
                         <div className="position_relative" >
-                            <div className="gray-label margin-top-10px">
+                            <div className="gray-label mg-top-10px">
                                 Mật khẩu hiện tại:
                                     </div>
                             <input type="password" autoComplete="new-password" defaultValue="" placeholder="Nhập mật khẩu hiện tại ..." className="form-input" onChange={(e) => this.handlerChangeCurrentPassword(e)} />
@@ -135,7 +135,7 @@ class UpdatePassword extends Component {
                     >
 
                         {/* code footer to handler event in parent class (if you want to show a confirmation modal) */}
-                        <button className="blue-button margin-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
+                        <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyChangeRoleConfirmation()}>OK</button>
                         <button className="white-button" onClick={() => this.handleCancelChangeRoleConfirmation()}>Cancel</button>
                     </CustomModal>
 

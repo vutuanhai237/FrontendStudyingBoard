@@ -13,7 +13,7 @@
 }
 
 
-.Horizontal_Menu_Bar {
+.h-menu-bar {
     position: relative;
     display: flex;
     width: 100%;
@@ -22,7 +22,7 @@
     // border-radius: 5px;
 }
 
-.Horizontal_Menu_Item {
+.h-menu-item {
     padding-bottom: 3px;
     width: fit-content;
     padding-right: 10px;
@@ -35,20 +35,20 @@
     user-select: none;
 }
 
-.Horizontal_Menu_Item:hover {
+.h-menu-item:hover {
     color: var(--blue);
     background: var(--grayish);
     cursor: pointer;
     opacity: 80%;
 }
 
-.Activated_Horizontal_Menu_Item {
+.a-h-menu-item { //activated-horizontal-menu-item
     cursor: pointer;
     background: var(--blue);
     color: white;
 }
 
-.Horizontal_Menu_Item:active {
+.h-menu-item:active {
     background: var(--gray);
     cursor: pointer;
 }
