@@ -60,7 +60,9 @@
 
 :root {
     --blue: #5279db;
+    --light-blue: #48bfff;
     --red: #fe3a3a;
+    --light-red: #fd5959;
     --black: #363636;
     --gray: #c4c4c4;
     --green: #00fe3a;
@@ -68,6 +70,11 @@
     --grayish: #eeeeee;
     --light-gray: #fafafa;
     --light-black: #6b6b6b;
+}
+
+body {
+    color: var(--black) !important;
+    font-family: "BarlowSemiCondensed-Medium";
 }
 
 img {

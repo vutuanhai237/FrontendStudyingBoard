@@ -11,15 +11,18 @@
     line-height: 22px;
     padding-left: 10px;
     padding-right: 10px;
-    color: var(--black);
+    color: var(--light-black);
     border: var(--gray) 1px solid;
     user-select: none;
     min-width: 80px;
+    box-shadow: 0px 0px 1px 0px var(--grayish);
 }
 
 .white-button:hover {
     cursor: pointer;
-    opacity: 80%;
+    // opacity: 80%;
+    box-shadow: 0px 0px 2px 0px var(--gray);
+
 }
 
 .white-button:active {
@@ -36,22 +39,10 @@
 }
 
 .red-button {
-    box-sizing: border-box;
-    width: fit-content;
-    height: 24px;
-    vertical-align: auto;
-    text-align: center;
-    border-radius: 5px;
+    @extend .white-button;
     background: var(--red);
-    font-family: "BarlowCondensed-Medium";
-    font-size: 18px;
-    line-height: 22px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #ffffff;
-    border: #ffffff;
-    user-select: none;
-    min-width: 80px;
+    color: white;
+    border: white;
 }
 
 .red-button:hover {
@@ -72,22 +63,8 @@
 }
 
 .blue-button {
-    box-sizing: border-box;
-    width: fit-content;
-    height: 24px;
-    vertical-align: auto;
-    text-align: center;
-    border-radius: 5px;
+    @extend .red-button;
     background: var(--blue);
-    font-family: "BarlowCondensed-Medium";
-    font-size: 18px;
-    line-height: 22px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #ffffff;
-    border: #ffffff;
-    user-select: none;
-    min-width: 80px;
 }
 
 .blue-button:hover {

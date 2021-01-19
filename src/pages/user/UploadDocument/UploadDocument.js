@@ -10,9 +10,10 @@ import "./UploadDocument.scss";
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import ComboBox from 'components/common/Combobox/Combobox';
-import CKEditor from "ckeditor4-react";
+import CKEditor from 'ckeditor4-react';
 
-import {getDocCategories} from "redux/services/docCategoryServices";
+
+import { getDocCategories } from "redux/services/docCategoryServices";
 
 class UploadDocument extends Component {
     constructor(props) {
@@ -172,11 +173,15 @@ class UploadDocument extends Component {
             <div>
                 <Titlebar title="UPLOAD TÀI LIỆU" />
 
-                <div id="create-post" className="left-side-bar-layout-content-container">
+                <div className="left-side-bar-layout-content-container">
 
-                    <div className="flex-container-end">
-                    </div>
+
+
                     <div className="form-container" onSubmit={this.handleUpload} tabIndex="1">
+
+                        <div className="flex-container-end" style={{ background: "green" }}>
+                            <button className="white-button margin_auto" >Upload</button>
+                        </div>
 
                         <div className="form-label-required">Tiêu đề:</div>
                         <input ref="title" placeholder="Nhập tiêu đề tài liệu ..." onChange={this.handleTitleChange} type="text" className="form-input"></input>

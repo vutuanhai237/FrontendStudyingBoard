@@ -1,8 +1,21 @@
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    width: 100%;
+
+}
+
 .form-input {
+    box-shadow: 0px 0px 2px 0px var(--grayish);
     padding: 2px;
     padding-left: 10px;
     height: fit-content;
-    vertical-align: auto;
     text-align: left;
     background: white;
     font-family: "BarlowCondensed-Medium";
@@ -26,92 +39,70 @@
 }
 
 .form-input:hover,
-.form-input:focus,
-.form-input-half:hover,
-.form-input-half:focus {
+.form-input:focus {
     border: var(--blue) 1px solid;
     cursor: text;
     opacity: 90%;
     border-radius: 5px;
+    box-shadow: 0px 0px 2px 0px var(--light-blue);
+
 }
 
-.form-input:disabled .form-input-half:disabled {
+.form-input:disabled {
     background: var(--gray);
     color: var(--black);
     cursor: text;
     opacity: 90%;
 }
 
-.form-input-half {
-    padding: 2px;
-    padding-left: 10px;
-    height: fit-content;
-    vertical-align: auto;
-    text-align: left;
-    background: white;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 1.1rem;
-    line-height: 20px;
-    color: var(--black);
-    border: var(--gray) 1px solid;
-    user-select: none;
-    min-width: 200px;
-    width: 100%;
-    max-width: 300px;
-    border-radius: 5px;
-    outline: none;
-    position: relative;
-    margin: auto;
-}
+.form-group.invalid .form-input {
+    border-color: var(--red);
+    box-shadow: 0px 0px 2px 0px var(--light-red);
 
-.form-container {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    margin-top: 10px;
-    outline: none;
 }
 
 .form-label {
-    margin-top: 10px;
     width: fit-content;
-    // background: green;
     height: fit-content;
     min-width: 80px;
-    // text-align: right;
     vertical-align: middle;
-    font-size: 1.1rem;
-    line-height: 20px;
+    line-height: 22px;
     padding-top: 3px;
     font-family: "BarlowCondensed-Medium";
     font-size: 1.1rem;
-    line-height: 100%;
     color: var(--black);
     user-select: none;
     margin-bottom: 5px;
-    // margin-top: 2px;
     padding-right: 5px;
 }
 
+.form-error-label-container {
+    position: relative;
+}
+
+.form-error-label {
+    padding-top: 0.1rem;
+    position: absolute;
+    padding-left: 0.5rem;
+    height: fit-content;
+    font-family: 'Roboto-Medium', sans-serif;
+    font-size: 0.7rem;
+    color: var(--red);
+    user-select: none;
+    min-width: 80px;
+    width: 100%;
+}
+
+.form-tip-label {
+    @extend .form-error-label;
+    color: var(--black);
+    padding-left: 0px;
+    position: relative;
+
+}
 
 .form-label-required {
-    margin-top: 10px;
-    width: 100%;
-    height: fit-content;
-    min-width: 80px;
-    // text-align: right;
-    vertical-align: middle;
-    font-size: 1.1rem;
-    line-height: 20px;
-    padding-top: 3px;
-    font-family: "BarlowCondensed-Medium";
-    font-size: 1.1rem;
-    line-height: 100%;
-    color: var(--black);
-    user-select: none;
-    margin-bottom: 5px;
-    // margin-top: 2px;
-    padding-right: 5px;
+    @extend .form-label;
 }
 
 
@@ -121,19 +112,6 @@
     color: var(--red);
 }
 
-.form-tip-label {
-    margin-top: 0.2rem;
-    height: fit-content;
-    vertical-align: auto;
-    font-family: 'Roboto-Medium', sans-serif;
-    font-size: 0.7rem;
-    line-height: 100%;
-    color: var(--black);
-    user-select: none;
-    min-width: 80px;
-    width: 100%;
-    margin-bottom: 5px;
-}
 
 .form-dropdown-container {
     position: relative;
@@ -169,14 +147,28 @@
 }
 
 
-.form-text-area:hover, .form-text-area:focus{
+.form-text-area:hover,
+.form-text-area:focus {
     border: var(--blue) 1px solid;
     cursor: text;
     border-radius: 5px;
     outline: none;
 }
 
-.form-text-area::placeholder{
+.form-text-area::placeholder {
     font-family: "BarlowCondensed-Regular";
     font-size: 15px;
+}
+
+
+.form-group.invalid .form-error-label {
+    color: var(--red);
+}
+
+.form-line {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    height: 1px;
+    width: 100%;
+    background: var(--gray);
 }

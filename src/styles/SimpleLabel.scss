@@ -34,8 +34,8 @@
 
 
 .light-black-normal-label {
-   @extend .gray-normal-label;
-   color: var(--light-black);
+    @extend .gray-normal-label;
+    color: var(--light-black);
 }
 
 
@@ -56,22 +56,6 @@
     margin-top: 2px;
 }
 
-.error-label {
-    margin-top: 0.2rem;
-    padding-left: 0.5rem;
-    position: absolute;
-    height: fit-content;
-    vertical-align: auto;
-    font-family: 'Roboto-Medium', sans-serif;
-    font-size: 0.7rem;
-    text-align: right;
-    line-height: 100%;
-    color: var(--red);
-    user-select: none;
-    min-width: 80px;
-    width: 100%;
-}
-
 .filter-label {
     margin-top: 2px;
     width: fit-content;
@@ -85,10 +69,6 @@
     color: var(--black);
     user-select: none;
     margin-bottom: 5px;
-}
-
-.Is_Form_Label {
-    margin-top: 1.0rem;
 }
 
 .color-border-label {
@@ -125,4 +105,8 @@
     border: 1px solid var(--blue);
     color: var(--green);
 
+}
+
+label {
+    display: inline-block;
 }
