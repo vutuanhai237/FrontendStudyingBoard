@@ -13,7 +13,7 @@
     border-radius: 5px;
     box-shadow: 0px 0px 1px 0px var(--grayish);
     overflow: hidden;
-    
+
 
 }
 
@@ -111,8 +111,17 @@ a.cke_dialog_ui_button.cke_dialog_ui_button_ok {
     background: var(--blue);
 }
 
-.cke-text-area{
+.cke-text-area {
     // display: block !important;
-     height: 0px !important;
-     background: green;
+    height: 0px !important;
+    background: green;
+}
+
+.fake-cke {
+    width: 0px !important;
+    height: 0px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    border: 0px;
+    position: absolute;
 }

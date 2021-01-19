@@ -1,4 +1,4 @@
-//Hiện tại form mới chỉ xử lý được text input.
+//only apply for html inputElement not for custom Combobox and CKEditor
 
 // Đối tượng `Validator`
 export default function Validator(options) {
@@ -14,6 +14,8 @@ export default function Validator(options) {
 
     // Hàm thực hiện validate
     function validate(inputElement, rule) {
+
+        //
         var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
         var errorMessage;
 
@@ -25,8 +27,6 @@ export default function Validator(options) {
         // Nếu có lỗi thì dừng việc kiểm
         for (var i = 0; i < rules.length; ++i) {
 
-            console.log("*" + inputElement.type);
-
             switch (inputElement.type) {
                 case 'radio':
                 case 'checkbox':
@@ -34,9 +34,12 @@ export default function Validator(options) {
                         formElement.querySelector(rule.selector + ':checked')
                     );
                     break;
-                default: //text
+               
+                default:
                     errorMessage = rules[i](inputElement.value);
+
             }
+
             if (errorMessage) break;
         }
 
@@ -55,60 +58,7 @@ export default function Validator(options) {
     // Lấy element của form cần validate
     var formElement = document.querySelector(options.form);
     if (formElement) {
-        // Khi submit form
-        formElement.onsubmit = function (e) {
-            e.preventDefault();
-
-            var isFormValid = true;
-
-            // Lặp qua từng rules và validate
-            options.rules.forEach(function (rule) {
-                var inputElement = formElement.querySelector(rule.selector);
-                var isValid = validate(inputElement, rule);
-                if (!isValid) {
-                    isFormValid = false;
-                }
-            });
-
-            if (isFormValid) {
-
-                // Trường hợp submit với javascript
-                if (typeof options.onSubmit === 'function') {
-                    var enableInputs = formElement.querySelectorAll('[name]');
-                    var formValues = Array.from(enableInputs).reduce(function (values, input) {
-
-                        switch (input.type) {
-                            case 'radio':
-                                values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
-                                break;
-                            case 'checkbox':
-                                if (!input.matches(':checked')) {
-                                    values[input.name] = '';
-                                    return values;
-                                }
-                                if (!Array.isArray(values[input.name])) {
-                                    values[input.name] = [];
-                                }
-                                values[input.name].push(input.value);
-                                break;
-                            case 'file':
-                                values[input.name] = input.files;
-                                break;
-                            default:
-                                values[input.name] = input.value;
-                        }
-
-                        return values;
-                    }, {});
-                    options.onSubmit(formValues);
-                }
-                // Trường hợp submit với hành vi mặc định
-                else {
-                    formElement.submit();
-                }
-            }
-        }
-
+ 
         // Lặp qua mỗi rule và xử lý (lắng nghe sự kiện blur, input, ...)
         options.rules.forEach(function (rule) {
 
@@ -191,16 +141,3 @@ Validator.isNotAllowSpecialCharacter = function (selector, message) {
         }
     };
 }
-
-    // = function (selector, message) {
-
-
-
-    //     return {
-    //         selector: selector,
-    //         test: function (value) {
-    //             var regex = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
-    //             return regex.test(value) ? undefined : message || 'Không được phép chứa các ký tự đặc biệt.';
-    //         }
-    //     };
-    // }

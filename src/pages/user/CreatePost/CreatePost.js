@@ -90,15 +90,14 @@ class CreatePost extends Component {
 
     componentDidMount() {
         this.props.getPostCategories();
-        // validationForm = () => {
-        Validator({
+
+        Validator({ //onLy apply for html inputElement not for custom Combobox and CKEditor
             form: '#create-post-form',
             formGroupSelector: '.form-group',
             errorSelector: '.form-error-label',
             rules: [
                 Validator.isRequired('#cr-post-title', 'Tên bài viết không được để trống!'),
-                Validator.isNotAllowSpecialCharacter('#cr-post-title', 'Tên bài viết không được chứa ký tự đặc biệt!'),
-                Validator.isRequired('#cr-post-cke', "Nội dung bài viết không được để trống")
+                Validator.isNotAllowSpecialCharacter('#cr-post-title', 'Tên bài viết không được chứa ký tự đặc biệt!')
             ]
         });
     }
@@ -233,24 +232,26 @@ class CreatePost extends Component {
 
                 <div className="form-group">
                     <div className="form-label-required">Nội dung:</div>
-
-                    <input id="cr-post-cke-dummy-text-input" type="text" className="cke-dummy-text-input" />
-
                     <Editor
-
                         id="cr-post-cke"
                         placeholder='Start typing here...'
                         onChange={this.handleEditorChange}
                         onFocus={this.handleFocus}
                         data="<p>Nhập nội dung bài viết ...</p>"
-                        // config={editorConfiguration}
 
+                        options={{
+                            form: '#create-post-form',
+                            formGroupSelector: '.form-group',
+                            errorSelector: '.form-error-label',
+                            rules: [
+                                Editor.isRequired('Nội dung bài viết không được để trống!'),
+                                Editor.isNotAllowSpecialCharacter('Nội dung bài viết không được chứa ký tự đặc biệt!')
+                            ]
+                        }}
                     />
-
                     <div className="form-error-label-container">
                         <span className="form-error-label" ></span>
                     </div>
-
                 </div>
 
                 {/* Category */}
@@ -290,7 +291,6 @@ class CreatePost extends Component {
                 {/* Button */}
                 <div className="form-group display-flex">
                     <button className="blue-button margin_auto" >Đăng bài</button>
-
                 </div>
 
             </div >
