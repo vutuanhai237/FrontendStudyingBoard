@@ -23,13 +23,10 @@ import write_icon from 'assets/images/icon_write.png';
 //components
 import BaseComponent from 'utils/baseComponent'
 import Tag from "components/common/Tag/Tag";
-import LoginStatus from "./IsLoggedIn";
-import BlankLayout from "layouts/NormalBlankLayout"
-import AdminLayout from "layouts/AdminLayout"
-import Home from "pages/common/Home/Home"
+
 
 //services (to call API)
-import { getCurrentUser } from "redux/services/userServices"
+// import { getCurrentUser } from "redux/services/userServices"
 import { logoRouter, headerMenuRouters } from "router.config"
 
 
@@ -38,17 +35,16 @@ class Header extends BaseComponent {
         super(props);
         this.state = {
             account: null,
-            keywork: "",
             isQuickSearchShow: false,
             isCollapsedUserMenuOpened: false,
         }
         this.isHaveClickAwayQuickSearhResult = false;// dung de kiem tra neu bam ra ngoai search result lan 1
-        this.keyWord = "";
+
     }
 
     componentDidMount() {
 
-        this.props.getCurrentUser();
+        // this.props.getCurrentUser();
         this.myInterval = null;
 
         function myTimer() {
@@ -80,28 +76,31 @@ class Header extends BaseComponent {
         this.handleCancelQuickSearch();
     }
 
-    onSearchTextFieldChange = (e) => {
+    onSearchTextFieldChange = () => {
+        this.keyWord = document.getElementById("sb-text-field-big").value;
 
-        this.keyWord = e.target.value;
+        this.showQuickSearchBigContainer();
+        console.log(this.keyWord);
+
     }
 
     render() {
 
         let quickSearchResultData = {
             post: [
-                { "id": 1, name: "Post 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                { "id": 2, name: "Post 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                { "id": 3, name: "Post 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
+                { "id": 1, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Post 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                { "id": 2, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Post 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ...saaaaaaaaaaaaaaaaaaaaassssssaaaaaaaaaaaaaaaaaaaaaaasssssssssssssssssssssssssssaaaaaaaaaa" },
+                // { "id": 3, name: "Post 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
             ],
             doc: [
-                { "id": 1, name: "Doc 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                { "id": 2, name: "Doc 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                { "id": 3, name: "Doc 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
+                { "id": 1, imageUrl: "https://i.imgur.com/inBsikg.png", name: "Doc 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                { "id": 2, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Doc 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
+                // { "id": 3, name: "Doc 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
             ],
             tag: [
                 { "id": 1, name: "firefox", description: "Since all the cool kids are doing it, here is our year-end recap of the best" },
                 { "id": 2, name: "design-pattern", description: "Trong công nghệ phần mềm, một mẫu thiết kế design pattern là một giải pháp tổng thể cho các vấn đề chung trong thiết kế phần mềm" },
-                { "id": 3, name: "react-js", description: "React.JS là một thư viện Javascript dùng để xây dựng giao diện người dùng. Với cá nhân tôi cũng như nhận xét chung của cộng đồng về ReactJS thì nó nhanh, dễ học và vui." }
+                // { "id": 3, name: "react-js", description: "React.JS là một thư viện Javascript dùng để xây dựng giao diện người dùng. Với cá nhân tôi cũng như nhận xét chung của cộng đồng về ReactJS thì nó nhanh, dễ học và vui." }
             ]
         };
 
@@ -110,38 +109,49 @@ class Header extends BaseComponent {
                 <div className="sub-result-container" id="quick-search-post-result-port">
                     <div className="qs-type-title">BÀI VIẾT</div>
                     {quickSearchResultData.post.map(result =>
-                        <div className="display-flex mg-top-5px">
-                            <img alt="" className="qs-result-image mg-right-5px" />
-                            <Link className="qsr-title" to={`/posts/${result.id}`}>{result.name}</Link>
-                        </div>)
+                        <Link to={`/posts/${result.id}`} className="qs-result-item">
+                            <div className="display-flex mg-top-5px">
+                                <img alt="" src={result.imageUrl} className="qs-result-image mg-right-5px" />
+                                <div className="qsr-title">{result.name}</div>
+                            </div>
+                            <div className="flex-container-end">
+                                <div className="wysiwyg-label">{result.shortenContent}</div>
+                            </div>
+                        </Link>
+                    )
                     }
                 </div>
 
                 <div className="sub-result-container" id="quick-search-doc-result-port">
                     <div className="qs-type-title mg-top-5px">TÀI LIỆU</div>
                     {quickSearchResultData.doc.map(result =>
-                        <div className="display-flex mg-top-5px">
-                            <img className="qs-result-image mg-right-5px" alt="" />
-                            <Link className="qsr-title" to={`/documents/${result.id}`}>{result.name}</Link>
-                        </div>
-                    )}
+                        <Link to={`/documents/${result.id}`} className="qs-result-item">
+                            <div className="display-flex mg-top-5px">
+                                <img alt="" src={result.imageUrl} className="qs-result-image mg-right-5px" />
+                                <div className="qsr-title">{result.name}</div>
+                            </div>
+                            <div className="flex-container-end">
+                                <div className="wysiwyg-label">{result.shortenContent}</div>
+                            </div>
+                        </Link>
+                    )
+                    }
+
                 </div>
+
 
                 <div className="sub-result-container" id="quick-search-tag-result-port">
                     <div className="qs-type-title mg-top-5px ">TAGS</div>
                     <div className="display-flex mg-top-5px">
                         {quickSearchResultData.tag.map(result =>
                             <Link to={`/tags/${result.id}/post?page=1`} className="display-flex">
-                                <Tag isReadOnly={true} tag={{ "id": result.id, "content": result.name }} />
+                                <Tag isReadOnly={true} tag={{ "id": result.id, "name": result.name }} />
                             </Link>
                         )
                         }
                     </div>
                 </div>
             </div >;
-
-        let searchButton = <></>;
-
 
         // <Link className="search-image-container"
         //     id="search-image-button-container" to={`/search?q=${this.keyWord}&type=post&page=1&category=1`}>
@@ -225,21 +235,7 @@ class Header extends BaseComponent {
                                         <input className="sb-text-field"
                                             id="sb-text-field-big"
                                             type="text" placeholder="Search..."
-                                            onChange={(e) => { this.showQuickSearchBigContainer(); this.onSearchTextFieldChange(e) }} />
-
-                                        {this.keyWord === "" ?
-                                            <div className="search-image-container" id="search-image-button-container">
-                                                <img className="search-image-button"
-                                                    src={search_icon}
-                                                    alt="*"
-                                                />
-                                            </div>
-                                            :
-
-                                            { searchButton }
-
-
-                                        }
+                                            onChange={() => { this.onSearchTextFieldChange(); }} />
                                     </div>
                                 </div>
 
@@ -264,7 +260,7 @@ class Header extends BaseComponent {
                         {/* Tao bai viet, tai khoan, upload */}
                         <div className="Header_End_Lv2" > <img className="Header_Image_Button" alt="" src={upload_icon} />
                             <img className="Header_Image_Button" src={write_icon} alt="" />
-                            <button className="blue-button margin_auto mi-w-fit-content" > Đăng nhập </button>
+                            <button className="blue-button mg-auto mi-w-fit-content" > Đăng nhập </button>
                         </div>
 
                         {/* Collapse menu cho noi dung tren */}
@@ -283,7 +279,7 @@ class Header extends BaseComponent {
 
                     {/* <div className="Collapsed_User_Menu_Port" id="collapsed-user-menu-port" >
                         <div className="Collapsed_User_Menu" id="collapsed-user-menu" >
-                            <div className="justify-content-space-between" >
+                            <div className="jc-space-between" >
                                 <div className="display-flex" > <img className="Collapsed_User_Menu_Image_Button" src={upload_icon} alt="" />
                                     <div>
                                         <button className="Collapsed_User_Menu_Button" > Đăng nhập </button>
@@ -384,11 +380,11 @@ class Header extends BaseComponent {
 
 const mapStateToProps = (state) => {
     return {
-        account: state.user.account,
+        // account: state.user.account,
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCurrentUser,
+    // getCurrentUser,
 }, dispatch);
 
 export default withRouter(

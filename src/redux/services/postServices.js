@@ -1,13 +1,5 @@
 import {
-    postGetSearchPost,
-    postGetPostByID,
-    postGetPostCommentByID,
-    postGetIsLikePostByUID,
-    postGetPostNewests,
-    postGetPostNewActivities,
-    postPostPost,
-    get_HighlightPosts,
-    get_PostsList,
+ 
 
 
     //highlight posts 
@@ -88,7 +80,7 @@ export function postPost(post) {
             .then(response => response.text())
             .then(result => {
                 console.log(result);
-                dispatch(postPostPost(1));
+                // dispatch(postPostPost(1));
             })
             .catch(error => console.log('error', error));
     }
@@ -164,7 +156,7 @@ export function getHighlightPosts() {
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));
-                dispatch(get_HighlightPosts(JSON.parse(result)));
+                // dispatch(get_HighlightPosts(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));
 
@@ -186,7 +178,7 @@ export function getPostNewActivities() {
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));
-                dispatch(postGetPostNewActivities(JSON.parse(result)));
+                // dispatch(postGetPostNewActivities(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));
 
@@ -209,7 +201,7 @@ export function getPostNewests() {
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));
-                dispatch(postGetPostNewests(JSON.parse(result)));
+                // dispatch(postGetPostNewests(JSON.parse(result)));
             })
             .catch(error => console.log('error', error));
         // let result = highlightPostResults;
@@ -273,7 +265,7 @@ export function getIsLikePostByUID(uid, pid) {
                 const allPostLikeByUID = JSON.parse(result);
                 const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
                 console.log("Liked: " + isLiked)
-                dispatch(postGetIsLikePostByUID(isLiked));
+                // dispatch(postGetIsLikePostByUID(isLiked));
             })
             .catch(error => console.log('error', error));
     }
@@ -311,7 +303,7 @@ export function getPostCommentByID(pid) {
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result))
-                dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
+                // dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
 
             })
 
@@ -332,7 +324,7 @@ export function getPostByID(uid, pid) {
             .then(response => response.text())
             .then(result => {
 
-                dispatch(postGetPostByID(JSON.parse(result)[0]));
+                // dispatch(postGetPostByID(JSON.parse(result)[0]));
                 this.getIsLikePostByUID(uid, pid);
                 this.getPostCommentByID(pid);
                 this.getTagsByID(pid);

@@ -172,3 +172,29 @@
     width: 100%;
     background: var(--gray);
 }
+
+.form-input-dropdown-container {
+    position: relative;
+    width: 100%;
+    height: 0px;
+    max-height: fit-content;
+}
+
+.form-input-dropdown-container.hidden {
+    display: none;
+}
+
+.form-input-dropdown-container.show {
+    display: block;
+}
+.form-input-dropdown {
+    margin-top: 2px;
+    z-index: 1;
+    position: absolute;
+    background: white;
+    width: 100%;
+    border: 1px var(--gray) solid;
+    padding: 5px;
+    border-radius: 5px;
+
+}

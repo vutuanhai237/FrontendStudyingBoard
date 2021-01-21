@@ -98,7 +98,7 @@ class DocApprovingPage extends Component {
             <div>
                 <Titlebar title="QUẢN LÝ TÀI LIỆU" />
                 <div className="left-side-bar-layout-content-container">
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                    <div className = "mg-bottom-10px jc-space-between">
 
                         <div className="filter-label display-flex">
                             <div className="mg-right-5px">Tổng số:</div>

@@ -103,7 +103,7 @@ class CategoryManagement extends Component {
                             <div className="Category_Component_List">
                                 <div className="Category_Component">
                                     {/* Danh sach cac danh muc bai viet*/}
-                                    <div className="Category_Dropdown margin_top_15px" id="management-post-category-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-category-dropdown", "management-post-category-container")}>
+                                    <div className="Category_Dropdown mg-top-15px" id="management-post-category-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-category-dropdown", "management-post-category-container")}>
                                         <div className="Category_Dropdown_Title">
                                             Danh sách danh mục:
                                         </div>
@@ -152,7 +152,7 @@ class CategoryManagement extends Component {
                                 <div className="Category_Component">
 
                                     {/* Danh sach cac danh muc tai lieu*/}
-                                    <div className="Category_Dropdown margin_top_15px" id="management-doc-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-doc-categories-dropdown", "management-doc-categories-container")}>
+                                    <div className="Category_Dropdown mg-top-15px" id="management-doc-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-doc-categories-dropdown", "management-doc-categories-container")}>
                                         <div className="Category_Dropdown_Title">
                                             Danh sách danh mục:
                                         </div>

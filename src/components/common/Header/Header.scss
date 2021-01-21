@@ -639,3 +639,12 @@
         display: none;
     }
 }
+
+.qs-result-item{
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.qs-result-item:hover, .qs-result-item:active{
+    background: var(--light-gray);
+}

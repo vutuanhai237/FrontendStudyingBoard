@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import {
-    postDoc,
+    
 } from "redux/services/docServices"
 import "./UploadDocument.scss";
 import Tag from "components/common/Tag/Tag";
@@ -180,7 +180,7 @@ class UploadDocument extends Component {
                     <div className="form-container" onSubmit={this.handleUpload} tabIndex="1">
 
                         <div className="flex-container-end" style={{ background: "green" }}>
-                            <button className="white-button margin_auto" >Upload</button>
+                            <button className="white-button mg-auto" >Upload</button>
                         </div>
 
                         <div className="form-label-required">Tiêu đề:</div>
@@ -223,7 +223,7 @@ class UploadDocument extends Component {
 
                         {/* Button */}
                         <div className="mg-top-10px display-flex">
-                            <button className="blue-button margin_auto" >Upload</button>
+                            <button className="blue-button mg-auto" >Upload</button>
                         </div>
 
                     </div>
@@ -244,7 +244,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postDoc,
+    // postDoc,
     getDocCategories,
 }, dispatch);
 

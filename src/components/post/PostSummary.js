@@ -211,7 +211,7 @@ class PostSummary extends Component {
         </div>
 
         {/* for implement approve item */}
-        {/* <div className="justify-content-space-between">
+        {/* <div className="jc-space-between">
           {this.props.type === summaryItemType.mySelf ?
 
             <div className="display-flex" >

@@ -122,7 +122,7 @@ class Statistic extends Component {
                 <Titlebar title="THỐNG KÊ" />
                 <div className="left-side-bar-layout-content-container">
 
-                    <div className="display-flex justify-content-space-between mg-top-10px"  >
+                    <div className="display-flex jc-space-between mg-top-10px"  >
                         <div className="number-of-item">
                             Tổng số:
                             &nbsp;

@@ -8,7 +8,7 @@ import dislike_btn from 'assets/images/dislike_btn.png'
 import undislike_btn from 'assets/images/undislike_btn.png'
 import download_btn from 'assets/images/gray_download_icon.png'
 import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
-import { summaryItemType } from 'constants.js'
+import { summaryItemType } from '../../pages/common/ChaptersList/node_modules/constants.js'
 
 //styles
 import 'components/styles/DocPostSummary.scss'
@@ -19,7 +19,7 @@ import PopupMenu from 'components/common/PopupMenu/PopupMenu'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 
 
-class DocSummary extends Component {
+class CourseSummaryBar extends Component {
 
   constructor(props) {
     super(props);
@@ -217,9 +217,7 @@ class DocSummary extends Component {
             </div>
           </div>
 
-          <div className="link-label">
-            Đọc tiếp ...
-          </div>
+         
 
         </div>
         {/* <div className="jc-space-between mg-top-10px">
@@ -315,7 +313,6 @@ class DocSummary extends Component {
     this.setState({});
   }
 
-  // likePost() { }
 
 }
-export default DocSummary;
+export default CourseSummaryBar;

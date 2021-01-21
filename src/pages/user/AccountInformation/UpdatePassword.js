@@ -69,7 +69,7 @@ class UpdatePassword extends Component {
                         <div className="gray-label " style={{ textAlign: "center", color: "var(--blue)", fontSize: "1.3rem" }}>Cập nhật mật khẩu</div>
 
                         {/* Current password */}
-                        <div className="position_relative" >
+                        <div className="pos-relative" >
                             <div className="gray-label mg-top-10px">
                                 Mật khẩu hiện tại:
                                     </div>
@@ -80,7 +80,7 @@ class UpdatePassword extends Component {
                         </div>
 
                         {/* New password */}
-                        <div className="position_relative" >
+                        <div className="pos-relative" >
                             <div className="gray-label Is_Form_Label">
                                 Mật khẩu mới:
                                     </div>
@@ -98,7 +98,7 @@ class UpdatePassword extends Component {
                         </div>
 
                         {/* Confirm new password */}
-                        <div className="position_relative" >
+                        <div className="pos-relative" >
                             <div className="gray-label Is_Form_Label">
                                 Xác nhận mật khẩu:
                                 </div>

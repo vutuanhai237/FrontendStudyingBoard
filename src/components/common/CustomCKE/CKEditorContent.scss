@@ -1,3 +1,5 @@
+//for editor
+
 .cke-dummy-text-input {
     width: 0px;
     height: 0px;
@@ -111,12 +113,6 @@ a.cke_dialog_ui_button.cke_dialog_ui_button_ok {
     background: var(--blue);
 }
 
-.cke-text-area {
-    // display: block !important;
-    height: 0px !important;
-    background: green;
-}
-
 .fake-cke {
     width: 0px !important;
     height: 0px !important;
@@ -125,3 +121,5 @@ a.cke_dialog_ui_button.cke_dialog_ui_button_ok {
     border: 0px;
     position: absolute;
 }
+
+//for content

@@ -32,34 +32,22 @@ class BlankLayout extends Component {
     }
 
     render() {
+        return (
+            <div className="pr-layout">
+                <Router>
+                    <div className="nm-bl-layout-router-outlet" >
+                        <Switch>
+                            <Route exact path="/posts" component={PostsList} />
+                            <Route exact path="/documents" component={DocumentsList} />
+                            <Route exact path="/documents/:id" component={DocumentDetail} />
+                            <Route exact path="/posts/:id" component={PostDetail} />
 
-        if (this.props.accountInformation !== null && this.props.accountInformation !== undefined) {
-
-            return (
-                <div className="pr-layout">
-                    <Router>
-                        <div className="nm-bl-layout-router-outlet" >
-                            <Switch>
-                                <Route exact path="/posts" component={PostsList} />
-                                <Route exact path="/documents" component={DocumentsList} />
-                                <Route exact path="/documents/:id" component={DocumentDetail} />
-                                <Route exact path="/posts/:id" component={PostDetail} />
-
-                            </Switch>
-                        </div>
-                    </Router>
-                </div >
-            );
-        }
-        return <> </>
-
+                        </Switch>
+                    </div>
+                </Router>
+            </div >
+        );
     }
-
-    //#region for handle on scroll
-    scrollFunction = () => {
-
-    }
-    //#endregion
 
 }
 

@@ -13,6 +13,7 @@ import {
 
 import 'assets/fonts/BarlowCondensed-Regular.ttf'
 import 'assets/fonts/BarlowCondensed-Medium.ttf'
+import 'assets/fonts/BarlowCondensed-MediumItalic.ttf'
 import 'assets/fonts/BarlowCondensed-SemiBold.ttf'
 import 'assets/fonts/BarlowCondensed-Bold.ttf'
 import 'assets/fonts/RobotoSlab-Regular.ttf'
@@ -23,6 +24,8 @@ import 'assets/fonts/Barlow-SemiBold.ttf'
 import 'assets/fonts/BarlowSemiCondensed-BoldItalic.ttf'
 import 'assets/fonts/Sarabun-Regular.ttf'
 import 'assets/fonts/BarlowSemiCondensed-Medium.ttf'
+import 'assets/fonts/BarlowSemiCondensed-Bold.ttf'
+
 
 import 'style.css'
 

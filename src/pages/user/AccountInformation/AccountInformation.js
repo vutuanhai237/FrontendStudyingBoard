@@ -142,7 +142,7 @@ class AccountInformation extends Component {
                                         {/* <div>{this.props.</div> */}
                                     </div>
 
-                                    <div className="blue-button margin_auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
+                                    <div className="blue-button mg-auto " style={{ marginBottom: "20px", marginTop: "10px" }} onClick={() => this.handlerClickUpdateAvatar()}>Cập nhật avatar</div>
 
                                     <div className="mg-top-10px" />
 
@@ -188,11 +188,11 @@ class AccountInformation extends Component {
                                     <div className="Account_Information_Achivement_Layout">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Layout">
-                                            <div className="display-flex width_50_percents">
+                                            <div className="display-flex w-50-percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
                                                 <div className="mg-left-5px">{this.postCount}</div>
                                             </div>
-                                            <div className="display-flex width_50_percents">
+                                            <div className="display-flex w-50-percents">
                                                 <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
                                                 <div className="mg-left-5px"> {this.documentCount}</div>
                                             </div>
@@ -210,7 +210,7 @@ class AccountInformation extends Component {
                                     ) ?
                                         <div>
                                             {/* Display name */}
-                                            <div className="position_relative">
+                                            <div className="pos-relative">
                                                 < div className="gray-label Is_Form_Label">
                                                     Họ tên:
                                                 </div>
@@ -244,7 +244,7 @@ class AccountInformation extends Component {
                                             <input disabled type="text" className="form-input" defaultValue={this.email} />
 
                                             <div className="display-flex mg-top-10px" >
-                                                <button disabled={!this.canClickSaveInformation} className="blue-button margin_auto" onClick={() => this.handlerClickSaveInformation()} >
+                                                <button disabled={!this.canClickSaveInformation} className="blue-button mg-auto" onClick={() => this.handlerClickSaveInformation()} >
                                                     Lưu thay đổi
                                             </button>
                                             </div>

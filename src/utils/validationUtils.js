@@ -1,7 +1,7 @@
 //only apply for html inputElement not for custom Combobox and CKEditor
 
 // Đối tượng `Validator`
-export default function Validator(options) {
+export default function InputElementValidation(options) {
     function getParent(element, selector) {
         while (element.parentElement) {
             if (element.parentElement.matches(selector)) {
@@ -96,7 +96,7 @@ export default function Validator(options) {
 // Nguyên tắc của các rules:
 // 1. Khi có lỗi => Trả ra message lỗi
 // 2. Khi hợp lệ => Không trả ra cái gì cả (undefined)
-Validator.isRequired = function (selector, message) {
+InputElementValidation.isRequired = function (selector, message) {
     return {
         selector: selector,
         test: function (value) {
@@ -105,7 +105,7 @@ Validator.isRequired = function (selector, message) {
     };
 }
 
-Validator.isEmail = function (selector, message) {
+InputElementValidation.isEmail = function (selector, message) {
     return {
         selector: selector,
         test: function (value) {
@@ -115,7 +115,7 @@ Validator.isEmail = function (selector, message) {
     };
 }
 
-Validator.minLength = function (selector, min, message) {
+InputElementValidation.minLength = function (selector, min, message) {
     return {
         selector: selector,
         test: function (value) {
@@ -124,7 +124,7 @@ Validator.minLength = function (selector, min, message) {
     };
 }
 
-Validator.isConfirmed = function (selector, getConfirmValue, message) {
+InputElementValidation.isConfirmed = function (selector, getConfirmValue, message) {
     return {
         selector: selector,
         test: function (value) {
@@ -133,7 +133,7 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
     }
 }
 
-Validator.isNotAllowSpecialCharacter = function (selector, message) {
+InputElementValidation.isNotAllowSpecialCharacter = function (selector, message) {
     return {
         selector: selector,
         test: function (value) {

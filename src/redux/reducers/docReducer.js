@@ -1,11 +1,5 @@
 import {
-    DOC_GET_SUBJECTS,
-    DOC_GET_DOC_BY_ID,
-    DOC_GET_SEARCH_DOC,
-    DOC_GET_TOP_DOC,
-    DOC_POST_DOC,
-    DOC_POST_UP_VIEW_DOC,
-    DOC_POST_UP_DOWNLOAD_DOC,
+
 
     //DOCUMENTS LIST
     GET_DOCUMENTS_LIST_REQUEST,
@@ -27,7 +21,9 @@ import {
     GET_DOCUMENT_SEARCH_RESULT_SUCCESS,
     GET_DOCUMENT_SEARCH_RESULT_FAILURE,
 
-    GET_ALL_NOT_APPROVED_DOCUMENTS,
+    GET_ALL_NOT_APPROVED_DOCUMENTS_SUCCESS,
+    GET_ALL_NOT_APPROVED_DOCUMENTS_REQUEST,
+    GET_ALL_NOT_APPROVED_DOCUMENTS_FAILURE,
     APPROVE_A_DOCUMENT
 
 } from '../constants.js'
@@ -55,23 +51,9 @@ const initialState = {
 
 function DocReducer(state = initialState, action) {
     switch (action.type) {
-      
-        case DOC_GET_TOP_DOC:
-            return { ...state, topDoc: action.payload };
-        case DOC_GET_SEARCH_DOC:
-            return { ...state, searchDocs: action.payload };
-        case DOC_POST_DOC:
-            return { ...state, statusPostDocCode: action.payload };
-        case DOC_POST_UP_VIEW_DOC:
-            return { ...state };
-        case DOC_POST_UP_DOWNLOAD_DOC:
-            return { ...state };
-        case DOC_GET_DOC_BY_ID:
-            return { ...state, document: action.payload };
 
-
-        case GET_ALL_NOT_APPROVED_DOCUMENTS:
-            return { ...state, requestedDocuments: action.payload };
+        // case GET_ALL_NOT_APPROVED_DOCUMENTS:
+        //     return { ...state, requestedDocuments: action.payload };
         case APPROVE_A_DOCUMENT:
             return { ...state, currentDocumentApprovedStatus: action.payload }
 

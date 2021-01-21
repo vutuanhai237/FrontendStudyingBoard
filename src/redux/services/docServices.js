@@ -1,12 +1,5 @@
 import {
-    docPostDoc,
-    docGetSubjects,
-    docGetTopDoc,
-    docGetSearchDoc,
-    docGetDocByID,
-    get_NotApprovedDocumentsList,
-    managementGetCurrentPreviewDocument,
-    managementApproveADocument,
+ 
 
     get_NewDocumentsListRequest,
     get_NewDocumentsListSuccess,
@@ -40,34 +33,35 @@ import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
 //upload new document
-export function postDoc(doc) {
-    return dispatch => {
-        var myHeaders = new Headers();
-        console.log(doc)
-        var formdata = new FormData();
-        formdata.append("file", doc.file);
-        formdata.append("title", doc.title);
-        formdata.append("summary", doc.summary);
-        formdata.append("categoryId", doc.categoryID);
-        formdata.append("subjectId", doc.subjectID);
-        formdata.append("semesterId", doc.semesterID);
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formdata,
-            redirect: 'follow'
-        };
+// export function postDoc(doc) {
+//     return dispatch => {
+//         var myHeaders = new Headers();
+//         console.log(doc)
+//         var formdata = new FormData();
+//         formdata.append("file", doc.file);
+//         formdata.append("title", doc.title);
+//         formdata.append("summary", doc.summary);
+//         formdata.append("categoryId", doc.categoryID);
+//         formdata.append("subjectId", doc.subjectID);
+//         formdata.append("semesterId", doc.semesterID);
 
-        fetch(`http://${PORT}/docs/upload?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result).statusCode);
-                dispatch(docPostDoc(JSON.parse(result).statusCode));
-            })
-            .catch(error => console.log('error', error));
-    }
-}
+//         var requestOptions = {
+//             method: 'POST',
+//             headers: myHeaders,
+//             body: formdata,
+//             redirect: 'follow'
+//         };
+
+//         fetch(`http://${PORT}/docs/upload?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+//             .then(response => response.text())
+//             .then(result => {
+//                 console.log(JSON.parse(result).statusCode);
+//                 dispatch(docPostDoc(JSON.parse(result).statusCode));
+//             })
+//             .catch(error => console.log('error', error));
+//     }
+// }
 
 export function getTopDoc() {
     return dispatch => {

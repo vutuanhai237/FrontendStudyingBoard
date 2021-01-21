@@ -32,7 +32,13 @@ import MyPostsList from "pages/user/MyPostsList/MyPostsList";
 import SearchTag from "pages/common/SearchResult/SearchTag";
 import SearchPost from "pages/common/SearchResult/SearchPost";
 import SearchDocument from "pages/common/SearchResult/SearchDocument";
-
+import Artical from "pages/common/ChapterDetail/Artical"
+import Exercise from "pages/common/ChapterDetail/Exercise"
+import Video from "pages/common/ChapterDetail/Video"
+import CoursesList from "pages/common/CoursesList/CoursesList"
+import ChaptersList from "pages/common/ChaptersList/ChaptersList"
+import PostsList from 'pages/common/PostsList/PostsList'
+import DocumentsList from 'pages/common/DocumentsList/DocumentsList'
 // import
 const App = () => {
 
@@ -46,11 +52,11 @@ const App = () => {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/posts" component={NormalBlankLayout} />
-                    <Route exact path="/documents" component={NormalBlankLayout} />
+                    <Route exact path="/posts" component={PostsList} />
+                    <Route exact path="/documents" component={DocumentsList} />
                     <Route exact path="/posts/:id" component={PostDetail} />
                     <Route exact path="/documents/:id" component={DocDetail} />
-                    <Route exact path="/events" component={EventsList} />
+                    <Route exact path="/courses" component={CoursesList} />
 
                     {/* Search Tag */}
                     <Route path="/tags/:id/">
@@ -72,7 +78,7 @@ const App = () => {
                                 <Route exact path="/user/update-password" component={UpdatePassword} />
                                 <Route exact path="/user/my-docs" component={MyDocumentsList} />
                                 <Route exact path="/user/my-posts" component={MyPostsList} />
-                                {/* <Route exact path="/user/notification" component={UserLayout} /> */}
+
                             </Switch>
                         </UserLayout>
                     </Route>
@@ -100,8 +106,8 @@ const App = () => {
                         <Route exact path="/doc-approving" component={AdminLayout} />
                     </Route>
 
-                    <Route path = "/search" exact component = {SearchPage}/>
-                    
+                    <Route path="/search" exact component={SearchPage} />
+
                 </Switch>
                 <div className="App"></div>
             </Router >

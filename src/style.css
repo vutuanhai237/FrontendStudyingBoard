@@ -13,6 +13,12 @@
     src: local("BarlowCondensed"), url(./assets/fonts/BarlowCondensed-Medium.ttf) format("truetype");
 }
 
+
+@font-face {
+    font-family: "BarlowCondensed-MediumItalic";
+    src: local("BarlowCondensed"), url(./assets/fonts/BarlowCondensed-MediumItalic.ttf) format("truetype");
+}
+
 @font-face {
     font-family: "BarlowCondensed-Regular";
     src: local("BarlowCondensed"), url(./assets/fonts/BarlowCondensed-Regular.ttf) format("truetype");
@@ -53,6 +59,18 @@
     src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Medium.ttf) format("truetype");
 }
 
+
+@font-face {
+    font-family: "BarlowSemiCondensed-Bold";
+    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Bold.ttf) format("truetype");
+}
+
+
+@font-face {
+    font-family: "BarlowSemiCondensed-Bold";
+    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Bold.ttf) format("truetype");
+}
+
 @font-face {
     font-family: "Sarabun-Regular";
     src: local("Sarabun"), url(./assets/fonts/Sarabun-Regular.ttf) format("truetype");
@@ -82,7 +100,7 @@ img {
     font: 14px "BarlowSemiCondensed-Medium";
 }
 
-.justify-content-space-between {
+.jc-space-between {
     display: flex;
     justify-content: space-between;
 }
@@ -112,12 +130,17 @@ a:hover {
     justify-content: end;
 }
 
-.icon_16x16 {
+.icon-16x16 {
     width: 16px;
     height: 16px;
 }
 
-.icon_24x24 {
+.icon-10x10 {
+    width: 10px;
+    height: 10px;
+}
+
+.icon-24x24 {
     width: 24px;
     height: 24px;
 }
@@ -165,11 +188,11 @@ a:hover {
     padding-left: 5px;
 }
 
-.margin_auto {
+.mg-auto {
     margin: auto;
 }
 
-.background_green {
+.bg-green {
     background: green;
 }
 
@@ -193,40 +216,25 @@ a:hover {
     margin-top: 10px !important;
 }
 
-.margin_top_15px {
+.mg-top-15px {
     margin-top: 15px !important;
 }
 
-.margin_bottom_20x {
-    margin-bottom: 20px;
+.mg-bottom-10px {
+    margin-bottom: 10px;
 }
 
-.width_50_percents {
+.w-50-percents {
     width: 50%;
 }
 
-.margin_top_2px {
-    margin-top: 2px;
-}
 
-.margin_top_7px {
-    margin-top: 7px;
-}
-
-.position_relative {
+.pos-relative {
     position: relative;
 }
 
-.position_absolute {
+.pos-absolute {
     position: absolute;
-}
-
-.padding_3px {
-    padding: 3px;
-}
-
-.display_none {
-    display: none;
 }
 
 .mi-w-fit-content {

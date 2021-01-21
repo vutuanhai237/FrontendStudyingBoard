@@ -79,3 +79,21 @@
     transform: rotate(-45deg);
     left: 2px;
 }
+
+.tag-search-item {
+    width: 33%;
+    padding: 5px;
+    border-radius: 5px
+}
+
+
+.tag-search-item:hover {
+    background: var(--grayish);
+
+}
+
+.tag-search-item-name {}
+
+.tag-search-item-content {
+    font-size: 14px;
+}

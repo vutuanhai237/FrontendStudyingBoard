@@ -122,13 +122,13 @@ class UserManagement extends Component {
                 <Titlebar title="QUẢN LÝ NGƯỜI DÙNG" />
                 <div className="left-side-bar-layout-content-container">
 
-                    <div className="display-flex justify-content-space-between mg-top-10px"  >
+                    <div className="display-flex jc-space-between mg-top-10px"  >
                         <div className="number-of-item">
                             Tổng số:
                             &nbsp;
                             {this.usersList.length}
                         </div>
-                        < div className="position_relative display-flex">
+                        < div className="pos-relative display-flex">
                             {/* <div className="gray-label" style={{ paddingTop: "5px" }}>
                                 Filter:
                             </div> */}
@@ -168,7 +168,7 @@ class UserManagement extends Component {
                         </div>
                     </div>
 
-                    {/* <div className="margin_bottom_20x" /> */}
+                    {/* <div className="mg-bottom-20px" /> */}
 
                     {userItemList}
 

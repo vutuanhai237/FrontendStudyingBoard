@@ -4,7 +4,7 @@ import './Tag.scss';
 //Set text props for this component
 class Tag extends Component {
 
-    //onDelete, tag: id, content
+    //onDelete, tag: id, name
 
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ class Tag extends Component {
             <div className="simple-tag" onClick={this.onTagClick}>
                 <div style={{ display: "flex" }}>
                     {!this.props.isReadOnly && <div onClick={this.onDelete} className="tag-delete-btn"><div className="close_8x8" /> </div>}
-                    <div style={{ paddingLeft: "5px" }}> {this.props.tag.content} </div>
+                    <div style={{ paddingLeft: "5px" }}> {this.props.tag.name} </div>
                 </div>
             </div>
         )

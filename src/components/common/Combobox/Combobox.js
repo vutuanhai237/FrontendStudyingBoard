@@ -28,7 +28,7 @@ export default class Combobox extends React.Component {
 
         this.disabled = false; //if you want to disable combobox, you this.
 
-
+    
 
     }
 
@@ -58,12 +58,12 @@ export default class Combobox extends React.Component {
         this.setState({})
     }
 
+
     handleComboboxClick = (e, combobox_id, combobox_text_id, dropdown_element_id, container_id) => {
         e.preventDefault();
 
         let parent_menu_item = document.getElementById(combobox_id);
         let dropdown_element = document.getElementById(dropdown_element_id);
-        // let show_text = document.getElementById(combobox_text_id);
         let dropdown_container = document.getElementById(container_id);
 
         if (dropdown_container.style.display === "block") {
@@ -108,7 +108,12 @@ export default class Combobox extends React.Component {
         this.setState({});
 
 
+
+
+
     }
+
+
 
     render() {
 
@@ -137,7 +142,7 @@ export default class Combobox extends React.Component {
         )
 
         return (
-            <div style={{ position: "relative", display: "flex", minWidth: "240px", width: "fit-content" }} >
+            <div id={"combobox-wrapper-" + this.props.id} style={{ position: "relative", display: "flex", minWidth: "240px", width: "fit-content" }} >
                 < ClickAwayListener onClickAway={() => { this.closeAllOption() }}>
                     <div>
                         {/* select */}
@@ -206,3 +211,4 @@ export default class Combobox extends React.Component {
         );
     }
 }
+
