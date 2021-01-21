@@ -14,19 +14,14 @@ import {
     get_CourseSearchResultRequest,
     get_CourseSearchResultSuccess,
     get_CourseSearchResultFailure,
-} from "redux/actions/coursesAction.js";
+} from "redux/actions/courseAction.js";
 
 import {
     HOST,
     PORT
 } from 'constants.js';
 
-import FormData from 'form-data';
-import Cookies from 'js-cookie';
-
 //#region Fake data region
-
-
 
 //#endregion
 

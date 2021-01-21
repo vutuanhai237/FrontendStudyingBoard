@@ -13,8 +13,8 @@ import { summaryItemType } from 'constants.js'
 import { getSearchParamByName, setSearchParam } from 'utils/urlUtils'
 
 //services
-import { getPostsList } from "redux/services/postServices"
-import { getPostCategories } from "redux/services/postCategoryServices"
+import { getCoursesList } from "redux/services/courseServices"
+import { getCourseFalcutyCategories } from "redux/services/courseCategoryServices"
 
 //components
 import ComboBox from 'components/common/Combobox/Combobox';
@@ -23,7 +23,7 @@ import Loader from 'components/common/Loader/Loader'
 //resource
 import dropdownIcon from 'assets/icons/12x12/dropdown_12x12.png'
 
-class PostsList extends Component {
+class CoursesList extends Component {
     constructor(props) {
         super();
 
@@ -148,7 +148,7 @@ class PostsList extends Component {
                 </div>
 
                 {
-                    
+
                 }
 
                 {/* Danh sách môn học */}
@@ -198,23 +198,23 @@ const mapStateToProps = (state) => {
     return {
 
         //Cac data
-        daiCuongSubjectList: state.post.postsList.data,
-        falcutyCategories: state.post_category.categories.data,
-        coSoNhomNganhSubjectList: state.post_category.categories.data,
-        allSubjectList: state.post_category.categories.data,
+        daiCuongSubjectList: state.course.coursesList.data,
+        coSoNhomNganhSubjectList: state.course.coursesList.data,
+        allSubjectList: state.course.coursesList.data,
+        falcutyCategories: state.course_category.falcutyCategories.data,
+
 
         //Cac thong tin loading
-        isDaiCuongSubjectLoading: state.post.postsList.isLoading,
-        isFalcutyCategoriesLoading: state.post_category.categories.isLoading,
-        isCoSoNhomNganhSubjectLoading: state.post_category.categories.isLoading,
-        isAllSubjectLoading: state.post_category.categories.isLoading,
-
+        isDaiCuongSubjectLoading: state.course.coursesList.isLoading,
+        isFalcutyCategoriesLoading: state.course_category.falcutyCategories.isLoading,
+        isCoSoNhomNganhSubjectLoading: state.course_category.falcutyCategories.isLoading,
+        isAllSubjectLoading: state.course_category.falcutyCategories.isLoading,
 
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getPostsList, getPostCategories
+    getCoursesList, getCourseFalcutyCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsList));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CoursesList));
