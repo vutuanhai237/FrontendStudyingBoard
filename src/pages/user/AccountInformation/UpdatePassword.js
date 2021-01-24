@@ -13,7 +13,6 @@ import { withRouter } from "react-router-dom";
 import { getCurrentUser, getLogout } from 'redux/services/userServices'
 
 import Cookies from 'js-cookie'
-import { PORT } from 'constants.js'
 
 class UpdatePassword extends Component {
     constructor(props) {
@@ -344,12 +343,6 @@ class UpdatePassword extends Component {
         e.preventDefault();
         console.log(this.newPassword);
         //check if new password and confirmation pass word is the same?
-        if (this.updatePassword_DTO.confirmationPassword !== this.updatePassword_DTO.newPassword) {
-            this.notifyContent = "Thất bại";
-            this.notifyContent = "Mật khẩu mới và mật khẩu xác nhận không khớp nhau!";
-            this.openFailedAlertPopup();
-            return;
-        }
 
         var urlencoded = new URLSearchParams();
 
@@ -357,39 +350,7 @@ class UpdatePassword extends Component {
         urlencoded.append("oldPasword", this.updatePassword_DTO.currentPassword);
         urlencoded.append("password", this.updatePassword_DTO.newPassword);
 
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: urlencoded,
-            redirect: 'follow'
-        };
 
-        fetch(`http://${PORT}/account/update?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                if (JSON.parse(result).statusCode === 20) {
-                    console.log(result);
-                    this.isUpdatePasswordPopupOpen = false;
-                    this.canClickSavePassword = false;
-                    this.notifyHeader = "Thành công";
-                    this.notifyContent = "Bạn cần đăng nhập lại!";
-                    this.isAnySuccessLogoutAlertPopupOpen = true;
-                    this.setState({});
-                    return;
-                }
-                console.log(result);
-                this.isUpdatePasswordPopupOpen = false;
-                this.canClickSavePassword = false;
-                this.notifyHeader = "Thất bại";
-                this.notifyContent = "Cập nhật mật khẩu không thành công!";
-                this.isAnyFailedAlertPopupOpen = true;
-                this.setState({});
-
-            }
-            )
-            .catch(error => console.log('error', error));
 
     }
 

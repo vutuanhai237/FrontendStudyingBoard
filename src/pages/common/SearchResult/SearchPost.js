@@ -11,7 +11,7 @@ import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 
 import Paginator from 'components/common/Paginator/ServerPaginator'
 import PostSummary from 'components/post/PostSummary'
 import Loader from 'components/common/Loader/Loader'
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 
 class SearchPost extends Component {
     constructor(props) {
@@ -56,7 +56,7 @@ class SearchPost extends Component {
             this.postSearchResult = this.props.postSearchResult.map((postItem) => (
 
                 <PostSummary
-                    type={summaryItemType.normal}
+                    type={itemType.normal}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}

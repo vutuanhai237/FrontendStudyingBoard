@@ -24,7 +24,11 @@ import {
     //post search result & post list
     GET_POST_SEARCH_RESULT_REQUEST,
     GET_POST_SEARCH_RESULT_SUCCESS,
-    GET_POST_SEARCH_RESULT_FAILURE
+    GET_POST_SEARCH_RESULT_FAILURE,
+
+    POST_CREATE_POST_REQUEST,
+    POST_CREATE_POST_SUCCESS,
+    POST_CREATE_POST_FAILURE,
 
 } from "../constants.js"
 
@@ -51,7 +55,6 @@ export function get_HighlightPostsListRequest() {
 }
 
 export function get_HighlightPostsListSuccess(data) {
-    console.log("S");
     return {
         type: GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
         payload: data
@@ -116,6 +119,26 @@ export function get_PostSearchResultSuccess(data) {
 export function get_PostSearchResultFailure(error) {
     return {
         type: GET_POST_SEARCH_RESULT_FAILURE,
+        payload: error
+    }
+}
+
+export function post_CreatePostRequest() {
+    return {
+        type: GET_HIGHLIGHT_POSTS_LIST_REQUEST,
+    }
+}
+
+export function post_CreatePostSuccess(data) {
+    return {
+        type: GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
+        payload: data
+    }
+}
+
+export function post_CreatePostFailure(error) {
+    return {
+        type: GET_HIGHLIGHT_POSTS_LIST_FAILURE,
         payload: error
     }
 }

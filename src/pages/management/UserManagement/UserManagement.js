@@ -70,7 +70,7 @@ class UserManagement extends Component {
 
             // searchDropdown = this.roleFilterList.map(role =>
             //     this.roleNameFilter === role.UserGroupName ?
-            //         <div className="activated-combo-box-option"
+            //         <div className="activated-combox-option"
             //             name="User_Role_Filter_Combobox_Item"
             //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
@@ -80,7 +80,7 @@ class UserManagement extends Component {
 
             //         </div>
             //         :
-            //         <div className="combo-box-option"
+            //         <div className="combox-option"
             //             name="User_Role_Filter_Combobox_Item"
             //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
@@ -139,7 +139,7 @@ class UserManagement extends Component {
                                     <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 1000000 }}>
                                         <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
                                             <div style={{ position: "absolute", width: "140px" }}>
-                                                <div className="combo-box" id={"role-filter-parent-dropdown-combobox"}
+                                                <div className="combox" id={"role-filter-parent-dropdown-combobox"}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "role-filter-parent-dropdown-combobox", "role-filter-parent-dropdown-combobox-text", "role-filter-dropdown-btn-element", "role-filter-dropdown-combobox-container")}>
                                                     <div className="display-flex">
                                                         <div className="side-bar-menu-item-text" id={"role-filter-parent-dropdown-combobox-text"}>
@@ -153,7 +153,7 @@ class UserManagement extends Component {
                                                 </div>
 
                                                 {this.isAnyChangeRoleFilterDropdownComboboxOpen ? (
-                                                    <div className="combo-box-container" id={"role-filter-dropdown-combobox-container"}>
+                                                    <div className="combox-container" id={"role-filter-dropdown-combobox-container"}>
                                                         {searchDropdown}
                                                         <div className="margin-bottom-5px" />
                                                         <div className="margin-bottom-5px" />
@@ -187,7 +187,7 @@ class UserManagement extends Component {
 
     handleDropDownMenuItemClick = (roleName) => {
         let sub_dropdown_item_index = document.getElementsByName("User_Role_Filter_Combobox_Item");
-        sub_dropdown_item_index.forEach.className = "combo-box-option";
+        sub_dropdown_item_index.forEach.className = "combox-option";
         this.roleNameFilter = roleName;
         // if (roleName === "All") {
         //     this.currentInteractList = this.usersList;

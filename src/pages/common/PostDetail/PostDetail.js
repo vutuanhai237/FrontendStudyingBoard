@@ -14,7 +14,6 @@ import { connect } from "react-redux";
 
 import gray_download_icon from 'assets/images/gray_download_icon.png'
 // import PDFViewer from 'pdf-viewer-reactjs'
-import { PORT } from 'constants.js'
 import Cookies from 'js-cookie'
 
 //import for pdf viewer:

@@ -1,7 +1,6 @@
-//only apply for html inputElement not for custom Combobox and CKEditor
-
+//#region validation html inputElement not for custom Combobox and CKEditor
 // Đối tượng `Validator`
-export default function InputElementValidation(options) {
+export function InputElementValidation(options) {
     function getParent(element, selector) {
         while (element.parentElement) {
             if (element.parentElement.matches(selector)) {
@@ -14,8 +13,6 @@ export default function InputElementValidation(options) {
 
     // Hàm thực hiện validate
     function validate(inputElement, rule) {
-
-        //
         var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
         var errorMessage;
 
@@ -34,7 +31,7 @@ export default function InputElementValidation(options) {
                         formElement.querySelector(rule.selector + ':checked')
                     );
                     break;
-               
+
                 default:
                     errorMessage = rules[i](inputElement.value);
 
@@ -58,7 +55,7 @@ export default function InputElementValidation(options) {
     // Lấy element của form cần validate
     var formElement = document.querySelector(options.form);
     if (formElement) {
- 
+
         // Lặp qua mỗi rule và xử lý (lắng nghe sự kiện blur, input, ...)
         options.rules.forEach(function (rule) {
 
@@ -141,3 +138,35 @@ InputElementValidation.isNotAllowSpecialCharacter = function (selector, message)
         }
     };
 }
+//#endregion
+
+export function defaultFormSubmit(formId) {
+    let formSelector = '.form-container';
+    let formGroupSelector = '.form-group';
+    let validationSelector = '.validation';
+    let editorSelector = '.form-cke-editor';
+    let comboxSelector = '.form-combobox';
+    let inputSelector = '.form-input'; //text input, text area and file :D
+let comboxSelectedSelector = " .activated-combox-option"
+    //chon tat ca cac combobox co validation
+    let comboboxElements = document.querySelectorAll(formId + '>' + formGroupSelector + validationSelector + " " + comboxSelector );
+    let editorElements = document.querySelectorAll(formId + '>' + formGroupSelector + validationSelector + " " + editorSelector);
+    let inputElements = document.querySelectorAll(formId + '>' + formGroupSelector + validationSelector + " " + editorSelector);
+
+    console.log(comboboxElements);
+
+    // lay gia tri cua combobox va kiem tra.
+    Array.from(comboboxElements).forEach(element => {
+        console.log(element.innerHTML);
+    });
+
+    // kiem tra gia tri mot lan tat ca cac 
+
+    // kiem tra cai nao bi invalid thi khong cho enable nut bam.
+
+    // console.log(comboboxElements);
+    let isFormValid = false;
+
+    return isFormValid;
+}
+

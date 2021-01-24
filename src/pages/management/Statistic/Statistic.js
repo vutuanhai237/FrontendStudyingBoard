@@ -70,7 +70,7 @@ class Statistic extends Component {
 
             // searchDropdown = this.roleFilterList.map(role =>
             //     this.roleNameFilter === role.UserGroupName ?
-            //         <div className="activated-combo-box-option"
+            //         <div className="activated-combox-option"
             //             name="User_Role_Filter_Combobox_Item"
             //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
@@ -80,7 +80,7 @@ class Statistic extends Component {
 
             //         </div>
             //         :
-            //         <div className="combo-box-option"
+            //         <div className="combox-option"
             //             name="User_Role_Filter_Combobox_Item"
             //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
             //             value={getRoleNameFilterByName(role.UserGroupName)}
@@ -150,7 +150,7 @@ class Statistic extends Component {
 
     handleDropDownMenuItemClick = (roleName) => {
         let sub_dropdown_item_index = document.getElementsByName("User_Role_Filter_Combobox_Item");
-        sub_dropdown_item_index.forEach.className = "combo-box-option";
+        sub_dropdown_item_index.forEach.className = "combox-option";
         this.roleNameFilter = roleName;
         // if (roleName === "All") {
         //     this.currentInteractList = this.usersList;

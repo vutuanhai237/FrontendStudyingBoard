@@ -6,9 +6,9 @@ import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
 import gray_write_icon from 'assets/images/gray_write_icon.png'
-import { PORT } from 'constants.js'
+
 import './AccountInformation.scss'
-import 'styles/Form.scss'
+import 'components/styles/Form.scss'
 import './AIResponsiveLayout.scss'
 import { ClickAwayListener } from '@material-ui/core'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
@@ -112,8 +112,8 @@ class AccountInformation extends Component {
             let roles_Combobox =
                 this.roleList.map(role =>
                     this.roleID === role.id ?
-                        <div className="activated-combo-box-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
-                        <div className="combo-box-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
+                        <div className="activated-combox-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}>{role.role}</div> :
+                        <div className="combox-option" id={"user-role-dropdown-combobox-sub-item-" + role.id} value={role.role} key={role.id}
                             onClick={() => this.handleDropDownMenuItemClick(role.id)}> {role.role}
                         </div>
                 )
@@ -153,7 +153,7 @@ class AccountInformation extends Component {
                                             <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 }}>
                                                 <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
                                                     <div style={{ position: "absolute", width: "200px" }}>
-                                                        <div className="disabled-combo-box" id={"user-role-parent-dropdown-combobox"}>
+                                                        <div className="disabled-combox" id={"user-role-parent-dropdown-combobox"}>
                                                             {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
                                                             <div className="display-flex">
                                                                 <div className="side-bar-menu-item-text" id={"user-role-parent-dropdown-combobox-text"}>
@@ -170,7 +170,7 @@ class AccountInformation extends Component {
                                                         </div>
 
                                                         {this.isChangeRoleDropdownComboboxOpen ? (
-                                                            <div className="combo-box-container" id={"user-role-dropdown-combobox-container"}>
+                                                            <div className="combox-container" id={"user-role-dropdown-combobox-container"}>
                                                                 {roles_Combobox}
                                                                 <div className="margin-bottom-5px" />
                                                                 <div className="margin-bottom-5px" />
@@ -340,7 +340,7 @@ class AccountInformation extends Component {
                                 maxFileSize={5242880}
                                 singleImage={true}
                                 withPreview={true}
-                                labelclassName ="gray-label"
+                                labelclassName="gray-label"
                             ></ImageUploader>
                         </div>
                         {this.isHaveAnyImageInFileLoader
@@ -463,10 +463,10 @@ class AccountInformation extends Component {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + i;
             // (sub_dropdown_item_index_id);
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
-            sub_dropdown_item_index.className = "combo-box-option";
+            sub_dropdown_item_index.className = "combox-option";
         }
 
-        sub_dropdown_item.className = "activated-combo-box-option";
+        sub_dropdown_item.className = "activated-combox-option";
         this.props.accountInformation.roleID = roleID;
 
         // open a confirmation popup
@@ -552,44 +552,7 @@ class AccountInformation extends Component {
 
         // console.log(this.updateInformation_DTO);
 
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("username", this.updateInformation_DTO.username);
-        urlencoded.append("oldPasword", this.updateInformation_DTO.oldPasword);
-        urlencoded.append("displayname", this.updateInformation_DTO.displayname);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: urlencoded,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${PORT}/account/update?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                if (JSON.parse(result).statusCode === 20) {
-                    console.log(result);
-                    this.isUpdateInformationPopupOpen = false;
-                    this.canClickSaveInformation = false;
-                    this.notifyHeader = "Thành công";
-                    this.notifyContent = "Cập nhật thông tin thành công!";
-                    this.isAnySuccessReloadAlertPopupOpen = true;
-                    this.setState({});
-                    return;
-                }
-                console.log(result);
-                this.isUpdateInformationPopupOpen = false;
-                this.canClickSaveInformation = false;
-                this.notifyHeader = "Thất bại";
-                this.notifyContent = "Cập nhật thông tin không thành công!";
-                this.isAnyFailedAlertPopupOpen = true;
-                this.setState({});
-
-            }
-            )
-            .catch(error => console.log('error', error));
+        //call API
 
 
     }

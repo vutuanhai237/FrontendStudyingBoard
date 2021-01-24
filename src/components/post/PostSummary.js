@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'styles/SimpleButton.scss'
+import 'components/styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { Link } from 'react-router-dom'
 
@@ -14,10 +14,10 @@ import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
 import 'components/styles/DocPostSummary.scss'
 
 //styles
-import 'styles/SimpleLabel.scss'
+import 'components/styles/SimpleLabel.scss'
 
 //constants
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 
 //components
 import PopupMenu from 'components/common/PopupMenu/PopupMenu'
@@ -94,7 +94,7 @@ class PostSummary extends Component {
     let saveBtn = <div></div>;
     let approveLabel = <div></div>
 
-    // this.props.type === summaryItemType.mySelf
+    // this.props.type === itemType.mySelf
 
     //render likeBtn
     if (!this.isLiked) {
@@ -144,14 +144,14 @@ class PostSummary extends Component {
               {this.props.authorName}
             </Link>
 
-            {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.approving ?
+            {this.props.type === itemType.mySelf || this.props.type === itemType.approving ?
               <>{approveLabel}</> : <></>}
           </div>
 
-          {this.props.type === summaryItemType.mySelf &&
+          {this.props.type === itemType.mySelf &&
             <PopupMenu items={this.mySelfMenuItemList} id={`post-item-popup-menu-${this.props.id}`} />
           }
-          {(this.props.type === summaryItemType.normal || !this.props.type) &&
+          {(this.props.type === itemType.normal || !this.props.type) &&
             <PopupMenu items={this.normalMenuItemList} id={`post-item-popup-menu-${this.props.id}`} />
           }
 
@@ -212,7 +212,7 @@ class PostSummary extends Component {
 
         {/* for implement approve item */}
         {/* <div className="jc-space-between">
-          {this.props.type === summaryItemType.mySelf ?
+          {this.props.type === itemType.mySelf ?
 
             <div className="display-flex" >
               <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.onEditBtnClick()}>Chỉnh sửa</div>

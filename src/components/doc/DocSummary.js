@@ -8,11 +8,11 @@ import dislike_btn from 'assets/images/dislike_btn.png'
 import undislike_btn from 'assets/images/undislike_btn.png'
 import download_btn from 'assets/images/gray_download_icon.png'
 import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 
 //styles
 import 'components/styles/DocPostSummary.scss'
-import 'styles/SimpleButton.scss'
+import 'components/styles/SimpleButton.scss'
 
 //components
 import PopupMenu from 'components/common/PopupMenu/PopupMenu'
@@ -139,14 +139,14 @@ class DocSummary extends Component {
               {this.props.authorName}
             </div>
 
-            {this.props.type === summaryItemType.mySelf || this.props.type === summaryItemType.approving ?
+            {this.props.type === itemType.mySelf || this.props.type === itemType.approving ?
               <>{approveLabel}</> : <></>}
           </div>
 
-          {this.props.type === summaryItemType.mySelf &&
+          {this.props.type === itemType.mySelf &&
             <PopupMenu items={this.mySelfMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
           }
-          {(this.props.type === summaryItemType.normal || !this.props.type) &&
+          {(this.props.type === itemType.normal || !this.props.type) &&
             <PopupMenu items={this.normalMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
           }
 

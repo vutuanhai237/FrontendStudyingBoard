@@ -30,6 +30,11 @@
 }
 
 @font-face {
+    font-family: "RobotoSlab-Medium";
+    src: local("RobotoSlab"), url(./assets/fonts/RobotoSlab-Medium.ttf) format("truetype");
+}
+
+@font-face {
     font-family: "Rosario-Bold";
     src: local("Rosario"), url(./assets/fonts/Rosario-Bold.ttf) format("truetype");
 }
@@ -54,12 +59,18 @@
     src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-BoldItalic.ttf) format("truetype");
 }
 
+
+@font-face {
+    font-family: "BarlowSemiCondensed-MediumItalic";
+    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-MediumItalic.ttf) format("truetype");
+}
+
+
 @font-face {
     font-family: "BarlowSemiCondensed-Medium";
     src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Medium.ttf) format("truetype");
 }
 
-
 @font-face {
     font-family: "BarlowSemiCondensed-Bold";
     src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Bold.ttf) format("truetype");
@@ -67,8 +78,8 @@
 
 
 @font-face {
-    font-family: "BarlowSemiCondensed-Bold";
-    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-Bold.ttf) format("truetype");
+    font-family: "BarlowSemiCondensed-SemiBold";
+    src: local("BarlowSemiCondensed"), url(./assets/fonts/BarlowSemiCondensed-SemiBold.ttf) format("truetype");
 }
 
 @font-face {

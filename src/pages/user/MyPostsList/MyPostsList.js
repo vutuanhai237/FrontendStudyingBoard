@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import PostSummary from 'components/post/PostSummary';
-import {summaryItemType} from 'constants.js';
+import {itemType} from 'constants.js';
 import Paginator from 'components/common/Paginator/ServerPaginator';
 
 //import for redux
@@ -66,7 +66,7 @@ class MyPostsList extends Component {
         if (!this.props.isListLoading) {
             this.myPostsList = this.props.myPostsList.map((postItem) => (
                 <PostSummary
-                    type={summaryItemType.mySelf}
+                    type={itemType.mySelf}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}

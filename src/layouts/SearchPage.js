@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link, NavLink } from "react-rou
 
 //import scss
 import 'layouts/LeftSidebarLayout.scss'
-import 'styles/SimpleLabel.scss'
+import 'components/styles/SimpleLabel.scss'
 import "components/common/Titlebar/Titlebar.scss"
 import "layouts/Layout.scss"
 import "layouts/SearchPage.scss"

@@ -11,7 +11,7 @@ import { ContentManagement } from 'utils/permissionUtils'
 
 //styles
 import "./Header.scss";
-import "styles/SimpleButton.scss";
+import "components/styles/SimpleButton.scss";
 
 //resource
 import red_delete_icon from 'assets/images/red_delete_icon.png';

@@ -16,7 +16,6 @@ import { connect } from "react-redux";
 
 import gray_download_icon from 'assets/images/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'
-import { PORT } from 'constants.js'
 import Cookies from 'js-cookie'
 import PopupMenu from 'components/common/PopupMenu/PopupMenu'
 
@@ -349,32 +348,7 @@ class DocumentDetail extends Component {
     }
 
     handlerVerifyApproveRequestedPostConfirmation = () => {
-
-        fetch(`http://${PORT}/admin/docs/approved?id=${this.documentID}&sessionID=` + Cookies.get('JSESSIONID'),
-            {
-                method: 'GET'
-            })
-            .then(response => response.text())
-            .then(
-                result => {
-                    // if (result.statusCode === 16) {
-                    this.notifyHeader = "Thành công";
-                    this.notifyContent = "Duyệt tài liệu thành công!";
-                    this.isApproveRequestedPopupOpen = false;
-                    this.isAnySuccessAlertPopupOpen = true;
-                    this.setState({})
-                    // }
-                    // else {
-                    // this.notifyHeader = "Thất bại";
-                    // this.notifyContent = "Duyệt tài liệu không thành công!";
-                    // this.isApproveRequestedPopupOpen = false;
-                    // this.isAnyFailedAlertPopupOpen = true;
-                    // console.log(result);
-                    // this.setState({})
-                    // }
-                }
-            )
-            .catch(error => console.log('error', error));
+        //
     }
 
     handleCancelApproveRequestedPostConfirmation = () => {

@@ -6,7 +6,6 @@ import Home from "pages/common/Home/Home";
 import PostDetail from "pages/common/PostDetail/PostDetail";
 //import DocumentsList from "pages/common/DocumentsList/DocumentsList";
 import DocDetail from "pages/common/DocumentDetail/DocumentDetail";
-import EventsList from "pages/common/EventsList/EventsList";
 import Login from "pages/common/Login/Login";
 import Register from "pages/common/Register/Register";
 import Header from "components/common/Header/Header";
@@ -36,7 +35,7 @@ import Artical from "pages/common/ChapterDetail/Artical"
 import Exercise from "pages/common/ChapterDetail/Exercise"
 import Video from "pages/common/ChapterDetail/Video"
 import CoursesList from "pages/common/CoursesList/CoursesList"
-import ChaptersList from "pages/common/ChaptersList/ChaptersList"
+import ChaptersList from "pages/common/HeadingsList/HeadingsList"
 import PostsList from 'pages/common/PostsList/PostsList'
 import DocumentsList from 'pages/common/DocumentsList/DocumentsList'
 // import
@@ -57,6 +56,7 @@ const App = () => {
                     <Route exact path="/posts/:id" component={PostDetail} />
                     <Route exact path="/documents/:id" component={DocDetail} />
                     <Route exact path="/courses" component={CoursesList} />
+                    <Route exact path="/courses/:id" component={ChaptersList} />
 
                     {/* Search Tag */}
                     <Route path="/tags/:id/">
@@ -71,14 +71,13 @@ const App = () => {
 
 
                     {/* user layout */}
-                    <Route path="/user/:path? ">
+                    <Route path="/user">
                         <UserLayout>
                             <Switch>
                                 <Route exact path="/user" component={AccountInformation} />
                                 <Route exact path="/user/update-password" component={UpdatePassword} />
                                 <Route exact path="/user/my-docs" component={MyDocumentsList} />
                                 <Route exact path="/user/my-posts" component={MyPostsList} />
-
                             </Switch>
                         </UserLayout>
                     </Route>

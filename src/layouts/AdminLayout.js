@@ -19,11 +19,11 @@ import NotificationManagement from 'pages/management/NotificationManagement/Noti
 import CategoryManagement from 'pages/management/CategoryManagement/CategoryManagement';
 import UserManagement from 'pages/management/UserManagement/UserManagement';
 import DocApprovingPage from 'pages/management/DocApproving/DocApproving';
-import PostApprovingPage from 'pages/management/PostApprovingPage/PostApprovingPage';
+import PostApproving from 'pages/management/PostApproving/PostApproving';
 
 //import scss
 import 'layouts/LeftSidebarLayout.scss'
-import 'styles/SimpleLabel.scss'
+import 'components/styles/SimpleLabel.scss'
 
 //import resource string
 
@@ -402,12 +402,12 @@ class AdminLayout extends Component {
                                 <Switch>
                                     {/* Admin and collab page content admin */}
                                     {/* for admin */}
-                                    <Route exact path="/admin" component={PostApprovingPage} />
-                                    <Route exact path="/admin/post-approving" component={PostApprovingPage} />
+                                    <Route exact path="/admin" component={PostApproving} />
+                                    <Route exact path="/admin/post-approving" component={PostApproving} />
                                     <Route exact path="/admin/doc-approving" component={DocApprovingPage} />
 
                                     {/* for collab */}
-                                    <Route exact path="/user/post-approving" component={PostApprovingPage} />
+                                    <Route exact path="/user/post-approving" component={PostApproving} />
                                     <Route exact path="/user/doc-approving" component={DocApprovingPage} />
 
                                     {/* for admin only */}

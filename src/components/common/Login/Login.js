@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import "./Login.scss";
 import logo from 'assets/images/round_logo.png';
 import { postLogin, getCurrentUser } from "redux/services/userServices";
-import { redirect } from 'constants.js';
+
 import { bindActionCreators } from 'redux';
 class LoginForm extends React.Component {
     constructor(props) {
@@ -51,6 +51,7 @@ class LoginForm extends React.Component {
             password: this.state.password,
         }
         this.props.postLogin(account);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -83,17 +84,20 @@ class LoginForm extends React.Component {
             }
         }
     }
+    
     handleClose() {
         this.setState({
             modalShow: false,
         });
         if (this.statusLoginCode === 3) {
-            redirect("")
+            
         }
     }
+
     register() {
-        redirect("/register");
+       
     }
+
     forgotpassword() { }
 
     render() {

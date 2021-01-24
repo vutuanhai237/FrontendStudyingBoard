@@ -9,7 +9,7 @@ import 'layouts/Layout.scss'
 import './CoursesList.scss'
 
 //utils
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 import { getSearchParamByName, setSearchParam } from 'utils/urlUtils'
 
 //services
@@ -19,9 +19,11 @@ import { getCourseFalcutyCategories } from "redux/services/courseCategoryService
 //components
 import ComboBox from 'components/common/Combobox/Combobox';
 import Loader from 'components/common/Loader/Loader'
+import SubjectItem from 'components/course/SubjectItem'
 
 //resource
 import dropdownIcon from 'assets/icons/12x12/dropdown_12x12.png'
+
 
 class CoursesList extends Component {
     constructor(props) {
@@ -43,32 +45,24 @@ class CoursesList extends Component {
     }
 
     componentDidMount() {
+
+        //kiem tra xem seach param co category hay khong, neu khong thi thay bang 1
         let category = getSearchParamByName('category');
         if (!category) { setSearchParam('category', '1') }
+
+        this.props.getCoursesList(category);
+        this.props.getCourseFalcutyCategories();
+
     }
 
     //combobox
     onFilterOptionChanged = (selectedOption) => {
         setSearchParam("category", selectedOption.id);
-        let category = getSearchParamByName('category');
+        // let category = getSearchParamByName('category');
 
-        // co mot API de goi danh sach cac mon hoc theo muc
+        // co mot API de goi danh sach cac mon hoc theo danh muc
 
-        this.setState({});
-    }
-
-    coursesTypeTitle = (title, subTitle) => {
-        return <>
-
-
-        </>
-    }
-
-    coursesTypeTitle2 = (title, subTitle) => {
-        return <>
-
-
-        </>
+        // this.setState({});
     }
 
     render() {
@@ -77,13 +71,65 @@ class CoursesList extends Component {
         let coSoNhomNganhSubjectList = <></>;
         let allSubjectList = <></>;
 
+        if (!this.props.isDaiCuongSubjectLoading) {
+            console.log(this.props.daiCuongSubjectList)
+            daiCuongSubjectList =
+                <div className="subject-item-container">
+                    {this.props.daiCuongSubjectList.map(subjectItem => {
+                        return <SubjectItem
+                            id={subjectItem.id}
+                            image={subjectItem.image}
+                            name={subjectItem.name}
+                            type={itemType.normal}
+                        ></SubjectItem>
 
-
-        if (this.props.daiCuongSubjectList) {
-            daiCuongSubjectList = this.props.daiCuongSubjectList.map((subjectItem) => (
-                {}
-            ))
+                    }
+                    )}
+                </div>
         }
+        else {
+            daiCuongSubjectList = <Loader />
+        }
+
+        if (!this.props.isCoSoNhomNganhSubjectLoading) {
+            coSoNhomNganhSubjectList =
+                <div className="subject-item-container">
+                    {this.props.coSoNhomNganhSubjectList.map(subjectItem => {
+                        return <SubjectItem
+                            id={subjectItem.id}
+                            image={subjectItem.image}
+                            name={subjectItem.name}
+                            type={itemType.normal}
+                        ></SubjectItem>
+
+                    }
+                    )}
+                </div>
+        }
+        else {
+            coSoNhomNganhSubjectList = <Loader />
+        }
+
+        if (!this.props.isAllSubjectLoading) {
+
+            allSubjectList =
+                <div className="all-subject-item-container">
+                    {this.props.allSubjectList.map(subjectItem => {
+                        return <SubjectItem
+                            id={subjectItem.id}
+                            image={subjectItem.image}
+                            name={subjectItem.name}
+                            type={itemType.normal}
+                        ></SubjectItem>
+
+                    }
+                    )}
+                </div>
+        }
+        else {
+            allSubjectList = <Loader />
+        }
+
 
         return (
             <div className="nm-bl-layout" >
@@ -98,7 +144,7 @@ class CoursesList extends Component {
 
                 <div className="decoration-line mg-bottom-10px" />
                 {/* Đại cương */}
-                <div className="course-type-title">
+                <div className="course-type-title" >
                     <div className="display-flex">
                         <div className="rect-decoration" />
                         <div>
@@ -115,11 +161,15 @@ class CoursesList extends Component {
                             <div className="display-flex">
                                 <div className="show-all-text">
                                     Xem tất cả
-                        </div>
-                                <img className="show-all-icon icon-10x10" src={dropdownIcon} ></img>
+                                </div>
+                                <img className="show-all-icon icon-10x10" alt="*" src={dropdownIcon} ></img>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    {daiCuongSubjectList}
                 </div>
 
                 {/* Cơ sở nhóm ngành */}
@@ -141,15 +191,17 @@ class CoursesList extends Component {
                                 <div className="show-all-text">
                                     Xem tất cả
                         </div>
-                                <img className="show-all-icon icon-10x10" src={dropdownIcon} ></img>
+                                <img className="show-all-icon icon-10x10" alt="" src={dropdownIcon} ></img>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {
 
-                }
+                <div>
+                    {coSoNhomNganhSubjectList}
+                </div>
+
 
                 {/* Danh sách môn học */}
                 <div className="course-type-title">
@@ -178,23 +230,19 @@ class CoursesList extends Component {
                     </div>
                 </div>
 
-
-
+                <div>
+                    {allSubjectList}
+                </div>
 
                 <div className="mg-top-10px" />
 
-                {
-                    this.props.isListLoading ?
-                        < Loader /> :
-                        <>{ }</>
-                }
             </div >
         );
     }
 }
 
 const mapStateToProps = (state) => {
-
+   
     return {
 
         //Cac data
@@ -207,8 +255,8 @@ const mapStateToProps = (state) => {
         //Cac thong tin loading
         isDaiCuongSubjectLoading: state.course.coursesList.isLoading,
         isFalcutyCategoriesLoading: state.course_category.falcutyCategories.isLoading,
-        isCoSoNhomNganhSubjectLoading: state.course_category.falcutyCategories.isLoading,
-        isAllSubjectLoading: state.course_category.falcutyCategories.isLoading,
+        isCoSoNhomNganhSubjectLoading: state.course.coursesList.isLoading,
+        isAllSubjectLoading: state.course.coursesList.isLoading,
 
     };
 }

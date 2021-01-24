@@ -8,15 +8,17 @@ import "components/common/CustomCKE/CKEditorContent.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
+
 import { getPostCategories } from "redux/services/postCategoryServices";
+import { getTagQuickSearchResult } from "redux/services/tagServices"
+
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import Combobox from 'components/common/Combobox/Combobox';
 
 import { CKEToolbarConfiguration } from "components/common/CustomCKE/CKEditorConfiguration"
 import { ClickAwayListener } from '@material-ui/core';
-import InputElementValidation from 'utils/validationUtils'
-
+import { InputElementValidation, defaultFormSubmit } from 'utils/validationUtils'
 
 class CreatePost extends Component {
     constructor(props) {
@@ -58,15 +60,18 @@ class CreatePost extends Component {
             [
                 {
                     id: 1,
-                    name: "tag1", content: "Đây là mô tả của tag Đây là mô tả của tag Đây là mô tả của tag"
+                    name: "tag1",
+                    // content: "Đây là mô tả của tag Đây là mô tả của tag Đây là mô tả của tag"
                 },
                 {
                     id: 2,
-                    name: "tag2", content: "content"
+                    name: "tag2",
+                    //content: "content"
                 },
                 {
                     id: 3,
-                    name: "tag2", content: "content"
+                    name: "tag2",
+                    //content: "content"
                 }
             ];
     }
@@ -83,6 +88,7 @@ class CreatePost extends Component {
 
     componentDidMount() {
         this.props.getPostCategories();
+
         InputElementValidation({ //onLy apply for html inputElement not for custom Combobox and CKEditor
             form: '#create-post-form',
             formGroupSelector: '.form-group',
@@ -92,6 +98,8 @@ class CreatePost extends Component {
                 InputElementValidation.isNotAllowSpecialCharacter('#cr-post-title', 'Tên bài viết không được chứa ký tự đặc biệt!')
             ]
         });
+
+        defaultFormSubmit('#create-post-form');
     }
 
     handleModal = () => {
@@ -163,16 +171,22 @@ class CreatePost extends Component {
     keyHandler = (e) => {
         let tags = this.state.tags;
         if (e.charCode === 13) { //press Enter    
+
+            //check voi 3 ket qua tim kiem duoc, neu khong match thi tao moi
+
+            //neu chua search duoc thi khong cho bam enter
+
             document.getElementById("cr-post-qs-tag-result-container").classList.add('hidden');
             document.getElementById("cr-post-qs-tag-result-container").classList.remove('show');
-            tags.push({ id: null, name: e.target.value }); //tao ra tag moi
+
+            //tao moi
+            tags.push({ name: e.target.value }); //tao ra tag moi
             this.setState({
                 tags: tags
             });
             e.target.value = ""
         }
 
-        console.log(tags);
     }
 
     deleteTag = (item) => {
@@ -209,7 +223,6 @@ class CreatePost extends Component {
         //
     }
 
-
     render() {
         const { categories } = this.props;
         var body = null;
@@ -220,100 +233,114 @@ class CreatePost extends Component {
                 <div dangerouslySetInnerHTML={{ __html: this.state.content }} />
             </div>;
         } else {
-            body = <div id="create-post-form" className="form-container" onSubmit={this.handleUpload} tabIndex="1">
-                <div className="mg-top-10px" />
+            body =
+                <div id="create-post-form" className="form-container" onSubmit={this.handleUpload} tabIndex="1">
+                    <div className="mg-top-10px" />
 
-                <div className="form-group">
-                    <label className="form-label-required">Tiêu đề:</label>
-                    <input id="cr-post-title" placeholder="Nhập tiêu đề bài viết ..." onChange={this.handleTitleChange} type="text" className="form-input"></input>
+                    <div className="form-group validation">
+                        <label className="form-label-required">Tiêu đề:</label>
+                        <input className="form-input" id="cr-post-title" placeholder="Nhập tiêu đề bài viết ..." onChange={this.handleTitleChange} type="text" ></input>
+                        <div className="form-error-label-container">
+                            <span className="form-error-label" ></span>
+                        </div>
+                    </div>
+
+                    {/* CKEditor */}
+                    <div className="form-group validation">
+                        <div className="form-label-required">Nội dung:</div>
+                        <Editor
+                            id="cr-post-cke"
+                            placeholder='Start typing here...'
+                            onChange={this.handleEditorChange}
+                            onFocus={this.handleEditorFocus}
+                            data="<p>Nhập nội dung bài viết ...</p>"
+
+                            validation={{
+                                //apply for CKEditor
+                                form: '#create-post-form',
+                                formGroupSelector: '.form-group',
+                                errorSelector: '.form-error-label',
+                                rules: [
+                                    Editor.isRequired('Nội dung bài viết không được để trống!'),
+                                ]
+                            }
+                            }
+                        />
+                        <div className="form-error-label-container">
+                            <span className="form-error-label" ></span>
+                        </div>
+                    </div>
+
+                    {/* Category */}
+                    <div className="form-group validation">
+                        <label className="form-label-required">Danh mục:</label>
+                        <Combobox id="cr-post-category-combobox"
+                            options={this.state.categoryList}
+                            onOptionChanged={(selectedOption) => this.onCategoryOptionChanged(selectedOption)}
+                            selectedOptionID={1} // placeHolder="Chọn danh mục"
+
+                            validation={{
+                            //apply for Combobox
+                            form: '#create-post-form',
+                            formGroupSelector: '.form-group',
+                            errorSelector: '.form-error-label',
+                            rules: [
+                                Combobox.isRequired('Danh mục không được để trống')
+                            ]
+                        }}
+                        >
+                        </Combobox>
                     <div className="form-error-label-container">
                         <span className="form-error-label" ></span>
                     </div>
                 </div>
 
-                {/* CKEditor */}
+            {/* Tag */ }
+            <div className='form-group'>
+                <label className="form-label">Tags:</label>
 
-                <div className="form-group">
-                    <div className="form-label-required">Nội dung:</div>
-                    <Editor
-                        id="cr-post-cke"
-                        placeholder='Start typing here...'
-                        onChange={this.handleEditorChange}
-                        onFocus={this.handleEditorFocus}
-                        data="<p>Nhập nội dung bài viết ...</p>"
+                <input onChange={(e) => this.quickSearchTags(e)}
+                    onKeyPress={(this.state.tags.length < 5) && this.keyHandler}
+                    className="form-input"
+                    placeholder="Nhập tag ..." />
 
-                        validation=""
-                    />
-                    <div className="form-error-label-container">
-                        <span className="form-error-label" ></span>
-                    </div>
-                </div>
-
-                {/* Category */}
-                <div className="form-group">
-                    <label className="form-label-required">Danh mục:</label>
-                    <Combobox id="cr-post-category-combobox"
-                        options={this.state.categoryList}
-                        onOptionChanged={(selectedOption) => this.onCategoryOptionChanged(selectedOption)}
-                        placeHolder="Chọn danh mục"
-                    >
-                    </Combobox>
-                    <div className="form-error-label-container">
-                        <span className="form-error-label" ></span>
-                    </div>
-                </div>
-
-                {/* Tag */}
-
-                <div className='form-group'>
-                    <label className="form-label">Tags:</label>
-
-                    <input onChange={(e) => this.quickSearchTags(e)}
-                        onKeyPress={(this.state.tags.length < 5) && this.keyHandler}
-                        className="form-input"
-                        placeholder="Nhập tag ..." />
-
-                    <ClickAwayListener onClickAway={() => this.closeQuickSearchTag()}>
-                        <div id="cr-post-qs-tag-result-container" className="form-input-dropdown-container hidden">
-                            <div className="form-input-dropdown">
-                                <div className="display-flex">
-                                    {this.quickSearchTagResult.map(tag => {
-                                        return <div className="tag-search-item">
-                                            <div className="tag-search-item-name">  {tag.name}</div>
-                                            <div className="tag-search-item-content">  {tag.content}</div>
-                                        </div>
-                                    })}
-                                </div>
+                <ClickAwayListener onClickAway={() => this.closeQuickSearchTag()}>
+                    <div id="cr-post-qs-tag-result-container" className="form-input-dropdown-container hidden">
+                        <div className="form-input-dropdown">
+                            <div className="display-flex">
+                                {this.quickSearchTagResult.map(tag => {
+                                    return <div className="tag-search-item">
+                                        <div className="tag-search-item-name">  {tag.name}</div>
+                                        <div className="tag-search-item-content">  {tag.content}</div>
+                                    </div>
+                                })}
                             </div>
                         </div>
-                    </ClickAwayListener>
-                    <div className="form-tip-label-container">
-                        <div className="form-tip-label">Có thể nhập tối đa 5 tag.</div>
                     </div>
-
-                    <div className="mg-top-10px" >
-                        {this.state.tags.map(item =>
-                            <Tag isReadOnly={false} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
-                        )}
-                    </div>
-                    <div className="form-line" />
+                </ClickAwayListener>
+                <div className="form-tip-label-container">
+                    <div className="form-tip-label">Có thể nhập tối đa 5 tag.</div>
                 </div>
 
-
-                {/* Button */}
-                <div className="form-group display-flex">
-                    <button className="blue-button mg-auto" onClick={() => this.handleUpload()}>Đăng bài</button>
+                <div className="mg-top-10px" >
+                    {this.state.tags.map(item =>
+                        <Tag isReadOnly={false} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
+                    )}
                 </div>
+                <div className="form-line" />
 
-            </div >
+            </div>
 
+            {/* Button */ }
+            <div className="form-group display-flex">
+                <button className="blue-button mg-auto submit-form-btn" onClick={() => this.handleUpload()}>Đăng bài</button>
+            </div>
+                </div >
         }
         return (
             <div>
                 <Titlebar title="TẠO BÀI VIẾT MỚI" />
-
                 <div className="left-side-bar-layout-content-container">
-
                     <div className="form-container">
                         <div className="flex-container-end">
                             <div className="flex-container-end" >
@@ -328,21 +355,19 @@ class CreatePost extends Component {
             </div >
         );
     }
-
-
 }
 
 const mapStateToProps = (state) => {
     return {
         categories: state.post.categories,
-        account: state.user.account,
+        // account: state.user.account,
         statusPostPostCode: state.post.statusPostPostCode,
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getPostCategories,
-    // postPost,
+    getPostCategories, getTagQuickSearchResult, getPostCategories
+
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePost));

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import {
-    
+
 } from "redux/services/docServices"
 import "./UploadDocument.scss";
 import Tag from "components/common/Tag/Tag";
@@ -114,14 +114,14 @@ class UploadDocument extends Component {
     componentDidMount() {
         this.props.getDocCategories();
 
-        this.props.getSubjects();
+        // this.props.getSubjects();
     }
 
 
     changeUploadFileName(evt) {
-        this.setState({
-            doc: { ...this.state.doc, fileName: evt.target.files[0].name, file: evt.target.files[0] }
-        })
+        // this.setState({
+        //     doc: { ...this.state.doc, fileName: evt.target.files[0].name, file: evt.target.files[0] }
+        // })
     }
 
     onSubjectOptionChanged = (selectedOption) => {
@@ -179,9 +179,11 @@ class UploadDocument extends Component {
 
                     <div className="form-container" onSubmit={this.handleUpload} tabIndex="1">
 
-                        <div className="flex-container-end" style={{ background: "green" }}>
-                            <button className="white-button mg-auto" >Upload</button>
+                        <div className="flex-container-end" >
+                            <button className="white-button " >Preview</button>
                         </div>
+                        <div className="mg-top-10px decoration-line" />
+
 
                         <div className="form-label-required">Tiêu đề:</div>
                         <input ref="title" placeholder="Nhập tiêu đề tài liệu ..." onChange={this.handleTitleChange} type="text" className="form-input"></input>

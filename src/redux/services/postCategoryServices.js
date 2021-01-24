@@ -4,9 +4,6 @@ import {
     get_PostCategoriesFailure
 } from "redux/actions/postCategoryAction.js";
 
-// import {
-//     PORT
-// } from '../constants.js';
 
 export function getPostCategories() {
     return dispatch => {
@@ -28,7 +25,7 @@ export function getPostCategories() {
                 console.log(error);
                 dispatch(get_PostCategoriesFailure(error))
             });
-     
+
     }
 }
 

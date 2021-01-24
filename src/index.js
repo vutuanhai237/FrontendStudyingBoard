@@ -17,15 +17,17 @@ import 'assets/fonts/BarlowCondensed-MediumItalic.ttf'
 import 'assets/fonts/BarlowCondensed-SemiBold.ttf'
 import 'assets/fonts/BarlowCondensed-Bold.ttf'
 import 'assets/fonts/RobotoSlab-Regular.ttf'
+import 'assets/fonts/RobotoSlab-Medium.ttf'
 import 'assets/fonts/Rosario-Bold.ttf'
 import 'assets/fonts/Roboto-Regular.ttf'
 import 'assets/fonts/Roboto-Medium.ttf'
 import 'assets/fonts/Barlow-SemiBold.ttf'
 import 'assets/fonts/BarlowSemiCondensed-BoldItalic.ttf'
+import 'assets/fonts/BarlowSemiCondensed-MediumItalic.ttf'
 import 'assets/fonts/Sarabun-Regular.ttf'
 import 'assets/fonts/BarlowSemiCondensed-Medium.ttf'
 import 'assets/fonts/BarlowSemiCondensed-Bold.ttf'
-
+import 'assets/fonts/BarlowSemiCondensed-SemiBold.ttf'
 
 import 'style.css'
 

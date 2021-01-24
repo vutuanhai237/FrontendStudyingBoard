@@ -1,5 +1,5 @@
 import {
- 
+
 
 
     //highlight posts 
@@ -24,9 +24,8 @@ import {
 } from "redux/actions/postAction.js";
 
 import {
-    HOST,
-    PORT
-} from 'constants.js';
+    remoteServiceBaseUrl
+} from 'utils/httpServices';
 
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
@@ -76,7 +75,7 @@ export function postPost(post) {
             redirect: 'follow'
         };
         console.log(requestOptions)
-        fetch(`http://${PORT}/posts?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/posts?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -110,7 +109,7 @@ export function postComment(comment) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postComments?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/postComments?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -130,15 +129,14 @@ export function getTagsByID(pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postTags?postID=${pid}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/postTags?postID=${pid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
 
             })
             .catch(error => console.log('error', error));
 
-        // const result = tagList;
-        // dispatch(postGetTags(result));
+
     }
 }
 
@@ -152,7 +150,7 @@ export function getHighlightPosts() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/posts?type=highlights`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/posts?type=highlights`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));
@@ -160,8 +158,6 @@ export function getHighlightPosts() {
             })
             .catch(error => console.log('error', error));
 
-        // let result = highlightPostResults;
-        // dispatch(postGetPostHighlights(result));
     }
 }
 
@@ -174,7 +170,7 @@ export function getPostNewActivities() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/posts?type=newActivities`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/posts?type=newActivities`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));
@@ -182,9 +178,6 @@ export function getPostNewActivities() {
             })
             .catch(error => console.log('error', error));
 
-
-        // let result = highlightPostResults;
-        // dispatch(postGetPostHighlights(result));
     }
 }
 
@@ -197,7 +190,7 @@ export function getPostNewests() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/posts?type=newest`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/posts?type=newest`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result));
@@ -219,7 +212,7 @@ export function delUnlike(uid, pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/likedPosts?userID=${uid}&postID=${pid}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/likedPosts?userID=${uid}&postID=${pid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result)
@@ -238,7 +231,7 @@ export function postLike(uid, pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/likedPosts?userID=${uid}&postID=${pid}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/likedPosts?userID=${uid}&postID=${pid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -258,7 +251,7 @@ export function getIsLikePostByUID(uid, pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/likedPosts?userID=${uid}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/likedPosts?userID=${uid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
 
@@ -269,14 +262,6 @@ export function getIsLikePostByUID(uid, pid) {
             })
             .catch(error => console.log('error', error));
     }
-
-
-    // let result = ["1", "3"]; //Nguoi dung hien tai chi like bai post 1 va bai post 3
-    // const allPostLikeByUID = result;
-    // const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
-    // console.log("Liked: " + isLiked)
-    // const isLiked = true;
-    // dispatch(postGetIsLikePostByUID(isLiked));
 
 }
 
@@ -299,7 +284,7 @@ export function getPostCommentByID(pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/postComments?postID=${pid}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/postComments?postID=${pid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(JSON.parse(result))
@@ -320,7 +305,7 @@ export function getPostByID(uid, pid) {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/posts?id=${pid}`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/posts?id=${pid}`, requestOptions)
             .then(response => response.text())
             .then(result => {
 
@@ -341,88 +326,6 @@ export function getPostByID(uid, pid) {
 }
 
 
-//#region refactoring 
-
-// import Cookies from 'js-cookie'
-// import 
-
-
-// import FormData from 'form-data';
-// export function getNotApprovedDocumentsList() {
-//     return dispatch => {
-
-//         var myHeaders = new Headers();
-
-//         var requestOptions = {
-//             method: 'GET',
-//             headers: myHeaders,
-//             redirect: 'follow'
-//         };
-
-//         // fetch(`http://${PORT}/admin/docs/notApproved?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-//         //     .then(response => response.text())
-//         //     .then(result => {
-//         //         console.log(result);
-//         //         dispatch(get_NotApprovedDocumentsList(JSON.parse(result).shortDocs))
-//         //     })
-
-//         //     .catch(error => console.log('error', error));
-//         const result = [post_v1.documentDTO, post_v2.documentDTO, post_v3.documentDTO, post_v4.documentDTO];
-//         dispatch(get_NotApprovedDocumentsList(result));
-
-//     }
-
-// }
-
-// //Code Status: 
-// //13 - Permission deny
-// //14 - Resource Not Found
-// //15 - Get Resource Successfully
-// export function management_getCurrentPreviewDocument(previewDoc_ID) {
-//     return dispatch => {
-//         let myHeaders = new Headers();
-
-//         var requestOptions = {
-//             method: 'GET',
-//             headers: myHeaders,
-//             redirect: 'follow'
-//         };
-//         console.log("API has been called!");
-//         // fetch(`http://${PORT}/docs/preview?id=${previewDoc_ID}&sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-//         //     .then(response =>
-//         //         response.json())
-//         //     .then(result => {
-//         //         console.log(result);
-//         //         dispatch(managementGetCurrentPreviewDocument(result));
-//         //     }
-//         //     )
-//         //     .catch(error => console.log('error', error));
-//         const result = post_v4;
-//         dispatch(managementGetCurrentPreviewDocument(result));
-
-//     }
-// }
-
-
-// export function management_approveADocument(docID) {
-//     return dispatch => {
-
-//         var myHeaders = new Headers();
-
-//         var requestOptions = {
-//             method: 'GET',
-//             headers: myHeaders,
-//             redirect: 'follow'
-//         };
-//         fetch(`http://${PORT}/admin/docs/approved?id =${docID}&sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-//             .then(response => response.text())
-//             .then(
-//                 result => dispatch(managementApproveADocument(JSON.parse(result).shortDocs))
-//             )
-//             .catch(error => console.log('error', error));
-//     }
-
-// }s
 
 export function getHighlightPostsList() {
     return dispatch => {
@@ -435,12 +338,12 @@ export function getHighlightPostsList() {
             headers: myHeaders,
             redirect: 'follow'
         };
-    
+
         fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/highlight`, requestOptions)
             .then(response => response.text())
             .then(
                 result => {
-                   dispatch(get_HighlightPostsListSuccess(JSON.parse(result)));
+                    dispatch(get_HighlightPostsListSuccess(JSON.parse(result)));
                 }
             )
             .catch(error => {

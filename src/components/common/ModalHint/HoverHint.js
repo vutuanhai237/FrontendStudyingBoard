@@ -96,7 +96,7 @@ export default class Combobox extends React.Component {
         for (let i = 1; i <= this.props.options; i++) {
             let combobox_option_index_id = "combobox-option-" + this.props.id + "-" + this.props.options[i].id;
             let combobox_option_index = document.getElementById(combobox_option_index_id);
-            combobox_option_index.className = "combo-box-option";
+            combobox_option_index.className = "combox-option";
         }
 
         this.selectedOption = {
@@ -109,7 +109,7 @@ export default class Combobox extends React.Component {
         if (this.props.onOptionChanged)
             this.props.onOptionChanged(this.selectedOption);
         else console.log('error', "Please implement onOptionChanged() of Combobox!");
-        combobox_option.className = "activated-combo-box-option";
+        combobox_option.className = "activated-combox-option";
         this.isAnyValueChanged = true;
         this.closeAllOption();
         this.setState({});
@@ -127,13 +127,13 @@ export default class Combobox extends React.Component {
 
         let options = this.props.options.map(option =>
             this.selectedOption.id === option.id ?
-                <div className="activated-combo-box-option"
+                <div className="activated-combox-option"
                     id={"combobox-option-" + this.props.id + "-" + option.id}
                     key={option.id}>
                     {option.name}
                 </div>
                 :
-                <div className="combo-box-option"
+                <div className="combox-option"
                     id={"combobox-option-" + this.props.id + "-" + option.id}
                     key={option.id}
                     onClick={() => this.handleOptionClick(option.id)}>
@@ -148,10 +148,10 @@ export default class Combobox extends React.Component {
                     {/* <div style={{ width: "100%" }}> */}
                     <div>
                         {/* select */}
-                        <div className="combo-box" id={"combobox-" + this.props.id}
+                        <div className="combox" id={"combobox-" + this.props.id}
                             onClick={(e) => this.handleComboboxClick(e, "combobox-" + this.props.id, "combobox-text-" + this.props.id, "combobox-btn-element-" + this.props.id, "dropdown-container-" + this.props.id)}>
                             <div className="display-flex">
-                                <div className="combo-box-text" id={"combobox-text-" + this.props.id}>
+                                <div className="combox-text" id={"combobox-text-" + this.props.id}>
                                     {this.props.placeHolder === "none" ? //neu khong dung placeHolder
                                         <div>{
                                             this.props.options.map(item =>

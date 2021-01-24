@@ -18,12 +18,12 @@ import PopupMenu from 'components/common/PopupMenu/PopupMenu'
 import Loader from 'components/common/Loader/Loader'
 
 //styles
-import 'styles/SimpleLabel.scss'
+import 'components/styles/SimpleLabel.scss'
 import "./Wallpage.scss";
 import 'components/styles/DocPostSummary.scss'
 
 //constants
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 
 //services
 import { getHighlightPostsList } from "redux/services/postServices";
@@ -160,14 +160,14 @@ class WallPaper extends Component {
                                             {item.authorName}
                                         </Link>
 
-                                        {item.type === summaryItemType.mySelf || item.type === summaryItemType.approving ?
+                                        {item.type === itemType.mySelf || item.type === itemType.approving ?
                                             <>{approveLabel}</> : <></>}
                                     </div>
 
-                                    {item.type === summaryItemType.mySelf &&
+                                    {item.type === itemType.mySelf &&
                                         <PopupMenu items={this.mySelfMenuItemList} id={`highlight-post-popup-menu-${item.id}`} />
                                     }
-                                    {(item.type === summaryItemType.normal || !item.type) &&
+                                    {(item.type === itemType.normal || !item.type) &&
                                         <PopupMenu items={this.normalMenuItemList} id={`highlight-post-popup-menu-${item.id}`} />
                                     }
 

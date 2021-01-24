@@ -25,7 +25,7 @@ import {
 const initialState = {
 
 
-    //search post: use for search post and post list
+    //search course: use for search course and course list
     daiCuongCoursesList: {
         isLoading: false,
         data: [],
@@ -41,7 +41,7 @@ const initialState = {
         data: [],
         error: ""
     },
-    //my posts
+    //my courses
     myCourses: {
         isLoading: false,
         data: [],
@@ -53,7 +53,7 @@ const initialState = {
 function CourseReducer(state = initialState, action) {
     switch (action.type) {
 
-        //get my post
+        //get my course
         case GET_MY_COURSES_REQUEST:
             return {
                 ...state, myCourses: { isLoading: true }
@@ -67,21 +67,21 @@ function CourseReducer(state = initialState, action) {
                 return { ...state, myCourses: { isLoading: false, error: action.payload, data: [] } }
             }
 
-        //get post search result
+        //get course search result
         case GET_COURSE_SEARCH_RESULT_REQUEST:
         case GET_COURSES_LIST_REQUEST:
             return {
-                ...state, postsList: { isLoading: true }
+                ...state, coursesList: { isLoading: true }
             };
         case GET_COURSE_SEARCH_RESULT_SUCCESS:
         case GET_COURSES_LIST_SUCCESS:
             {
-                return { ...state, postsList: { isLoading: false, data: action.payload, error: '' } }
+                return { ...state, coursesList: { isLoading: false, data: action.payload, error: '' } }
             }
         case GET_COURSE_SEARCH_RESULT_FAILURE:
         case GET_COURSES_LIST_FAILURE:
             {
-                return { ...state, postsList: { isLoading: false, error: action.payload, data: [] } }
+                return { ...state, coursesList: { isLoading: false, error: action.payload, data: [] } }
             }
 
         default:

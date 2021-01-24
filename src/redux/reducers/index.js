@@ -8,6 +8,7 @@ import DocCategoryReducer from "redux/reducers/docCategoryReducer"
 import TagReducer from "redux/reducers/tagReducer"
 import CourseReducer from "redux/reducers/courseReducer"
 import CourseCategoryReducer from "redux/reducers/courseCategoryReducer"
+import HeadingReducer from "redux/reducers/headingReducer"
 
 var RootReducer = combineReducers({
     home: HomeReducer,

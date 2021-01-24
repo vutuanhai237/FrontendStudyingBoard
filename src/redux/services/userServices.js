@@ -8,7 +8,8 @@ import {
     managementGetAllRoles
 } from "redux/actions/userAction.js";
 
-import { HOST, PORT } from 'constants.js';
+import { remoteServiceBaseUrl } from 'utils/httpServices'
+
 import FormData from 'form-data';
 import Cookies from 'js-cookie';
 
@@ -88,7 +89,7 @@ export function postRegister(account) {
         };
         console.log(account)
         console.log(requestOptions)
-        fetch(`http://${PORT}/register`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/register`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -116,7 +117,7 @@ export function postLogin(account) {
         };
 
 
-        fetch(`http://${PORT}/login`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/login`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 Cookies.set('JSESSIONID', JSON.parse(result).sessionID);
@@ -141,7 +142,7 @@ export function getCurrentUser() {
             headers: myHeaders,
             redirect: 'follow'
         };
-        // fetch(`http://${PORT}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
+        // fetch(`http://${remoteServiceBaseUrl}/users/current?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
         //     .then(response => response.text())
         //     .then(result => {
         //         dispatch(userGetCurrentUser(JSON.parse(result).account, JSON.parse(result).statusCode))
@@ -170,7 +171,7 @@ export function getLogout() {
         };
         Cookies.remove('JSESSIONID');
         Cookies.remove('UID');
-        fetch(`http://${PORT}/logout`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/logout`, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -190,7 +191,7 @@ export function management_getAllUsers() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/users?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/users?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
             .then(response => response.text())
             .then(
                 result => {
@@ -214,7 +215,7 @@ export function management_getAllRoles() {
             redirect: 'follow'
         };
 
-        fetch(`http://${PORT}/usergroups`, requestOptions)
+        fetch(`http://${remoteServiceBaseUrl}/usergroups`, requestOptions)
             .then(response => response.text())
             .then(
                 result => {

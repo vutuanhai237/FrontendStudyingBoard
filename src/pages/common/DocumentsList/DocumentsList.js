@@ -10,7 +10,7 @@ import { getDocCategories } from "redux/services/docCategoryServices"
 
 //utils
 import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/urlUtils'
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 
 //components
 import Loader from "components/common/Loader/Loader"
@@ -72,7 +72,7 @@ class DocumentsList extends Component {
 
                 documentsList = this.documentsList.map((documentItem) => (
                     < DocSummary
-                        type={summaryItemType.normal}
+                        type={itemType.normal}
                         key={documentItem.id}
                         id={"document-item" + documentItem.id}
                         authorName={documentItem.authorName}

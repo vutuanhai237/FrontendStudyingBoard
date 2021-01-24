@@ -11,7 +11,7 @@ import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 
 import Paginator from 'components/common/Paginator/ServerPaginator'
 import DocSummary from 'components/doc/DocSummary'
 import Loader from 'components/common/Loader/Loader'
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 
 class SearchDocument extends Component {
     constructor(props) {
@@ -66,7 +66,7 @@ class SearchDocument extends Component {
         if (!this.props.isListLoading) {
             this.documentSearchResult = this.props.documentsList.map((documentItem) => (
                 <DocSummary
-                    type={summaryItemType.normal}
+                    type={itemType.normal}
                     key={documentItem.id}
                     id={documentItem.id}
                     authorName={documentItem.authorName}

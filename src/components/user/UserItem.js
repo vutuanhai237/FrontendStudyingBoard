@@ -8,17 +8,14 @@ import icon_write from 'assets/images/icon_write.png'
 
 //combobox
 import 'components/common/Combobox/Combobox.scss'
-import 'styles/SimpleButton.scss'
-import 'styles/SimpleLabel.scss'
+import 'components/styles/SimpleButton.scss'
+import 'components/styles/SimpleLabel.scss'
 
 //modal popup
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 
 import { ClickAwayListener } from '@material-ui/core';
 import { getRoleNameByName, getRoleNamebyID } from 'utils/permissionUtils'
-
-import Cookies from 'js-cookie'
-import { PORT } from 'constants.js'
 
 class UserItem extends Component {
 
@@ -85,14 +82,14 @@ class UserItem extends Component {
 
             let roles_Combobox = this.roleList.map(role =>
                 this.roleID === role.UserGroupID ?
-                    <div className="activated-combo-box-option"
+                    <div className="activated-combox-option"
                         id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
                         value={getRoleNameByName(role.UserGroupName)}
                         key={role.UserGroupID}>
                         {getRoleNameByName(role.UserGroupName)}
                     </div>
                     :
-                    <div className="combo-box-option"
+                    <div className="combox-option"
                         id={"user-role-dropdown-combobox-sub-item-" + this.userID + "-" + role.UserGroupID}
                         value={role.UserGroupName}
                         key={role.UserGroupID}
@@ -136,7 +133,7 @@ class UserItem extends Component {
                                     <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 10000 - this.userID }}>
                                         <div style={{ position: "relative", display: "flex", justifyContent: "flex-end", width: "100%" }}>
                                             <div style={{ position: "absolute", width: "140px" }}>
-                                                <div className="combo-box" id={"user-role-parent-dropdown-combobox-" + this.userID}
+                                                <div className="combox" id={"user-role-parent-dropdown-combobox-" + this.userID}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
                                                     <div className="display-flex">
                                                         <div className="side-bar-menu-item-text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
@@ -151,7 +148,7 @@ class UserItem extends Component {
                                                 </div>
 
                                                 {this.isAnyChangeRoleDropdownComboboxOpen ? (
-                                                    <div className="combo-box-container" id={"user-role-dropdown-combobox-container-" + this.userID}>
+                                                    <div className="combox-container" id={"user-role-dropdown-combobox-container-" + this.userID}>
                                                         {roles_Combobox}
                                                         <div className="margin-bottom-5px" />
                                                         <div className="margin-bottom-5px" />
@@ -244,9 +241,9 @@ class UserItem extends Component {
         for (let i = 1; i <= this.roleList.length; i++) {
             let sub_dropdown_item_index_id = "user-role-dropdown-combobox-sub-item-" + this.userID + "-" + i;
             let sub_dropdown_item_index = document.getElementById(sub_dropdown_item_index_id);
-            sub_dropdown_item_index.className = "combo-box-option";
+            sub_dropdown_item_index.className = "combox-option";
         }
-        sub_dropdown_item.className = "activated-combo-box-option";
+        sub_dropdown_item.className = "activated-combox-option";
         this.role_post = roleID;
 
         //open a confirmation popup
@@ -270,44 +267,8 @@ class UserItem extends Component {
         var urlencoded = new URLSearchParams();
         urlencoded.append("username", this.username);
         urlencoded.append("ruleId", this.role_post);
-        console.log("*");
-        console.log(this.username);
-        console.log(this.role_post);
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: urlencoded,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${PORT}/admin/updaterole?sessionID=` + Cookies.get('JSESSIONID'), requestOptions)
-            .then(response => response.json())
-            .then(result => {
-
-                if (result.statusCode === 20) {
-                    this.isUpdateInformationPopupOpen = false;
-                    this.canClickSaveInformation = false;
-                    this.notifyHeader = "Thành công";
-                    this.notifyContent = "Cập nhật quyền thành công!";
-                    this.isAnySuccessAlertPopupOpen = true;
-                    this.roleID = this.role_post;
-                    console.log(this.roleID + " A");
-                    this.setState({});
-
-                } else {
-                    this.isUpdateInformationPopupOpen = false;
-                    this.canClickSaveInformation = false;
-                    this.notifyHeader = "Thất bại";
-                    this.notifyContent = "Cập nhật quyền không thành công!";
-                    this.isAnyFailedAlertPopupOpen = true;
-                    this.setState({});
-                }
-
-            }
-            )
-            .catch(error => console.log('error', error));
+     
+        //call api
 
         this.closeChangeRoleConfirmationPopup();
     }

@@ -16,16 +16,12 @@ import {
     get_CourseSearchResultFailure,
 } from "redux/actions/courseAction.js";
 
-import {
-    HOST,
-    PORT
-} from 'constants.js';
 
 //#region Fake data region
 
 //#endregion
 
-export function coursesCourse(courses) {
+export function uploadCourse(courses) {
     return dispatch => {
 
     }
@@ -64,10 +60,10 @@ export function getMyCourses() { //this API to get all approved document of a sp
 }
 
 //courses list
-export function getCoursesList(searchTerm = "") {
+export function getCoursesList(category = "") {
     return dispatch => {
 
-        dispatch(get_CoursesListRequest(searchTerm));
+        dispatch(get_CoursesListRequest(category));
 
         var myHeaders = new Headers();
         var requestOptions = {
@@ -75,11 +71,14 @@ export function getCoursesList(searchTerm = "") {
             headers: myHeaders,
             redirect: 'follow'
         };
-
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/courses`, requestOptions)
+        
+        console.log("***");
+        fetch(`https://5fe871c82e12ee0017ab46ef.mockapi.io/courses`, requestOptions)
             .then(response => response.text())
             .then(
+                
                 result => {
+                    console.log(result)
                     dispatch(get_CoursesListSuccess(JSON.parse(result)));
                 }
             )

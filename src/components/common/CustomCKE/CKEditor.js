@@ -1,6 +1,7 @@
 
 import { CKEToolbarConfiguration } from "./CKEditorConfiguration"
 import Loader from 'components/common/Loader/Loader'
+
 import React, { Component } from 'react';
 
 class Editor extends Component {
@@ -8,13 +9,13 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.editorID = "ck-editor-" + this.props.id;
-    this.options = this.props.options;
     this.state = { content: '' };
-    this.componentDidMount = this.componentDidMount.bind(this);
+
+    this.validation = this.props.validation;
     this.errorMessage = "";
     this.selectorRules = {};
     this.errorElement = null;
-    this.rules = this.props.options.rules || [];
+    this.rules = this.props.validation.rules || [];
   }
 
   componentDidMount() {
@@ -45,49 +46,66 @@ class Editor extends Component {
 
     document.getElementById('ck-editor-loader' + this.props.id).style.display = "block";
     document.getElementById("cke-wrapper-" + this.props.id).style.border = "none";
-
-    //for validation:
-
-    //lay de valid cai form nay
-    // var formElement = document.querySelector(this.options.form);
-    // if (formElement) {
-
-    // }
-
-
   }
 
   onEditorChange = () => {
-
-    //validate
-    this.options.rules.forEach((rule) => {
+    this.validation.rules.forEach((rule) => {
       this.validate(rule);
     });
 
     if (this.props.onChange) {
       this.props.onChange();
     }
+  }
 
+  validate = (rule) => {
+    //lay element ngoai cung cua editor hien tai
+    let wrapperEditor = document.getElementById("cke-wrapper-" + this.props.id);
+
+    //lay element error 
+    this.errorElement = this.getParent(wrapperEditor, this.validation.formGroupSelector).querySelector(this.validation.errorSelector);
+
+    //gan ham kiem tra
+    this.selectorRules[rule.selector] = [rule.test];
+
+    // Lặp qua từng rule & kiểm tra
+    // Nếu có lỗi thì dừng việc kiểm
+    for (var i = 0; i < this.selectorRules[rule.selector].length; ++i) {
+      if (window.CKEDITOR.instances[this.editorID].getData) {
+        this.errorMessage = this.selectorRules[rule.selector][i](window.CKEDITOR.instances[this.editorID].getData());
+      }
+      if (this.errorMessage) break;
+    }
+
+    if (this.errorMessage) {
+      this.errorElement.innerText = this.errorMessage;
+      this.getParent(wrapperEditor, this.validation.formGroupSelector).classList.add('invalid');
+      document.getElementById("cke-wrapper-" + this.props.id).classList.add("invalid");
+
+    } else {
+      this.errorElement.innerText = '';
+      this.getParent(wrapperEditor, this.validation.formGroupSelector).classList.remove('invalid');
+      document.getElementById("cke-wrapper-" + this.props.id).classList.remove("invalid");
+    }
   }
 
   onFocus = () => {
-
-    //change style
     document.getElementById("cke-wrapper-" + this.props.id).classList.add("focus");
     document.getElementById("cke-wrapper-" + this.props.id).classList.remove("invalid");
 
     if (this.props.onFocus) {
       this.props.onFocus();
     }
+
+    return !this.errorMessage;
   }
 
-  onBlur = () => {
 
-    //change style
+  onBlur = () => {
     document.getElementById("cke-wrapper-" + this.props.id).classList.remove("focus");
 
     //validation
-    this.options.rules.forEach((rule) => {
+    this.validation.rules.forEach((rule) => {
       this.validate(rule);
     });
 
@@ -102,44 +120,6 @@ class Editor extends Component {
       this.props.onInstanceReady()
   }
 
-  validate = (rule) => {
-
-
-    //lay element ngoai cung cua editor hien tai
-    let wrapperEditor = document.getElementById("cke-wrapper-" + this.props.id);
-
-    //lay element error 
-    this.errorElement = this.getParent(wrapperEditor, this.options.formGroupSelector).querySelector(this.options.errorSelector);
-
-
-    // // Lấy ra các rules của selector => this.rules
-
-    // Lặp qua từng rule & kiểm tra
-    // Nếu có lỗi thì dừng việc kiểm
-    for (var i = 0; i < this.rules.length; ++i) {
-
-      if (window.CKEDITOR.instances[this.editorID].getData) {
-        this.errorMessage = this.rules[i];
-
-      }
-
-      if (this.errorMessage) break;
-    }
-
-    if (this.errorMessage) {
-      // this.errorElement.innerText = this.props.options.rules.errorMessage;
-      this.errorElement.innerText = this.errorMessage;
-
-      this.getParent(wrapperEditor, this.options.formGroupSelector).classList.add('invalid');
-
-    } else {
-      this.errorElement.innerText = '';
-      this.getParent(wrapperEditor, this.options.formGroupSelector).classList.remove('invalid');
-    }
-
-    return !this.errorMessage;
-  }
-
   //lay form
   getParent = (wrapperEditor, selector) => {
     while (wrapperEditor.parentElement) {
@@ -152,27 +132,18 @@ class Editor extends Component {
 
   render() {
     return (
-
-      <div className="cke-wrapper" id={"cke-wrapper-" + this.props.id}>
-
+      <div className="cke-wrapper form-cke-editor" id={"cke-wrapper-" + this.props.id}>
         <input type="text-area" className="fake-cke" id={this.editorID} name={this.editorID} cols="100" rows="6" defaultValue={this.props.value}>
         </input>
-
         <div id={"ck-editor-loader" + this.props.id}>
           <Loader />
         </div>
-
       </div>
-
     );
   }
 }
 
-
 Editor.isNotAllowSpecialCharacter = function (message) {
-
-  console.log("checked S");
-
   return {
     selector: ".form-error-label",
     test: function (value) {
@@ -182,9 +153,7 @@ Editor.isNotAllowSpecialCharacter = function (message) {
 }
 
 Editor.isRequired = function (message) {
-  console.log("checked R");
-
-  return {
+   return {
     selector: ".form-error-label",
     test: function (value) {
       return value ? undefined : message || 'Vui lòng nhập trường này'

@@ -187,6 +187,7 @@
 .form-input-dropdown-container.show {
     display: block;
 }
+
 .form-input-dropdown {
     margin-top: 2px;
     z-index: 1;
@@ -196,5 +197,23 @@
     border: 1px var(--gray) solid;
     padding: 5px;
     border-radius: 5px;
+
+}
+
+.validation {
+    // class này không được dùng để làm gì cả,
+    // nếu một element có 2 class là validation và form-group 
+    // khi nút submit được bấm thì form sẽ duyệt hết tất cả các element chứa 2 class này,
+    // nếu valid thì element không có thêm class nào, nếu không valid thì element có class form-group có thêm class class invalid
+    // 
+}
+
+.form-ckeditor {
+    //tich hop vao wrraper
+
+}
+
+.form-combobox {
+    //tich hop vao wrraper luon
 
 }

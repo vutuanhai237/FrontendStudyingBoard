@@ -1,7 +1,7 @@
 import React from "react";
 import './CustomModal.scss'
 
- import 'styles/SimpleButton.scss'
+ import 'components/styles/SimpleButton.scss'
  
 
 

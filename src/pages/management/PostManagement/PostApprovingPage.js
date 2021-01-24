@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import PostSummary from 'components/post/PostSummary';
-import { summaryItemType } from 'constants.js';
+import { itemType } from 'constants.js';
 import Paginator from 'components/common/Paginator/ServerPaginator';
 
 //import for redux
@@ -18,7 +18,7 @@ import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 
 
 import Loader from 'components/common/Loader/Loader'
 
-class PostApprovingPage extends Component {
+class PostApproving extends Component {
     constructor(props) {
         super();
 
@@ -73,7 +73,7 @@ class PostApprovingPage extends Component {
         if (!this.props.isListLoading) {
             this.postsList = this.props.postsList.map((postItem) => (
                 <PostSummary
-                    type={summaryItemType.approving}
+                    type={itemType.approving}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}
@@ -156,4 +156,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostApprovingPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostApproving));

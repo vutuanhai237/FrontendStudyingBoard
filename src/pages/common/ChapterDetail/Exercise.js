@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import 'layouts/Layout.scss'
 
 //utils
-import { summaryItemType } from 'constants.js'
+import { itemType } from 'constants.js'
 import { getSearchParamByName, setSearchParam } from 'utils/urlUtils'
 //services
 import { getPostsList } from "redux/services/postServices"
@@ -79,7 +79,7 @@ class PostsList extends Component {
 
             postsList = this.props.postsList.map((postItem) => (
                 <PostSummary
-                    type={summaryItemType.normal}
+                    type={itemType.normal}
                     key={postItem.id}
                     id={postItem.id}
                     authorName={postItem.authorName}
