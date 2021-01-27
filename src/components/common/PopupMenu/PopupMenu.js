@@ -144,7 +144,7 @@ export default class PopupMenu extends React.Component {
                         {this.state.isDropdownOpen ? (
                             <div className="popup-menu-dropdown" id={"popup-menu-dropdown-" + this.props.id}>
                                 {items}
-                                {/* <div className="margin-bottom-5px" /> */}
+                                {/* <div className="mg-bottom-5px" /> */}
                             </div>
                         ) : <div id={"popup-menu-dropdown-" + this.props.id}></div>}
                     </div>

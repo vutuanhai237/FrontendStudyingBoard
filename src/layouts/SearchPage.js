@@ -62,7 +62,7 @@ export default class SearchPage extends Component {
             <div className="pr-layout" >
                 <div className="search-layout">
 
-                    <div className="display-flex margin-bottom-5px">
+                    <div className="display-flex mg-bottom-5px">
                         <div className="gray-label">Kết quả tìm kiếm cho:  </div>
                         <div className="gray-normal-label">'{getSearchParamByName('q')}'</div>
                     </div>

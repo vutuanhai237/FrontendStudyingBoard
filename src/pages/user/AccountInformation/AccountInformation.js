@@ -172,8 +172,8 @@ class AccountInformation extends Component {
                                                         {this.isChangeRoleDropdownComboboxOpen ? (
                                                             <div className="combox-container" id={"user-role-dropdown-combobox-container"}>
                                                                 {roles_Combobox}
-                                                                <div className="margin-bottom-5px" />
-                                                                <div className="margin-bottom-5px" />
+                                                                <div className="mg-bottom-5px" />
+                                                                <div className="mg-bottom-5px" />
                                                             </div>
                                                         ) : <div id={"user-role-dropdown-combobox-container"}></div>}
 

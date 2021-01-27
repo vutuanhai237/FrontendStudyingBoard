@@ -14,23 +14,23 @@
     border-top: var(--blue) 5px solid;
 }
 
-.doc-post-detail-main-layout {
+.doc-post-detail .main-layout {
     padding: 20px;
     padding-bottom: 5px;
 }
 
-.doc-post-detail_Title {
+.doc-post-detail .title {
     padding-top: 5px;
     font-family: "RobotoSlab-Regular";
     font-size: 26px;
     line-height: 32px;
     display: flex;
     align-items: center;
-    color: #202020;
+    color: var(--black);
 }
 
 //general summary item headbar
-.DocPost_Metadata_Header {
+.doc-post-detail .metadata-header {
     margin-top: 5px;
     display: flex;
     justify-content: flex-start;
@@ -47,7 +47,7 @@
 }
 
 //requested user infor header
-.doc-post-detail-user-info-header {
+.doc-post-detail .user-infor-container {
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
@@ -63,32 +63,6 @@
     user-select: none;
 }
 
-// //for category header
-// .normal-category {
-//     font-family: "BarlowCondensed-SemiBold";
-//     font-size: 18px;
-//     height: 1.3rem;
-//     line-height: 1.1rem;
-//     background: var(--blue);
-//     color: white;
-//     padding-left: 5px;
-//     padding-right: 5px;
-//     margin-right: 10px;
-//     border-bottom-right-radius: 2px;
-//     border-top-right-radius: 2px;
-// }
-
-// .normal-category::before {
-//     content: '';
-//     position: relative;
-//     background: var(--blue);
-//     width: 3px;
-//     border-top-left-radius: 2px;
-//     border-bottom-left-radius: 2px;
-//     margin-right: 2px;
-//     height: 1.3rem;
-// }
-
 .DocPost_Metadata_Text {
     line-height: 1.3rem;
     display: flex;
@@ -102,7 +76,7 @@
     margin-right: 0.6rem;
 }
 
-.doc-post-detail_User_Infor_Avatar {
+.doc-post-detail .user-avatar {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -110,7 +84,7 @@
     box-shadow: 0px 0px 5px 1px var(--grayish);
 }
 
-.doc-post-detail_User_Infor_Display_Name {
+.doc-post-detail .display-name {
     margin-left: 10px;
     line-height: 1.5rem;
     display: flex;
@@ -125,12 +99,12 @@
     margin-right: 0.6rem;
 }
 
-.doc-post-detail_User_Infor_Display_Name:hover {
+.doc-post-detail .display-name:hover {
     opacity: 80%;
     cursor: pointer;
 }
 
-.doc-post-detail_User_Infor_Posted_Time {
+.doc-post-detail .posted-time {
     line-height: 30px;
     display: flex;
     margin-left: 10px;
@@ -144,7 +118,7 @@
     margin-right: 0.6rem;
 }
 
-.doc-post-detail_Content {
+.doc-post-detail .content {
     margin-top: 10px;
     margin-left: 5px;
     font-family: "Sarabun-Regular";
@@ -157,7 +131,7 @@
     color: var(--black);
 }
 
-.Doc_Detail_View_Count_Doc_Count {
+.doc-detail .view-count-down-count {
     margin-top: 30px;
     display: flex;
     font-family: "BarlowCondensed-Medium";
@@ -168,7 +142,7 @@
     margin-left: 5%;
 }
 
-.Document_Live_Preview {
+.doc-detail .doc-live-preview {
     margin-top: 5px;
     width: 100%;
     padding: 10px;
@@ -181,7 +155,7 @@
     height: 660px;
 }
 
-.Doc_Detail_File_Name {
+.doc-detail .file-name {
     width: fit-content;
     margin-left: 5px;
     display: flex;
@@ -197,8 +171,8 @@
     user-select: none;
 }
 
-.Doc_Detail_File_Name:hover,
-.Doc_Detail_File_Name:active {
+.doc-detail .file-name:hover,
+.doc-detail .file-name:active {
     opacity: 80%;
     cursor: pointer;
 }

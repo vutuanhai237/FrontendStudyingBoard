@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 //resource
-import gray_btn_element from 'assets/images/gray_btn_element.png'
+import gray_btn_element from 'assets/images/g_btn_element.png'
 import liked_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import dislike_btn from 'assets/images/dislike_btn.png'

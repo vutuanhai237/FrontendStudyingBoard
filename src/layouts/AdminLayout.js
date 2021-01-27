@@ -151,7 +151,7 @@ class AdminLayout extends Component {
                                                     </div>
 
                                                     <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container" id="page-admin-menu-item-container">
-                                                        <div className="margin-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
                                                         {
                                                             (this.isGrantedPermissions(ContentManagement.Management)
                                                                 && this.isGrantedPermissions(Post.Approve))
@@ -249,10 +249,10 @@ class AdminLayout extends Component {
                                                                     </Link>
                                                                 : <></>
                                                         }
-                                                        <div className="margin-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
                                                         <div className="decoration-underline " />
-                                                        <div className="margin-bottom-5px" />
-                                                        <div className="margin-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
                                                     </div>
                                                 </div>
 

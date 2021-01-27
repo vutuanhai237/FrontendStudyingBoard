@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import 'components/styles/DocPostSummary.scss'
 // import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import gray_btn_element from 'assets/images/gray_btn_element.png'
+import gray_btn_element from 'assets/images/g_btn_element.png'
 
 import { management_getCurrentPreviewDocument } from "redux/services/docServices"
 import { getCurrentUser } from "redux/services/userServices"
@@ -129,9 +129,9 @@ class DocumentDetail extends Component {
                 <div>
                     <div className="doc-post-detail" >
                         <div>
-                            <div className="doc-post-detail-main-layout">
+                            <div className="main-layout">
 
-                                <div className="doc-post-detail_Title">
+                                <div className="title">
                                     {this.title}
                                 </div>
 
@@ -149,19 +149,19 @@ class DocumentDetail extends Component {
 
                                 </div>
 
-                                <div className="doc-post-detail-user-info-header">
+                                <div className="user-infor-container">
                                     <div className="display-flex">
-                                        <img src={this.avartarUrl} alt="avatar" className="doc-post-detail_User_Infor_Avatar" />
+                                        <img src={this.avartarUrl} alt="avatar" className="user-avatar" />
                                         <div style={{ flexDirection: "vertical" }}>
-                                            <div className="doc-post-detail_User_Infor_Display_Name">{this.authorName}</div>
-                                            <div className="doc-post-detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
+                                            <div className="display-name">{this.authorName}</div>
+                                            <div className="posted-time">đã đăng vào ngày {this.uploadedTime}</div>
                                         </div>
                                     </div>
                                     <PopupMenu items={this.normalMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
 
                                 </div>
 
-                                <div className="doc-post-detail_Content">
+                                <div className="content">
                                     {this.content}
                                 </div>
 
@@ -172,7 +172,7 @@ class DocumentDetail extends Component {
 
                             </div>
 
-                            <div className="Doc_Detail_View_Count_Doc_Count">
+                            <div className="view-count-down-count">
                                 <div className="View_Count">lượt xem: {this.viewCount}</div>
                                 <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
                                     <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
@@ -181,7 +181,7 @@ class DocumentDetail extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="Document_Live_Preview">
+                            <div className="doc-live-preview">
 
                                 {/* <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe> */}
                                 <iframe src={"https://drive.google.com/file/d/0B1HXnM1lBuoqMzVhZjcwNTAtZWI5OS00ZDg3LWEyMzktNzZmYWY2Y2NhNWQx/preview?hl=en"} width="100%" height="100%"></iframe>

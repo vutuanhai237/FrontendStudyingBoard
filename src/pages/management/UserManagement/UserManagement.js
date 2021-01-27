@@ -155,8 +155,8 @@ class UserManagement extends Component {
                                                 {this.isAnyChangeRoleFilterDropdownComboboxOpen ? (
                                                     <div className="combox-container" id={"role-filter-dropdown-combobox-container"}>
                                                         {searchDropdown}
-                                                        <div className="margin-bottom-5px" />
-                                                        <div className="margin-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
                                                     </div>
                                                 ) : <div id={"role-filter-dropdown-combobox-container"}></div>}
 

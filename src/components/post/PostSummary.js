@@ -5,7 +5,7 @@ import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { Link } from 'react-router-dom'
 
 //resources
-import gray_btn_element from 'assets/images/gray_btn_element.png'
+import gray_btn_element from 'assets/images/g_btn_element.png'
 import liked_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'

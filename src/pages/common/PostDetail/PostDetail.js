@@ -3,19 +3,14 @@ import React, { Component } from 'react'
 import 'components/styles/DocPostSummary.scss'
 import 'components/styles/DocPostDetail.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import gray_btn_element from 'assets/images/gray_btn_element.png'
-
-import { getCurrentUser } from "redux/services/userServices"
+import gray_btn_element from 'assets/images/g_btn_element.png'
 import { getDocumentByID } from "redux/services/docServices"
 
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import gray_download_icon from 'assets/images/gray_download_icon.png'
 // import PDFViewer from 'pdf-viewer-reactjs'
-import Cookies from 'js-cookie'
-
 //import for pdf viewer:
 
 
@@ -38,40 +33,7 @@ class PostDetail extends Component {
         this.year = "year";
         this.subject = "subject";
         this.title = "Sức mạnh của người hướng nội";
-        this.content = `This book is so much more than I had originally anticipated when beginning to outline it in October 2007. What you are reading now is the first book, Growing Up 8-Bit. It covers my gaming
-        experiences of games released that I played from birth to the end of 1990. This book
-        simply is me talking about my experiences with over 100 games in those years.To give
-        some background on my unique experiences with gaming, I’ll give you some
-        background.I was born in St.Paul on July 4, 1976. I was born without a left eye or an
-        iris nerve in my left eye socket, making it impossible for me to see even if a transplant
-        was possible.I’ve lived my whole life only being able to see out of my right eye.
-            Surprisingly, I’ve never had much in the way of problems with what fully sighted people
-        are capable of.You might think it is hard to play videogames just being able to see out of
-        one eye, but it isn’t.With that in mind, this book constitutes my experiences with
-        gaming through 1990 and further books will cover the newer decades.
-        I took a cue from the Uncle John’s Bathroom Reader series of books in how my
-        experiences with the games are laid out.For the most part they are divided by the first or
-        primary system they were released on.There are many games that I played on multiple
-        systems(I do note what systems I played each game on under the game name).Each
-        game has its own page for the most part and I created a Table of Contents that can easily
-        be traversed.Little did I know when I started this book that eReaders like the Amazon
-        Kindle and Barnes and Noble Nook would become so popular and make the Table of
-        Contents that much more valuable.You can certainly read the whole book if you want to
-        as well.
-            It’s taken me almost three years to complete this book.There has been a lot of downtime
-                in those years and as soon as this book is done I expect to really pour into the second
-        book and get it done in far less time.
-        I hope you enjoy this book.I certainly hope my unique experiences on these games will
-        spark memories of when you played these games in your younger years.I also hope that
-        you can share these and your own experiences with your children, showing them how
-        important these games were to your childhood.It started out simple: I was going to 
-        talk about the 1980s and everything that influenced me like comics, television, movies
-        and videogames.I started by writing down what videogames I felt were notable enough that 
-        I played in that decade and found out I had well over 100. I decided to keep going and write 
-        all of them down that were released through October 2007(when I started this book) and found
-         out I had well over 500 total.It dawned on me that the idea of covering comics, television and
-         movies needed to be passed over.I also started planning on how to split all those games up and 
-         decided on doing so via decades.`;
+        this.content = ``;
         this.image = "image";
         this.tags = "tags";
         this.uploadedTime = "22-08-2020";
@@ -97,14 +59,14 @@ class PostDetail extends Component {
     fetchCurrentNotApprovedDocument = () => {
         this.documentID = this.props.match.params.id;
         this.props.getDocumentByID(this.documentID);
-        this.props.getCurrentUser();
+        // this.props.getCurrentUser();
     }
 
     render() {
 
         console.log(this.props);
 
-        if (this.props.accountInformation) {
+        // if (this.props.accountInformation) {
 
             if (this.props.document) {
                 if (this.props.document.statusCode === 14)
@@ -130,13 +92,10 @@ class PostDetail extends Component {
 
             return (
                 <div>
-                    <div className="doc-post-detail" >
-                        {/* {this.props.document ? */}
-
+                    <div className="doc-post-detail" > 
                         <div>
-                            <div className="doc-post-detail-main-layout">
-
-                                <div className="doc-post-detail_Title">
+                            <div className="main-layout">
+                                <div className="title">
                                     {this.title}
                                 </div>
 
@@ -154,20 +113,20 @@ class PostDetail extends Component {
 
                                 </div>
 
-                                <div className="doc-post-detail-user-info-header">
-                                    <img src={this.avartarUrl} alt="avatar" className="doc-post-detail_User_Infor_Avatar" />
+                                <div className="user-infor-container">
+                                    <img src={this.avartarUrl} alt="avatar" className="user-avatar" />
                                     <div style={{ flexDirection: "vertical" }}>
-                                        <div className="doc-post-detail_User_Infor_Display_Name">{this.authorName}</div>
-                                        <div className="doc-post-detail_User_Infor_Posted_Time">đã đăng vào ngày {this.uploadedTime}</div>
+                                        <div className="display-name">{this.authorName}</div>
+                                        <div className="posted-time">đã đăng vào ngày {this.uploadedTime}</div>
                                     </div>
                                 </div>
 
-                                <div className="doc-post-detail_Content">
+                                <div className="content">
                                     {this.content}
                                 </div>
                             </div>
 
-                            <div className="Doc_Detail_View_Count_Doc_Count">
+                            <div className="view-count-down-count">
                                 <div className="gray-label">Bình luận: {this.viewCount}</div>
                                 <div className="gray-label mg-left-5px">lượt xem: {this.viewCount}</div>
                                 {/* <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
@@ -248,9 +207,9 @@ class PostDetail extends Component {
                     </div>
                 </div >
             );
-        }
+        // }
 
-        return <></>
+        // return <></>
     }
     //#region navigate region
     navigateToAuthorPersonalPage = () => {
@@ -302,13 +261,13 @@ class PostDetail extends Component {
 const mapStateToProps = (state) => {
     return {
         document: state.document.document,
-        accountInformation: state.user.account
+        // accountInformation: state.user.account
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     getDocumentByID,
-    getCurrentUser
+    // getCurrentUser
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetail));

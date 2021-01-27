@@ -162,7 +162,7 @@ a:hover {
     justify-content: space-between;
 }
 
-.margin-bottom-5px {
+.mg-bottom-5px {
     margin-bottom: 5px;
 }
 
@@ -297,6 +297,10 @@ a:hover {
 
 * {
     -webkit-overflow-scrolling: touch;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
 }
 
 .scrollbar {

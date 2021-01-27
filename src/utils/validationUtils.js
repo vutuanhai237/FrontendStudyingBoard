@@ -1,6 +1,7 @@
-//#region validation html inputElement not for custom Combobox and CKEditor
+//#region validation html elements not 
+
 // Đối tượng `Validator`
-export function InputElementValidation(options) {
+export function validation(conditions) {
     function getParent(element, selector) {
         while (element.parentElement) {
             if (element.parentElement.matches(selector)) {
@@ -12,52 +13,65 @@ export function InputElementValidation(options) {
     var selectorRules = {};
 
     // Hàm thực hiện validate
-    function validate(inputElement, rule) {
-        var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
+    function validate(element, rule) {
+        var errorElement = getParent(element, conditions.formGroupSelector).querySelector(conditions.errorSelector);
         var errorMessage;
 
         // Lấy ra các rules của selector
         var rules = selectorRules[rule.selector];
 
-
         // Lặp qua từng rule & kiểm tra
         // Nếu có lỗi thì dừng việc kiểm
         for (var i = 0; i < rules.length; ++i) {
 
-            switch (inputElement.type) {
-                case 'radio':
-                case 'checkbox':
-                    errorMessage = rules[i](
-                        formElement.querySelector(rule.selector + ':checked')
-                    );
-                    break;
-
-                default:
-                    errorMessage = rules[i](inputElement.value);
-
+            //
+            if (element.classList.contains('form-input')) {
+                errorMessage = rules[i](element.value);
+                if (errorMessage) break;
             }
+            else
+                if (element.classList.contains('form-combobox')) {
+                    document.getElementById("d-e-" + element.id).innerText = rules[i](false);
+                    document.getElementById("d-f-g-" + element.id).innerText = conditions.formGroupSelector;
+                    document.getElementById("d-e-s-" + element.id).innerText = conditions.errorSelector;
+                    if (errorMessage) break;
+                }
+                else
+                    if (element.classList.contains('form-ckeditor')) {
+
+                        //kiem tra xem co class dummy invalid hay khong
+                        document.getElementById("d-e-" + element.id).innerText = rules[i](false);
+                        document.getElementById("d-f-g-" + element.id).innerText = conditions.formGroupSelector;
+                        document.getElementById("d-e-s-" + element.id).innerText = conditions.errorSelector;
+
+                        if (errorMessage) break;
+                    }
+                    else
+                        if (element.classList.contains('form-radio') || element.classList.contains('form-check-box')) {
+                            errorMessage = rules[i](formElement.querySelector(rule.selector + ':checked'));
+                        }
 
             if (errorMessage) break;
         }
 
         if (errorMessage) {
             errorElement.innerText = errorMessage;
-            getParent(inputElement, options.formGroupSelector).classList.add('invalid');
+            getParent(element, conditions.formGroupSelector).classList.add('invalid');
 
         } else {
             errorElement.innerText = '';
-            getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
+            getParent(element, conditions.formGroupSelector).classList.remove('invalid');
         }
 
         return !errorMessage;
     }
 
     // Lấy element của form cần validate
-    var formElement = document.querySelector(options.form);
+    var formElement = document.querySelector(conditions.form);
     if (formElement) {
 
-        // Lặp qua mỗi rule và xử lý (lắng nghe sự kiện blur, input, ...)
-        options.rules.forEach(function (rule) {
+        // Lặp qua mỗi rule và xử lý (lắng nghe sự kiện blur, input, ... cho truong hop cac html input thoi), va tu xu ly cho cac custom input
+        conditions.rules.forEach(function (rule) {
 
             // Lưu lại các rules cho mỗi input
             if (Array.isArray(selectorRules[rule.selector])) {
@@ -65,21 +79,39 @@ export function InputElementValidation(options) {
             } else {
                 selectorRules[rule.selector] = [rule.test];
             }
+            var elements = formElement.querySelectorAll(rule.selector);
 
-            var inputElements = formElement.querySelectorAll(rule.selector);
+            Array.from(elements).forEach(function (element) {
+                if (element.classList.contains('form-input')
+                    || element.classList.contains('form-check-box')
+                    || element.classList.contains('form-radio')) {
 
-            Array.from(inputElements).forEach(function (inputElement) {
+                    //xu ly cac HTMLInputElement
+                    // Xử lý trường hợp blur khỏi input
+                    element.onblur = function () {
+                        validate(element, rule);
+                    }
 
-                // Xử lý trường hợp blur khỏi input
-                inputElement.onblur = function () {
-                    validate(inputElement, rule);
+                    // Xử lý mỗi khi người dùng nhập vào input
+                    element.oninput = function () {
+                        var errorElement = getParent(element, conditions.formGroupSelector).querySelector(conditions.errorSelector);
+                        errorElement.innerText = '';
+                        getParent(element, conditions.formGroupSelector).classList.remove('invalid');
+                    }
+                    //neu la HTMLInputElement => vong lap tiep theo
+                    return;
                 }
 
-                // Xử lý mỗi khi người dùng nhập vào input
-                inputElement.oninput = function () {
-                    var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
-                    errorElement.innerText = '';
-                    getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
+                if (element.classList.contains('form-combobox')
+                ) {
+                    validate(element, rule);
+                    return;
+                }
+
+                if (element.classList.contains('form-ckeditor')
+                ) {
+                    validate(element, rule);
+                    return;
                 }
             });
         });
@@ -87,24 +119,50 @@ export function InputElementValidation(options) {
 
 }
 
-
-
 // Định nghĩa rules
 // Nguyên tắc của các rules:
 // 1. Khi có lỗi => Trả ra message lỗi
 // 2. Khi hợp lệ => Không trả ra cái gì cả (undefined)
-InputElementValidation.isRequired = function (selector, message) {
-    return {
-        selector: selector,
-        test: function (value) {
-            return value ? undefined : message || 'Vui lòng nhập trường này'
+validation.isRequired = function (selector, type, message) {
+
+    if (type === 'form-input') {
+        return {
+            selector: '#' + selector,
+            type: type,
+            test: function (value) {
+                return value ? '' : message || 'Vui lòng nhập trường này'
+            }
+        };
+    }
+    if (type === 'form-combobox') {
+        return {
+            selector: '#combobox-wrapper-' + selector,
+            type: type,
+            test: function (value) {
+                //  kiem tra xem co class dummy invalid hay khong o ben tren
+                return value ? undefined : message || 'Vui lòng chọn một option'
+            }
         }
-    };
+    }
+
+    if (type === 'form-ckeditor') {
+        return {
+            selector: '#cke-wrapper-' + selector,
+            type: type,
+            test: function (value) {
+                //  kiem tra xem co class dummy invalid hay khong o ben tren
+                return value ? undefined : message || 'Vui lòng nhập trường này'
+                // return value ? undefined : message || 'Vui lòng nhập trường này'
+            }
+        }
+    }
 }
 
-InputElementValidation.isEmail = function (selector, message) {
+//chua check
+validation.isEmail = function (selector, type, message) {
     return {
-        selector: selector,
+        selector: '#' + selector,
+        type: type,
         test: function (value) {
             var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             return regex.test(value) ? undefined : message || 'Trường này phải là email';
@@ -112,27 +170,32 @@ InputElementValidation.isEmail = function (selector, message) {
     };
 }
 
-InputElementValidation.minLength = function (selector, min, message) {
+//chua check
+validation.minLength = function (selector, type, min, message) {
     return {
-        selector: selector,
+        selector: '#' + selector,
+        type: type,
         test: function (value) {
             return value.length >= min ? undefined : message || `Vui lòng nhập tối thiểu ${min} kí tự`;
         }
     };
 }
 
-InputElementValidation.isConfirmed = function (selector, getConfirmValue, message) {
+//chua check
+validation.isConfirmed = function (selector, type, getConfirmValue, message) {
     return {
         selector: selector,
+        type: type,
         test: function (value) {
             return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
         }
     }
 }
 
-InputElementValidation.isNotAllowSpecialCharacter = function (selector, message) {
+validation.isNotAllowSpecialCharacter = function (selector, type, message) {
     return {
-        selector: selector,
+        selector: '#' + selector,
+        type: type,
         test: function (value) {
             return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/.test(value) ? undefined : message || 'Vui lòng nhập trường này'
         }
@@ -140,33 +203,98 @@ InputElementValidation.isNotAllowSpecialCharacter = function (selector, message)
 }
 //#endregion
 
-export function defaultFormSubmit(formId) {
-    let formSelector = '.form-container';
-    let formGroupSelector = '.form-group';
-    let validationSelector = '.validation';
-    let editorSelector = '.form-cke-editor';
-    let comboxSelector = '.form-combobox';
-    let inputSelector = '.form-input'; //text input, text area and file :D
-let comboxSelectedSelector = " .activated-combox-option"
+export function styleFormSubmit(conditions) {
     //chon tat ca cac combobox co validation
-    let comboboxElements = document.querySelectorAll(formId + '>' + formGroupSelector + validationSelector + " " + comboxSelector );
-    let editorElements = document.querySelectorAll(formId + '>' + formGroupSelector + validationSelector + " " + editorSelector);
-    let inputElements = document.querySelectorAll(formId + '>' + formGroupSelector + validationSelector + " " + editorSelector);
+    let selectorRules = {};
 
-    console.log(comboboxElements);
+    function validate(element, rule) {
+        let errorElement = getParent(element, conditions.formGroupSelector).querySelector(conditions.errorSelector);
+        let errorMessage;
+        let rules = selectorRules[rule.selector];
+        // Lặp qua từng rule & kiểm tra
+        // Nếu có lỗi thì dừng việc kiểm
+        for (var i = 0; i < rules.length; ++i) {
+            if (element.classList.contains('form-input')) {
+                errorMessage = rules[i](element.value);
+                if (errorMessage) break;
+            }
+            else
+                if (element.classList.contains('form-combobox')) {
+                    if (element.classList.contains("dummy-invalid")) {
+                        errorMessage = rules[i](false);
+                    }
+                    if (errorMessage) break;
+                }
+                else
+                    if (element.classList.contains('form-ckeditor')) {
+                        errorMessage = rules[i](window.CKEDITOR.instances["ck-editor-" + element.id.substring(12, 23)].getData());
 
-    // lay gia tri cua combobox va kiem tra.
-    Array.from(comboboxElements).forEach(element => {
-        console.log(element.innerHTML);
+                        if (errorMessage) {
+                            element.classList.add('invalid');
+                            break;
+                        }
+                    }
+                    else
+                        if (element.classList.contains('form-radio') || element.classList.contains('form-check-box')) {
+                            errorMessage = rules[i](formElement.querySelector(rule.selector + ':checked'));
+                        }
+
+            if (errorMessage) break;
+        }
+
+        if (errorMessage) {
+            errorElement.innerText = errorMessage;
+            getParent(element, conditions.formGroupSelector).classList.add('invalid');
+
+        } else {
+            errorElement.innerText = '';
+            getParent(element, conditions.formGroupSelector).classList.remove('invalid');
+        }
+
+        return !errorMessage;
+    }
+
+    let formElement = document.querySelector(conditions.form);
+    conditions.rules.forEach(function (rule) {
+
+        // Lưu lại các rules cho mỗi input
+        if (Array.isArray(selectorRules[rule.selector])) {
+            selectorRules[rule.selector].push(rule.test);
+        } else {
+            selectorRules[rule.selector] = [rule.test];
+        }
+        var elements = formElement.querySelectorAll(rule.selector);
+
+        Array.from(elements).forEach(function (element) {
+            if (element.classList.contains('form-input')
+                || element.classList.contains('form-check-box')
+                || element.classList.contains('form-radio')) {
+
+                validate(element, rule);
+                return;
+            }
+
+            if (element.classList.contains('form-combobox')
+            ) {
+                validate(element, rule);
+                return;
+            }
+
+            if (element.classList.contains('form-ckeditor')
+            ) {
+                validate(element, rule);
+                return;
+            }
+        });
     });
-
-    // kiem tra gia tri mot lan tat ca cac 
-
-    // kiem tra cai nao bi invalid thi khong cho enable nut bam.
-
-    // console.log(comboboxElements);
-    let isFormValid = false;
-
-    return isFormValid;
 }
 
+
+function getParent(wrapperElementClass, formGroupSelector) {
+    while (wrapperElementClass.parentElement) {
+        if (wrapperElementClass.parentElement.matches(formGroupSelector)) {
+            return wrapperElementClass.parentElement;
+        }
+        wrapperElementClass = wrapperElementClass.parentElement;
+    }
+}

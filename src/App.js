@@ -38,7 +38,8 @@ import CoursesList from "pages/common/CoursesList/CoursesList"
 import ChaptersList from "pages/common/HeadingsList/HeadingsList"
 import PostsList from 'pages/common/PostsList/PostsList'
 import DocumentsList from 'pages/common/DocumentsList/DocumentsList'
-// import
+import ItemHorizontalSlider from 'components/common/ItemHorizontalSlider/ItemHorizontalSlider'
+
 const App = () => {
 
     return (
@@ -67,7 +68,7 @@ const App = () => {
                             </Switch>
                         </SearchTagLayout>
                     </Route>
-
+                    <Route exact path="/demo-component" component={ItemHorizontalSlider} />
 
 
                     {/* user layout */}

@@ -150,8 +150,8 @@ class UserItem extends Component {
                                                 {this.isAnyChangeRoleDropdownComboboxOpen ? (
                                                     <div className="combox-container" id={"user-role-dropdown-combobox-container-" + this.userID}>
                                                         {roles_Combobox}
-                                                        <div className="margin-bottom-5px" />
-                                                        <div className="margin-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
+                                                        <div className="mg-bottom-5px" />
                                                     </div>
                                                 ) : <div id={"user-role-dropdown-combobox-container-" + this.userID}></div>}
 

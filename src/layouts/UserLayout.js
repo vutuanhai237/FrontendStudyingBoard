@@ -135,7 +135,7 @@ class AdminLayout extends Component {
 
                       <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container"
                         id="account-admin-menu-item-container">
-                        <div className="margin-bottom-5px"></div>
+                        <div className="mg-bottom-5px"></div>
                         {window.location.pathname === "/user" ?
                           < Link className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
                             to="/user" > Thông tin tài khoản
@@ -206,7 +206,7 @@ class AdminLayout extends Component {
 
                         <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container"
                           id="user-post-management-menu-item-container">
-                          <div className="margin-bottom-5px"></div>
+                          <div className="mg-bottom-5px"></div>
                           {window.location.pathname === "/user/my-posts"
                             ?
                             <Link
@@ -279,7 +279,7 @@ class AdminLayout extends Component {
 
                         <div className="Vertical_Display_Block_Default_Dropdown_Menu_Item_Container"
                           id="user-doc-management-menu-item-container">
-                          <div className="margin-bottom-5px"></div>
+                          <div className="mg-bottom-5px"></div>
                           {window.location.pathname === "/user/my-docs"
                             ?
                             <Link

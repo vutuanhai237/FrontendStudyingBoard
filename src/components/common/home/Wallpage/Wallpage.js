@@ -10,7 +10,7 @@ import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
 import liked_btn from 'assets/images/liked_btn.png'
-import gray_btn_element from 'assets/images/gray_btn_element.png'
+import gray_btn_element from 'assets/images/g_btn_element.png'
 import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
 
 //components

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import 'components/styles/DocPostSummary.scss'
 import 'components/styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
-import gray_btn_element from 'assets/images/gray_btn_element.png'
+import gray_btn_element from 'assets/images/g_btn_element.png'
 
 class RequestedDocSummary extends Component {
 

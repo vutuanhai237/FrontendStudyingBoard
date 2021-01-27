@@ -190,8 +190,8 @@ export default class Combobox extends React.Component {
                         {this.state.isDropdownOpen ? (
                             <div className="dropdown-container" id={"dropdown-container-" + this.props.id}>
                                 {options}
-                                <div className="margin-bottom-5px" />
-                                <div className="margin-bottom-5px" />
+                                <div className="mg-bottom-5px" />
+                                <div className="mg-bottom-5px" />
                             </div>
                         ) : <div id={"dropdown-container-" + this.props.id}></div>}
                     </div>

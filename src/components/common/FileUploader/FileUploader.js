@@ -1,6 +1,7 @@
 
 import { CKEToolbarConfiguration } from "./CKEditorConfiguration"
 import Loader from 'components/common/Loader/Loader'
+
 import React, { Component } from 'react';
 
 class Editor extends Component {
@@ -40,15 +41,11 @@ class Editor extends Component {
 
     document.getElementById('ck-editor-loader' + this.props.id).style.display = "block";
     document.getElementById("cke-wrapper-" + this.props.id).style.border = "none";
-
-    if (this.props.validation) {
-      document.getElementById("cke-wrapper-" + this.props.id).classList.add("validation")
-    }
   }
 
-  onEditorChange = (data) => {
+  onEditorChange = () => {
     if (this.props.onChange) {
-      this.props.onChange(data);
+      this.props.onChange();
     }
   }
 
@@ -73,23 +70,25 @@ class Editor extends Component {
       this.getParent(wrapperEditor, this.formGroupElement).classList.remove('invalid');
       document.getElementById("cke-wrapper-" + this.props.id).classList.remove("invalid");
     }
+
   }
 
   onFocus = () => {
     document.getElementById("cke-wrapper-" + this.props.id).classList.add("focus");
     document.getElementById("cke-wrapper-" + this.props.id).classList.remove("invalid");
+
     if (this.props.onFocus) {
       this.props.onFocus();
     }
+
     return !this.errorMessage;
   }
 
+
   onBlur = () => {
-    if (document.getElementById("cke-wrapper-" + this.props.id)) {
-      document.getElementById("cke-wrapper-" + this.props.id).classList.remove("focus");
-      if (this.props.validation)
-        this.validate();
-    }
+    document.getElementById("cke-wrapper-" + this.props.id).classList.remove("focus");
+    if (this.props.validation)
+      this.validate();
   }
 
   onInstanceReady = () => {

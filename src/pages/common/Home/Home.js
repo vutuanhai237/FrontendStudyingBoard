@@ -6,6 +6,7 @@ import TopEvent from "components/common/home/TopEvent";
 import NewDocumentsList from "components/common/home/NewDocumentsList"
 import "./Home.scss";
 import "layouts/Layout.scss"
+import ItemHorizontalSlider from 'components/common/ItemHorizontalSlider/ItemHorizontalSlider'
 
 class Home extends Component {
     render() {
