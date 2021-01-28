@@ -2,6 +2,7 @@
 import { CKEToolbarConfiguration } from "./CKEditorConfiguration"
 import Loader from 'components/common/Loader/Loader'
 import React, { Component } from 'react';
+import './CKEditor.scss'
 
 class Editor extends Component {
 

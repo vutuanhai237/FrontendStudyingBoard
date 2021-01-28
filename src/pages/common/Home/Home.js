@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import WallPage from "components/common/home/Wallpage/Wallpage";
-import TopPost from "components/common/home/TopPost";
-import TopDocument from "components/common/home/TopDoc";
-import TopEvent from "components/common/home/TopEvent";
+
 import NewDocumentsList from "components/common/home/NewDocumentsList"
 import "./Home.scss";
 import "layouts/Layout.scss"
@@ -15,9 +13,7 @@ class Home extends Component {
                 <WallPage />
                 <div className="lg-bl-layout">
                     <NewDocumentsList />
-                    <TopEvent />
-                    <TopPost />
-                    <TopDocument />
+            
                 </div>
             </div>
         );

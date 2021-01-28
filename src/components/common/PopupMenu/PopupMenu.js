@@ -108,7 +108,7 @@ export default class PopupMenu extends React.Component {
                     <div>
                         <div className="popup-menu" id={"popup-menu-" + this.props.id}
                             onClick={(e) => this.handlePopupMenuClick(e, "popup-menu-" + this.props.id, "popup-menu-dropdown-" + this.props.id, "popup-menu-dropdown-container-" + this.props.id)}>
-                            <div className="display-flex">
+                            <div className="d-flex">
                                 {this.props.placeHolder === "none" ? //neu khong dung placeHolder
                                     <div>{
                                         this.props.items.map(item =>

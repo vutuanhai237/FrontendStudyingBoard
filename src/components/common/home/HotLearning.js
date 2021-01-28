@@ -33,7 +33,7 @@ class NewPost extends Component {
             display: this.state.isExpand,
         };
         return (
-            <div className="display-flex">
+            <div className="d-flex">
                 <div className="Highlight_Title">BÀI HỌC NỔI BẬT</div>
                 <div className="Highlight_Title_Underline"></div>
             </div>

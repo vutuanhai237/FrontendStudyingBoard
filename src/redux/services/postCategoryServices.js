@@ -3,26 +3,22 @@ import {
     get_PostCategoriesRequest,
     get_PostCategoriesFailure
 } from "redux/actions/postCategoryAction.js";
-
+import { remoteServiceBaseUrl } from 'utils/httpServices'
 
 export function getPostCategories() {
     return dispatch => {
-
         dispatch(get_PostCategoriesRequest());
-
         var requestOptions = {
             method: 'GET',
-            redirect: 'follow'
+            redirect: 'follow',
         };
-
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/category`, requestOptions)
-            .then(response => response.text())
+        console.log(requestOptions);
+        fetch(`${remoteServiceBaseUrl}/posts/categories`, requestOptions)
+            .then(response => response.json())
             .then(result => {
-                console.log(result);
-                dispatch(get_PostCategoriesSuccess(JSON.parse(result)));
+                dispatch(get_PostCategoriesSuccess(result));
             })
             .catch(error => {
-                console.log(error);
                 dispatch(get_PostCategoriesFailure(error))
             });
 

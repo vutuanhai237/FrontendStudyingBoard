@@ -2,9 +2,9 @@ import {
     GET_TAG_SEARCH_RESULT_REQUEST,
     GET_TAG_SEARCH_RESULT_SUCCESS,
     GET_TAG_SEARCH_RESULT_FAILURE,
-    GET_TAG_QUICK_SEARCH_RESULT_REQUEST,
-    GET_TAG_QUICK_SEARCH_RESULT_SUCCESS,
-    GET_TAG_QUICK_SEARCH_RESULT_FAILURE
+    GET_TAG_QUICK_QUERY_REQUEST,
+    GET_TAG_QUICK_QUERY_SUCCESS,
+    GET_TAG_QUICK_QUERY_FAILURE
 
 } from 'redux/constants.js';
 
@@ -15,8 +15,9 @@ var initialState = {
         itemCount: 20,
         error: ''
     },
-    tagQuickSearchResult: {
-        isLoading: true,
+    tagQuickQueryResult: {
+        isLoading: false,
+        isLoadingDone: false,
         data: [],
         error: ''
     }
@@ -41,19 +42,19 @@ export default function tagReducer(state = initialState, action) {
                 ...state, tagSearchResult: { isLoading: false, error: action.payload, data: [], itemCount: 0 }
             }
         }
-        case GET_TAG_QUICK_SEARCH_RESULT_REQUEST: {
+        case GET_TAG_QUICK_QUERY_REQUEST: {
             return {
-                ...state, tagSearchResult: { isLoading: true }
+                ...state, tagSearchResult: { isLoading: true, isLoadingDone: false }
             }
         }
-        case GET_TAG_QUICK_SEARCH_RESULT_SUCCESS: {
+        case GET_TAG_QUICK_QUERY_SUCCESS: {
             return {
-                ...state, tagQuickSearchResult: { isLoading: false, data: action.payload, error: '' }
+                ...state, tagQuickQueryResult: { isLoading: false, isLoadingDone: true, data: action.payload, error: '' }
             }
         }
-        case GET_TAG_QUICK_SEARCH_RESULT_FAILURE: {
+        case GET_TAG_QUICK_QUERY_FAILURE: {
             return {
-                ...state, tagQuickSearchResult: { isLoading: false, error: action.payload }
+                ...state, tagQuickQueryResult: { isLoading: false, error: action.payload }
             }
         }
 

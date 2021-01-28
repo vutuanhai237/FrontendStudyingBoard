@@ -87,12 +87,12 @@ class AdminLayout extends Component {
                       <div className="Achivement_Layout">
                         <div className="Achivement_Score">Scrore: {this.score}</div>
                         <div className="Achivement_Post_Doc_Count_Layout">
-                          <div className="display-flex w-50-percents">
+                          <div className="d-flex w-50-percents">
                             <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
                             <div className="mg-left-5px">{post_count}</div>
                           </div>
 
-                          <div className="display-flex w-50-percents">
+                          <div className="d-flex w-50-percents">
                             <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
                             <div className="mg-left-5px"> {doc_count}</div>
                           </div>
@@ -120,7 +120,7 @@ class AdminLayout extends Component {
                       <div className="Parent_Dropdown_Menu_Item" id="account-managent-parent-menu-item"
                         onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-admin-dropdown-btn-element", "account-admin-menu-item-container")
                         }>
-                        <div className="display-flex">
+                        <div className="d-flex">
                           <img alt="*" className="side-bar-primary-menu-item-icon"
                             src={account_management_icon} />
                           <div className="side-bar-menu-item-text"
@@ -190,7 +190,7 @@ class AdminLayout extends Component {
                             "user-post-management-dropdown-btn-element",
                             "user-post-management-menu-item-container")
                           }>
-                          <div className="display-flex">
+                          <div className="d-flex">
                             <img alt="*" className="side-bar-primary-menu-item-icon"
                               src={gray_nb_write_icon} />
                             <div className="side-bar-menu-item-text"
@@ -264,7 +264,7 @@ class AdminLayout extends Component {
                             "user-doc-management-dropdown-btn-element",
                             "user-doc-management-menu-item-container")
                           }>
-                          <div className="display-flex">
+                          <div className="d-flex">
                             <img alt="*" className="side-bar-primary-menu-item-icon"
                               src={gray_nb_write_icon} />
                             <div className="side-bar-menu-item-text"

@@ -150,7 +150,7 @@ export default class Combobox extends React.Component {
                         {/* select */}
                         <div className="combox" id={"combobox-" + this.props.id}
                             onClick={(e) => this.handleComboboxClick(e, "combobox-" + this.props.id, "combobox-text-" + this.props.id, "combobox-btn-element-" + this.props.id, "dropdown-container-" + this.props.id)}>
-                            <div className="display-flex">
+                            <div className="d-flex">
                                 <div className="combox-text" id={"combobox-text-" + this.props.id}>
                                     {this.props.placeHolder === "none" ? //neu khong dung placeHolder
                                         <div>{

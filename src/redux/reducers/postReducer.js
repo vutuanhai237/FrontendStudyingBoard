@@ -1,13 +1,13 @@
-import { faLessThan } from '@fortawesome/free-solid-svg-icons';
 import {
-
     //
     GET_ALL_NOT_APPROVED_POSTS,
     APPROVE_A_POST,
 
+    POST_CREATE_POST_REQUEST,
+    POST_CREATE_POST_SUCCESS,
+    POST_CREATE_POST_FAILURE,
 
     //highlight posts list
-
     GET_HIGHLIGHT_POSTS_LIST_REQUEST,
     GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
     GET_HIGHLIGHT_POSTS_LIST_FAILURE,
@@ -32,7 +32,6 @@ import {
 
 const initialState = {
 
-
     //search post: use for search post and post list
     postsList: {
         isLoading: false,
@@ -53,35 +52,27 @@ const initialState = {
         isLoadDone: false,
         data: [],
         error: ""
+    },
+    createPost: {
+        isLoading: false, notification: ""
     }
-
 };
 
 function PostReducer(state = initialState, action) {
     switch (action.type) {
-        // case POST_POST_POST:
-        //     return { ...state, statusPostPostCode: action.payload.statusPostPostCode }
-        // case POST_GET_TAGS_BY_ID:
 
-        //     return { ...state, tags: action.payload.tags }
-        // case GET_HIGHLIGHT_POSTS:
-        //     console.log(action.payload.highlights)
-        //     return { ...state, highlights: action.payload.highlights }
-        // case POST_GET_POST_NEWESTS:
-        //     return { ...state, newests: action.payload.newests }
-        // case POST_GET_POST_NEW_ACTIVITIES:
-        //     return { ...state, newActivities: action.payload.newActivities }
-        // case POST_GET_POST_BY_ID:
-        //     var currentPost = action.payload.post;
-        //     currentPost.liked = false;
-        //     return { ...state, currentPost: currentPost, isFetchSuccess: false };
-
-        // case POST_GET_TOP_POST:
-        //     return { ...state, topPost: action.payload.topPost };
-        // case POST_GET_POST_COMMENT_BY_ID:
-        //     return { ...state, currentComments: action.payload.comments };
-
-
+        case POST_CREATE_POST_REQUEST:
+            return {
+                ...state, createPost: { isLoading: true }
+            };
+        case POST_CREATE_POST_SUCCESS:
+            {
+                return { ...state, createPost: { isLoading: false, notification: action.payload } }
+            }
+        case POST_CREATE_POST_FAILURE:
+            {
+                return { ...state, highlightPosts: { isLoading: false, notification: action.payload } }
+            }
         //get all not approved post
         case GET_ALL_NOT_APPROVED_POSTS:
             {

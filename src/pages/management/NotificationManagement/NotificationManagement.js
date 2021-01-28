@@ -51,7 +51,7 @@ class NotificationManagement extends Component {
         return (
             <div>
                 <Titlebar title="QUẢN LÝ THÔNG BÁO" />
-                <div className="left-side-bar-layout-content-container">
+                <div className="content-container">
                     {/* Danh mục bài viết */}
 
 
@@ -90,7 +90,7 @@ class NotificationManagement extends Component {
 
                                     </div>
                                 </ClickAwayListener>
-                                <div className="Category_Buttons_Layout display-flex justify-content-md-between">
+                                <div className="Category_Buttons_Layout d-flex justify-content-md-between">
                                     <div>
                                         <button className="blue-button mg-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
                                         <button className="white-button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>

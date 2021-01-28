@@ -55,7 +55,7 @@ export default class SearchTagLayout extends Component {
                         <div className="Searching_Tag">
                             Tag: Đại học
                             </div>
-                        <div className="display-flex">
+                        <div className="d-flex">
                             <div className="search-tag-side-bar">
                                 Tag liên quan:
                             <div className="mg-top-10px">

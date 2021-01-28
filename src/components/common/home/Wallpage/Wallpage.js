@@ -140,15 +140,15 @@ class WallPaper extends Component {
                         </div>
 
                         <div className="Wallpage_Right_Content">
-                            <div className="display-flex margin-bottom-8px" >
+                            <div className="d-flex margin-bottom-8px" >
                                 <div className="Highlight_Title">NỔI BẬT</div>
                                 <div className="Highlight_Title_Underline"></div>
                             </div>
                             <div className="highlight-item-container" >
                                 <div className="item-normal-metadata-container" >
-                                    <div className="display-flex">
+                                    <div className="d-flex">
 
-                                        <div className="display-flex">
+                                        <div className="d-flex">
                                             <div className="prefix-normal-category" />
                                             <div className="normal-category">
                                                 {item.category}
@@ -175,15 +175,15 @@ class WallPaper extends Component {
                                 <div className="item-title">
                                     {item.title}
                                 </div>
-                                <div className="display-flex" style={{ marginTop: "-10px" }}>
-                                    <div className="display-flex"  >
+                                <div className="d-flex" style={{ marginTop: "-10px" }}>
+                                    <div className="d-flex"  >
                                         <img alt="*" className="metadata-icon" src={gray_btn_element} />
                                         <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
                                             {item.readingTime} phút đọc
                                     </div>
                                     </div>
 
-                                    <div className="display-flex" >
+                                    <div className="d-flex" >
                                         <img alt="*" className="metadata-icon" src={gray_btn_element} />
                                         <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
                                             {item.publishDtm}
@@ -197,13 +197,13 @@ class WallPaper extends Component {
                                 </div>
 
                                 <div className="item-reaction-bar">
-                                    <div className="display-flex mg-top-5px">
-                                        <div className="display-flex">
+                                    <div className="d-flex mg-top-5px">
+                                        <div className="d-flex">
                                             <div> {likeBtn}</div>
                                             <div className="like-count">{item.likes}</div>
                                         </div>
 
-                                        <div className="display-flex">
+                                        <div className="d-flex">
                                             <div className="save-text-container" onClick={this.toggleSaveImage}>
                                                 <div>{saveBtn}</div>
                                                 {this.isSaved ? "Lưu" : "Huỷ"}

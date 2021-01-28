@@ -3,9 +3,9 @@ import {
     GET_TAG_SEARCH_RESULT_SUCCESS,
     GET_TAG_SEARCH_RESULT_FAILURE,
 
-    GET_TAG_QUICK_SEARCH_RESULT_REQUEST,
-    GET_TAG_QUICK_SEARCH_RESULT_SUCCESS,
-    GET_TAG_QUICK_SEARCH_RESULT_FAILURE
+    GET_TAG_QUICK_QUERY_REQUEST,
+    GET_TAG_QUICK_QUERY_SUCCESS,
+    GET_TAG_QUICK_QUERY_FAILURE
 } from 'redux/constants.js';
 
 
@@ -31,22 +31,22 @@ export function get_TagSearchResultFailure(error) {
 }
 
 //quick search tag result 
-export function get_TagQuickSearchResultRequest() {
+export function get_tagQuickQueryResultRequest() {
     return {
-        type: GET_TAG_QUICK_SEARCH_RESULT_REQUEST
+        type: GET_TAG_QUICK_QUERY_REQUEST
     }
 }
 
-export function get_TagQuickSearchResultSuccess(data) {
+export function get_tagQuickQueryResultSuccess(data) {
     return {
-        type: GET_TAG_QUICK_SEARCH_RESULT_SUCCESS,
+        type: GET_TAG_QUICK_QUERY_SUCCESS,
         payload: data
     }
 }
 
-export function get_TagQuickSearchResultFailure(error) {
+export function get_tagQuickQueryResultFailure(error) {
     return {
-        type: GET_TAG_QUICK_SEARCH_RESULT_FAILURE,
+        type: GET_TAG_QUICK_QUERY_FAILURE,
         payload: error
     }
 }

@@ -50,7 +50,7 @@ class UserRoleManagement extends Component {
         return (
             <div>
                 <Titlebar title="QUẢN LÝ QUYỀN NGƯỜI DÙNG" />
-                <div className="left-side-bar-layout-content-container">
+                <div className="content-container">
                     {/* Danh mục bài viết */}
                     <div className="Category_Type_Dropdown" id="management-post-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-categories-dropdown", "management-post-categories-container")}>
                         <div>

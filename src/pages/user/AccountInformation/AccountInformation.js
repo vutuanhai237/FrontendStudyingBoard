@@ -123,7 +123,7 @@ class AccountInformation extends Component {
 
                     <Titlebar title="THÔNG TIN TÀI KHOẢN" />
 
-                    <div className="left-side-bar-layout-content-container">
+                    <div className="content-container">
                         <div className="Show_Layout_Bounding_Layout">
 
 
@@ -146,7 +146,7 @@ class AccountInformation extends Component {
 
                                     <div className="mg-top-10px" />
 
-                                    <div className="display-flex">
+                                    <div className="d-flex">
                                         <div className="gray-label" style={{ lineHeight: "25px" }}>Role:</div>
                                         <ClickAwayListener onClickAway={() => { this.closeAllChangeRoleDropdownCombobox() }}>
 
@@ -155,7 +155,7 @@ class AccountInformation extends Component {
                                                     <div style={{ position: "absolute", width: "200px" }}>
                                                         <div className="disabled-combox" id={"user-role-parent-dropdown-combobox"}>
                                                             {/* // onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox", "user-role-parent-dropdown-combobox-text", "user-role-dropdown-btn-element", "user-role-dropdown-combobox-container")}> */}
-                                                            <div className="display-flex">
+                                                            <div className="d-flex">
                                                                 <div className="side-bar-menu-item-text" id={"user-role-parent-dropdown-combobox-text"}>
                                                                     {
                                                                         this.roleList.map(role =>
@@ -188,11 +188,11 @@ class AccountInformation extends Component {
                                     <div className="Account_Information_Achivement_Layout">
                                         <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Layout">
-                                            <div className="display-flex w-50-percents">
+                                            <div className="d-flex w-50-percents">
                                                 <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
                                                 <div className="mg-left-5px">{this.postCount}</div>
                                             </div>
-                                            <div className="display-flex w-50-percents">
+                                            <div className="d-flex w-50-percents">
                                                 <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
                                                 <div className="mg-left-5px"> {this.documentCount}</div>
                                             </div>
@@ -243,7 +243,7 @@ class AccountInformation extends Component {
                                             </div>
                                             <input disabled type="text" className="form-input" defaultValue={this.email} />
 
-                                            <div className="display-flex mg-top-10px" >
+                                            <div className="d-flex mg-top-10px" >
                                                 <button disabled={!this.canClickSaveInformation} className="blue-button mg-auto" onClick={() => this.handlerClickSaveInformation()} >
                                                     Lưu thay đổi
                                             </button>

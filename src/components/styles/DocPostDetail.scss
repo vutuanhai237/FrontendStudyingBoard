@@ -4,7 +4,7 @@
     height: fit-content;
     margin: auto;
     margin-bottom: 10px;
-    border-radius: 5px;
+    // border-radius: 5px;
     background-repeat: no-repeat;
     border: 1px var(--gray) solid;
     max-width: 1000px;
@@ -14,12 +14,20 @@
     border-top: var(--blue) 5px solid;
 }
 
+.doc-post-detail.preview {
+    @extend .doc-post-detail;
+    width: 100%;
+    max-width: 800px;
+}
+
 .doc-post-detail .main-layout {
-    padding: 20px;
+    padding: 10px;
     padding-bottom: 5px;
 }
 
 .doc-post-detail .title {
+    // text-align: justify;
+    // text-justify: inter-word;
     padding-top: 5px;
     font-family: "RobotoSlab-Regular";
     font-size: 26px;
@@ -477,7 +485,7 @@ div div div .ndfHFb-c4YZDc-i5oIFb.ndfHFb-c4YZDc-e1YmVc .ndfHFb-c4YZDc-Wrql6b {
 .comment-box .comment-name.by-author,
 .comment-box .comment-name.by-author a {
     color: var(--blue);
-   
+
 }
 
 .comment-box .comment-name.by-author:after {

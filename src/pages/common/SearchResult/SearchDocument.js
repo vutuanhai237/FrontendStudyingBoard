@@ -92,7 +92,7 @@ class SearchDocument extends Component {
 
                 <div className="two-element-filter-container">
                     <div style={{ display: "flex" }}>
-                        <div className="filter-label text-align-right mg-right-5px">Thời gian:</div>
+                        <div className="filter-label t-a-right mg-right-5px">Thời gian:</div>
                         <div style={{ marginLeft: "5px" }}>
                             <ComboBox
                                 // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
@@ -104,7 +104,7 @@ class SearchDocument extends Component {
                         </div>
                     </div>
                     <div style={{ display: "flex" }}>
-                        <div className="filter-label text-align-right mg-right-5px">Danh mục:</div>
+                        <div className="filter-label t-a-right mg-right-5px">Danh mục:</div>
                         <div style={{ marginLeft: "5px" }}>
                             <ComboBox
                                 // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}

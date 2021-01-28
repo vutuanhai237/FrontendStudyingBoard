@@ -124,7 +124,6 @@ export function validation(conditions) {
 // 1. Khi có lỗi => Trả ra message lỗi
 // 2. Khi hợp lệ => Không trả ra cái gì cả (undefined)
 validation.isRequired = function (selector, type, message) {
-
     if (type === 'form-input') {
         return {
             selector: '#' + selector,
@@ -144,18 +143,30 @@ validation.isRequired = function (selector, type, message) {
             }
         }
     }
-
     if (type === 'form-ckeditor') {
         return {
             selector: '#cke-wrapper-' + selector,
             type: type,
             test: function (value) {
+
                 //  kiem tra xem co class dummy invalid hay khong o ben tren
                 return value ? undefined : message || 'Vui lòng nhập trường này'
-                // return value ? undefined : message || 'Vui lòng nhập trường này'
             }
         }
     }
+    // if (type === 'form-file-input') {
+    //     return {
+    //         selector: '#' + selector,
+    //         type: type,
+    //         test: function (value) {
+    //             console.log(value);
+    //             //  kiem tra xem co class dummy invalid hay khong o ben tren
+    //             return value ? undefined : message || 'Vui lòng nhập trường này'
+    //         }
+    //     }
+    // }
+
+
 }
 
 //chua check
@@ -206,7 +217,7 @@ validation.isNotAllowSpecialCharacter = function (selector, type, message) {
 export function styleFormSubmit(conditions) {
     //chon tat ca cac combobox co validation
     let selectorRules = {};
-
+    let isFormValid = true;
     function validate(element, rule) {
         let errorElement = getParent(element, conditions.formGroupSelector).querySelector(conditions.errorSelector);
         let errorMessage;
@@ -227,7 +238,8 @@ export function styleFormSubmit(conditions) {
                 }
                 else
                     if (element.classList.contains('form-ckeditor')) {
-                        errorMessage = rules[i](window.CKEDITOR.instances["ck-editor-" + element.id.substring(12, 23)].getData());
+                        console.log(element.id.substring(12));
+                        errorMessage = rules[i](window.CKEDITOR.instances["ck-editor-" + element.id.substring(12)].getData());
 
                         if (errorMessage) {
                             element.classList.add('invalid');
@@ -269,24 +281,24 @@ export function styleFormSubmit(conditions) {
             if (element.classList.contains('form-input')
                 || element.classList.contains('form-check-box')
                 || element.classList.contains('form-radio')) {
-
-                validate(element, rule);
+                isFormValid = validate(element, rule)
                 return;
             }
 
             if (element.classList.contains('form-combobox')
             ) {
-                validate(element, rule);
+                isFormValid = validate(element, rule);
                 return;
             }
 
             if (element.classList.contains('form-ckeditor')
             ) {
-                validate(element, rule);
+                isFormValid = validate(element, rule);
                 return;
             }
         });
     });
+    return isFormValid;
 }
 
 

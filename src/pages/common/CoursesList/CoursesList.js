@@ -145,7 +145,7 @@ class CoursesList extends Component {
                 <div className="decoration-line mg-bottom-10px" />
                 {/* Đại cương */}
                 <div className="course-type-title" >
-                    <div className="display-flex">
+                    <div className="d-flex">
                         <div className="rect-decoration" />
                         <div>
                             <div className="title">
@@ -158,7 +158,7 @@ class CoursesList extends Component {
                     </div>
                     <div className="show-all-button-container">
                         <div className="white-button">
-                            <div className="display-flex">
+                            <div className="d-flex">
                                 <div className="show-all-text">
                                     Xem tất cả
                                 </div>
@@ -174,7 +174,7 @@ class CoursesList extends Component {
 
                 {/* Cơ sở nhóm ngành */}
                 <div className="course-type-title">
-                    <div className="display-flex">
+                    <div className="d-flex">
                         <div className="rect-decoration" />
                         <div>
                             <div className="title">
@@ -187,7 +187,7 @@ class CoursesList extends Component {
                     </div>
                     <div className="show-all-button-container">
                         <div className="white-button">
-                            <div className="display-flex">
+                            <div className="d-flex">
                                 <div className="show-all-text">
                                     Xem tất cả
                         </div>
@@ -205,7 +205,7 @@ class CoursesList extends Component {
 
                 {/* Danh sách môn học */}
                 <div className="course-type-title">
-                    <div className="display-flex">
+                    <div className="d-flex">
                         <div className="rect-decoration" />
                         <div>
                             <div className="title">
@@ -217,8 +217,8 @@ class CoursesList extends Component {
                         </div>
                     </div>
                     <div className="show-all-combobox-container">
-                        <div className="display-flex">
-                            <div className="filter-label text-align-right mg-right-5px">Khoa/bộ môn:</div>
+                        <div className="d-flex">
+                            <div className="filter-label t-a-right mg-right-5px">Khoa/bộ môn:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.falcutyFilter}

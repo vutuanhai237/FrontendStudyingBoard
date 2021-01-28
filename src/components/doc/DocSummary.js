@@ -111,13 +111,13 @@ class DocSummary extends Component {
 
     if (this.props.approveStatus === 1)
       approveLabel =
-        <div className="display-flex" >
+        <div className="d-flex" >
           <div className="metadata-light-black-label"> - </div>
           <div className="red-border-label">PENDING</div>
         </div >
     else
       approveLabel =
-        <div className="display-flex">
+        <div className="d-flex">
           <div className="metadata-light-black-label"> - </div>
           <div className="blue-border-label">APPROVED</div>
         </div>
@@ -125,9 +125,9 @@ class DocSummary extends Component {
     return (
       <div className="item-container" >
         <div className="item-normal-metadata-container" >
-          <div className="display-flex">
+          <div className="d-flex">
 
-            <div className="display-flex">
+            <div className="d-flex">
               <div className="prefix-normal-category" />
               <div className="normal-category">
                 {this.props.category}
@@ -154,14 +154,14 @@ class DocSummary extends Component {
         <div className="item-title">
           {this.props.title}
         </div>
-        <div className="display-flex" style={{ marginTop: "-10px" }}>
-          <div className="display-flex" >
+        <div className="d-flex" style={{ marginTop: "-10px" }}>
+          <div className="d-flex" >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
               {this.props.publishDtm}
             </div>
           </div>
-          <div className="display-flex" >
+          <div className="d-flex" >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
               lượt xem
@@ -178,18 +178,18 @@ class DocSummary extends Component {
         </div>
 
         <div className="item-reaction-bar" style={{ right: "5px" }}>
-          <div className="display-flex">
+          <div className="d-flex">
 
             <div className="like-dislike-bar">
 
               {/* 2 button */}
-              <div className="jc-space-between">
-                <div className="display-flex">
+              <div className="j-c-space-between">
+                <div className="d-flex">
                   <div> {likeBtn}</div>
                   <div className="doc-like-dislike-count">{this.props.likes}</div>
                 </div>
 
-                <div className="display-flex">
+                <div className="d-flex">
                   <div> {dislikeBtn}</div>
                   <div className="doc-like-dislike-count">{this.props.dislikes}</div>
                 </div>
@@ -201,7 +201,7 @@ class DocSummary extends Component {
               </div>
             </div>
 
-            <div className="display-flex">
+            <div className="d-flex">
               <div className="doc-comment-count-container">
                 Bình luận
                 <div className="comment-count">
@@ -222,7 +222,7 @@ class DocSummary extends Component {
           </div>
 
         </div>
-        {/* <div className="jc-space-between mg-top-10px">
+        {/* <div className="j-c-space-between mg-top-10px">
 
         </div> */}
 

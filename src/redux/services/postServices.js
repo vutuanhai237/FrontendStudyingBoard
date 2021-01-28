@@ -1,8 +1,4 @@
-import {
-
-
-
-    //highlight posts 
+import {    //highlight posts 
     get_HighlightPostsListRequest,
     get_HighlightPostsListSuccess,
     get_HighlightPostsListFailure,
@@ -21,312 +17,44 @@ import {
     get_PostSearchResultRequest,
     get_PostSearchResultSuccess,
     get_PostSearchResultFailure,
+    post_CreatePostRequest,
+    post_CreatePostSuccess,
+    post_CreatePostFailure,
 } from "redux/actions/postAction.js";
 
 import {
     remoteServiceBaseUrl
 } from 'utils/httpServices';
 
-import FormData from 'form-data';
-import Cookies from 'js-cookie';
-
-//#region Fake data region
-
-
-
-//#endregion
-
-export function postPost(post) {
+export function postCreatePost(data) {
     return dispatch => {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "text/plain");
-        var tags = [];
-        post.tags.map(item => {
-            tags.push(item.tagdetail)
-        })
-
-        console.log(tags)
-        var raw = JSON.stringify({
-            "title": post.title,
-            "imageURL": post.imageURL,
-            "content": post.content,
-            //"submitDate": "Dec 24, 2020 7:00:00 AM", 
-            //"publishDtm": "Dec 29, 2020 7:00:00 AM", 
-            "readTime": post.readTime,
-            "likes": post.likes,
-            "numView": post.numView,
-            "postSoftDeleted": post.postSoftDeleted,
-            "postHidden": post.postHidden,
-            "postApproved": post.postApproved,
-            "authorID": post.authorID,
-            "authorName": post.authorName,
-            "categoryID": post.categoryID,
-            "category": post.category,
-            "authorAvatarURL": post.authorAvatarURL,
-            "summary": post.summary,
-            "tags": tags,
-        });
-
-        // var formdata = new FormData();
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        console.log(requestOptions)
-        fetch(`http://${remoteServiceBaseUrl}/posts?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
-                // dispatch(postPostPost(1));
-            })
-            .catch(error => console.log('error', error));
-    }
-}
-
-export function postComment(comment) {
-    return dispatch => {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
-            "content": comment.content,
-            "userAvatarURL": comment.userAvatarURL,
-            "userID": comment.userID,
-            "userName": comment.userName,
-            "commentSoftDeleted": false,
-            "commentHidden": false,
-            "commentApproved": false,
-            "parentCommentID": 1,
-            "postID": comment.postID,
-        });
+        dispatch(post_CreatePostRequest());
 
         var requestOptions = {
             method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
+            headers: {
+                'Content-Type': 'application/json'
+                //token cac kieu
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
         };
 
-        fetch(`http://${remoteServiceBaseUrl}/postComments?sessionID=${Cookies.get('JSESSIONID')}`, requestOptions)
-            .then(response => response.text())
+        fetch(`${remoteServiceBaseUrl}posts`, requestOptions)
+            .then(response => { response.json(); console.log(response); })
             .then(result => {
                 console.log(result);
-
+                dispatch(post_CreatePostSuccess(result));
+            }
+            )
+            .catch(error => {
+                console.log(error);
+                dispatch(post_CreatePostFailure(error)); //
             })
-            .catch(error => console.log('error', error));
     }
 }
 
-export function getTagsByID(pid) {
-    return dispatch => {
-        var myHeaders = new Headers();
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/postTags?postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-
-            })
-            .catch(error => console.log('error', error));
-
-
-    }
-}
-
-// get highlight post for showing on home page
-export function getHighlightPosts() {
-    return dispatch => {
-        var myHeaders = new Headers();
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/posts?type=highlights`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result));
-                // dispatch(get_HighlightPosts(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-
-    }
-}
-
-export function getPostNewActivities() {
-    return dispatch => {
-        var myHeaders = new Headers();
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/posts?type=newActivities`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result));
-                // dispatch(postGetPostNewActivities(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-
-    }
-}
-
-export function getPostNewests() {
-    return dispatch => {
-        var myHeaders = new Headers();
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/posts?type=newest`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result));
-                // dispatch(postGetPostNewests(JSON.parse(result)));
-            })
-            .catch(error => console.log('error', error));
-        // let result = highlightPostResults;
-        // dispatch(postGetPostNewests(result));
-    }
-}
-
-export function delUnlike(uid, pid) {
-    return dispatch => {
-        var myHeaders = new Headers();
-
-        var requestOptions = {
-            method: 'DELETE',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/likedPosts?userID=${uid}&postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => console.log('error', error));
-    }
-}
-
-
-export function postLike(uid, pid) {
-    return dispatch => {
-        var myHeaders = new Headers();
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/likedPosts?userID=${uid}&postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => console.log('error', error));
-    }
-}
-
-//Lay thong tin xem nguoi dung co ID la uid co dang like bai post co ID la pid khong
-export function getIsLikePostByUID(uid, pid) {
-    return dispatch => {
-        var myHeaders = new Headers();
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/likedPosts?userID=${uid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-
-                const allPostLikeByUID = JSON.parse(result);
-                const isLiked = (typeof (allPostLikeByUID.find(e => e === pid))) === 'undefined' ? false : true;
-                console.log("Liked: " + isLiked)
-                // dispatch(postGetIsLikePostByUID(isLiked));
-            })
-            .catch(error => console.log('error', error));
-    }
-
-}
-
-
-export function postSave(uid) {
-    return dispatch => { }
-}
-
-export function postUnSave(uid) {
-    return dispatch => { }
-}
-
-export function getPostCommentByID(pid) {
-    return dispatch => {
-        var myHeaders = new Headers();
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/postComments?postID=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(JSON.parse(result))
-                // dispatch(postGetPostCommentByID(JSON.parse(result)), 1);
-
-            })
-
-            .catch(error => console.log('error', error));
-        // let result = [];
-        // dispatch(postGetPostCommentByID(result));
-    }
-}
-
-export function getPostByID(uid, pid) {
-    return dispatch => {
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch(`http://${remoteServiceBaseUrl}/posts?id=${pid}`, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-
-                // dispatch(postGetPostByID(JSON.parse(result)[0]));
-                this.getIsLikePostByUID(uid, pid);
-                this.getPostCommentByID(pid);
-                this.getTagsByID(pid);
-                console.log("Fetch post success!");
-            })
-            .catch(error => console.log('error', error));
-        // let result = current_Post_Detail;
-        // dispatch(postGetPostByID(result.postDTO));
-        // this.getIsLikePostByUID(uid, pid);
-        // this.getPostCommentByID(pid);
-        // this.getTagsByID(pid);
-
-    }
-}
-
-
-
+//highlight post
 export function getHighlightPostsList() {
     return dispatch => {
 

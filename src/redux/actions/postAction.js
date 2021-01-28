@@ -32,20 +32,26 @@ import {
 
 } from "../constants.js"
 
+//create a post 
+export function post_CreatePostRequest() {
+    return {
+        type: POST_CREATE_POST_REQUEST
+    }
+}
 
-// export function get_NotApprovedDocumentsList(requestedDocs) {
-//     return {
-//         type: GET_ALL_NOT_APPROVED_DOCUMENTS,
-//         payload: requestedDocs,
-//     }
-// }
+export function post_CreatePostSuccess(notification) {
+    return {
+        type: POST_CREATE_POST_SUCCESS,
+        payload: notification
+    }
+}
 
-// export function managementApproveADocument(requestedDoc) {
-//     return {
-//         type: APPROVE_A_DOCUMENT,
-//         payload: requestedDoc,
-//     }
-// }
+export function post_CreatePostFailure(notification) {
+    return {
+        type: POST_CREATE_POST_FAILURE,
+        payload: notification
+    }
+}
 
 //highlight posts 
 export function get_HighlightPostsListRequest() {
@@ -119,26 +125,6 @@ export function get_PostSearchResultSuccess(data) {
 export function get_PostSearchResultFailure(error) {
     return {
         type: GET_POST_SEARCH_RESULT_FAILURE,
-        payload: error
-    }
-}
-
-export function post_CreatePostRequest() {
-    return {
-        type: GET_HIGHLIGHT_POSTS_LIST_REQUEST,
-    }
-}
-
-export function post_CreatePostSuccess(data) {
-    return {
-        type: GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
-        payload: data
-    }
-}
-
-export function post_CreatePostFailure(error) {
-    return {
-        type: GET_HIGHLIGHT_POSTS_LIST_FAILURE,
         payload: error
     }
 }

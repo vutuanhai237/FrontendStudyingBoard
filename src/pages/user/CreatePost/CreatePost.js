@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { getPostCategories } from "redux/services/postCategoryServices";
-import { getTagQuickSearchResult } from "redux/services/tagServices"
+import { getTagQuickQueryResult } from "redux/services/tagServices"
+import { postCreatePost } from "redux/services/postServices"
 
-import gray_btn_element from 'assets/images/g_btn_element.png'
 
 import "./CreatePost.scss";
 import "components/common/CustomCKE/CKEditorContent.scss";
@@ -19,9 +19,16 @@ import Titlebar from 'components/common/Titlebar/Titlebar';
 import Combobox from 'components/common/Combobox/Combobox';
 import Editor from 'components/common/CustomCKE/CKEditor.js';
 
+import liked_btn from 'assets/images/liked_btn.png'
+import unliked_btn from 'assets/images/unliked_btn.png'
+import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
+import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
+
 //utils
 import { ClickAwayListener } from '@material-ui/core';
 import { validation, styleFormSubmit } from 'utils/validationUtils'
+import { today } from 'utils/timeUtils'
+import Metadata from 'components/common/Metadata/Metadata'
 
 const validationCondition = {
     form: '#create-post-form',
@@ -39,33 +46,49 @@ const validationCondition = {
 class CreatePost extends Component {
     constructor(props) {
         super(props);
+        this.categoryList = [
+            {
+                id: 1,
+                name: "Chọn danh mục"
+            }
+        ];
+
         this.state = {
-            currentCategory: "",
-            categoryList: [
-                {
-                    id: 1,
-                    name: "Danh muc 1"
-                },
-                {
-                    id: 2,
-                    name: "Danh muc 2"
-                },
-                {
-                    id: 3,
-                    name: "Danh muc 3"
-                }
-            ],
+            currentCategory: "Danh muc 3",
+            publishDtm: today.getDateDMY(),
+
             isUploading: false,
             isPreview: false,
+            isSearchingTag: false,
 
-            title: "",//
-            content: "",//
-            authorID: "",//
-            categoryID: ""//
+            CREATE_POST_DTO: {
+                tags: [],
+                title: "Model View Presenter (MVP) in Android with a simple demo project.",//
+                content: ``,//
+                summary: `null`,
+                // authorID: "",// khong co nhe
+                categoryID: "",//
+                imageURL: "null",
+                readingTime: 10
+            },
 
+            author: {
+                avatarURL: "https://i.imgur.com/SZJgL6C.png",
+                displayName: "Nguyễn Văn Đông",
+                username: "dongnsince1999"
+            },
         };
+        this.shownTag = [
+            { dmID: 1, id: '', content: '' },
+            { dmID: 2, id: '', content: '' },
+            { dmID: 3, id: '', content: '' },
+            { dmID: 4, id: '', content: '' },
+            { dmID: 5, id: '', content: '' },
+        ]
+        this.isPopupOpen = false;
+        this.message = "";
 
-        this.quickSearchTagResult =
+        this.tagQuickQueryResult =
             [
                 {
                     id: 1,
@@ -80,10 +103,15 @@ class CreatePost extends Component {
                     name: "tag2",
                 }
             ];
+
     }
 
     componentDidMount() {
         this.props.getPostCategories();
+        document.querySelector(".cr-post-form-container.preview").classList.remove("d-block");
+        document.querySelector(".cr-post-form-container.edit").classList.remove("d-none");
+        document.querySelector(".cr-post-form-container.preview").classList.add("d-none");
+        document.querySelector(".cr-post-form-container.edit").classList.add("d-block");
         validation(validationCondition);
     }
 
@@ -92,29 +120,21 @@ class CreatePost extends Component {
     }
 
     onCategoryOptionChanged = (selectedOption) => {
-
+        this.setState({
+            CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, categoryID: selectedOption.id },
+            currentCategory: selectedOption.name
+        })
     }
 
-    handleUpload = () => {
-        // const { account, categories } = this.props;
-        const post = {
-            title: this.state.title,
-            imageURL: this.state.imageURL,
-            content: this.state.content,
-            // authorID: account.id,
-            // categoryID: (categories.find(e => e.title === this.state.currentCategory)).id,
-            category: this.state.currentCategory,
-            tags: this.state.tags,
+    handleUploadBtnClick = () => {
+        if (styleFormSubmit(validationCondition)) {
+            console.log(this.state.CREATE_POST_DTO) 
+            this.props.postCreatePost(this.state.CREATE_POST_DTO);
         }
 
     }
 
-    handleUploadBtnClick = () => {
-        styleFormSubmit(validationCondition);
-        this.handleUpload();
-    }
-
-    handleClose = () => {
+    handleClosePopup = () => {
         this.setState({
             modalShow: false,
         });
@@ -127,201 +147,396 @@ class CreatePost extends Component {
     }
 
     quickSearchTags = (e) => {
-
         if (!e.target.value) {
             this.closeQuickSearchTag();
             return;
         }
+        this.setState({ isSearchingTag: true })
+        this.props.getTagQuickQueryResult(e.target.value);
         document.getElementById("cr-post-qs-tag-result-container").classList.add('show');
         document.getElementById("cr-post-qs-tag-result-container").classList.remove('hidden');
-
-        //send API cac kieu o cho nay
     }
 
     keyHandler = (e) => {
-        let tags = this.state.tags;
+        if (!e.target.value) return;
+        let tags = this.state.CREATE_POST_DTO.tags;
+        let hasOldTag = -1; // khong cos => -1 neu co => id cua tag 
         if (e.charCode === 13) { //press Enter    
 
-            //check voi 3 ket qua tim kiem duoc, neu khong match thi tao moi
-
             //neu chua search duoc thi khong cho bam enter
+            //check voi 3 ket qua tim kiem duoc, neu khong match thi tao moi
+            if (this.props.isTagQuickQueryLoadingDone) {
 
-            document.getElementById("cr-post-qs-tag-result-container").classList.add('hidden');
-            document.getElementById("cr-post-qs-tag-result-container").classList.remove('show');
+                //compare voi 3 ket qua
+                if (this.props.tagQuickQueryResult) {
+                    this.props.tagQuickQueryResult.map(tag => {
+                        if (e.target.value.localeCompare(tag.content) === 0) {
+                            console.log("equal");
+                            hasOldTag = tag.id; //co tag giong tag cu
+                        }
+                    })
+                }
 
-            //tao moi
-            tags.push({ name: e.target.value }); //tao ra tag moi
-            this.setState({
-                tags: tags
-            });
-            e.target.value = ""
+                //dong search container
+                document.getElementById("cr-post-qs-tag-result-container").classList.add('hidden');
+                document.getElementById("cr-post-qs-tag-result-container").classList.remove('show');
+
+                //tao moi hoac dung lai tag cu
+                let tmpShownTag = this.shownTag;
+                if (hasOldTag !== -1) {
+                    tags.push({ id: hasOldTag });
+                    for (let i = 0; i < tmpShownTag.length; i++) {
+                        if (tmpShownTag[i].content === '' && tmpShownTag[i].id === '') {
+                            tmpShownTag[i].content = e.target.value; tmpShownTag[i].id = hasOldTag; break;
+                        }
+                    }
+                }
+                else {
+                    tags.push({ content: e.target.value }); //tao ra tag moi
+                    for (let i = 0; i < tmpShownTag.length; i++) {
+                        if (tmpShownTag[i].content === '' && tmpShownTag[i].id === '') {
+                            tmpShownTag[i].content = e.target.value; break;
+                        }
+                    }
+                }
+
+                this.setState({
+                    CREATE_POST_DTO: {
+                        ...this.state.CREATE_POST_DTO,
+                        tags: tags
+                    }
+                });
+
+                //clear tag input 
+                e.target.value = ""
+
+            }
+
+        }
+    }
+
+    onTagSearchResultClick = (tag) => {
+        //kiem tra xem ten co dang bi trung voi tag nao ben duoi khong, 
+        //neu khong thi them co id
+        let isTheSameContent = -1; // khong cos => -1 neu co => id cua tag 
+
+        this.shownTag.map(_tag => {
+            //kiem tra xem tag dang bam co giong tag cu hay khong
+            if (tag.content.localeCompare(_tag.content) === 0) {
+                console.log("equal content");
+                isTheSameContent = _tag.id; //co tag giong tag cu
+                return;
+            }
+            if (tag.id === _tag.id) {
+                console.log("equal id");
+                isTheSameContent = _tag.id; //co tag giong tag cu
+                return;
+            }
+        })
+
+        //neu trung tag thi khong cho cạp nhat
+        if (isTheSameContent === tag.id) {
+            console.log("Không thể chọn tag trùng");
+            return;
         }
 
+        let tmpTagDTO = this.state.CREATE_POST_DTO.tags;
+        tmpTagDTO.push({ id: tag.id });
+
+        //cap nhat lai shownTag theo tmpDTO
+        let tmpShownTag = this.shownTag;
+        for (let i = 0; i < tmpShownTag.length; i++) {
+            if (tmpShownTag[i].content === '' && tmpShownTag[i].id === '') {
+                tmpShownTag[i].content = tag.content; tmpShownTag[i].id = tag.id; break;
+            }
+        }
+
+        //cap nhat lai shown tag tu state
+        document.getElementById("cr-post-qs-tag-result-container").classList.add('hidden');
+        document.getElementById("cr-post-qs-tag-result-container").classList.remove('show');
+
+        this.setState({
+            CREATE_POST_DTO: {
+                ...this.state.CREATE_POST_DTO,
+                tags: tmpTagDTO
+            }
+        });
     }
 
     deleteTag = (item) => {
-        let tempTags = this.state.tags;
-        tempTags = tempTags.filter(_item => _item.content !== item.content);
+        //xoa trong shownTag
+        //xoa trong DTO
+
+        //xet theo id va content, cap nhat lai shownTag
+        if (item.content)
+            this.shownTag.map(tag => {
+                if (tag.content === item.content)
+                    item.content = ''; item.id = '';
+            })
+
+        else if (item.id) {
+            this.shownTag.map(tag => {
+                if (tag.id === item.id)
+                    item.content = ''; item.id = '';
+            })
+        }
+
+        //cap nhat lai tmpDTO theo shownTag
+        let tempTagDTO = [];
+        this.shownTag.map(tag => {
+            if (tag.id || tag.content) {
+                tempTagDTO.push({ id: tag.id, content: tag.content })
+            }
+        })
+
+        //cap nhat lai shownTag theo tmpDTO
+        this.shownTag.map(tag => {
+            tag.id = ''; tag.content = '';
+        })
+
+        tempTagDTO.map((tag, index) => {
+            this.shownTag[index].id = tag.id;
+            this.shownTag[index].content = tag.content;
+        })
+
+        //cap nhat lai DTO theo tmpDTO
         this.setState({
-            tags: tempTags,
+            CREATE_POST_DTO: {
+                ...this.state.CREATE_POST_DTO,
+                tags: tempTagDTO,
+            }
         });
         this.forceUpdate();
     }
 
     handleClickTag = (item) => {
-        console.log(item)
     }
 
     //#endregion
     handleEditorChange = (value) => {
+        let dom = document.createElement("DIV");
+        dom.innerHTML = this.state.CREATE_POST_DTO.content;
+        let plain_text = (dom.textContent || dom.innerText);
 
-        console.log("change");
-        console.log(value);
-        this.setState({ content: value })
+        if (value.length < 160) {
+            this.setState({ CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, content: value, summary: plain_text } })
+            return;
+        }
+        else {
+            this.setState({ CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, summary: plain_text.substring(0, 160) } });
+            return;
+        }
     };
 
     handleTitleChange = (e) => {
         this.setState({
-            title: e.target.value
+            CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, title: e.target.value }
         })
     }
 
-    handleEditorFocus = () => {
-        //
-    }
-
     render() {
-        const { categories } = this.props;
-        var body = null;
 
-        if (this.state.isPreview) {
-            body =
-                <div className="doc-post-detail" >
-                    <div>
-                        <div className="main-layout">
-                            <div className="title">
-                                {this.state.title}
+        let likeBtn = <div></div>;
+        let saveBtn = <div></div>;
+
+        //render likeBtn
+        if (!this.isLiked) {
+            likeBtn = <img className="like-btn" alt="like" src={liked_btn} onClick={this.toggleLikeImage}></img>
+        }
+        else {
+            likeBtn = <img className="like-btn" alt="like" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
+        }
+
+        //render saveBtn
+        if (!this.isSaved) {
+            saveBtn = <img className="save-btn" alt="dislike" src={full_blue_bookmark_btn}></img>
+        }
+        else {
+            saveBtn = <img className="save-btn" alt="dislike" src={gray_bookmark_btn} ></img>
+        }
+
+        if (!this.props.isCategoryLoading && this.props.categories) {
+            this.categoryList = this.props.categories;
+        }
+        let tagSearchResult = <></>;
+        if (this.props.isTagQuickQueryLoadingDone) {
+            if (this.state.isSearchingTag) {
+                this.setState({ isSearchingTag: false })
+            }
+            if (this.props.tagQuickQueryResult) {
+
+                //truong hop khong co tag nao thoa man va chua du 5 tag
+
+                if (this.state.CREATE_POST_DTO.tags.length < 5) {
+                    document.getElementById("cr-post-tag-input").classList.remove('invalid');
+                    if (this.props.tagQuickQueryResult.length === 0)
+                        document.getElementById("cr-post-tag-container-tip-label").innerText = "Không có kết quả tìm kiếm phù hợp! Bấm Enter để thêm tag mới."
+                    else
+                        document.getElementById("cr-post-tag-container-tip-label").innerText = "Chọn tag phù hợp với bài viết của bạn.";
+                }
+                else {
+                    document.getElementById("cr-post-tag-container-tip-label").innerText = "Không thể nhập quá 5 tag."
+                    document.getElementById("cr-post-tag-input").classList.add('invalid');
+                }
+                tagSearchResult =
+                    this.props.tagQuickQueryResult.map(tag => {
+                        return <div className="tag-search-item"
+                            onClick={() => { this.state.CREATE_POST_DTO.tags.length < 5 && this.onTagSearchResultClick(tag) }}>
+                            <div className="tag-search-item-content">  {tag.content}</div>
+                        </div>
+                    })
+            }
+            else {
+                tagSearchResult = <>Loading...</>
+            }
+        }
+
+        let body =
+            <div>
+                {/* Preview region */}
+                <div className="cr-post-form-container doc-post-detail preview" >
+                    <Metadata title={this.state.CREATE_POST_DTO.title}
+                        category={this.state.currentCategory}
+                        readingTime={this.state.CREATE_POST_DTO.readingTime}
+                        authorName={this.state.author.displayName}
+                        avartarURL={this.state.author.avatarURL}
+                        publishDtm={this.state.publishDtm}
+                    />
+                    <div className="ck-editor-output" dangerouslySetInnerHTML={{ __html: this.state.CREATE_POST_DTO.content }} />
+
+                    <div className="mg-top-10px pd-10px" >
+                        {this.shownTag.map(item =>
+                            <Tag isReadOnly={true} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
+                        )}
+                    </div>
+
+                    <div className="d-flex mg-top-5px pd-10px">
+                        <div className="d-flex">
+                            <div> {likeBtn}</div>
+                            <div className="like-count">0</div>
+                        </div>
+
+                        <div className="d-flex">
+                            <div className="save-text-container" onClick={this.toggleSaveImage}>
+                                <div>{saveBtn}</div>
+                                {this.isSaved ? "Lưu" : "Huỷ"}
                             </div>
-                            <div className="DocPost_Metadata_Header">
-                                <div className="prefix-normal-category"> </div>
-                                <div className="normal-category">
-                                    {this.state.category}
+                            <div className="post-comment-count-container">
+                                Bình luận
+                                <div style={{ paddingLeft: "5px" }}>
+                                    {this.props.comments}
                                 </div>
-                                <img alt="*" className="metadata-icon" src={gray_btn_element} />
-                            </div>
-                            <div className="user-infor-container">
-                                <img src={this.avartarUrl} alt="avatar" className="user-avatar" />
-                                <div style={{ flexDirection: "vertical" }}>
-                                    <div className="display-name">{this.authorName}</div>
-                                    <div className="posted-time">đã đăng vào ngày {this.uploadedTime}</div>
-                                </div>
-                            </div>
-                            <div className="content">
-                                <div dangerouslySetInnerHTML={{ __html: this.state.content }} />
                             </div>
                         </div>
-                        <div className="view-count-down-count">
-                            <div className="gray-label">Bình luận: {this.viewCount}</div>
-                            <div className="gray-label mg-left-5px">lượt xem: {this.viewCount}</div>
-                        </div>
-                    </div>
-                </div>;
-        } else {
-            body =
-                <div id="create-post-form" className="form-container" onSubmit={this.handleUpload} tabIndex="1">
-                    <div className="mg-top-10px" />
-
-                    <div className="form-group">
-                        <label className="form-label-required">Tiêu đề:</label>
-                        <input className="form-input" id="cr-post-title" placeholder="Nhập tiêu đề bài viết ..." onChange={e => this.handleTitleChange(e)} type="text" ></input>
-                        <div className="form-error-label-container">
-                            <span className="form-error-label" ></span>
-                        </div>
                     </div>
 
-                    {/* CKEditor */}
-                    <div className="form-group">
-                        <div className="form-label-required">Nội dung:</div>
-                        <Editor
-                            id="cr-post-cke"
-                            placeholder='Start typing here...'
-                            onChange={this.handleEditorChange}
-                            onFocus={this.handleEditorFocus}
-                            data="<p>Nhập nội dung bài viết ...</p>"
-                            validation
-                        />
-                        <div className="form-error-label-container">
-                            <span className="form-error-label" ></span>
-                        </div>
+                    <div className="reaction-bar">
+                        <div className="gray-label">Bình luận: {this.viewCount}</div>
+                        <div className="gray-label mg-left-5px">lượt xem: {this.viewCount}</div>
                     </div>
+                </div>
 
-                    {/* Category */}
-                    <div className="form-group">
-                        <label className="form-label-required">Danh mục:</label>
-                        <Combobox id="cr-post-category-combobox"
-                            options={this.state.categoryList}
-                            onOptionChanged={(selectedOption) => this.onCategoryOptionChanged(selectedOption)}
-                            placeHolder="Chọn danh mục"
-                            validation
-                        >
-                        </Combobox>
-                        <div className="form-error-label-container">
-                            <span className="form-error-label" ></span>
+                {/* Edit region */}
+                <div className="cr-post-form-container edit">
+                    <div id="create-post-form" className="form-container" onSubmit={this.handleUpload} tabIndex="1">
+                        <div className="mg-top-10px" />
+
+                        <div className="form-group">
+                            <label className="form-label-required">Tiêu đề:</label>
+                            <input className="form-input" id="cr-post-title"
+                                placeholder="Nhập tiêu đề bài viết ..." onChange={e => this.handleTitleChange(e)}
+                                type="text" ></input>
+                            <div className="form-error-label-container">
+                                <span className="form-error-label" ></span>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Tag */}
-                    <div className='form-group'>
-                        <label className="form-label">Tags:</label>
+                        {/* CKEditor */}
+                        <div className="form-group">
+                            <div className="form-label-required">Nội dung:</div>
+                            <Editor
+                                id="cr-post-cke"
+                                placeholder='Start typing here...'
+                                onChange={this.handleEditorChange}
+                                data="<p>Nhập nội dung bài viết ...</p>"
+                                validation
+                            />
+                            <div className="form-error-label-container">
+                                <span className="form-error-label" ></span>
+                            </div>
+                        </div>
 
-                        <input onChange={(e) => this.quickSearchTags(e)}
-                            onKeyPress={(this.state.tags.length < 5) && this.keyHandler}
-                            className="form-input"
-                            placeholder="Nhập tag ..." />
+                        {/* Category */}
+                        <div className="form-group" >
+                            <label className="form-label-required">Danh mục:</label>
+                            <Combobox id="cr-post-category-combobox"
+                                options={this.categoryList}
+                                onOptionChanged={(selectedOption) => this.onCategoryOptionChanged(selectedOption)}
+                                placeHolder="Chọn danh mục"
+                                validation
+                            >
+                            </Combobox>
+                            <div className="form-error-label-container">
+                                <span className="form-error-label" ></span>
+                            </div>
+                        </div >
 
-                        <ClickAwayListener onClickAway={() => this.closeQuickSearchTag()}>
-                            <div id="cr-post-qs-tag-result-container" className="form-input-dropdown-container hidden">
-                                <div className="form-input-dropdown">
-                                    <div className="display-flex">
-                                        {this.quickSearchTagResult.map(tag => {
-                                            return <div className="tag-search-item">
-                                                <div className="tag-search-item-name">  {tag.name}</div>
-                                                <div className="tag-search-item-content">  {tag.content}</div>
-                                            </div>
-                                        })}
+                        {/* Tag */}
+                        <div className='form-group'>
+                            <label className="form-label">Tags:</label>
+
+                            <input onChange={(e) => this.quickSearchTags(e)} id="cr-post-tag-input"
+                                onKeyPress={(this.state.CREATE_POST_DTO.tags.length < 5) && this.keyHandler}
+                                className="form-input"
+                                placeholder="Nhập tag ..." />
+
+                            <ClickAwayListener onClickAway={() => this.closeQuickSearchTag()}>
+                                {/* khi load xong thi ntn */}
+                                <div id="cr-post-qs-tag-result-container" className="form-input-dropdown-container hidden">
+                                    <div className="form-input-dropdown">
+                                        <div className="d-flex">
+                                            {tagSearchResult}
+                                        </div>
+
+                                        <div className="form-tip-label" id="cr-post-tag-container-tip-label">
+
+                                        </div>
                                     </div>
                                 </div>
+
+                            </ClickAwayListener>
+
+                            <div className="form-tip-label-container">
+                                <div className="form-tip-label">Có thể nhập tối đa 5 tag.</div>
                             </div>
-                        </ClickAwayListener>
-                        <div className="form-tip-label-container">
-                            <div className="form-tip-label">Có thể nhập tối đa 5 tag.</div>
+
+                            <div className="mg-top-10px" >
+                                {this.shownTag.map(item =>
+                                    <Tag isReadOnly={false} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
+                                )}
+                            </div>
+                            <div className="form-line" />
+
                         </div>
 
-                        <div className="mg-top-10px" >
-                            {this.state.tags.map(item =>
-                                <Tag isReadOnly={false} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
-                            )}
+                        {/* Button */}
+                        <div className="form-group d-flex">
+                            <button className="blue-button mg-auto form-submit-btn" onClick={() => this.handleUploadBtnClick()}>Đăng bài</button>
                         </div>
-                        <div className="form-line" />
-
-                    </div>
-
-                    {/* Button */}
-                    <div className="form-group display-flex">
-                        <button className="blue-button mg-auto form-submit-btn" onClick={() => this.handleUploadBtnClick()}>Đăng bài</button>
-                    </div>
+                    </div >
                 </div >
-        }
+            </div >
+
         return (
             <div>
                 <Titlebar title="TẠO BÀI VIẾT MỚI" />
-                <div className="left-side-bar-layout-content-container">
+                <div className="content-container">
                     <div className="form-container">
                         <div className="flex-container-end">
                             <div className="flex-container-end" >
-                                <button className="blue-button" disabled={!this.state.isPreview} onClick={() => this.setState({ isPreview: !this.state.isPreview })} >Soạn bài viết</button>
+                                <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn bài viết</button>
                                 <div className="mg-right-5px" />
-                                <button className="white-button" disabled={this.state.isPreview} onClick={() => this.setState({ isPreview: !this.state.isPreview })} >Preview</button>
+                                <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>
                             </div>
                         </div>
                         <div className="mg-top-10px decoration-line" />
@@ -332,19 +547,42 @@ class CreatePost extends Component {
             </div >
         );
     }
+
+    onEditBtnClick = () => {
+        this.setState({ isPreview: !this.state.isPreview });
+        document.querySelector(".cr-post-form-container.preview").classList.remove("d-block");
+        document.querySelector(".cr-post-form-container.edit").classList.remove("d-none");
+        document.querySelector(".cr-post-form-container.preview").classList.add("d-none");
+        document.querySelector(".cr-post-form-container.edit").classList.add("d-block");
+
+    }
+
+    onPreviewBtnClick = () => {
+        this.setState({ isPreview: !this.state.isPreview });
+        document.querySelector(".cr-post-form-container.preview").classList.add("d-block");
+        document.querySelector(".cr-post-form-container.edit").classList.add("d-none");
+        document.querySelector(".cr-post-form-container.preview").classList.remove("d-none");
+        document.querySelector(".cr-post-form-container.edit").classList.remove("d-block");
+        console.log(this.state);
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.post.categories,
-        // account: state.user.account,
-        statusPostPostCode: state.post.statusPostPostCode,
+        categories: state.post_category.categories.data,
+        isCategoryLoading: state.post_category.categories.isLoading,
+        tagQuickQueryResult: state.tag.tagQuickQueryResult.data,
+        isTagQuickQueryLoading: state.tag.tagQuickQueryResult.isLoading,
+        //sau nay su dung loading de tranh cac truong hop ma 2 bien isSearching va isLoadDone khong xu ly duoc 
+        isTagQuickQueryLoadingDone: state.tag.tagQuickQueryResult.isLoadingDone
+
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getPostCategories, getTagQuickSearchResult, getPostCategories
-
+    getPostCategories,
+    getTagQuickQueryResult,
+    postCreatePost
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePost));

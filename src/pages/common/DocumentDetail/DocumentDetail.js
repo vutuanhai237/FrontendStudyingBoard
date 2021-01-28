@@ -135,7 +135,7 @@ class DocumentDetail extends Component {
                                     {this.title}
                                 </div>
 
-                                <div className="DocPost_Metadata_Header">
+                                <div className="metadata-header">
 
                                     <div className="prefix-normal-category"> </div>
                                     <div className="normal-category">
@@ -150,7 +150,7 @@ class DocumentDetail extends Component {
                                 </div>
 
                                 <div className="user-infor-container">
-                                    <div className="display-flex">
+                                    <div className="d-flex">
                                         <img src={this.avartarUrl} alt="avatar" className="user-avatar" />
                                         <div style={{ flexDirection: "vertical" }}>
                                             <div className="display-name">{this.authorName}</div>

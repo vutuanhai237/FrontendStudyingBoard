@@ -116,13 +116,13 @@ class PostSummary extends Component {
 
     if (this.props.approveStatus === 1)
       approveLabel =
-        <div className="display-flex" >
+        <div className="d-flex" >
           <div className="metadata-light-black-label"> - </div>
           <div className="red-border-label">PENDING</div>
         </div >
     else
       approveLabel =
-        <div className="display-flex">
+        <div className="d-flex">
           <div className="metadata-light-black-label"> - </div>
           <div className="blue-border-label">APPROVED</div>
         </div>
@@ -130,9 +130,9 @@ class PostSummary extends Component {
     return (
       <div className="item-container" >
         <div className="item-normal-metadata-container" >
-          <div className="display-flex">
+          <div className="d-flex">
 
-            <div className="display-flex">
+            <div className="d-flex">
               <div className="prefix-normal-category" />
               <div className="normal-category">
                 {this.props.category}
@@ -164,15 +164,15 @@ class PostSummary extends Component {
           </div>
         </Link>
 
-        <div className="display-flex" style={{ marginTop: "-10px" }}>
-          <div className="display-flex"  >
+        <div className="d-flex" style={{ marginTop: "-10px" }}>
+          <div className="d-flex"  >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
               {this.props.readingTime} phút đọc
                         </div>
           </div>
 
-          <div className="display-flex" >
+          <div className="d-flex" >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
               {this.props.publishDtm}
@@ -186,13 +186,13 @@ class PostSummary extends Component {
         </div>
 
         <div className="item-reaction-bar">
-          <div className="display-flex mg-top-5px">
-            <div className="display-flex">
+          <div className="d-flex mg-top-5px">
+            <div className="d-flex">
               <div> {likeBtn}</div>
               <div className="like-count">{this.props.likes}</div>
             </div>
 
-            <div className="display-flex">
+            <div className="d-flex">
               <div className="save-text-container" onClick={this.toggleSaveImage}>
                 <div>{saveBtn}</div>
                 {this.isSaved ? "Lưu" : "Huỷ"}
@@ -211,10 +211,10 @@ class PostSummary extends Component {
         </div>
 
         {/* for implement approve item */}
-        {/* <div className="jc-space-between">
+        {/* <div className="j-c-space-between">
           {this.props.type === itemType.mySelf ?
 
-            <div className="display-flex" >
+            <div className="d-flex" >
               <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.onEditBtnClick()}>Chỉnh sửa</div>
               <div className="red-button" onClick={() => { this.onDeleteBtnClick() }}>Xoá</div>
             </div>

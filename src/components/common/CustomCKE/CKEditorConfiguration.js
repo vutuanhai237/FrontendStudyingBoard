@@ -6,3 +6,8 @@ export const CKEToolbarConfiguration = [
   { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
   { name: 'styles', items: ['Styles', 'Format'] },
 ];
+
+export const SimpleCKEToolbarConfiguration = [
+  { name: 'clipboard', items: ['Undo', 'Redo'] },
+  { name: 'basicstyles', items: ['Bold', 'Italic', 'Strike'] },
+];

@@ -99,7 +99,7 @@ class PostDetail extends Component {
                                     {this.title}
                                 </div>
 
-                                <div className="DocPost_Metadata_Header">
+                                <div className="metadata-header">
 
                                     <div className="prefix-normal-category"> </div>
                                     <div className="normal-category">

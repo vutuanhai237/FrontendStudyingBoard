@@ -2,8 +2,6 @@ import { createStore, compose, applyMiddleware } from "redux";
 import RootReducer from "../reducers"
 import thunk from 'redux-thunk';
 
-
-
 var store = createStore(
     RootReducer,
     compose(applyMiddleware(thunk),

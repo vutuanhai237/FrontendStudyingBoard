@@ -30,12 +30,6 @@ import Cookies from 'js-cookie';
 
 //upload new document
 
-export function getTopDoc() {
-    return dispatch => {
-
-    }
-}
-
 export function getDocumentByID(id) {
     return dispatch => {
 

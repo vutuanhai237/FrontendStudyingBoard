@@ -97,16 +97,16 @@ class MyDocumentsList extends Component {
         return (
             <div>
                 <Titlebar title="TÀI LIỆU CỦA TÔI" />
-                <div className="left-side-bar-layout-content-container">
-                    <div className = "mg-bottom-10px jc-space-between">
+                <div className="content-container">
+                    <div className = "mg-bottom-10px j-c-space-between">
 
-                        <div className="filter-label display-flex">
+                        <div className="filter-label d-flex">
                             <div className="mg-right-5px">Tổng số:</div>
                             <div>{this.myDocuments.length}</div>
                         </div>
 
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right mg-right-5px">Bộ lọc:</div>
+                            <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     options={this.filter}

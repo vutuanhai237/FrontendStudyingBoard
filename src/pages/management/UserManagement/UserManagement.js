@@ -120,15 +120,15 @@ class UserManagement extends Component {
 
             <div>
                 <Titlebar title="QUẢN LÝ NGƯỜI DÙNG" />
-                <div className="left-side-bar-layout-content-container">
+                <div className="content-container">
 
-                    <div className="display-flex jc-space-between mg-top-10px"  >
+                    <div className="d-flex j-c-space-between mg-top-10px"  >
                         <div className="number-of-item">
                             Tổng số:
                             &nbsp;
                             {this.usersList.length}
                         </div>
-                        < div className="pos-relative display-flex">
+                        < div className="pos-relative d-flex">
                             {/* <div className="gray-label" style={{ paddingTop: "5px" }}>
                                 Filter:
                             </div> */}
@@ -141,7 +141,7 @@ class UserManagement extends Component {
                                             <div style={{ position: "absolute", width: "140px" }}>
                                                 <div className="combox" id={"role-filter-parent-dropdown-combobox"}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "role-filter-parent-dropdown-combobox", "role-filter-parent-dropdown-combobox-text", "role-filter-dropdown-btn-element", "role-filter-dropdown-combobox-container")}>
-                                                    <div className="display-flex">
+                                                    <div className="d-flex">
                                                         <div className="side-bar-menu-item-text" id={"role-filter-parent-dropdown-combobox-text"}>
                                                             {this.roleList ?
                                                                 getRoleNameFilterByName(this.roleNameFilter)

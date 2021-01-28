@@ -106,12 +106,12 @@ class AdminLayout extends Component {
                                                 <div className="Achivement_Layout">
                                                     <div className="Achivement_Score">Scrore: {this.score}</div>
                                                     <div className="Achivement_Post_Doc_Count_Layout">
-                                                        <div className="display-flex w-50-percents">
+                                                        <div className="d-flex w-50-percents">
                                                             <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
                                                             <div className="mg-left-5px">{post_count}</div>
                                                         </div>
 
-                                                        <div className="display-flex w-50-percents">
+                                                        <div className="d-flex w-50-percents">
                                                             <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
                                                             <div className="mg-left-5px"> {doc_count}</div>
                                                         </div>
@@ -140,7 +140,7 @@ class AdminLayout extends Component {
                                                     <div className="Parent_Dropdown_Menu_Item"
                                                         id="page-managent-parent-menu-item"
                                                         onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "page-managent-parent-menu-item", "page-managent-parent-menu-item-text", "page-admin-dropdown-btn-element", "page-admin-menu-item-container")}>
-                                                        <div className="display-flex">
+                                                        <div className="d-flex">
                                                             <img alt="*" className="side-bar-primary-menu-item-icon" src={content_management_icon} id="page-managent-btn-element" />
                                                             <div className="side-bar-menu-item-text" id="page-managent-parent-menu-item-text">
                                                                 Quản lý nội dung

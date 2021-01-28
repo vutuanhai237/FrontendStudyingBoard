@@ -21,6 +21,8 @@ const http = axios.create({
 
 http.interceptors.request.use(
   function (config) {
+
+    console.log()
     if (getToken()) {
       config.headers.common['Authorization'] = 'Bearer ' + getToken();
     }
@@ -38,23 +40,23 @@ http.interceptors.response.use(
     return response;
   },
   error => {
-    // if (!!error.response && !!error.response.data.error && !!error.response.data.error.message && error.response.data.error.details) {
-    //   Modal.error({
-    //     title: error.response.data.error.message,
-    //     content: error.response.data.error.details,
-    //   });
-    // } else if (!!error.response && !!error.response.data.error && !!error.response.data.error.message) {
-    //   Modal.error({
-    //     title: L('LoginFailed'),
-    //     content: error.response.data.error.message,
-    //   });
-    // } else if (!error.response) {
-    //   Modal.error({ content: L('UnknownError') });
-    // }
+    if (!!error.response && !!error.response.data.error && !!error.response.data.error.message && error.response.data.error.details) {
+      // Modal.error({
+      //   title: error.response.data.error.message,
+      //   content: error.response.data.error.details,
+      // });
+    } else if (!!error.response && !!error.response.data.error && !!error.response.data.error.message) {
+      // Modal.error({
+      //   title: L('LoginFailed'),
+      //   content: error.response.data.error.message,
+      // });
+    } else if (!error.response) {
+      // Modal.error({ content: L('UnknownError') });
+    }
 
-    // setTimeout(() => { }, 1000);
+    setTimeout(() => { }, 1000);
 
-    // return Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 

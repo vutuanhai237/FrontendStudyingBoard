@@ -135,7 +135,7 @@ class UserItem extends Component {
                                             <div style={{ position: "absolute", width: "140px" }}>
                                                 <div className="combox" id={"user-role-parent-dropdown-combobox-" + this.userID}
                                                     onClick={(e) => this.handleDropDownMenuClick(e, "user-role-parent-dropdown-combobox-" + this.userID, "user-role-parent-dropdown-combobox-text-" + this.userID, "user-role-dropdown-btn-element-" + this.userID, "user-role-dropdown-combobox-container-" + this.userID)}>
-                                                    <div className="display-flex">
+                                                    <div className="d-flex">
                                                         <div className="side-bar-menu-item-text" id={"user-role-parent-dropdown-combobox-text-" + this.userID}>
 
                                                             {this.roleList ?

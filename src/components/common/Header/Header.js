@@ -110,7 +110,7 @@ class Header extends BaseComponent {
                     <div className="qs-type-title">BÀI VIẾT</div>
                     {quickSearchResultData.post.map(result =>
                         <Link to={`/posts/${result.id}`} className="qs-result-item">
-                            <div className="display-flex mg-top-5px">
+                            <div className="d-flex mg-top-5px">
                                 <img alt="" src={result.imageUrl} className="qs-result-image mg-right-5px" />
                                 <div className="qsr-title">{result.name}</div>
                             </div>
@@ -126,7 +126,7 @@ class Header extends BaseComponent {
                     <div className="qs-type-title mg-top-5px">TÀI LIỆU</div>
                     {quickSearchResultData.doc.map(result =>
                         <Link to={`/documents/${result.id}`} className="qs-result-item">
-                            <div className="display-flex mg-top-5px">
+                            <div className="d-flex mg-top-5px">
                                 <img alt="" src={result.imageUrl} className="qs-result-image mg-right-5px" />
                                 <div className="qsr-title">{result.name}</div>
                             </div>
@@ -142,9 +142,9 @@ class Header extends BaseComponent {
 
                 <div className="sub-result-container" id="quick-search-tag-result-port">
                     <div className="qs-type-title mg-top-5px ">TAGS</div>
-                    <div className="display-flex mg-top-5px">
+                    <div className="d-flex mg-top-5px">
                         {quickSearchResultData.tag.map(result =>
-                            <Link to={`/tags/${result.id}/post?page=1`} className="display-flex">
+                            <Link to={`/tags/${result.id}/post?page=1`} className="d-flex">
                                 <Tag isReadOnly={true} tag={{ "id": result.id, "name": result.name }} />
                             </Link>
                         )
@@ -279,8 +279,8 @@ class Header extends BaseComponent {
 
                     {/* <div className="Collapsed_User_Menu_Port" id="collapsed-user-menu-port" >
                         <div className="Collapsed_User_Menu" id="collapsed-user-menu" >
-                            <div className="jc-space-between" >
-                                <div className="display-flex" > <img className="Collapsed_User_Menu_Image_Button" src={upload_icon} alt="" />
+                            <div className="j-c-space-between" >
+                                <div className="d-flex" > <img className="Collapsed_User_Menu_Image_Button" src={upload_icon} alt="" />
                                     <div>
                                         <button className="Collapsed_User_Menu_Button" > Đăng nhập </button>
                                     </div>

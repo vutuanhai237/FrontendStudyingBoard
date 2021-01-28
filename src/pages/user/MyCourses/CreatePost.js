@@ -276,7 +276,7 @@ class CreatePost extends Component {
                     <ClickAwayListener onClickAway={() => this.closeQuickSearchTag()}>
                         <div id="cr-post-qs-tag-result-container" className="form-input-dropdown-container hidden">
                             <div className="form-input-dropdown">
-                                <div className="display-flex">
+                                <div className="d-flex">
                                     {this.quickSearchTagResult.map(tag => {
                                         return <div className="tag-search-item">
                                             <div className="tag-search-item-name">  {tag.name}</div>
@@ -301,7 +301,7 @@ class CreatePost extends Component {
 
 
                 {/* Button */}
-                <div className="form-group display-flex">
+                <div className="form-group d-flex">
                     <button className="blue-button mg-auto" onClick={() => this.handleUpload()}>Đăng bài</button>
                 </div>
 
@@ -312,7 +312,7 @@ class CreatePost extends Component {
             <div>
                 <Titlebar title="TẠO BÀI VIẾT MỚI" />
 
-                <div className="left-side-bar-layout-content-container">
+                <div className="content-container">
 
                     <div className="form-container">
                         <div className="flex-container-end">

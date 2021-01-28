@@ -113,7 +113,7 @@ class UpdatePassword extends Component {
                                     </div>
 
                         </div>
-                        <div className="display-flex" >
+                        <div className="d-flex" >
                             <button className="blue-button Is_Form_Button" disabled={!this.canClickSavePassword} onClick={(e) => this.handlerUpdatePassword(e)}>
                                 Xác nhận
                                     </button>

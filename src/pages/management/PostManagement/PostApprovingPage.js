@@ -101,10 +101,10 @@ class PostApproving extends Component {
         return (
             <div>
                 <Titlebar title="QUẢN LÝ BÀI VIẾT" />
-                <div className="left-side-bar-layout-content-container">
+                <div className="content-container">
                     <div className="two-element-filter-container">
                         <div style={{ display: "flex" }}>
-                            <div className="filter-label text-align-right mg-right-5px">Bộ lọc:</div>
+                            <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
                             <div style={{ marginLeft: "5px" }}>
                                 <ComboBox
                                     selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
@@ -116,7 +116,7 @@ class PostApproving extends Component {
                             </div>
                         </div>
 
-                        <div className="filter-label display-flex">
+                        <div className="filter-label d-flex">
                             <div className="mg-right-5px">Tổng số:</div>
 
                             {!this.props.isListLoading ?
