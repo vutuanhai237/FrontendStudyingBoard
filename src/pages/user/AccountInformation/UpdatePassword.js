@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import 'layouts/AdminLayout'
+import 'layouts/AdminSidebar'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { isContainSpecialCharacter } from 'utils/stringUtils'

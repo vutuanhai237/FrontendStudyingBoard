@@ -9,9 +9,9 @@ import {
     APPROVE_A_DOCUMENT,
 
     //new documents
-    GET_NEW_DOCUMENTS_LIST_REQUEST,
-    GET_NEW_DOCUMENTS_LIST_SUCCESS,
-    GET_NEW_DOCUMENTS_LIST_FAILURE,
+    GET_TRENDING_DOCUMENTS_LIST_REQUEST,
+    GET_TRENDING_DOCUMENTS_LIST_SUCCESS,
+    GET_TRENDING_DOCUMENTS_LIST_FAILURE,
 
     //my documents
     GET_MY_DOCUMENTS_REQUEST,
@@ -47,26 +47,6 @@ import {
 //     }
 // }
 
-//new document
-export function get_NewDocumentsListRequest() {
-    return {
-        type: GET_NEW_DOCUMENTS_LIST_REQUEST,
-    }
-}
-
-export function get_NewDocumentsListSuccess(data) {
-    return {
-        type: GET_NEW_DOCUMENTS_LIST_SUCCESS,
-        payload: data
-    }
-}
-
-export function get_NewDocumentsListFailure(error) {
-    return {
-        type: GET_NEW_DOCUMENTS_LIST_FAILURE,
-        payload: error
-    }
-}
 
 //my documents
 export function get_MyDocumentsRequest() {

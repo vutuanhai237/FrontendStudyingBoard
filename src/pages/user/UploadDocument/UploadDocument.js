@@ -28,6 +28,7 @@ import { validation, styleFormSubmit } from 'utils/validationUtils'
 import { today } from 'utils/timeUtils'
 import Metadata from 'components/common/Metadata/Metadata'
 import { SimpleCKEToolbarConfiguration } from 'components/common/CustomCKE/CKEditorConfiguration'
+import FormFileUploader from 'components/common/FormFileUploader/FormFileUploader'
 
 const validationCondition = {
     form: '#create-document-form',
@@ -40,7 +41,9 @@ const validationCondition = {
         validation.isRequired('cr-doc-category-combobox', 'form-combobox', 'Danh mục không được để trống'),
         validation.isRequired('cr-doc-subject-combobox', 'form-combobox', 'Môn học không được để trống'),
         validation.isRequired('cr-doc-description', 'form-ckeditor', 'Mô tả tài liệu không được để trống'),
-        validation.isRequired('cr-doc-file-input', 'form-input', 'Tài liệu không được để trống!')
+        // validation.isRequired('cr-doc-file-input', 'form-file-input', 'Tài liệu không được để trống!')
+        validation.isRequired('cr-doc-file-link', 'form-input', 'Tài liệu không được để trống!')
+
     ],
 }
 
@@ -55,22 +58,24 @@ class UploadDocument extends Component {
         ];
 
         this.state = {
-            currentCategory: "Danh muc 3",
+            currentCategory: "Chọn danh mục",
+            currentSubject: "Chọn môn học",
             publishDtm: today.getDateDMY(),
 
             isUploading: false,
             isPreview: false,
             isSearchingTag: false,
 
-            CREATE_POST_DTO: {
+            UPLOAD_DOC_DTO: {
                 tags: [],
                 title: "Model View Presenter (MVP) in Android with a simple demo project.",//
                 content: ``,//
                 summary: `null`,
                 // authorID: "",// khong co nhe
                 categoryID: "",//
+                subjectID: "",
                 imageURL: "null",
-                readingTime: 10
+
             },
 
             author: {
@@ -122,15 +127,22 @@ class UploadDocument extends Component {
 
     onCategoryOptionChanged = (selectedOption) => {
         this.setState({
-            CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, categoryID: selectedOption.id },
+            UPLOAD_DOC_DTO: { ...this.state.UPLOAD_DOC_DTO, categoryID: selectedOption.id },
             currentCategory: selectedOption.name
+        })
+    }
+
+    onSubjectOptionChanged = (selectedOption) => {
+        this.setState({
+            UPLOAD_DOC_DTO: { ...this.state.UPLOAD_DOC_DTO, subjectID: selectedOption.id },
+            currentSubject: selectedOption.name
         })
     }
 
     handleUploadBtnClick = () => {
         if (styleFormSubmit(validationCondition)) {
-            console.log(this.state.CREATE_POST_DTO)
-            this.props.postCreatePost(this.state.CREATE_POST_DTO);
+            console.log(this.state.UPLOAD_DOC_DTO)
+            this.props.postCreatePost(this.state.UPLOAD_DOC_DTO);
         }
 
     }
@@ -160,7 +172,7 @@ class UploadDocument extends Component {
 
     keyHandler = (e) => {
         if (!e.target.value) return;
-        let tags = this.state.CREATE_POST_DTO.tags;
+        let tags = this.state.UPLOAD_DOC_DTO.tags;
         let hasOldTag = -1; // khong cos => -1 neu co => id cua tag 
         if (e.charCode === 13) { //press Enter    
 
@@ -202,8 +214,8 @@ class UploadDocument extends Component {
                 }
 
                 this.setState({
-                    CREATE_POST_DTO: {
-                        ...this.state.CREATE_POST_DTO,
+                    UPLOAD_DOC_DTO: {
+                        ...this.state.UPLOAD_DOC_DTO,
                         tags: tags
                     }
                 });
@@ -241,7 +253,7 @@ class UploadDocument extends Component {
             return;
         }
 
-        let tmpTagDTO = this.state.CREATE_POST_DTO.tags;
+        let tmpTagDTO = this.state.UPLOAD_DOC_DTO.tags;
         tmpTagDTO.push({ id: tag.id });
 
         //cap nhat lai shownTag theo tmpDTO
@@ -257,8 +269,8 @@ class UploadDocument extends Component {
         document.getElementById("cr-doc-qs-tag-result-container").classList.remove('show');
 
         this.setState({
-            CREATE_POST_DTO: {
-                ...this.state.CREATE_POST_DTO,
+            UPLOAD_DOC_DTO: {
+                ...this.state.UPLOAD_DOC_DTO,
                 tags: tmpTagDTO
             }
         });
@@ -302,8 +314,8 @@ class UploadDocument extends Component {
 
         //cap nhat lai DTO theo tmpDTO
         this.setState({
-            CREATE_POST_DTO: {
-                ...this.state.CREATE_POST_DTO,
+            UPLOAD_DOC_DTO: {
+                ...this.state.UPLOAD_DOC_DTO,
                 tags: tempTagDTO,
             }
         });
@@ -313,26 +325,35 @@ class UploadDocument extends Component {
     handleClickTag = (item) => {
     }
 
+    handleFileLinkChange = (e) => {
+
+    }
+
     //#endregion
     handleEditorChange = (value) => {
         let dom = document.createElement("DIV");
-        dom.innerHTML = this.state.CREATE_POST_DTO.content;
+        dom.innerHTML = this.state.UPLOAD_DOC_DTO.content;
         let plain_text = (dom.textContent || dom.innerText);
 
         if (value.length < 160) {
-            this.setState({ CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, content: value, summary: plain_text } })
+            this.setState({ UPLOAD_DOC_DTO: { ...this.state.UPLOAD_DOC_DTO, content: value, summary: plain_text } })
             return;
         }
         else {
-            this.setState({ CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, summary: plain_text.substring(0, 160) } });
+            this.setState({ UPLOAD_DOC_DTO: { ...this.state.UPLOAD_DOC_DTO, summary: plain_text.substring(0, 160) } });
             return;
         }
     };
 
     handleTitleChange = (e) => {
         this.setState({
-            CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, title: e.target.value }
+            UPLOAD_DOC_DTO: { ...this.state.UPLOAD_DOC_DTO, title: e.target.value }
         })
+    }
+
+    onFileChange = (file) => {
+        //gan cho state
+        this.setState({ UPLOAD_DOC_DTO: { ...this.state.UPLOAD_DOC_DTO, file } })
     }
 
     render() {
@@ -368,7 +389,7 @@ class UploadDocument extends Component {
 
                 //truong hop khong co tag nao thoa man va chua du 5 tag
 
-                if (this.state.CREATE_POST_DTO.tags.length < 5) {
+                if (this.state.UPLOAD_DOC_DTO.tags.length < 5) {
                     document.getElementById("cr-doc-tag-input").classList.remove('invalid');
                     if (this.props.tagQuickQueryResult.length === 0)
                         document.getElementById("cr-doc-tag-container-tip-label").innerText = "Không có kết quả tìm kiếm phù hợp! Bấm Enter để thêm tag mới."
@@ -382,7 +403,7 @@ class UploadDocument extends Component {
                 tagSearchResult =
                     this.props.tagQuickQueryResult.map(tag => {
                         return <div className="tag-search-item"
-                            onClick={() => { this.state.CREATE_POST_DTO.tags.length < 5 && this.onTagSearchResultClick(tag) }}>
+                            onClick={() => { this.state.UPLOAD_DOC_DTO.tags.length < 5 && this.onTagSearchResultClick(tag) }}>
                             <div className="tag-search-item-content">  {tag.content}</div>
                         </div>
                     })
@@ -396,14 +417,14 @@ class UploadDocument extends Component {
             <div>
                 {/* Preview region */}
                 <div className="cr-doc-form-container doc-post-detail preview" >
-                    <Metadata title={this.state.CREATE_POST_DTO.title}
+                    <Metadata title={this.state.UPLOAD_DOC_DTO.title}
                         category={this.state.currentCategory}
-                        readingTime={this.state.CREATE_POST_DTO.readingTime}
+                        readingTime={this.state.UPLOAD_DOC_DTO.readingTime}
                         authorName={this.state.author.displayName}
                         avartarURL={this.state.author.avatarURL}
                         publishDtm={this.state.publishDtm}
                     />
-                    <div className="ck-editor-output" dangerouslySetInnerHTML={{ __html: this.state.CREATE_POST_DTO.content }} />
+                    <div className="ck-editor-output" dangerouslySetInnerHTML={{ __html: this.state.UPLOAD_DOC_DTO.content }} />
 
                     <div className="mg-top-10px pd-10px" >
                         {this.shownTag.map(item =>
@@ -502,7 +523,7 @@ class UploadDocument extends Component {
                             <label className="form-label">Tags:</label>
 
                             <input onChange={(e) => this.quickSearchTags(e)} id="cr-doc-tag-input"
-                                onKeyPress={(this.state.CREATE_POST_DTO.tags.length < 5) && this.keyHandler}
+                                onKeyPress={(this.state.UPLOAD_DOC_DTO.tags.length < 5) && this.keyHandler}
                                 className="form-input"
                                 placeholder="Nhập tag ..." />
 
@@ -535,8 +556,17 @@ class UploadDocument extends Component {
 
                         {/* Upload */}
                         <div className="form-group" >
-                            <label className="form-label-required">Tài liệu</label>
-                            <input type="file" className="form-file-input" id="cr-doc-file-input" />
+                            <label className="form-label-required">Tài liệu:</label>
+                            <input className="form-input" id="cr-doc-file-link"
+                                placeholder="Nhập tiêu đề tài liệu ..." onChange={e => this.handleFileLinkChange(e)}
+                                type="text" >
+                            </input>
+                            {/* Su dung file input theo dung nhu cau truc duoi day thi moi co the tu validation
+                            <FormFileUploader id='cr-doc-file-input'
+                                onFileChange={(file) => this.onFileChange(file)}
+                                maxSize={26214400} //byte
+                                fileType={".pdf"} //n
+                            /> */}
                             <div className="form-error-label-container">
                                 <span className="form-error-label" ></span>
                             </div>
@@ -544,7 +574,7 @@ class UploadDocument extends Component {
 
                         {/* Button */}
                         <div className="form-group d-flex">
-                            <button className="blue-button mg-auto form-submit-btn" onClick={() => this.handleUploadBtnClick()}>Upload</button>
+                            <button className="blue-button mg-auto form-submit-btn mg-top-10px" onClick={() => this.handleUploadBtnClick()}>Upload</button>
                         </div>
                     </div >
                 </div >

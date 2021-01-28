@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import 'layouts/AdminLayout'
+import 'layouts/AdminSidebar'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import dropdown_btn from 'assets/images/dropdown_icon.png'
 import './CategoryManagement.scss'

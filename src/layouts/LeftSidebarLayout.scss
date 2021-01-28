@@ -1,12 +1,15 @@
 /* Body Layout*/
 
-.left-sidebar-layout-router-outlet {
-    padding-left: 10px;
+.left-sidebar-layout .router-outlet {
+    // padding-left: 10px;
     width: 100%;
     background: var(--white);
 }
 
-.left-side-bar-layout {
+
+.left-sidebar-wrapper {}
+
+.left-sidebar-layout {
     background: var(--white);
     margin: auto;
     margin-top: 20px;
@@ -22,7 +25,7 @@
     padding: 10px;
 }
 
-.left-side-bar-layout .content-container {
+.left-sidebar-layout .content-container {
     width: 100%;
     height: fit-content;
     border: var(--gray) solid 1px;
@@ -63,12 +66,12 @@
 
 /*This port contain Management info and vertical menu below Management info*/
 
-.Left_Sidebar {
+.left-sidebar {
     position: relative;
     width: 250px;
 }
 
-.Fake_Left_Sidebar {
+.fake-left-sidebar {
     display: hidden;
     position: relative;
     width: 250px;
@@ -78,7 +81,7 @@
 
 /* User Info Layout: contain: avatar, display name, gmail and logout button */
 
-.Info_Layout {
+.user-info-layout {
     display: flex;
     width: 100%;
     border-left: 1px;
@@ -95,13 +98,13 @@
 
 /*This port contain display and email*/
 
-.Info_Layout .User_Name_Gmail_Layout {
+.user-info-layout .User_Name_Gmail_Layout {
     margin-left: 10px;
     position: relative;
     width: fit-content;
 }
 
-.Info_Layout .Display_Name {
+.user-info-layout .Display_Name {
     position: relative;
     font-style: normal;
     font-size: 20px;
@@ -111,7 +114,7 @@
     color: var(--blue);
 }
 
-.Info_Layout .Gmail {
+.user-info-layout .Gmail {
     width: 100px;
     position: relative;
     font-family: "Rosario-Bold";
@@ -125,7 +128,7 @@
     display: inline-block;
 }
 
-.Own_Role_Layout {
+.user-role {
     border-top: 0.35rem var(--blue) solid;
     width: 100%;
     border-bottom: 1px solid var(--gray);
@@ -138,7 +141,7 @@
     border-right: 1px solid var(--gray);
 }
 
-.Achivement_Layout {
+.achivement-layout {
     padding-top: 5px;
     justify-content: space-between;
     font-family: "BarlowCondensed-Medium";
@@ -153,14 +156,9 @@
     padding-bottom: 5px;
 }
 
-.Small_User_Item_Element {
+.Small_user-item-element {
     width: 20px;
     height: 20px;
-}
-
-.Achivement_Post_Doc_Count_Layout {
-    display: flex;
-    justify-content: space-between;
 }
 
 /*Management Vertical Menu Layout: contain these menu options: Tên hiển thị, đối mật khấu, Bài đăng */
@@ -239,7 +237,7 @@
     font-size: 1.1rem;
 }
 
-.Vertical_Menu_Item {
+.vertical-menu-item {
     box-sizing: border-box;
     display: flex;
     font-family: "BarlowCondensed-Medium";
@@ -310,7 +308,7 @@
     margin-top: 11px;
 }
 
-.Sub_Dropdown_Menu_Item {
+.vertical-sub-menu-item {
     box-sizing: border-box;
     font-family: "BarlowCondensed-Medium";
     font-size: 1.02rem;
@@ -327,16 +325,16 @@
 }
 
 .Parent_Dropdown_Menu_Item:hover,
-.Vertical_Menu_Item:hover,
-.Sub_Dropdown_Menu_Item:hover {
+.vertical-menu-item:hover,
+.vertical-sub-menu-item:hover {
     background: var(--grayish);
     cursor: pointer;
     border-right: 4px var(--gray) solid;
 }
 
 .Parent_Dropdown_Menu_Item:active,
-.Vertical_Menu_Item:active,
-.Sub_Dropdown_Menu_Item:active {
+.vertical-menu-item:active,
+.vertical-sub-menu-item:active {
     background: #dedede;
     border: none;
     border-right: 4px var(--blue) solid;
@@ -344,18 +342,19 @@
     outline: none;
 }
 
-.side-bar-primary-menu-item-icon {
+.vertical-menu-item-icon {
     margin-left: 0.35rem;
     margin-top: 0.35rem;
     width: 1.2rem;
     height: 1.2rem;
 }
 
-.Sub_Dropdown_Menu_Item_Text {
+.vertical-sub-menu-item .text {
     font-size: 1.02rem;
 }
 
-.Main_Interactive_Menu_Item_Active {
+.main-interactive-menu-item-active {
+    @extend .vertical-menu-item;
     background: #e5eeee;
     cursor: pointer;
     outline: 0px;
@@ -369,17 +368,31 @@
 }
 
 //for scrolling page
-.Left_Sidebar_After_Header {
+.left-sidebar_After_Header {
     position: fixed !important;
     margin-top: 10px;
     top: 0px;
 }
 
-.Left_Sidebar_Before_Header {
+.left-sidebar_Before_Header {
     position: relative;
 }
 
-.Left_Sidebar_Reach_Footer {
+.left-sidebar_Reach_Footer {
     position: absolute;
     bottom: 20px;
+}
+
+.management-layout {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+    box-shadow: 0px 0px 5px var(--gray);
+}
+
+.management-layout .content-container {
+    padding-left: 10px;
+    width: 100%;
+    border-radius: 1px solid var(--gray);
 }

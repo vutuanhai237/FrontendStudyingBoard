@@ -64,36 +64,36 @@ class AdminLayout extends Component {
         {/* Xu ly su kien cuon tro chuot */}
 
         {/* Body Area */}
-        <div className="left-side-bar-layout">
+        <div className="left-sidebar-layout">
           {/* Left Sidebar */}
           <Router>
             <div>
               <div>
                 {/* Dung de gioi han lai khong gian cua cac component con khi scroll */}
-                <div className="Fake_Left_Sidebar" />
+                <div className="fake-left-sidebar" />
 
                 {/* Left Sidebar */}
-                <div className="Left_Sidebar" id="left-sidebar">
+                <div className="left-sidebar" id="left-sidebar">
 
                   {/* Hien thi avatar, thanh tich va ten role */}
                   <div>
                     {/* Management Infor Layout */}
-                    < div className="Info_Layout" >
+                    < div className="user-info-layout" >
                       <div className="Avatar_Layout">
                         {/* This is the way to set avatar from a online server via Google Drive */}
                         {/* <img alt="avatar" className="Show_Avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" + this.username + ".png'} /> */}
                         <img alt="avatar" className="Show_Avatar" src={avatarURL} />
                       </div>
-                      <div className="Achivement_Layout">
-                        <div className="Achivement_Score">Scrore: {this.score}</div>
+                      <div className="achivement-layout">
+                        <div className="score">Scrore: {this.score}</div>
                         <div className="Achivement_Post_Doc_Count_Layout">
                           <div className="d-flex w-50-percents">
-                            <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
+                            <img alt="post count" src={gray_write_icon} className="user-item-element" ></img>
                             <div className="mg-left-5px">{post_count}</div>
                           </div>
 
                           <div className="d-flex w-50-percents">
-                            <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
+                            <img alt="upload count" src={gray_upload_icon} className="user-item-element"></img>
                             <div className="mg-left-5px"> {doc_count}</div>
                           </div>
                         </div>
@@ -101,8 +101,8 @@ class AdminLayout extends Component {
                     </div >
 
                     {/* Role and achivement port */}
-                    <div className="Role_Achivement_Layout">
-                      <div className="Own_Role_Layout">
+                    <div className="Role_achivement-layout">
+                      <div className="user-role">
                         {getRoleNameByName(roleName)}
                       </div>
                     </div >
@@ -121,7 +121,7 @@ class AdminLayout extends Component {
                         onClick={(e) => this.handleDisplayBlockDefaultDropDownMenuClick(e, "account-managent-parent-menu-item", "account-managent-parent-menu-item-text", "account-admin-dropdown-btn-element", "account-admin-menu-item-container")
                         }>
                         <div className="d-flex">
-                          <img alt="*" className="side-bar-primary-menu-item-icon"
+                          <img alt="*" className="vertical-menu-item-icon"
                             src={account_management_icon} />
                           <div className="side-bar-menu-item-text"
                             id="account-managent-parent-menu-item-text">
@@ -137,10 +137,10 @@ class AdminLayout extends Component {
                         id="account-admin-menu-item-container">
                         <div className="mg-bottom-5px"></div>
                         {window.location.pathname === "/user" ?
-                          < Link className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                          < Link className="vertical-sub-menu-item main-interactive-menu-item-active"
                             to="/user" > Thông tin tài khoản
                           </Link> :
-                          < Link className="Sub_Dropdown_Menu_Item"
+                          < Link className="vertical-sub-menu-item"
                             to="/user"
                             onClick={() => this.setState({})}
                           > Thông tin tài khoản
@@ -150,12 +150,12 @@ class AdminLayout extends Component {
                         {window.location.pathname === "/user/update-password"
                           ?
                           <Link
-                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                            className="vertical-sub-menu-item main-interactive-menu-item-active"
                             to="/user/update-password">
                             Cập nhật mật khẩu
                             </Link>
                           :
-                          <Link className="Sub_Dropdown_Menu_Item"
+                          <Link className="vertical-sub-menu-item"
                             to="/user/update-password"
                             onClick={() => this.setState({})}>
                             Cập nhật mật khẩu
@@ -165,12 +165,12 @@ class AdminLayout extends Component {
                         {window.location.pathname === "/user/notification"
                           ?
                           <Link
-                            className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                            className="vertical-sub-menu-item main-interactive-menu-item-active"
                             to="/user/notification">
                             Thông báo
                                                         </Link>
                           :
-                          <Link className="Sub_Dropdown_Menu_Item"
+                          <Link className="vertical-sub-menu-item"
                             to={"/user/notification"}
                             onClick={() => this.setState({})}>
                             Thông báo
@@ -191,7 +191,7 @@ class AdminLayout extends Component {
                             "user-post-management-menu-item-container")
                           }>
                           <div className="d-flex">
-                            <img alt="*" className="side-bar-primary-menu-item-icon"
+                            <img alt="*" className="vertical-menu-item-icon"
                               src={gray_nb_write_icon} />
                             <div className="side-bar-menu-item-text"
                               id="user-post-managent-parent-menu-item-text">
@@ -210,12 +210,12 @@ class AdminLayout extends Component {
                           {window.location.pathname === "/user/my-posts"
                             ?
                             <Link
-                              className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                              className="vertical-sub-menu-item main-interactive-menu-item-active"
                               to={"/user/my-posts?page=1&category=1"}>
                               Bài viết của tôi
                                                         </Link>
                             :
-                            <Link className="Sub_Dropdown_Menu_Item"
+                            <Link className="vertical-sub-menu-item"
                               to={"/user/my-posts?page=1&category=1"}
                               onClick={() => this.setState({})}>
                               Bài viết của tôi
@@ -224,12 +224,12 @@ class AdminLayout extends Component {
                           {window.location.pathname === "/user/saved_posts"
                             ?
                             <Link
-                              className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                              className="vertical-sub-menu-item main-interactive-menu-item-active"
                               to="/user/saved_posts?page=1">
                               Bài viết đã lưu
                                                         </Link>
                             :
-                            <Link className="Sub_Dropdown_Menu_Item"
+                            <Link className="vertical-sub-menu-item"
                               to={"/user/saved_posts?page=1"}
                               onClick={() => this.setState({})}>
                               Bài viết đã lưu
@@ -239,12 +239,12 @@ class AdminLayout extends Component {
                           {window.location.pathname === "/create-post"
                             ?
                             <Link
-                              className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                              className="vertical-sub-menu-item main-interactive-menu-item-active"
                               to={"/create-post"}>
                               Tạo bài viết mới
                                                         </Link>
                             :
-                            <Link className="Sub_Dropdown_Menu_Item"
+                            <Link className="vertical-sub-menu-item"
                               to={"/create-post"}
                               onClick={() => this.setState({})}>
                               Tạo bài viết mới
@@ -265,7 +265,7 @@ class AdminLayout extends Component {
                             "user-doc-management-menu-item-container")
                           }>
                           <div className="d-flex">
-                            <img alt="*" className="side-bar-primary-menu-item-icon"
+                            <img alt="*" className="vertical-menu-item-icon"
                               src={gray_nb_write_icon} />
                             <div className="side-bar-menu-item-text"
                               id="user-doc-managent-parent-menu-item-text">
@@ -283,12 +283,12 @@ class AdminLayout extends Component {
                           {window.location.pathname === "/user/my-docs"
                             ?
                             <Link
-                              className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                              className="vertical-sub-menu-item main-interactive-menu-item-active"
                               to={"/user/my-docs?page=1&category=1"}>
                               Tài liệu của tôi
                                                         </Link>
                             :
-                            <Link className="Sub_Dropdown_Menu_Item"
+                            <Link className="vertical-sub-menu-item"
                               to={"/user/my-docs?page=1&category=1"}
                               onClick={() => this.setState({})}>
                               Tài liệu của tôi
@@ -299,12 +299,12 @@ class AdminLayout extends Component {
                           {window.location.pathname === "/upload-doc"
                             ?
                             <Link
-                              className="Sub_Dropdown_Menu_Item Main_Interactive_Menu_Item_Active"
+                              className="vertical-sub-menu-item main-interactive-menu-item-active"
                               to={"/upload-doc"}>
                               Upload tài liệu
                                                         </Link>
                             :
-                            <Link className="Sub_Dropdown_Menu_Item"
+                            <Link className="vertical-sub-menu-item"
                               to={"/upload-doc"}
                               onClick={() => this.setState({})}>
                               Upload tài liệu
@@ -322,16 +322,18 @@ class AdminLayout extends Component {
             </div>
 
             {/* Router Outlet */}
-            <div className="left-sidebar-layout-router-outlet" >
-              <Switch>
-                <Route exact path="/user" component={AccountInformation} />
-                <Route exact path="/user/update-password" component={AccountInformation} />
-                <Route exact path="/user/my-docs" component={MyDocumentsList} />
-                <Route exact path="/user/my-posts" component={MyPostsList} />
-                <Route exact path="/create-post" component={CreatePost} />
-                <Route exact path="/upload-doc" component={UploadDoc} />
-              </Switch>
-            </div>
+            {/* <div className="left-sidebar-layout">
+              <div className="router-outlet" > */}
+                <Switch>
+                  <Route exact path="/user" component={AccountInformation} />
+                  <Route exact path="/user/update-password" component={AccountInformation} />
+                  <Route exact path="/user/my-docs" component={MyDocumentsList} />
+                  <Route exact path="/user/my-posts" component={MyPostsList} />
+                  <Route exact path="/create-post" component={CreatePost} />
+                  <Route exact path="/upload-doc" component={UploadDoc} />
+                </Switch>
+              {/* </div>
+            </div> */}
           </Router>
         </div >
       </div >
@@ -389,17 +391,17 @@ class AdminLayout extends Component {
     }
 
     if (getRectBottom(header) <= 0 - 21) {
-      left_sidebar.classList.add("Left_Sidebar_After_Header");
-      left_sidebar.classList.remove("Left_Sidebar_Reach_Footer");
+      left_sidebar.classList.add("left-sidebar_After_Header");
+      left_sidebar.classList.remove("left-sidebar_Reach_Footer");
     }
     if (getRectBottom(header) > 0 - 21) {
-      left_sidebar.classList.replace("Left_Sidebar_After_Header", "Left_Sidebar_Before_Header");
-      left_sidebar.classList.remove("Left_Sidebar_Reach_Footer");
+      left_sidebar.classList.replace("left-sidebar_After_Header", "left-sidebar_Before_Header");
+      left_sidebar.classList.remove("left-sidebar_Reach_Footer");
     }
 
     //Handler for Footer
     if ((getRectBottom(left_sidebar)) >= getRectTop(footer) - 45) {
-      left_sidebar.classList.replace("Left_Sidebar_After_Header", "Left_Sidebar_Reach_Footer");
+      left_sidebar.classList.replace("left-sidebar_After_Header", "left-sidebar_Reach_Footer");
     }
   }
   //#endregion

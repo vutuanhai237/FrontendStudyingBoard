@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import AdminLayout from 'layouts/AdminLayout'
+import AdminLayout from 'layouts/AdminSidebar'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'
@@ -184,15 +184,15 @@ class AccountInformation extends Component {
 
                                     <div className="mg-top-5px" />
 
-                                    <div className="Account_Information_Achivement_Layout">
-                                        <div className="Account_Information_Achivement_Score">Scrore: {this.score}</div>
+                                    <div className="Account_Information_achivement-layout">
+                                        <div className="Account_Information_score">Scrore: {this.score}</div>
                                         <div className="Account_Information_Achivement_Post_Doc_Count_Layout">
                                             <div className="d-flex w-50-percents">
-                                                <img alt="post count" src={gray_write_icon} className="User_Item_Element" ></img>
+                                                <img alt="post count" src={gray_write_icon} className="user-item-element" ></img>
                                                 <div className="mg-left-5px">{this.postCount}</div>
                                             </div>
                                             <div className="d-flex w-50-percents">
-                                                <img alt="upload count" src={gray_upload_icon} className="User_Item_Element"></img>
+                                                <img alt="upload count" src={gray_upload_icon} className="user-item-element"></img>
                                                 <div className="mg-left-5px"> {this.documentCount}</div>
                                             </div>
                                         </div>

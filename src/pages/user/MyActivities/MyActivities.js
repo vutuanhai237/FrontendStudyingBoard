@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 import React, { Component } from 'react'
-import AdminLayout from 'layouts/AdminLayout'
+import AdminLayout from 'layouts/AdminSidebar'
 import Titlebar from 'components/common/Titlebar/Titlebar'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_upload_icon from 'assets/images/gray_upload_icon.png'

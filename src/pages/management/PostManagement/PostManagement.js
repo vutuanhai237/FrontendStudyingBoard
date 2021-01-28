@@ -9,7 +9,7 @@ import Paginator from 'components/common/Paginator/ServerPaginator';
 //import for redux
 import { getMyPostsList } from "redux/services/postServices";
 import { getPostCategories } from "redux/services/postCategoryServices";
-
+import AdminSidebar from "layouts/AdminSidebar"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -18,7 +18,7 @@ import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 
 
 import Loader from 'components/common/Loader/Loader'
 
-class PostApproving extends Component {
+class PostManagement extends Component {
     constructor(props) {
         super();
 
@@ -99,46 +99,49 @@ class PostApproving extends Component {
             this.filter = this.props.postCategories;
         }
         return (
-            <div>
-                <Titlebar title="QUẢN LÝ BÀI VIẾT" />
+            <div className="management-layout">
+                <AdminSidebar />
                 <div className="content-container">
-                    <div className="two-element-filter-container">
-                        <div style={{ display: "flex" }}>
-                            <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
-                            <div style={{ marginLeft: "5px" }}>
-                                <ComboBox
-                                    selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
-                                    options={this.filter}
-                                    placeHolder="Chọn danh mục"
-                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
-                                    id="my-post-list-search-filter-combobox"
-                                ></ComboBox>
+                    <Titlebar title="QUẢN LÝ BÀI VIẾT" />
+                    <div className="content-container">
+                        <div className="two-element-filter-container">
+                            <div style={{ display: "flex" }}>
+                                <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
+                                <div style={{ marginLeft: "5px" }}>
+                                    <ComboBox
+                                        selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                                        options={this.filter}
+                                        placeHolder="Chọn danh mục"
+                                        onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                        id="my-post-list-search-filter-combobox"
+                                    ></ComboBox>
+                                </div>
+                            </div>
+
+                            <div className="filter-label d-flex">
+                                <div className="mg-right-5px">Tổng số:</div>
+
+                                {!this.props.isListLoading ?
+                                    <div> {this.props.postsList.length}</div>
+                                    : <div>0</div>
+                                }
                             </div>
                         </div>
 
-                        <div className="filter-label d-flex">
-                            <div className="mg-right-5px">Tổng số:</div>
+                        {this.props.isListLoading ?
+                            < Loader /> :
+                            <>{this.postsList}</>
+                        }
 
-                            {!this.props.isListLoading ?
-                                <div> {this.props.postsList.length}</div>
-                                : <div>0</div>
-                            }
-                        </div>
+                        <Paginator config={{
+                            changePage: (pageNumber) => this.onPageChange(pageNumber),
+                            pageCount: 1200,
+                            currentPage: getSearchParamByName('page')
+                        }}
+                        />
                     </div>
-
-                    {this.props.isListLoading ?
-                        < Loader /> :
-                        <>{this.postsList}</>
-                    }
-
-                    <Paginator config={{
-                        changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        pageCount: 1200,
-                        currentPage: getSearchParamByName('page')
-                    }}
-                    />
-                </div>
-            </div >
+                </div >
+            </div>
         );
     }
 }
@@ -156,4 +159,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyPostsList, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostApproving));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostManagement));

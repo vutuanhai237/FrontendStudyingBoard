@@ -7,10 +7,7 @@ import {
     // APPROVE_A_DOCUMENT,
 
     //highlight posts 
-    GET_HIGHLIGHT_POSTS_LIST_REQUEST,
-    GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
-    GET_HIGHLIGHT_POSTS_LIST_FAILURE,
-
+   
     //my post
     GET_MY_POSTS_REQUEST,
     GET_MY_POSTS_SUCCESS,
@@ -53,26 +50,6 @@ export function post_CreatePostFailure(notification) {
     }
 }
 
-//highlight posts 
-export function get_HighlightPostsListRequest() {
-    return {
-        type: GET_HIGHLIGHT_POSTS_LIST_REQUEST,
-    }
-}
-
-export function get_HighlightPostsListSuccess(data) {
-    return {
-        type: GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
-        payload: data
-    }
-}
-
-export function get_HighlightPostsListFailure(error) {
-    return {
-        type: GET_HIGHLIGHT_POSTS_LIST_FAILURE,
-        payload: error
-    }
-}
 
 //my posts
 export function get_MyPostsRequest() {

@@ -24,7 +24,6 @@ export function validation(conditions) {
         // Nếu có lỗi thì dừng việc kiểm
         for (var i = 0; i < rules.length; ++i) {
 
-            //
             if (element.classList.contains('form-input')) {
                 errorMessage = rules[i](element.value);
                 if (errorMessage) break;
@@ -84,7 +83,8 @@ export function validation(conditions) {
             Array.from(elements).forEach(function (element) {
                 if (element.classList.contains('form-input')
                     || element.classList.contains('form-check-box')
-                    || element.classList.contains('form-radio')) {
+                    || element.classList.contains('form-radio')
+                    || element.classList.contains('form-file-input')) {
 
                     //xu ly cac HTMLInputElement
                     // Xử lý trường hợp blur khỏi input
@@ -154,19 +154,17 @@ validation.isRequired = function (selector, type, message) {
             }
         }
     }
-    // if (type === 'form-file-input') {
-    //     return {
-    //         selector: '#' + selector,
-    //         type: type,
-    //         test: function (value) {
-    //             console.log(value);
-    //             //  kiem tra xem co class dummy invalid hay khong o ben tren
-    //             return value ? undefined : message || 'Vui lòng nhập trường này'
-    //         }
-    //     }
-    // }
-
-
+    if (type === 'form-file-input') {
+        return {
+            selector: '#' + selector,
+            type: type,
+            test: function (value) {
+                console.log(value);
+                //  kiem tra xem co class dummy invalid hay khong o ben tren
+                return value ? undefined : message || 'Vui lòng nhập trường này'
+            }
+        }
+    }
 }
 
 //chua check
@@ -214,6 +212,7 @@ validation.isNotAllowSpecialCharacter = function (selector, type, message) {
 }
 //#endregion
 
+//check kieu khac khong the mo rong nhu ben tren
 export function styleFormSubmit(conditions) {
     //chon tat ca cac combobox co validation
     let selectorRules = {};
@@ -238,9 +237,7 @@ export function styleFormSubmit(conditions) {
                 }
                 else
                     if (element.classList.contains('form-ckeditor')) {
-                        console.log(element.id.substring(12));
                         errorMessage = rules[i](window.CKEDITOR.instances["ck-editor-" + element.id.substring(12)].getData());
-
                         if (errorMessage) {
                             element.classList.add('invalid');
                             break;
@@ -250,6 +247,11 @@ export function styleFormSubmit(conditions) {
                         if (element.classList.contains('form-radio') || element.classList.contains('form-check-box')) {
                             errorMessage = rules[i](formElement.querySelector(rule.selector + ':checked'));
                         }
+                        else
+                            if (element.classList.contains('form-file-input')) {
+                                errorMessage = rules[i](element.value);
+                                if (errorMessage) break;
+                            }
 
             if (errorMessage) break;
         }
@@ -280,7 +282,9 @@ export function styleFormSubmit(conditions) {
         Array.from(elements).forEach(function (element) {
             if (element.classList.contains('form-input')
                 || element.classList.contains('form-check-box')
-                || element.classList.contains('form-radio')) {
+                || element.classList.contains('form-radio')
+                || element.classList.contains('form-file-input')
+            ) {
                 isFormValid = validate(element, rule)
                 return;
             }

@@ -19,7 +19,7 @@ import DocSummary from 'components/doc/DocSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
 
-class DocApprovingPage extends Component {
+class DocumentApproving extends Component {
     constructor(props) {
         super();
         this.maxItemPerPage = 5;
@@ -147,4 +147,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getMyDocumentsList, getDocCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocApprovingPage));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocumentApproving));

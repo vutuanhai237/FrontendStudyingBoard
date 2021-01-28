@@ -1,15 +1,8 @@
 import {
-
-
     //DOCUMENTS LIST
     GET_DOCUMENTS_LIST_REQUEST,
     GET_DOCUMENTS_LIST_SUCCESS,
     GET_DOCUMENTS_LIST_FAILURE,
-
-    //NEW DOCUMENTS
-    GET_NEW_DOCUMENTS_LIST_REQUEST,
-    GET_NEW_DOCUMENTS_LIST_SUCCESS,
-    GET_NEW_DOCUMENTS_LIST_FAILURE,
 
     // MY DOC
     GET_MY_DOCUMENTS_REQUEST,
@@ -30,11 +23,6 @@ import {
 
 const initialState = {
 
-    newDocumentsList: {
-        isLoading: false,
-        data: [],
-        error: ""
-    },
 
     documentSearchResult: {
         isLoading: false,
@@ -58,19 +46,7 @@ function DocReducer(state = initialState, action) {
             return { ...state, currentDocumentApprovedStatus: action.payload }
 
         //new documents
-        case GET_NEW_DOCUMENTS_LIST_REQUEST:
-            return {
-                ...state, newDocumentsList: { isLoading: true }
-            };
-        case GET_NEW_DOCUMENTS_LIST_SUCCESS:
-            {
-                return { ...state, newDocumentsList: { isLoading: false, data: action.payload, error: '' } }
-            }
-        case GET_NEW_DOCUMENTS_LIST_FAILURE:
-            {
-                return { ...state, myDocuments: { isLoading: false, error: action.payload, data: [] } }
-            }
-
+       
         //my post
         case GET_MY_DOCUMENTS_REQUEST:
             return {

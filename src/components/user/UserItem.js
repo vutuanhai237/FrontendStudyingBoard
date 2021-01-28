@@ -122,9 +122,9 @@ class UserItem extends Component {
 
                                 <div style={{ "display": "flex" }}>
                                     <div className="User_Item_Score">Scrore: {this.score}</div>
-                                    <img alt="avatar" src={gray_write_icon} className="User_Item_Element" ></img>
+                                    <img alt="avatar" src={gray_write_icon} className="user-item-element" ></img>
                                     <div className="User_Item_Post_Count">{this.postCount}</div>
-                                    <img alt="avatar" src={gray_upload_icon} className="User_Item_Element"></img>
+                                    <img alt="avatar" src={gray_upload_icon} className="user-item-element"></img>
                                     <div className="User_Item_Doc_Count"> {this.docCount}</div>
                                 </div>
 

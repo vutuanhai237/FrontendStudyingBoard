@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import HomeReducer from "redux/reducers/HomeReducer"
+import HomeReducer from "redux/reducers/homeReducer"
 import DocReducer from "redux/reducers/docReducer"
 import PostReducer from "redux/reducers/postReducer"
 import UserReducer from "redux/reducers/userReducer"
@@ -20,6 +20,7 @@ var RootReducer = combineReducers({
     tag: TagReducer,
     course: CourseReducer,
     course_category: CourseCategoryReducer,
+    heading: HeadingReducer,
 });
 
 export default RootReducer;

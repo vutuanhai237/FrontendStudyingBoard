@@ -20,9 +20,11 @@ import UserLayout from "layouts/UserLayout"
 import NormalBlankLayout from "layouts/NormalBlankLayout"
 
 //management
-import AdminLayout from 'layouts/AdminLayout'
+import AdminLayout from 'layouts/AdminSidebar'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+
 import SearchPostByTag from "pages/common/SearchResult/SearchPostByTag";
 import AccountInformation from "pages/user/AccountInformation/AccountInformation";
 import UpdatePassword from "pages/user/AccountInformation/UpdatePassword";
@@ -39,7 +41,15 @@ import ChaptersList from "pages/common/HeadingsList/HeadingsList"
 import PostsList from 'pages/common/PostsList/PostsList'
 import DocumentsList from 'pages/common/DocumentsList/DocumentsList'
 import ItemHorizontalSlider from 'components/common/ItemHorizontalSlider/ItemHorizontalSlider'
-
+import PostApproving from 'pages/management/PostApproving/PostApproving'
+import DocumentApproving from 'pages/management/DocumentApproving/DocumentApproving'
+import NotificationManagement from 'pages/management/NotificationManagement/NotificationManagement'
+import CategoryManagement from 'pages/management/NotificationManagement/NotificationManagement'
+import Statistic from 'pages/management/Statistic/Statistic'
+import UserRoleManagement from 'pages/management/UserRoleManagement/UserRoleManagement'
+import UserManagement from 'pages/management/UserManagement/UserManagement'
+import PostManagement from 'pages/management/PostManagement/PostManagement'
+import AdminSidebar from 'layouts/AdminSidebar'
 const App = () => {
 
     return (
@@ -87,20 +97,28 @@ const App = () => {
                     <Route exact path="/upload-doc" component={UserLayout} />
 
                     {/* for admin only */}
-                    <Route path="/admin">
-                        <Route exact path="" component={AdminLayout} />
-                        <Route exact path="/post-approving" component={AdminLayout} />
-                        <Route exact path="/post-approving/:id" />
-                        <Route exact path="/doc-approving" component={AdminLayout} />
-                        <Route exact path="/page-notification" component={AdminLayout} />
-                        <Route exact path="/categories-management" component={AdminLayout} />
-                        <Route exact path="/user-management" component={AdminLayout} />
-                        <Route exact path="/activity_management" component={AdminLayout} />
-                        <Route exact path="/user_role_management" component={AdminLayout} />
-                        <Route exact path="/user-management/:id" component={AdminLayout} />
-                        <Route exact path="/statistic_management" component={AdminLayout} />
-                    </Route>
 
+                    {/* Admin and collab page content admin */}
+                    {/* for admin */}
+                    <Route exact path="/admin" component={PostApproving} />
+                    <Route exact path="/admin/post-approving" component={PostApproving} />
+                    <Route exact path="/admin/doc-approving" component={DocumentApproving} />
+
+                    {/* for collab */}
+                    {/* <Route exact path="/user/post-approving" component={PostApproving} />
+                    <Route exact path="/user/doc-approving" component={DocumentApproving} /> */}
+
+                    {/* for admin only */}
+                    <Route exact path="/admin-sidebar" component={AdminSidebar} />
+                    <Route exact path="/admin/post-management" component={PostManagement} />
+
+                    <Route exact path="/admin/page-notification" component={NotificationManagement} />
+                    <Route exact path="/admin/categories-management" component={CategoryManagement} />
+                    <Route exact path="/admin/user-management" component={UserManagement} />
+                    <Route exact path="/admin/activity_management" component={AdminLayout} />
+                    <Route exact path="/admin/user_role_management" component={UserRoleManagement} />
+                    <Route exact path="/admin/user-management/:id" component={AdminLayout} />
+                    <Route exact path="/admin/statistic_management" component={Statistic} />
                     <Route path="/collab">
                         <Route exact path="/post-approving" component={AdminLayout} />
                         <Route exact path="/doc-approving" component={AdminLayout} />

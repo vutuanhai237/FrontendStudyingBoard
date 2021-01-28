@@ -1,8 +1,5 @@
 import {    //highlight posts 
-    get_HighlightPostsListRequest,
-    get_HighlightPostsListSuccess,
-    get_HighlightPostsListFailure,
-
+  
     //my post
     get_MyPostsRequest,
     get_MyPostsSuccess,
@@ -54,31 +51,7 @@ export function postCreatePost(data) {
     }
 }
 
-//highlight post
-export function getHighlightPostsList() {
-    return dispatch => {
 
-        dispatch(get_HighlightPostsListRequest());
-
-        var myHeaders = new Headers();
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/highlight`, requestOptions)
-            .then(response => response.text())
-            .then(
-                result => {
-                    dispatch(get_HighlightPostsListSuccess(JSON.parse(result)));
-                }
-            )
-            .catch(error => {
-                console.log(error); dispatch(get_HighlightPostsListFailure(error))
-            })
-    }
-}
 
 // my post
 export function getMyPostsList(page = 1, category = "") { //this API to get all approved document of a specific user.

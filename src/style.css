@@ -234,6 +234,10 @@ a:hover {
     text-align: right;
 }
 
+.t-a-center {
+    text-align: center;
+
+}
 
 .pd-10px {
     padding: 10px;
@@ -254,7 +258,6 @@ a:hover {
 .mg-auto {
     margin: auto;
 }
-
 .bg-green {
     background: green;
 }
@@ -290,7 +293,9 @@ a:hover {
 .w-50-percents {
     width: 50%;
 }
-
+.c-pointer{
+    cursor: pointer;
+}
 
 .pos-relative {
     position: relative;

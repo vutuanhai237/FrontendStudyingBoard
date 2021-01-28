@@ -16,7 +16,8 @@ class Editor extends Component {
     let toolbarConfig = this.props.config ? this.props.config : CKEToolbarConfiguration;
 
     let configuration = {
-      toolbar: toolbarConfig
+      toolbar: toolbarConfig,
+
     };
 
     window.CKEDITOR.replace(this.editorID, configuration);

@@ -13,7 +13,7 @@ import {
 } from "utils/permissionUtils";
 import Home from 'pages/common/Home/Home'
 import NormalBlankLayout from 'layouts/NormalBlankLayout'
-import AdminLayout from 'layouts/AdminLayout'
+import AdminLayout from 'layouts/AdminSidebar'
 //#endregion
 
 export const logoRouter = { path: "/", exact: true, title: "Trang chủ", label: "", permission: [], component: Home };
