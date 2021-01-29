@@ -17,7 +17,7 @@ import SearchHorizontalMenubar from './SearchHorizontalMenubar'
 class SearchPost extends Component {
     constructor(props) {
         super(props);
-        this.postSearchResult = [];
+
         this.timeFilters = [
             { id: 1, name: "Mới nhất" },
             { id: 2, name: "Cũ nhất" }
@@ -30,40 +30,47 @@ class SearchPost extends Component {
 
     async componentDidMount() {
         let page = !getSearchParamByName('page') ? '' : getSearchParamByName('page');
-        let category = !getSearchParamByName('category') ? '' : getSearchParamByName('category')
         let searchTerm = !getSearchParamByName('q') ? '' : getSearchParamByName('q');
+
+        setSearchParam('page', page);
+        setSearchParam('q', searchTerm);
+        setSearchParam('category', 1);
+
+
         this.props.getPostCategories();
-        this.props.getPostSearchResult(page, category, searchTerm, 'publishDtm,desc'); //api khác, tìm bằng tag
+        this.props.getPostSearchResult(page - 1, 1, searchTerm, 'publishDtm,desc');
     }
 
     //server paginator
     onPageChange = (pageNumber) => {
         setSearchParam("page", pageNumber);
-        let page = getSearchParamByName('page') === '' ? '' : `page = ${getSearchParamByName('page')} `;
-        let category = getSearchParamByName('category');
-        let searchTerm = decodeURIComponent(getSearchParamByName('q')); //querry
+        let page = !getSearchParamByName('page') ? '' : getSearchParamByName('page');
+        let category = !getSearchParamByName('category') ? '' : getSearchParamByName('category')
+        let searchTerm = !getSearchParamByName('q') ? '' : getSearchParamByName('q');
+        this.props.getPostSearchResult(page - 1, category, searchTerm, 'publishDtm,desc');
 
-        // this.props.getPostSearchResult(query); //api khác, tìm bằng tag
         this.setState({});
     }
 
     onTimeFilterOptionChanged = (selectedOption) => {
-        if (selectedOption.id === 1) {
-            this.setState({ time: 'publishDtm,asc' })
-        }
-        else {
-            this.setState({ time: 'publishDtm,desc' })
-        }
+        let page = !getSearchParamByName('page') ? '' : getSearchParamByName('page');
+        let category = !getSearchParamByName('category') ? '' : getSearchParamByName('category')
+        let searchTerm = !getSearchParamByName('q') ? '' : getSearchParamByName('q');
+        this.props.getPostSearchResult(page - 1, category, searchTerm, selectedOption.id === 1 ? 'publishDtm,desc' : 'publishDtm,asc');
     }
 
     onCategoryFilterOptionChanged = (selectedOption) => {
         setSearchParam("category", selectedOption.id);
+        let page = !getSearchParamByName('page') ? '' : getSearchParamByName('page');
+        let category = !getSearchParamByName('category') ? '' : getSearchParamByName('category')
+        let searchTerm = !getSearchParamByName('q') ? '' : getSearchParamByName('q');
+        this.props.getPostSearchResult(page - 1, category, searchTerm, 'publishDtm,desc');
     }
 
     render() {
-        console.log(this.props);
+        let postSearchResult = <></>
         if (!this.props.isListLoading) {
-            this.postSearchResult = this.props.postSearchResult.map((postItem) => (
+            postSearchResult = this.props.postSearchResult.map((postItem) => (
                 <PostSummary
                     type={itemType.normal}
                     key={postItem.id}
@@ -76,19 +83,27 @@ class SearchPost extends Component {
                     title={postItem.title}
                     summary={postItem.summary}
                     imageURL={postItem.imageURL}
-                    // likedStatus={postItem.likedStatus}
-                    // savedStatus={postItem.savedStatus}
                     readingTime={postItem.readingTime}
-                    // likes={postItem.likes}
-                    // comments={postItem.commentCount}
                     approveStatus={false}
                 ></PostSummary >)
             )
         }
-
-        if (!this.isCategoryLoading) {
-            this.categoryFilters = this.props.postCategories;
-        }
+        else
+            postSearchResult = <Loader />
+        let combobox = <></>;
+        if (!this.props.isCategoryLoading) combobox =
+            <div style={{ display: "flex" }}>
+                <div className="filter-label t-a-right mg-right-5px">Danh mục:</div>
+                <div style={{ marginLeft: "5px" }}>
+                    <ComboBox
+                        // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                        options={this.props.postCategories}
+                        placeHolder="Chọn danh mục"
+                        onOptionChanged={(selectedOption) => this.onCategoryFilterOptionChanged(selectedOption)}
+                        id="search-post-category-filter-combobox"
+                    ></ComboBox>
+                </div>
+            </div>
 
         return (
             <div className="pr-layout" >
@@ -97,46 +112,34 @@ class SearchPost extends Component {
                     <div className="mg-top-10px" />
                     <div className="nm-bl-layout-router-outlet" >
                         <div>
-                            {
-                                this.props.isListLoading || this.props.isCategoryLoading ?
-                                    < Loader /> :
+                            {this.props.isListLoading ?
+                                < Loader /> :
+                                <div>
                                     <div>
-                                        <div>
-                                            <div className="two-element-filter-container">
-                                                <div style={{ display: "flex" }}>
-                                                    <div className="filter-label t-a-right mg-right-5px">Thời gian:</div>
-                                                    <div style={{ marginLeft: "5px" }}>
-                                                        <ComboBox
-                                                            options={this.timeFilters}
-                                                            placeHolder="Chọn thời gian"
-                                                            onOptionChanged={(selectedOption) => this.onTimeFilterOptionChanged(selectedOption)}
-                                                            id="search-post-time-filter-combobox"
-                                                        ></ComboBox>
-                                                    </div>
-                                                </div>
-                                                <div style={{ display: "flex" }}>
-                                                    <div className="filter-label t-a-right mg-right-5px">Danh mục:</div>
-                                                    <div style={{ marginLeft: "5px" }}>
-                                                        <ComboBox
-                                                            // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
-                                                            options={this.categoryFilters}
-                                                            placeHolder="Chọn danh mục"
-                                                            onOptionChanged={(selectedOption) => this.onCategoryFilterOptionChanged(selectedOption)}
-                                                            id="search-post-category-filter-combobox"
-                                                        ></ComboBox>
-                                                    </div>
+                                        <div className="two-element-filter-container">
+                                            <div style={{ display: "flex" }}>
+                                                <div className="filter-label t-a-right mg-right-5px">Thời gian:</div>
+                                                <div style={{ marginLeft: "5px" }}>
+                                                    <ComboBox
+                                                        options={this.timeFilters}
+                                                        placeHolder="Chọn thời gian"
+                                                        onOptionChanged={(selectedOption) => this.onTimeFilterOptionChanged(selectedOption)}
+                                                        id="search-post-time-filter-combobox"
+                                                    ></ComboBox>
                                                 </div>
                                             </div>
-
-                                            <div className="gray-label margin-bottom-10px"> Tổng số kết quả: {this.props.postSearchResult.length}  </div>
-                                            <div className="list-item-container">{this.postSearchResult}</div>
+                                            {combobox}
                                         </div>
-                                        < Paginator config={{
-                                            changePage: (pageNumber) => this.onPageChange(pageNumber),
-                                            pageCount: 1,
-                                            currentPage: getSearchParamByName('page') ? getSearchParamByName('page') : 1
-                                        }} />
+
+                                        <div className="gray-label margin-bottom-10px"> Tổng số kết quả: {this.props.postSearchResult.length}  </div>
+                                        <div className="list-item-container">{postSearchResult}</div>
                                     </div>
+                                    < Paginator config={{
+                                        changePage: (pageNumber) => this.onPageChange(pageNumber),
+                                        pageCount: 1,
+                                        currentPage: getSearchParamByName('page') ? getSearchParamByName('page') : 1
+                                    }} />
+                                </div>
                             }
                         </div>
                     </div>

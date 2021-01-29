@@ -46,7 +46,7 @@ export function postCreatePost(data) {
             }
             )
             .catch(error => {
-                
+
                 dispatch(post_CreatePostFailure(error)); //
             })
     }
@@ -75,7 +75,7 @@ export function getMyPostsList(page = 1, category = "") { //this API to get all 
                 }
             )
             .catch(error => {
-                 dispatch(get_MyPostsFailure(error))
+                dispatch(get_MyPostsFailure(error))
             })
     }
 }
@@ -124,7 +124,6 @@ export function getPostSearchResult(page = 0, categoryID = 1, searchTerm = '', s
             .then(response => response.json())
             .then(
                 result => {
-                   
                     dispatch(get_PostSearchResultSuccess(result));
                     // history.push(`/search?type=post&page=${page}&category=${categoryID}&q=${searchTerm}`);
                 }

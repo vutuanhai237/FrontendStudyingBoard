@@ -10,7 +10,7 @@ import { routers } from 'router.config'
 import { ContentManagement } from 'utils/permissionUtils'
 //styles
 import "./Header.scss";
-import "components/styles/SimpleButton.scss";
+import "components/home/node_modules/components/styles/SimpleButton.scss";
 
 //resource
 import red_delete_icon from 'assets/images/red_delete_icon.png';
@@ -62,9 +62,9 @@ class Header extends React.Component {
         if (!e.target.value) return;
         if (e.charCode === 13) { //press Enter    
             if (this.props.location.pathname.substring(0, 7) === '/search')
-                window.location.href = (`${this.props.location.pathname}?page=1&q=${e.target.value}`);
+                window.location.href = (`${this.props.location.pathname}?page=1&q=${e.target.value}&category=1`);
             else
-                window.location.href = (`/search/posts?page=1&q=${e.target.value}`);
+                window.location.href = (`/search/posts?page=1&q=${e.target.value}&category=1`);
 
             document.getElementById("qssr-container").style.display = "none";
             document.getElementById("qsr-container-big").style.display = "none";

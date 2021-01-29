@@ -8,7 +8,7 @@ import icon_write from 'assets/images/icon_write.png'
 
 //combobox
 import 'components/common/Combobox/Combobox.scss'
-import 'components/styles/SimpleButton.scss'
+import 'components/home/node_modules/components/styles/SimpleButton.scss'
 import 'components/styles/SimpleLabel.scss'
 
 //modal popup

@@ -11,7 +11,7 @@ export function getSearchParamByName(name) {
     return null;
 }
 
-export function setSearchParam(name, value) {
+export function     setSearchParam(name, value) {
     if (window.location.search) {
         let query = window.location.search.substring(1);
         let vars = query.split("&");
@@ -34,6 +34,8 @@ export function setSearchParam(name, value) {
 
         if (window.history.pushState) {
             let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?${newQuery}`;
+// console.log(newurl)
+
             window.history.pushState({ path: newurl }, '', newurl);
         }
         return;

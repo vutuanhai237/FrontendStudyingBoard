@@ -1,5 +1,5 @@
 import React from 'react';
-import "./ItemHorizontalSlider.scss"
+import './Wallpage.scss'
 
 export default class ItemHorizontalSlider extends React.Component {
     constructor(props) {

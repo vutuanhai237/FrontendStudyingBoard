@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/styles/DocPostSummary.scss'
+import 'components/home/node_modules/components/styles/DocPostSummary.scss'
 import 'components/styles/DocPostDetail.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/g_btn_element.png'

@@ -8,7 +8,7 @@ import { getTagQuickQueryResult } from "redux/services/tagServices"
 import { postCreatePost } from "redux/services/postServices"
 import "./UploadDocument.scss";
 import "components/common/CustomCKE/CKEditorContent.scss";
-import 'components/styles/DocPostSummary.scss'
+import 'components/home/node_modules/components/styles/DocPostSummary.scss'
 import 'components/styles/DocPostDetail.scss'
 
 //components

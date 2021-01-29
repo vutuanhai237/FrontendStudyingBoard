@@ -11,8 +11,10 @@ import './Home.scss'
 //utils
 import { itemType } from 'constants.js'
 import { getSearchParamByName, setSearchParam } from 'utils/urlUtils'
-import HomePostItem from 'components/common/home/HomePostItem'
-import HomeDocumentItem from 'components/common/home/HomeDocumentItem'
+import HomePostItem from 'components/home/HomePostItem'
+import HomeDocumentItem from 'components/home/HomeDocumentItem'
+import Wallpage from 'components/home/Wallpage/Wallpage'
+
 //services
 import {
     getTrendingDocumentsList,
@@ -182,55 +184,47 @@ class Home extends Component {
         }
 
         return (
-            <div className="home-layout" >
-                <div className="decoration-line mg-bottom-10px" />
-                {/* Đại cương */}
-                <div className="course-type-title" >
-                    <div className="d-flex">
-                        <div className="rect-decoration" />
-                        <div>
-                            <div className="title">
-                                BÀI VIẾT MỚI NHẤT:
+            <div className="pr-layout">
+                <Wallpage />
+                <div className="home-layout" >
+                    <div className="decoration-line mg-bottom-10px" />
+                    {/* Đại cương */}
+                    <div className="course-type-title" >
+                        <div className="d-flex">
+                            <div className="rect-decoration" />
+                            <div>
+                                <div className="title">
+                                    BÀI VIẾT MỚI NHẤT:
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div>
                     {newestPostsList}
-                </div>
-
-                {/* Cơ sở nhóm ngành */}
-                <div className="course-type-title">
-                    <div className="d-flex">
-                        <div className="rect-decoration" />
-                        <div className="title">
-                            TÀI LIỆU HAY:
+                    {/* Cơ sở nhóm ngành */}
+                    <div className="course-type-title">
+                        <div className="d-flex">
+                            <div className="rect-decoration" />
+                            <div className="title">
+                                TÀI LIỆU HAY:
+                        </div>
                         </div>
                     </div>
-                </div>
-
-                <div>
                     {trendingDocumentsList}
-                </div>
-
-                {/* Danh sách môn học */}
-                <div className="course-type-title">
-                    <div className="d-flex">
-                        <div className="rect-decoration" />
-                        <div className="title">
-                            HOẠT ĐỘNG MỚI:
+                    {/* Danh sách môn học */}
+                    <div className="course-type-title">
+                        <div className="d-flex">
+                            <div className="rect-decoration" />
+                            <div className="title">
+                                HOẠT ĐỘNG MỚI:
                             </div>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    {newestActivitiesList}
-                </div>
-
-                <div className="mg-top-10px" />
-
-            </div >
+                    <div>
+                        {newestActivitiesList}
+                    </div>
+                    <div className="mg-top-10px" />
+                </div >
+            </div>
         );
     }
 }
