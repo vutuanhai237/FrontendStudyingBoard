@@ -17,11 +17,10 @@ export function getCourseFalcutyCategories() {
         fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/category`, requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                
                 dispatch(get_CourseFalcutyCategoriesSuccess(JSON.parse(result)));
             })
             .catch(error => {
-                console.log(error);
                 dispatch(get_CourseFalcutyCategoriesFailure(error))
             });
 

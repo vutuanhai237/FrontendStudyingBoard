@@ -5,10 +5,9 @@ import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./redux/store/index";
 import {
-  BrowserRouter,
-  Route
+  Router, Route
 } from "react-router-dom";
-
+import history from './history';
 // //import fonts
 
 import 'assets/fonts/BarlowCondensed-Regular.ttf'
@@ -34,9 +33,9 @@ import 'style.css'
 render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <Route component={App} />
-      </BrowserRouter>
+      </Router>
     </Provider>
   </StrictMode>,
   document.getElementById("root")

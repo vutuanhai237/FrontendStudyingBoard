@@ -141,7 +141,7 @@ class UploadDocument extends Component {
 
     handleUploadBtnClick = () => {
         if (styleFormSubmit(validationCondition)) {
-            console.log(this.state.UPLOAD_DOC_DTO)
+        
             this.props.postCreatePost(this.state.UPLOAD_DOC_DTO);
         }
 

@@ -234,15 +234,15 @@ export const isGrantedPermissions = function (permissionList) {
 
 export function logAllPermissionByRoleName(roleName) {
     if (roleName === "ADMIN") {
-        console.log(ADMIN);
+     
         return;
     }
     if (roleName === "USER") {
-        console.log(USER);
+      
         return;
     }
     if (roleName === "COLLABORATOR") {
-        console.log(COLLABORATOR);
+       
         return;
     }
 

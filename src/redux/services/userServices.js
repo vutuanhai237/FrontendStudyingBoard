@@ -87,16 +87,15 @@ export function postRegister(account) {
             body: formdata,
             redirect: 'follow'
         };
-        console.log(account)
-        console.log(requestOptions)
+      
         fetch(`http://${remoteServiceBaseUrl}/register`, requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+               
                 dispatch(userPostRegister(JSON.parse(result).statusCode));
             })
             .catch(error => {
-                console.log('error', error)
+             
                 dispatch(userPostRegister(error.statusCode));
             });
     }

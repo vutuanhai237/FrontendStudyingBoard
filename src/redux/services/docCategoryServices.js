@@ -21,7 +21,7 @@ export function getDocCategories() {
                 dispatch(get_DocCategoriesSuccess(JSON.parse(result)));
             })
             .catch(error => {
-                console.log(error);
+                
                 dispatch(get_DocCategoriesFailure(error))
             });
      

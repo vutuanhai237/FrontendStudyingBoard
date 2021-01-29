@@ -31,7 +31,7 @@ class PostSummary extends Component {
     this.authorName = this.props.authorName;
     this.authorID = this.props.authorID;
 
-    this.publishDtm = this.props.publishDtm;
+    this.publishDtm = this.props.publishDtm.substring(0, 10);
     this.category = this.props.category;
     this.requestedCategoryID = this.props.requestedCategoryID;
 
@@ -158,13 +158,13 @@ class PostSummary extends Component {
         </div>
 
         {/* title */}
-        <Link to = {"/posts/"+ this.id}>
+        <Link to={"/posts/" + this.id}>
           <div className="item-title">
             {this.props.title}
           </div>
         </Link>
 
-        <div className="d-flex" style={{ marginTop: "-10px" }}>
+        <div className="d-flex" style={{ marginTop: "-8px" }}>
           <div className="d-flex"  >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
@@ -175,7 +175,7 @@ class PostSummary extends Component {
           <div className="d-flex" >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
-              {this.props.publishDtm}
+              {this.props.publishDtm.substring(0, 10)}
             </div>
           </div>
 

@@ -12,6 +12,7 @@ import Paginator from 'components/common/Paginator/ServerPaginator'
 import DocSummary from 'components/doc/DocSummary'
 import Loader from 'components/common/Loader/Loader'
 import { itemType } from 'constants.js'
+import SearchHorizontalMenubar from './SearchHorizontalMenubar'
 
 class SearchDocument extends Component {
     constructor(props) {
@@ -87,53 +88,57 @@ class SearchDocument extends Component {
             )
         }
         return (
-            <div>
-
-
-                <div className="two-element-filter-container">
-                    <div style={{ display: "flex" }}>
-                        <div className="filter-label t-a-right mg-right-5px">Thời gian:</div>
-                        <div style={{ marginLeft: "5px" }}>
-                            <ComboBox
-                                // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
-                                options={this.timeFilters}
-                                placeHolder="Chọn thời gian"
-                                onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
-                                id="search-doc-time-filter-combobox"
-                            ></ComboBox>
-                        </div>
-                    </div>
-                    <div style={{ display: "flex" }}>
-                        <div className="filter-label t-a-right mg-right-5px">Danh mục:</div>
-                        <div style={{ marginLeft: "5px" }}>
-                            <ComboBox
-                                // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
-                                options={this.categoryFilters}
-                                placeHolder="Chọn danh mục"
-                                onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
-                                id="search-doc-category-filter-combobox"
-                            ></ComboBox>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    {
-                        this.props.isListLoading ?
-                            < Loader /> :
-                            <div>
-                                <div className="gray-label margin-bottom-10px"> Tổng số kết quả: {"20"}  </div>
-                                <div className="list-item-container">{this.documentSearchResult}</div>
+            <div className="pr-layout" >
+                <div className="search-layout">
+                    <SearchHorizontalMenubar></SearchHorizontalMenubar>
+                    <div className="mg-top-10px" />
+                    <div className="nm-bl-layout-router-outlet" >
+                        <div className="two-element-filter-container">
+                            <div style={{ display: "flex" }}>
+                                <div className="filter-label t-a-right mg-right-5px">Thời gian:</div>
+                                <div style={{ marginLeft: "5px" }}>
+                                    <ComboBox
+                                        // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                                        options={this.timeFilters}
+                                        placeHolder="Chọn thời gian"
+                                        onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                        id="search-doc-time-filter-combobox"
+                                    ></ComboBox>
+                                </div>
                             </div>
-                    }
+                            <div style={{ display: "flex" }}>
+                                <div className="filter-label t-a-right mg-right-5px">Danh mục:</div>
+                                <div style={{ marginLeft: "5px" }}>
+                                    <ComboBox
+                                        // selectedOptionID={getSearchParamByName('category') ? getSearchParamByName('category') : 1}
+                                        options={this.categoryFilters}
+                                        placeHolder="Chọn danh mục"
+                                        onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                        id="search-doc-category-filter-combobox"
+                                    ></ComboBox>
+                                </div>
+                            </div>
+                        </div>
 
-                    < Paginator config={{
-                        changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        pageCount: 1200,
-                        currentPage: getSearchParamByName('page')
-                    }} />
+                        <div>
+                            {
+                                this.props.isListLoading ?
+                                    < Loader /> :
+                                    <div>
+                                        <div className="gray-label margin-bottom-10px"> Tổng số kết quả: {"20"}  </div>
+                                        <div className="list-item-container">{this.documentSearchResult}</div>
+                                    </div>
+                            }
+
+                            < Paginator config={{
+                                changePage: (pageNumber) => this.onPageChange(pageNumber),
+                                pageCount: 1200,
+                                currentPage: getSearchParamByName('page')
+                            }} />
+                        </div>
+
+                    </div>
                 </div>
-
             </div>
         );
     }

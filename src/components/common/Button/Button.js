@@ -8,7 +8,6 @@ export default class Button extends Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.onDelete);
         this.color = { red: "#fe3a3a", blue: "#5279db", green: "green", white: "white" }
         this.isDisabled = false;
         this.type = { close: "", delete: "", approve: "" }

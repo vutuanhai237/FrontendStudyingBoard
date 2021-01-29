@@ -49,7 +49,7 @@ class Metadata extends Component {
             <div className="author-name">
               {this.props.authorName}
             </div>
-            <div className="published-time">{`đã đăng vào ngày ${this.props.publishDtm} `}</div>
+            <div className="published-time">{`đã đăng vào ngày ${this.props.publishDtm.substring(0, 10)} `}</div>
           </div>
         </div>
 

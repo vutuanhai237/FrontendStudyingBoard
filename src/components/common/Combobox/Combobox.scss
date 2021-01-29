@@ -10,6 +10,7 @@
     padding-bottom: 1px;
     border-radius: 5px;
     border: 1px solid var(--gray);
+    font-size: 18px;
     position: relative;
     min-width: 240px;
     width: fit-content;
@@ -34,7 +35,9 @@
     box-sizing: border-box;
     font-family: "BarlowCondensed-Regular";
     font-size: 18px;
+    line-height: 1.5rem;
     color: var(--black);
+    padding: 2px;
     padding-left: 4px;
     user-select: none;
     z-index: 2;
@@ -43,17 +46,8 @@
 }
 
 .activated-combox-option {
-    position: relative;
-    box-sizing: border-box;
-    font-family: "BarlowCondensed-Regular";
-    font-size: 18px;
-    color: var(--black);
-    padding-left: 4px;
-    user-select: none;
-    border-radius: 3px;
-    background: #dedede !important;
-    cursor: pointer;
-    z-index: 2;
+    @extend .combox-option;
+    background: #dedede;
 }
 
 .dropdown-container {

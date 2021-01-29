@@ -26,8 +26,6 @@ export default class PopupMenu extends React.Component {
             id: this.props.selectedItemID,
             name: this.props.items.filter(item => item.id === this.props.selectedItemID)[0].name
         }
-
-        console.log(this.selectedItem)
     }
 
     closeMenu = () => {
@@ -64,8 +62,6 @@ export default class PopupMenu extends React.Component {
 
         }
 
-        // console.log(dropdown_container.style.width);
-        //cho nay can them vao mot doan xu ly cho props
         this.setState({ isDropdownOpen: true });
     }
 
@@ -76,7 +72,6 @@ export default class PopupMenu extends React.Component {
         }
 
         //pass to parent
-        console.log(this.props.onMenuItemClick)
         if (this.props.onMenuItemClick)
             this.props.onMenuItemClick(this.selectedItem);
         else console.log('error', "Please implement onMenuItemClick() of PopupMenu!");

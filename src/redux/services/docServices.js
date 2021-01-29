@@ -54,7 +54,7 @@ export function getDocumentsList(page = 1, category = "", searchTerm = "") { //t
                 }
             )
             .catch(error => {
-                console.log(error);
+                
                 dispatch(get_DocumentsListFailure(JSON.parse(error))); //
             })
 
@@ -81,7 +81,7 @@ export function getDocumentSearchResult(page = 1, category = "", searchTerm = ""
                 }
             )
             .catch(error => {
-                console.log(error);
+                
                 dispatch(get_DocumentSearchResultFailure(JSON.parse(error))); //
             })
 
@@ -108,7 +108,7 @@ export function getMyDocumentsList(page = 1, category = "") { //this API to get 
                 }
             )
             .catch(error => {
-                console.log(error);
+                
                 dispatch(get_MyDocumentsFailure(error))
             })
 

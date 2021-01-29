@@ -36,7 +36,8 @@ const initialState = {
     postsList: {
         isLoading: false,
         data: [],
-        error: ""
+        error: "",
+        totalPages: 0
     },
 
     //my posts
@@ -122,7 +123,8 @@ function PostReducer(state = initialState, action) {
         case GET_POST_SEARCH_RESULT_SUCCESS:
         case GET_POSTS_LIST_SUCCESS:
             {
-                return { ...state, postsList: { isLoading: false, data: action.payload, error: '' } }
+               
+                return { ...state, postsList: { ...state.postsList, isLoading: false, data: action.payload.postSummaryDTOs, error: '', totalPages: action.payload.totalPages } }
             }
         case GET_POST_SEARCH_RESULT_FAILURE:
         case GET_POSTS_LIST_FAILURE:

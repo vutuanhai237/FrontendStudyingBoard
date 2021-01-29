@@ -31,7 +31,7 @@ export function getTagSearchResult(searchTerm = "") {
         }
       )
       .catch(error => {
-        console.log(error);
+        
         dispatch(get_TagSearchResultFailure(JSON.parse(error))); //
       })
   }
@@ -54,7 +54,7 @@ export function getTagQuickQueryResult(searchTerm = "") {
         }
       )
       .catch(error => {
-        console.log(error);
+     
         dispatch(get_tagQuickQueryResultFailure(error)); //
       })
   }

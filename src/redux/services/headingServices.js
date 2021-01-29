@@ -54,7 +54,7 @@ export function getMyCourses() { //this API to get all approved document of a sp
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_MyCoursesFailure(error))
+                 dispatch(get_MyCoursesFailure(error))
             })
     }
 }
@@ -83,7 +83,7 @@ export function getCoursesList(category = "") {
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_CoursesListFailure(error))
+                 dispatch(get_CoursesListFailure(error))
             })
     }
 }
@@ -108,7 +108,7 @@ export function getCourseSearchResult(page = 1, category = "", searchTerm = "") 
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_CourseSearchResultFailure(error))
+                 dispatch(get_CourseSearchResultFailure(error))
             })
     }
 }

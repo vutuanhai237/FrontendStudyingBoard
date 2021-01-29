@@ -104,11 +104,8 @@ class AccountInformation extends Component {
             this.updateInformation_DTO.oldPasword = this.password;
             this.updateInformation_DTO.username = this.username;
 
-            console.log(this.accountInformation)
-
-
             this.roleList = this.props.roleList;
-            // console.log(this.roleList);
+          
             let roles_Combobox =
                 this.roleList.map(role =>
                     this.roleID === role.id ?

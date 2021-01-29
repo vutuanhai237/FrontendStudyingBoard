@@ -154,11 +154,11 @@ class DocSummary extends Component {
         <div className="item-title">
           {this.props.title}
         </div>
-        <div className="d-flex" style={{ marginTop: "-10px" }}>
+        <div className="d-flex" style={{ marginTop: "-8px" }}>
           <div className="d-flex" >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
-              {this.props.publishDtm}
+              {this.props.publishDtm.substring(0, 10)}
             </div>
           </div>
           <div className="d-flex" >
@@ -265,7 +265,6 @@ class DocSummary extends Component {
   calculateBar = () => {
 
     if (this.likes === this.dislikes) {
-      console.log(document.getElementByID('document-item-like-percents-' + this.props.id))
       if (document.getElementById('document-item-like-percents-' + this.props.id))
         document.getElementById('document-item-like-percents-' + this.props.id).style.width = "50%";
       return;

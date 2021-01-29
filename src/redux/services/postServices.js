@@ -1,5 +1,5 @@
 import {    //highlight posts 
-  
+
     //my post
     get_MyPostsRequest,
     get_MyPostsSuccess,
@@ -22,6 +22,7 @@ import {    //highlight posts
 import {
     remoteServiceBaseUrl
 } from 'utils/httpServices';
+import history from 'history.js';
 
 export function postCreatePost(data) {
     return dispatch => {
@@ -45,7 +46,7 @@ export function postCreatePost(data) {
             }
             )
             .catch(error => {
-                console.log(error);
+                
                 dispatch(post_CreatePostFailure(error)); //
             })
     }
@@ -74,7 +75,7 @@ export function getMyPostsList(page = 1, category = "") { //this API to get all 
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_MyPostsFailure(error))
+                 dispatch(get_MyPostsFailure(error))
             })
     }
 }
@@ -93,20 +94,20 @@ export function getPostsList(page = 1, category = "", searchTerm = "") {
         };
 
         fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(
                 result => {
-                    dispatch(get_PostsListSuccess(JSON.parse(result)));
+                    dispatch(get_PostsListSuccess(result));
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_PostsListFailure(error))
+                dispatch(get_PostsListFailure(error))
             })
     }
 }
 
 //posts search result
-export function getPostSearchResult(page = 1, category = "", searchTerm = "") {
+export function getPostSearchResult(page = 0, categoryID = 1, searchTerm = '', sort = 'publishDtm,desc') {
     return dispatch => {
         dispatch(get_PostSearchResultRequest());
 
@@ -117,15 +118,19 @@ export function getPostSearchResult(page = 1, category = "", searchTerm = "") {
             redirect: 'follow'
         };
 
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
-            .then(response => response.text())
+        console.log("request");
+
+        fetch(`${remoteServiceBaseUrl}posts/searchFilter?page=${page - 1}&category.id=${categoryID}&searchTerm=${searchTerm}&sort=${sort}`, requestOptions)
+            .then(response => response.json())
             .then(
                 result => {
-                    dispatch(get_PostSearchResultSuccess(JSON.parse(result)));
+                   
+                    dispatch(get_PostSearchResultSuccess(result));
+                    // history.push(`/search?type=post&page=${page}&category=${categoryID}&q=${searchTerm}`);
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_PostSearchResultFailure(error))
+                dispatch(get_PostSearchResultFailure(error))
             })
     }
 }

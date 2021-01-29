@@ -280,8 +280,6 @@ class UpdatePassword extends Component {
     handlerChangeStateOfSubmitButton = () => {
         this.canClickSavePassword = true;
 
-        //check current password
-        console.log(this.updatePassword_DTO.currentPassword)
         if (this.updatePassword_DTO.currentPassword === ""
             || this.updatePassword_DTO.currentPassword === null) {
             this.canClickSavePassword = false;
@@ -341,17 +339,11 @@ class UpdatePassword extends Component {
     //#region main handler to call APIs 
     handlerUpdatePassword = (e) => {
         e.preventDefault();
-        console.log(this.newPassword);
         //check if new password and confirmation pass word is the same?
-
         var urlencoded = new URLSearchParams();
-
-        urlencoded.append("username", this.username);
+      urlencoded.append("username", this.username);
         urlencoded.append("oldPasword", this.updatePassword_DTO.currentPassword);
         urlencoded.append("password", this.updatePassword_DTO.newPassword);
-
-
-
     }
 
     //#endregion

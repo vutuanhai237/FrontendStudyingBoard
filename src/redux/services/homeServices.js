@@ -40,7 +40,7 @@ export function getTrendingDocumentsList() {
                 }
             )
             .catch(error => {
-                console.log(error);
+                
                 dispatch(get_TrendingDocumentsListFailure(JSON.parse(error))); //
             })
     }
@@ -67,7 +67,7 @@ export function getNewestPostsList() {
                 }
             )
             .catch(error => {
-                console.log(error);
+                
                 dispatch(get_NewestPostsListFailure(JSON.parse(error))); //
             })
     }
@@ -94,7 +94,7 @@ export function getHighlightPostsList() {
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_HighlightPostsListFailure(error))
+                 dispatch(get_HighlightPostsListFailure(error))
             })
     }
 }
@@ -120,7 +120,7 @@ export function getNewestActivities() {
                 }
             )
             .catch(error => {
-                console.log(error); dispatch(get_NewestActivitiesFailure(error))
+                 dispatch(get_NewestActivitiesFailure(error))
             })
     }
 }

@@ -61,8 +61,7 @@ class MyPostsList extends Component {
     }
 
     render() {
-        // console.log(this.filter);
-
+      
         if (!this.props.isListLoading) {
             this.myPostsList = this.props.myPostsList.map((postItem) => (
                 <PostSummary
@@ -89,12 +88,10 @@ class MyPostsList extends Component {
 
         if (!this.props.isCategoryLoading && this.props.postCategories.length !== 0) {
 
-            // console.log("*")
+          
             this.filter = this.props.postCategories;
         }
-        // console.log(this.filter);
-        // console.log(!this.props.isCategoryLoading && this.props.postCategories.length === 0)
-        // console.log(this.props.postCategories)
+      
 
         return (
             <div>

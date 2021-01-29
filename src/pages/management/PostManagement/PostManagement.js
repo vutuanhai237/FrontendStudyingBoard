@@ -146,7 +146,6 @@ class PostManagement extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         postsList: state.post.myPosts.data,
         postCategories: state.post_category.categories.data,

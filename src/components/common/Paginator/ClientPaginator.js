@@ -30,7 +30,6 @@ class Paginator extends Component {
         //     this.pageCount = Math.floor(this.rawData.length / this.maxItemPerPage) + 1;
         // }
 
-        // console.log(this.rawData.length);
 
         // //initial array of page you want to render
         // if (this.pageCount < this.props.config.numShownPage) {

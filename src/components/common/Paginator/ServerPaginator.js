@@ -82,7 +82,6 @@ class Paginator extends Component {
                     break;
                 default:
                     {
-                        console.log("%");
                         if (this.props.config.pageCount <= 6) {
                             for (let i = 1; i <= this.props.config.pageCount; i++) {
                                 arrayShownPages.push(i);

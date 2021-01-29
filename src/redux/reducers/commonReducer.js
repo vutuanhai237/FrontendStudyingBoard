@@ -13,9 +13,6 @@ const initialState = {
         isLoadingDone: false,
         isLoading: false,
         data: {
-            "postQuickSearchResults": [],
-            "docQuickSearchResults": [],
-            "tagQuickSearchResults": []
         },
         error: ""
     }

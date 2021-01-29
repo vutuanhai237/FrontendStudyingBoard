@@ -12,9 +12,8 @@ import Paginator from 'components/common/Paginator/ServerPaginator'
 import PostSummary from 'components/post/PostSummary'
 import Loader from 'components/common/Loader/Loader'
 import { itemType } from 'constants.js'
-import { NavLink } from 'react-router-dom'
 import SearchHorizontalMenubar from './SearchHorizontalMenubar'
-class SearchPost extends Component {
+class SearchCourses extends Component {
     constructor(props) {
         super(props);
         this.postSearchResult = [];
@@ -96,7 +95,8 @@ class SearchPost extends Component {
                     <SearchHorizontalMenubar></SearchHorizontalMenubar>
                     <div className="mg-top-10px" />
                     <div className="nm-bl-layout-router-outlet" >
-                        <div>
+                        Search courses ...
+                        {/* <div>
                             {
                                 this.props.isListLoading || this.props.isCategoryLoading ?
                                     < Loader /> :
@@ -138,7 +138,7 @@ class SearchPost extends Component {
                                         }} />
                                     </div>
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div >
             </div >
@@ -159,4 +159,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostSearchResult, getPostCategories
 }, dispatch);
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPost));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchCourses));

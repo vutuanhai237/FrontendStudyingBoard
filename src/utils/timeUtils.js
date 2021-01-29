@@ -19,3 +19,4 @@ today.getDateMDY = function () {
 today.getDateDMY = function () {
     return dd + '-' + mm + '-' + yyyy;
 }
+

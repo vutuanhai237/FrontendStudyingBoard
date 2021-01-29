@@ -360,14 +360,14 @@ class DocumentDetail extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        document: state.document.document,
-        accountInformation: state.user.account
+        // document: state.document.document,
+        // accountInformation: state.user.account
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getDocumentByID,
-    getCurrentUser
+    // getDocumentByID,
+    // getCurrentUser
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DocumentDetail));

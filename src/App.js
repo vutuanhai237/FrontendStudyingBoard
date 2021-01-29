@@ -10,7 +10,6 @@ import Login from "pages/common/Login/Login";
 import Register from "pages/common/Register/Register";
 import Header from "components/common/Header/Header";
 import Footer from "components/common/Footer/Footer";
-import SearchPage from "layouts/SearchPage";
 import SearchTagLayout from "layouts/SearchTagLayout";
 
 //user
@@ -23,7 +22,6 @@ import NormalBlankLayout from "layouts/NormalBlankLayout"
 import AdminLayout from 'layouts/AdminSidebar'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 
 import SearchPostByTag from "pages/common/SearchResult/SearchPostByTag";
 import AccountInformation from "pages/user/AccountInformation/AccountInformation";
@@ -50,6 +48,8 @@ import UserRoleManagement from 'pages/management/UserRoleManagement/UserRoleMana
 import UserManagement from 'pages/management/UserManagement/UserManagement'
 import PostManagement from 'pages/management/PostManagement/PostManagement'
 import AdminSidebar from 'layouts/AdminSidebar'
+import SearchCourses from 'pages/common/SearchResult/SearchCourses'
+
 const App = () => {
 
     return (
@@ -57,7 +57,6 @@ const App = () => {
             <Router>
                 <Header />
                 <div id="header" style={{ height: "65px" }}></div>
-
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
@@ -124,7 +123,10 @@ const App = () => {
                         <Route exact path="/doc-approving" component={AdminLayout} />
                     </Route>
 
-                    <Route path="/search" exact component={SearchPage} />
+                    <Route path="/search/posts" exact component={SearchPost} />
+                    <Route path="/search/documents" exact component={SearchDocument} />
+                    <Route path="/search/tags" exact component={SearchTag} />
+                    <Route path="/search/courses" exact component={SearchCourses} />
 
                 </Switch>
                 <div className="App"></div>
