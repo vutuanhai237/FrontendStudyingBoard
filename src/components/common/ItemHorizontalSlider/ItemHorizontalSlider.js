@@ -17,7 +17,6 @@ export default class ItemHorizontalSlider extends React.Component {
 
   }
 
-
   prevSlide = () => {
     this.setState({
       activeIndex: this.state.activeIndex - 1,

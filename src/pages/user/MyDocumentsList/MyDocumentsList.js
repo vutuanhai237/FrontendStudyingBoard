@@ -9,7 +9,7 @@ import { getMyDocumentsList } from "redux/services/docServices"
 import { getDocCategories } from "redux/services/docCategoryServices"
 
 //utils
-import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/urlUtils'
+import { getSearchParamByName, setSearchParam } from 'utils/urlUtils'
 import { itemType } from 'constants.js'
 
 //components
@@ -98,7 +98,7 @@ class MyDocumentsList extends Component {
             <div>
                 <Titlebar title="TÀI LIỆU CỦA TÔI" />
                 <div className="content-container">
-                    <div className = "mg-bottom-10px j-c-space-between">
+                    <div className="mg-bottom-10px j-c-space-between">
 
                         <div className="filter-label d-flex">
                             <div className="mg-right-5px">Tổng số:</div>
@@ -123,9 +123,9 @@ class MyDocumentsList extends Component {
                     }
 
                     <Paginator config={{
-                       changePage: (pageNumber) => this.onPageChange(pageNumber),
-                       pageCount: 10,
-                       currentPage: getSearchParamByName('page')
+                        changePage: (pageNumber) => this.onPageChange(pageNumber),
+                        pageCount: 10,
+                        currentPage: getSearchParamByName('page')
                     }}
                     />
                 </div>

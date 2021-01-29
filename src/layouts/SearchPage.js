@@ -25,7 +25,6 @@ export default class SearchPage extends Component {
     constructor(props) {
         super(props);
         this.types = ["post", "document", "course", "tag"];
-
     }
 
     componentDidMount() {
@@ -64,7 +63,7 @@ export default class SearchPage extends Component {
 
                     <div className="d-flex mg-bottom-5px">
                         <div className="gray-label">Kết quả tìm kiếm cho:  </div>
-                        <div className="gray-normal-label">'{getSearchParamByName('q')}'</div>
+                        <div className="gray-normal-label">'{decodeURIComponent(getSearchParamByName('q'))}'</div>
                     </div>
 
                     {/* horizontal-menu-bar */}
@@ -108,12 +107,8 @@ export default class SearchPage extends Component {
                                 Tag
                                     </div>
                         }
-
-
                     </div>
-
                     <div className="mg-top-10px" />
-
                     <div className="nm-bl-layout-router-outlet" >
                         {searchResult}
                     </div>

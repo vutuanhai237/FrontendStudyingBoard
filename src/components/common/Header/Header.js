@@ -20,17 +20,15 @@ import logo from 'assets/images/logo.png';
 import upload_icon from 'assets/images/icon_upload.png';
 import write_icon from 'assets/images/icon_write.png';
 
+//services
+import { getQuickSearchResult } from 'redux/services/commonServices';
+
 //components
-import BaseComponent from 'utils/baseComponent'
 import Tag from "components/common/Tag/Tag";
-
-
-//services (to call API)
-// import { getCurrentUser } from "redux/services/userServices"
+import Loader from "components/common/Loader/Loader"
 import { logoRouter, headerMenuRouters } from "router.config"
 
-
-class Header extends BaseComponent {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,34 +37,10 @@ class Header extends BaseComponent {
             isCollapsedUserMenuOpened: false,
         }
         this.isHaveClickAwayQuickSearhResult = false;// dung de kiem tra neu bam ra ngoai search result lan 1
-
     }
 
     componentDidMount() {
-
-        // this.props.getCurrentUser();
-        this.myInterval = null;
-
-        function myTimer() {
-            if (this.props.account === null) {
-                this.setState({
-                    account: null,
-                });
-            } else {
-                console.log(this.props.account);
-                this.setState({
-                    account: this.props.account,
-                });
-                window.clearInterval(this.myInterval);
-                this.myInterval = null;
-                return;
-            }
-        }
-
-        this.myInterval = setInterval(myTimer.bind(this), 2000);
     }
-
-
 
     handleClickAwayQuickSearchResult = () => {
         //Neu man hinh dang la chieu ngang va kich thuoc chieu ngang nho hon 992px thi khi bam ra ngoai, modal search khong bi huy
@@ -76,90 +50,87 @@ class Header extends BaseComponent {
         this.handleCancelQuickSearch();
     }
 
-    onSearchTextFieldChange = () => {
-        this.keyWord = document.getElementById("sb-text-field-big").value;
+    onSearchTextFieldChange = (e) => {
+        console.log(e.target.value);
 
         this.showQuickSearchBigContainer();
-        console.log(this.keyWord);
+        this.props.getQuickSearchResult(e.target.value);
+    }
 
+    keyHandler = (e) => {
+        if (!e.target.value) return;
+        if (e.charCode === 13) { //press Enter    
+            this.props.history.push(`/search?type=post&q=${e.target.value}`);
+        }
     }
 
     render() {
 
         let quickSearchResultData = {
             post: [
-                { "id": 1, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Post 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                { "id": 2, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Post 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ...saaaaaaaaaaaaaaaaaaaaassssssaaaaaaaaaaaaaaaaaaaaaaasssssssssssssssssssssssssssaaaaaaaaaa" },
-                // { "id": 3, name: "Post 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
+                { "id": 1, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Post 1" },
+                { "id": 2, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Post 2" },
             ],
             doc: [
-                { "id": 1, imageUrl: "https://i.imgur.com/inBsikg.png", name: "Doc 1", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                { "id": 2, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Doc 2", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." },
-                // { "id": 3, name: "Doc 3", shortenContent: "... đồng thời ((đề nghị)) sinh viên ..." }
+                { "id": 1, imageUrl: "https://i.imgur.com/inBsikg.png", name: "Doc 1" },
+                { "id": 2, imageUrl: "https://i.imgur.com/znoyZE7.png", name: "Doc 2" }
             ],
             tag: [
-                { "id": 1, name: "firefox", description: "Since all the cool kids are doing it, here is our year-end recap of the best" },
-                { "id": 2, name: "design-pattern", description: "Trong công nghệ phần mềm, một mẫu thiết kế design pattern là một giải pháp tổng thể cho các vấn đề chung trong thiết kế phần mềm" },
-                // { "id": 3, name: "react-js", description: "React.JS là một thư viện Javascript dùng để xây dựng giao diện người dùng. Với cá nhân tôi cũng như nhận xét chung của cộng đồng về ReactJS thì nó nhanh, dễ học và vui." }
+                { "id": 1, name: "firefox" },
+                { "id": 2, name: "design-pattern" }
             ]
         };
 
-        let quickSearchResultView =
-            <div>
-                <div className="sub-result-container" id="quick-search-post-result-port">
-                    <div className="qs-type-title">BÀI VIẾT</div>
-                    {quickSearchResultData.post.map(result =>
-                        <Link to={`/posts/${result.id}`} className="qs-result-item">
+        let quickSearchResultView = <></>;
+        if (this.props.isQuickSearchLoadingDone && !this.props.isQuickSearchLoading) {
+            if (this.props.quickSearchResultData)
+                quickSearchResultView =
+                    <div>
+                        <div className="sub-result-container" id="quick-search-post-result-port">
+                            <div className="qs-type-title">BÀI VIẾT</div>
+                            {this.props.quickSearchResultData.postQuickSearchResults.map(result => {
+                                console.log(result);
+                                return <Link to={`/posts/${result.id}`} className="qs-result-item">
+                                    <div className="d-flex mg-top-5px">
+                                        <img alt="" src={result.imageURL} className="qs-result-image mg-right-5px" />
+                                        <div className="qsr-title">{result.title}</div>
+                                    </div>
+                                </Link>
+                            }
+                            )
+                            }
+                        </div>
+
+                        <div className="sub-result-container" id="quick-search-doc-result-port">
+                            <div className="qs-type-title mg-top-5px">TÀI LIỆU</div>
+                            {this.props.quickSearchResultData.docQuickSearchResults.map(result =>
+                                <Link to={`/documents/${result.id}`} className="qs-result-item">
+                                    <div className="d-flex mg-top-5px">
+                                        <img alt="" src={result.imageURL} className="qs-result-image mg-right-5px" />
+                                        <div className="qsr-title">{result.title}</div>
+                                    </div>
+                                </Link>
+                            )
+                            }
+                        </div>
+                        <div className="sub-result-container" id="quick-search-tag-result-port">
+                            <div className="qs-type-title mg-top-5px ">TAGS</div>
                             <div className="d-flex mg-top-5px">
-                                <img alt="" src={result.imageUrl} className="qs-result-image mg-right-5px" />
-                                <div className="qsr-title">{result.name}</div>
+                                {this.props.quickSearchResultData.tagQuickSearchResults.map(result =>
+                                    <Link to={`/tags/${result.id}/post?page=1`} className="d-flex">
+                                        <Tag isReadOnly={true} tag={{ "id": result.id, "name": result.content }} />
+                                    </Link>
+                                )
+                                }
                             </div>
-                            <div className="flex-container-end">
-                                <div className="wysiwyg-label">{result.shortenContent}</div>
-                            </div>
-                        </Link>
-                    )
-                    }
-                </div>
-
-                <div className="sub-result-container" id="quick-search-doc-result-port">
-                    <div className="qs-type-title mg-top-5px">TÀI LIỆU</div>
-                    {quickSearchResultData.doc.map(result =>
-                        <Link to={`/documents/${result.id}`} className="qs-result-item">
-                            <div className="d-flex mg-top-5px">
-                                <img alt="" src={result.imageUrl} className="qs-result-image mg-right-5px" />
-                                <div className="qsr-title">{result.name}</div>
-                            </div>
-                            <div className="flex-container-end">
-                                <div className="wysiwyg-label">{result.shortenContent}</div>
-                            </div>
-                        </Link>
-                    )
-                    }
-
-                </div>
-
-
-                <div className="sub-result-container" id="quick-search-tag-result-port">
-                    <div className="qs-type-title mg-top-5px ">TAGS</div>
-                    <div className="d-flex mg-top-5px">
-                        {quickSearchResultData.tag.map(result =>
-                            <Link to={`/tags/${result.id}/post?page=1`} className="d-flex">
-                                <Tag isReadOnly={true} tag={{ "id": result.id, "name": result.name }} />
-                            </Link>
-                        )
-                        }
-                    </div>
-                </div>
-            </div >;
-
-        // <Link className="search-image-container"
-        //     id="search-image-button-container" to={`/search?q=${this.keyWord}&type=post&page=1&category=1`}>
-        //     <img className="search-image-button"
-        //         src={search_icon}
-        //         alt="*"
-        //     />
-        // </Link>
+                        </div>
+                    </div >;
+            else quickSearchResultView = <Loader />;
+        }
+        else {
+            quickSearchResultView = <Loader />;
+        }
+        console.log(this.props);
 
         return (
 
@@ -182,7 +153,7 @@ class Header extends BaseComponent {
                         <div className="header-begin-lv2" id="header-begin-lv2" >
 
                             {/* Duoi 576 */}
-                            {/* <div className="sb-container-small" >
+                            <div className="sb-container-small" >
                                 <form className="sb-text-field-container" autoComplete="off" onSubmit={(e) => this.handleSearch(e.target.value)} >
                                     <input className="sb-text-field" id="search-box-text-field-small" type="text" placeholder="Search..." onChange={() => this.handleQuickSearch()} />
                                     <div className="search-image-container"
@@ -195,7 +166,6 @@ class Header extends BaseComponent {
                                     </div>
                                 </form>
                             </div>
-
                             {/* 576 -> 992 */}
                             <div className="qs-container-normal">
                                 <div className="sb-container-normal" >
@@ -235,7 +205,9 @@ class Header extends BaseComponent {
                                         <input className="sb-text-field"
                                             id="sb-text-field-big"
                                             type="text" placeholder="Search..."
-                                            onChange={() => { this.onSearchTextFieldChange(); }} />
+                                            onChange={(e) => this.onSearchTextFieldChange(e)}
+                                            onKeyPress={(e) => { this.keyHandler(e) }}
+                                        />
                                     </div>
                                 </div>
 
@@ -372,19 +344,21 @@ class Header extends BaseComponent {
             this.setState({
                 isQuickSearchShow: true
             });
-
         }
     }
-
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        // account: state.user.account,
+        quickSearchResultData: state.common.quickSearchResult.data,
+        isQuickSearchLoading: state.common.quickSearchResult.isLoading,
+        isQuickSearchLoadingDone: state.common.quickSearchResult.isLoadingDone
+
     };
 };
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    // getCurrentUser,
+    getQuickSearchResult
 }, dispatch);
 
 export default withRouter(

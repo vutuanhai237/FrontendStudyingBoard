@@ -33,7 +33,6 @@ class SearchPost extends Component {
     }
 
     async componentDidMount() {
-
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
         let searchTerm = getSearchParamByName('q'); //querry
@@ -45,7 +44,7 @@ class SearchPost extends Component {
         setSearchParam("page", pageNumber);
         let page = getSearchParamByName('page');
         let category = getSearchParamByName('category');
-        let searchTerm = getSearchParamByName('q'); //querry
+        let searchTerm = decodeURIComponent(getSearchParamByName('q')); //querry
         this.props.getPostSearchResult(page ? page : 1, category ? category : "", searchTerm ? searchTerm : ""); //api khác, tìm bằng tag
         this.setState({});
     }
@@ -74,7 +73,6 @@ class SearchPost extends Component {
                     comments={postItem.commentCount}
                     approveStatus={false}
                 ></PostSummary >)
-
             )
         }
         return (

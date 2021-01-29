@@ -84,20 +84,20 @@ export function get_NewestPostsListFailure(error) {
 }
 
 //new activity
-export function get_NewestActivityListRequest() {
+export function get_NewestActivitiesRequest() {
   return {
     type: GET_NEWEST_ACTIVITIES_LIST_REQUEST,
   }
 }
 
-export function get_NewestActivitySuccess(data) {
+export function get_NewestActivitiesSuccess(data) {
   return {
     type: GET_NEWEST_ACTIVITIES_LIST_SUCCESS,
     payload: data
   }
 }
 
-export function get_NewestActivityFailure(error) {
+export function get_NewestActivitiesFailure(error) {
   return {
     type: GET_NEWEST_ACTIVITIES_LIST_FAILURE,
     payload: error

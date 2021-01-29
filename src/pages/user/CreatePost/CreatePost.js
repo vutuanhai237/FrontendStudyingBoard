@@ -7,7 +7,6 @@ import { getPostCategories } from "redux/services/postCategoryServices";
 import { getTagQuickQueryResult } from "redux/services/tagServices"
 import { postCreatePost } from "redux/services/postServices"
 
-
 import "./CreatePost.scss";
 import "components/common/CustomCKE/CKEditorContent.scss";
 import 'components/styles/DocPostSummary.scss'
@@ -157,7 +156,7 @@ class CreatePost extends Component {
         document.getElementById("cr-post-qs-tag-result-container").classList.remove('hidden');
     }
 
-    keyHandler = (e) => {
+     keyHandler = (e) => {
         if (!e.target.value) return;
         let tags = this.state.CREATE_POST_DTO.tags;
         let hasOldTag = -1; // khong cos => -1 neu co => id cua tag 
@@ -532,8 +531,8 @@ class CreatePost extends Component {
                 <Titlebar title="TẠO BÀI VIẾT MỚI" />
                 <div className="content-container">
                     <div className="form-container">
-                        <div className="flex-container-end">
-                            <div className="flex-container-end" >
+                        <div className="j-c-end">
+                            <div className="j-c-end" >
                                 <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn bài viết</button>
                                 <div className="mg-right-5px" />
                                 <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>

@@ -50,19 +50,19 @@ class RegisterForm extends React.Component {
 
     componentDidMount() {
         this.myInterval = null;
-        function myTimer() {
-            if (this.state.usernameAlert === "" && this.state.passwordAlert === ""
-                && this.state.password2Alert === "" && this.state.emailAlert === "") {
-                this.setState({
-                    isValidRegister: true,
-                })
-            } else {
-                this.setState({
-                    isValidRegister: false,
-                })
-            }
-        }
-        this.myInterval = setInterval(myTimer.bind(this), 1000);
+        // function myTimer() {
+        //     if (this.state.usernameAlert === "" && this.state.passwordAlert === ""
+        //         && this.state.password2Alert === "" && this.state.emailAlert === "") {
+        //         this.setState({
+        //             isValidRegister: true,
+        //         })
+        //     } else {
+        //         this.setState({
+        //             isValidRegister: false,
+        //         })
+        //     }
+        // }
+        // this.myInterval = setInterval(myTimer.bind(this), 1000);
     }
 
     changeUploadFileName(evt) {

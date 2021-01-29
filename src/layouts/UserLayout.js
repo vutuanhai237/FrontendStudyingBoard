@@ -35,13 +35,11 @@ import {
   isGrantedPermissions
 } from 'utils/permissionUtils'
 
-class AdminLayout extends Component {
+class UserLayout extends Component {
   constructor(props) {
     super(props);
     this.isTheFirstTimeLoaded = true;
     this.isGrantedPermissions = isGrantedPermissions.bind(this); //bind check permission in PermissionManagement.js file
-
-
   }
 
   componentDidMount() {
@@ -409,10 +407,9 @@ class AdminLayout extends Component {
 
 }
 
-//#region for redux
 const mapStateToProps = (state) => {
   return {
-    // accountInformation: state.user.account
+   
   };
 }
 
@@ -420,7 +417,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getCurrentUser
 }, dispatch);
 
-// const
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminLayout));
-//#endregion
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserLayout));

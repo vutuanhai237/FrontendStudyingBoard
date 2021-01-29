@@ -13,9 +13,9 @@ import {
     GET_NEWEST_POSTS_LIST_SUCCESS,
     GET_NEWEST_POSTS_LIST_FAILURE,
 
-    GET_NEWEST_ACTIVITIESES_LIST_REQUEST,
-    GET_NEWEST_ACTIVITIESES_LIST_SUCCESS,
-    GET_NEWEST_ACTIVITIESES_LIST_FAILURE,
+    GET_NEWEST_ACTIVITIES_LIST_REQUEST,
+    GET_NEWEST_ACTIVITIES_LIST_SUCCESS,
+    GET_NEWEST_ACTIVITIES_LIST_FAILURE,
 
 } from "../constants.js"
 
@@ -77,11 +77,11 @@ function HomeReducer(state = initialState, action) {
             return { ...state, highlightPosts: { isLoading: false, data: action.payload, error: '' } }
         case GET_HIGHLIGHT_POSTS_LIST_FAILURE:
             return { ...state, highlightPosts: { isLoading: false, error: action.payload, data: [] } }
-        case GET_NEWEST_ACTIVITIESES_LIST_REQUEST:
+        case GET_NEWEST_ACTIVITIES_LIST_REQUEST:
             return { ...state, newActivities: { isLoading: true } };
-        case GET_NEWEST_ACTIVITIESES_LIST_SUCCESS:
+        case GET_NEWEST_ACTIVITIES_LIST_SUCCESS:
             return { ...state, newActivities: { isLoading: false, data: action.payload, error: '' } }
-        case GET_NEWEST_ACTIVITIESES_LIST_FAILURE:
+        case GET_NEWEST_ACTIVITIES_LIST_FAILURE:
             return { ...state, newActivities: { isLoading: false, error: action.payload, data: [] } }
         default:
             return state;

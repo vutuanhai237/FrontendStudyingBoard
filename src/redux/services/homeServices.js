@@ -11,8 +11,13 @@ import {
     get_NewestPostsListRequest,
     get_NewestPostsListSuccess,
     get_NewestPostsListFailure,
-    
+
+    get_NewestActivitiesRequest,
+    get_NewestActivitiesSuccess,
+    get_NewestActivitiesFailure,
+
 } from "redux/actions/homeAction.js";
+import { remoteServiceBaseUrl } from 'utils/httpServices'
 
 export function getTrendingDocumentsList() {
 
@@ -54,7 +59,7 @@ export function getNewestPostsList() {
         };
         dispatch(get_NewestPostsListRequest());
 
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myDocuments`, requestOptions)
+        fetch(`${remoteServiceBaseUrl}/posts/newest`, requestOptions)
             .then(response => response.text())
             .then(
                 result => {
@@ -90,6 +95,32 @@ export function getHighlightPostsList() {
             )
             .catch(error => {
                 console.log(error); dispatch(get_HighlightPostsListFailure(error))
+            })
+    }
+}
+
+
+export function getNewestActivities() {
+    return dispatch => {
+
+        dispatch(get_NewestActivitiesRequest());
+
+        var myHeaders = new Headers();
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/highlight`, requestOptions)
+            .then(response => response.text())
+            .then(
+                result => {
+                    dispatch(get_NewestActivitiesSuccess(JSON.parse(result)));
+                }
+            )
+            .catch(error => {
+                console.log(error); dispatch(get_NewestActivitiesFailure(error))
             })
     }
 }

@@ -102,6 +102,7 @@
 }
 
 body {
+    line-height: 1rem;
     color: var(--black) !important;
     font-family: "BarlowSemiCondensed-Medium";
 }
@@ -128,7 +129,6 @@ img {
 }
 
 
-
 a {
     text-decoration: none;
     outline: none;
@@ -148,8 +148,6 @@ a:hover {
     flex-direction: column;
 }
 
-
-
 .flex-container {
     display: flex;
 }
@@ -159,7 +157,7 @@ a:hover {
     margin: auto;
 }
 
-.flex-container-end {
+.j-c-end {
     width: 100%;
     display: flex;
     justify-content: end;
@@ -258,6 +256,7 @@ a:hover {
 .mg-auto {
     margin: auto;
 }
+
 .bg-green {
     background: green;
 }
@@ -293,7 +292,8 @@ a:hover {
 .w-50-percents {
     width: 50%;
 }
-.c-pointer{
+
+.c-pointer {
     cursor: pointer;
 }
 

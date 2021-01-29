@@ -585,8 +585,8 @@ class UploadDocument extends Component {
                 <Titlebar title="UPLOAD TÀI LIỆU" />
                 <div className="content-container">
                     <div className="form-container">
-                        <div className="flex-container-end">
-                            <div className="flex-container-end" >
+                        <div className="j-c-end">
+                            <div className="j-c-end" >
                                 <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn tài liệu</button>
                                 <div className="mg-right-5px" />
                                 <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>

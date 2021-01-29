@@ -9,6 +9,7 @@ import TagReducer from "redux/reducers/tagReducer"
 import CourseReducer from "redux/reducers/courseReducer"
 import CourseCategoryReducer from "redux/reducers/courseCategoryReducer"
 import HeadingReducer from "redux/reducers/headingReducer"
+import CommonReducer from "redux/reducers/commonReducer"
 
 var RootReducer = combineReducers({
     home: HomeReducer,
@@ -21,6 +22,7 @@ var RootReducer = combineReducers({
     course: CourseReducer,
     course_category: CourseCategoryReducer,
     heading: HeadingReducer,
+    common: CommonReducer,
 });
 
 export default RootReducer;
