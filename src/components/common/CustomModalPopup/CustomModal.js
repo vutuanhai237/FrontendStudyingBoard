@@ -1,7 +1,7 @@
 import React from "react";
 import './CustomModal.scss'
 
- import 'components/home/node_modules/components/styles/SimpleButton.scss'
+ import 'components/styles/SimpleButton.scss'
  
 
 
@@ -49,7 +49,7 @@ export default class CustomModal extends React.Component {
                                         <img className="Custom_Modal_Main_Icon" src={success_management_icon} alt="icon" />
                                         : <></>
                                     }
-                                    {(this.props.type === "alert_fail") ?
+                                    {(this.props.type === "alert_failure") ?
                                         <img className="Custom_Modal_Main_Icon" src={fail_management_icon} alt="icon" />
                                         : <></>
                                     }
@@ -71,7 +71,7 @@ export default class CustomModal extends React.Component {
                                     : <></>
                                 }
 
-                                {(this.props.type === "alert_success" || this.props.type === "alert_fail") ?
+                                {(this.props.type === "alert_success" || this.props.type === "alert_failure") ?
                                     <div className="Custom_Modal_Footer">
                                         <div className="blue-button" style={{ margin: "auto" }} onClick={() => this.props.closeModal()} >OK</div>
                                     </div>

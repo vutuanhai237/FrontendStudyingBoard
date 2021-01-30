@@ -13,8 +13,6 @@ import Footer from "components/common/Footer/Footer";
 import SearchTagLayout from "layouts/SearchTagLayout";
 
 //user
-import UserLayout from "layouts/UserLayout"
-
 //common
 import NormalBlankLayout from "layouts/NormalBlankLayout"
 
@@ -38,7 +36,6 @@ import CoursesList from "pages/common/CoursesList/CoursesList"
 import ChaptersList from "pages/common/HeadingsList/HeadingsList"
 import PostsList from 'pages/common/PostsList/PostsList'
 import DocumentsList from 'pages/common/DocumentsList/DocumentsList'
-import ItemHorizontalSlider from 'components/common/ItemHorizontalSlider/ItemHorizontalSlider'
 import PostApproving from 'pages/management/PostApproving/PostApproving'
 import DocumentApproving from 'pages/management/DocumentApproving/DocumentApproving'
 import NotificationManagement from 'pages/management/NotificationManagement/NotificationManagement'
@@ -49,6 +46,11 @@ import UserManagement from 'pages/management/UserManagement/UserManagement'
 import PostManagement from 'pages/management/PostManagement/PostManagement'
 import AdminSidebar from 'layouts/AdminSidebar'
 import SearchCourses from 'pages/common/SearchResult/SearchCourses'
+import UploadDocument from 'pages/user/UploadDocument/UploadDocument'
+import CreatePost from 'pages/user/CreatePost/CreatePost'
+import ActivityManagement from 'pages/management/ActivityManagement/ActivityManagement'
+import DocumentManagement from 'pages/management/DocumentManagement/DocumentManagement'
+import CoursesManagement from 'pages/management/CoursesManagement/CoursesManagement'
 
 const App = () => {
 
@@ -67,6 +69,10 @@ const App = () => {
                     <Route exact path="/documents/:id" component={DocDetail} />
                     <Route exact path="/courses" component={CoursesList} />
                     <Route exact path="/courses/:id" component={ChaptersList} />
+                    <Route path="/search/posts" exact component={SearchPost} />
+                    <Route path="/search/documents" exact component={SearchDocument} />
+                    <Route path="/search/tags" exact component={SearchTag} />
+                    <Route path="/search/courses" exact component={SearchCourses} />
 
                     {/* Search Tag */}
                     <Route path="/tags/:id/">
@@ -77,56 +83,39 @@ const App = () => {
                             </Switch>
                         </SearchTagLayout>
                     </Route>
-                    <Route exact path="/demo-component" component={ItemHorizontalSlider} />
-
 
                     {/* user layout */}
-                    <Route path="/user">
-                        <UserLayout>
-                            <Switch>
-                                <Route exact path="/user" component={AccountInformation} />
-                                <Route exact path="/user/update-password" component={UpdatePassword} />
-                                <Route exact path="/user/my-docs" component={MyDocumentsList} />
-                                <Route exact path="/user/my-posts" component={MyPostsList} />
-                            </Switch>
-                        </UserLayout>
-                    </Route>
 
-                    <Route exact path="/create-post" component={UserLayout} />
-                    <Route exact path="/upload-doc" component={UserLayout} />
+                    <Route exact path="/user" component={AccountInformation} />
+                    <Route exact path="/user/update-password" component={UpdatePassword} />
+                    <Route exact path="/user/my-docs" component={MyDocumentsList} />
+                    <Route exact path="/user/my-posts" component={MyPostsList} />
+                    <Route exact path="/create-post" component={CreatePost} />
+                    <Route exact path="/upload-doc" component={UploadDocument} />
+                    <Route exact path="/courses/:id/artical" component={Artical} />
+                    <Route exact path="/courses/:id/video" component={Video} />
+                    <Route exact path="/courses/:id/exercise" component={Exercise} />
 
                     {/* for admin only */}
 
                     {/* Admin and collab page content admin */}
+                    <Route exact path="/admin-sidebar" component={AdminSidebar} />
+
                     {/* for admin */}
-                    <Route exact path="/admin" component={PostApproving} />
+                    {/* <Route exact path="/admin" component={PostManagement} /> */}
                     <Route exact path="/admin/post-approving" component={PostApproving} />
                     <Route exact path="/admin/doc-approving" component={DocumentApproving} />
-
-                    {/* for collab */}
-                    {/* <Route exact path="/user/post-approving" component={PostApproving} />
-                    <Route exact path="/user/doc-approving" component={DocumentApproving} /> */}
-
-                    {/* for admin only */}
-                    <Route exact path="/admin-sidebar" component={AdminSidebar} />
                     <Route exact path="/admin/post-management" component={PostManagement} />
-
-                    <Route exact path="/admin/page-notification" component={NotificationManagement} />
-                    <Route exact path="/admin/categories-management" component={CategoryManagement} />
+                    <Route exact path="/admin/document-management" component={DocumentManagement} />
                     <Route exact path="/admin/user-management" component={UserManagement} />
-                    <Route exact path="/admin/activity_management" component={AdminLayout} />
-                    <Route exact path="/admin/user_role_management" component={UserRoleManagement} />
+                    <Route exact path="/admin/page-notification" component={NotificationManagement} />
+                    <Route exact path="/admin/category-management" component={CategoryManagement} />
+                    <Route exact path="/admin/activity-management" component={ActivityManagement} />
+                    <Route exact path="/admin/user-role-management" component={UserRoleManagement} />
                     <Route exact path="/admin/user-management/:id" component={AdminLayout} />
-                    <Route exact path="/admin/statistic_management" component={Statistic} />
-                    <Route path="/collab">
-                        <Route exact path="/post-approving" component={AdminLayout} />
-                        <Route exact path="/doc-approving" component={AdminLayout} />
-                    </Route>
+                    <Route exact path="/admin/statistic" component={Statistic} />
+                    <Route exact path="/admin/courses-management" component={CoursesManagement} />
 
-                    <Route path="/search/posts" exact component={SearchPost} />
-                    <Route path="/search/documents" exact component={SearchDocument} />
-                    <Route path="/search/tags" exact component={SearchTag} />
-                    <Route path="/search/courses" exact component={SearchCourses} />
 
                 </Switch>
                 <div className="App"></div>

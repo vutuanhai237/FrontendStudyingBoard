@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/home/node_modules/components/styles/SimpleButton.scss'
+import 'components/styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ import unliked_btn from 'assets/images/unliked_btn.png'
 import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
 import gray_bookmark_btn from 'assets/images/gray_bookmark_btn.png'
 import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
-import 'components/home/node_modules/components/styles/DocPostSummary.scss'
+import 'components/styles/DocPostSummary.scss'
 
 //styles
 import 'components/styles/SimpleLabel.scss'

@@ -8,7 +8,7 @@ import icon_write from 'assets/images/icon_write.png'
 
 //combobox
 import 'components/common/Combobox/Combobox.scss'
-import 'components/home/node_modules/components/styles/SimpleButton.scss'
+import 'components/styles/SimpleButton.scss'
 import 'components/styles/SimpleLabel.scss'
 
 //modal popup
@@ -102,7 +102,7 @@ class UserItem extends Component {
             return (
                 <div className="User_Item"  >
 
-                    <img alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + '.png'} className="Show_Avatar"></img>
+                    <img alt="avatar" src={"https://cfaevjuhwlpmr2dgadvijg-on.drv.tw/BHTWeb/Avatar/" +  this.username + '.png'} className="side-bar-avatar"></img>
 
                     <div style={{
                         paddingLeft: "10px", width: "100%"
@@ -195,7 +195,7 @@ class UserItem extends Component {
                         shadow={true}
                         title={this.notifyHeader}
                         text={this.notifyContent}
-                        type="alert_fail"
+                        type="alert_failure"
                         closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
                     />
 

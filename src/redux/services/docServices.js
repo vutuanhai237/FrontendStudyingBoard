@@ -63,10 +63,7 @@ export function getDocumentsList(page = 1, category = "", searchTerm = "") { //t
 
 export function getDocumentSearchResult(page = 1, category = "", searchTerm = "") { //this API to get all approved document of a specific user.
     return dispatch => {
-        console.log("A");
-
         var myHeaders = new Headers();
-
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
@@ -84,15 +81,12 @@ export function getDocumentSearchResult(page = 1, category = "", searchTerm = ""
                 
                 dispatch(get_DocumentSearchResultFailure(JSON.parse(error))); //
             })
-
     }
 }
 
 export function getMyDocumentsList(page = 1, category = "") { //this API to get all approved document of a specific user.
     return dispatch => {
-
         var myHeaders = new Headers();
-
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
@@ -111,7 +105,6 @@ export function getMyDocumentsList(page = 1, category = "") { //this API to get 
                 
                 dispatch(get_MyDocumentsFailure(error))
             })
-
     }
 }
 

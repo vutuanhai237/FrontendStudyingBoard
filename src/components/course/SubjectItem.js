@@ -8,8 +8,8 @@ import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
 import { itemType } from 'constants.js'
 
 //styles
-import 'components/home/node_modules/components/styles/DocPostSummary.scss'
-import 'components/home/node_modules/components/styles/SimpleButton.scss'
+import 'components/styles/DocPostSummary.scss'
+import 'components/styles/SimpleButton.scss'
 import './SubjectItem.scss'
 
 //components

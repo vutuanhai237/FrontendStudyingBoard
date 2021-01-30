@@ -55,7 +55,8 @@ const initialState = {
         error: ""
     },
     createPost: {
-        isLoading: false, notification: ""
+        isLoadingDone: false,
+        notification: { type: '', message: '' }
     }
 };
 
@@ -64,15 +65,15 @@ function PostReducer(state = initialState, action) {
 
         case POST_CREATE_POST_REQUEST:
             return {
-                ...state, createPost: { isLoading: true }
+                ...state, createPost: { isLoadingDone: false }
             };
         case POST_CREATE_POST_SUCCESS:
             {
-                return { ...state, createPost: { isLoading: false, notification: action.payload } }
+                return { ...state, createPost: { isLoadingDone: true, notification: { type: 'success', message: 'Tạo mới tài liệu thành công!' } } }
             }
         case POST_CREATE_POST_FAILURE:
             {
-                return { ...state, highlightPosts: { isLoading: false, notification: action.payload } }
+                return { ...state, createPost: { isLoading: true, notification: { type: 'error', message: action.payload } } }
             }
         //get all not approved post
         case GET_ALL_NOT_APPROVED_POSTS:
@@ -99,7 +100,6 @@ function PostReducer(state = initialState, action) {
             {
                 return { ...state, highlightPosts: { isLoading: false, isLoadDone: true, error: action.payload, data: [] } }
             }
-
         //get my post
         case GET_MY_POSTS_REQUEST:
             return {
@@ -123,7 +123,6 @@ function PostReducer(state = initialState, action) {
         case GET_POST_SEARCH_RESULT_SUCCESS:
         case GET_POSTS_LIST_SUCCESS:
             {
-               
                 return { ...state, postsList: { ...state.postsList, isLoading: false, data: action.payload.postSummaryDTOs, error: '', totalPages: action.payload.totalPages } }
             }
         case GET_POST_SEARCH_RESULT_FAILURE:

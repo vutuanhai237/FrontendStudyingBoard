@@ -32,16 +32,15 @@ export function getTrendingDocumentsList() {
         };
         dispatch(get_TrendingDocumentsListRequest());
 
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myDocuments`, requestOptions)
-            .then(response => response.text())
+        fetch(`${remoteServiceBaseUrl}docs/trending`, requestOptions)
+            .then(response => response.json())
             .then(
                 result => {
-                    dispatch(get_TrendingDocumentsListSuccess(JSON.parse(result)));
+                    dispatch(get_TrendingDocumentsListSuccess(result));
                 }
             )
             .catch(error => {
-                
-                dispatch(get_TrendingDocumentsListFailure(JSON.parse(error))); //
+                dispatch(get_TrendingDocumentsListFailure(error)); //
             })
     }
 }
@@ -60,14 +59,25 @@ export function getNewestPostsList() {
         dispatch(get_NewestPostsListRequest());
 
         fetch(`${remoteServiceBaseUrl}/posts/newest`, requestOptions)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(
                 result => {
-                    dispatch(get_NewestPostsListSuccess(JSON.parse(result)));
+                    let result_1 = result;
+                    let IDarr = ''; result.map(item => IDarr += item.id + ","
+                    )
+                    console.log(result);
+                    fetch(`${remoteServiceBaseUrl}/posts/statistic?postIDs=${IDarr}`, requestOptions)
+                        .then(response => response.json())
+                        .then(
+                            result => {
+                                let arr = result_1.map((item, i) => Object.assign({}, item, result[i]));
+                                console.log(arr);
+                                dispatch(get_NewestPostsListSuccess(arr))
+                            }).catch(error => dispatch(get_NewestPostsListFailure(error)))
                 }
             )
             .catch(error => {
-                
+
                 dispatch(get_NewestPostsListFailure(JSON.parse(error))); //
             })
     }
@@ -86,15 +96,25 @@ export function getHighlightPostsList() {
             redirect: 'follow'
         };
 
-        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/highlight`, requestOptions)
-            .then(response => response.text())
+        fetch(`${remoteServiceBaseUrl}/posts/newest`, requestOptions)
+            .then(response => response.json())
             .then(
                 result => {
-                    dispatch(get_HighlightPostsListSuccess(JSON.parse(result)));
+                    let result_1 = result;
+                    let IDarr = ''; result.map(item => IDarr += item.id + ","
+                    )
+                    console.log(result);
+                    fetch(`${remoteServiceBaseUrl}/posts/statistic?postIDs=${IDarr}`, requestOptions)
+                        .then(response => response.json())
+                        .then(
+                            result => {
+                                let arr = result_1.map((item, i) => Object.assign({}, item, result[i]));
+                                dispatch(get_HighlightPostsListSuccess(arr))
+                            }).catch(error => dispatch(get_HighlightPostsListFailure(error)))
                 }
             )
             .catch(error => {
-                 dispatch(get_HighlightPostsListFailure(error))
+                dispatch(get_HighlightPostsListFailure(error))
             })
     }
 }
@@ -120,7 +140,7 @@ export function getNewestActivities() {
                 }
             )
             .catch(error => {
-                 dispatch(get_NewestActivitiesFailure(error))
+                dispatch(get_NewestActivitiesFailure(error))
             })
     }
 }

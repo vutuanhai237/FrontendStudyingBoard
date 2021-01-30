@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/home/node_modules/components/styles/SimpleButton.scss'
+import 'components/styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { Link } from 'react-router-dom'
 

@@ -15,7 +15,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { management_getAllUsers, management_getAllRoles } from 'redux/services/userServices'
-
+import AdminSidebar from 'layouts/AdminSidebar'
 class UserManagement extends Component {
     constructor(props) {
         super();
@@ -35,21 +35,21 @@ class UserManagement extends Component {
 
         this.isChangeRoleConfirmationPopupOpen = false;
         this.isAnyChangeRoleFilterDropdownComboboxOpen = false;
-        
+
         this.state = {
             currentInteractList: []
         }
     }
 
     componentDidMount() {
-        this.props.management_getAllUsers();
-        this.props.management_getAllRoles();
+        // this.props.management_getAllUsers();
+        // this.props.management_getAllRoles();
     }
 
     //client
-    onPageChangeClient = (currentInteractList) => {
-        this.setState({ currentInteractList: currentInteractList })
-    }
+    // onPageChangeClient = (currentInteractList) => {
+    //     this.setState({ currentInteractList: currentInteractList })
+    // }
 
     render() {
 
@@ -117,23 +117,24 @@ class UserManagement extends Component {
         return (
 
 
-
-            <div>
-                <Titlebar title="QUẢN LÝ NGƯỜI DÙNG" />
+            <div className="management-layout">
+                <AdminSidebar />
                 <div className="content-container">
+                    <Titlebar title="QUẢN LÝ NGƯỜI DÙNG" />
+                    <div className="content-container">
 
-                    <div className="d-flex j-c-space-between mg-top-10px"  >
-                        <div className="number-of-item">
-                            Tổng số:
-                            &nbsp;
+                        <div className="d-flex j-c-space-between mg-top-10px"  >
+                            <div className="number-of-item">
+                                Tổng số:
+                                &nbsp;
                             {this.usersList.length}
-                        </div>
-                        < div className="pos-relative d-flex">
-                            {/* <div className="gray-label" style={{ paddingTop: "5px" }}>
+                            </div>
+                            < div className="pos-relative d-flex">
+                                {/* <div className="gray-label" style={{ paddingTop: "5px" }}>
                                 Filter:
                             </div> */}
-                            {/* &nbsp; */}
-                            {/* <div style={{ position: "relative", display: "flex", width: "120px" }}>
+                                {/* &nbsp; */}
+                                {/* <div style={{ position: "relative", display: "flex", width: "120px" }}>
                                 <ClickAwayListener onClickAway={() => { this.closeChangeRoleFilterDropdownCombobox() }}>
 
                                     <div style={{ position: "relative", display: "flex", width: "100%", zIndex: 1000000 }}>
@@ -165,23 +166,24 @@ class UserManagement extends Component {
                                     </div>
                                 </ClickAwayListener>
                             </div> */}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* <div className="mg-bottom-20px" /> */}
+                        {/* <div className="mg-bottom-20px" /> */}
 
-                    {userItemList}
+                        {userItemList}
 
-                    <Paginator config={{
+                        {/* <Paginator config={{
                         changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
                         rawData: this.usersList,
                         maxItemPerPage: this.maxItemPerPage,
                         numShownPage: 5,
                         bottom: "31px"
                     }}
-                    />
-                </div>
-            </div >
+                    /> */}
+                    </div>
+                </div >
+            </div>
         );
     }
 
@@ -237,15 +239,15 @@ class UserManagement extends Component {
 
 //#region for Redux
 const mapStateToProps = (state) => {
-    
+
     return {
-        userList: state.user.allUsers.accounts,
-        roleList: state.user.allRoles
+        // userList: state.user.allUsers.accounts,
+        // roleList: state.user.allRoles
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    management_getAllUsers, management_getAllRoles
+    // management_getAllUsers, management_getAllRoles
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserManagement));

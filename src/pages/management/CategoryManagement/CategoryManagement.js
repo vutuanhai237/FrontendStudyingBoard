@@ -266,7 +266,7 @@ class CategoryManagement extends Component {
                         shadow={true}
                         title={this.notifyHeader}
                         text={this.notifyContent}
-                        type="alert_fail"
+                        type="alert_failure"
                         closeModal={() => { this.isNotifyFailOpen = false; this.setState({}) }}
                     >
                     </CustomModal>

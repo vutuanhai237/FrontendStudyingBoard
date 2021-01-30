@@ -115,18 +115,23 @@ class Home extends Component {
         if (!this.props.isNewPostsLoading) {
             newestPostsList = <div className="home-item-container-wrapper">
                 <div className="home-item-container">
-                    {this.props.newPosts.map(item => {
+                    {this.props.newPosts.map(postItem => {
                         return <HomePostItem
-                            id={item.id}
-                            authorID={item.authorID}
-                            authorName={item.authorName}
-                            categoryID={item.categoryID}
-                            categoryName={item.categoryName}
-                            imageURL={item.imageURL}
-                            publishDtm={item.publishDtm}
-                            readingTime={item.readingTime}
-                            summary={item.summary}
-                            title={item.title}
+                            key={postItem.id}
+                            id={postItem.id}
+                            authorName={postItem.authorName}
+                            authorID={postItem.authorID}
+                            publishDtm={postItem.publishDtm}
+                            categoryName={postItem.categoryName}
+                            categoryID={postItem.categoryID}
+                            title={postItem.title}
+                            summary={postItem.summary}
+                            imageURL={postItem.imageURL}
+                            likedStatus={postItem.likeStatus}
+                            savedStatus={postItem.savedStatus}
+                            readingTime={postItem.readingTime}
+                            likeCount={postItem.likeCount}
+                            commentCount={postItem.commentCount}
                         ></HomePostItem>
                     })}
                 </div>
@@ -162,18 +167,23 @@ class Home extends Component {
         if (!this.props.isNewActivitiesLoading) {
             newestActivitiesList = <div className="home-item-container-wrapper">
                 <div className="home-item-container">
-                    {this.props.newActivities.map(item => {
+                    {this.props.newActivities.map(postItem => {
                         return <HomePostItem
-                            id={item.id}
-                            authorID={item.authorID}
-                            authorName={item.authorName}
-                            categoryID={item.categoryID}
-                            categoryName={item.categoryName}
-                            imageURL={item.imageURL}
-                            publishDtm={item.publishDtm}
-                            readingTime={item.readingTime}
-                            summary={item.summary}
-                            title={item.title}
+                            key={postItem.id}
+                            id={postItem.id}
+                            authorName={postItem.authorName}
+                            authorID={postItem.authorID}
+                            publishDtm={postItem.publishDtm}
+                            categoryName={postItem.categoryName}
+                            categoryID={postItem.categoryID}
+                            title={postItem.title}
+                            summary={postItem.summary}
+                            imageURL={postItem.imageURL}
+                            likedStatus={postItem.likeStatus}
+                            savedStatus={postItem.savedStatus}
+                            readingTime={postItem.readingTime}
+                            likeCount={postItem.likeCount}
+                            commentCount={postItem.commentCount}
                         ></HomePostItem>
                     })}
                 </div>
@@ -185,7 +195,7 @@ class Home extends Component {
 
         return (
             <div className="pr-layout">
-                <Wallpage />
+                <Wallpage sliderWidth="1000" sliderHeight="250" />
                 <div className="home-layout" >
                     <div className="decoration-line mg-bottom-10px" />
                     {/* Đại cương */}

@@ -8,7 +8,7 @@ import './NotificationManagement.scss'
 // import done_icon from 'assets/images/done_icon.png'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { ClickAwayListener } from '@material-ui/core';
-
+import AdminSidebar from 'layouts/AdminSidebar'
 class NotificationManagement extends Component {
     constructor(props) {
         super(props);
@@ -49,145 +49,144 @@ class NotificationManagement extends Component {
 
     render() {
         return (
-            <div>
-                <Titlebar title="QUẢN LÝ THÔNG BÁO" />
+            <div className="management-layout">
+                <AdminSidebar />
                 <div className="content-container">
-                    {/* Danh mục bài viết */}
+                    <Titlebar title="QUẢN LÝ DANH MỤC" />
+                    <div className="content-container">
+                        {/* Danh mục bài viết */}
 
-
-
-                    <div className="Category_Type_Dropdown" id="management-post-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-categories-dropdown", "management-post-categories-container")}>
-                        <div>
-                            DANH SÁCH THÔNG BÁO
+                        <div className="Category_Type_Dropdown" id="management-post-categories-dropdown" onClick={() => this.handlerCategoryTypeDropDownClick("management-post-categories-dropdown", "management-post-categories-container")}>
+                            <div>
+                                DANH SÁCH DANH MỤC
                         </div>
-                        <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
-                    </div>
+                            <img alt="v" className="Dropdown_Btn_Element" src={dropdown_btn} id="page-management-dropdown-btn-element" />
+                        </div>
+
+                        <div className="Category_Type_Dropdown_Container" id="management-post-categories-container" style={{ marginTop: "5px" }}>
+                            <div className="Category_Component_List">
+                                <div className="Category_Component">
+
+                                    <ClickAwayListener onClickAway={() => { this.closeAllNotificationListItemActivated() }}>
+
+                                        <div className="custom-table-layout">
+                                            <div className="custom-table-header">
+                                                <div className="custom-table-20percents-column">Mã thông báo</div>
+                                                <div className="custom-table-80percents-column">Nội dung thông báo</div>
+                                            </div>
+
+                                            {this.state.notificationList.map(item =>
+                                                <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
+                                                    <div className="Custom_Table_Item_20percents">{item.id}</div>
+                                                    <div className="Custom_Table_Item_80percents">
+                                                        {item.title}
 
 
-                    <div className="Category_Type_Dropdown_Container" id="management-post-categories-container" style={{ marginTop: "5px" }}>
-                        <div className="Category_Component_List">
-                            <div className="Category_Component">
-
-                                <ClickAwayListener onClickAway={() => { this.closeAllNotificationListItemActivated() }}>
-
-                                    <div className="custom-table-layout">
-                                        <div className="custom-table-header">
-                                            <div className="custom-table-20percents-column">Mã thông báo</div>
-                                            <div className="custom-table-80percents-column">Nội dung thông báo</div>
-                                        </div>
-
-                                        {this.state.notificationList.map(item =>
-                                            <div className="Custom_Table_Item" name="Post_Custom_Table_Item" key={item.id} id={"management-post-category-item-" + item.id} onClick={(e) => this.handlerNotificationItemClick(e, item.id, item.title)} >
-                                                <div className="Custom_Table_Item_20percents">{item.id}</div>
-                                                <div className="Custom_Table_Item_80percents">
-                                                    {item.title}
-
+                                                    </div>
 
                                                 </div>
-                                              
-                                            </div>
-                                        )}
+                                            )}
 
-                                    </div>
-                                </ClickAwayListener>
-                                <div className="Category_Buttons_Layout d-flex justify-content-md-between">
-                                    <div>
-                                        <button className="blue-button mg-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
-                                        <button className="white-button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>
-                                    </div>
-                                    <div>
-                                        <button className="blue-button mg-right-5px" onClick={() => this.handlerClickAddNotification()}>Thêm</button>
-                                        <button className="white-button mg-right-5px" disabled={!this.state.canClickEditNotification} onClick={() => this.handlerClickEditNotification()}>Sửa</button>
-                                        <button className="red-button" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerClickDeleteNotification()}>Xóa</button>
+                                        </div>
+                                    </ClickAwayListener>
+                                    <div className="Category_Buttons_Layout d-flex justify-content-md-between">
+                                        <div>
+                                            <button className="blue-button mg-right-5px" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerSetCurrentNotification()}>Đặt làm thông báo hiện tại</button>
+                                            <button className="white-button" onClick={() => this.handlerClickDeleteNotification()}>Không thông báo</button>
+                                        </div>
+                                        <div>
+                                            <button className="blue-button mg-right-5px" onClick={() => this.handlerClickAddNotification()}>Thêm</button>
+                                            <button className="white-button mg-right-5px" disabled={!this.state.canClickEditNotification} onClick={() => this.handlerClickEditNotification()}>Sửa</button>
+                                            <button className="red-button" disabled={!this.state.canClickDeleteNotification} onClick={() => this.handlerClickDeleteNotification()}>Xóa</button>
+                                        </div>
                                     </div>
                                 </div>
+                                <div style={{ height: "30px" }}></div>
                             </div>
-                            <div style={{ height: "30px" }}></div>
                         </div>
+
                     </div>
 
-
-                </div>
-
-                {/* Popup for add new post category */}
-                <CustomModal
-                    shadow={true}
-                    type="custom"
-                    title="Thêm thông báo"
-                    open={this.isAddNotificationPopupOpen}
-                    closeModal={() => { this.isAddNotificationPopupOpen = false; this.setState({}); }}
-                >
-                    <div className="Custom_Modal_Body">
-                        <div className="gray-label"> Nội dung thông báo: </div>
-                        <input type="text" className="form-input" placeholder="Nhập tên thông báo ..." />
-                    </div>
-
-                    <div className="Custom_Modal_Footer">
-                        <div className="gray-label">Xác nhận?</div>
-                        <div style={{ display: "flex" }}>
-                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
-                            <button className="white-button" onClick={() => { this.isAddNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
+                    {/* Popup for add new post category */}
+                    <CustomModal
+                        shadow={true}
+                        type="custom"
+                        title="Thêm thông báo"
+                        open={this.isAddNotificationPopupOpen}
+                        closeModal={() => { this.isAddNotificationPopupOpen = false; this.setState({}); }}
+                    >
+                        <div className="Custom_Modal_Body">
+                            <div className="gray-label"> Nội dung thông báo: </div>
+                            <input type="text" className="form-input" placeholder="Nhập tên thông báo ..." />
                         </div>
-                    </div>
-                </CustomModal>
 
-                {/* Popup for update a new post category */}
-                <CustomModal
-                    shadow={true}
-                    type="custom"
-                    title="Cập nhật thông báo"
-                    open={this.isEditNotificationPopupOpen}
-                    closeModal={() => { this.isEditNotificationPopupOpen = false; this.setState({}); }}
-                >
-                    <div className="Custom_Modal_Body">
-                        <div className="gray-label"> Tên thông báo: </div>
-                        <input type="text" className="form-input" defaultValue={this.selected_category_name} />
-                    </div>
-
-                    <div className="Custom_Modal_Footer">
-                        <div className="gray-label">Xác nhận?</div>
-                        <div style={{ display: "flex" }}>
-                            <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
-                            <button className="white-button" onClick={() => { this.isEditNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
+                        <div className="Custom_Modal_Footer">
+                            <div className="gray-label">Xác nhận?</div>
+                            <div style={{ display: "flex" }}>
+                                <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyAddNewNotificationConfirmation()}>OK</button>
+                                <button className="white-button" onClick={() => { this.isAddNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
+                            </div>
                         </div>
-                    </div>
-                </CustomModal>
+                    </CustomModal>
 
-                {/* Popup for verifying delete post category */}
-                <CustomModal
-                    shadow={true}
-                    type="confirmation"
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    open={this.isVerifyDeleteNotificationPopupOpen}
-                    closeModal={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}); }}
-                >
-                    <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyDeleteNotificationConfirmation()}>OK</button>
-                    <button className="white-button" onClick={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
-                </CustomModal>
+                    {/* Popup for update a new post category */}
+                    <CustomModal
+                        shadow={true}
+                        type="custom"
+                        title="Cập nhật thông báo"
+                        open={this.isEditNotificationPopupOpen}
+                        closeModal={() => { this.isEditNotificationPopupOpen = false; this.setState({}); }}
+                    >
+                        <div className="Custom_Modal_Body">
+                            <div className="gray-label"> Tên thông báo: </div>
+                            <input type="text" className="form-input" defaultValue={this.selected_category_name} />
+                        </div>
 
-                {/* Custom for notifing success */}
-                <CustomModal
-                    open={this.isNotifySuccessOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="alert_success"
-                    closeModal={() => { this.isNotifySuccessOpen = false; this.setState({}) }}
-                >
-                </CustomModal>
+                        <div className="Custom_Modal_Footer">
+                            <div className="gray-label">Xác nhận?</div>
+                            <div style={{ display: "flex" }}>
+                                <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyEditNotificationConfirmation()}>OK</button>
+                                <button className="white-button" onClick={() => { this.isEditNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
+                            </div>
+                        </div>
+                    </CustomModal>
 
-                {/* Custom for notifing fail */}
-                <CustomModal
-                    open={this.isNotifyFailOpen}
-                    shadow={true}
-                    title={this.notifyHeader}
-                    text={this.notifyContent}
-                    type="alert_fail"
-                    closeModal={() => { this.isNotifyFailOpen = false; this.setState({}) }}
-                >
-                </CustomModal>
+                    {/* Popup for verifying delete post category */}
+                    <CustomModal
+                        shadow={true}
+                        type="confirmation"
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        open={this.isVerifyDeleteNotificationPopupOpen}
+                        closeModal={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}); }}
+                    >
+                        <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyDeleteNotificationConfirmation()}>OK</button>
+                        <button className="white-button" onClick={() => { this.isVerifyDeleteNotificationPopupOpen = false; this.setState({}) }}>Cancel</button>
+                    </CustomModal>
 
+                    {/* Custom for notifing success */}
+                    <CustomModal
+                        open={this.isNotifySuccessOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_success"
+                        closeModal={() => { this.isNotifySuccessOpen = false; this.setState({}) }}
+                    >
+                    </CustomModal>
+
+                    {/* Custom for notifing fail */}
+                    <CustomModal
+                        open={this.isNotifyFailOpen}
+                        shadow={true}
+                        title={this.notifyHeader}
+                        text={this.notifyContent}
+                        type="alert_failure"
+                        closeModal={() => { this.isNotifyFailOpen = false; this.setState({}) }}
+                    >
+                    </CustomModal>
+
+                </div >
             </div >
         );
     }

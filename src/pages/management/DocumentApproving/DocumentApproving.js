@@ -18,6 +18,7 @@ import Titlebar from 'components/common/Titlebar/Titlebar'
 import DocSummary from 'components/doc/DocSummary'
 import Paginator from 'components/common/Paginator/ServerPaginator';
 import ComboBox from 'components/common/Combobox/Combobox';
+import AdminSidebar from 'layouts/AdminSidebar'
 
 class DocumentApproving extends Component {
     constructor(props) {
@@ -95,39 +96,44 @@ class DocumentApproving extends Component {
 
 
         return (
-            <div>
-                <Titlebar title="QUẢN LÝ TÀI LIỆU" />
+            <div className="management-layout">
+                <AdminSidebar />
                 <div className="content-container">
-                    <div className = "mg-bottom-10px j-c-space-between">
 
-                        <div className="filter-label d-flex">
-                            <div className="mg-right-5px">Tổng số:</div>
-                            <div>{this.documents.length}</div>
-                        </div>
+                    <div className="content-container"></div>
+                    <Titlebar title="QUẢN LÝ TÀI LIỆU" />
+                    <div className="content-container">
+                        <div className="mg-bottom-10px j-c-space-between">
 
-                        <div style={{ display: "flex" }}>
-                            <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
-                            <div style={{ marginLeft: "5px" }}>
-                                <ComboBox
-                                    options={this.filter}
-                                    selectedOptionID={1}
-                                    onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
-                                    id="my-doc-list-search-filter-combobox"
-                                ></ComboBox></div>
+                            <div className="filter-label d-flex">
+                                <div className="mg-right-5px">Tổng số:</div>
+                                <div>{this.documents.length}</div>
+                            </div>
+
+                            <div style={{ display: "flex" }}>
+                                <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
+                                <div style={{ marginLeft: "5px" }}>
+                                    <ComboBox
+                                        options={this.filter}
+                                        selectedOptionID={1}
+                                        onOptionChanged={(selectedOption) => this.onFilterOptionChanged(selectedOption)}
+                                        id="my-doc-list-search-filter-combobox"
+                                    ></ComboBox></div>
+                            </div>
                         </div>
+                        {this.props.isListLoading ?
+                            < Loader /> :
+                            <>  {documentsList}
+                            </>
+                        }
+
+                        <Paginator config={{
+                            changePage: (pageNumber) => this.onPageChange(pageNumber),
+                            pageCount: 10,
+                            currentPage: getSearchParamByName('page')
+                        }}
+                        />
                     </div>
-                    {this.props.isListLoading ?
-                        < Loader /> :
-                        <>  {documentsList}
-                        </>
-                    }
-
-                    <Paginator config={{
-                        changePage: (pageNumber) => this.onPageChange(pageNumber),
-                        pageCount: 10,
-                        currentPage: getSearchParamByName('page')
-                    }}
-                    />
                 </div>
             </div>
         );

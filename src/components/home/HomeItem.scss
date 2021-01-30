@@ -177,9 +177,18 @@
   padding-bottom: 5px;
 }
 
+.home-item .like-count {
+  font-family: "BarlowCondensed-SemiBold";
+  font-size: 18px;
+  line-height: 20px;
+  color: var(--light-black);
+  margin-left: 5px;
+}
+
 .post-like-btn {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
 }
 
 .home-item .like-btn-container {

@@ -14,6 +14,7 @@ import {    //highlight posts
     get_PostSearchResultRequest,
     get_PostSearchResultSuccess,
     get_PostSearchResultFailure,
+
     post_CreatePostRequest,
     post_CreatePostSuccess,
     post_CreatePostFailure,
@@ -39,9 +40,8 @@ export function postCreatePost(data) {
         };
 
         fetch(`${remoteServiceBaseUrl}posts`, requestOptions)
-            .then(response => { response.json(); console.log(response); })
+            .then(response => response.json() )
             .then(result => {
-                console.log(result);
                 dispatch(post_CreatePostSuccess(result));
             }
             )
@@ -133,4 +133,3 @@ export function getPostSearchResult(page = 0, categoryID = 1, searchTerm = '', s
             })
     }
 }
-

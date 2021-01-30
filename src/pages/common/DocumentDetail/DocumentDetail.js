@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import 'components/home/node_modules/components/styles/DocPostSummary.scss'
+import 'components/styles/DocPostSummary.scss'
 // import 'components/shared/DPD_ResponsiveLayout.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import gray_btn_element from 'assets/images/g_btn_element.png'
@@ -287,7 +287,7 @@ class DocumentDetail extends Component {
                         shadow={true}
                         title={this.notifyHeader}
                         text={this.notifyContent}
-                        type="alert_fail"
+                        type="alert_failure"
                         closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
                     >
                     </CustomModal>

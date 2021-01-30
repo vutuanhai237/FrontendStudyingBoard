@@ -15,110 +15,26 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { management_getAllUsers, management_getAllRoles } from 'redux/services/userServices'
-
+import AdminSidebar from 'layouts/AdminSidebar'
 class Statistic extends Component {
     constructor(props) {
         super();
-        this.maxItemPerPage = 10;
-        this.usersList = [];
-        this.roleList = [];
 
-        this.roleNameFilter = "All";
-        this.roleFilterList = [
-            {
-                UserGroupID: 0,
-                UserGroupName: "All"
-            }
-        ]
-
-        this.isTheFirstTimeLoad = true;
-
-        this.isChangeRoleConfirmationPopupOpen = false;
-        this.isAnyChangeRoleFilterDropdownComboboxOpen = false;
-
-        this.state = {
-            currentInteractList: []
-        }
     }
 
     componentDidMount() {
-        this.props.management_getAllUsers();
-        this.props.management_getAllRoles();
+
     }
 
-    //client
-    onPageChangeClient = (currentInteractList) => {
-        this.setState({ currentInteractList: currentInteractList })
-    }
 
     render() {
 
-        let userItemList = <></>;
-        // let searchDropdown = <></>;
-
-        if (this.props.userList !== null && this.props.userList !== undefined
-            && this.props.roleList !== null && this.props.roleList !== undefined) {
-            this.usersList = this.props.userList;
-            this.roleList = this.props.roleList;
-
-
-            if (this.isTheFirstTimeLoad && this.roleList) {
-                this.usersList = [...this.usersList];
-                this.roleFilterList = this.roleFilterList.concat(...this.roleList)
-                this.isTheFirstTimeLoad = false;
-            }
-
-            // searchDropdown = this.roleFilterList.map(role =>
-            //     this.roleNameFilter === role.UserGroupName ?
-            //         <div className="activated-combox-option"
-            //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
-            //             value={getRoleNameFilterByName(role.UserGroupName)}
-            //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}
-            //             key={role.UserGroupID}>
-            //             {getRoleNameFilterByName(role.UserGroupName)}
-
-            //         </div>
-            //         :
-            //         <div className="combox-option"
-            //             name="User_Role_Filter_Combobox_Item"
-            //             id={"role-filter-dropdown-combobox-sub-item-" + role.UserGroupName}
-            //             value={getRoleNameFilterByName(role.UserGroupName)}
-            //             key={role.UserGroupID}
-            //             onClick={() => this.handleDropDownMenuItemClick(role.UserGroupName)}>
-            //             {getRoleNameFilterByName(role.UserGroupName)}
-            //         </div>
-            // )
-            this.isTheFirstTimeLoad = false;
-
-
-            userItemList = this.state.currentInteractList.map((userItem) =>
-                <UserItem
-                    key={userItem.userID}
-                    roleName={userItem.roleName}
-                    roleID={userItem.roleId}
-                    userID={userItem.id}
-                    name={userItem.displayName}
-                    username={userItem.username}
-                    // nickName={userItem.displayName}
-                    avatarUrl={userItem.avatar}
-                    // avatarUrl='https://i.imgur.com/SZJgL6C.jpg'
-                    email={userItem.email}
-                    postCount={userItem.postCount}
-                    docCount={userItem.documentCount}
-                    score={userItem.score}
-
-                    roleList={this.roleList}
-                >
-                </UserItem>
-            )
-        }
 
         return (
 
-
-
-            <div>
+             <div className="management-layout">
+            <AdminSidebar />
+            <div className="content-container">
                 <Titlebar title="THỐNG KÊ" />
                 <div className="content-container">
 
@@ -126,23 +42,15 @@ class Statistic extends Component {
                         <div className="number-of-item">
                             Tổng số:
                             &nbsp;
-                            {this.usersList.length}
+                           
                         </div>
 
-                        {userItemList}
-
                         <div>
-                            <Paginator config={{
-                                changePage: (currentInteractList) => this.onPageChangeClient(currentInteractList),
-                                rawData: this.usersList,
-                                maxItemPerPage: this.maxItemPerPage,
-                                numShownPage: 5,
-                                bottom: "31px"
-                            }}
-                            />
+                         
                         </div>
                     </div >
                 </div>
+            </div>
             </div>
 
         );
@@ -202,8 +110,8 @@ class Statistic extends Component {
 const mapStateToProps = (state) => {
 
     return {
-        userList: state.user.allUsers.accounts,
-        roleList: state.user.allRoles
+        // userList: state.user.allUsers.accounts,
+        // roleList: state.user.allRoles
     };
 }
 

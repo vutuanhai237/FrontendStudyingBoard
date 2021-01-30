@@ -10,7 +10,7 @@ import { isContainSpecialCharacter } from 'utils/stringUtils'
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getCurrentUser, getLogout } from 'redux/services/userServices'
+// import { getCurrentUser, getLogout } from 'redux/services/userServices'
 
 import Cookies from 'js-cookie'
 
@@ -144,7 +144,7 @@ class UpdatePassword extends Component {
                         shadow={true}
                         title={this.notifyHeader}
                         text={this.notifyContent}
-                        type="alert_fail"
+                        type="alert_failure"
                         closeModal={() => this.closeFailedAlertPopup()}
                     >
                     </CustomModal>
@@ -354,12 +354,12 @@ class UpdatePassword extends Component {
 const mapStateToProps = (state) => {
     // (state);
     return {
-        accountInformation: state.user.account
+        // accountInformation: state.user.account
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    getCurrentUser, getLogout
+    // getCurrentUser, getLogout
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdatePassword));

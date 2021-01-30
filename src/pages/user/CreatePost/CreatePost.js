@@ -9,7 +9,7 @@ import { postCreatePost } from "redux/services/postServices"
 
 import "./CreatePost.scss";
 import "components/common/CustomCKE/CKEditorContent.scss";
-import 'components/home/node_modules/components/styles/DocPostSummary.scss'
+import 'components/styles/DocPostSummary.scss'
 import 'components/styles/DocPostDetail.scss'
 
 //components
@@ -28,6 +28,9 @@ import { ClickAwayListener } from '@material-ui/core';
 import { validation, styleFormSubmit } from 'utils/validationUtils'
 import { today } from 'utils/timeUtils'
 import Metadata from 'components/common/Metadata/Metadata'
+import UserSidebar from 'layouts/UserSidebar'
+import CustomModal from 'components/common/CustomModalPopup/CustomModal'
+import { faSatelliteDish } from "@fortawesome/free-solid-svg-icons";
 
 const validationCondition = {
     form: '#create-post-form',
@@ -51,7 +54,7 @@ class CreatePost extends Component {
                 name: "Chọn danh mục"
             }
         ];
-
+        this.isNotifySuccessOpen = false;
         this.state = {
             currentCategory: "Danh muc 3",
             publishDtm: today.getDateDMY(),
@@ -127,10 +130,8 @@ class CreatePost extends Component {
 
     handleUploadBtnClick = () => {
         if (styleFormSubmit(validationCondition)) {
-            console.log(this.state.CREATE_POST_DTO) 
             this.props.postCreatePost(this.state.CREATE_POST_DTO);
         }
-
     }
 
     handleClosePopup = () => {
@@ -156,7 +157,7 @@ class CreatePost extends Component {
         document.getElementById("cr-post-qs-tag-result-container").classList.remove('hidden');
     }
 
-     keyHandler = (e) => {
+    keyHandler = (e) => {
         if (!e.target.value) return;
         let tags = this.state.CREATE_POST_DTO.tags;
         let hasOldTag = -1; // khong cos => -1 neu co => id cua tag 
@@ -208,9 +209,7 @@ class CreatePost extends Component {
 
                 //clear tag input 
                 e.target.value = ""
-
             }
-
         }
     }
 
@@ -322,7 +321,7 @@ class CreatePost extends Component {
             return;
         }
         else {
-            this.setState({ CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, summary: plain_text.substring(0, 160) } });
+            this.setState({ CREATE_POST_DTO: { ...this.state.CREATE_POST_DTO, content: value, summary: plain_text.substring(0, 160) } });
             return;
         }
     };
@@ -365,7 +364,6 @@ class CreatePost extends Component {
             if (this.props.tagQuickQueryResult) {
 
                 //truong hop khong co tag nao thoa man va chua du 5 tag
-
                 if (this.state.CREATE_POST_DTO.tags.length < 5) {
                     document.getElementById("cr-post-tag-input").classList.remove('invalid');
                     if (this.props.tagQuickQueryResult.length === 0)
@@ -525,25 +523,43 @@ class CreatePost extends Component {
                     </div >
                 </div >
             </div >
-
+        let modal = <></>
+        if (this.props.isUploadDone) {
+            modal = <CustomModal
+                open={this.props.isUploadDone}
+                shadow={true}
+                title={this.props.uploadMessage.type === 'success' ? 'Thành công' : 'Thất bại'}
+                text={this.props.uploadMessage.message}
+                type={this.props.uploadMessage.type === 'success' ? "alert_success" : "alert_failure"}
+                closeModal={() => { this.isNotifySuccessOpen = false; window.location.pathname = '/user/my-posts';this.setState({}) }}
+            >
+            </CustomModal>
+        }
         return (
-            <div>
-                <Titlebar title="TẠO BÀI VIẾT MỚI" />
-                <div className="content-container">
-                    <div className="form-container">
-                        <div className="j-c-end">
-                            <div className="j-c-end" >
-                                <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn bài viết</button>
-                                <div className="mg-right-5px" />
-                                <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>
+            <div className="left-sidebar-layout">
+                <UserSidebar />
+                <div className="content-layout">
+                    <Titlebar title="TẠO BÀI VIẾT MỚI" />
+                    <div className="content-container">
+                        <div className="form-container">
+                            <div className="j-c-end">
+                                <div className="j-c-end" >
+                                    <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn bài viết</button>
+                                    <div className="mg-right-5px" />
+                                    <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>
+                                </div>
                             </div>
+                            <div className="mg-top-10px decoration-line" />
                         </div>
-                        <div className="mg-top-10px decoration-line" />
+                        {body}
                     </div>
-                    {body}
-
                 </div>
-            </div >
+
+                {/* Custom for notifing success */}
+                {modal}
+
+            </div>
+
         );
     }
 
@@ -567,14 +583,19 @@ class CreatePost extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
+
     return {
         categories: state.post_category.categories.data,
         isCategoryLoading: state.post_category.categories.isLoading,
         tagQuickQueryResult: state.tag.tagQuickQueryResult.data,
         isTagQuickQueryLoading: state.tag.tagQuickQueryResult.isLoading,
         //sau nay su dung loading de tranh cac truong hop ma 2 bien isSearching va isLoadDone khong xu ly duoc 
-        isTagQuickQueryLoadingDone: state.tag.tagQuickQueryResult.isLoadingDone
+        isTagQuickQueryLoadingDone: state.tag.tagQuickQueryResult.isLoadingDone,
 
+        //upload thanh cong hay khong
+        isUploadDone: state.post.createPost.isLoadingDone,
+        uploadMessage: state.post.createPost.notification
     };
 }
 

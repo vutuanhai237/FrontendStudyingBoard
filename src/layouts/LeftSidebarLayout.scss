@@ -35,7 +35,17 @@
     padding-bottom: 40px;
 }
 
-.Show_Avatar {
+.left-sidebar-layout .content-layout {
+    width: 100%;
+    height: fit-content;
+    border-top: 0px;
+    padding: 10px;
+    padding-right: 0px;
+    min-height: 700px;
+    padding-bottom: 40px;
+}
+
+.side-bar-avatar {
     width: 80px;
     height: 80px;
     overflow: hidden;
@@ -275,6 +285,7 @@
     padding-left: 0.35rem;
     text-decoration: none !important;
     outline: 0px;
+    line-height: 1.7rem;
 }
 
 .Dropdown_Btn_Element {
@@ -322,6 +333,7 @@
     margin-bottom: 1px;
     border: none;
     border-radius: 0px;
+    line-height: 1.5rem;
 }
 
 .Parent_Dropdown_Menu_Item:hover,
