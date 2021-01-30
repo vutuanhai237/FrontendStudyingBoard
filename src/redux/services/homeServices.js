@@ -32,10 +32,13 @@ export function getTrendingDocumentsList() {
         };
         dispatch(get_TrendingDocumentsListRequest());
 
-        fetch(`${remoteServiceBaseUrl}docs/trending`, requestOptions)
+        fetch(`${remoteServiceBaseUrl}documents/trending`, requestOptions)
             .then(response => response.json())
             .then(
                 result => {
+                    console.log('result')
+                    console.log(result)
+
                     dispatch(get_TrendingDocumentsListSuccess(result));
                 }
             )
@@ -78,7 +81,7 @@ export function getNewestPostsList() {
             )
             .catch(error => {
 
-                dispatch(get_NewestPostsListFailure(JSON.parse(error))); //
+                dispatch(get_NewestPostsListFailure(error)); //
             })
     }
 }

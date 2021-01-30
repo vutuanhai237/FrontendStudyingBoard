@@ -109,13 +109,25 @@ class DocSummary extends Component {
 
     let approveLabel = <></>;
 
-    if (this.props.approveStatus === 1)
+    if (this.props.approveState === "PENDING_APPROVAL")
       approveLabel =
         <div className="d-flex" >
           <div className="metadata-light-black-label"> - </div>
           <div className="red-border-label">PENDING</div>
         </div >
-    else
+    else if (this.props.approveState === "PENDING_FIX")
+      approveLabel =
+        <div className="d-flex">
+          <div className="metadata-light-black-label"> - </div>
+          <div className="blue-border-label">PENDING</div>
+        </div>
+    else if (this.props.approveState === "REJECTED")
+      approveLabel =
+        <div className="d-flex">
+          <div className="metadata-light-black-label"> - </div>
+          <div className="red-border-label">REJECTED</div>
+        </div>
+    else if (this.props.approveState === "APPROVED")
       approveLabel =
         <div className="d-flex">
           <div className="metadata-light-black-label"> - </div>

@@ -94,22 +94,22 @@ class CourseSummaryItem extends Component {
           <div className="d-flex"  >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
-              Môn học:   {this.props.subjectName}
+              Môn học:   {this.props.docSubject}
             </div>
           </div>
         </div>
 
         <div className="reaction-bar j-c-end">
           <div className="d-flex">
-            <div className="d-flex like-btn-container">
-              Lượt xem
-              <div className="like-count">{this.props.viewCount}</div>
+            <div className="d-flex view-count-container">
+              lượt xem
+              <div className="like-count">{this.props.views}</div>
             </div>
           </div>
           <div className="d-flex">
-            <div className="d-flex like-btn-container">
-              <img className="download-btn" alt = "" src={download_btn}></img>
-              <div className="like-count">{this.props.likes}</div>
+            <div className="d-flex mg-right-5px">
+              <img className="download-btn" alt="" src={download_btn}></img>
+              <div className="like-count">{this.props.downloads}</div>
             </div>
           </div>
         </div>

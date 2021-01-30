@@ -15,7 +15,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ComboBox from 'components/common/Combobox/Combobox';
 import { getSearchParamByName, isContainSpecialCharacter, setSearchParam } from 'utils/urlUtils'
-
+import { NavLink } from 'react-router-dom'
 import Loader from 'components/common/Loader/Loader'
 
 class PostManagement extends Component {
@@ -104,6 +104,14 @@ class PostManagement extends Component {
                 <div className="content-container">
                     <Titlebar title="QUẢN LÝ BÀI VIẾT" />
                     <div className="content-container">
+                        <div className="h-menu-bar mg-top-10px">
+                            <NavLink to="/admin/post-management/" className="h-menu-item" activeClassName='h-menu-item a-h-menu-item'>
+                                Quản lý bài viết
+                             </NavLink>
+                            <NavLink to="/admin/post-approving/" className="h-menu-item " activeClassName='h-menu-item a-h-menu-item'>
+                                Duyệt bài viết
+                            </NavLink>
+                        </div>
                         <div className="two-element-filter-container">
                             <div style={{ display: "flex" }}>
                                 <div className="filter-label t-a-right mg-right-5px">Bộ lọc:</div>
@@ -135,7 +143,7 @@ class PostManagement extends Component {
 
                         <Paginator config={{
                             changePage: (pageNumber) => this.onPageChange(pageNumber),
-                            pageCount: 1200,
+                            pageCount: 1,
                             currentPage: getSearchParamByName('page')
                         }}
                         />

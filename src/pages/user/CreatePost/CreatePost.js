@@ -9,7 +9,6 @@ import { postCreatePost } from "redux/services/postServices"
 
 import "./CreatePost.scss";
 import "components/common/CustomCKE/CKEditorContent.scss";
-import 'components/styles/DocPostSummary.scss'
 import 'components/styles/DocPostDetail.scss'
 
 //components
@@ -333,25 +332,15 @@ class CreatePost extends Component {
     }
 
     render() {
-
-        let likeBtn = <div></div>;
-        let saveBtn = <div></div>;
-
         //render likeBtn
-        if (!this.isLiked) {
-            likeBtn = <img className="like-btn" alt="like" src={liked_btn} onClick={this.toggleLikeImage}></img>
-        }
-        else {
-            likeBtn = <img className="like-btn" alt="like" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
-        }
+        let likeBtn = <img className="like-btn" alt="like" src={unliked_btn} onClick={this.toggleLikeImage} ></img>
 
         //render saveBtn
-        if (!this.isSaved) {
-            saveBtn = <img className="save-btn" alt="dislike" src={full_blue_bookmark_btn}></img>
-        }
-        else {
-            saveBtn = <img className="save-btn" alt="dislike" src={gray_bookmark_btn} ></img>
-        }
+        let saveBtn = <div className="d-flex" onClick={this.toggleSaveImage} >
+            <img className="save-btn" alt="dislike" src={gray_bookmark_btn} />
+            <div>Lưu</div>
+        </div >
+
 
         if (!this.props.isCategoryLoading && this.props.categories) {
             this.categoryList = this.props.categories;
@@ -406,30 +395,25 @@ class CreatePost extends Component {
                             <Tag isReadOnly={true} onDeleteTag={(item) => this.deleteTag(item)} tag={item} />
                         )}
                     </div>
-
-                    <div className="d-flex mg-top-5px pd-10px">
-                        <div className="d-flex">
-                            <div> {likeBtn}</div>
-                            <div className="like-count">0</div>
-                        </div>
-
-                        <div className="d-flex">
-                            <div className="save-text-container" onClick={this.toggleSaveImage}>
-                                <div>{saveBtn}</div>
-                                {this.isSaved ? "Lưu" : "Huỷ"}
+                    <div className="post-reaction-bar">
+                        <div className="d-flex mg-top-5px  mg-left-5px">
+                            <div className="d-flex">
+                                <div className="like-btn">  {likeBtn}</div>
+                                <div className="like-count">{0}</div>
                             </div>
-                            <div className="post-comment-count-container">
-                                Bình luận
+
+                            <div className="d-flex">
+                                <div className="save-text-container" onClick={this.toggleSaveImage}>
+                                    <div>{saveBtn}</div>
+                                </div>
+                                <div className="post-comment-count-container">
+                                    Bình luận
                                 <div style={{ paddingLeft: "5px" }}>
-                                    {this.props.comments}
+                                        {0}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="reaction-bar">
-                        <div className="gray-label">Bình luận: {this.viewCount}</div>
-                        <div className="gray-label mg-left-5px">lượt xem: {this.viewCount}</div>
                     </div>
                 </div>
 
@@ -531,7 +515,7 @@ class CreatePost extends Component {
                 title={this.props.uploadMessage.type === 'success' ? 'Thành công' : 'Thất bại'}
                 text={this.props.uploadMessage.message}
                 type={this.props.uploadMessage.type === 'success' ? "alert_success" : "alert_failure"}
-                closeModal={() => { this.isNotifySuccessOpen = false; window.location.pathname = '/user/my-posts';this.setState({}) }}
+                closeModal={() => { this.isNotifySuccessOpen = false; window.location.pathname = '/user/my-posts'; this.setState({}) }}
             >
             </CustomModal>
         }

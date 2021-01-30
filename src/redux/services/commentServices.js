@@ -23,10 +23,6 @@ import {    //highlight posts
     get_PostByIDSuccess,
     get_PostByIDFailure,
 
-    post_ApproveAPostRequest,
-    post_ApproveAPostSuccess,
-    post_ApproveAPostFailure
-
 } from "redux/actions/postAction.js";
 
 import {
@@ -76,12 +72,11 @@ export function getMyPostsList(page = 1, category = "") { //this API to get all 
             redirect: 'follow'
         };
 
-        fetch(`${remoteServiceBaseUrl}posts/myPosts`, requestOptions)
-            .then(response => response.json())
+        fetch(`https://5fca2bc63c1c220016441d27.mockapi.io/myPosts`, requestOptions)
+            .then(response => response.text())
             .then(
                 result => {
-
-                    dispatch(get_MyPostsSuccess(result));
+                    dispatch(get_MyPostsSuccess(JSON.parse(result)));
                 }
             )
             .catch(error => {
@@ -140,34 +135,6 @@ export function getPostSearchResult(page = 0, categoryID = 1, searchTerm = '', s
             )
             .catch(error => {
                 dispatch(get_PostSearchResultFailure(error))
-            })
-    }
-}
-
-
-//posts search result
-export function approveAPost(id) {
-    return dispatch => {
-        dispatch(post_ApproveAPostRequest());
-
-        var myHeaders = new Headers();
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        console.log("request");
-
-        fetch(`${remoteServiceBaseUrl}posts/id=${id}/approval`, requestOptions)
-            .then(response => response.json())
-            .then(
-                result => {
-                    dispatch(post_ApproveAPostSuccess());
-                }
-            )
-            .catch(error => {
-                dispatch(post_ApproveAPostFailure(error))
             })
     }
 }

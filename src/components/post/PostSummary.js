@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import 'components/styles/SimpleButton.scss'
 import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 import { Link } from 'react-router-dom'
-
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { approveAPost } from 'redux/services/postServices'
 //resources
 import gray_btn_element from 'assets/images/g_btn_element.png'
 import liked_btn from 'assets/images/liked_btn.png'
@@ -113,19 +116,43 @@ class PostSummary extends Component {
     }
 
     //#endregion
-
-    if (this.props.approveStatus === 1)
+    console.log(this.props.approveState)
+    if (this.props.approveState === "PENDING_APPROVAL")
       approveLabel =
         <div className="d-flex" >
           <div className="metadata-light-black-label"> - </div>
           <div className="red-border-label">PENDING</div>
         </div >
-    else
+    else if (this.props.approveState === "PENDING_FIX")
+      approveLabel =
+        <div className="d-flex">
+          <div className="metadata-light-black-label"> - </div>
+          <div className="blue-border-label">PENDING</div>
+        </div>
+    else if (this.props.approveState === "REJECTED")
+      approveLabel =
+        <div className="d-flex">
+          <div className="metadata-light-black-label"> - </div>
+          <div className="red-border-label">REJECTED</div>
+        </div>
+    else if (this.props.approveState === "APPROVED")
       approveLabel =
         <div className="d-flex">
           <div className="metadata-light-black-label"> - </div>
           <div className="blue-border-label">APPROVED</div>
         </div>
+
+    let popup = <></>;
+    if (this.props.isApprovingLoadDone)
+      popup = <CustomModal
+        shadow={true}
+        type="alert_success"
+        open={true}
+        title="Thành công"
+        text="Duyệt thành công"
+        closeModal={() => { this.open = false; this.setState({}); }}
+      >
+      </CustomModal>
 
     return (
       <div className="item-container" >
@@ -168,8 +195,8 @@ class PostSummary extends Component {
           <div className="d-flex"  >
             <img alt="*" className="metadata-icon" src={gray_btn_element} />
             <div className="metadata-light-black-label" style={{ marginLeft: "2px" }}>
-              {this.props.readingTime} phút đọc
-                        </div>
+              {Math.ceil(this.props.readingTime / 60) + " phút đọc"}
+            </div>
           </div>
 
           <div className="d-flex" >
@@ -184,58 +211,73 @@ class PostSummary extends Component {
         <div className="item-summary">
           {this.props.summary}
         </div>
-
-        <div className="item-reaction-bar">
-          <div className="d-flex mg-top-5px">
-            <div className="d-flex">
-              <div> {likeBtn}</div>
-              <div className="like-count">{this.props.likes}</div>
-            </div>
-
-            <div className="d-flex">
-              <div className="save-text-container" onClick={this.toggleSaveImage}>
-                <div>{saveBtn}</div>
-                {this.isSaved ? "Lưu" : "Huỷ"}
+        {this.props.type === itemType.approving ? <></> :
+          <div className="item-reaction-bar">
+            <div className="d-flex mg-top-5px">
+              <div className="d-flex">
+                <div> {likeBtn}</div>
+                <div className="like-count">{this.props.likes}</div>
               </div>
-              <div className="post-comment-count-container">
-                Bình luận
+
+              <div className="d-flex">
+                <div className="save-text-container" onClick={this.toggleSaveImage}>
+                  <div>{saveBtn}</div>
+                  {this.isSaved ? "Lưu" : "Huỷ"}
+                </div>
+                <div className="post-comment-count-container">
+                  Bình luận
                 <div style={{ paddingLeft: "5px" }}>
-                  {this.props.comments}
+                    {this.props.comments}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="link-label mg-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
-            Đọc tiếp ...
+            <div className="link-label mg-top-5px" onClick={() => { window.location.href = "/docs/category?id=" + this.props.id }}>
+              Đọc tiếp ...
             </div>
-        </div>
-
+          </div>
+        }
         {/* for implement approve item */}
-        {/* <div className="j-c-space-between">
-          {this.props.type === itemType.mySelf ?
-
-            <div className="d-flex" >
-              <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.onEditBtnClick()}>Chỉnh sửa</div>
-              <div className="red-button" onClick={() => { this.onDeleteBtnClick() }}>Xoá</div>
+        <div className="j-c-space-between">
+          {this.props.type === itemType.approving ?
+            <div className="d-flex j-c-end" >
+              <div className="white-button" style={{ marginRight: "5px" }} onClick={() => this.onEditBtnClick()}>Reject&feedback</div>
+              <div className="blue-button" style={{ marginRight: "5px" }} onClick={() => this.onApproveBtnClick()}>Approve</div>
+              <div className="red-button" onClick={() => { this.onDeleteBtnClick() }}>Reject</div>
             </div>
             :
             <></>
           }
 
-        </div> */}
+        </div>
+
+        <CustomModal
+          shadow={true}
+          type="confirmation"
+          open={this.isApprovingPopupOpen}
+          title="Xác nhận?"
+          text="Xác nhận duyệt bài viết này?"
+          closeModal={() => { this.isApprovingPostPUOpen = false; this.setState({}); }}
+        >
+          <button className="blue-button mg-right-5px" onClick={() => this.handleVerifyApprove()}>OK</button>
+          <button className="white-button" onClick={() => this.handleCancelApprove()}>Cancel</button>
+
+        </CustomModal>
+
+
       </div >
 
     );
   }
-
+  onApproveBtnClick = () => {
+    this.isApprovingPopupOpen = true; this.setState({});
+  }
+  handleVerifyApprove = () => {
+    this.props.approveAPost();
+    this.isApprovingPopupOpen = false; this.setState({});
+  }
   handlerPreviewRequestedPost = () => {
-    if (window.location.pathname.substring(0, 6) === "/admin") {
-      window.location.href = "/admin/doc-approving/" + this.id;
-      return;
-    }
-    if (window.location.pathname.substring(0, 5) === "/user")
-      window.location.href = "/user/doc-approving/" + this.id;
-
+    
   }
 
   handlerRejectRequestedPost = () => {
@@ -256,5 +298,16 @@ class PostSummary extends Component {
   // likePost() { }
 
 }
-export default PostSummary;
+const mapStateToProps = (state) => {
+  return {
+    isApprovingLoadDone: state.post.approvePost.isLoadingDone,
+    notification: state.post.approvePost.notification
+  };
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  approveAPost
+}, dispatch);
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostSummary));
 

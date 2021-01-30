@@ -278,7 +278,7 @@
     user-select: none;
 }
 
-.wallpage-item .wallpage-item-reaction-bar {
+.post-reaction-bar {
     border-top: 1px var(--gray) solid;
     display: flex;
     margin: auto;
@@ -289,19 +289,19 @@
 }
 
 //likeBtn for post
-.wallpage-item .wallpage-item-reaction-bar .like-btn {
+.post-reaction-bar .like-btn {
     width: 18px;
     height: 18px;
     display: block;
     margin-top:1px;
 }
 
-.wallpage-item .wallpage-item-reaction-bar .like-btn:hover {
+.post-reaction-bar .like-btn:hover {
     cursor: pointer;
     opacity: 80%;
 }
 
-.wallpage-item .wallpage-item-reaction-bar .like-count {
+.post-reaction-bar .like-count {
     font-family: "BarlowCondensed-SemiBold";
     font-size: 18px;
     line-height: 20px;
@@ -310,7 +310,7 @@
 }
 
 //saveBtn
-.wallpage-item .wallpage-item-reaction-bar .save-btn {
+.post-reaction-bar .save-btn {
     margin-left: 10px;
     margin-top: 2px;
     width: 17px;

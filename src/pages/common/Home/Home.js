@@ -156,6 +156,10 @@ class Home extends Component {
                             readingTime={item.readingTime}
                             summary={item.summary}
                             title={item.title}
+                            downloads = {item.downloads}
+                            views = {item.views}
+                            docSubject={item.docSubject}
+                            docSubjectID = {item.docSubjectID}
                         ></HomeDocumentItem>
                     })}
                 </div>

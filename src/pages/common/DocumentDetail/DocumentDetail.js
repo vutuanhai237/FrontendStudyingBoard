@@ -13,12 +13,17 @@ import { getDocumentByID } from "redux/services/docServices"
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
+import 'components/styles/DocPostDetail.scss'
 import gray_download_icon from 'assets/images/gray_download_icon.png'
 import PDFViewer from 'pdf-viewer-reactjs'
 import Cookies from 'js-cookie'
 import PopupMenu from 'components/common/PopupMenu/PopupMenu'
-
+import liked_btn from 'assets/images/liked_btn.png'
+import unliked_btn from 'assets/images/unliked_btn.png'
+import dislike_btn from 'assets/images/dislike_btn.png'
+import undislike_btn from 'assets/images/undislike_btn.png'
+import download_btn from 'assets/images/gray_download_icon.png'
+import trash_icon from 'assets/icons/24x24/trash_icon_24x24.png'
 
 //import for pdf viewer:
 
@@ -102,213 +107,192 @@ class DocumentDetail extends Component {
 
     render() {
 
+        //initiate some element
+        let likeBtn = <div></div>;
+        let dislikeBtn = <div></div>;
 
-        if (this.props.accountInformation) {
+        //render likeBtn
+        if (!this.isLiked) {
+            likeBtn = <img className="doc-like-dislike-btn" alt="like" src={liked_btn} onClick={this.onLikeBtnClick}></img>
+        }
+        else {
+            likeBtn = <img className="doc-like-dislike-btn" alt="like" src={unliked_btn} onClick={this.onLikeBtnClick} ></img>
+        }
 
-            if (this.props.document) {
-                this.document = this.props.document.documentDTO;
-                this.id = this.document.id;
-                this.authorName = this.document.authorName;
-                this.authorID = this.document.authorID;
-                this.category = this.document.category;
-                this.categoryID = this.document.categoryID;
-                this.semesterName = this.document.semesterName;
-                this.semesterID = this.document.semesterID;
-                this.subject = this.document.subjectName;
-                this.title = this.document.title;
-                this.content = this.document.summary;
-                this.uploadedTime = "22-08-2020";
-                this.viewCount = this.document.viewCount;
-                this.downloadCount = this.document.downloadCount;
-                this.avartarUrl = this.document.authorAvatar;
-                this.fileName = this.document.fileName;
-                this.linkFile = this.document.url;
-            }
+        //render dislikeBtn
+        if (!this.isDisliked) {
+            dislikeBtn = <img className="doc-like-dislike-btn" alt="dislike" src={dislike_btn} onClick={this.onDislikeBtnClick}></img>
+        }
+        else {
+            dislikeBtn = <img className="doc-like-dislike-btn" alt="dislike" src={undislike_btn} onClick={this.onDislikeBtnClick} ></img>
+        }
+        return (
+            <div>
+                <div className="doc-post-detail" >
+                    <div>
+                        <div className="main-layout">
 
-            return (
-                <div>
-                    <div className="doc-post-detail" >
-                        <div>
-                            <div className="main-layout">
+                            <div className="title">
+                                {this.title}
+                            </div>
 
-                                <div className="title">
-                                    {this.title}
+                            <div className="metadata-header">
+
+                                <div className="prefix-normal-category"> </div>
+                                <div className="normal-category">
+                                    {this.category}
                                 </div>
-
-                                <div className="metadata-header">
-
-                                    <div className="prefix-normal-category"> </div>
-                                    <div className="normal-category">
-                                        {this.category}
-                                    </div>
-                                    {/* <img alt="*" className="metadata-icon" src={gray_btn_element} />
-                                    <div className="DocPost_Metadata_Text">
-                                        Môn học: &nbsp;
+                                <img alt="*" className="metadata-icon" src={gray_btn_element} />
+                                <div className="DocPost_Metadata_Text">
+                                    Môn học: &nbsp;
                                             {this.subject}
-                                    </div> */}
-
                                 </div>
 
-                                <div className="user-infor-container">
+                            </div>
+
+                            <div className="user-infor-container">
+                                <div className="d-flex">
+                                    <img src={this.avartarUrl} alt="avatar" className="user-avatar" />
+                                    <div style={{ flexDirection: "vertical" }}>
+                                        <div className="display-name">{this.authorName}</div>
+                                        <div className="posted-time">đã đăng vào ngày {this.uploadedTime}</div>
+                                    </div>
+                                </div>
+                                <PopupMenu items={this.normalMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
+
+                            </div>
+
+                            <div className="content">
+                                {this.content}
+                            </div>
+
+                            <div className="doc-file-name"
+                                onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}>
+                                {this.fileName}
+                            </div>
+
+                        </div>
+
+                        <div className="d-flex j-c-space-between">
+
+                            <div className="like-dislike-bar mg-top-10px pd-10px">
+
+                                {/* 2 button */}
+                                <div className="j-c-space-between">
                                     <div className="d-flex">
-                                        <img src={this.avartarUrl} alt="avatar" className="user-avatar" />
-                                        <div style={{ flexDirection: "vertical" }}>
-                                            <div className="display-name">{this.authorName}</div>
-                                            <div className="posted-time">đã đăng vào ngày {this.uploadedTime}</div>
-                                        </div>
+                                        <div> {likeBtn}</div>
+                                        <div className="doc-like-dislike-count">{this.props.likes}</div>
                                     </div>
-                                    <PopupMenu items={this.normalMenuItemList} id={`doc-item-popup-menu-${this.props.id}`} />
 
-                                </div>
-
-                                <div className="content">
-                                    {this.content}
-                                </div>
-
-                                <div className="doc-file-name"
-                                    onClick={() => window.open("https://drive.google.com/file/d/" + this.linkFile + "/preview")}>
-                                    {this.fileName}
-                                </div>
-
-                            </div>
-
-                            <div className="view-count-down-count">
-                                <div className="View_Count">lượt xem: {this.viewCount}</div>
-                                <div className="Down_Count" style={{ display: "flex", marginLeft: "20px" }}>
-                                    <img src={gray_download_icon} alt="d" style={{ width: "20px", height: "20px" }} />
-                                    <div style={{ marginLeft: "5px" }}>
-                                        {this.downloadCount}
+                                    <div className="d-flex">
+                                        <div> {dislikeBtn}</div>
+                                        <div className="doc-like-dislike-count">{this.props.dislikes}</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="doc-live-preview">
 
-                                {/* <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe> */}
-                                <iframe src={"https://drive.google.com/file/d/0B1HXnM1lBuoqMzVhZjcwNTAtZWI5OS00ZDg3LWEyMzktNzZmYWY2Y2NhNWQx/preview?hl=en"} width="100%" height="100%"></iframe>
+                                {/* rate bar */}
+                                <div className="rate-percent-bar">
+                                    <div className="like-rate-percent" id={'document-item-like-percents-' + this.props.id} />
+                                </div>
+                            </div>
+
+                            <div className="d-flex">
+                                <div className="doc-comment-count-container">
+                                    Bình luận
+                                    <div className="comment-count">
+                                        {this.props.commentCount}
+                                    </div>
+                                </div>
+
+                                <div className="download-count-layout">
+                                    <img src={download_btn} alt="^" className="download-btn"></img>
+                                    <div style={{ width: "2px" }}></div>
+                                    {this.props.downloads}
+                                </div>
                             </div>
                         </div>
+                        <div className="doc-live-preview">
+                            <PDFViewer
+                                document={{
+                                    url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf',
+                                }}
+                            />
+                            {/* <iframe src={"https://drive.google.com/file/d/" + this.linkFile + "/preview"} width="100%" height="100%"></iframe> */}
+                            {/* <iframe src={"https://drive.google.com/file/d/0B1HXnM1lBuoqMzVhZjcwNTAtZWI5OS00ZDg3LWEyMzktNzZmYWY2Y2NhNWQx/preview?hl=en"} width="100%" height="100%"></iframe> */}
+                        </div>
                     </div>
+                </div>
 
 
-                    <div class="comments-container">
-                        <ul id="comments-list" class="comments-list">
-                            <li>
-                                <div class="comment-main-level">
+                <div class="comments-container">
+                    <ul id="comments-list" class="comments-list">
+                        <li>
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="" /></div>
+
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name by-author"><a href="">Nguyễn Văn Đông</a></h6>
+
+                                    </div>
+                                    <div class="comment-content">
+                                        Mọi người thấy bài viết này như thế nào?                                           </div>
+                                </div>
+                            </div>
+
+                            <ul class="comments-list reply-list">
+                                <li>
+                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="" /></div>
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name"><a href="">Lưu Biêu Nghị</a></h6>
+
+                                        </div>
+                                        <div class="comment-content">
+                                            Hay nhưng mà nên có bản dịch nữa bạn, chưa ghi nguồn.
+                                            </div>
+                                    </div>
+                                </li>
+
+                                <li>
                                     <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="" /></div>
-
                                     <div class="comment-box">
                                         <div class="comment-head">
                                             <h6 class="comment-name by-author"><a href="">Nguyễn Văn Đông</a></h6>
 
                                         </div>
                                         <div class="comment-content">
-                                            Mọi người thấy bài viết này như thế nào?                                           </div>
-                                    </div>
-                                </div>
-
-                                <ul class="comments-list reply-list">
-                                    <li>
-                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="" /></div>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <h6 class="comment-name"><a href="">Lưu Biêu Nghị</a></h6>
-
-                                            </div>
-                                            <div class="comment-content">
-                                                Hay nhưng mà nên có bản dịch nữa bạn, chưa ghi nguồn.
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="" /></div>
-                                        <div class="comment-box">
-                                            <div class="comment-head">
-                                                <h6 class="comment-name by-author"><a href="">Nguyễn Văn Đông</a></h6>
-
-                                            </div>
-                                            <div class="comment-content">
-                                                Ok, bạn
+                                            Ok, bạn
                                                               </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <div class="comment-main-level">
-                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="" />
-
                                     </div>
-                                    <div class="comment-box">
-                                        <div class="comment-head">
-                                            <h6 class="comment-name"><a href="">Lưu Biêu Nghị</a></h6>
-                                        </div>
-                                        <div class="comment-content">
-                                            À, có một chỗ sai kìa bạn
-                                     </div>
-                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <div class="comment-main-level">
+                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt="" />
+
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name"><a href="">Lưu Biêu Nghị</a></h6>
+                                    </div>
+                                    <div class="comment-content">
+                                        À, có một chỗ sai kìa bạn
+                                     </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div >
 
-
-                    {/* Popup for reject requested post */}
-                    <CustomModal
-                        shadow={true}
-                        type="confirmation"
-                        open={this.isRejectRequestedPopupOpen}
-                        title="Xác nhận?"
-                        text="Xác nhận từ chối tiếp nhận bài viết này?"
-                        closeModal={() => { this.isRejectRequestedPopupOpen = false; this.setState({}); }}
-                    >
-                        <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyRejectRequestedPostConfirmation()}>OK</button>
-                        <button className="white-button" onClick={() => this.handleCancelRejectRequestedPostConfirmation()}>Cancel</button>
-
-                    </CustomModal>
-
-                    {/* Popup for approve requested post */}
-                    <CustomModal
-                        shadow={true}
-                        type="confirmation"
-                        open={this.isApproveRequestedPopupOpen}
-                        title="Xác nhận?"
-                        text="Xác nhận duyệt bài viết này?"
-                        closeModal={() => { this.isApproveRequestedPopupOpen = false; this.setState({}); }}
-                    >
-                        <button className="blue-button mg-right-5px" onClick={() => this.handlerVerifyApproveRequestedPostConfirmation()}>OK</button>
-                        <button className="white-button" onClick={() => this.handleCancelApproveRequestedPostConfirmation()}>Cancel</button>
-                    </CustomModal>
-
-                    {/* modal for notification anything */}
-                    <CustomModal
-                        open={this.isAnyFailedAlertPopupOpen}
-                        shadow={true}
-                        title={this.notifyHeader}
-                        text={this.notifyContent}
-                        type="alert_failure"
-                        closeModal={() => { this.isAnyFailedAlertPopupOpen = false; this.setState({}) }}
-                    >
-                    </CustomModal>
-
-                    <CustomModal
-                        open={this.isAnySuccessAlertPopupOpen}
-                        shadow={true}
-                        title={this.notifyHeader}
-                        text={this.notifyContent}
-                        type="alert_success"
-                        closeModal={() => { this.isAnySuccessAlertPopupOpen = false; this.setState({}) }}
-                    >
-                    </CustomModal>
-
-                </div >
-
-            );
-        }
-
-        return <></>
+        );
     }
+
+    // return<></>
+    // }
     //#region navigate region
     navigateToAuthorPersonalPage = () => {
 
@@ -356,8 +340,25 @@ class DocumentDetail extends Component {
         this.setState({});
     }
 
-}
+    //Calculates bar widths
+    calculateBar = () => {
 
+        if (this.likes === this.dislikes) {
+            if (document.getElementById('document-item-like-percents-' + this.props.id))
+                document.getElementById('document-item-like-percents-' + this.props.id).style.width = "50%";
+            return;
+        }
+        else {
+            let percentageLikes;
+            //Simple math to calculate percentages
+            let total = this.likes + this.dislikes;
+            percentageLikes = (this.likes / total) * 100;
+            if (document.getElementById('document-item-like-percents-' + this.props.id))
+                //We need to apply the widths to our elements
+                document.getElementById('document-item-like-percents-' + this.props.id).style.width = percentageLikes.toString() + "%";
+        }
+    }
+}
 const mapStateToProps = (state) => {
     return {
         // document: state.document.document,

@@ -38,7 +38,7 @@ class Metadata extends Component {
             {this.props.category}
           </div>
           <div className="metadata-label">
-            {`${this.props.readingTime} phút đọc`}
+            {`${Math.ceil(this.props.readingTime/60)} phút đọc`}
           </div>
         </div>
 

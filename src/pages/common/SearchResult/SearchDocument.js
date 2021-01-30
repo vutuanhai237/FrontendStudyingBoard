@@ -132,7 +132,7 @@ class SearchDocument extends Component {
 
                             < Paginator config={{
                                 changePage: (pageNumber) => this.onPageChange(pageNumber),
-                                pageCount: 1200,
+                                pageCount: 1,
                                 currentPage: getSearchParamByName('page')
                             }} />
                         </div>

@@ -5,7 +5,7 @@ import Home from "pages/common/Home/Home";
 //import PostsList from "pages/common/PostsList/PostsList";
 import PostDetail from "pages/common/PostDetail/PostDetail";
 //import DocumentsList from "pages/common/DocumentsList/DocumentsList";
-import DocDetail from "pages/common/DocumentDetail/DocumentDetail";
+import DocumentDetail from "pages/common/DocumentDetail/DocumentDetail";
 import Login from "pages/common/Login/Login";
 import Register from "pages/common/Register/Register";
 import Header from "components/common/Header/Header";
@@ -66,7 +66,7 @@ const App = () => {
                     <Route exact path="/posts" component={PostsList} />
                     <Route exact path="/documents" component={DocumentsList} />
                     <Route exact path="/posts/:id" component={PostDetail} />
-                    <Route exact path="/documents/:id" component={DocDetail} />
+                    <Route exact path="/documents/:id" component={DocumentDetail} />
                     <Route exact path="/courses" component={CoursesList} />
                     <Route exact path="/courses/:id" component={ChaptersList} />
                     <Route path="/search/posts" exact component={SearchPost} />

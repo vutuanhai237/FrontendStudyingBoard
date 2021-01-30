@@ -128,7 +128,6 @@ export default class WallpageItem extends React.Component {
                                 {this.props.publishDtm.substring(0, 10)}
                             </div>
                         </div>
-
                     </div>
 
                     <div className="item-summary">
@@ -137,17 +136,15 @@ export default class WallpageItem extends React.Component {
                 </div>
 
                 <div className="j-c-end">
-                    <div className="wallpage-item-reaction-bar">
+                    <div className="post-reaction-bar">
                         <div className="d-flex mg-top-5px">
                             <div className="d-flex">
                                 <div className="like-btn">  {likeBtn}</div>
                                 <div className="like-count">{this.likeCount !== -1 ? this.likeCount : this.props.likeCount}</div>
                             </div>
-
                             <div className="d-flex">
                                 <div className="save-text-container" onClick={this.toggleSaveImage}>
                                     <div>{saveBtn}</div>
-
                                 </div>
                                 <div className="post-comment-count-container">
                                     Bình luận

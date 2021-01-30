@@ -82,7 +82,7 @@ class MyPostsList extends Component {
                     readingTime={postItem.readingTime}
                     likes={postItem.likeCount}
                     comments={postItem.commentCount}
-                    approveStatus={postItem.approveStatus}
+                    approveState={postItem.postState}
                 ></PostSummary >)
             )
         }

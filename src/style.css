@@ -163,6 +163,10 @@ a:hover {
     justify-content: end;
 }
 
+.pd-10px{
+    padding: 10px;
+}
+
 .icon-16x16 {
     width: 16px;
     height: 16px;

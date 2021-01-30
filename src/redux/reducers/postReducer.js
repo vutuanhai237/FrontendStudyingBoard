@@ -1,7 +1,7 @@
 import {
-    //
-    GET_ALL_NOT_APPROVED_POSTS,
-    APPROVE_A_POST,
+    POST_APPROVE_A_POST_REQUEST,
+    POST_APPROVE_A_POST_SUCCESS,
+    POST_APPROVE_A_POST_FAILURE,
 
     POST_CREATE_POST_REQUEST,
     POST_CREATE_POST_SUCCESS,
@@ -11,6 +11,11 @@ import {
     GET_HIGHLIGHT_POSTS_LIST_REQUEST,
     GET_HIGHLIGHT_POSTS_LIST_SUCCESS,
     GET_HIGHLIGHT_POSTS_LIST_FAILURE,
+
+    //post
+    GET_POST_BY_ID_REQUEST,
+    GET_POST_BY_ID_SUCCESS,
+    GET_POST_BY_ID_FAILURE,
 
     //post list
     GET_POSTS_LIST_SUCCESS,
@@ -31,7 +36,9 @@ import {
 } from '../constants.js'
 
 const initialState = {
-
+    currentPost: {
+        isLoading: false, data: '', error: ''
+    },
     //search post: use for search post and post list
     postsList: {
         isLoading: false,
@@ -44,7 +51,8 @@ const initialState = {
     myPosts: {
         isLoading: false,
         data: [],
-        error: ""
+        error: "",
+        totalPages: 0
     },
 
     //highlight posts list
@@ -57,11 +65,28 @@ const initialState = {
     createPost: {
         isLoadingDone: false,
         notification: { type: '', message: '' }
-    }
+    },
+    approvePost: {
+        isLoadingDone: false,
+        notification: { type: '', message: '' }
+    },
 };
 
 function PostReducer(state = initialState, action) {
     switch (action.type) {
+
+        case GET_POST_BY_ID_REQUEST:
+            return {
+                ...state, currentPost: { isLoading: true }
+            };
+        case GET_POST_BY_ID_SUCCESS:
+            {
+                return { ...state, currentPost: { isLoading: false, data: action.payload } }
+            }
+        case GET_POST_BY_ID_FAILURE:
+            {
+                return { ...state, currentPost: { isLoading: false, error: action.payload } }
+            }
 
         case POST_CREATE_POST_REQUEST:
             return {
@@ -76,14 +101,18 @@ function PostReducer(state = initialState, action) {
                 return { ...state, createPost: { isLoading: true, notification: { type: 'error', message: action.payload } } }
             }
         //get all not approved post
-        case GET_ALL_NOT_APPROVED_POSTS:
-            {
-                return { ...state, requestedPosts: action.payload };
-            }
 
-        case APPROVE_A_POST:
+        case POST_APPROVE_A_POST_REQUEST:
             {
-                return { ...state, currentPostApprovedStatus: action.payload }
+                return { ...state, approvePost: { isLoading: true } }
+            }
+        case POST_APPROVE_A_POST_SUCCESS:
+            {
+                return { ...state, approvePost: { isLoading: false, notification: { type: 'success', message: 'Duyệt thành công' } } }
+            }
+        case POST_APPROVE_A_POST_FAILURE:
+            {
+                return { ...state, approvePost: { isLoading: false, notification: { type: 'failure', message: 'Duyệt thất bại' } } }
             }
 
         //get highlight posts list
@@ -107,7 +136,7 @@ function PostReducer(state = initialState, action) {
             };
         case GET_MY_POSTS_SUCCESS:
             {
-                return { ...state, myPosts: { isLoading: false, data: action.payload, error: '' } }
+                return { ...state, myPosts: { isLoading: false, data: action.payload.postSummaryWithStateDTOs, error: '', totalPage: action.payload.totalPages } }
             }
         case GET_MY_POSTS_FAILURE:
             {
