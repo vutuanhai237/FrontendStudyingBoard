@@ -5,18 +5,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { getPostCategories } from "redux/services/postCategoryServices";
 import { getTagQuickQueryResult } from "redux/services/tagServices"
-import { postCreatePost } from "redux/services/postServices"
+import { uploadADocument } from "redux/services/docServices"
 import "./UploadDocument.scss";
 import "components/common/CustomCKE/CKEditorContent.scss";
 import 'components/styles/DocPostSummary.scss'
 import 'components/styles/DocPostDetail.scss'
-
+import CustomModal from 'components/common/CustomModalPopup/CustomModal'
 //components
 import Tag from "components/common/Tag/Tag";
 import Titlebar from 'components/common/Titlebar/Titlebar';
 import Combobox from 'components/common/Combobox/Combobox';
 import Editor from 'components/common/CustomCKE/CKEditor.js';
-
+import UserSidebar from 'layouts/UserSidebar'
 import liked_btn from 'assets/images/liked_btn.png'
 import unliked_btn from 'assets/images/unliked_btn.png'
 import full_blue_bookmark_btn from 'assets/images/full_blue_bookmark_btn.png'
@@ -75,7 +75,7 @@ class UploadDocument extends Component {
                 categoryID: "",//
                 subjectID: "",
                 imageURL: "null",
-
+                docURL:"http://www.africau.edu/images/default/sample.pdf"
             },
 
             author: {
@@ -141,8 +141,7 @@ class UploadDocument extends Component {
 
     handleUploadBtnClick = () => {
         if (styleFormSubmit(validationCondition)) {
-        
-            this.props.postCreatePost(this.state.UPLOAD_DOC_DTO);
+            this.props.uploadADocument(this.state.UPLOAD_DOC_DTO);
         }
 
     }
@@ -558,7 +557,7 @@ class UploadDocument extends Component {
                         <div className="form-group" >
                             <label className="form-label-required">Tài liệu:</label>
                             <input className="form-input" id="cr-doc-file-link"
-                                placeholder="Nhập tiêu đề tài liệu ..." onChange={e => this.handleFileLinkChange(e)}
+                                placeholder="Nhập liên kết tài liệu ..." onChange={e => this.handleFileLinkChange(e)}
                                 type="text" >
                             </input>
                             {/* Su dung file input theo dung nhu cau truc duoi day thi moi co the tu validation
@@ -579,25 +578,40 @@ class UploadDocument extends Component {
                     </div >
                 </div >
             </div >
-
+        let modal = <></>
+        if (this.props.isUploadDone) {
+            modal = <CustomModal
+                open={this.props.isUploadDone}
+                shadow={true}
+                title={this.props.uploadMessage.type === 'success' ? 'Thành công' : 'Thất bại'}
+                text={this.props.uploadMessage.message}
+                type={this.props.uploadMessage.type === 'success' ? "alert_success" : "alert_failure"}
+                closeModal={() => { this.isNotifySuccessOpen = false; window.location.pathname = '/user/my-posts'; this.setState({}) }}
+            >
+            </CustomModal>
+        }
         return (
-            <div>
-                <Titlebar title="UPLOAD TÀI LIỆU" />
-                <div className="content-container">
-                    <div className="form-container">
-                        <div className="j-c-end">
-                            <div className="j-c-end" >
-                                <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn tài liệu</button>
-                                <div className="mg-right-5px" />
-                                <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>
+            <div className="left-sidebar-layout">
+                <UserSidebar />
+                <div className="content-layout">
+                    <Titlebar title="UPLOAD TÀI LIỆU" />
+                    <div className="content-container">
+                        <div className="form-container">
+                            <div className="j-c-end">
+                                <div className="j-c-end" >
+                                    <button className="blue-button" disabled={!this.state.isPreview} onClick={this.onEditBtnClick} >Soạn tài liệu</button>
+                                    <div className="mg-right-5px" />
+                                    <button className="white-button" disabled={this.state.isPreview} onClick={this.onPreviewBtnClick} >Preview</button>
+                                </div>
                             </div>
+                            <div className="mg-top-10px decoration-line" />
                         </div>
-                        <div className="mg-top-10px decoration-line" />
-                    </div>
-                    {body}
+                        {body}
 
-                </div>
-            </div >
+                    </div>
+                </div >
+            </div>
+
         );
     }
 
@@ -627,15 +641,17 @@ const mapStateToProps = (state) => {
         tagQuickQueryResult: state.tag.tagQuickQueryResult.data,
         isTagQuickQueryLoading: state.tag.tagQuickQueryResult.isLoading,
         //sau nay su dung loading de tranh cac truong hop ma 2 bien isSearching va isLoadDone khong xu ly duoc
-        isTagQuickQueryLoadingDone: state.tag.tagQuickQueryResult.isLoadingDone
-
+        isTagQuickQueryLoadingDone: state.tag.tagQuickQueryResult.isLoadingDone,
+        //upload thanh cong hay khong
+        isUploadDone: state.document.uploadDocument.isLoadingDone,
+        uploadMessage: state.document.uploadDocument.notification
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     getPostCategories,
     getTagQuickQueryResult,
-    postCreatePost
+    uploadADocument
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UploadDocument));

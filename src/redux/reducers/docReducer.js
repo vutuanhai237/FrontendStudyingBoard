@@ -17,7 +17,10 @@ import {
     GET_ALL_NOT_APPROVED_DOCUMENTS_SUCCESS,
     GET_ALL_NOT_APPROVED_DOCUMENTS_REQUEST,
     GET_ALL_NOT_APPROVED_DOCUMENTS_FAILURE,
-    APPROVE_A_DOCUMENT
+
+    UPLOAD_DOCUMENT_REQUEST,
+    UPLOAD_DOCUMENT_SUCCESS,
+    UPLOAD_DOCUMENT_FAILURE
 
 } from '../constants.js'
 
@@ -35,6 +38,7 @@ const initialState = {
         data: [],
         error: ""
     }
+    , uploadDocument: { isLoading: true }
 }
 
 function DocReducer(state = initialState, action) {
@@ -42,11 +46,11 @@ function DocReducer(state = initialState, action) {
 
         // case GET_ALL_NOT_APPROVED_DOCUMENTS:
         //     return { ...state, requestedDocuments: action.payload };
-        case APPROVE_A_DOCUMENT:
-            return { ...state, currentDocumentApprovedStatus: action.payload }
+        // case APPROVE_A_DOCUMENT:
+        //     return { ...state, currentDocumentApprovedStatus: action.payload }
 
         //new documents
-       
+
         //my post
         case GET_MY_DOCUMENTS_REQUEST:
             return {
@@ -59,6 +63,18 @@ function DocReducer(state = initialState, action) {
         case GET_MY_DOCUMENTS_FAILURE:
             {
                 return { ...state, myDocuments: { isLoading: false, error: action.payload, data: [] } }
+            }
+        case UPLOAD_DOCUMENT_REQUEST:
+            return {
+                ...state, uploadDocument: { isLoading: true }
+            };
+        case UPLOAD_DOCUMENT_SUCCESS:
+            {
+                return { ...state, uploadDocument: { isLoading: false, notification: { type: 'success', message: 'Tải tài liệu thành công' } } }
+            }
+        case UPLOAD_DOCUMENT_FAILURE:
+            return {
+                ...state, uploadDocument: { isLoading: false, notification: { type: 'failure', message: 'Tài tài liệu thất bại.' } }
             }
 
         //document search result 

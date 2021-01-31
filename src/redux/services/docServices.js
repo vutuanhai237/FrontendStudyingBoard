@@ -13,8 +13,12 @@ import {
     get_DocumentSearchResultRequest,
     get_DocumentSearchResultSuccess,
     get_DocumentSearchResultFailure,
+
+    post_UploadDocumentRequest, post_UploadDocumentSuccess, post_UploadDocumentFailure
 } from "redux/actions/docAction.js";
 //upload new document
+
+import { remoteServiceBaseUrl } from 'utils/httpServices'
 
 export function getDocumentByID(id) {
     return dispatch => {
@@ -54,7 +58,7 @@ export function getDocumentsList(page = 1, category = "", searchTerm = "") { //t
                 }
             )
             .catch(error => {
-                
+
                 dispatch(get_DocumentsListFailure(JSON.parse(error))); //
             })
 
@@ -78,7 +82,7 @@ export function getDocumentSearchResult(page = 1, category = "", searchTerm = ""
                 }
             )
             .catch(error => {
-                
+
                 dispatch(get_DocumentSearchResultFailure(JSON.parse(error))); //
             })
     }
@@ -102,11 +106,34 @@ export function getMyDocumentsList(page = 1, category = "") { //this API to get 
                 }
             )
             .catch(error => {
-                
+
                 dispatch(get_MyDocumentsFailure(error))
             })
     }
 }
 
-// export
+export function uploadADocument(data) {
+    return dispatch => {
+        dispatch(post_UploadDocumentRequest());
 
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                //token cac kieu
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        };
+
+        fetch(`${remoteServiceBaseUrl}documents`, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                dispatch(post_UploadDocumentSuccess(result));
+            }
+            )
+            .catch(error => {
+                dispatch(post_UploadDocumentFailure(error)); //
+            })
+    }
+}

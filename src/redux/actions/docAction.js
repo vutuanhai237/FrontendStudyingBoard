@@ -28,6 +28,8 @@ import {
     GET_DOCUMENT_SEARCH_RESULT_SUCCESS,
     GET_DOCUMENT_SEARCH_RESULT_FAILURE,
 
+    UPLOAD_DOCUMENT_REQUEST, UPLOAD_DOCUMENT_SUCCESS, UPLOAD_DOCUMENT_FAILURE
+
 } from "../constants.js"
 
 
@@ -110,3 +112,26 @@ export function get_DocumentSearchResultFailure(error) {
         payload: error
     }
 }
+
+
+//create a post 
+export function post_UploadDocumentRequest() {
+    return {
+        type: UPLOAD_DOCUMENT_REQUEST
+    }
+}
+
+export function post_UploadDocumentSuccess(notification) {
+    return {
+        type: UPLOAD_DOCUMENT_SUCCESS,
+        payload: notification
+    }
+}
+
+export function post_UploadDocumentFailure(notification) {
+    return {
+        type: UPLOAD_DOCUMENT_FAILURE,
+        payload: notification
+    }
+}
+
